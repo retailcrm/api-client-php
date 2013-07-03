@@ -30,6 +30,8 @@ class IntaroCrmRestApi
     protected $apiUrl;
     protected $apiKey;
     protected $apiVersion = '1';
+    protected $lastError;
+    protected $statusCode;
 
     /**
      * @param string $crmUrl - адрес CRM
@@ -40,6 +42,22 @@ class IntaroCrmRestApi
         $this->apiUrl = $crmUrl.'/api/v'.$this->apiVersion.'/';
         $this->apiKey = $apiKey;
     }
+
+    public function getStatusCode()
+    {
+        return $this->statusCode;
+    }
+
+    public function getLastError()
+    {
+        return $this->statusCode . ' ' . $this->lastError;
+    }
+
+    public function getLastErrorMessage()
+    {
+        return $this->lastError;
+    }
+
 
     /* Методы для работы с заказами */
     /**
@@ -357,13 +375,27 @@ class IntaroCrmRestApi
         }
 
         $response = curl_exec($ch);
+        $this->statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if (curl_errno($ch))
+        {
+            $this->lastError = 'Curl error: ' . curl_error($ch);
+            return null;
+        }
         curl_close($ch);
 
-        if (empty($response))
-            return false;
-
         $result = (array)json_decode($response, true);
-        return $result;
+        if ($result['success'] == false)
+        {
+            $this->lastError = $result['errorMsg'];
+            return null;
+        }
+
+        $this->lastError = null;
+        unset($result['success']);
+        if (count($result) == 0)
+            return true;
+        return reset($result);
     }
 }
 
