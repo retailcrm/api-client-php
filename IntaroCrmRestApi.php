@@ -50,7 +50,10 @@ class IntaroCrmRestApi
 
     public function getLastError()
     {
-        return $this->statusCode . ' ' . $this->lastError;
+        if (!is_null($this->lastError))
+            return $this->statusCode . ' ' . $this->lastError;
+        else
+            return null;
     }
 
     public function getLastErrorMessage()
