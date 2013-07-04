@@ -1,4 +1,5 @@
 <?php
+namespace IntaroCrm;
 
 class RestApi
 {
