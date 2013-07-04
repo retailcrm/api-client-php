@@ -2,7 +2,7 @@
     "name": "intarocrm/crm-rest-api",
     "description": "PHP Client for IntaroCRM REST API",
     "type": "library",
-    "keywords": ["api", "Intaro CRM"],
+    "keywords": ["api", "Intaro CRM", "REST"],
     "homepage": "http://www.intarocrm.ru/",
     "authors": [
         {
@@ -19,7 +19,7 @@
         "email": "support@intarocrm.ru"
     },
     "autoload": {
-        "psr-0": { "IntaroCrmRestApi": "lib/" }
+        "psr-0": { "IntaroCrm\\": "lib/" }
     },
     "extra": {
         "branch-alias": {

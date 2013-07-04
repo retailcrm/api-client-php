@@ -28,11 +28,21 @@ Usage
 
 ``` php
 
-    $crmApiClient = new \IntaroCrmRestApi('http://demo.intarocrm.ru', 'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH');
+$crmApiClient = new \IntaroCrmRestApi('http://demo.intarocrm.ru',
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH');
 
 ```
 Constructor arguments are:
 
-1. IntaroCRM url address.
-2. Your site API Token.
+1. Your IntaroCRM acount URL-address
+2. Your site API Token
 
+### Example: get order types list
+
+``` php
+
+$orderTypes = $crmApiClient->orderTypesList();
+if (!is_null($crmApiClient->getLastError()))
+    return $crmApiClient->getLastError();
+
+```
