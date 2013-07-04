@@ -44,11 +44,13 @@ class RestApi
         $this->apiKey = $apiKey;
     }
 
+
     public function getStatusCode()
     {
         return $this->statusCode;
     }
 
+    /* Получение кода статуса и сообщения об ошибке */
     public function getLastError()
     {
         if (!is_null($this->lastError))
@@ -57,6 +59,7 @@ class RestApi
             return null;
     }
 
+    /* Псообщения об ошибке */
     public function getLastErrorMessage()
     {
         return $this->lastError;

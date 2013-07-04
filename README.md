@@ -28,9 +28,8 @@ Usage
 
 ``` php
 
-$crmApiClient = new \IntaroCrmRestApi('http://demo.intarocrm.ru',
+$crmApiClient = new \IntaroCrm\RestApi('http://demo.intarocrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH');
-
 ```
 Constructor arguments are:
 
@@ -42,7 +41,7 @@ Constructor arguments are:
 ``` php
 
 $orderTypes = $crmApiClient->orderTypesList();
+
 if (!is_null($crmApiClient->getLastError()))
     return $crmApiClient->getLastError();
-
 ```
