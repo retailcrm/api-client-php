@@ -19,7 +19,7 @@
         "email": "support@intarocrm.ru"
     },
     "autoload": {
-        "psr-0": { "IntaroCRM": "lib/" }
+        "psr-0": { "IntaroCrmRestApi": "lib/" }
     },
     "extra": {
         "branch-alias": {
