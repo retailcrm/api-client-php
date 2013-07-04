@@ -28,8 +28,10 @@ Usage
 
 ``` php
 
-$crmApiClient = new \IntaroCrm\RestApi('http://demo.intarocrm.ru',
-    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH');
+$crmApiClient = new \IntaroCrm\RestApi(
+    'http://demo.intarocrm.ru',
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
+);
 ```
 Constructor arguments are:
 
