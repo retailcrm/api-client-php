@@ -1,0 +1,29 @@
+{
+    "name": "intaro/crm-rest-api",
+    "description": "PHP class that provides a simple way to interact with Intaro CRM Rest API",
+    "type": "library",
+    "keywords": ["api", "Intaro CRM"],
+    "homepage": "http://www.intarocrm.ru/",
+    "authors": [
+        {
+            "name": "Kruglov Kirill",
+            "email": "kruglov@intaro.ru",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.0",
+        "ext-curl": "*"
+    },
+    "support": {
+        "email": "support@intarocrm.ru"
+    },
+    "autoload": {
+        "psr-0": { "Intaro": "lib/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
