@@ -1,6 +1,6 @@
 <?php
 
-class IntaroCrmRestApi
+class RestApi
 {
     protected static $jsonReplaceSource = array(
         '\u0410','\u0430','\u0411','\u0431','\u0412','\u0432','\u0413','\u0433',
@@ -350,6 +350,38 @@ class IntaroCrmRestApi
         $parameters['paymentStatus'] = $dataJson;
 
         $url = $this->apiUrl.'payment-statuses/'.$paymentStatus['code'].'/edit';
+        $result = $this->curlRequest($url, $parameters, 'POST');
+        return $result;
+    }
+
+
+    /**
+     * Получение списка типов заказа
+     *
+     * @return array - массив типов заказа
+     */
+    public function orderTypesList()
+    {
+        $url = $this->apiUrl.'reference/order-types';
+        $result = $this->curlRequest($url);
+        return $result;
+    }
+
+    /**
+     * Редактирование типа заказа
+     *
+     * @param array $paymentType - информация о типе заказа
+     * @return array
+     */
+    public function orderTypesEdit($orderType)
+    {
+        $dataJson = json_encode($orderType);
+        $dataJson = str_replace(self::$jsonReplaceSource, self::$jsonReplaceTarget,
+            $dataJson);
+        $parameters = array();
+        $parameters['orderType'] = $dataJson;
+
+        $url = $this->apiUrl.'order-types/'.$paymentType['code'].'/edit';
         $result = $this->curlRequest($url, $parameters, 'POST');
         return $result;
     }
