@@ -17,7 +17,7 @@ Add IntaroCRM REST API client in your composer.json:
 ```js
 {
     "require": {
-        "intarocrm/crm-rest-api": "dev-master"
+        "intarocrm/rest-api-client": "dev-master"
     }
 }
 ```
