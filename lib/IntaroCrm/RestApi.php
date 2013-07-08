@@ -374,7 +374,7 @@ class RestApi
     /**
      * Редактирование типа заказа
      *
-     * @param array $paymentType - информация о типе заказа
+     * @param array $orderType - информация о типе заказа
      * @return array
      */
     public function orderTypesEdit($orderType)
@@ -385,7 +385,7 @@ class RestApi
         $parameters = array();
         $parameters['orderType'] = $dataJson;
 
-        $url = $this->apiUrl.'order-types/'.$paymentType['code'].'/edit';
+        $url = $this->apiUrl.'order-types/'.$orderType['code'].'/edit';
         $result = $this->curlRequest($url, $parameters, 'POST');
         return $result;
     }
@@ -401,6 +401,26 @@ class RestApi
         $result = $this->curlRequest($url);
         return $result;
     }
+
+    /**
+     * Редактирование статуса заказа
+     *
+     * @param array $status - информация о статусе заказа
+     * @return array
+     */
+    public function orderStatusEdit($status)
+    {
+        $dataJson = json_encode($status);
+        $dataJson = str_replace(self::$jsonReplaceSource, self::$jsonReplaceTarget,
+            $dataJson);
+        $parameters = array();
+        $parameters['status'] = $dataJson;
+
+        $url = $this->apiUrl.'statuses/'.$status['code'].'/edit';
+        $result = $this->curlRequest($url, $parameters, 'POST');
+        return $result;
+    }
+
 
     /**
      * Получение списка групп статусов заказа
