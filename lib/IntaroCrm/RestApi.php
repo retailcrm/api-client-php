@@ -390,6 +390,30 @@ class RestApi
         return $result;
     }
 
+    /**
+     * Получение списка статусов заказа
+     *
+     * @return array - массив статусов заказа
+     */
+    public function orderStatusesList()
+    {
+        $url = $this->apiUrl.'reference/statuses';
+        $result = $this->curlRequest($url);
+        return $result;
+    }
+
+    /**
+     * Получение списка групп статусов заказа
+     *
+     * @return array - массив групп статусов заказа
+     */
+    public function orderStatusGroupsList()
+    {
+        $url = $this->apiUrl.'reference/status-groups';
+        $result = $this->curlRequest($url);
+        return $result;
+    }
+
 
 
 
