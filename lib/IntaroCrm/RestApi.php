@@ -141,12 +141,31 @@ class RestApi
     }
 
     /**
+     * Обновление externalId у заказов с переданными id
+     *
+     * @param array $orders- массив, содержащий id и externalId заказа
+     * @return array
+     */
+    public function orderFixExternalIds($order)
+    {
+        $dataJson = json_encode($order);
+        $dataJson = str_replace(self::$jsonReplaceSource, self::$jsonReplaceTarget,
+            $dataJson);
+        $this->parameters['orders'] = $dataJson;
+
+        $url = $this->apiUrl.'orders/fix-external-ids';
+        $result = $this->curlRequest($url, 'POST');
+        return $result;
+    }
+
+    /**
      * Удаление заказа
      *
      * @param string $id - идентификатор заказа
      * @param string $by - поиск заказа по id или externalId
      * @return array
      */
+    /*
     public function orderDelete($id, $by = 'externalId')
     {
         $url = $this->apiUrl.'orders/'.$id.'/delete';
@@ -154,7 +173,7 @@ class RestApi
             $this->parameters['by'] = $by;
         $result = $this->curlRequest($url, 'POST');
         return $result;
-    }
+    }*/
 
     /**
      * Получение последних измененных заказов
@@ -238,6 +257,7 @@ class RestApi
      * @param string $by - поиск заказа по id или externalId
      * @return array
      */
+    /*
     public function customerDelete($id, $by = 'externalId')
     {
         $url = $this->apiUrl.'customers/'.$id.'/delete';
@@ -245,7 +265,7 @@ class RestApi
             $this->parameters['by'] = $by;
         $result = $this->curlRequest($url, 'POST');
         return $result;
-    }
+    }*/
 
     /**
      * Получение списка заказов клиента
