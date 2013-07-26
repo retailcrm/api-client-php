@@ -6,7 +6,8 @@ class RestApi
     protected $apiUrl;
     protected $apiKey;
     protected $apiVersion = '1';
-    protected $lastError;
+
+    protected $response;
     protected $statusCode;
     protected $parameters;
 
@@ -30,16 +31,23 @@ class RestApi
     /* Получение кода статуса и сообщения об ошибке */
     public function getLastError()
     {
-        if (!is_null($this->lastError))
-            return $this->statusCode . ' ' . $this->lastError;
+        if (isset($this->response['errorMsg']) && isset($this->response['errors']))
+        {
+            $result = $this->statusCode . ' ' . $this->response['errorMsg'];
+            foreach ($this->response['errors'] as $error)
+                $result .= ' ' . $error;
+        }
+        elseif (isset($this->response['errorMsg']))
+            $result = $this->statusCode . ' ' . $this->response['errorMsg'];
         else
-            return null;
+            $result = null;
+        return $result;
     }
 
     /* Псообщения об ошибке */
     public function getLastErrorMessage()
     {
-        return $this->lastError;
+        return $this->response['errorMsg'];
     }
 
 
@@ -94,7 +102,7 @@ class RestApi
     }
 
     /**
-     * Загрузка нескольких заказов
+     * Пакетная загрузка заказов
      *
      * @param array $orders - массив заказов
      * @return array
@@ -106,6 +114,8 @@ class RestApi
 
         $url = $this->apiUrl.'orders/upload';
         $result = $this->curlRequest($url, 'POST');
+        if (is_null($result) && isset($result['uploadedOrders']))
+            return $result['uploadedOrders'];
         return $result;
     }
 
@@ -210,6 +220,26 @@ class RestApi
 
         $url = $this->apiUrl.'customers/'.$customer['externalId'].'/edit';
         $result = $this->curlRequest($url, 'POST');
+        return $result;
+    }
+
+    /**
+     * Пакетная загрузка клиентов
+     *
+     * @param array $customers - массив клиентов
+     * @return array
+     */
+    public function customerUpload($customers)
+    {
+        $dataJson = json_encode($customers);
+        $dataJson = str_replace(self::$jsonReplaceSource, self::$jsonReplaceTarget,
+            $dataJson);
+        $this->parameters['customers'] = $dataJson;
+
+        $url = $this->apiUrl.'customers/upload';
+        $result = $this->curlRequest($url, 'POST');
+        if (is_null($result) && isset($result['uploaded']))
+            return $result['uploaded'];
         return $result;
     }
 
@@ -442,19 +472,16 @@ class RestApi
 
         if (curl_errno($ch))
         {
-            $this->lastError = 'Curl error: ' . curl_error($ch);
+            $this->response = array('errorMsg' => 'Curl error: ' . curl_error($ch));
             return null;
         }
         curl_close($ch);
 
         $result = (array)json_decode($response, true);
+        $this->response = $result;
         if ($result['success'] == false)
-        {
-            $this->lastError = $result['errorMsg'];
             return null;
-        }
 
-        $this->lastError = null;
         unset($result['success']);
         if (count($result) == 0)
             return true;
