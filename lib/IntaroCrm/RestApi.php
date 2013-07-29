@@ -232,8 +232,6 @@ class RestApi
     public function customerUpload($customers)
     {
         $dataJson = json_encode($customers);
-        $dataJson = str_replace(self::$jsonReplaceSource, self::$jsonReplaceTarget,
-            $dataJson);
         $this->parameters['customers'] = $dataJson;
 
         $url = $this->apiUrl.'customers/upload';
