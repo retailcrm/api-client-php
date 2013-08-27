@@ -308,7 +308,7 @@ class RestApi
         $dataJson = json_encode($deliveryType);
         $this->parameters['deliveryType'] = $dataJson;
 
-        $url = $this->apiUrl.'delivery-types/'.$deliveryType['code'].'/edit';
+        $url = $this->apiUrl.'reference/delivery-types/'.$deliveryType['code'].'/edit';
         $result = $this->curlRequest($url, 'POST');
         return $result;
     }
@@ -337,7 +337,7 @@ class RestApi
         $dataJson = json_encode($paymentType);
         $this->parameters['paymentType'] = $dataJson;
 
-        $url = $this->apiUrl.'payment-types/'.$paymentType['code'].'/edit';
+        $url = $this->apiUrl.'reference/payment-types/'.$paymentType['code'].'/edit';
         $result = $this->curlRequest($url, 'POST');
         return $result;
     }
@@ -366,7 +366,7 @@ class RestApi
         $dataJson = json_encode($paymentStatus);
         $this->parameters['paymentStatus'] = $dataJson;
 
-        $url = $this->apiUrl.'payment-statuses/'.$paymentStatus['code'].'/edit';
+        $url = $this->apiUrl.'reference/payment-statuses/'.$paymentStatus['code'].'/edit';
         $result = $this->curlRequest($url, 'POST');
         return $result;
     }
@@ -395,7 +395,7 @@ class RestApi
         $dataJson = json_encode($orderType);
         $this->parameters['orderType'] = $dataJson;
 
-        $url = $this->apiUrl.'order-types/'.$orderType['code'].'/edit';
+        $url = $this->apiUrl.'reference/order-types/'.$orderType['code'].'/edit';
         $result = $this->curlRequest($url, 'POST');
         return $result;
     }
@@ -423,7 +423,7 @@ class RestApi
         $dataJson = json_encode($status);
         $this->parameters['status'] = $dataJson;
 
-        $url = $this->apiUrl.'statuses/'.$status['code'].'/edit';
+        $url = $this->apiUrl.'reference/statuses/'.$status['code'].'/edit';
         $result = $this->curlRequest($url, 'POST');
         return $result;
     }
