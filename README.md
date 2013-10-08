@@ -29,7 +29,7 @@ Usage
 ``` php
 
 $crmApiClient = new \IntaroCrm\RestApi(
-    'http://demo.intarocrm.ru',
+    'https://demo.intarocrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
 );
 ```
