@@ -470,16 +470,16 @@ class RestApi
         $this->parameters = array('apiKey' => $this->apiKey);
 
         $errno = curl_errno($ch);
-		$error = curl_error($ch);
+        $error = curl_error($ch);
         curl_close($ch);
 
         if ($errno)
-			throw new Exception\CurlException($error, $errno);
+            throw new Exception\CurlException($error, $errno);
 
         $result = json_decode($response, true);
 
         if ($statusCode >= 400 || isset($result['success']) && $result['success'] === false) {
-			throw new Exception\ApiException($this->getErrorMessage($result), $statusCode);
+            throw new Exception\ApiException($this->getErrorMessage($result), $statusCode);
         }
 
         unset($result['success']);
