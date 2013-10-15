@@ -17,7 +17,7 @@ Add IntaroCRM REST API client in your composer.json:
 ```js
 {
     "require": {
-        "intarocrm/rest-api-client": "dev-master"
+        "intarocrm/rest-api-client": "1.1.*"
     }
 }
 ```
@@ -42,8 +42,14 @@ Constructor arguments are:
 
 ``` php
 
-$orderTypes = $crmApiClient->orderTypesList();
+try {
+    $orderTypes = $crmApiClient->orderTypesList();
+}
+catch (\IntaroCrm\Exception\CurlException $e) {
+    //$logger->addError('orderTypesList: connection error');
+}
+catch (\IntaroCrm\Exception\ApiException $e) {
+    //$logger->addError('orderTypesList: ' . $e->getMessage());
+}
 
-if (!is_null($crmApiClient->getLastError()))
-    return $crmApiClient->getLastError();
 ```

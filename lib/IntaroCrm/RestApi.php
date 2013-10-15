@@ -7,8 +7,6 @@ class RestApi
     protected $apiKey;
     protected $apiVersion = '1';
 
-    protected $response;
-    protected $statusCode;
     protected $parameters;
 
     /**
@@ -21,35 +19,6 @@ class RestApi
         $this->apiKey = $apiKey;
         $this->parameters = array('apiKey' => $this->apiKey);
     }
-
-
-    public function getStatusCode()
-    {
-        return $this->statusCode;
-    }
-
-    /* Получение кода статуса и сообщения об ошибке */
-    public function getLastError()
-    {
-        if (isset($this->response['errorMsg']) && isset($this->response['errors']))
-        {
-            $result = $this->statusCode . ' ' . $this->response['errorMsg'];
-            foreach ($this->response['errors'] as $error)
-                $result .= ' ' . $error;
-        }
-        elseif (isset($this->response['errorMsg']))
-            $result = $this->statusCode . ' ' . $this->response['errorMsg'];
-        else
-            $result = null;
-        return $result;
-    }
-
-    /* Псообщения об ошибке */
-    public function getLastErrorMessage()
-    {
-        return $this->response['errorMsg'];
-    }
-
 
     /* Методы для работы с заказами */
     /**
@@ -440,7 +409,7 @@ class RestApi
         $result = $this->curlRequest($url);
         return $result;
     }
-    
+
     /**
      * Обновление статистики
      *
@@ -451,6 +420,29 @@ class RestApi
         $url = $this->apiUrl.'statistic/update';
         $result = $this->curlRequest($url);
         return $result;
+    }
+
+    protected function getErrorMessage($response)
+    {
+        $str = '';
+        if (isset($response['message']))
+            $str = $response['message'];
+        elseif (isset($response[0]['message']))
+            $str = $response[0]['message'];
+        elseif (isset($response['error']) && isset($response['error']['message']))
+            $str = $response['error']['message'];
+        elseif (isset($response['errorMsg']))
+            $str = $response['errorMsg'];
+
+        if (isset($response['errors']) && sizeof($response['errors'])) {
+            foreach ($response['errors'] as $error)
+                $str .= '. ' . $error;
+        }
+
+        if (!strlen($str))
+            return 'Application Error';
+
+        return $str;
     }
 
     protected function curlRequest($url, $method = 'GET', $format = 'json')
@@ -472,28 +464,29 @@ class RestApi
         }
 
         $response = curl_exec($ch);
-        $this->statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         unset($this->parameters);
         /* Сброс массива с параметрами */
         $this->parameters = array('apiKey' => $this->apiKey);
 
-        if (curl_errno($ch))
-        {
-            $this->response = array('errorMsg' => 'Curl error: ' . curl_error($ch));
-            return null;
-        }
+        $errno = curl_errno($ch);
+		$error = curl_error($ch);
         curl_close($ch);
 
-        $result = (array)json_decode($response, true);
-        $this->response = $result;
-        if ($result['success'] == false)
-            return null;
+        if ($errno)
+			throw new Exception\CurlException($error, $errno);
+
+        $result = json_decode($response, true);
+
+        if ($statusCode >= 400 || isset($result['success']) && $result['success'] === false) {
+			throw new Exception\ApiException($this->getErrorMessage($result), $statusCode);
+        }
 
         unset($result['success']);
+
         if (count($result) == 0)
             return true;
+
         return reset($result);
     }
 }
-
-?>
