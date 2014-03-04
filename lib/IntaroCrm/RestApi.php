@@ -369,6 +369,35 @@ class RestApi
         return $result;
     }
 
+
+    /**
+     * Получение списка способов оформления заказа
+     *
+     * @return array - массив способов оформления заказа
+     */
+    public function orderMethodsList()
+    {
+        $url = $this->apiUrl.'reference/order-methods';
+        $result = $this->curlRequest($url);
+        return $result;
+    }
+
+    /**
+     * Редактирование способа оформления заказа
+     *
+     * @param array $orderMethod - информация о способе оформления заказа
+     * @return array
+     */
+    public function orderMethodsEdit($orderMethod)
+    {
+        $dataJson = json_encode($orderMethod);
+        $this->parameters['orderMethod'] = $dataJson;
+
+        $url = $this->apiUrl.'reference/order-methods/'.$orderType['code'].'/edit';
+        $result = $this->curlRequest($url, 'POST');
+        return $result;
+    }
+
     /**
      * Получение списка статусов заказа
      *
