@@ -393,7 +393,7 @@ class RestApi
         $dataJson = json_encode($orderMethod);
         $this->parameters['orderMethod'] = $dataJson;
 
-        $url = $this->apiUrl.'reference/order-methods/'.$orderType['code'].'/edit';
+        $url = $this->apiUrl.'reference/order-methods/'.$orderMethod['code'].'/edit';
         $result = $this->curlRequest($url, 'POST');
         return $result;
     }
