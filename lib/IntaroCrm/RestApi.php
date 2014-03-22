@@ -212,6 +212,22 @@ class RestApi
     }
 
     /**
+     * Обновление externalId у клиентов с переданными id
+     *
+     * @param array $customers- массив, содержащий id и externalId заказа
+     * @return array
+     */
+    public function customerFixExternalIds($customers)
+    {
+        $dataJson = json_encode($customers);
+        $this->parameters['customers'] = $dataJson;
+
+        $url = $this->apiUrl.'customers/fix-external-ids';
+        $result = $this->curlRequest($url, 'POST');
+        return $result;
+    }
+
+    /**
      * Удаление клиента
      *
      * @param string $id - идентификатор
