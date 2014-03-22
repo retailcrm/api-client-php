@@ -5,7 +5,8 @@ class RestApi
 {
     protected $apiUrl;
     protected $apiKey;
-    protected $apiVersion = '1';
+    protected $apiVersion = '2';
+    protected $generatedAt;
 
     protected $parameters;
 
@@ -282,6 +283,34 @@ class RestApi
         return $result;
     }
 
+    /**
+     * Получение списка служб доставки
+     *
+     * @return array - массив типов доставки
+     */
+    public function deliveryServicesList()
+    {
+        $url = $this->apiUrl.'reference/delivery-services';
+        $result = $this->curlRequest($url);
+        return $result;
+    }
+
+    /**
+     * Редактирование службы доставки
+     *
+     * @param array $deliveryService - информация о типе доставки
+     * @return array
+     */
+    public function deliveryServiceEdit($deliveryService)
+    {
+        $dataJson = json_encode($deliveryService);
+        $this->parameters['deliveryService'] = $dataJson;
+
+        $url = $this->apiUrl.'reference/delivery-services/'.$deliveryService['code'].'/edit';
+        $result = $this->curlRequest($url, 'POST');
+        return $result;
+    }
+
 
     /**
      * Получение списка типов оплаты
@@ -451,6 +480,13 @@ class RestApi
         return $result;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getGeneratedAt() {
+        return $this->generatedAt;
+    }
+
     protected function getErrorMessage($response)
     {
         $str = '';
@@ -509,6 +545,11 @@ class RestApi
 
         if ($statusCode >= 400 || isset($result['success']) && $result['success'] === false) {
             throw new Exception\ApiException($this->getErrorMessage($result), $statusCode);
+        }
+
+        if (isset($result['generatedAt'])) {
+            $this->generatedAt = new \DateTime($result['generatedAt']);
+            unset($result['generatedAt']);
         }
 
         unset($result['success']);
