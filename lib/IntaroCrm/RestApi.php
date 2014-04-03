@@ -162,6 +162,29 @@ class RestApi
     }
 
     /**
+     * Получение списка клиентов в соответсвии с запросом
+     *
+     * @param string $phone - телефон
+     * @param string $email - почтовый адрес
+     * @param string $fio - фио пользователя
+     * @param int $limit - ограничение на размер выборки
+     * @param int $offset - сдвиг
+     * @return array - массив клиентов
+     */
+    public function customersFind($phone = null, $email = null, $fio = null, $limit = 200, $offset = 0)
+    {
+        $url = $this->apiUrl.'customers';
+        $this->parameters['phone'] = $phone;
+        $this->parameters['email'] = $email;
+        $this->parameters['fio'] = $fio;
+        $this->parameters['limit'] = $limit;
+        $this->parameters['offset'] = $offset;
+
+        $result = $this->curlRequest($url);
+        return $result;
+    }
+
+    /**
      * Создание клиента
      *
      * @param array $customer - информация о клиенте
