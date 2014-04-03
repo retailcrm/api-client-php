@@ -171,7 +171,7 @@ class RestApi
      * @param int $offset - сдвиг
      * @return array - массив клиентов
      */
-    public function customersFind($phone = null, $email = null, $fio = null, $limit = 200, $offset = 0)
+    public function customers($phone = null, $email = null, $fio = null, $limit = 200, $offset = 0)
     {
         $url = $this->apiUrl.'customers';
         $this->parameters['phone'] = $phone;
