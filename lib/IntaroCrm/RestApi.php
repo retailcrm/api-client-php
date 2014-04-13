@@ -557,7 +557,7 @@ class RestApi
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_FAILONERROR, FALSE);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);// allow redirects
+        //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);// allow redirects
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // return into a variable
         curl_setopt($ch, CURLOPT_TIMEOUT, 30); // times out after 30s
 
