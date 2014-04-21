@@ -12,8 +12,9 @@ Requirements
 Installation
 ------------
 
-Add IntaroCRM REST API client in your composer.json:
+1) Install [composer](https://getcomposer.org/download/) into the project directory.
 
+2) Add IntaroCRM REST API client in your composer.json:
 ```js
 {
     "require": {
@@ -21,6 +22,10 @@ Add IntaroCRM REST API client in your composer.json:
     }
 }
 ```
+3) Use command `php composer.phar update intarocrm/rest-api-client` to install new vendor into `vendor/` folder.
+
+
+
 Usage
 ------------
 
