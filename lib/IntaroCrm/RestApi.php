@@ -560,6 +560,8 @@ class RestApi
         //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);// allow redirects
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // return into a variable
         curl_setopt($ch, CURLOPT_TIMEOUT, 30); // times out after 30s
+        //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
 
         if ($method == 'POST')
         {
