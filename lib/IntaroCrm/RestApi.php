@@ -5,7 +5,7 @@ class RestApi
 {
     protected $apiUrl;
     protected $apiKey;
-    protected $apiVersion = '2';
+    protected $apiVersion = '3';
     protected $generatedAt;
 
     protected $parameters;
