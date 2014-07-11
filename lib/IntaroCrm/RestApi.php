@@ -174,9 +174,9 @@ class RestApi
     public function customers($phone = null, $email = null, $fio = null, $limit = 200, $offset = 0)
     {
         $url = $this->apiUrl.'customers';
-        $this->parameters['phone'] = $phone;
-        $this->parameters['email'] = $email;
-        $this->parameters['fio'] = $fio;
+        if($phone) $this->parameters['phone'] = $phone;
+        if($email) $this->parameters['email'] = $email;
+        if($fio) $this->parameters['fio'] = $fio;
         $this->parameters['limit'] = $limit;
         $this->parameters['offset'] = $offset;
 
