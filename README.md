@@ -18,7 +18,7 @@ Installation
 ```js
 {
     "require": {
-        "intarocrm/rest-api-client": "1.2.*"
+        "intarocrm/rest-api-client": "1.3.*"
     }
 }
 ```
