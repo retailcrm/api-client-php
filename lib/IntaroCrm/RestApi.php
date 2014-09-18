@@ -143,6 +143,25 @@ class RestApi
         return $result;
     }
 
+    /**
+     * Фильтр по заказам
+     *
+     * @param Array $filter - массив полей для фильтрации
+     * @param int $limit - ограничение на размер выборки
+     * @param int $offset - сдвиг
+     * @return array - массив заказов
+     */
+    public function orders($filter = array(), $limit = 50, $offset = 0)
+    {
+        $url = $this->apiUrl.'orders';
+        $this->parameters['limit'] = $limit;
+        $this->parameters['offset'] = $offset;
+
+        $this->parameters = array_merge($this->parameters, $filter);
+
+        $result = $this->curlRequest($url);
+        return $result;
+    }
 
     /* Методы для работы с клиентами */
     /**
