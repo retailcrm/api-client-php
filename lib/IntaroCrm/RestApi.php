@@ -157,7 +157,7 @@ class RestApi
         $this->parameters['limit'] = $limit;
         $this->parameters['offset'] = $offset;
 
-        $this->parameters = array_merge($this->parameters, $filter);
+        $this->parameters['filter'] = $filter;
 
         $result = $this->curlRequest($url);
         return $result;
