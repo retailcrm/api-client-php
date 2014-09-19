@@ -151,11 +151,11 @@ class RestApi
      * @param int $offset - сдвиг
      * @return array - массив заказов
      */
-    public function orders($filter = array(), $limit = 50, $offset = 0)
+    public function orders($filter = array(), $limit = 50, $page = 1)
     {
         $url = $this->apiUrl.'orders';
         $this->parameters['limit'] = $limit;
-        $this->parameters['offset'] = $offset;
+        $this->parameters['page']  = $page;
 
         $this->parameters['filter'] = $filter;
 
