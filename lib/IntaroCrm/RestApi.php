@@ -1,4 +1,5 @@
 <?php
+
 namespace IntaroCrm;
 
 class RestApi
@@ -125,8 +126,8 @@ class RestApi
     /**
      * Получение последних измененных заказов
      *
-     * @param DateTime $startDate - начальная дата выборки
-     * @param DateTime $endDate - конечная дата
+     * @param \DateTime|string|int $startDate - начальная дата и время выборки (Y-m-d H:i:s)
+     * @param \DateTime|string|int $endDate   - конечная дата и время выборки (Y-m-d H:i:s)
      * @param int $limit - ограничение на размер выборки
      * @param int $offset - сдвиг
      * @return array - массив заказов
@@ -134,8 +135,8 @@ class RestApi
     public function orderHistory($startDate = null, $endDate = null, $limit = 100, $offset = 0)
     {
         $url = $this->apiUrl.'orders/history';
-        $this->parameters['startDate'] = $startDate;
-        $this->parameters['endDate'] = $endDate;
+        $this->parameters['startDate'] = $this->ensureDateTime($startDate);
+        $this->parameters['endDate'] = $this->ensureDateTime($endDate);
         $this->parameters['limit'] = $limit;
         $this->parameters['offset'] = $offset;
 
@@ -291,8 +292,8 @@ class RestApi
      *
      * @param string $id - идентификатор клиента
      * @param string $by - поиск заказа по id или externalId
-     * @param DateTime $startDate - начальная дата выборки
-     * @param DateTime $endDate - конечная дата
+     * @param \DateTime|string|int $startDate - начальная дата выборки (Y-m-d H:i:s)
+     * @param \DateTime|string|int $endDate   - конечная дата выборки (Y-m-d H:i:s)
      * @param int $limit - ограничение на размер выборки
      * @param int $offset - сдвиг
      * @return array - массив заказов
@@ -303,8 +304,8 @@ class RestApi
         $url = $this->apiUrl.'customers/'.$id.'/orders';
         if ($by != 'externalId')
             $this->parameters['by'] = $by;
-        $this->parameters['startDate'] = $startDate;
-        $this->parameters['endDate'] = $endDate;
+        $this->parameters['startDate'] = $this->ensureDateTime($startDate);
+        $this->parameters['endDate'] = $this->ensureDateTime($endDate);
         $this->parameters['limit'] = $limit;
         $this->parameters['offset'] = $offset;
 
@@ -541,8 +542,20 @@ class RestApi
     /**
      * @return \DateTime
      */
-    public function getGeneratedAt() {
+    public function getGeneratedAt() 
+    {
         return $this->generatedAt;
+    }
+
+    protected function ensureDateTime($value)
+    {
+        if ($value instanceof \DateTime) {
+            return $value->format('Y-m-d H:i:s');
+        } elseif (is_int($value)) {
+            return date('Y-m-d H:i:s', $value);
+        }
+
+        return $value;
     }
 
     protected function getErrorMessage($response)
