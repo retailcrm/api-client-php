@@ -107,23 +107,6 @@ class RestApi
     }
 
     /**
-     * Удаление заказа
-     *
-     * @param string $id - идентификатор заказа
-     * @param string $by - поиск заказа по id или externalId
-     * @return array
-     */
-    /*
-    public function orderDelete($id, $by = 'externalId')
-    {
-        $url = $this->apiUrl.'orders/'.$id.'/delete';
-        if ($by != 'externalId')
-            $this->parameters['by'] = $by;
-        $result = $this->curlRequest($url, 'POST');
-        return $result;
-    }*/
-
-    /**
      * Получение последних измененных заказов
      *
      * @param \DateTime|string|int $startDate - начальная дата и время выборки (Y-m-d H:i:s)
@@ -139,26 +122,6 @@ class RestApi
         $this->parameters['endDate'] = $this->ensureDateTime($endDate);
         $this->parameters['limit'] = $limit;
         $this->parameters['offset'] = $offset;
-
-        $result = $this->curlRequest($url);
-        return $result;
-    }
-
-    /**
-     * Фильтр по заказам
-     *
-     * @param Array $filter - массив полей для фильтрации
-     * @param int $limit - ограничение на размер выборки
-     * @param int $offset - сдвиг
-     * @return array - массив заказов
-     */
-    public function orders($filter = array(), $limit = 50, $page = 1)
-    {
-        $url = $this->apiUrl.'orders';
-        $this->parameters['limit'] = $limit;
-        $this->parameters['page']  = $page;
-
-        $this->parameters['filter'] = $filter;
 
         $result = $this->curlRequest($url);
         return $result;
@@ -269,23 +232,6 @@ class RestApi
         $result = $this->curlRequest($url, 'POST');
         return $result;
     }
-
-    /**
-     * Удаление клиента
-     *
-     * @param string $id - идентификатор
-     * @param string $by - поиск заказа по id или externalId
-     * @return array
-     */
-    /*
-    public function customerDelete($id, $by = 'externalId')
-    {
-        $url = $this->apiUrl.'customers/'.$id.'/delete';
-        if ($by != 'externalId')
-            $this->parameters['by'] = $by;
-        $result = $this->curlRequest($url, 'POST');
-        return $result;
-    }*/
 
     /**
      * Получение списка заказов клиента
