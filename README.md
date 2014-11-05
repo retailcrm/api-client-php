@@ -18,3 +18,29 @@ Installation
 ```bash
 composer require retailcrm/api-client-php 3.0
 ```
+
+Usage
+-----
+
+Example of the usage:
+```php
+
+$client = new \RetailCrm\ApiClient(
+    'https://demo.intarocrm.ru',
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
+);
+
+try {
+    $response = $client->ordersGet('M-2342');
+} catch (\RetailCrm\Exception\CurlException $e) {
+    echo "CRM connection error: " . $e->getMessage();
+}
+
+if ($response->isSuccessful()) {
+    echo $response->order['totalSumm'];
+    // or $response['order']['totalSumm'];
+    // or 
+    //    $order = $response->getOrder();
+    //    $order['totalSumm'];
+}
+```
