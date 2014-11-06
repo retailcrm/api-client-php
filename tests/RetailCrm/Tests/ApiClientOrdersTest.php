@@ -151,6 +151,10 @@ class ApiClientOrdersTest extends TestCase
             isset($response['orders']),
             'API returns orders history'
         );
+        $this->assertTrue(
+            isset($response['generatedAt']),
+            'API returns generatedAt in orders history'
+        );
     }
 
     /**

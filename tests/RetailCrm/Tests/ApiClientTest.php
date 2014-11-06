@@ -15,4 +15,15 @@ class ApiClientTest extends TestCase
 
         $this->assertInstanceOf('RetailCrm\ApiClient', $client);
     }
+
+    /**
+     * @group integration
+     */
+    public function testStatisticUpdate()
+    {
+        $client = static::getApiClient();
+
+        $response = $client->statisticUpdate();
+        $this->assertTrue($response->isSuccessful());
+    }
 }

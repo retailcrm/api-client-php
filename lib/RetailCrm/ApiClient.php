@@ -290,6 +290,266 @@ class ApiClient
     }
 
     /**
+     * Returns deliveryServices list
+     *
+     * @return ApiResponse
+     */
+    public function deliveryServicesList()
+    {
+        return $this->client->makeRequest('/reference/delivery-services', Client::METHOD_GET);
+    }
+
+    /**
+     * Returns deliveryTypes list
+     *
+     * @return ApiResponse
+     */
+    public function deliveryTypesList()
+    {
+        return $this->client->makeRequest('/reference/delivery-types', Client::METHOD_GET);
+    }
+
+    /**
+     * Returns orderMethods list
+     *
+     * @return ApiResponse
+     */
+    public function orderMethodsList()
+    {
+        return $this->client->makeRequest('/reference/order-methods', Client::METHOD_GET);
+    }
+
+    /**
+     * Returns orderTypes list
+     *
+     * @return ApiResponse
+     */
+    public function orderTypesList()
+    {
+        return $this->client->makeRequest('/reference/order-types', Client::METHOD_GET);
+    }
+
+    /**
+     * Returns paymentStatuses list
+     *
+     * @return ApiResponse
+     */
+    public function paymentStatusesList()
+    {
+        return $this->client->makeRequest('/reference/payment-statuses', Client::METHOD_GET);
+    }
+
+    /**
+     * Returns paymentTypes list
+     *
+     * @return ApiResponse
+     */
+    public function paymentTypesList()
+    {
+        return $this->client->makeRequest('/reference/payment-types', Client::METHOD_GET);
+    }
+
+    /**
+     * Returns productStatuses list
+     *
+     * @return ApiResponse
+     */
+    public function productStatusesList()
+    {
+        return $this->client->makeRequest('/reference/product-statuses', Client::METHOD_GET);
+    }
+
+    /**
+     * Returns statusGroups list
+     *
+     * @return ApiResponse
+     */
+    public function statusGroupsList()
+    {
+        return $this->client->makeRequest('/reference/status-groups', Client::METHOD_GET);
+    }
+
+    /**
+     * Returns statuses list
+     *
+     * @return ApiResponse
+     */
+    public function statusesList()
+    {
+        return $this->client->makeRequest('/reference/statuses', Client::METHOD_GET);
+    }
+
+    /**
+     * Edit deliveryService
+     *
+     * @return ApiResponse
+     */
+    public function deliveryServicesEdit(array $data)
+    {
+        if (!isset($data['code'])) {
+            throw new \InvalidArgumentException('Data must contain "code" parameter.');
+        }
+
+        return $this->client->makeRequest(
+            '/reference/delivery-services/' . $data['code'] . '/edit',
+            Client::METHOD_POST,
+            array(
+                'deliveryService' => json_encode($data)
+            )
+        );
+    }
+
+    /**
+     * Edit deliveryType
+     *
+     * @return ApiResponse
+     */
+    public function deliveryTypesEdit(array $data)
+    {
+        if (!isset($data['code'])) {
+            throw new \InvalidArgumentException('Data must contain "code" parameter.');
+        }
+
+        return $this->client->makeRequest(
+            '/reference/delivery-types/' . $data['code'] . '/edit',
+            Client::METHOD_POST,
+            array(
+                'deliveryType' => json_encode($data)
+            )
+        );
+    }
+
+    /**
+     * Edit orderMethod
+     *
+     * @return ApiResponse
+     */
+    public function orderMethodsEdit(array $data)
+    {
+        if (!isset($data['code'])) {
+            throw new \InvalidArgumentException('Data must contain "code" parameter.');
+        }
+
+        return $this->client->makeRequest(
+            '/reference/order-methods/' . $data['code'] . '/edit',
+            Client::METHOD_POST,
+            array(
+                'orderMethod' => json_encode($data)
+            )
+        );
+    }
+
+    /**
+     * Edit orderType
+     *
+     * @return ApiResponse
+     */
+    public function orderTypesEdit(array $data)
+    {
+        if (!isset($data['code'])) {
+            throw new \InvalidArgumentException('Data must contain "code" parameter.');
+        }
+
+        return $this->client->makeRequest(
+            '/reference/order-types/' . $data['code'] . '/edit',
+            Client::METHOD_POST,
+            array(
+                'orderType' => json_encode($data)
+            )
+        );
+    }
+
+    /**
+     * Edit paymentStatus
+     *
+     * @return ApiResponse
+     */
+    public function paymentStatusesEdit(array $data)
+    {
+        if (!isset($data['code'])) {
+            throw new \InvalidArgumentException('Data must contain "code" parameter.');
+        }
+
+        return $this->client->makeRequest(
+            '/reference/payment-statuses/' . $data['code'] . '/edit',
+            Client::METHOD_POST,
+            array(
+                'paymentStatus' => json_encode($data)
+            )
+        );
+    }
+
+    /**
+     * Edit paymentType
+     *
+     * @return ApiResponse
+     */
+    public function paymentTypesEdit(array $data)
+    {
+        if (!isset($data['code'])) {
+            throw new \InvalidArgumentException('Data must contain "code" parameter.');
+        }
+
+        return $this->client->makeRequest(
+            '/reference/payment-types/' . $data['code'] . '/edit',
+            Client::METHOD_POST,
+            array(
+                'paymentType' => json_encode($data)
+            )
+        );
+    }
+
+    /**
+     * Edit productStatus
+     *
+     * @return ApiResponse
+     */
+    public function productStatusesEdit(array $data)
+    {
+        if (!isset($data['code'])) {
+            throw new \InvalidArgumentException('Data must contain "code" parameter.');
+        }
+
+        return $this->client->makeRequest(
+            '/reference/product-statuses/' . $data['code'] . '/edit',
+            Client::METHOD_POST,
+            array(
+                'productStatus' => json_encode($data)
+            )
+        );
+    }
+
+    /**
+     * Edit order status
+     *
+     * @return ApiResponse
+     */
+    public function statusesEdit(array $data)
+    {
+        if (!isset($data['code'])) {
+            throw new \InvalidArgumentException('Data must contain "code" parameter.');
+        }
+
+        return $this->client->makeRequest(
+            '/reference/statuses/' . $data['code'] . '/edit',
+            Client::METHOD_POST,
+            array(
+                'status' => json_encode($data)
+            )
+        );
+    }
+
+    /**
+     * Update CRM basic statistic
+     *
+     * @return ApiResponse
+     */
+    public function statisticUpdate()
+    {
+        return $this->client->makeRequest('/statistic/update', Client::METHOD_GET);
+    }
+
+    /**
      * Check ID parameter
      *
      * @param  string $by
