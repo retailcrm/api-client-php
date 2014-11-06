@@ -1,29 +1,28 @@
 {
-    "name": "intarocrm/rest-api-client",
-    "description": "PHP Client for IntaroCRM REST API",
+    "name": "retailcrm/api-client-php",
+    "description": "PHP client for retailCRM API",
     "type": "library",
-    "keywords": ["api", "Intaro CRM", "rest"],
-    "homepage": "http://www.intarocrm.ru/",
+    "keywords": ["API", "retailCRM", "REST"],
+    "homepage": "http://www.retailcrm.ru/",
     "authors": [
         {
-            "name": "Kruglov Kirill",
-            "email": "kruglov@intaro.ru",
-            "role": "Developer"
+            "name": "retailCRM",
+            "email": "support@retailcrm.ru"
         }
     ],
     "require": {
-        "php": ">=5.2.0",
+        "php": ">=5.3.0",
         "ext-curl": "*"
     },
     "support": {
         "email": "support@intarocrm.ru"
     },
     "autoload": {
-        "psr-0": { "IntaroCrm\\": "lib/" }
+        "psr-0": { "RetailCrm\\": "lib/" }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "3.0.x-dev"
         }
     }
 }

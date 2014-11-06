@@ -1,7 +1,7 @@
-IntaroCRM REST API client
+PHP client for retailCRM API
 =================
 
-PHP Client for [IntaroCRM REST API](http://docs.intarocrm.ru/rest-api/).
+PHP client for [retailCRM API](http://www.retailcrm.ru/docs/Разработчики/Разработчики#api).
 
 Requirements
 ------------
@@ -12,49 +12,82 @@ Requirements
 Installation
 ------------
 
-1) Install [composer](https://getcomposer.org/download/) into the project directory.
+1) Install [composer](https://getcomposer.org/download/)
 
-2) Add IntaroCRM REST API client in your composer.json:
-```js
-{
-    "require": {
-        "intarocrm/rest-api-client": "1.3.*"
-    }
-}
+2) Run:
+```bash
+composer require retailcrm/api-client-php 3.0
 ```
-3) Use command `php composer.phar update intarocrm/rest-api-client` to install new vendor into `vendor/` folder.
-
-
 
 Usage
-------------
+-----
 
-### Create API clent class
+Example of the receipt of order:
+```php
 
-``` php
-
-$crmApiClient = new \IntaroCrm\RestApi(
+$client = new \RetailCrm\ApiClient(
     'https://demo.intarocrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
 );
-```
-Constructor arguments are:
-
-1. Your IntaroCRM acount URL-address
-2. Your site API Token
-
-### Example: get order types list
-
-``` php
 
 try {
-    $orderTypes = $crmApiClient->orderTypesList();
-}
-catch (\IntaroCrm\Exception\CurlException $e) {
-    //$logger->addError('orderTypesList: connection error');
-}
-catch (\IntaroCrm\Exception\ApiException $e) {
-    //$logger->addError('orderTypesList: ' . $e->getMessage());
+    $response = $client->ordersGet('M-2342');
+} catch (\RetailCrm\Exception\CurlException $e) {
+    echo "CRM connection error: " . $e->getMessage();
 }
 
+if ($response->isSuccessful()) {
+    echo $response->order['totalSumm'];
+    // or $response['order']['totalSumm'];
+    // or 
+    //    $order = $response->getOrder();
+    //    $order['totalSumm'];
+} else {
+    echo sprintf(
+        "Error of the order receipt: [Code %s] %s", 
+        $response->getStatusCode(),
+        $response->getErrorMsg()
+    );
+}
+```
+
+Example of the order creating:
+```php
+
+$client = new \RetailCrm\ApiClient(
+    'https://demo.intarocrm.ru',
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
+);
+
+try {
+    $response = $client->ordersCreate(array(
+        'externalId' => 'some-shop-order-id',
+        'firstName' => 'Vasily',
+        'lastName' => 'Pupkin',
+        'items' => array(
+            //...
+        ),
+        'delivery' => array(
+            'code' => 'russian-post',
+        )
+    ));
+} catch (\RetailCrm\Exception\CurlException $e) {
+    echo "CRM connection error: " . $e->getMessage();
+}
+
+if ($response->isSuccessful()) {
+    if (201 === $response->getStatusCode()) {
+        echo 'Order created successfully! Order ID in CRM = ' . $response->id;
+            // or $response['id'];
+            // or $response->getId();
+    } else {
+        echo 'Order updated successfully!';
+    }
+} else {
+    echo sprintf(
+        "Error of the order creating: [Code %s] %s", 
+        $response->getStatusCode(),
+        $response->getErrorMsg()
+    );
+}
 ```

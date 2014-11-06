@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./tests/bootstrap.php" colors="true">
+
+    <!-- Dummy values used to provide credentials. No need to change these. -->
+    <php>
+        <server name="CRM_URL" value="foo" />
+        <server name="CRM_API_KEY" value="bar" />
+    </php>
+
+    <testsuites>
+        <testsuite name="RetailCrm">
+            <directory>tests/RetailCrm/Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src/RetailCrm</directory>
+        </whitelist>
+    </filter>
+</phpunit>
