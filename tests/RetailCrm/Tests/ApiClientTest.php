@@ -137,4 +137,25 @@ class ApiClientTest extends TestCase
         $this->assertTrue($response->success);
         $this->assertTrue(isset($response['orders']));
     }
+
+    /**
+     * @group integration
+     */
+    public function testOrdersList()
+    {
+        $client = static::getApiClient();
+
+        $response = $client->ordersList();
+        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        $this->assertTrue($response->isSuccessful());
+        $this->assertTrue(isset($response['orders']));
+
+        $response = $client->ordersList(array(), 1, 300);
+        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        $this->assertFalse($response->isSuccessful());
+
+        $response = $client->ordersList(array('paymentStatus' => 'paid'), 1);
+        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        $this->assertTrue($response->isSuccessful());
+    }
 }

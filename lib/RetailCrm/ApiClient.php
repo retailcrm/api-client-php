@@ -109,6 +109,31 @@ class ApiClient
     }
 
     /**
+     * Returns filtered orders list
+     *
+     * @param  array $filter (default: array())
+     * @param  int   $page (default: null)
+     * @param  int   $limit (default: null)
+     * @return void
+     */
+    public function ordersList(array $filter = array(), $page = null, $limit = null)
+    {
+        $parameters = array();
+
+        if (sizeof($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest('/orders', Client::METHOD_GET, $parameters);
+    }
+
+    /**
      * Check ID parameter
      *
      * @param  string $by
