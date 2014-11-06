@@ -80,6 +80,35 @@ class ApiClient
     }
 
     /**
+     * Returns a orders history
+     *
+     * @param  \DateTime   $startDate (default: null)
+     * @param  \DateTime   $endDate (default: null)
+     * @param  int         $limit (default: 100)
+     * @param  int         $offset (default: 0)
+     * @return ApiResponse
+     */
+    public function ordersHistory(\DateTime $startDate = null, \DateTime $endDate = null, $limit = 100, $offset = 0)
+    {
+        $parameters = array();
+
+        if ($startDate) {
+            $parameters['startDate'] = $startDate->format('Y-m-d H:i:s');
+        }
+        if ($endDate) {
+            $parameters['endDate'] = $endDate->format('Y-m-d H:i:s');
+        }
+        if ($limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+        if ($offset) {
+            $parameters['offset'] = (int) $offset;
+        }
+
+        return $this->client->makeRequest('/orders/history', Client::METHOD_GET, $parameters);
+    }
+
+    /**
      * Check ID parameter
      *
      * @param  string $by

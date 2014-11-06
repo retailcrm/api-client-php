@@ -22,7 +22,7 @@ composer require retailcrm/api-client-php 3.0
 Usage
 -----
 
-Example of the usage:
+Example of the receipt of order:
 ```php
 
 $client = new \RetailCrm\ApiClient(
@@ -42,5 +42,36 @@ if ($response->isSuccessful()) {
     // or 
     //    $order = $response->getOrder();
     //    $order['totalSumm'];
+}
+```
+
+Example of the order creating:
+```php
+
+$client = new \RetailCrm\ApiClient(
+    'https://demo.intarocrm.ru',
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
+);
+
+try {
+    $response = $client->ordersCreate(array(
+        'externalId' => 'some-shop-order-id',
+        'firstName' => 'Vasily',
+        'lastName' => 'Pupkin',
+        'items' => array(
+            //...
+        ),
+        delivery => array(
+            'code' => 'russian-post',
+        )
+    ));
+} catch (\RetailCrm\Exception\CurlException $e) {
+    echo "CRM connection error: " . $e->getMessage();
+}
+
+if ($response->isSuccessful() && 201 === $response->getStatusCode()) {
+    echo 'Order created successfully! Order ID in CRM - ' . $response->id;
+        // or $response['id'];
+        // or $response->getId();
 }
 ```

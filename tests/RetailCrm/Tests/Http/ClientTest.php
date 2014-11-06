@@ -53,7 +53,7 @@ class ClientTest extends TestCase
     public function testMakeRequestSuccess()
     {
         $client = new Client('https://demo.intarocrm.ru/api/' . ApiClient::VERSION, array());
-        $response = $client->makeRequest('/a', Client::METHOD_GET);
+        $response = $client->makeRequest('/orders', Client::METHOD_GET);
 
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(403, $response->getStatusCode());

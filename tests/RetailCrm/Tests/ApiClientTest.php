@@ -113,7 +113,6 @@ class ApiClientTest extends TestCase
         $this->assertTrue($response->success);
     }
 
-
     /**
      * @group unit
      * @expectedException \InvalidArgumentException
@@ -123,5 +122,19 @@ class ApiClientTest extends TestCase
         $client = static::getApiClient();
 
         $response = $client->ordersEdit(array('id' => 678678678), 'asdf');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testOrdersHistory()
+    {
+        $client = static::getApiClient();
+
+        $response = $client->ordersHistory();
+        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertTrue($response->success);
+        $this->assertTrue(isset($response['orders']));
     }
 }
