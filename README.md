@@ -16,7 +16,7 @@ Installation
 
 2) Run:
 ```bash
-composer require retailcrm/api-client-php 3.0
+composer require retailcrm/api-client-php ~3.0.0
 ```
 
 Usage
