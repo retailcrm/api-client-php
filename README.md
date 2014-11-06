@@ -12,7 +12,7 @@ Requirements
 Installation
 ------------
 
-1) Install [composer](https://getcomposer.org/download/) into the project directory.
+1) Install [composer](https://getcomposer.org/download/)
 
 2) Run:
 ```bash
@@ -61,7 +61,7 @@ try {
         'items' => array(
             //...
         ),
-        delivery => array(
+        'delivery' => array(
             'code' => 'russian-post',
         )
     ));
