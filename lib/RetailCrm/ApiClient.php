@@ -111,10 +111,16 @@ class ApiClient
      * @param  \DateTime   $endDate (default: null)
      * @param  int         $limit (default: 100)
      * @param  int         $offset (default: 0)
+     * @param  bool        $skipMyChanges (default: true)
      * @return ApiResponse
      */
-    public function ordersHistory(\DateTime $startDate = null, \DateTime $endDate = null, $limit = 100, $offset = 0)
-    {
+    public function ordersHistory(
+        \DateTime $startDate = null,
+        \DateTime $endDate = null,
+        $limit = 100,
+        $offset = 0,
+        $skipMyChanges = true
+    ) {
         $parameters = array();
 
         if ($startDate) {
@@ -128,6 +134,9 @@ class ApiClient
         }
         if ($offset) {
             $parameters['offset'] = (int) $offset;
+        }
+        if ($skipMyChanges) {
+            $parameters['skipMyChanges'] = (bool) $skipMyChanges;
         }
 
         return $this->client->makeRequest('/orders/history', Client::METHOD_GET, $parameters);
