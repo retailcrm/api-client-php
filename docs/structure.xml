@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="API Documentation" version="v2.8.0-3-gd2074ac">
+  <partials/>
+  <file path="ApiClient.php" generated-path="ApiClient.html" hash="7ffa692ab6cd55a138f44c492f0aca31" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="Client">\RetailCrm\Http\Client</namespace-alias>
+    <namespace-alias name="ApiResponse">\RetailCrm\Response\ApiResponse</namespace-alias>
+    <class final="false" abstract="false" namespace="RetailCrm" line="11" package="Default">
+      <extends/>
+      <name>ApiClient</name>
+      <full_name>\RetailCrm\ApiClient</full_name>
+      <docblock line="11">
+        <description>retailCRM API client class</description>
+        <long-description></long-description>
+        <tag name="package" line="11" description="Default"/>
+      </docblock>
+      <constant namespace="RetailCrm" line="13" package="Default">
+        <name>VERSION</name>
+        <full_name>\RetailCrm\ApiClient::VERSION</full_name>
+        <value>'v3'</value>
+        <docblock line="13">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <property static="false" visibility="protected" namespace="RetailCrm" line="15" package="Default">
+        <name>$client</name>
+        <full_name>\RetailCrm\ApiClient::client</full_name>
+        <default></default>
+        <docblock line="15">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="24" package="Default">
+        <name>__construct</name>
+        <full_name>\RetailCrm\ApiClient::__construct()</full_name>
+        <docblock line="24">
+          <description>Client creating</description>
+          <long-description></long-description>
+          <tag name="param" line="24" description="" type="string" variable="$url">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="24" description="" type="string" variable="$apiKey">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="24" description="" type="void">
+            <type>void</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$url</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$apiKey</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="41" package="Default">
+        <name>ordersCreate</name>
+        <full_name>\RetailCrm\ApiClient::ordersCreate()</full_name>
+        <docblock line="41">
+          <description>Create a order</description>
+          <long-description></long-description>
+          <tag name="param" line="41" description="" type="array" variable="$order">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="41" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$order</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="58" package="Default">
+        <name>ordersEdit</name>
+        <full_name>\RetailCrm\ApiClient::ordersEdit()</full_name>
+        <docblock line="58">
+          <description>Edit a order</description>
+          <long-description></long-description>
+          <tag name="param" line="58" description="" type="array" variable="$order">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="58" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$order</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$by</name>
+          <default>'externalId'</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="82" package="Default">
+        <name>ordersUpload</name>
+        <full_name>\RetailCrm\ApiClient::ordersUpload()</full_name>
+        <docblock line="82">
+          <description>Upload array of the orders</description>
+          <long-description></long-description>
+          <tag name="param" line="82" description="" type="array" variable="$orders">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="82" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$orders</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="100" package="Default">
+        <name>ordersGet</name>
+        <full_name>\RetailCrm\ApiClient::ordersGet()</full_name>
+        <docblock line="100">
+          <description>Get order by id or externalId</description>
+          <long-description></long-description>
+          <tag name="param" line="100" description="" type="string" variable="$id">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="100" description="&lt;p&gt;(default: 'externalId')&lt;/p&gt;" type="string" variable="$by">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="100" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$id</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$by</name>
+          <default>'externalId'</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="116" package="Default">
+        <name>ordersHistory</name>
+        <full_name>\RetailCrm\ApiClient::ordersHistory()</full_name>
+        <docblock line="116">
+          <description>Returns a orders history</description>
+          <long-description></long-description>
+          <tag name="param" line="116" description="&lt;p&gt;(default: null)&lt;/p&gt;" type="\DateTime" variable="$startDate">
+            <type>\DateTime</type>
+          </tag>
+          <tag name="param" line="116" description="&lt;p&gt;(default: null)&lt;/p&gt;" type="\DateTime" variable="$endDate">
+            <type>\DateTime</type>
+          </tag>
+          <tag name="param" line="116" description="&lt;p&gt;(default: 100)&lt;/p&gt;" type="integer" variable="$limit">
+            <type>integer</type>
+          </tag>
+          <tag name="param" line="116" description="&lt;p&gt;(default: 0)&lt;/p&gt;" type="integer" variable="$offset">
+            <type>integer</type>
+          </tag>
+          <tag name="return" line="116" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$startDate</name>
+          <default>null</default>
+          <type>\DateTime</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$endDate</name>
+          <default>null</default>
+          <type>\DateTime</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$limit</name>
+          <default>100</default>
+          <type>integer</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$offset</name>
+          <default>0</default>
+          <type>integer</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="144" package="Default">
+        <name>ordersList</name>
+        <full_name>\RetailCrm\ApiClient::ordersList()</full_name>
+        <docblock line="144">
+          <description>Returns filtered orders list</description>
+          <long-description></long-description>
+          <tag name="param" line="144" description="&lt;p&gt;(default: array())&lt;/p&gt;" type="array" variable="$filter">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="144" description="&lt;p&gt;(default: null)&lt;/p&gt;" type="integer" variable="$page">
+            <type>integer</type>
+          </tag>
+          <tag name="param" line="144" description="&lt;p&gt;(default: null)&lt;/p&gt;" type="integer" variable="$limit">
+            <type>integer</type>
+          </tag>
+          <tag name="return" line="144" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$filter</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$page</name>
+          <default>null</default>
+          <type>integer</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$limit</name>
+          <default>null</default>
+          <type>integer</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="167" package="Default">
+        <name>ordersFixExternalIds</name>
+        <full_name>\RetailCrm\ApiClient::ordersFixExternalIds()</full_name>
+        <docblock line="167">
+          <description>Save order IDs' (id and externalId) association in the CRM</description>
+          <long-description></long-description>
+          <tag name="param" line="167" description="" type="array" variable="$ids">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="167" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$ids</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="184" package="Default">
+        <name>customersCreate</name>
+        <full_name>\RetailCrm\ApiClient::customersCreate()</full_name>
+        <docblock line="184">
+          <description>Create a customer</description>
+          <long-description></long-description>
+          <tag name="param" line="184" description="" type="array" variable="$customer">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="184" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$customer</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="201" package="Default">
+        <name>customersEdit</name>
+        <full_name>\RetailCrm\ApiClient::customersEdit()</full_name>
+        <docblock line="201">
+          <description>Edit a customer</description>
+          <long-description></long-description>
+          <tag name="param" line="201" description="" type="array" variable="$customer">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="201" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$customer</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$by</name>
+          <default>'externalId'</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="225" package="Default">
+        <name>customersUpload</name>
+        <full_name>\RetailCrm\ApiClient::customersUpload()</full_name>
+        <docblock line="225">
+          <description>Upload array of the customers</description>
+          <long-description></long-description>
+          <tag name="param" line="225" description="" type="array" variable="$customers">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="225" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$customers</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="243" package="Default">
+        <name>customersGet</name>
+        <full_name>\RetailCrm\ApiClient::customersGet()</full_name>
+        <docblock line="243">
+          <description>Get customer by id or externalId</description>
+          <long-description></long-description>
+          <tag name="param" line="243" description="" type="string" variable="$id">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="243" description="&lt;p&gt;(default: 'externalId')&lt;/p&gt;" type="string" variable="$by">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="243" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$id</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$by</name>
+          <default>'externalId'</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="258" package="Default">
+        <name>customersList</name>
+        <full_name>\RetailCrm\ApiClient::customersList()</full_name>
+        <docblock line="258">
+          <description>Returns filtered customers list</description>
+          <long-description></long-description>
+          <tag name="param" line="258" description="&lt;p&gt;(default: array())&lt;/p&gt;" type="array" variable="$filter">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="258" description="&lt;p&gt;(default: null)&lt;/p&gt;" type="integer" variable="$page">
+            <type>integer</type>
+          </tag>
+          <tag name="param" line="258" description="&lt;p&gt;(default: null)&lt;/p&gt;" type="integer" variable="$limit">
+            <type>integer</type>
+          </tag>
+          <tag name="return" line="258" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$filter</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$page</name>
+          <default>null</default>
+          <type>integer</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$limit</name>
+          <default>null</default>
+          <type>integer</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm" line="281" package="Default">
+        <name>customersFixExternalIds</name>
+        <full_name>\RetailCrm\ApiClient::customersFixExternalIds()</full_name>
+        <docblock line="281">
+          <description>Save customer IDs' (id and externalId) association in the CRM</description>
+          <long-description></long-description>
+          <tag name="param" line="281" description="" type="array" variable="$ids">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="281" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$ids</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="RetailCrm" line="298" package="Default">
+        <name>checkIdParameter</name>
+        <full_name>\RetailCrm\ApiClient::checkIdParameter()</full_name>
+        <docblock line="298">
+          <description>Check ID parameter</description>
+          <long-description></long-description>
+          <tag name="param" line="298" description="" type="string" variable="$by">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="298" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$by</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="24" code="PPC:ERR-50015">Argument $url is missing from the Docblock of __construct</error>
+      <error line="41" code="PPC:ERR-50015">Argument $order is missing from the Docblock of ordersCreate</error>
+      <error line="58" code="PPC:ERR-50015">Argument $order is missing from the Docblock of ordersEdit</error>
+      <error line="58" code="PPC:ERR-50015">Argument $by is missing from the Docblock of ordersEdit</error>
+      <error line="82" code="PPC:ERR-50015">Argument $orders is missing from the Docblock of ordersUpload</error>
+      <error line="100" code="PPC:ERR-50015">Argument $id is missing from the Docblock of ordersGet</error>
+      <error line="116" code="PPC:ERR-50015">Argument $startDate is missing from the Docblock of ordersHistory</error>
+      <error line="144" code="PPC:ERR-50015">Argument $filter is missing from the Docblock of ordersList</error>
+      <error line="167" code="PPC:ERR-50015">Argument $ids is missing from the Docblock of ordersFixExternalIds</error>
+      <error line="184" code="PPC:ERR-50015">Argument $customer is missing from the Docblock of customersCreate</error>
+      <error line="201" code="PPC:ERR-50015">Argument $customer is missing from the Docblock of customersEdit</error>
+      <error line="201" code="PPC:ERR-50015">Argument $by is missing from the Docblock of customersEdit</error>
+      <error line="225" code="PPC:ERR-50015">Argument $customers is missing from the Docblock of customersUpload</error>
+      <error line="243" code="PPC:ERR-50015">Argument $id is missing from the Docblock of customersGet</error>
+      <error line="258" code="PPC:ERR-50015">Argument $filter is missing from the Docblock of customersList</error>
+      <error line="281" code="PPC:ERR-50015">Argument $ids is missing from the Docblock of customersFixExternalIds</error>
+      <error line="298" code="PPC:ERR-50015">Argument $by is missing from the Docblock of checkIdParameter</error>
+      <error line="15" code="PPC:ERR-50007">No summary for property $client</error>
+    </parse_markers>
+    <source>eJztWW1P40YQ/p5fsRdxsoMSAuq30NBS4A7UUlCgJ1XHidvYa9ieY/u8ayCt+O+dfbWdEOPE0UFP9Rdi77w/s7Ozw48/JbdJqxXhCWEJ9ggaEY5peJBOdlutjBXer445T64OQkoivjuzNALmOGLkaj+h5jfw9zc3W2gToVQRjk7R/vkJ8qQI+IMZg+V+S/5CwKqEt/5pIXg8EMLRh6PRxcnZ72iInLsfHJAplpI05sTjxEcbnrZHfpf6xLOJDrSSlGBOoxv92az+nOAUTxBiPIVFtJGl4aIlnNBfydSugitZGqG7mPr6W1+ZlI1D6qEgizxO4whdX0v708zjrhDfNZI6kly5KB4aINfpO+jNELFsDByaHH6FJJIvHdRDO1200+kU+MQjFtEWhKYPkTEfH1ut0vpQkyEHDABFW4iRMBgMdGR3C+T8lrLensZniCJyr+OobcJpiqeuoxxx0HDPOtVR+h/ncRAAEIRRnPokXQCDlGuMKBLaeBfyqjLskpkppa4SqwQ+FfY3jP5N4sDVFLPR5bdpfC+DcHUS3eGQ+vvpTTaBcBw9eCQR+lznXHhAOEnRZynlM5pkkLYAPqR8xMBxH3PsdJ7ERztXintvb4K/kBH5mhHG3XZfedSXiUzaXQ3IYHB6dHl8dnh9fnZxaYApWe9IRgnSXyyOrknkxT5xi9EQz2LkjnzKvzFuQmUJNdg146nY++QBQhzh8MR3XiWSBsJb4n058a0oF8zvFHaYtJUyRrg29SMQfFrJXpZAfeKB65wJORqKosUghaD2W9ZGiTFny5EB7TTOxjZUkYID8NbuEwBvbfnZLdOOdbUZT7s1MvePJIyxr0MSBzIQyvDaecyaJbKyoJTK7Pm8ZetJXDaXufOBaF6QMuni0oCzBYizTh1k3xOuHEBQFqgPv1FeGarPeAWuPbWfXgaprk8CnIV88ETRWTkf3osNT/065axmJVkCKVA8D9P7I4tSYXctjvxI6mPmQGAI9PI4nS4I+tUhnFaXdEKER4zjlIsPheBGWRh2KrlI5NfhgSJoU2wjpBM4tHKOne3taoY4CKAYFzi2GyJ9rMLi5q4U3B9KF7oFP62XZkm7MBSmd619Q2NXIU9sVWewrJCcPWpy1XOdY8790bFUzifRLdrX3l4QpxPMXefP3qTno+MBHcxUjpI27UulLk2jNOmXZfXIEFVqkRRShwtwd3RUFwpUUa6UqEiKItWXFcuoYzan3kbO0xu0YMKzOzOgIdAR32zQECTXOe8UX2EL6Fyq3jgJvmm2NcscK+2138BDc8ZqL+xO6GoT5/ZVrne5vWROaqVo/ipWTBZFo3Jc/V6UesIauPoNlbWVQgVBMf/E+/Ni17FXVsjrBvl8ge90l4JODqFdcOGcx5FfOOg7CDMWexTLXNCd7sHotE62U79ha/eOPhxZS5hJPxBb2d+J9ZWau1PCb2M/b+FnWzuOQoLhSxwRES4gpGnz5i6gDz0T7x7Yvo42T4SgTo9nJwYeeBpP6l0+Z2iXxtbwz4wOzOdKbC1R0+7dCFr7DMF6t8IYwfDOA1oOTjWoepjwIpAWpwrm49KDhZcFeYXxgtGzhgnDgRb1rYYMebrKOUPJk5VGDTVyeO0DB+vEMrm+8tlkBZQnD/ZzrdxuPn+wkipHEJZqLSVt+UFErn9hPtQfRxiO/8xEwrr4MkOJHLi1ziXs7cfK/64vQNbL/+9Ar/AOlBeYhtcgW1xe103I+vd9X4byUtXkPlRx2tS+Eom6Cx7lnlefLFAxZ6Edx3FYxtT+Dz2H9anyPlsmcBjG98R/F6e/TG2hKJ4dXeRQvxh11ZVG14pUtFRlKY2a0xKjjPcHHGa6Jw3gNM6TpT2ethFlKIo5klK30L4yQ7wC5uAMQW8ZNLBzUkuNoHVsAq0H4ChcnvWpRFzdC/M0Iwb5x38BdwOakQ==</source>
+  </file>
+  <file path="Exception/CurlException.php" generated-path="Exception.CurlException.html" hash="752125755c48bf25c9c7972f31d7b1a9" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="RetailCrm\Exception" line="5" package="Default">
+      <extends>\RuntimeException</extends>
+      <name>CurlException</name>
+      <full_name>\RetailCrm\Exception\CurlException</full_name>
+      <docblock line="5">
+        <description></description>
+        <long-description></long-description>
+        <tag name="package" line="5" description="Default"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="5" code="PPC:ERR-50005">No summary for class ""</error>
+    </parse_markers>
+    <source>eJyzsS/IKODiykvMTS0uSExOVQhKLUnMzHEuyo1xrUhOLSjJzM+z5uJKzkksLlZwLi3KgYsqpFaUpOalFCvEBJXmlWTmpsJluKq5agF9TCAz</source>
+  </file>
+  <file path="Exception/InvalidJsonException.php" generated-path="Exception.InvalidJsonException.html" hash="cffec9be9c99a3509fba8a7ad1ac9422" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="RetailCrm\Exception" line="5" package="Default">
+      <extends>\DomainException</extends>
+      <name>InvalidJsonException</name>
+      <full_name>\RetailCrm\Exception\InvalidJsonException</full_name>
+      <docblock line="5">
+        <description></description>
+        <long-description></long-description>
+        <tag name="package" line="5" description="Default"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="5" code="PPC:ERR-50005">No summary for class ""</error>
+    </parse_markers>
+    <source>eJyzsS/IKODiykvMTS0uSExOVQhKLUnMzHEuyo1xrUhOLSjJzM+z5uJKzkksLlbwzCtLzMlM8SrOz4NLKqRWlKTmpRQrxLjk5yZmIiS4qrlqAUhQInI=</source>
+  </file>
+  <file path="Http/Client.php" generated-path="Http.Client.html" hash="5835caeca2ffa7fe921f88144fd207c8" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="CurlException">\RetailCrm\Exception\CurlException</namespace-alias>
+    <namespace-alias name="ApiResponse">\RetailCrm\Response\ApiResponse</namespace-alias>
+    <class final="false" abstract="false" namespace="RetailCrm\Http" line="11" package="Default">
+      <extends/>
+      <name>Client</name>
+      <full_name>\RetailCrm\Http\Client</full_name>
+      <docblock line="11">
+        <description>HTTP client</description>
+        <long-description></long-description>
+        <tag name="package" line="11" description="Default"/>
+      </docblock>
+      <constant namespace="RetailCrm\Http" line="13" package="Default">
+        <name>METHOD_GET</name>
+        <full_name>\RetailCrm\Http\Client::METHOD_GET</full_name>
+        <value>'GET'</value>
+        <docblock line="13">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="RetailCrm\Http" line="14" package="Default">
+        <name>METHOD_POST</name>
+        <full_name>\RetailCrm\Http\Client::METHOD_POST</full_name>
+        <value>'POST'</value>
+        <docblock line="14">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <property static="false" visibility="protected" namespace="RetailCrm\Http" line="16" package="Default">
+        <name>$url</name>
+        <full_name>\RetailCrm\Http\Client::url</full_name>
+        <default></default>
+        <docblock line="16">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="RetailCrm\Http" line="17" package="Default">
+        <name>$defaultParameters</name>
+        <full_name>\RetailCrm\Http\Client::defaultParameters</full_name>
+        <default></default>
+        <docblock line="17">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm\Http" line="19" package="Default">
+        <name>__construct</name>
+        <full_name>\RetailCrm\Http\Client::__construct()</full_name>
+        <docblock line="19">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$defaultParameters</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm\Http" line="37" package="Default">
+        <name>makeRequest</name>
+        <full_name>\RetailCrm\Http\Client::makeRequest()</full_name>
+        <docblock line="37">
+          <description>Make HTTP request</description>
+          <long-description></long-description>
+          <tag name="param" line="37" description="" type="string" variable="$path">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="37" description="&lt;p&gt;(default: 'GET')&lt;/p&gt;" type="string" variable="$method">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="37" description="&lt;p&gt;(default: array())&lt;/p&gt;" type="array" variable="$parameters">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="37" description="" type="\RetailCrm\Response\ApiResponse">
+            <type>\RetailCrm\Response\ApiResponse</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$path</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$method</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$parameters</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$timeout</name>
+          <default>30</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="19" code="PPC:ERR-50015">Argument $url is missing from the Docblock of __construct</error>
+      <error line="19" code="PPC:ERR-50015">Argument $defaultParameters is missing from the Docblock of __construct</error>
+      <error line="19" code="PPC:ERR-50008">No summary for method ""</error>
+      <error line="37" code="PPC:ERR-50015">Argument $path is missing from the Docblock of makeRequest</error>
+      <error line="37" code="PPC:ERR-50015">Argument $timeout is missing from the Docblock of makeRequest</error>
+      <error line="16" code="PPC:ERR-50007">No summary for property $url</error>
+      <error line="17" code="PPC:ERR-50007">No summary for property $defaultParameters</error>
+    </parse_markers>
+    <source>eJydVm1v2zYQ/u5fcSvSSgq0eMO+xc06z5EXA45lyMqGAgEEhqJiYpKoktTSbNh/71FvlmSnKUoYkMS7e+7tOdLvPxT7YjLJScZUQSiDgGnC04XM7m+0LmaTSan6m95nygrNRX6/KGXafc1GagGiiVyx+3nB23fEmp6fT+AcbsJwCzTlLNf4OZ3QlCgFi3rjvwngomih4dYLb/zr6A8vhCuw8GHNjqVbf1eJzRPllUIhhWZUsxjOMMzZeC9mCSlTvSUS89ZMqtasfEg5haTMqckKoqjyJEuqbQPkApGSPJ8AwAAqke04FVKdhVk8ATshKZbn6uoKEIwXQjVo1h5rrC6nU8txeiZm6b0UT5CzJ7hf5f+QlMdz+VhmWKGu6LY1365A0T3LCEj2qeSSqaq4uypZQUVqObMO9v9J93qm91z9+CsGgYEfStQTncrwVN16wFV3zTqHW/I3q9ts4mJKN4JW/lthIKAqR/7YOC6I3n9VAX3uRQx2E8ZlTQlnbFP3qAPtEjjYDVplLCXTpcyhx9ZGND3JiwzTC+rE7Cpstw2uY0hxghqopXnGRKlx75efxkw5I2kqnlh8WyEd7BRLk8vLwyy4MNgxvO912fDtB55HtW0X1gj8u/imCmyGTuyBoVlWjQpv3qo3wBXkQkOFcQHz2i1kTVJEMnirLPcIo430SMCzIhUxsy2cl+M8BurOC2w/bkaUMfnI7JfI7vZtnNkASu/NKBwG6KLeHHZg3LNq+FsCv3sHiv/LRGL3vYw7Uru6wJPtg4VOzFERPZQ8jSMknny2hxGeSpuaSCnGGPGca7unVW0qpkWBBKZI38VdsPa3YYQPt/b8LdrL+Wrtb7wg8AMXlvP1zutZTadfMfTXa/+vtb+Yhyt/48LPzszoV73FIyPGk4xq9XoAgRfeBZswmG92Sy/ocJpxRrIKIMhEyclDyl6HC1e3nn+HA2ajqdNNaw1qPhSY4SUJFh0HWH1TrrvdOvrTC1bLj1vPxFhdBn1OHfGlvtEOhBkz40VXxtAFvK9Yrw+vWixX3vp6N6b8KULJ5nD8XcTPLbXYZ0YNZs/kTGmiS7XAqW21HpnmeSIOzlebpR+ZGyJa+NfeYMSYlLno4M3HGB83hexpCDnSqAQ0FYo1gkGxaw8vn4CDvzZ27c1t4jpdmYZwxrh3h9i9QrjD6jntzYm/L1gtwjI=</source>
+  </file>
+  <file path="Response/ApiResponse.php" generated-path="Response.ApiResponse.html" hash="99c9eadbf89b078a75c814ce40ce4a14" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="InvalidJsonException">\RetailCrm\Exception\InvalidJsonException</namespace-alias>
+    <class final="false" abstract="false" namespace="RetailCrm\Response" line="10" package="Default">
+      <extends/>
+      <implements>\ArrayAccess</implements>
+      <name>ApiResponse</name>
+      <full_name>\RetailCrm\Response\ApiResponse</full_name>
+      <docblock line="10">
+        <description>Response from retailCRM API</description>
+        <long-description></long-description>
+        <tag name="package" line="10" description="Default"/>
+      </docblock>
+      <property static="false" visibility="protected" namespace="RetailCrm\Response" line="13" package="Default">
+        <name>$statusCode</name>
+        <full_name>\RetailCrm\Response\ApiResponse::statusCode</full_name>
+        <default></default>
+        <docblock line="13">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="RetailCrm\Response" line="16" package="Default">
+        <name>$response</name>
+        <full_name>\RetailCrm\Response\ApiResponse::response</full_name>
+        <default></default>
+        <docblock line="16">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm\Response" line="18" package="Default">
+        <name>__construct</name>
+        <full_name>\RetailCrm\Response\ApiResponse::__construct()</full_name>
+        <docblock line="18">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$statusCode</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$responseBody</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm\Response" line="41" package="Default">
+        <name>getStatusCode</name>
+        <full_name>\RetailCrm\Response\ApiResponse::getStatusCode()</full_name>
+        <docblock line="41">
+          <description>Return HTTP response status code</description>
+          <long-description></long-description>
+          <tag name="return" line="41" description="" type="integer">
+            <type>integer</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm\Response" line="51" package="Default">
+        <name>isSuccessful</name>
+        <full_name>\RetailCrm\Response\ApiResponse::isSuccessful()</full_name>
+        <docblock line="51">
+          <description>HTTP request was successful</description>
+          <long-description></long-description>
+          <tag name="return" line="51" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm\Response" line="62" package="Default">
+        <name>__call</name>
+        <full_name>\RetailCrm\Response\ApiResponse::__call()</full_name>
+        <docblock line="62">
+          <description>Allow to access for the property throw class method</description>
+          <long-description></long-description>
+          <tag name="param" line="62" description="" type="string" variable="$name">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="62" description="" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$name</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$arguments</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm\Response" line="80" package="Default">
+        <name>__get</name>
+        <full_name>\RetailCrm\Response\ApiResponse::__get()</full_name>
+        <docblock line="80">
+          <description>Allow to access for the property throw object property</description>
+          <long-description></long-description>
+          <tag name="param" line="80" description="" type="string" variable="$name">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="80" description="" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$name</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm\Response" line="89" package="Default">
+        <name>offsetSet</name>
+        <full_name>\RetailCrm\Response\ApiResponse::offsetSet()</full_name>
+        <docblock line="89">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$offset</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm\Response" line="94" package="Default">
+        <name>offsetUnset</name>
+        <full_name>\RetailCrm\Response\ApiResponse::offsetUnset()</full_name>
+        <docblock line="94">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$offset</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm\Response" line="99" package="Default">
+        <name>offsetExists</name>
+        <full_name>\RetailCrm\Response\ApiResponse::offsetExists()</full_name>
+        <docblock line="99">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$offset</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="RetailCrm\Response" line="104" package="Default">
+        <name>offsetGet</name>
+        <full_name>\RetailCrm\Response\ApiResponse::offsetGet()</full_name>
+        <docblock line="104">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$offset</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="18" code="PPC:ERR-50015">Argument $statusCode is missing from the Docblock of __construct</error>
+      <error line="18" code="PPC:ERR-50015">Argument $responseBody is missing from the Docblock of __construct</error>
+      <error line="18" code="PPC:ERR-50008">No summary for method ""</error>
+      <error line="62" code="PPC:ERR-50015">Argument $name is missing from the Docblock of __call</error>
+      <error line="62" code="PPC:ERR-50015">Argument $arguments is missing from the Docblock of __call</error>
+      <error line="80" code="PPC:ERR-50015">Argument $name is missing from the Docblock of __get</error>
+      <error line="89" code="PPC:ERR-50015">Argument $offset is missing from the Docblock of offsetSet</error>
+      <error line="89" code="PPC:ERR-50015">Argument $value is missing from the Docblock of offsetSet</error>
+      <error line="89" code="PPC:ERR-50008">No summary for method ""</error>
+      <error line="94" code="PPC:ERR-50015">Argument $offset is missing from the Docblock of offsetUnset</error>
+      <error line="94" code="PPC:ERR-50008">No summary for method ""</error>
+      <error line="99" code="PPC:ERR-50015">Argument $offset is missing from the Docblock of offsetExists</error>
+      <error line="99" code="PPC:ERR-50008">No summary for method ""</error>
+      <error line="104" code="PPC:ERR-50015">Argument $offset is missing from the Docblock of offsetGet</error>
+      <error line="104" code="PPC:ERR-50008">No summary for method ""</error>
+      <error line="13" code="PPC:ERR-50007">No summary for property $statusCode</error>
+      <error line="16" code="PPC:ERR-50007">No summary for property $response</error>
+    </parse_markers>
+    <source>eJy1VF1P2zAUfc+vuOsqSFBHmcYbsK2gagOJglr2tKLKTdzWKLEz2wGqif++a+ezadMxqvkpse/HOfeee0+/xIvYcTiJqIqJT2FINWHhhYzGQ7wRXNETx0lU9aH/7NNYM8HHl/yRhCy4UoIXl2jePThw4ADyADCTIgKZ+g+voXd7ic9dxw+JUtCLWWHIojikEeVawbgnJVn2fJ8q5fx2AE+3C9/v7m4xUmauNNGJAl8E1BrEUmjqaxpAO326wBfEkzkXfphW+EBMgrqfLEnbl2QaMh9mCfcNN5hMfHzVMvG1W8nRKR3PRbCEM+BJGHo2RIrdnLZeMPXhc+mGdi7j2tsA1xw2A/cdjWK9dFfCe14lqA1cMDuDB+zFJKCmJqteHUDY1KvEL3KU/nt7cDW6GUz6w+HNcDK4GfTh3RmibFMphczDY9/0xN643hoYc/RCiifg9Ak2KcRdszenlZlaAMA4BqFGKmXbpsjiEPoWieEH71NYrc7GgOnj2hNWoPr7slqPrEeVglYkUfpUPK3YzTGC14nkfxEpFOZfZWqPEsiuuhtFN6d6VOjDrasqC7ImrpMGkBm6XwlVGp6IApXYIZslYQO+qRDhVoBMjYoYr8YHp3B8dNSEsheGqCAtgNjAMMOeG0HgqMZU6mUmsXSFRFQvRFBHHxNJIsD6S8bn0DYrrs4sYs802EoNB56EoWu9ccqJnCd2P9VZ4nrBzfCI0Gy7RERvC6QCVOW/XAc5lwHGRqEhUC2QNZWuSqb4l2f91IGPOGaHsHp97NV3BVOK4l5alfDPlTz3a/Nazmq+znsZyXJgW9e2wjBu2dzjFnChsScJD1pedS4aut6AZcfmi+kDbu3i9j/1f25KapzrLd9Wcv72Uhe62b3YfK3IdXpiNkP8I0Mh/USNI7BkjWwF+jkJUjlc4GSUwPfvMDt2TLNHhugNZmL6SIN97xUYfnBVonhrdjOr/5y5/8yUVk2p8x29uc+pz/1r0nxrprdNSXmGnbWUBtpBTRmSnOrLH9NZDJM=</source>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="global" full_name="global"/>
+  <namespace name="RetailCrm" full_name="RetailCrm">
+    <namespace name="Exception" full_name="RetailCrm\Exception"/>
+    <namespace name="Http" full_name="RetailCrm\Http"/>
+    <namespace name="Response" full_name="RetailCrm\Response"/>
+  </namespace>
+  <deprecated count="0"/>
+</project>
