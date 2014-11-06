@@ -42,6 +42,12 @@ if ($response->isSuccessful()) {
     // or 
     //    $order = $response->getOrder();
     //    $order['totalSumm'];
+} else {
+    echo sprintf(
+        "Error of the order receipt: [Code %s] %s", 
+        $response->getStatusCode(),
+        $response->getErrorMsg()
+    );
 }
 ```
 
@@ -69,9 +75,19 @@ try {
     echo "CRM connection error: " . $e->getMessage();
 }
 
-if ($response->isSuccessful() && 201 === $response->getStatusCode()) {
-    echo 'Order created successfully! Order ID in CRM - ' . $response->id;
-        // or $response['id'];
-        // or $response->getId();
+if ($response->isSuccessful()) {
+    if (201 === $response->getStatusCode()) {
+        echo 'Order created successfully! Order ID in CRM = ' . $response->id;
+            // or $response['id'];
+            // or $response->getId();
+    } else {
+        echo 'Order updated successfully!';
+    }
+} else {
+    echo sprintf(
+        "Error of the order creating: [Code %s] %s", 
+        $response->getStatusCode(),
+        $response->getErrorMsg()
+    );
 }
 ```
