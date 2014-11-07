@@ -46,6 +46,11 @@ if ($response->isSuccessful()) {
         $response->getStatusCode(),
         $response->getErrorMsg()
     );
+    
+    // получить детализацию ошибок
+    //if (isset($response['errors'])) {
+    //    print_r($response['errors']);
+    //}
 }
 ```
 
@@ -83,5 +88,10 @@ if ($response->isSuccessful() && 201 === $response->getStatusCode()) {
         $response->getStatusCode(),
         $response->getErrorMsg()
     );
+
+    // получить детализацию ошибок
+    //if (isset($response['errors'])) {
+    //    print_r($response['errors']);
+    //}
 }
 ```
