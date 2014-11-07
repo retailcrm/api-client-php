@@ -16,7 +16,7 @@ Installation
 
 2) Run:
 ```bash
-composer require retailcrm/api-client-php 3.0
+composer require retailcrm/api-client-php ~3.0.0
 ```
 
 Usage
@@ -75,14 +75,10 @@ try {
     echo "CRM connection error: " . $e->getMessage();
 }
 
-if ($response->isSuccessful()) {
-    if (201 === $response->getStatusCode()) {
-        echo 'Order created successfully! Order ID in CRM = ' . $response->id;
-            // or $response['id'];
-            // or $response->getId();
-    } else {
-        echo 'Order updated successfully!';
-    }
+if ($response->isSuccessful() && 201 === $response->getStatusCode()) {
+    echo 'Order created successfully! Order ID in CRM = ' . $response->id;
+        // or $response['id'];
+        // or $response->getId();
 } else {
     echo sprintf(
         "Error of the order creating: [Code %s] %s", 
