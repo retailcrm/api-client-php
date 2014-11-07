@@ -1,57 +1,55 @@
-PHP client for retailCRM API
-=================
+# PHP-клиент для retailCRM API
 
-PHP client for [retailCRM API](http://www.retailcrm.ru/docs/Разработчики/Разработчики#api).
+PHP-клиент для работы с [retailCRM API](http://www.retailcrm.ru/docs/Разработчики/Разработчики#api).
 
-Requirements
-------------
+## Обязательные требования
 
-* PHP version 5.3 and above
-* PHP-extension CURL
+* PHP версии 5.3 и выше
+* PHP-расширение cURL
 
-Installation
-------------
+## Установка
 
-1) Install [composer](https://getcomposer.org/download/)
+1) Установите [composer](https://getcomposer.org/download/)
 
-2) Run:
+2) Выполните в папке проекта:
 ```bash
 composer require retailcrm/api-client-php ~3.0.0
 ```
 
-Usage
------
+В конфиг `composer.json` вашего проекта будет добавлена библиотека `retailcrm/api-client-php`, которая установится в папку `vendor/`. При отсутствии файла конфига или папки с вендорами они будут созданы.
 
-Example of the receipt of order:
+## Примеры использования
+
+### Получение информации о заказе
 ```php
-
 $client = new \RetailCrm\ApiClient(
     'https://demo.intarocrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
 );
 
+
 try {
     $response = $client->ordersGet('M-2342');
 } catch (\RetailCrm\Exception\CurlException $e) {
-    echo "CRM connection error: " . $e->getMessage();
+    echo "Сетевые проблемы. Ошибка подключения к retailCRM: " . $e->getMessage();
 }
 
 if ($response->isSuccessful()) {
     echo $response->order['totalSumm'];
-    // or $response['order']['totalSumm'];
-    // or 
+    // или $response['order']['totalSumm'];
+    // или 
     //    $order = $response->getOrder();
     //    $order['totalSumm'];
 } else {
     echo sprintf(
-        "Error of the order receipt: [Code %s] %s", 
+        "Ошибка получения информации о заказа: [Статус HTTP-ответа %s] %s", 
         $response->getStatusCode(),
         $response->getErrorMsg()
     );
 }
 ```
 
-Example of the order creating:
+### Создание заказа
 ```php
 
 $client = new \RetailCrm\ApiClient(
@@ -72,16 +70,16 @@ try {
         )
     ));
 } catch (\RetailCrm\Exception\CurlException $e) {
-    echo "CRM connection error: " . $e->getMessage();
+    echo "Сетевые проблемы. Ошибка подключения к retailCRM: " . $e->getMessage();
 }
 
 if ($response->isSuccessful() && 201 === $response->getStatusCode()) {
-    echo 'Order created successfully! Order ID in CRM = ' . $response->id;
-        // or $response['id'];
-        // or $response->getId();
+    echo 'Заказ успешно создан. ID заказа в retailCRM = ' . $response->id;
+        // или $response['id'];
+        // или $response->getId();
 } else {
     echo sprintf(
-        "Error of the order creating: [Code %s] %s", 
+        "Ошибка создания заказа: [Статус HTTP-ответа %s] %s", 
         $response->getStatusCode(),
         $response->getErrorMsg()
     );
