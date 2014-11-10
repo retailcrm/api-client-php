@@ -1,0 +1,40 @@
+extensions:
+	- php
+	
+source:
+	- lib
+	
+exclude:
+	- tests/
+	- vendor/
+	- bin/
+	- docs/
+	
+charset:
+	- auto
+	- UTF-8
+	- Windows-1251
+	
+title: retailCRM PHP API client
+templateTheme: bootstrap
+groups: auto
+autocomplete:
+	- classes
+	- constants
+	- functions
+	- methods
+	- properties
+	- classconstants
+	
+accessLevels:
+	- public
+	- protected
+	- private
+	
+internal: true
+php: false
+tree: true
+deprecated: true
+todo: true
+destination: docs/api
+download: false

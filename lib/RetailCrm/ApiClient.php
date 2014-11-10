@@ -19,7 +19,7 @@ class ApiClient
      *
      * @param  string $url
      * @param  string $apiKey
-     * @return void
+     * @return mixed
      */
     public function __construct($url, $apiKey)
     {
@@ -391,6 +391,7 @@ class ApiClient
     /**
      * Edit deliveryService
      *
+     * @param array $data delivery service data
      * @return ApiResponse
      */
     public function deliveryServicesEdit(array $data)
@@ -411,6 +412,7 @@ class ApiClient
     /**
      * Edit deliveryType
      *
+     * @param array $data delivery type data
      * @return ApiResponse
      */
     public function deliveryTypesEdit(array $data)
@@ -431,6 +433,7 @@ class ApiClient
     /**
      * Edit orderMethod
      *
+     * @param array $data order method data
      * @return ApiResponse
      */
     public function orderMethodsEdit(array $data)
@@ -451,6 +454,7 @@ class ApiClient
     /**
      * Edit orderType
      *
+     * @param array $data order type data
      * @return ApiResponse
      */
     public function orderTypesEdit(array $data)
@@ -471,6 +475,7 @@ class ApiClient
     /**
      * Edit paymentStatus
      *
+     * @param array $data payment status data
      * @return ApiResponse
      */
     public function paymentStatusesEdit(array $data)
@@ -491,6 +496,7 @@ class ApiClient
     /**
      * Edit paymentType
      *
+     * @param array $data payment type data
      * @return ApiResponse
      */
     public function paymentTypesEdit(array $data)
@@ -511,6 +517,7 @@ class ApiClient
     /**
      * Edit productStatus
      *
+     * @param array $data product status data
      * @return ApiResponse
      */
     public function productStatusesEdit(array $data)
@@ -531,6 +538,7 @@ class ApiClient
     /**
      * Edit order status
      *
+     * @param array $data status data
      * @return ApiResponse
      */
     public function statusesEdit(array $data)

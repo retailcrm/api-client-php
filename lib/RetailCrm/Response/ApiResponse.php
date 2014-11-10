@@ -86,21 +86,36 @@ class ApiResponse implements \ArrayAccess
         return $this->response[$name];
     }
 
+    /**
+     * @param mixed $offset
+     * @param mixed $value
+     */
     public function offsetSet($offset, $value)
     {
         throw new \BadMethodCallException('This activity not allowed');
     }
 
+    /**
+     * @param mixed $offset
+     */
     public function offsetUnset($offset)
     {
         throw new \BadMethodCallException('This call not allowed');
     }
 
+    /**
+     * @param mixed $offset
+     * @return bool
+     */
     public function offsetExists($offset)
     {
         return isset($this->response[$offset]);
     }
 
+    /**
+     * @param mixed $offset
+     * @return mixed
+     */
     public function offsetGet($offset)
     {
         if (!isset($this->response[$offset])) {

@@ -1,4 +1,10 @@
-.DS_Store
-phpunit.xml
 vendor/
+bin/
 composer.lock
+phpunit.xml
+.idea
+.DS_Store
+.settings
+.buildpath
+.project
+.swp

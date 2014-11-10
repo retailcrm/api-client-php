@@ -29,9 +29,10 @@ class Client
     /**
      * Make HTTP request
      *
-     * @param  string      $path
-     * @param  string      $method (default: 'GET')
-     * @param  array       $parameters (default: array())
+     * @param string $path
+     * @param string $method (default: 'GET')
+     * @param array $parameters (default: array())
+     * @param int $timeout
      * @return ApiResponse
      */
     public function makeRequest($path, $method, array $parameters = array(), $timeout = 30)
@@ -54,11 +55,11 @@ class Client
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $path);
-        curl_setopt($ch, CURLOPT_FAILONERROR, FALSE);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
+        curl_setopt($ch, CURLOPT_FAILONERROR, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // return into a variable
         curl_setopt($ch, CURLOPT_TIMEOUT, (int) $timeout); // times out after 30s
         // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
 
         if (self::METHOD_POST === $method) {
             curl_setopt($ch, CURLOPT_POST, true);
@@ -78,4 +79,4 @@ class Client
 
         return new ApiResponse($statusCode, $responseBody);
     }
- }
+}
