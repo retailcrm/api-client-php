@@ -168,6 +168,27 @@ class ApiClient
     }
 
     /**
+     * Returns statuses of the orders
+     *
+     * @param  array       $ids (default: array())
+     * @param  array       $externalIds (default: array())
+     * @return ApiResponse
+     */
+    public function ordersStatuses(array $ids = array(), array $externalIds = array())
+    {
+        $parameters = array();
+
+        if (sizeof($ids)) {
+            $parameters['ids'] = $ids;
+        }
+        if (sizeof($externalIds)) {
+            $parameters['externalIds'] = $externalIds;
+        }
+
+        return $this->client->makeRequest('/orders/statuses', Client::METHOD_GET, $parameters);
+    }
+
+    /**
      * Save order IDs' (id and externalId) association in the CRM
      *
      * @param  array       $ids

@@ -46,6 +46,49 @@ class ApiClientOrdersTest extends TestCase
      * @group integration
      * @depends testOrdersCreate
      */
+    public function testOrdersStatuses(array $ids)
+    {
+        $client = static::getApiClient();
+
+        $response = $client->ordersStatuses();
+        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        $this->assertEquals(400, $response->getStatusCode());
+        $this->assertFalse($response->success);
+
+        $response = $client->ordersStatuses(array(), array('asdf'));
+        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertTrue($response->success);
+        $orders = $response->orders;
+        $this->assertEquals(0, sizeof($orders));
+
+        $response = $client->ordersStatuses(array(), array($ids['externalId']));
+        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertTrue($response->success);
+        $orders = $response->orders;
+        $this->assertEquals(1, sizeof($orders));
+        $this->assertEquals('new', $orders[0]['status']);
+
+        $response = $client->ordersStatuses(array($ids['id']), array($ids['externalId']));
+        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertTrue($response->success);
+        $orders = $response->orders;
+        $this->assertEquals(1, sizeof($orders));
+
+        $response = $client->ordersStatuses(array($ids['id']));
+        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertTrue($response->success);
+        $orders = $response->orders;
+        $this->assertEquals(1, sizeof($orders));
+    }
+
+    /**
+     * @group integration
+     * @depends testOrdersCreate
+     */
     public function testOrdersGet(array $ids)
     {
         $client = static::getApiClient();
