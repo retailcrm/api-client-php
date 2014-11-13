@@ -1,0 +1,10 @@
+# Other
+.DS_Store
+*~
+/nbproject/*
+/.idea/*
+/*tags*
+.idea
+.idea/*
+/.idea
+/.idea/*
