@@ -21,15 +21,11 @@ groups: auto
 autocomplete:
 	- classes
 	- constants
-	- functions
 	- methods
-	- properties
 	- classconstants
 	
 accessLevels:
 	- public
-	- protected
-	- private
 	
 internal: true
 php: false
