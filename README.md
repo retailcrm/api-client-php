@@ -30,7 +30,7 @@ require 'path/to/vendor/autoload.php';
 ### Получение информации о заказе
 ```php
 $client = new \RetailCrm\ApiClient(
-    'https://demo.intarocrm.ru',
+    'https://demo.retailcrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
 );
 
@@ -65,7 +65,7 @@ if ($response->isSuccessful()) {
 ```php
 
 $client = new \RetailCrm\ApiClient(
-    'https://demo.intarocrm.ru',
+    'https://demo.retailcrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
 );
 
