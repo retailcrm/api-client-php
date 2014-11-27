@@ -117,7 +117,7 @@
 		<b>Namespace:</b> RetailCrm<br>
 		
 
-		<b>Located at</b> <a href="source-class-RetailCrm.ApiClient.html#8-609" title="Go to source code">RetailCrm/ApiClient.php</a><br>
+		<b>Located at</b> <a href="source-class-RetailCrm.ApiClient.html#8-707" title="Go to source code">RetailCrm/ApiClient.php</a><br>
 	</div>
 
 
@@ -135,7 +135,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#17-33" title="Go to source code">__construct</a>( <span>string <var>$url</var></span>, <span>string <var>$apiKey</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#22-40" title="Go to source code">__construct</a>( <span>string <var>$url</var></span>, <span>string <var>$apiKey</var></span>, <span>string <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Client creating</p>
@@ -154,6 +154,9 @@
 </dd>
 						<dt><var>$apiKey</var></dt>
 						<dd>
+</dd>
+						<dt><var>$site</var></dt>
+						<dd>$siteCode
 </dd>
 					</dl></div>
 
@@ -179,7 +182,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordersCreate">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#35-50" title="Go to source code">ordersCreate</a>( <span>array <var>$order</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#42-58" title="Go to source code">ordersCreate</a>( <span>array <var>$order</var></span>, <span>string <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Create a order</p>
@@ -195,6 +198,9 @@
 					<div class="list"><dl>
 						<dt><var>$order</var></dt>
 						<dd>
+</dd>
+						<dt><var>$site</var></dt>
+						<dd>(default: null)
 </dd>
 					</dl></div>
 
@@ -220,7 +226,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordersEdit">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#52-74" title="Go to source code">ordersEdit</a>( <span>array <var>$order</var></span>, <span>mixed <var>$by</var> = <span class="php-quote">'externalId'</span></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#60-87" title="Go to source code">ordersEdit</a>( <span>array <var>$order</var></span>, <span>string <var>$by</var> = <span class="php-quote">'externalId'</span></span>, <span>mixed <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Edit a order</p>
@@ -238,6 +244,9 @@
 						<dd>
 </dd>
 						<dt><var>$by</var></dt>
+						<dd>$site (default: null)
+</dd>
+						<dt><var>$site</var></dt>
 						<dd>
 </dd>
 					</dl></div>
@@ -264,7 +273,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordersUpload">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#76-91" title="Go to source code">ordersUpload</a>( <span>array <var>$orders</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#89-105" title="Go to source code">ordersUpload</a>( <span>array <var>$orders</var></span>, <span>string <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Upload array of the orders</p>
@@ -280,6 +289,9 @@
 					<div class="list"><dl>
 						<dt><var>$orders</var></dt>
 						<dd>
+</dd>
+						<dt><var>$site</var></dt>
+						<dd>(default: null)
 </dd>
 					</dl></div>
 
@@ -305,7 +317,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordersGet">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#93-105" title="Go to source code">ordersGet</a>( <span>string <var>$id</var></span>, <span>string <var>$by</var> = <span class="php-quote">'externalId'</span></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#107-122" title="Go to source code">ordersGet</a>( <span>string <var>$id</var></span>, <span>string <var>$by</var> = <span class="php-quote">'externalId'</span></span>, <span>string <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Get order by id or externalId</p>
@@ -324,6 +336,9 @@
 </dd>
 						<dt><var>$by</var></dt>
 						<dd>(default: 'externalId')
+</dd>
+						<dt><var>$site</var></dt>
+						<dd>(default: null)
 </dd>
 					</dl></div>
 
@@ -349,7 +364,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordersHistory">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#107-143" title="Go to source code">ordersHistory</a>( <span>DateTime <var>$startDate</var> = <span class="php-keyword1">null</span></span>, <span>DateTime <var>$endDate</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$limit</var> = <span class="php-num">100</span></span>, <span>integer <var>$offset</var> = <span class="php-num">0</span></span>, <span>boolean <var>$skipMyChanges</var> = <span class="php-keyword1">true</span> </span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#124-160" title="Go to source code">ordersHistory</a>( <span>DateTime <var>$startDate</var> = <span class="php-keyword1">null</span></span>, <span>DateTime <var>$endDate</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$limit</var> = <span class="php-num">100</span></span>, <span>integer <var>$offset</var> = <span class="php-num">0</span></span>, <span>boolean <var>$skipMyChanges</var> = <span class="php-keyword1">true</span> </span> )</code>
 
 			<div class="description short">
 				<p>Returns a orders history</p>
@@ -402,7 +417,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordersList">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#145-168" title="Go to source code">ordersList</a>( <span>array <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>integer <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$limit</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#162-185" title="Go to source code">ordersList</a>( <span>array <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>integer <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$limit</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Returns filtered orders list</p>
@@ -449,7 +464,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordersStatuses">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#170-189" title="Go to source code">ordersStatuses</a>( <span>array <var>$ids</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$externalIds</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#187-206" title="Go to source code">ordersStatuses</a>( <span>array <var>$ids</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$externalIds</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
 				<p>Returns statuses of the orders</p>
@@ -493,7 +508,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordersFixExternalIds">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#191-206" title="Go to source code">ordersFixExternalIds</a>( <span>array <var>$ids</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#208-223" title="Go to source code">ordersFixExternalIds</a>( <span>array <var>$ids</var></span> )</code>
 
 			<div class="description short">
 				<p>Save order IDs' (id and externalId) association in the CRM</p>
@@ -534,7 +549,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_customersCreate">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#208-223" title="Go to source code">customersCreate</a>( <span>array <var>$customer</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#225-241" title="Go to source code">customersCreate</a>( <span>array <var>$customer</var></span>, <span>string <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Create a customer</p>
@@ -550,6 +565,9 @@
 					<div class="list"><dl>
 						<dt><var>$customer</var></dt>
 						<dd>
+</dd>
+						<dt><var>$site</var></dt>
+						<dd>(default: null)
 </dd>
 					</dl></div>
 
@@ -575,7 +593,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_customersEdit">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#225-247" title="Go to source code">customersEdit</a>( <span>array <var>$customer</var></span>, <span>mixed <var>$by</var> = <span class="php-quote">'externalId'</span></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#243-271" title="Go to source code">customersEdit</a>( <span>array <var>$customer</var></span>, <span>string <var>$by</var> = <span class="php-quote">'externalId'</span></span>, <span>string <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Edit a customer</p>
@@ -593,7 +611,10 @@
 						<dd>
 </dd>
 						<dt><var>$by</var></dt>
-						<dd>
+						<dd>(default: 'externalId')
+</dd>
+						<dt><var>$site</var></dt>
+						<dd>(default: null)
 </dd>
 					</dl></div>
 
@@ -619,7 +640,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_customersUpload">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#249-264" title="Go to source code">customersUpload</a>( <span>array <var>$customers</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#273-289" title="Go to source code">customersUpload</a>( <span>array <var>$customers</var></span>, <span>string <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Upload array of the customers</p>
@@ -635,6 +656,9 @@
 					<div class="list"><dl>
 						<dt><var>$customers</var></dt>
 						<dd>
+</dd>
+						<dt><var>$site</var></dt>
+						<dd>(default: null)
 </dd>
 					</dl></div>
 
@@ -660,7 +684,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_customersGet">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#266-278" title="Go to source code">customersGet</a>( <span>string <var>$id</var></span>, <span>string <var>$by</var> = <span class="php-quote">'externalId'</span></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#291-306" title="Go to source code">customersGet</a>( <span>string <var>$id</var></span>, <span>string <var>$by</var> = <span class="php-quote">'externalId'</span></span>, <span>string <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Get customer by id or externalId</p>
@@ -679,6 +703,9 @@
 </dd>
 						<dt><var>$by</var></dt>
 						<dd>(default: 'externalId')
+</dd>
+						<dt><var>$site</var></dt>
+						<dd>(default: null)
 </dd>
 					</dl></div>
 
@@ -704,7 +731,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_customersList">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#280-303" title="Go to source code">customersList</a>( <span>array <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>integer <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$limit</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#308-331" title="Go to source code">customersList</a>( <span>array <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>integer <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$limit</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Returns filtered customers list</p>
@@ -751,7 +778,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_customersFixExternalIds">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#305-320" title="Go to source code">customersFixExternalIds</a>( <span>array <var>$ids</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#333-348" title="Go to source code">customersFixExternalIds</a>( <span>array <var>$ids</var></span> )</code>
 
 			<div class="description short">
 				<p>Save customer IDs' (id and externalId) association in the CRM</p>
@@ -792,7 +819,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deliveryServicesList">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#322-330" title="Go to source code">deliveryServicesList</a>( )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#350-358" title="Go to source code">deliveryServicesList</a>( )</code>
 
 			<div class="description short">
 				<p>Returns deliveryServices list</p>
@@ -827,7 +854,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deliveryTypesList">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#332-340" title="Go to source code">deliveryTypesList</a>( )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#360-368" title="Go to source code">deliveryTypesList</a>( )</code>
 
 			<div class="description short">
 				<p>Returns deliveryTypes list</p>
@@ -862,7 +889,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_orderMethodsList">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#342-350" title="Go to source code">orderMethodsList</a>( )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#370-378" title="Go to source code">orderMethodsList</a>( )</code>
 
 			<div class="description short">
 				<p>Returns orderMethods list</p>
@@ -897,7 +924,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_orderTypesList">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#352-360" title="Go to source code">orderTypesList</a>( )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#380-388" title="Go to source code">orderTypesList</a>( )</code>
 
 			<div class="description short">
 				<p>Returns orderTypes list</p>
@@ -932,7 +959,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_paymentStatusesList">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#362-370" title="Go to source code">paymentStatusesList</a>( )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#390-398" title="Go to source code">paymentStatusesList</a>( )</code>
 
 			<div class="description short">
 				<p>Returns paymentStatuses list</p>
@@ -967,7 +994,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_paymentTypesList">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#372-380" title="Go to source code">paymentTypesList</a>( )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#400-408" title="Go to source code">paymentTypesList</a>( )</code>
 
 			<div class="description short">
 				<p>Returns paymentTypes list</p>
@@ -1002,7 +1029,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_productStatusesList">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#382-390" title="Go to source code">productStatusesList</a>( )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#410-418" title="Go to source code">productStatusesList</a>( )</code>
 
 			<div class="description short">
 				<p>Returns productStatuses list</p>
@@ -1037,7 +1064,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_statusGroupsList">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#392-400" title="Go to source code">statusGroupsList</a>( )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#420-428" title="Go to source code">statusGroupsList</a>( )</code>
 
 			<div class="description short">
 				<p>Returns statusGroups list</p>
@@ -1072,7 +1099,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_statusesList">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#402-410" title="Go to source code">statusesList</a>( )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#430-438" title="Go to source code">statusesList</a>( )</code>
 
 			<div class="description short">
 				<p>Returns statuses list</p>
@@ -1081,6 +1108,41 @@
 
 			<div class="description detailed hidden">
 				<p>Returns statuses list</p>
+
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="sitesList" id="_sitesList">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_sitesList">#</a>
+			<code><a href="source-class-RetailCrm.ApiClient.html#440-448" title="Go to source code">sitesList</a>( )</code>
+
+			<div class="description short">
+				<p>Returns sites list</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns sites list</p>
 
 
 
@@ -1107,7 +1169,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deliveryServicesEdit">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#412-431" title="Go to source code">deliveryServicesEdit</a>( <span>array <var>$data</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#450-469" title="Go to source code">deliveryServicesEdit</a>( <span>array <var>$data</var></span> )</code>
 
 			<div class="description short">
 				<p>Edit deliveryService</p>
@@ -1148,7 +1210,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deliveryTypesEdit">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#433-452" title="Go to source code">deliveryTypesEdit</a>( <span>array <var>$data</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#471-490" title="Go to source code">deliveryTypesEdit</a>( <span>array <var>$data</var></span> )</code>
 
 			<div class="description short">
 				<p>Edit deliveryType</p>
@@ -1189,7 +1251,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_orderMethodsEdit">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#454-473" title="Go to source code">orderMethodsEdit</a>( <span>array <var>$data</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#492-511" title="Go to source code">orderMethodsEdit</a>( <span>array <var>$data</var></span> )</code>
 
 			<div class="description short">
 				<p>Edit orderMethod</p>
@@ -1230,7 +1292,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_orderTypesEdit">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#475-494" title="Go to source code">orderTypesEdit</a>( <span>array <var>$data</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#513-532" title="Go to source code">orderTypesEdit</a>( <span>array <var>$data</var></span> )</code>
 
 			<div class="description short">
 				<p>Edit orderType</p>
@@ -1271,7 +1333,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_paymentStatusesEdit">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#496-515" title="Go to source code">paymentStatusesEdit</a>( <span>array <var>$data</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#534-553" title="Go to source code">paymentStatusesEdit</a>( <span>array <var>$data</var></span> )</code>
 
 			<div class="description short">
 				<p>Edit paymentStatus</p>
@@ -1312,7 +1374,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_paymentTypesEdit">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#517-536" title="Go to source code">paymentTypesEdit</a>( <span>array <var>$data</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#555-574" title="Go to source code">paymentTypesEdit</a>( <span>array <var>$data</var></span> )</code>
 
 			<div class="description short">
 				<p>Edit paymentType</p>
@@ -1353,7 +1415,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_productStatusesEdit">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#538-557" title="Go to source code">productStatusesEdit</a>( <span>array <var>$data</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#576-595" title="Go to source code">productStatusesEdit</a>( <span>array <var>$data</var></span> )</code>
 
 			<div class="description short">
 				<p>Edit productStatus</p>
@@ -1394,7 +1456,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_statusesEdit">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#559-578" title="Go to source code">statusesEdit</a>( <span>array <var>$data</var></span> )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#597-616" title="Go to source code">statusesEdit</a>( <span>array <var>$data</var></span> )</code>
 
 			<div class="description short">
 				<p>Edit order status</p>
@@ -1424,6 +1486,47 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="sitesEdit" id="_sitesEdit">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_sitesEdit">#</a>
+			<code><a href="source-class-RetailCrm.ApiClient.html#618-637" title="Go to source code">sitesEdit</a>( <span>array <var>$data</var></span> )</code>
+
+			<div class="description short">
+				<p>Edit site</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Edit site</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$data</var></dt>
+						<dd>site data
+</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="statisticUpdate" id="_statisticUpdate">
 
 			<td class="attributes"><code>
@@ -1435,7 +1538,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_statisticUpdate">#</a>
-			<code><a href="source-class-RetailCrm.ApiClient.html#580-588" title="Go to source code">statisticUpdate</a>( )</code>
+			<code><a href="source-class-RetailCrm.ApiClient.html#639-647" title="Go to source code">statisticUpdate</a>( )</code>
 
 			<div class="description short">
 				<p>Update CRM basic statistic</p>
@@ -1452,6 +1555,78 @@
 					<div class="list">
 						<code><code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code></code>
 					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSite" id="_getSite">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getSite">#</a>
+			<code><a href="source-class-RetailCrm.ApiClient.html#649-657" title="Go to source code">getSite</a>( )</code>
+
+			<div class="description short">
+				<p>Return current site</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Return current site</p>
+
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code>string</code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setSite" id="_setSite">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setSite">#</a>
+			<code><a href="source-class-RetailCrm.ApiClient.html#659-668" title="Go to source code">setSite</a>( <span>string <var>$site</var></span> )</code>
+
+			<div class="description short">
+				<p>Set site</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Set site</p>
+
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$site</var></dt>
+						<dd>
+</dd>
+					</dl></div>
+
 
 
 
@@ -1510,6 +1685,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?371644040"></script>
-<script src="elementlist.js?1838453619"></script>
+<script src="elementlist.js?1747195041"></script>
 </body>
 </html>
