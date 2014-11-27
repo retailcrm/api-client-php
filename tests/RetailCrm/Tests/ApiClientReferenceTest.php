@@ -67,6 +67,37 @@ class ApiClientReferenceTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
+    /**
+     * @group integration
+     * @group site
+     */
+    public function testSiteEditing()
+    {
+        $name = 'sites';
+        $client = static::getApiClient();
+
+        $code = 'dict-' . strtolower($name) . '-' . time();
+        $method = $name . 'Edit';
+        $params = array(
+            'code' => $code,
+            'name' => 'Aaa',
+        );
+
+        $response = $client->$method($params);
+        $this->assertEquals(400, $response->getStatusCode());
+
+        if ($code = $client->getSite()) {
+            $method = $name . 'Edit';
+            $params = array(
+                'code' => $code,
+                'name' => 'Aaa' . time(),
+            );
+
+            $response = $client->$method($params);
+            $this->assertEquals(200, $response->getStatusCode());
+        }
+    }
+
     public function getListDictionaries()
     {
         return array(
@@ -79,6 +110,7 @@ class ApiClientReferenceTest extends TestCase
             array('productStatuses'),
             array('statusGroups'),
             array('statuses'),
+            array('sites'),
         );
     }
 

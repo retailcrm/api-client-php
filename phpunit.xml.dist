@@ -5,6 +5,7 @@
     <php>
         <server name="CRM_URL" value="foo" />
         <server name="CRM_API_KEY" value="bar" />
+        <server name="CRM_SITE" value="zoo" />
     </php>
 
     <testsuites>
