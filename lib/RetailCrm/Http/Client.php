@@ -15,6 +15,7 @@ class Client
 
     protected $url;
     protected $defaultParameters;
+    protected $retry;
 
     public function __construct($url, array $defaultParameters = array())
     {
@@ -24,6 +25,7 @@ class Client
 
         $this->url = $url;
         $this->defaultParameters = $defaultParameters;
+        $this->retry = 0;
     }
 
     /**
@@ -33,9 +35,10 @@ class Client
      * @param string $method (default: 'GET')
      * @param array $parameters (default: array())
      * @param int $timeout
+     * @param bool $verify
      * @return ApiResponse
      */
-    public function makeRequest($path, $method, array $parameters = array(), $timeout = 30)
+    public function makeRequest($path, $method, array $parameters = array(), $timeout = 30, $verify=false)
     {
         $allowedMethods = array(self::METHOD_GET, self::METHOD_POST);
         if (!in_array($method, $allowedMethods)) {
@@ -55,20 +58,21 @@ class Client
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $path);
+        curl_setopt($ch, CURLOPT_TIMEOUT, (int)$timeout);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // return into a variable
-        curl_setopt($ch, CURLOPT_TIMEOUT, (int) $timeout); // times out after 30s
-        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $verify);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $verify);
 
         if (self::METHOD_POST === $method) {
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $parameters);
         }
 
-        $responseBody = curl_exec($ch);
+        $responseBody = $this->curlExec($ch);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
         $errno = curl_errno($ch);
         $error = curl_error($ch);
         curl_close($ch);
@@ -78,5 +82,21 @@ class Client
         }
 
         return new ApiResponse($statusCode, $responseBody);
+    }
+
+
+    /**
+     * @param resource $ch
+     * @return mixed
+     */
+    private function curlExec($ch) {
+        $exec = curl_exec($ch);
+
+        if (curl_errno($ch) && in_array(curl_errno($ch), array(6, 7, 28, 34, 35)) && $this->retry < 3) {
+            $this->retry += 1;
+            $this->curlExec($ch);
+        }
+
+        return $exec;
     }
 }

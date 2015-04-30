@@ -24,7 +24,7 @@ class ClientTest extends TestCase
      */
     public function testHttpRequiring()
     {
-        $client = new Client('http://a.intarocrm.ru', array('apiKey' => '123'));
+        $client = new Client('http://demo.intarocrm.ru/api/' . ApiClient::VERSION, array('apiKey' => '123'));
     }
 
     /**
@@ -33,13 +33,13 @@ class ClientTest extends TestCase
      */
     public function testMakeRequestWrongMethod()
     {
-        $client = new Client('https://asdf.df', array());
+        $client = new Client('https://demo.intarocrm.ru/api/' . ApiClient::VERSION, array('apiKey' => '123'));
         $client->makeRequest('/a', 'adsf');
     }
 
     /**
      * @group integration
-     * @expectedException RetailCrm\Exception\CurlException
+     * @expectedException \RetailCrm\Exception\CurlException
      */
     public function testMakeRequestWrongUrl()
     {
