@@ -59,8 +59,8 @@ class Client
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $path);
-        curl_setopt($ch, CURLOPT_TIMEOUT, (int)$timeout);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        curl_setopt($ch, CURLOPT_TIMEOUT, (int) $timeout);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, (int) $timeout);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
