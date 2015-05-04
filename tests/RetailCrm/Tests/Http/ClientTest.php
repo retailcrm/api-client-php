@@ -24,7 +24,7 @@ class ClientTest extends TestCase
      */
     public function testHttpRequiring()
     {
-        $client = new Client('http://demo.intarocrm.ru/api/' . ApiClient::VERSION, array('apiKey' => '123'));
+        $client = new Client('http://demo.retailcrm.ru/api/' . ApiClient::VERSION, array('apiKey' => '123'));
     }
 
     /**
@@ -33,7 +33,7 @@ class ClientTest extends TestCase
      */
     public function testMakeRequestWrongMethod()
     {
-        $client = new Client('https://demo.intarocrm.ru/api/' . ApiClient::VERSION, array('apiKey' => '123'));
+        $client = static::getClient();
         $client->makeRequest('/a', 'adsf');
     }
 
@@ -52,10 +52,20 @@ class ClientTest extends TestCase
      */
     public function testMakeRequestSuccess()
     {
-        $client = new Client('https://demo.intarocrm.ru/api/' . ApiClient::VERSION, array());
+        $client = static::getClient();
         $response = $client->makeRequest('/orders', Client::METHOD_GET);
 
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(403, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+    
+    /**
+     * @group integration
+     * @expectedException \RetailCrm\Exception\CurlException
+     */
+    public function testMakeRequestTimeout()
+    {
+        $client = static::getClient();
+        $client->makeRequest('/orders', Client::METHOD_GET, array(), 1, false, true);
     }
 }

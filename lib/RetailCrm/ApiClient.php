@@ -221,6 +221,31 @@ class ApiClient
             'orders' => json_encode($ids),
         ));
     }
+    
+    /**
+     * Get orders assembly history
+     *
+     * @param  array       $filter (default: array())
+     * @param  int         $page (default: null)
+     * @param  int         $limit (default: null)
+     * @return ApiResponse
+     */
+    public function ordersPacksHistory(array $filter = array(), $page = null, $limit = null)
+    {
+        $parameters = array();
+
+        if (sizeof($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest('/orders/packs/history', Client::METHOD_GET, $parameters);
+    }
 
     /**
      * Create a customer
@@ -345,6 +370,49 @@ class ApiClient
         return $this->client->makeRequest("/customers/fix-external-ids", Client::METHOD_POST, array(
             'customers' => json_encode($ids),
         ));
+    }
+
+    /**
+     * Get purchace prices & stock balance
+     *
+     * @param  array       $filter (default: array())
+     * @param  int         $page (default: null)
+     * @param  int         $limit (default: null)
+     * @return ApiResponse
+     */
+    public function storeInventories(array $filter = array(), $page = null, $limit = null)
+    {
+        $parameters = array();
+
+        if (sizeof($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest('/store/inventories', Client::METHOD_GET, $parameters);
+    }
+
+    /**
+     * Upload store inventories
+     *
+     * @param  array       $offers
+     * @param  string      $site (default: null)
+     * @return ApiResponse
+     */
+    public function storeInventoriesUpload(array $offers, $site = null)
+    {
+        if (!sizeof($offers)) {
+            throw new \InvalidArgumentException('Parameter `offers` must contains array of the customers');
+        }
+
+        return $this->client->makeRequest("/store/inventories/upload", Client::METHOD_POST, $this->fillSite($site, array(
+            'offers' => json_encode($offers),
+        )));
     }
 
     /**

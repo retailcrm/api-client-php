@@ -38,7 +38,7 @@ class Client
      * @param bool $verify
      * @return ApiResponse
      */
-    public function makeRequest($path, $method, array $parameters = array(), $timeout = 30, $verify=false)
+    public function makeRequest($path, $method, array $parameters = array(), $timeout = 30, $verify = false, $debug = false)
     {
         $allowedMethods = array(self::METHOD_GET, self::METHOD_POST);
         if (!in_array($method, $allowedMethods)) {
@@ -71,7 +71,7 @@ class Client
             curl_setopt($ch, CURLOPT_POSTFIELDS, $parameters);
         }
 
-        $responseBody = $this->curlExec($ch);
+        $responseBody = $this->curlExec($ch, $debug);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $errno = curl_errno($ch);
         $error = curl_error($ch);
@@ -87,14 +87,20 @@ class Client
 
     /**
      * @param resource $ch
+     * @param boolean  $debug
      * @return mixed
      */
-    private function curlExec($ch) {
+    private function curlExec($ch, $debug) {
         $exec = curl_exec($ch);
 
         if (curl_errno($ch) && in_array(curl_errno($ch), array(6, 7, 28, 34, 35)) && $this->retry < 3) {
             $this->retry += 1;
-            $this->curlExec($ch);
+
+            if ($debug) {
+                error_log('CURL RETRY #' . $this->retry . PHP_EOL, 4);
+            }
+
+            $this->curlExec($ch, $debug);
         }
 
         return $exec;
