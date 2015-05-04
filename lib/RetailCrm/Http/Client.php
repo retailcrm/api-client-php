@@ -36,6 +36,7 @@ class Client
      * @param array $parameters (default: array())
      * @param int $timeout
      * @param bool $verify
+     * @param bool $debug
      * @return ApiResponse
      */
     public function makeRequest($path, $method, array $parameters = array(), $timeout = 30, $verify = false, $debug = false)
