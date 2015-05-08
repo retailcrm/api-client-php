@@ -199,6 +199,27 @@ class ApiClientOrdersTest extends TestCase
             'API returns generatedAt in orders history'
         );
     }
+    
+    /**
+     * @group integration
+     */
+    public function testOrdersPacksHistory()
+    {
+        $client = static::getApiClient();
+
+        $response = $client->ordersPacksHistory();
+        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertTrue($response->success);
+        $this->assertTrue(
+            isset($response['history']),
+            'API returns orders assembly history'
+        );
+        $this->assertTrue(
+            isset($response['generatedAt']),
+            'API returns generatedAt in orders assembly history'
+        );
+    }
 
     /**
      * @group integration
