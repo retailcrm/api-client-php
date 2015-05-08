@@ -39,8 +39,14 @@ class Client
      * @param bool $debug
      * @return ApiResponse
      */
-    public function makeRequest($path, $method, array $parameters = array(), $timeout = 30, $verify = false, $debug = false)
-    {
+    public function makeRequest(
+        $path,
+        $method,
+        array $parameters = array(),
+        $timeout = 30,
+        $verify = false,
+        $debug = false
+    ) {
         $allowedMethods = array(self::METHOD_GET, self::METHOD_POST);
         if (!in_array($method, $allowedMethods)) {
             throw new \InvalidArgumentException(sprintf(
@@ -53,6 +59,7 @@ class Client
         $parameters = array_merge($this->defaultParameters, $parameters);
 
         $path = $this->url . $path;
+
         if (self::METHOD_GET === $method && sizeof($parameters)) {
             $path .= '?' . http_build_query($parameters);
         }
@@ -72,10 +79,21 @@ class Client
             curl_setopt($ch, CURLOPT_POSTFIELDS, $parameters);
         }
 
-        $responseBody = $this->curlExec($ch, $debug);
+        $responseBody = curl_exec($ch);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $errno = curl_errno($ch);
         $error = curl_error($ch);
+
+        /*if ($errno && in_array($errno, array(6, 7, 28, 34, 35)) && $this->retry < 3) {
+            $this->retry += 1;
+
+            if ($debug) {
+                error_log('CURL RETRY #' . $this->retry . PHP_EOL, 4);
+            }
+
+            $this->makeRequest($path, $method, $parameters, $timeout, $verify, $debug);
+        }*/
+
         curl_close($ch);
 
         if ($errno) {
@@ -83,27 +101,5 @@ class Client
         }
 
         return new ApiResponse($statusCode, $responseBody);
-    }
-
-
-    /**
-     * @param resource $ch
-     * @param boolean  $debug
-     * @return mixed
-     */
-    private function curlExec($ch, $debug) {
-        $exec = curl_exec($ch);
-
-        if (curl_errno($ch) && in_array(curl_errno($ch), array(6, 7, 28, 34, 35)) && $this->retry < 3) {
-            $this->retry += 1;
-
-            if ($debug) {
-                error_log('CURL RETRY #' . $this->retry . PHP_EOL, 4);
-            }
-
-            $this->curlExec($ch, $debug);
-        }
-
-        return $exec;
     }
 }

@@ -221,7 +221,7 @@ class ApiClient
             'orders' => json_encode($ids),
         ));
     }
-    
+
     /**
      * Get orders assembly history
      *
@@ -288,11 +288,14 @@ class ApiClient
         return $this->client->makeRequest(
             "/customers/" . $customer[$by] . "/edit",
             Client::METHOD_POST,
-            $this->fillSite($site, array(
-                'customer' => json_encode($customer),
-                'by' => $by,
+            $this->fillSite(
+                $site,
+                array(
+                    'customer' => json_encode($customer),
+                    'by' => $by
+                )
             )
-        ));
+        );
     }
 
     /**
@@ -375,12 +378,13 @@ class ApiClient
     /**
      * Get purchace prices & stock balance
      *
-     * @param  array       $filter (default: array())
-     * @param  int         $page (default: null)
-     * @param  int         $limit (default: null)
+     * @param  array  $filter (default: array())
+     * @param  int    $page (default: null)
+     * @param  int    $limit (default: null)
+     * @param  string $site (default: null)
      * @return ApiResponse
      */
-    public function storeInventories(array $filter = array(), $page = null, $limit = null)
+    public function storeInventories(array $filter = array(), $page = null, $limit = null, $site = null)
     {
         $parameters = array();
 
@@ -394,7 +398,7 @@ class ApiClient
             $parameters['limit'] = (int) $limit;
         }
 
-        return $this->client->makeRequest('/store/inventories', Client::METHOD_GET, $parameters);
+        return $this->client->makeRequest('/store/inventories', Client::METHOD_GET, $this->fillSite($site, $parameters));
     }
 
     /**
@@ -410,9 +414,11 @@ class ApiClient
             throw new \InvalidArgumentException('Parameter `offers` must contains array of the customers');
         }
 
-        return $this->client->makeRequest("/store/inventories/upload", Client::METHOD_POST, $this->fillSite($site, array(
-            'offers' => json_encode($offers),
-        )));
+        return $this->client->makeRequest(
+            "/store/inventories/upload",
+            Client::METHOD_POST,
+            $this->fillSite($site, array('offers' => json_encode($offers)))
+        );
     }
 
     /**
