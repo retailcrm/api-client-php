@@ -84,16 +84,6 @@ class Client
         $errno = curl_errno($ch);
         $error = curl_error($ch);
 
-        /*if ($errno && in_array($errno, array(6, 7, 28, 34, 35)) && $this->retry < 3) {
-            $this->retry += 1;
-
-            if ($debug) {
-                error_log('CURL RETRY #' . $this->retry . PHP_EOL, 4);
-            }
-
-            $this->makeRequest($path, $method, $parameters, $timeout, $verify, $debug);
-        }*/
-
         curl_close($ch);
 
         if ($errno) {
