@@ -9,6 +9,7 @@ class ApiClientReferenceTest extends TestCase
     /**
      * @group integration
      * @dataProvider getListDictionaries
+     * @param $name
      */
     public function testList($name)
     {
