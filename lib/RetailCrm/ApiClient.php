@@ -740,7 +740,7 @@ class ApiClient
             '/reference/stores/' . $data['code'] . '/edit',
             Client::METHOD_POST,
             array(
-                'site' => json_encode($data)
+                'store' => json_encode($data)
             )
         );
     }
