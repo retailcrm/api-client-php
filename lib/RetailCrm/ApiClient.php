@@ -520,6 +520,16 @@ class ApiClient
     {
         return $this->client->makeRequest('/reference/sites', Client::METHOD_GET);
     }
+    
+    /**
+     * Returns stores list
+     *
+     * @return ApiResponse
+     */
+    public function storesList()
+    {
+        return $this->client->makeRequest('/reference/stores', Client::METHOD_GET);
+    }
 
     /**
      * Edit deliveryService
@@ -703,6 +713,31 @@ class ApiClient
 
         return $this->client->makeRequest(
             '/reference/sites/' . $data['code'] . '/edit',
+            Client::METHOD_POST,
+            array(
+                'site' => json_encode($data)
+            )
+        );
+    }
+
+    /**
+     * Edit store
+     *
+     * @param array $data site data
+     * @return ApiResponse
+     */
+    public function storesEdit(array $data)
+    {
+        if (!isset($data['code'])) {
+            throw new \InvalidArgumentException('Data must contain "code" parameter.');
+        }
+
+        if (!isset($data['name'])) {
+            throw new \InvalidArgumentException('Data must contain "name" parameter.');
+        }
+
+        return $this->client->makeRequest(
+            '/reference/stores/' . $data['code'] . '/edit',
             Client::METHOD_POST,
             array(
                 'site' => json_encode($data)
