@@ -15,7 +15,7 @@ class Client
 
     protected $url;
     protected $defaultParameters;
-    protected $retry;
+    public $retry;
 
     public function __construct($url, array $defaultParameters = array())
     {
@@ -58,21 +58,26 @@ class Client
 
         $parameters = array_merge($this->defaultParameters, $parameters);
 
-        $path = $this->url . $path;
+        $url = $this->url . $path;
 
         if (self::METHOD_GET === $method && sizeof($parameters)) {
-            $path .= '?' . http_build_query($parameters);
+            $url .= '?' . http_build_query($parameters);
         }
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $path);
-        curl_setopt($ch, CURLOPT_TIMEOUT, (int) $timeout);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, (int) $timeout);
+        curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $verify);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $verify);
+
+        if (!$debug) {
+            curl_setopt($ch, CURLOPT_TIMEOUT, (int) $timeout);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, (int) $timeout);
+        } else {
+            curl_setopt($ch, CURLOPT_TIMEOUT_MS, (int) $timeout + ($this->retry * 2000));
+        }
 
         if (self::METHOD_POST === $method) {
             curl_setopt($ch, CURLOPT_POST, true);
@@ -85,6 +90,20 @@ class Client
         $error = curl_error($ch);
 
         curl_close($ch);
+
+        if ($errno && in_array($errno, array(6, 7, 28, 34, 35)) && $this->retry < 3) {
+            $errno = null;
+            $error = null;
+            $this->retry += 1;
+            $this->makeRequest(
+                $path,
+                $method,
+                $parameters,
+                $timeout,
+                $verify,
+                $debug
+            );
+        }
 
         if ($errno) {
             throw new CurlException($error, $errno);

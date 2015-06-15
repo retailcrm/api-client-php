@@ -61,11 +61,11 @@ class ClientTest extends TestCase
     
     /**
      * @group integration
-     * @expectedException \RetailCrm\Exception\CurlException
      */
-    public function testMakeRequestTimeout()
+    public function testMakeRequestRepeatOnTimeout()
     {
         $client = static::getClient();
-        $client->makeRequest('/orders', Client::METHOD_GET, array(), 1, false, true);
+        $response = $client->makeRequest('/orders', Client::METHOD_GET, array(), 1, false, true);
+        $this->assertGreaterThanOrEqual(1, $client->retry);
     }
 }
