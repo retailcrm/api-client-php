@@ -15,7 +15,7 @@ class Client
 
     protected $url;
     protected $defaultParameters;
-    public $retry;
+    protected $retry;
 
     public function __construct($url, array $defaultParameters = array())
     {
@@ -110,5 +110,10 @@ class Client
         }
 
         return new ApiResponse($statusCode, $responseBody);
+    }
+
+    public function getRetry()
+    {
+        return $this->retry;
     }
 }
