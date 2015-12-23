@@ -411,7 +411,7 @@ class ApiClient
     public function storeInventoriesUpload(array $offers, $site = null)
     {
         if (!sizeof($offers)) {
-            throw new \InvalidArgumentException('Parameter `offers` must contains array of the customers');
+            throw new \InvalidArgumentException('Parameter `offers` must contains array of the offers');
         }
 
         return $this->client->makeRequest(
@@ -520,7 +520,7 @@ class ApiClient
     {
         return $this->client->makeRequest('/reference/sites', Client::METHOD_GET);
     }
-    
+
     /**
      * Returns stores list
      *
