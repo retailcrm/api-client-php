@@ -61,7 +61,7 @@ class Client
         $url = $this->url . $path;
 
         if (self::METHOD_GET === $method && sizeof($parameters)) {
-            $url .= '?' . http_build_query($parameters);
+            $url .= '?' . http_build_query($parameters, '', '&');
         }
 
         $ch = curl_init();
