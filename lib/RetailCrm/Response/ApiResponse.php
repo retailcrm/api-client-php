@@ -5,7 +5,15 @@ namespace RetailCrm\Response;
 use RetailCrm\Exception\InvalidJsonException;
 
 /**
+ * PHP version 5.3
+ *
  * Response from retailCRM API
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion3
  */
 class ApiResponse implements \ArrayAccess
 {
@@ -15,6 +23,12 @@ class ApiResponse implements \ArrayAccess
     // response assoc array
     protected $response;
 
+    /**
+     * ApiResponse constructor.
+     *
+     * @param int   $statusCode   HTTP status code
+     * @param mixed $responseBody HTTP body
+     */
     public function __construct($statusCode, $responseBody = null)
     {
         $this->statusCode = (int) $statusCode;

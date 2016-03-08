@@ -6,7 +6,15 @@ use RetailCrm\Exception\CurlException;
 use RetailCrm\Response\ApiResponse;
 
 /**
+ * PHP version 5.3
+ *
  * HTTP client
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion3
  */
 class Client
 {
@@ -17,26 +25,47 @@ class Client
     protected $defaultParameters;
     protected $retry;
 
+    /**
+     * Client constructor.
+     *
+     * @param string $url               api url
+     * @param array  $defaultParameters array of parameters
+     */
     public function __construct($url, array $defaultParameters = array())
     {
         if (false === stripos($url, 'https://')) {
-            throw new \InvalidArgumentException('API schema requires HTTPS protocol');
+            throw new \InvalidArgumentException(
+                'API schema requires HTTPS protocol'
+            );
         }
 
         $this->url = $url;
         $this->defaultParameters = $defaultParameters;
         $this->retry = 0;
+        $this->curlErrors = array(
+            CURLE_COULDNT_RESOLVE_PROXY,
+            CURLE_COULDNT_RESOLVE_HOST,
+            CURLE_COULDNT_CONNECT,
+            CURLE_OPERATION_TIMEOUTED,
+            CURLE_HTTP_POST_ERROR,
+            CURLE_SSL_CONNECT_ERROR,
+            CURLE_SEND_ERROR,
+            CURLE_RECV_ERROR
+        );
     }
 
     /**
      * Make HTTP request
      *
-     * @param string $path
-     * @param string $method (default: 'GET')
-     * @param array $parameters (default: array())
-     * @param int $timeout
-     * @param bool $verify
-     * @param bool $debug
+     * @param string $path       request url
+     * @param string $method     (default: 'GET')
+     * @param array  $parameters (default: array())
+     * @param int    $timeout    (default: 30)
+     * @param bool   $verify     (default: false)
+     * @param bool   $debug      (default: false)
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+     *
      * @return ApiResponse
      */
     public function makeRequest(
@@ -49,11 +78,13 @@ class Client
     ) {
         $allowedMethods = array(self::METHOD_GET, self::METHOD_POST);
         if (!in_array($method, $allowedMethods)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Method "%s" is not valid. Allowed methods are %s',
-                $method,
-                implode(', ', $allowedMethods)
-            ));
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Method "%s" is not valid. Allowed methods are %s',
+                    $method,
+                    implode(', ', $allowedMethods)
+                )
+            );
         }
 
         $parameters = array_merge($this->defaultParameters, $parameters);
@@ -76,7 +107,11 @@ class Client
             curl_setopt($ch, CURLOPT_TIMEOUT, (int) $timeout);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, (int) $timeout);
         } else {
-            curl_setopt($ch, CURLOPT_TIMEOUT_MS, (int) $timeout + ($this->retry * 2000));
+            curl_setopt(
+                $ch,
+                CURLOPT_TIMEOUT_MS,
+                (int) $timeout + ($this->retry * 2000)
+            );
         }
 
         if (self::METHOD_POST === $method) {
@@ -91,7 +126,7 @@ class Client
 
         curl_close($ch);
 
-        if ($errno && in_array($errno, array(6, 7, 28, 34, 35)) && $this->retry < 3) {
+        if ($errno && in_array($errno, $this->curlErrors) && $this->retry < 3) {
             $errno = null;
             $error = null;
             $this->retry += 1;
@@ -112,6 +147,11 @@ class Client
         return new ApiResponse($statusCode, $responseBody);
     }
 
+    /**
+     * Retry connect
+     *
+     * @return int
+     */
     public function getRetry()
     {
         return $this->retry;
