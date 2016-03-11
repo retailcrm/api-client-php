@@ -15,7 +15,7 @@ Use [API documentation](http://retailcrm.github.io/api-client-php)
 
 2) Run into your project directory:
 ```bash
-composer require retailcrm/api-client-php ~3.0.0
+composer require retailcrm/api-client-php ~3.0.0 --no-dev
 ```
 
 If you have not used `composer` before, include autoloader into your project.
