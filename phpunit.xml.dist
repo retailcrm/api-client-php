@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./tests/bootstrap.php" colors="true">
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="phpunit.xsd"
+    bootstrap="./tests/bootstrap.php"
+    colors="true"
+    verbose="true"
+    processIsolation="false"
+    stopOnFailure="true">
 
     <!-- Dummy values used to provide credentials. No need to change these. -->
     <php>
         <server name="CRM_URL" value="foo" />
         <server name="CRM_API_KEY" value="bar" />
         <server name="CRM_SITE" value="zoo" />
+        <server name="CRM_STORE" value="moo" />
+        <server name="CRM_PACK_ITEM" value="boo" />
+        <server name="CRM_PACK_QUANTITY" value="goo" />
     </php>
 
     <testsuites>

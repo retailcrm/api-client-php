@@ -3,10 +3,19 @@
 namespace RetailCrm\Http;
 
 use RetailCrm\Exception\CurlException;
+use RetailCrm\Exception\InvalidJsonException;
 use RetailCrm\Response\ApiResponse;
 
 /**
+ * PHP version 5.3
+ *
  * HTTP client
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion3
  */
 class Client
 {
@@ -17,79 +26,120 @@ class Client
     protected $defaultParameters;
     protected $retry;
 
+    /**
+     * Client constructor.
+     *
+     * @param string $url               api url
+     * @param array  $defaultParameters array of parameters
+     *
+     * @throws \InvalidArgumentException
+     */
     public function __construct($url, array $defaultParameters = array())
     {
         if (false === stripos($url, 'https://')) {
-            throw new \InvalidArgumentException('API schema requires HTTPS protocol');
+            throw new \InvalidArgumentException(
+                'API schema requires HTTPS protocol'
+            );
         }
 
         $this->url = $url;
         $this->defaultParameters = $defaultParameters;
         $this->retry = 0;
+        $this->curlErrors = array(
+            CURLE_COULDNT_RESOLVE_PROXY,
+            CURLE_COULDNT_RESOLVE_HOST,
+            CURLE_COULDNT_CONNECT,
+            CURLE_OPERATION_TIMEOUTED,
+            CURLE_HTTP_POST_ERROR,
+            CURLE_SSL_CONNECT_ERROR,
+            CURLE_SEND_ERROR,
+            CURLE_RECV_ERROR
+        );
     }
 
     /**
      * Make HTTP request
      *
-     * @param string $path
-     * @param string $method (default: 'GET')
-     * @param array $parameters (default: array())
-     * @param int $timeout
-     * @param bool $verify
-     * @param bool $debug
+     * @param string $path       request url
+     * @param string $method     (default: 'GET')
+     * @param array  $parameters (default: array())
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+     *
+     * @throws \InvalidArgumentException
+     * @throws CurlException
+     * @throws InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function makeRequest(
         $path,
         $method,
-        array $parameters = array(),
-        $timeout = 30,
-        $verify = false,
-        $debug = false
+        array $parameters = array()
     ) {
         $allowedMethods = array(self::METHOD_GET, self::METHOD_POST);
-        if (!in_array($method, $allowedMethods)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Method "%s" is not valid. Allowed methods are %s',
-                $method,
-                implode(', ', $allowedMethods)
-            ));
+
+        if (!in_array($method, $allowedMethods, false)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Method "%s" is not valid. Allowed methods are %s',
+                    $method,
+                    implode(', ', $allowedMethods)
+                )
+            );
         }
 
         $parameters = array_merge($this->defaultParameters, $parameters);
 
-        $path = $this->url . $path;
+        $url = $this->url . $path;
 
-        if (self::METHOD_GET === $method && sizeof($parameters)) {
-            $path .= '?' . http_build_query($parameters, '', '&');
+        if (self::METHOD_GET === $method && count($parameters)) {
+            $url .= '?' . http_build_query($parameters, '', '&');
         }
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $path);
-        curl_setopt($ch, CURLOPT_TIMEOUT, (int) $timeout);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, (int) $timeout);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_FAILONERROR, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $verify);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $verify);
+        $curlHandler = curl_init();
+        curl_setopt($curlHandler, CURLOPT_URL, $url);
+        curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curlHandler, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($curlHandler, CURLOPT_FAILONERROR, false);
+        curl_setopt($curlHandler, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curlHandler, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curlHandler, CURLOPT_TIMEOUT, 30);
+        curl_setopt($curlHandler, CURLOPT_CONNECTTIMEOUT, 30);
 
         if (self::METHOD_POST === $method) {
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $parameters);
+            curl_setopt($curlHandler, CURLOPT_POST, true);
+            curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $parameters);
         }
 
-        $responseBody = curl_exec($ch);
-        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $errno = curl_errno($ch);
-        $error = curl_error($ch);
+        $responseBody = curl_exec($curlHandler);
+        $statusCode = curl_getinfo($curlHandler, CURLINFO_HTTP_CODE);
+        $errno = curl_errno($curlHandler);
+        $error = curl_error($curlHandler);
 
-        curl_close($ch);
+        curl_close($curlHandler);
+
+        if ($errno && in_array($errno, $this->curlErrors, false) && $this->retry < 3) {
+            $errno = null;
+            $error = null;
+            ++$this->retry;
+            $this->makeRequest($path, $method, $parameters);
+        }
 
         if ($errno) {
             throw new CurlException($error, $errno);
         }
 
         return new ApiResponse($statusCode, $responseBody);
+    }
+
+    /**
+     * Retry connect
+     *
+     * @return int
+     */
+    public function getRetry()
+    {
+        return $this->retry;
     }
 }
