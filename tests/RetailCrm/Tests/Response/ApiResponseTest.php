@@ -29,7 +29,7 @@ class ApiResponseTest extends TestCase
 
     /**
      * @group unit
-     * @expectedException RetailCrm\Exception\InvalidJsonException
+     * @expectedException \RetailCrm\Exception\InvalidJsonException
      */
     public function testJsonInvalid()
     {

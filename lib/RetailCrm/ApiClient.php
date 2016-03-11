@@ -35,11 +35,13 @@ class ApiClient
      * @param string $apiKey api key
      * @param string $site   site code
      *
+     * @throws \InvalidArgumentException
+     *
      * @return mixed
      */
     public function __construct($url, $apiKey, $site = null)
     {
-        if ('/' != substr($url, strlen($url) - 1, 1)) {
+        if ('/' !== substr($url, strlen($url) - 1, 1)) {
             $url .= '/';
         }
 
@@ -56,13 +58,17 @@ class ApiClient
      * @param int   $page   (default: null)
      * @param int   $limit  (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function ordersList(array $filter = array(), $page = null, $limit = null)
     {
         $parameters = array();
 
-        if (sizeof($filter)) {
+        if (count($filter)) {
             $parameters['filter'] = $filter;
         }
         if (null !== $page) {
@@ -85,18 +91,22 @@ class ApiClient
      * @param array  $order order data
      * @param string $site  (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function ordersCreate(array $order, $site = null)
     {
-        if (! sizeof($order)) {
+        if (!count($order)) {
             throw new \InvalidArgumentException(
                 'Parameter `order` must contains a data'
             );
         }
 
         return $this->client->makeRequest(
-            "/orders/create",
+            '/orders/create',
             Client::METHOD_POST,
             $this->fillSite($site, array('order' => json_encode($order)))
         );
@@ -107,18 +117,22 @@ class ApiClient
      *
      * @param array $ids order identificators
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function ordersFixExternalIds(array $ids)
     {
-        if (! sizeof($ids)) {
+        if (! count($ids)) {
             throw new \InvalidArgumentException(
                 'Method parameter must contains at least one IDs pair'
             );
         }
 
         return $this->client->makeRequest(
-            "/orders/fix-external-ids",
+            '/orders/fix-external-ids',
             Client::METHOD_POST,
             array('orders' => json_encode($ids)
             )
@@ -133,6 +147,10 @@ class ApiClient
      * @param int       $limit         (default: 100)
      * @param int       $offset        (default: 0)
      * @param bool      $skipMyChanges (default: true)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -174,6 +192,10 @@ class ApiClient
      * @param array $ids         (default: array())
      * @param array $externalIds (default: array())
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function ordersStatuses(
@@ -182,10 +204,10 @@ class ApiClient
     ) {
         $parameters = array();
 
-        if (sizeof($ids)) {
+        if (count($ids)) {
             $parameters['ids'] = $ids;
         }
-        if (sizeof($externalIds)) {
+        if (count($externalIds)) {
             $parameters['externalIds'] = $externalIds;
         }
 
@@ -202,18 +224,22 @@ class ApiClient
      * @param array  $orders array of orders
      * @param string $site   (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function ordersUpload(array $orders, $site = null)
     {
-        if (! sizeof($orders)) {
+        if (!count($orders)) {
             throw new \InvalidArgumentException(
                 'Parameter `orders` must contains array of the orders'
             );
         }
 
         return $this->client->makeRequest(
-            "/orders/upload",
+            '/orders/upload',
             Client::METHOD_POST,
             $this->fillSite($site, array('orders' => json_encode($orders)))
         );
@@ -225,6 +251,10 @@ class ApiClient
      * @param string $id   order identificator
      * @param string $by   (default: 'externalId')
      * @param string $site (default: null)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -246,11 +276,15 @@ class ApiClient
      * @param string $by    (default: 'externalId')
      * @param string $site  (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function ordersEdit(array $order, $by = 'externalId', $site = null)
     {
-        if (! sizeof($order)) {
+        if (!count($order)) {
             throw new \InvalidArgumentException(
                 'Parameter `order` must contains a data'
             );
@@ -258,14 +292,14 @@ class ApiClient
 
         $this->checkIdParameter($by);
 
-        if (! isset($order[$by])) {
+        if (!array_key_exists($by, $order)) {
             throw new \InvalidArgumentException(
                 sprintf('Order array must contain the "%s" parameter.', $by)
             );
         }
 
         return $this->client->makeRequest(
-            "/orders/" . $order[$by] . "/edit",
+            sprintf('/orders/%s/edit', $order[$by]),
             Client::METHOD_POST,
             $this->fillSite(
                 $site,
@@ -281,6 +315,10 @@ class ApiClient
      * @param int   $page   (default: null)
      * @param int   $limit  (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function customersList(
@@ -290,7 +328,7 @@ class ApiClient
     ) {
         $parameters = array();
 
-        if (sizeof($filter)) {
+        if (count($filter)) {
             $parameters['filter'] = $filter;
         }
         if (null !== $page) {
@@ -313,18 +351,22 @@ class ApiClient
      * @param array  $customer customer data
      * @param string $site     (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function customersCreate(array $customer, $site = null)
     {
-        if (! sizeof($customer)) {
+        if (! count($customer)) {
             throw new \InvalidArgumentException(
                 'Parameter `customer` must contains a data'
             );
         }
 
         return $this->client->makeRequest(
-            "/customers/create",
+            '/customers/create',
             Client::METHOD_POST,
             $this->fillSite($site, array('customer' => json_encode($customer)))
         );
@@ -335,18 +377,22 @@ class ApiClient
      *
      * @param array $ids ids mapping
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function customersFixExternalIds(array $ids)
     {
-        if (! sizeof($ids)) {
+        if (! count($ids)) {
             throw new \InvalidArgumentException(
                 'Method parameter must contains at least one IDs pair'
             );
         }
 
         return $this->client->makeRequest(
-            "/customers/fix-external-ids",
+            '/customers/fix-external-ids',
             Client::METHOD_POST,
             array('customers' => json_encode($ids))
         );
@@ -358,18 +404,22 @@ class ApiClient
      * @param array  $customers array of customers
      * @param string $site      (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function customersUpload(array $customers, $site = null)
     {
-        if (! sizeof($customers)) {
+        if (! count($customers)) {
             throw new \InvalidArgumentException(
                 'Parameter `customers` must contains array of the customers'
             );
         }
 
         return $this->client->makeRequest(
-            "/customers/upload",
+            '/customers/upload',
             Client::METHOD_POST,
             $this->fillSite($site, array('customers' => json_encode($customers)))
         );
@@ -381,6 +431,10 @@ class ApiClient
      * @param string $id   customer identificator
      * @param string $by   (default: 'externalId')
      * @param string $site (default: null)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -402,11 +456,15 @@ class ApiClient
      * @param string $by       (default: 'externalId')
      * @param string $site     (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function customersEdit(array $customer, $by = 'externalId', $site = null)
     {
-        if (! sizeof($customer)) {
+        if (!count($customer)) {
             throw new \InvalidArgumentException(
                 'Parameter `customer` must contains a data'
             );
@@ -414,14 +472,14 @@ class ApiClient
 
         $this->checkIdParameter($by);
 
-        if (! isset($customer[$by])) {
+        if (!array_key_exists($by, $customer)) {
             throw new \InvalidArgumentException(
                 sprintf('Customer array must contain the "%s" parameter.', $by)
             );
         }
 
         return $this->client->makeRequest(
-            "/customers/" . $customer[$by] . "/edit",
+            sprintf('/customers/%s/edit', $customer[$by]),
             Client::METHOD_POST,
             $this->fillSite(
                 $site,
@@ -437,6 +495,10 @@ class ApiClient
      * @param int   $page   (default: null)
      * @param int   $limit  (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function ordersPacksList(
@@ -446,7 +508,7 @@ class ApiClient
     ) {
         $parameters = array();
 
-        if (sizeof($filter)) {
+        if (count($filter)) {
             $parameters['filter'] = $filter;
         }
         if (null !== $page) {
@@ -469,18 +531,22 @@ class ApiClient
      * @param array  $pack pack data
      * @param string $site (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function ordersPacksCreate(array $pack, $site = null)
     {
-        if (! sizeof($pack)) {
+        if (!count($pack)) {
             throw new \InvalidArgumentException(
                 'Parameter `pack` must contains a data'
             );
         }
 
         return $this->client->makeRequest(
-            "/orders/packs/create",
+            '/orders/packs/create',
             Client::METHOD_POST,
             $this->fillSite($site, array('pack' => json_encode($pack)))
         );
@@ -493,6 +559,10 @@ class ApiClient
      * @param int   $page   (default: null)
      * @param int   $limit  (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function ordersPacksHistory(
@@ -502,7 +572,7 @@ class ApiClient
     ) {
         $parameters = array();
 
-        if (sizeof($filter)) {
+        if (count($filter)) {
             $parameters['filter'] = $filter;
         }
         if (null !== $page) {
@@ -524,6 +594,10 @@ class ApiClient
      *
      * @param string $id pack identificator
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function ordersPacksGet($id)
@@ -532,13 +606,20 @@ class ApiClient
             throw new \InvalidArgumentException('Parameter `id` must be set');
         }
 
-        return $this->client->makeRequest("/orders/packs/$id", Client::METHOD_GET);
+        return $this->client->makeRequest(
+            "/orders/packs/$id",
+            Client::METHOD_GET
+        );
     }
 
     /**
      * Delete orders assembly by id
      *
      * @param string $id pack identificator
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -549,7 +630,7 @@ class ApiClient
         }
 
         return $this->client->makeRequest(
-            "/orders/packs/$id/delete",
+            sprintf('/orders/packs/%s/delete', $id),
             Client::METHOD_POST
         );
     }
@@ -560,20 +641,22 @@ class ApiClient
      * @param array  $pack pack data
      * @param string $site (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function ordersPacksEdit(array $pack, $site = null)
     {
-        if (! sizeof($pack) || empty($pack['id'])) {
+        if (!count($pack) || empty($pack['id'])) {
             throw new \InvalidArgumentException(
                 'Parameter `pack` must contains a data & pack `id` must be set'
             );
         }
 
-        $id = $pack['id'];
-
         return $this->client->makeRequest(
-            "/orders/packs/$id/edit",
+            sprintf('/orders/packs/%s/edit', $pack['id']),
             Client::METHOD_POST,
             $this->fillSite($site, array('pack' => json_encode($pack)))
         );
@@ -585,19 +668,21 @@ class ApiClient
      * @param array  $filter (default: array())
      * @param int    $page   (default: null)
      * @param int    $limit  (default: null)
-     * @param string $site   (default: null)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
     public function storeInventories(
         array $filter = array(),
         $page = null,
-        $limit = null,
-        $site = null
+        $limit = null
     ) {
         $parameters = array();
 
-        if (sizeof($filter)) {
+        if (count($filter)) {
             $parameters['filter'] = $filter;
         }
         if (null !== $page) {
@@ -610,7 +695,7 @@ class ApiClient
         return $this->client->makeRequest(
             '/store/inventories',
             Client::METHOD_GET,
-            $this->fillSite($site, $parameters)
+            $parameters
         );
     }
 
@@ -620,18 +705,22 @@ class ApiClient
      * @param array  $offers offers data
      * @param string $site   (default: null)
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function storeInventoriesUpload(array $offers, $site = null)
     {
-        if (! sizeof($offers)) {
+        if (!count($offers)) {
             throw new \InvalidArgumentException(
                 'Parameter `offers` must contains array of the offers'
             );
         }
 
         return $this->client->makeRequest(
-            "/store/inventories/upload",
+            '/store/inventories/upload',
             Client::METHOD_POST,
             $this->fillSite($site, array('offers' => json_encode($offers)))
         );
@@ -639,6 +728,10 @@ class ApiClient
 
     /**
      * Returns available county list
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -652,6 +745,10 @@ class ApiClient
 
     /**
      * Returns deliveryServices list
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -668,18 +765,22 @@ class ApiClient
      *
      * @param array $data delivery service data
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function deliveryServicesEdit(array $data)
     {
-        if (! isset($data['code'])) {
+        if (!array_key_exists('code', $data)) {
             throw new \InvalidArgumentException(
                 'Data must contain "code" parameter.'
             );
         }
 
         return $this->client->makeRequest(
-            '/reference/delivery-services/' . $data['code'] . '/edit',
+            sprintf('/reference/delivery-services/%s/edit', $data['code']),
             Client::METHOD_POST,
             array('deliveryService' => json_encode($data))
         );
@@ -687,6 +788,10 @@ class ApiClient
 
     /**
      * Returns deliveryTypes list
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -703,18 +808,22 @@ class ApiClient
      *
      * @param array $data delivery type data
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function deliveryTypesEdit(array $data)
     {
-        if (! isset($data['code'])) {
+        if (!array_key_exists('code', $data)) {
             throw new \InvalidArgumentException(
                 'Data must contain "code" parameter.'
             );
         }
 
         return $this->client->makeRequest(
-            '/reference/delivery-types/' . $data['code'] . '/edit',
+            sprintf('/reference/delivery-types/%s/edit', $data['code']),
             Client::METHOD_POST,
             array('deliveryType' => json_encode($data))
         );
@@ -723,12 +832,17 @@ class ApiClient
     /**
      * Returns orderMethods list
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function orderMethodsList()
     {
         return $this->client->makeRequest(
-            '/reference/order-methods', Client::METHOD_GET
+            '/reference/order-methods',
+            Client::METHOD_GET
         );
     }
 
@@ -737,18 +851,22 @@ class ApiClient
      *
      * @param array $data order method data
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function orderMethodsEdit(array $data)
     {
-        if (! isset($data['code'])) {
+        if (!array_key_exists('code', $data)) {
             throw new \InvalidArgumentException(
                 'Data must contain "code" parameter.'
             );
         }
 
         return $this->client->makeRequest(
-            '/reference/order-methods/' . $data['code'] . '/edit',
+            sprintf('/reference/order-methods/%s/edit', $data['code']),
             Client::METHOD_POST,
             array('orderMethod' => json_encode($data))
         );
@@ -756,6 +874,10 @@ class ApiClient
 
     /**
      * Returns orderTypes list
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -772,18 +894,22 @@ class ApiClient
      *
      * @param array $data order type data
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function orderTypesEdit(array $data)
     {
-        if (! isset($data['code'])) {
+        if (!array_key_exists('code', $data)) {
             throw new \InvalidArgumentException(
                 'Data must contain "code" parameter.'
             );
         }
 
         return $this->client->makeRequest(
-            '/reference/order-types/' . $data['code'] . '/edit',
+            sprintf('/reference/order-types/%s/edit', $data['code']),
             Client::METHOD_POST,
             array('orderType' => json_encode($data))
         );
@@ -791,6 +917,10 @@ class ApiClient
 
     /**
      * Returns paymentStatuses list
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -807,18 +937,22 @@ class ApiClient
      *
      * @param array $data payment status data
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function paymentStatusesEdit(array $data)
     {
-        if (! isset($data['code'])) {
+        if (!array_key_exists('code', $data)) {
             throw new \InvalidArgumentException(
                 'Data must contain "code" parameter.'
             );
         }
 
         return $this->client->makeRequest(
-            '/reference/payment-statuses/' . $data['code'] . '/edit',
+            sprintf('/reference/payment-statuses/%s/edit', $data['code']),
             Client::METHOD_POST,
             array('paymentStatus' => json_encode($data))
         );
@@ -826,6 +960,10 @@ class ApiClient
 
     /**
      * Returns paymentTypes list
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -842,18 +980,22 @@ class ApiClient
      *
      * @param array $data payment type data
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function paymentTypesEdit(array $data)
     {
-        if (! isset($data['code'])) {
+        if (!array_key_exists('code', $data)) {
             throw new \InvalidArgumentException(
                 'Data must contain "code" parameter.'
             );
         }
 
         return $this->client->makeRequest(
-            '/reference/payment-types/' . $data['code'] . '/edit',
+            sprintf('/reference/payment-types/%s/edit', $data['code']),
             Client::METHOD_POST,
             array('paymentType' => json_encode($data))
         );
@@ -861,6 +1003,10 @@ class ApiClient
 
     /**
      * Returns productStatuses list
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -877,18 +1023,22 @@ class ApiClient
      *
      * @param array $data product status data
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function productStatusesEdit(array $data)
     {
-        if (! isset($data['code'])) {
+        if (!array_key_exists('code', $data)) {
             throw new \InvalidArgumentException(
                 'Data must contain "code" parameter.'
             );
         }
 
         return $this->client->makeRequest(
-            '/reference/product-statuses/' . $data['code'] . '/edit',
+            sprintf('/reference/product-statuses/%s/edit', $data['code']),
             Client::METHOD_POST,
             array('productStatus' => json_encode($data))
         );
@@ -897,11 +1047,18 @@ class ApiClient
     /**
      * Returns sites list
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function sitesList()
     {
-        return $this->client->makeRequest('/reference/sites', Client::METHOD_GET);
+        return $this->client->makeRequest(
+            '/reference/sites',
+            Client::METHOD_GET
+        );
     }
 
     /**
@@ -909,18 +1066,22 @@ class ApiClient
      *
      * @param array $data site data
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function sitesEdit(array $data)
     {
-        if (! isset($data['code'])) {
+        if (!array_key_exists('code', $data)) {
             throw new \InvalidArgumentException(
                 'Data must contain "code" parameter.'
             );
         }
 
         return $this->client->makeRequest(
-            '/reference/sites/' . $data['code'] . '/edit',
+            sprintf('/reference/sites/%s/edit', $data['code']),
             Client::METHOD_POST,
             array('site' => json_encode($data))
         );
@@ -928,6 +1089,10 @@ class ApiClient
 
     /**
      * Returns statusGroups list
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -942,11 +1107,18 @@ class ApiClient
     /**
      * Returns statuses list
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function statusesList()
     {
-        return $this->client->makeRequest('/reference/statuses', Client::METHOD_GET);
+        return $this->client->makeRequest(
+            '/reference/statuses',
+            Client::METHOD_GET
+        );
     }
 
     /**
@@ -954,18 +1126,22 @@ class ApiClient
      *
      * @param array $data status data
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function statusesEdit(array $data)
     {
-        if (! isset($data['code'])) {
+        if (!array_key_exists('code', $data)) {
             throw new \InvalidArgumentException(
                 'Data must contain "code" parameter.'
             );
         }
 
         return $this->client->makeRequest(
-            '/reference/statuses/' . $data['code'] . '/edit',
+            sprintf('/reference/statuses/%s/edit', $data['code']),
             Client::METHOD_POST,
             array('status' => json_encode($data))
         );
@@ -974,11 +1150,18 @@ class ApiClient
     /**
      * Returns stores list
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function storesList()
     {
-        return $this->client->makeRequest('/reference/stores', Client::METHOD_GET);
+        return $this->client->makeRequest(
+            '/reference/stores',
+            Client::METHOD_GET
+        );
     }
 
     /**
@@ -986,24 +1169,28 @@ class ApiClient
      *
      * @param array $data site data
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function storesEdit(array $data)
     {
-        if (! isset($data['code'])) {
+        if (!array_key_exists('code', $data)) {
             throw new \InvalidArgumentException(
                 'Data must contain "code" parameter.'
             );
         }
 
-        if (! isset($data['name'])) {
+        if (!array_key_exists('name', $data)) {
             throw new \InvalidArgumentException(
                 'Data must contain "name" parameter.'
             );
         }
 
         return $this->client->makeRequest(
-            '/reference/stores/' . $data['code'] . '/edit',
+            sprintf('/reference/stores/%s/edit', $data['code']),
             Client::METHOD_POST,
             array('store' => json_encode($data))
         );
@@ -1012,11 +1199,18 @@ class ApiClient
     /**
      * Update CRM basic statistic
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function statisticUpdate()
     {
-        return $this->client->makeRequest('/statistic/update', Client::METHOD_GET);
+        return $this->client->makeRequest(
+            '/statistic/update',
+            Client::METHOD_GET
+        );
     }
 
     /**
@@ -1027,23 +1221,27 @@ class ApiClient
      * @param string $code   additional phone code
      * @param string $status call status
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function telephonyCallEvent($phone, $type, $code, $status)
     {
-        if (! isset($phone)) {
+        if (!isset($phone)) {
             throw new \InvalidArgumentException('Phone number must be set');
         }
 
         $parameters['phone'] = $phone;
 
-        if (! isset($type)) {
+        if (!isset($type)) {
             throw new \InvalidArgumentException('Type must be set (in|out|hangup)');
         }
 
         $parameters['type'] = $type;
 
-        if (! isset($code)) {
+        if (!isset($code)) {
             throw new \InvalidArgumentException('Code must be set');
         }
 
@@ -1062,18 +1260,22 @@ class ApiClient
      *
      * @param array $calls calls data
      *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return ApiResponse
      */
     public function telephonyCallsUpload(array $calls)
     {
-        if (! sizeof($calls)) {
+        if (!count($calls)) {
             throw new \InvalidArgumentException(
                 'Parameter `calls` must contains array of the calls'
             );
         }
 
         return $this->client->makeRequest(
-            "/telephony/calls/upload",
+            '/telephony/calls/upload',
             Client::METHOD_POST,
             array('calls' => json_encode($calls))
         );
@@ -1084,6 +1286,10 @@ class ApiClient
      *
      * @param string $phone   phone number
      * @param bool   $details detailed information
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return ApiResponse
      */
@@ -1098,7 +1304,8 @@ class ApiClient
 
         return $this->client->makeRequest(
             '/telephony/manager',
-            Client::METHOD_GET, $parameters
+            Client::METHOD_GET,
+            $parameters
         );
     }
 
@@ -1129,6 +1336,8 @@ class ApiClient
      *
      * @param string $by identify by
      *
+     * @throws \InvalidArgumentException
+     *
      * @return bool
      */
     protected function checkIdParameter($by)
@@ -1138,7 +1347,7 @@ class ApiClient
             'id'
         );
 
-        if (!in_array($by, $allowedForBy)) {
+        if (!in_array($by, $allowedForBy, false)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     'Value "%s" for parameter "by" is not valid. Allowed values are %s.',

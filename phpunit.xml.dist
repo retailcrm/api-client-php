@@ -13,6 +13,9 @@
         <server name="CRM_URL" value="foo" />
         <server name="CRM_API_KEY" value="bar" />
         <server name="CRM_SITE" value="zoo" />
+        <server name="CRM_STORE" value="moo" />
+        <server name="CRM_PACK_ITEM" value="boo" />
+        <server name="CRM_PACK_QUANTITY" value="goo" />
     </php>
 
     <testsuites>

@@ -28,6 +28,8 @@ class ApiResponse implements \ArrayAccess
      *
      * @param int   $statusCode   HTTP status code
      * @param mixed $responseBody HTTP body
+     *
+     * @throws InvalidJsonException
      */
     public function __construct($statusCode, $responseBody = null)
     {
@@ -71,6 +73,10 @@ class ApiResponse implements \ArrayAccess
      * Allow to access for the property throw class method
      *
      * @param  string $name
+     * @param $arguments
+     *
+     * @throws \InvalidArgumentException
+     *
      * @return mixed
      */
     public function __call($name, $arguments)
@@ -89,6 +95,9 @@ class ApiResponse implements \ArrayAccess
      * Allow to access for the property throw object property
      *
      * @param  string $name
+     *
+     * @throws \InvalidArgumentException
+     *
      * @return mixed
      */
     public function __get($name)
@@ -103,6 +112,8 @@ class ApiResponse implements \ArrayAccess
     /**
      * @param mixed $offset
      * @param mixed $value
+     *
+     * @throws \BadMethodCallException
      */
     public function offsetSet($offset, $value)
     {
@@ -111,6 +122,8 @@ class ApiResponse implements \ArrayAccess
 
     /**
      * @param mixed $offset
+     *
+     * @throws \BadMethodCallException
      */
     public function offsetUnset($offset)
     {
@@ -119,6 +132,7 @@ class ApiResponse implements \ArrayAccess
 
     /**
      * @param mixed $offset
+     *
      * @return bool
      */
     public function offsetExists($offset)
@@ -128,6 +142,9 @@ class ApiResponse implements \ArrayAccess
 
     /**
      * @param mixed $offset
+     *
+     * @throws \InvalidArgumentException
+     *
      * @return mixed
      */
     public function offsetGet($offset)

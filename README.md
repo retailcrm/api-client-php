@@ -1,33 +1,31 @@
-# PHP-клиент для retailCRM API
+# retailCRM API PHP client
 
-PHP-клиент для работы с [retailCRM API](http://www.retailcrm.ru/docs/Developers/ApiVersion3).
+PHP-client for [retailCRM API](http://www.retailcrm.ru/docs/Developers/ApiVersion3).
 
-Рекомендуем обращаться к [документации](http://retailcrm.github.io/api-client-php) по библиотеке, в частности по классу [RetailCrm\ApiClient](http://retailcrm.github.io/api-client-php/class-RetailCrm.ApiClient.html).
+Use [API documentation](http://retailcrm.github.io/api-client-php)
 
-## Обязательные требования
+## Requirements
 
-* PHP версии 5.3 и выше
-* PHP-расширение cURL
+* PHP 5.3 and above
+* PHP's cURL support
 
-## Установка
+## Install
 
-1) Установите [composer](https://getcomposer.org/download/)
+1) Get [composer](https://getcomposer.org/download/)
 
-2) Выполните в папке проекта:
+2) Run into your project directory:
 ```bash
 composer require retailcrm/api-client-php ~3.0.0
 ```
 
-В конфиг `composer.json` вашего проекта будет добавлена библиотека `retailcrm/api-client-php`, которая установится в папку `vendor/`. При отсутствии файла конфига или папки с вендорами они будут созданы.
-
-В случае, если до этого в вашем проекте не использовался `composer`, подключите файл автозагрузки вендоров. Для этого укажите в коде проекта:
+If you have not used `composer` before, include autoloader into your project.
 ```php
 require 'path/to/vendor/autoload.php';
 ```
 
-## Примеры использования
+## Usage
 
-### Получение информации о заказе
+### Get order
 ```php
 $client = new \RetailCrm\ApiClient(
     'https://demo.retailcrm.ru',
@@ -38,30 +36,30 @@ $client = new \RetailCrm\ApiClient(
 try {
     $response = $client->ordersGet('M-2342');
 } catch (\RetailCrm\Exception\CurlException $e) {
-    echo "Сетевые проблемы. Ошибка подключения к retailCRM: " . $e->getMessage();
+    echo "Connection error: " . $e->getMessage();
 }
 
 if ($response->isSuccessful()) {
     echo $response->order['totalSumm'];
-    // или $response['order']['totalSumm'];
-    // или
+    // or $response['order']['totalSumm'];
+    // or
     //    $order = $response->getOrder();
     //    $order['totalSumm'];
 } else {
     echo sprintf(
-        "Ошибка получения информации о заказа: [Статус HTTP-ответа %s] %s",
+        "Error: [HTTP-code %s] %s",
         $response->getStatusCode(),
         $response->getErrorMsg()
     );
 
-    // получить детализацию ошибок
+    // error details
     //if (isset($response['errors'])) {
     //    print_r($response['errors']);
     //}
 }
 ```
 
-### Создание заказа
+### Create order
 ```php
 
 $client = new \RetailCrm\ApiClient(
@@ -82,21 +80,21 @@ try {
         )
     ));
 } catch (\RetailCrm\Exception\CurlException $e) {
-    echo "Сетевые проблемы. Ошибка подключения к retailCRM: " . $e->getMessage();
+    echo "Connection error: " . $e->getMessage();
 }
 
 if ($response->isSuccessful() && 201 === $response->getStatusCode()) {
-    echo 'Заказ успешно создан. ID заказа в retailCRM = ' . $response->id;
-        // или $response['id'];
-        // или $response->getId();
+    echo 'Order successfully created. Order ID into retailCRM = ' . $response->id;
+        // or $response['id'];
+        // or $response->getId();
 } else {
     echo sprintf(
-        "Ошибка создания заказа: [Статус HTTP-ответа %s] %s",
+        "Error: [HTTP-code %s] %s",
         $response->getStatusCode(),
         $response->getErrorMsg()
     );
 
-    // получить детализацию ошибок
+    // error details
     //if (isset($response['errors'])) {
     //    print_r($response['errors']);
     //}

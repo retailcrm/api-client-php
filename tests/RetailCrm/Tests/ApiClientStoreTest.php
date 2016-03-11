@@ -4,6 +4,10 @@ namespace RetailCrm\Tests;
 
 use RetailCrm\Test\TestCase;
 
+/**
+ * Class ApiClientStoreTest
+ * @package RetailCrm\Tests
+ */
 class ApiClientStoreTest extends TestCase
 {
     /**
@@ -30,8 +34,7 @@ class ApiClientStoreTest extends TestCase
     public function testStoreInventoriesUploadExceptionEmpty()
     {
         $client = static::getApiClient();
-
-        $response = $client->storeInventoriesUpload(array());
+        $client->storeInventoriesUpload(array());
     }
 
     /**
@@ -47,20 +50,27 @@ class ApiClientStoreTest extends TestCase
         $response = $client->storeInventoriesUpload(array(
             array(
                 'externalId' => $externalIdA,
-                'available' => 10,
-                'purchasePrice' => 1700
+                'stores' => array(
+                    array(
+                        'code' => $_SERVER['CRM_STORE'],
+                        'available' => 10,
+                        'purchasePrice' => 1700
+                    )
+                )
             ),
             array(
                 'externalId' => $externalIdB,
-                'available' => 20,
-                'purchasePrice' => 1500
+                'stores' => array(
+                    array(
+                        'code' => $_SERVER['CRM_STORE'],
+                        'available' => 20,
+                        'purchasePrice' => 1500
+                    )
+                )
             ),
         ));
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertTrue(
-            $response->isSuccessful(),
-            'Got offer'
-        );
+        $this->assertTrue($response->isSuccessful());
     }
     
     /**

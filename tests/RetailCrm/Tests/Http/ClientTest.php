@@ -58,14 +58,4 @@ class ClientTest extends TestCase
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
     }
-    
-    /**
-     * @group integration
-     */
-    public function testMakeRequestRepeatOnTimeout()
-    {
-        $client = static::getClient();
-        $response = $client->makeRequest('/orders', Client::METHOD_GET, array(), 1, false, true);
-        $this->assertGreaterThanOrEqual(1, $client->retry);
-    }
 }

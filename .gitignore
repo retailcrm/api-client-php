@@ -1,6 +1,7 @@
 /vendor
 /bin
 composer.lock
+composer.phar
 phpunit.xml
 .idea
 .DS_Store
