@@ -27,15 +27,20 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Return Client object
      *
-     * @param  string    $url (default: null)
-     * @param  string    $apiKey (default: null)
+     * @param  string $url (default: null)
+     * @param  array  $defaultParameters (default: array())
+     *
      * @return Client
      */
     public static function getClient($url = null, $defaultParameters = array())
     {
         return new Client(
             $url ?: $_SERVER['CRM_URL'] . '/api/' . ApiClient::VERSION,
-            array('apiKey' => isset($defaultParameters['apiKey']) ? $defaultParameters['apiKey'] : $_SERVER['CRM_API_KEY'])
+            array(
+                'apiKey' => array_key_exists('apiKey', $defaultParameters)
+                    ? $defaultParameters['apiKey']
+                    : $_SERVER['CRM_API_KEY']
+            )
         );
     }
 }

@@ -58,14 +58,4 @@ class ClientTest extends TestCase
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
     }
-    
-    /**
-     * @group integration
-     * @expectedException \RetailCrm\Exception\CurlException
-     */
-    public function testMakeRequestTimeout()
-    {
-        $client = static::getClient();
-        $client->makeRequest('/orders', Client::METHOD_GET, array(), 1, false, true);
-    }
 }
