@@ -1,6 +1,6 @@
 # retailCRM API PHP client
 
-PHP-client for [retailCRM API](http://www.retailcrm.ru/docs/Developers/ApiVersion3).
+PHP-client for [retailCRM API](http://www.retailcrm.pro/docs/Developers/ApiVersion3).
 
 Use [API documentation](http://retailcrm.github.io/api-client-php)
 
