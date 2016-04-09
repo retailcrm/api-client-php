@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * PHP version 5.3
+ *
+ * HTTP client
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion3
+ */
+
 namespace RetailCrm\Http;
 
 use RetailCrm\Exception\CurlException;
@@ -119,7 +131,10 @@ class Client
 
         curl_close($curlHandler);
 
-        if ($errno && in_array($errno, $this->curlErrors, false) && $this->retry < 3) {
+        if ($errno
+            && in_array($errno, $this->curlErrors, false)
+            && $this->retry < 3
+        ) {
             $errno = null;
             $error = null;
             ++$this->retry;

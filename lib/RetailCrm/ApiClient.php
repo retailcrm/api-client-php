@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * PHP version 5.3
+ *
+ * API client class
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion3
+ */
+
 namespace RetailCrm;
 
 use RetailCrm\Http\Client;
@@ -665,9 +677,9 @@ class ApiClient
     /**
      * Get purchace prices & stock balance
      *
-     * @param array  $filter (default: array())
-     * @param int    $page   (default: null)
-     * @param int    $limit  (default: null)
+     * @param array $filter (default: array())
+     * @param int   $page   (default: null)
+     * @param int   $limit  (default: null)
      *
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
@@ -1197,6 +1209,71 @@ class ApiClient
     }
 
     /**
+     * Telephony settings
+     *
+     * @param string  $code        symbolic code
+     * @param string  $clientId    client id
+     * @param boolean $active      telephony activity
+     * @param mixed   $makeCallUrl service init url
+     * @param mixed   $name        service name
+     * @param mixed   $image       service logo url(svg file)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return ApiResponse
+     */
+    public function telephonySettings(
+        $code,
+        $clientId,
+        $active = false,
+        $makeCallUrl = false,
+        $name = false,
+        $image = false
+    ) {
+        if (!isset($code)) {
+            throw new \InvalidArgumentException('Code must be set');
+        }
+
+        $parameters['code'] = $code;
+
+        if (!isset($clientId)) {
+            throw new \InvalidArgumentException('client id must be set');
+        }
+
+        $parameters['clientId'] = $clientId;
+
+        if (!isset($active)) {
+            $parameters['active'] = false;
+        } else {
+            $parameters['active'] = $active;
+        }
+
+        if (!isset($name)) {
+            throw new \InvalidArgumentException('name must be set');
+        }
+
+        if (isset($makeCallUrl)) {
+            $parameters['makeCallUrl'] = $makeCallUrl;
+        }
+
+        if (isset($name)) {
+            $parameters['name'] = $name;
+        }
+
+        if (isset($image)) {
+            $parameters['image'] = $image;
+        }
+
+        return $this->client->makeRequest(
+            "/telephony/setting/$code",
+            Client::METHOD_POST,
+            $parameters
+        );
+    }
+
+    /**
      * Update CRM basic statistic
      *
      * @throws \InvalidArgumentException
@@ -1350,7 +1427,7 @@ class ApiClient
         if (!in_array($by, $allowedForBy, false)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    'Value "%s" for parameter "by" is not valid. Allowed values are %s.',
+                    'Value "%s" for "by" param is not valid. Allowed values are %s.',
                     $by,
                     implode(', ', $allowedForBy)
                 )
