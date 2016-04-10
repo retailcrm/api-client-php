@@ -28,7 +28,7 @@ require 'path/to/vendor/autoload.php';
 ### Get order
 ```php
 $client = new \RetailCrm\ApiClient(
-    'https://demo.retailcrm.ru',
+    'https://demo.retailcrm.pro',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
 );
 
@@ -63,7 +63,7 @@ if ($response->isSuccessful()) {
 ```php
 
 $client = new \RetailCrm\ApiClient(
-    'https://demo.retailcrm.ru',
+    'https://demo.retailcrm.pro',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
 );
 
