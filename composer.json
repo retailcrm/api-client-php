@@ -3,12 +3,12 @@
     "description": "PHP client for retailCRM API",
     "type": "library",
     "keywords": ["API", "retailCRM", "REST"],
-    "homepage": "http://www.retailcrm.ru/",
+    "homepage": "http://www.retailcrm.pro/",
     "license": "MIT",
     "authors": [
         {
             "name": "retailCRM",
-            "email": "support@retailcrm.ru"
+            "email": "support@retailcrm.pro"
         }
     ],
     "require": {
@@ -26,7 +26,7 @@
         "apigen/apigen": "4.1.*"
     },
     "support": {
-        "email": "support@intarocrm.ru"
+        "email": "support@retailcrm.pro"
     },
     "autoload": {
         "psr-0": { "RetailCrm\\": "lib/" }
