@@ -6,7 +6,7 @@
     colors="true"
     verbose="true"
     processIsolation="false"
-    stopOnFailure="true">
+    stopOnFailure="false">
 
     <!-- Dummy values used to provide credentials. No need to change these. -->
     <php>
