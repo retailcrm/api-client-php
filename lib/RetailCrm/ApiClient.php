@@ -31,7 +31,7 @@ use RetailCrm\Response\ApiResponse;
 class ApiClient
 {
 
-    const VERSION = 'v3';
+    const VERSION = 'v4';
 
     protected $client;
 
@@ -53,7 +53,7 @@ class ApiClient
      */
     public function __construct($url, $apiKey, $site = null)
     {
-        if ('/' !== substr($url, strlen($url) - 1, 1)) {
+        if ('/' !== $url[strlen($url) - 1]) {
             $url .= '/';
         }
 
@@ -61,6 +61,56 @@ class ApiClient
 
         $this->client = new Client($url, array('apiKey' => $apiKey));
         $this->siteCode = $site;
+    }
+
+    /**
+     * Returns users list
+     *
+     * @param array $filter
+     * @param null  $page
+     * @param null  $limit
+     *
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \InvalidArgumentException
+     *
+     * @return ApiResponse
+     */
+    public function usersList(array $filter = array(), $page = null, $limit = null)
+    {
+        $parameters = array();
+
+        if (count($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest(
+            '/users',
+            Client::METHOD_GET,
+            $parameters
+        );
+    }
+
+    /**
+     * Returns user data
+     *
+     * @param integer $id user ID
+     *
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \InvalidArgumentException
+     *
+     * @return ApiResponse
+     */
+    public function usersGet($id)
+    {
+        return $this->client->makeRequest("/users/$id", Client::METHOD_GET);
     }
 
     /**
@@ -152,53 +202,6 @@ class ApiClient
     }
 
     /**
-     * Returns a orders history
-     *
-     * @param \DateTime $startDate     (default: null)
-     * @param \DateTime $endDate       (default: null)
-     * @param int       $limit         (default: 100)
-     * @param int       $offset        (default: 0)
-     * @param bool      $skipMyChanges (default: true)
-     *
-     * @throws \InvalidArgumentException
-     * @throws \RetailCrm\Exception\CurlException
-     * @throws \RetailCrm\Exception\InvalidJsonException
-     *
-     * @return ApiResponse
-     */
-    public function ordersHistory(
-        \DateTime $startDate = null,
-        \DateTime $endDate = null,
-        $limit = 100,
-        $offset = 0,
-        $skipMyChanges = true
-    ) {
-        $parameters = array();
-
-        if ($startDate) {
-            $parameters['startDate'] = $startDate->format('Y-m-d H:i:s');
-        }
-        if ($endDate) {
-            $parameters['endDate'] = $endDate->format('Y-m-d H:i:s');
-        }
-        if ($limit) {
-            $parameters['limit'] = (int) $limit;
-        }
-        if ($offset) {
-            $parameters['offset'] = (int) $offset;
-        }
-        if ($skipMyChanges) {
-            $parameters['skipMyChanges'] = (bool) $skipMyChanges;
-        }
-
-        return $this->client->makeRequest(
-            '/orders/history',
-            Client::METHOD_GET,
-            $parameters
-        );
-    }
-
-    /**
      * Returns statuses of the orders
      *
      * @param array $ids         (default: array())
@@ -210,10 +213,8 @@ class ApiClient
      *
      * @return ApiResponse
      */
-    public function ordersStatuses(
-        array $ids = array(),
-        array $externalIds = array()
-    ) {
+    public function ordersStatuses(array $ids = array(), array $externalIds = array())
+    {
         $parameters = array();
 
         if (count($ids)) {
@@ -333,11 +334,8 @@ class ApiClient
      *
      * @return ApiResponse
      */
-    public function customersList(
-        array $filter = array(),
-        $page = null,
-        $limit = null
-    ) {
+    public function customersList(array $filter = array(), $page = null, $limit = null)
+    {
         $parameters = array();
 
         if (count($filter)) {
@@ -513,11 +511,8 @@ class ApiClient
      *
      * @return ApiResponse
      */
-    public function ordersPacksList(
-        array $filter = array(),
-        $page = null,
-        $limit = null
-    ) {
+    public function ordersPacksList(array $filter = array(), $page = null, $limit = null)
+    {
         $parameters = array();
 
         if (count($filter)) {
@@ -577,11 +572,8 @@ class ApiClient
      *
      * @return ApiResponse
      */
-    public function ordersPacksHistory(
-        array $filter = array(),
-        $page = null,
-        $limit = null
-    ) {
+    public function ordersPacksHistory(array $filter = array(), $page = null, $limit = null)
+    {
         $parameters = array();
 
         if (count($filter)) {
@@ -687,11 +679,8 @@ class ApiClient
      *
      * @return ApiResponse
      */
-    public function storeInventories(
-        array $filter = array(),
-        $page = null,
-        $limit = null
-    ) {
+    public function storeInventories(array $filter = array(), $page = null, $limit = null)
+    {
         $parameters = array();
 
         if (count($filter)) {
@@ -708,6 +697,56 @@ class ApiClient
             '/store/inventories',
             Client::METHOD_GET,
             $parameters
+        );
+    }
+
+    /**
+     * Get store settings
+     *
+     * @param string $code get settings code
+     *
+     * @return ApiResponse
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \InvalidArgumentException
+     *
+     * @return ApiResponse
+     */
+    public function storeSettingsGet($code)
+    {
+        if (empty($code)) {
+            throw new \InvalidArgumentException('Parameter `code` must be set');
+        }
+
+        return $this->client->makeRequest(
+            "/store/settings/$code",
+            Client::METHOD_GET
+        );
+    }
+
+    /**
+     * Edit store configuration
+     *
+     * @param array $configuration
+     *
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \InvalidArgumentException
+     *
+     * @return ApiResponse
+     */
+    public function storeSettingsEdit(array $configuration)
+    {
+        if (!count($configuration) || empty($configuration['code'])) {
+            throw new \InvalidArgumentException(
+                'Parameter `configuration` must contains a data & configuration `code` must be set'
+            );
+        }
+
+        return $this->client->makeRequest(
+            sprintf('/store/settings/%s/edit', $configuration['code']),
+            Client::METHOD_POST,
+            $configuration
         );
     }
 
@@ -735,6 +774,40 @@ class ApiClient
             '/store/inventories/upload',
             Client::METHOD_POST,
             $this->fillSite($site, array('offers' => json_encode($offers)))
+        );
+    }
+
+    /**
+     * Get products
+     *
+     * @param array $filter (default: array())
+     * @param int   $page   (default: null)
+     * @param int   $limit  (default: null)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return ApiResponse
+     */
+    public function storeProducts(array $filter = array(), $page = null, $limit = null)
+    {
+        $parameters = array();
+
+        if (count($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest(
+            '/store/products',
+            Client::METHOD_GET,
+            $parameters
         );
     }
 
@@ -1209,7 +1282,29 @@ class ApiClient
     }
 
     /**
-     * Telephony settings
+     * Get telephony settings
+     *
+     * @param string $code
+     *
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \InvalidArgumentException
+     *
+     * @return ApiResponse
+     */
+    public function telephonySettingsGet($code)
+    {
+        if (empty($code)) {
+            throw new \InvalidArgumentException('Parameter `code` must be set');
+        }
+
+        return $this->client->makeRequest(
+            "/telephony/settings/$code",
+            Client::METHOD_GET
+        );
+    }
+    /**
+     * Edit telephony settings
      *
      * @param string  $code        symbolic code
      * @param string  $clientId    client id
@@ -1224,14 +1319,8 @@ class ApiClient
      *
      * @return ApiResponse
      */
-    public function telephonySettings(
-        $code,
-        $clientId,
-        $active = false,
-        $makeCallUrl = false,
-        $name = false,
-        $image = false
-    ) {
+    public function telephonySettingsEdit($code, $clientId, $active = false, $makeCallUrl = false, $name = false, $image = false)
+    {
         if (!isset($code)) {
             throw new \InvalidArgumentException('Code must be set');
         }
@@ -1267,26 +1356,9 @@ class ApiClient
         }
 
         return $this->client->makeRequest(
-            "/telephony/setting/$code",
+            "/telephony/setting/$code/edit",
             Client::METHOD_POST,
             $parameters
-        );
-    }
-
-    /**
-     * Update CRM basic statistic
-     *
-     * @throws \InvalidArgumentException
-     * @throws \RetailCrm\Exception\CurlException
-     * @throws \RetailCrm\Exception\InvalidJsonException
-     *
-     * @return ApiResponse
-     */
-    public function statisticUpdate()
-    {
-        return $this->client->makeRequest(
-            '/statistic/update',
-            Client::METHOD_GET
         );
     }
 
@@ -1383,6 +1455,23 @@ class ApiClient
             '/telephony/manager',
             Client::METHOD_GET,
             $parameters
+        );
+    }
+
+    /**
+     * Update CRM basic statistic
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return ApiResponse
+     */
+    public function statisticUpdate()
+    {
+        return $this->client->makeRequest(
+            '/statistic/update',
+            Client::METHOD_GET
         );
     }
 
