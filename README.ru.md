@@ -15,7 +15,7 @@ PHP-клиент для работы с [retailCRM API](http://www.retailcrm.ru/
 
 2) Выполните в папке проекта:
 ```bash
-composer require retailcrm/api-client-php ~3.0.0  --no-dev
+composer require retailcrm/api-client-php ~4.0.0  --no-dev
 ```
 
 В конфиг `composer.json` вашего проекта будет добавлена библиотека `retailcrm/api-client-php`, которая установится в папку `vendor/`. При отсутствии файла конфига или папки с вендорами они будут созданы.
