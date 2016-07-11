@@ -322,6 +322,35 @@ class ApiClient
     }
 
     /**
+     * Get orders history
+     * @param array $filter
+     * @param null $page
+     * @param null $limit
+     *
+     * @return ApiResponse
+     */
+    public function ordersHistory(array $filter = array(), $page = null, $limit = null)
+    {
+        $parameters = array();
+
+        if (count($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest(
+            '/orders/history',
+            Client::METHOD_GET,
+            $parameters
+        );
+    }
+
+    /**
      * Returns filtered customers list
      *
      * @param array $filter (default: array())
@@ -495,6 +524,35 @@ class ApiClient
                 $site,
                 array('customer' => json_encode($customer), 'by' => $by)
             )
+        );
+    }
+
+    /**
+     * Get customers history
+     * @param array $filter
+     * @param null $page
+     * @param null $limit
+     *
+     * @return ApiResponse
+     */
+    public function customersHistory(array $filter = array(), $page = null, $limit = null)
+    {
+        $parameters = array();
+
+        if (count($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest(
+            '/customers/history',
+            Client::METHOD_GET,
+            $parameters
         );
     }
 
@@ -808,6 +866,86 @@ class ApiClient
             '/store/products',
             Client::METHOD_GET,
             $parameters
+        );
+    }
+
+    /**
+     * Get delivery settings
+     *
+     * @param string $code
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return ApiResponse
+     */
+    public function deliverySettingsGet($code)
+    {
+        if (empty($code)) {
+            throw new \InvalidArgumentException('Parameter `code` must be set');
+        }
+
+        return $this->client->makeRequest(
+            "/delivery/generic/setting/$code",
+            Client::METHOD_GET
+        );
+    }
+
+    /**
+     * Edit delivery configuration
+     *
+     * @param array $configuration
+     *
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \InvalidArgumentException
+     *
+     * @return ApiResponse
+     */
+    public function deliverySettingsEdit(array $configuration)
+    {
+        if (!count($configuration) || empty($configuration['code'])) {
+            throw new \InvalidArgumentException(
+                'Parameter `configuration` must contains a data & configuration `code` must be set'
+            );
+        }
+
+        return $this->client->makeRequest(
+            sprintf('/delivery/generic/settings/%s/edit', $configuration['code']),
+            Client::METHOD_POST,
+            $configuration
+        );
+    }
+
+    /**
+     * Delivery tracking update
+     *
+     * @param string $code
+     * @param array  $statusUpdate
+     *
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \InvalidArgumentException
+     *
+     * @return ApiResponse
+     */
+    public function deliveryTracking($code, array $statusUpdate)
+    {
+        if (empty($code)) {
+            throw new \InvalidArgumentException('Parameter `code` must be set');
+        }
+
+        if (!count($statusUpdate)) {
+            throw new \InvalidArgumentException(
+                'Parameter `statusUpdate` must contains a data'
+            );
+        }
+
+        return $this->client->makeRequest(
+            sprintf('/delivery/generic/%s/tracking', $code),
+            Client::METHOD_POST,
+            $statusUpdate
         );
     }
 
