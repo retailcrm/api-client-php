@@ -13,8 +13,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "ext-curl": "*",
-        "phpunit/phpunit": "~5.4.7"
+        "ext-curl": "*"
     },
     "support": {
         "email": "support@retailcrm.pro"
