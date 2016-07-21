@@ -1,15 +1,36 @@
 <?php
 
+/**
+ * PHP version 5.3
+ *
+ * API client orders test class
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ */
+
 namespace RetailCrm\Tests;
 
 use RetailCrm\Test\TestCase;
 
+/**
+ * Class ApiClientOrdersTest
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ */
 class ApiClientOrdersTest extends TestCase
 {
     const FIRST_NAME = 'Иннокентий';
 
     /**
-     * @group integration
+     * @group orders
      */
     public function testOrdersCreate()
     {
@@ -32,7 +53,7 @@ class ApiClientOrdersTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group orders
      * @expectedException \InvalidArgumentException
      */
     public function testOrdersCreateExceptionEmpty()
@@ -43,7 +64,7 @@ class ApiClientOrdersTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group orders
      * @depends testOrdersCreate
      */
     public function testOrdersStatuses(array $ids)
@@ -53,19 +74,19 @@ class ApiClientOrdersTest extends TestCase
         $response = $client->ordersStatuses();
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(400, $response->getStatusCode());
-        $this->assertFalse($response->success);
+        $this->assertFalse($response->isSuccessful());
 
         $response = $client->ordersStatuses(array(), array('asdf'));
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->success);
+        $this->assertTrue($response->isSuccessful());
         $orders = $response->orders;
         $this->assertEquals(0, sizeof($orders));
 
         $response = $client->ordersStatuses(array(), array($ids['externalId']));
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->success);
+        $this->assertTrue($response->isSuccessful());
         $orders = $response->orders;
         $this->assertEquals(1, sizeof($orders));
         $this->assertEquals('new', $orders[0]['status']);
@@ -73,20 +94,20 @@ class ApiClientOrdersTest extends TestCase
         $response = $client->ordersStatuses(array($ids['id']), array($ids['externalId']));
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->success);
+        $this->assertTrue($response->isSuccessful());
         $orders = $response->orders;
         $this->assertEquals(1, sizeof($orders));
 
         $response = $client->ordersStatuses(array($ids['id']));
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->success);
+        $this->assertTrue($response->isSuccessful());
         $orders = $response->orders;
         $this->assertEquals(1, sizeof($orders));
     }
 
     /**
-     * @group integration
+     * @group orders
      * @depends testOrdersCreate
      */
     public function testOrdersGet(array $ids)
@@ -96,13 +117,13 @@ class ApiClientOrdersTest extends TestCase
         $response = $client->ordersGet(678678678);
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(404, $response->getStatusCode());
-        $this->assertFalse($response->success);
+        $this->assertFalse($response->isSuccessful());
 
         $response = $client->ordersGet($ids['id'], 'id');
         $orderById = $response->order;
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->success);
+        $this->assertTrue($response->isSuccessful());
         $this->assertEquals(self::FIRST_NAME, $response->order['firstName']);
 
         $response = $client->ordersGet($ids['externalId'], 'externalId');
@@ -112,7 +133,7 @@ class ApiClientOrdersTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group orders
      * @expectedException \InvalidArgumentException
      */
     public function testOrdersGetException()
@@ -123,7 +144,7 @@ class ApiClientOrdersTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group orders
      * @depends testOrdersGet
      */
     public function testOrdersEdit(array $ids)
@@ -146,19 +167,11 @@ class ApiClientOrdersTest extends TestCase
         ));
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->success);
-
-        $response = $client->ordersEdit(array(
-            'externalId' => time(),
-            'lastName' => '12345',
-        ));
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(201, $response->getStatusCode());
-        $this->assertTrue($response->success);
+        $this->assertTrue($response->isSuccessful());
     }
 
     /**
-     * @group unit
+     * @group orders
      * @expectedException \InvalidArgumentException
      */
     public function testOrdersEditExceptionEmpty()
@@ -169,7 +182,7 @@ class ApiClientOrdersTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group orders
      * @expectedException \InvalidArgumentException
      */
     public function testOrdersEditException()
@@ -180,7 +193,7 @@ class ApiClientOrdersTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group orders
      */
     public function testOrdersHistory()
     {
@@ -189,19 +202,11 @@ class ApiClientOrdersTest extends TestCase
         $response = $client->ordersHistory();
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->success);
-        $this->assertTrue(
-            isset($response['orders']),
-            'API returns orders history'
-        );
-        $this->assertTrue(
-            isset($response['generatedAt']),
-            'API returns generatedAt in orders history'
-        );
+        $this->assertTrue($response->isSuccessful());
     }
 
     /**
-     * @group integration
+     * @group orders
      */
     public function testOrdersList()
     {
@@ -221,14 +226,10 @@ class ApiClientOrdersTest extends TestCase
 
         $response = $client->ordersList(array('paymentStatus' => 'paid'), 1);
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertTrue(
-            $response->isSuccessful(),
-            'API returns orders list'
-        );
     }
 
     /**
-     * @group unit
+     * @group orders
      * @expectedException \InvalidArgumentException
      */
     public function testOrdersFixExternalIdsException()
@@ -239,7 +240,7 @@ class ApiClientOrdersTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group orders
 ]     */
     public function testOrdersFixExternalIds()
     {
@@ -283,7 +284,7 @@ class ApiClientOrdersTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group orders
      * @expectedException \InvalidArgumentException
      */
     public function testOrdersUploadExceptionEmpty()
@@ -294,7 +295,7 @@ class ApiClientOrdersTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group orders
      */
     public function testOrdersUpload()
     {

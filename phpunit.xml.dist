@@ -12,6 +12,7 @@
     <php>
         <server name="CRM_URL" value="https://demo.retailcrm.ru" />
         <server name="CRM_API_KEY" value="nSBFWecViONG5c96wUQQgZzHkilTnaa6" />
+        <server name="CRM_USER_ID" value="1" />
     </php>
 
     <testsuites>

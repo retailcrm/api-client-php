@@ -1437,27 +1437,46 @@ class ApiClient
         }
 
         return $this->client->makeRequest(
-            "/telephony/settings/$code",
+            "/telephony/setting/$code",
             Client::METHOD_GET
         );
     }
+
     /**
      * Edit telephony settings
      *
      * @param string  $code        symbolic code
      * @param string  $clientId    client id
      * @param boolean $active      telephony activity
-     * @param mixed   $makeCallUrl service init url
      * @param mixed   $name        service name
+     * @param mixed   $makeCallUrl service init url
      * @param mixed   $image       service logo url(svg file)
      *
-     * @throws \InvalidArgumentException
-     * @throws \RetailCrm\Exception\CurlException
-     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @param array   $additionalCodes
+     * @param array   $externalPhones
+     * @param bool    $allowEdit
+     * @param bool    $inputEventSupported
+     * @param bool    $outputEventSupported
+     * @param bool    $hangupEventSupported
+     * @param bool    $changeUserStatusUrl
      *
      * @return ApiResponse
      */
-    public function telephonySettingsEdit($code, $clientId, $active = false, $makeCallUrl = false, $name = false, $image = false)
+    public function telephonySettingsEdit(
+        $code,
+        $clientId,
+        $active = false,
+        $name = false,
+        $makeCallUrl = false,
+        $image = false,
+        $additionalCodes = array(),
+        $externalPhones = array(),
+        $allowEdit = false,
+        $inputEventSupported = false,
+        $outputEventSupported = false,
+        $hangupEventSupported = false,
+        $changeUserStatusUrl = false
+    )
     {
         if (!isset($code)) {
             throw new \InvalidArgumentException('Code must be set');
@@ -1481,64 +1500,101 @@ class ApiClient
             throw new \InvalidArgumentException('name must be set');
         }
 
-        if (isset($makeCallUrl)) {
-            $parameters['makeCallUrl'] = $makeCallUrl;
-        }
-
         if (isset($name)) {
             $parameters['name'] = $name;
+        }
+
+        if (isset($makeCallUrl)) {
+            $parameters['makeCallUrl'] = $makeCallUrl;
         }
 
         if (isset($image)) {
             $parameters['image'] = $image;
         }
 
+        if (isset($additionalCodes)) {
+            $parameters['additionalCodes'] = $additionalCodes;
+        }
+
+        if (isset($externalPhones)) {
+            $parameters['externalPhones'] = $externalPhones;
+        }
+
+        if (isset($allowEdit)) {
+            $parameters['allowEdit'] = $allowEdit;
+        }
+
+        if (isset($inputEventSupported)) {
+            $parameters['inputEventSupported'] = $inputEventSupported;
+        }
+
+        if (isset($outputEventSupported)) {
+            $parameters['outputEventSupported'] = $outputEventSupported;
+        }
+
+        if (isset($hangupEventSupported)) {
+            $parameters['hangupEventSupported'] = $hangupEventSupported;
+        }
+
+        if (isset($changeUserStatusUrl)) {
+            $parameters['changeUserStatusUrl'] = $changeUserStatusUrl;
+        }
+
         return $this->client->makeRequest(
             "/telephony/setting/$code/edit",
             Client::METHOD_POST,
-            $parameters
+            array('configuration' => json_encode($parameters))
         );
     }
 
     /**
      * Call event
      *
-     * @param string $phone  phone number
-     * @param string $type   call type
-     * @param string $code   additional phone code
-     * @param string $status call status
-     *
-     * @throws \InvalidArgumentException
-     * @throws \RetailCrm\Exception\CurlException
-     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @param string $phone phone number
+     * @param string $type  call type
+     * @param array  $codes
+     * @param string $hangupStatus
+     * @param string $externalPhone
+     * @param array  $webAnalyticsData
      *
      * @return ApiResponse
+     * @internal param string $code additional phone code
+     * @internal param string $status call status
+     *
      */
-    public function telephonyCallEvent($phone, $type, $code, $status)
+    public function telephonyCallEvent(
+        $phone,
+        $type,
+        $codes,
+        $hangupStatus,
+        $externalPhone = null,
+        $webAnalyticsData = array()
+    )
     {
         if (!isset($phone)) {
             throw new \InvalidArgumentException('Phone number must be set');
         }
 
-        $parameters['phone'] = $phone;
-
         if (!isset($type)) {
             throw new \InvalidArgumentException('Type must be set (in|out|hangup)');
         }
 
-        $parameters['type'] = $type;
-
-        if (!isset($code)) {
-            throw new \InvalidArgumentException('Code must be set');
+        if (empty($codes)) {
+            throw new \InvalidArgumentException('Codes array must be set');
         }
 
-        $parameters['code'] = $code;
-        $parameters['hangupStatus'] = $status;
+        $parameters['phone'] = $phone;
+        $parameters['type'] = $type;
+        $parameters['codes'] = $codes;
+        $parameters['hangupStatus'] = $hangupStatus;
+        $parameters['callExternalId'] = $externalPhone;
+        $parameters['webAnalyticsData'] = $webAnalyticsData;
+
 
         return $this->client->makeRequest(
             '/telephony/call/event',
             Client::METHOD_POST,
-            $parameters
+            array('event' => json_encode($parameters))
         );
     }
 

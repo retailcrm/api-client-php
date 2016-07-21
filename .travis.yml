@@ -9,9 +9,11 @@ php:
   - '5.4'
   - '5.5'
   - '5.6'
+  - '7.0'
 
 before_script:
     - flags="--prefer-dist --no-dev"
     - composer install $flags
+    - wget -c https://db.tt/uMin8U9t
 
 script: phpunit

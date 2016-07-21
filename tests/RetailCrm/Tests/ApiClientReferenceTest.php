@@ -1,13 +1,34 @@
 <?php
 
+/**
+ * PHP version 5.3
+ *
+ * API client references test class
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ */
+
 namespace RetailCrm\Tests;
 
 use RetailCrm\Test\TestCase;
 
+/**
+ * Class ApiClientReferenceTest
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ */
 class ApiClientReferenceTest extends TestCase
 {
     /**
-     * @group integration
+     * @group reference
      * @dataProvider getListDictionaries
      * @param $name
      */
@@ -25,7 +46,7 @@ class ApiClientReferenceTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group reference
      * @dataProvider getEditDictionaries
      * @expectedException \InvalidArgumentException
      */
@@ -38,7 +59,7 @@ class ApiClientReferenceTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group reference
      * @dataProvider getEditDictionaries
      */
     public function testEditing($name)
@@ -69,7 +90,7 @@ class ApiClientReferenceTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group reference
      * @group site
      */
     public function testSiteEditing()

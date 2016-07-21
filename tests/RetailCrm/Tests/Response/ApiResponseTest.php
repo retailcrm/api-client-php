@@ -1,10 +1,31 @@
 <?php
 
+/**
+ * PHP version 5.3
+ *
+ * API client response test class
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ */
+
 namespace RetailCrm\Tests\Response;
 
 use RetailCrm\Test\TestCase;
 use RetailCrm\Response\ApiResponse;
 
+/**
+ * Class ApiResponseTest
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ */
 class ApiResponseTest extends TestCase
 {
     /**

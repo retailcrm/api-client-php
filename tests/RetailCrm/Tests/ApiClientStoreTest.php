@@ -1,12 +1,29 @@
 <?php
 
+/**
+ * PHP version 5.3
+ *
+ * API client store test class
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ */
+
 namespace RetailCrm\Tests;
 
 use RetailCrm\Test\TestCase;
 
 /**
  * Class ApiClientStoreTest
- * @package RetailCrm\Tests
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
  */
 class ApiClientStoreTest extends TestCase
 {
@@ -14,7 +31,7 @@ class ApiClientStoreTest extends TestCase
     const SCODE = 'test-store';
 
     /**
-     * @group integration
+     * @group store
      */
     public function testStoreCreate()
     {
@@ -23,11 +40,11 @@ class ApiClientStoreTest extends TestCase
         $response = $client->storesEdit(array('name' => self::SNAME, 'code' => self::SCODE));
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertTrue(in_array($response->getStatusCode(), array(200, 201)));
-        $this->assertTrue($response->success);
+        $this->assertTrue($response->isSuccessful());
     }
 
     /**
-     * @group integration
+     * @group store
      */
     public function testStoreInventories()
     {
@@ -36,7 +53,7 @@ class ApiClientStoreTest extends TestCase
         $response = $client->storeInventories();
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->success);
+        $this->assertTrue($response->isSuccessful());
         $this->assertTrue(
             isset($response['offers']),
             'API returns orders assembly history'
@@ -44,7 +61,7 @@ class ApiClientStoreTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group store
      * @expectedException \InvalidArgumentException
      */
     public function testStoreInventoriesUploadExceptionEmpty()
@@ -54,7 +71,7 @@ class ApiClientStoreTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group store
      */
     public function testStoreInventoriesUpload()
     {
