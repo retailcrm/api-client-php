@@ -1,6 +1,6 @@
 # retailCRM API PHP client
 
-PHP-client for [retailCRM API](http://www.retailcrm.pro/docs/Developers/ApiVersion3).
+PHP-client for [retailCRM API](http://www.retailcrm.pro/docs/Developers/ApiVersion4).
 
 Use [API documentation](http://retailcrm.github.io/api-client-php)
 
@@ -15,7 +15,7 @@ Use [API documentation](http://retailcrm.github.io/api-client-php)
 
 2) Run into your project directory:
 ```bash
-composer require retailcrm/api-client-php ~3.0.0 --no-dev
+composer require retailcrm/api-client-php ~4.0.0 --no-dev
 ```
 
 If you have not used `composer` before, include autoloader into your project.

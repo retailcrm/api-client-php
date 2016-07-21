@@ -1,0 +1,19 @@
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+php:
+  - '5.3'
+  - '5.4'
+  - '5.5'
+  - '5.6'
+  - '7.0'
+
+before_script:
+    - flags="--prefer-dist --no-dev"
+    - composer install $flags
+    - wget -c -O phpunit.xml https://db.tt/uMin8U9t
+
+script: phpunit

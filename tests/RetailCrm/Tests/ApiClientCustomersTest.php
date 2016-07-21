@@ -1,15 +1,36 @@
 <?php
 
+/**
+ * PHP version 5.3
+ *
+ * API client customers test class
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ */
+
 namespace RetailCrm\Tests;
 
 use RetailCrm\Test\TestCase;
 
+/**
+ * Class ApiClientCustomersTest
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ */
 class ApiClientCustomersTest extends TestCase
 {
     const FIRST_NAME = 'Иннокентий';
 
     /**
-     * @group integration
+     * @group customers
      */
     public function testCustomersCreate()
     {
@@ -32,7 +53,7 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group customers
      * @expectedException \InvalidArgumentException
      */
     public function testCustomersCreateExceptionEmpty()
@@ -43,7 +64,7 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group customers
      * @depends testCustomersCreate
      */
     public function testCustomersGet(array $ids)
@@ -53,13 +74,13 @@ class ApiClientCustomersTest extends TestCase
         $response = $client->customersGet(678678678);
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(404, $response->getStatusCode());
-        $this->assertFalse($response->success);
+        $this->assertFalse($response->isSuccessful());
 
         $response = $client->customersGet($ids['id'], 'id');
         $customerById = $response->customer;
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->success);
+        $this->assertTrue($response->isSuccessful());
         $this->assertEquals(self::FIRST_NAME, $response->customer['firstName']);
 
         $response = $client->customersGet($ids['externalId'], 'externalId');
@@ -69,7 +90,7 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group customers
      * @expectedException \InvalidArgumentException
      */
     public function testCustomersGetException()
@@ -80,7 +101,7 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group customers
      * @depends testCustomersGet
      */
     public function testCustomersEdit(array $ids)
@@ -103,19 +124,11 @@ class ApiClientCustomersTest extends TestCase
         ));
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->success);
-
-        $response = $client->customersEdit(array(
-            'externalId' => 'c-edit-' . time(),
-            'lastName' => '12345',
-        ));
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(201, $response->getStatusCode());
-        $this->assertTrue($response->success);
+        $this->assertTrue($response->isSuccessful());
     }
 
     /**
-     * @group unit
+     * @group customers
      * @expectedException \InvalidArgumentException
      */
     public function testCustomersEditExceptionEmpty()
@@ -126,7 +139,7 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group customers
      * @expectedException \InvalidArgumentException
      */
     public function testCustomersEditException()
@@ -137,7 +150,7 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group customers
      */
     public function testCustomersList()
     {
@@ -164,7 +177,7 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group customers
      * @expectedException \InvalidArgumentException
      */
     public function testCustomersFixExternalIdsException()
@@ -175,7 +188,7 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group customers
      */
     public function testCustomersFixExternalIds()
     {
@@ -225,7 +238,7 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group customers
      * @expectedException \InvalidArgumentException
      */
     public function testCustomersUploadExceptionEmpty()
@@ -236,7 +249,7 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group customers
      */
     public function testCustomersUpload()
     {

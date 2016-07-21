@@ -1,11 +1,32 @@
 <?php
 
+/**
+ * PHP version 5.3
+ *
+ * API client test class
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ */
+
 namespace RetailCrm\Tests\Http;
 
 use RetailCrm\Test\TestCase;
 use RetailCrm\ApiClient;
 use RetailCrm\Http\Client;
 
+/**
+ * Class ClientTest
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ */
 class ClientTest extends TestCase
 {
     /**
@@ -25,6 +46,7 @@ class ClientTest extends TestCase
     public function testHttpRequiring()
     {
         $client = new Client('http://demo.retailcrm.ru/api/' . ApiClient::VERSION, array('apiKey' => '123'));
+        return $client;
     }
 
     /**
@@ -44,7 +66,7 @@ class ClientTest extends TestCase
     public function testMakeRequestWrongUrl()
     {
         $client = new Client('https://asdf.df', array());
-        $client->makeRequest('/a', Client::METHOD_GET, array(), 1);
+        $client->makeRequest('/a', Client::METHOD_GET, array());
     }
 
     /**

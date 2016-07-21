@@ -6,16 +6,13 @@
     colors="true"
     verbose="true"
     processIsolation="false"
-    stopOnFailure="true">
+    stopOnFailure="false">
 
     <!-- Dummy values used to provide credentials. No need to change these. -->
     <php>
-        <server name="CRM_URL" value="foo" />
-        <server name="CRM_API_KEY" value="bar" />
-        <server name="CRM_SITE" value="zoo" />
-        <server name="CRM_STORE" value="moo" />
-        <server name="CRM_PACK_ITEM" value="boo" />
-        <server name="CRM_PACK_QUANTITY" value="goo" />
+        <server name="CRM_URL" value="https://demo.retailcrm.ru" />
+        <server name="CRM_API_KEY" value="nSBFWecViONG5c96wUQQgZzHkilTnaa6" />
+        <server name="CRM_USER_ID" value="1" />
     </php>
 
     <testsuites>
