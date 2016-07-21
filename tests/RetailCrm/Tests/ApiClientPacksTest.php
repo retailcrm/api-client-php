@@ -75,6 +75,7 @@ class ApiClientPacksTest extends TestCase
     public function testOrdersPacksCreate()
     {
         $client = static::getApiClient();
+
         $pack = array(
             'itemId' => $_SERVER['CRM_PACK_ITEM'],
             'quantity' => $_SERVER['CRM_PACK_QUANTITY'],

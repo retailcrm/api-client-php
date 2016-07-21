@@ -10,6 +10,22 @@ use RetailCrm\Test\TestCase;
  */
 class ApiClientStoreTest extends TestCase
 {
+    const SNAME = 'Test Store';
+    const SCODE = 'test-store';
+
+    /**
+     * @group integration
+     */
+    public function testStoreCreate()
+    {
+        $client = static::getApiClient();
+
+        $response = $client->storesEdit(array('name' => self::SNAME, 'code' => self::SCODE));
+        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        $this->assertTrue(in_array($response->getStatusCode(), array(200, 201)));
+        $this->assertTrue($response->success);
+    }
+
     /**
      * @group integration
      */
@@ -52,7 +68,7 @@ class ApiClientStoreTest extends TestCase
                 'externalId' => $externalIdA,
                 'stores' => array(
                     array(
-                        'code' => $_SERVER['CRM_STORE'],
+                        'code' => self::SCODE,
                         'available' => 10,
                         'purchasePrice' => 1700
                     )
@@ -62,17 +78,18 @@ class ApiClientStoreTest extends TestCase
                 'externalId' => $externalIdB,
                 'stores' => array(
                     array(
-                        'code' => $_SERVER['CRM_STORE'],
+                        'code' => self::SCODE,
                         'available' => 20,
                         'purchasePrice' => 1500
                     )
                 )
             ),
         ));
+
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         $this->assertTrue($response->isSuccessful());
     }
-    
+
     /**
      * @group integration
      */
