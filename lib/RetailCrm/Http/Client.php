@@ -36,7 +36,6 @@ class Client
 
     protected $url;
     protected $defaultParameters;
-    protected $retry;
 
     /**
      * Client constructor.
@@ -62,10 +61,7 @@ class Client
             CURLE_COULDNT_RESOLVE_HOST,
             CURLE_COULDNT_CONNECT,
             CURLE_OPERATION_TIMEOUTED,
-            CURLE_HTTP_POST_ERROR,
-            CURLE_SSL_CONNECT_ERROR,
-            CURLE_SEND_ERROR,
-            CURLE_RECV_ERROR
+            CURLE_SSL_CONNECT_ERROR
         );
     }
 
@@ -90,6 +86,7 @@ class Client
         array $parameters = array()
     ) {
         $allowedMethods = array(self::METHOD_GET, self::METHOD_POST);
+        $retry = 0;
 
         if (!in_array($method, $allowedMethods, false)) {
             throw new \InvalidArgumentException(
@@ -133,28 +130,19 @@ class Client
 
         if ($errno
             && in_array($errno, $this->curlErrors, false)
-            && $this->retry < 3
+            && $retry < 3
         ) {
             $errno = null;
             $error = null;
-            ++$this->retry;
+            $retry++;
             $this->makeRequest($path, $method, $parameters);
         }
 
         if ($errno) {
+            $retry = 0;
             throw new CurlException($error, $errno);
         }
 
         return new ApiResponse($statusCode, $responseBody);
-    }
-
-    /**
-     * Retry connect
-     *
-     * @return int
-     */
-    public function getRetry()
-    {
-        return $this->retry;
     }
 }
