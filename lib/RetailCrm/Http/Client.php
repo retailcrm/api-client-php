@@ -55,14 +55,6 @@ class Client
 
         $this->url = $url;
         $this->defaultParameters = $defaultParameters;
-        $this->retry = 0;
-        $this->curlErrors = array(
-            CURLE_COULDNT_RESOLVE_PROXY,
-            CURLE_COULDNT_RESOLVE_HOST,
-            CURLE_COULDNT_CONNECT,
-            CURLE_OPERATION_TIMEOUTED,
-            CURLE_SSL_CONNECT_ERROR
-        );
     }
 
     /**
@@ -86,7 +78,6 @@ class Client
         array $parameters = array()
     ) {
         $allowedMethods = array(self::METHOD_GET, self::METHOD_POST);
-        $retry = 0;
 
         if (!in_array($method, $allowedMethods, false)) {
             throw new \InvalidArgumentException(
@@ -128,18 +119,7 @@ class Client
 
         curl_close($curlHandler);
 
-        if ($errno
-            && in_array($errno, $this->curlErrors, false)
-            && $retry < 3
-        ) {
-            $errno = null;
-            $error = null;
-            $retry++;
-            $this->makeRequest($path, $method, $parameters);
-        }
-
         if ($errno) {
-            $retry = 0;
             throw new CurlException($error, $errno);
         }
 
