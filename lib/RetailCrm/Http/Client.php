@@ -139,6 +139,7 @@ class Client
         }
 
         if ($errno) {
+            $retry = 0;
             throw new CurlException($error, $errno);
         }
 
