@@ -777,7 +777,7 @@ class ApiClient
         }
 
         return $this->client->makeRequest(
-            "/store/settings/$code",
+            "/store/setting/$code",
             Client::METHOD_GET
         );
     }
@@ -802,7 +802,7 @@ class ApiClient
         }
 
         return $this->client->makeRequest(
-            sprintf('/store/settings/%s/edit', $configuration['code']),
+            sprintf('/store/setting/%s/edit', $configuration['code']),
             Client::METHOD_POST,
             $configuration
         );
