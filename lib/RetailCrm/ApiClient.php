@@ -912,9 +912,9 @@ class ApiClient
         }
 
         return $this->client->makeRequest(
-            sprintf('/delivery/generic/settings/%s/edit', $configuration['code']),
+            sprintf('/delivery/generic/setting/%s/edit', $configuration['code']),
             Client::METHOD_POST,
-            $configuration
+            array('configuration' => json_encode($configuration))
         );
     }
 
