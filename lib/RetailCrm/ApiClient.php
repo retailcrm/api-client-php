@@ -61,6 +61,8 @@ class ApiClient
 
         $this->client = new Client($url, array('apiKey' => $apiKey));
         $this->siteCode = $site;
+
+        return $this->client;
     }
 
     /**
@@ -92,6 +94,35 @@ class ApiClient
 
         return $this->client->makeRequest(
             '/users',
+            Client::METHOD_GET,
+            $parameters
+        );
+    }
+
+    /**
+     * Get user groups
+     *
+     * @param null $page
+     * @param null $limit
+     *
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     *
+     * @return ApiResponse
+     */
+    public function usersGroups($page = null, $limit = null)
+    {
+        $parameters = array();
+
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest(
+            '/user-groups',
             Client::METHOD_GET,
             $parameters
         );
@@ -836,6 +867,33 @@ class ApiClient
     }
 
     /**
+     * Upload store prices
+     *
+     * @param array  $prices prices data
+     * @param string $site   default: null)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return ApiResponse
+     */
+    public function storePricesUpload(array $prices, $site = null)
+    {
+        if (!count($prices)) {
+            throw new \InvalidArgumentException(
+                'Parameter `prices` must contains array of the prices'
+            );
+        }
+
+        return $this->client->makeRequest(
+            '/store/prices/upload',
+            Client::METHOD_POST,
+            $this->fillSite($site, array('prices' => json_encode($prices)))
+        );
+    }
+
+    /**
      * Get products
      *
      * @param array $filter (default: array())
@@ -1416,6 +1474,54 @@ class ApiClient
             sprintf('/reference/stores/%s/edit', $data['code']),
             Client::METHOD_POST,
             array('store' => json_encode($data))
+        );
+    }
+
+    /**
+     * Get prices types
+     *
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return ApiResponse
+     */
+    public function pricesTypes()
+    {
+        return $this->client->makeRequest(
+            '/reference/price-types',
+            Client::METHOD_GET
+        );
+    }
+
+    /**
+     * Edit price type
+     *
+     * @param array $data
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return ApiResponse
+     */
+    public function pricesEdit(array $data)
+    {
+        if (!array_key_exists('code', $data)) {
+            throw new \InvalidArgumentException(
+                'Data must contain "code" parameter.'
+            );
+        }
+
+        if (!array_key_exists('name', $data)) {
+            throw new \InvalidArgumentException(
+                'Data must contain "name" parameter.'
+            );
+        }
+
+        return $this->client->makeRequest(
+            sprintf('/reference/price-types/%s/edit', $data['code']),
+            Client::METHOD_POST,
+            array('priceType' => json_encode($data))
         );
     }
 
