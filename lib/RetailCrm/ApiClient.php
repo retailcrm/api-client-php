@@ -48,8 +48,6 @@ class ApiClient
      * @param string $site   site code
      *
      * @throws \InvalidArgumentException
-     *
-     * @return mixed
      */
     public function __construct($url, $apiKey, $site = null)
     {
@@ -61,8 +59,6 @@ class ApiClient
 
         $this->client = new Client($url, array('apiKey' => $apiKey));
         $this->siteCode = $site;
-
-        return $this->client;
     }
 
     /**
