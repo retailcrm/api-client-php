@@ -831,7 +831,7 @@ class ApiClient
         return $this->client->makeRequest(
             sprintf('/store/setting/%s/edit', $configuration['code']),
             Client::METHOD_POST,
-            $configuration
+            array('configuration' => json_encode($configuration))
         );
     }
 
@@ -999,7 +999,7 @@ class ApiClient
         return $this->client->makeRequest(
             sprintf('/delivery/generic/%s/tracking', $code),
             Client::METHOD_POST,
-            $statusUpdate
+            array('statusUpdate' => json_encode($statusUpdate))
         );
     }
 
