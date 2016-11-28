@@ -77,14 +77,14 @@ class ApiClientReferenceTest extends TestCase
         }
 
         $response = $client->$method($params);
-        $this->assertEquals(in_array(200, 201), $response->getStatusCode());
+        $this->assertTrue(in_array($response->getStatusCode(), array(200, 201)));
 
         $response = $client->$method(array(
             'code' => $code,
             'name' => 'Bbb',
         ));
 
-        $this->assertEquals(in_array(200, 201), $response->getStatusCode());
+        $this->assertTrue(in_array($response->getStatusCode(), array(200, 201)));
     }
 
     /**
