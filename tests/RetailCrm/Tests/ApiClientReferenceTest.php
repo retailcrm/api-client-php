@@ -83,9 +83,7 @@ class ApiClientReferenceTest extends TestCase
             'code' => $code,
             'name' => 'Bbb',
         ));
-        if ($response->getStatusCode() > 201) {
-            print_r($response);
-        }
+
         $this->assertEquals(200, $response->getStatusCode());
     }
 
