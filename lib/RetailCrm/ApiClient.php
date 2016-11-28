@@ -1755,6 +1755,32 @@ class ApiClient
     }
 
     /**
+     * Edit marketplace configuration
+     *
+     * @param array $configuration
+     *
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \InvalidArgumentException
+     *
+     * @return ApiResponse
+     */
+    public function marketplaceSettingsEdit(array $configuration)
+    {
+        if (!count($configuration) || empty($configuration['code'])) {
+            throw new \InvalidArgumentException(
+                'Parameter `configuration` must contains a data & configuration `code` must be set'
+            );
+        }
+
+        return $this->client->makeRequest(
+            sprintf('/marketplace/external/setting/%s/edit', $configuration['code']),
+            Client::METHOD_POST,
+            array('configuration' => json_encode($configuration))
+        );
+    }
+
+    /**
      * Update CRM basic statistic
      *
      * @throws \InvalidArgumentException
