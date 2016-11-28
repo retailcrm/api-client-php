@@ -104,7 +104,7 @@ class ApiClientStoreTest extends TestCase
         ));
 
         $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isSuccessful());
     }
 
     /**

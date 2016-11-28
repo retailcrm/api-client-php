@@ -23,7 +23,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
             $site ?: (isset($_SERVER['CRM_SITE']) ? $_SERVER['CRM_SITE'] : null)
         );
     }
-    
+
     /**
      * Return Client object
      *
