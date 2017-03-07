@@ -122,6 +122,18 @@ class ApiResponse implements \ArrayAccess
     }
 
     /**
+     * Allow to check if the property exists through object property
+     *
+     * @param string $name property name
+     *
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        return isset($this->response[$name]);
+    }
+
+    /**
      * Offset set
      *
      * @param mixed $offset offset
