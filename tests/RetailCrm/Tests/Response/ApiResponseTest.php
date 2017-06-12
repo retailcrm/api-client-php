@@ -251,4 +251,22 @@ class ApiResponseTest extends TestCase
         $response = new ApiResponse(201, '{ "success": true }');
         unset($response['sssssssuccess']);
     }
+
+    /**
+     * @group unit
+     */
+    public function testMagicIsset()
+    {
+        $response = new ApiResponse(201, '{ "success": true }');
+
+        $this->assertTrue(
+            isset($response->success),
+            'Response object returns property existing'
+        );
+
+        $this->assertFalse(
+            isset($response->suess),
+            'Response object returns property existing'
+        );
+    }
 }
