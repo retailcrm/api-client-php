@@ -9,7 +9,7 @@
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests;
@@ -23,7 +23,7 @@ use RetailCrm\Test\TestCase;
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientOrdersTest extends TestCase
 {
@@ -42,12 +42,12 @@ class ApiClientOrdersTest extends TestCase
             'firstName' => self::FIRST_NAME,
             'externalId' => $externalId,
         ));
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(201, $response->getStatusCode());
-        $this->assertTrue(is_int($response->getId()));
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(201, $response->getStatusCode());
+        static::assertTrue(is_int($response['id']));
 
         return array(
-            'id' => $response->getId(),
+            'id' => $response['id'],
             'externalId' => $externalId,
         );
     }
@@ -59,75 +59,80 @@ class ApiClientOrdersTest extends TestCase
     public function testOrdersCreateExceptionEmpty()
     {
         $client = static::getApiClient();
-
-        $response = $client->ordersCreate(array());
+        $client->ordersCreate(array());
     }
 
     /**
-     * @group orders
+     * @group   orders
      * @depends testOrdersCreate
+     *
+     * @param array $ids
      */
     public function testOrdersStatuses(array $ids)
     {
         $client = static::getApiClient();
 
         $response = $client->ordersStatuses();
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(400, $response->getStatusCode());
-        $this->assertFalse($response->isSuccessful());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(400, $response->getStatusCode());
+        static::assertFalse($response->isSuccessful());
 
         $response = $client->ordersStatuses(array(), array('asdf'));
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->isSuccessful());
-        $orders = $response->orders;
-        $this->assertEquals(0, sizeof($orders));
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
+        $orders = $response['orders'];
+        static::assertEquals(0, sizeof($orders));
 
         $response = $client->ordersStatuses(array(), array($ids['externalId']));
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->isSuccessful());
-        $orders = $response->orders;
-        $this->assertEquals(1, sizeof($orders));
-        $this->assertEquals('new', $orders[0]['status']);
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
+        $orders = $response['orders'];
+        static::assertEquals(1, sizeof($orders));
+        static::assertEquals('new', $orders[0]['status']);
 
         $response = $client->ordersStatuses(array($ids['id']), array($ids['externalId']));
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->isSuccessful());
-        $orders = $response->orders;
-        $this->assertEquals(1, sizeof($orders));
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
+        $orders = $response['orders'];
+        static::assertEquals(1, sizeof($orders));
 
         $response = $client->ordersStatuses(array($ids['id']));
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->isSuccessful());
-        $orders = $response->orders;
-        $this->assertEquals(1, sizeof($orders));
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
+        $orders = $response['orders'];
+        static::assertEquals(1, sizeof($orders));
     }
 
     /**
-     * @group orders
+     * @group   orders
      * @depends testOrdersCreate
+     *
+     * @param array $ids
+     *
+     * @return array
      */
     public function testOrdersGet(array $ids)
     {
         $client = static::getApiClient();
 
         $response = $client->ordersGet(678678678);
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(404, $response->getStatusCode());
-        $this->assertFalse($response->isSuccessful());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(404, $response->getStatusCode());
+        static::assertFalse($response->isSuccessful());
 
         $response = $client->ordersGet($ids['id'], 'id');
-        $orderById = $response->order;
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->isSuccessful());
-        $this->assertEquals(self::FIRST_NAME, $response->order['firstName']);
+        $orderById = $response['order'];
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
+        static::assertEquals(self::FIRST_NAME, $response['order']['firstName']);
 
         $response = $client->ordersGet($ids['externalId'], 'externalId');
-        $this->assertEquals($orderById['id'], $response->order['id']);
+        static::assertEquals($orderById['id'], $response['order']['id']);
 
         return $ids;
     }
@@ -139,13 +144,14 @@ class ApiClientOrdersTest extends TestCase
     public function testOrdersGetException()
     {
         $client = static::getApiClient();
-
-        $response = $client->ordersGet(678678678, 'asdf');
+        $client->ordersGet(678678678, 'asdf');
     }
 
     /**
-     * @group orders
+     * @group   orders
      * @depends testOrdersGet
+     *
+     * @param array $ids
      */
     public function testOrdersEdit(array $ids)
     {
@@ -158,16 +164,16 @@ class ApiClientOrdersTest extends TestCase
             ),
             'id'
         );
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(404, $response->getStatusCode());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(404, $response->getStatusCode());
 
         $response = $client->ordersEdit(array(
             'externalId' => $ids['externalId'],
             'lastName' => '12345',
         ));
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->isSuccessful());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
     }
 
     /**
@@ -177,8 +183,7 @@ class ApiClientOrdersTest extends TestCase
     public function testOrdersEditExceptionEmpty()
     {
         $client = static::getApiClient();
-
-        $response = $client->ordersEdit(array(), 'asdf');
+        $client->ordersEdit(array(), 'asdf');
     }
 
     /**
@@ -188,8 +193,7 @@ class ApiClientOrdersTest extends TestCase
     public function testOrdersEditException()
     {
         $client = static::getApiClient();
-
-        $response = $client->ordersEdit(array('id' => 678678678), 'asdf');
+        $client->ordersEdit(array('id' => 678678678), 'asdf');
     }
 
     /**
@@ -200,9 +204,9 @@ class ApiClientOrdersTest extends TestCase
         $client = static::getApiClient();
 
         $response = $client->ordersHistory();
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->isSuccessful());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
     }
 
     /**
@@ -213,19 +217,19 @@ class ApiClientOrdersTest extends TestCase
         $client = static::getApiClient();
 
         $response = $client->ordersList();
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertTrue($response->isSuccessful());
-        $this->assertTrue(isset($response['orders']));
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertTrue($response->isSuccessful());
+        static::assertTrue(isset($response['orders']));
 
         $response = $client->ordersList(array(), 1, 300);
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertFalse(
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertFalse(
             $response->isSuccessful(),
             'Pagination error'
         );
 
         $response = $client->ordersList(array('paymentStatus' => 'paid'), 1);
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
     }
 
     /**
@@ -235,8 +239,7 @@ class ApiClientOrdersTest extends TestCase
     public function testOrdersFixExternalIdsException()
     {
         $client = static::getApiClient();
-
-        $response = $client->ordersFixExternalIds(array());
+        $client->ordersFixExternalIds(array());
     }
 
     /**
@@ -249,36 +252,36 @@ class ApiClientOrdersTest extends TestCase
         $response = $client->ordersCreate(array(
             'firstName' => 'Aaa',
         ));
-        $this->assertTrue(
+        static::assertTrue(
             $response->isSuccessful(),
             'Order created'
         );
 
-        $id = $response->id;
+        $id = $response['id'];
         $externalId = 'asdf' . time();
 
         $response = $client->ordersFixExternalIds(array(
             array('id' => $id, 'externalId' => $externalId)
         ));
 
-        $this->assertTrue(
+        static::assertTrue(
             $response->isSuccessful(),
             'Fixed order ids'
         );
 
         $response = $client->ordersGet($externalId);
-        $this->assertTrue(
+        static::assertTrue(
             $response->isSuccessful(),
             'Got order'
         );
-        $this->assertEquals(
+        static::assertEquals(
             $id,
-            $response->order['id'],
+            $response['order']['id'],
             'Fixing of order ids were right'
         );
-        $this->assertEquals(
+        static::assertEquals(
             $externalId,
-            $response->order['externalId'],
+            $response['order']['externalId'],
             'Fixing of order ids were right'
         );
     }
@@ -290,8 +293,7 @@ class ApiClientOrdersTest extends TestCase
     public function testOrdersUploadExceptionEmpty()
     {
         $client = static::getApiClient();
-
-        $response = $client->ordersUpload(array());
+        $client->ordersUpload(array());
     }
 
     /**
@@ -314,17 +316,104 @@ class ApiClientOrdersTest extends TestCase
                 'lastName' => 'Bbb',
             ),
         ));
-        $this->assertTrue(
+        static::assertTrue(
             $response->isSuccessful(),
             'Got order'
         );
-        $this->assertEquals(
+        static::assertEquals(
             $externalIdA,
-            $response->uploadedOrders[0]['externalId']
+            $response['uploadedOrders'][0]['externalId']
         );
-        $this->assertEquals(
+        static::assertEquals(
             $externalIdB,
-            $response->uploadedOrders[1]['externalId']
+            $response['uploadedOrders'][1]['externalId']
+        );
+    }
+
+    /**
+     * @group orders
+     */
+    public function testOrdersCombine()
+    {
+        $client = static::getApiClient();
+
+        $responseCreateFirst = $client->ordersCreate([
+            'firstName'  => 'Aaa111',
+            'externalId' => 'AA-' . time(),
+            'phone'      => '+79999999990'
+        ]);
+
+        static::assertTrue(
+            $responseCreateFirst->isSuccessful(),
+            'Got order'
+        );
+
+        $responseCreateSecond = $client->ordersCreate([
+            'firstName'  => 'Aaa222',
+            'externalId' => 'BB-' . time(),
+            'phone'      => '+79999999991'
+        ]);
+
+        static::assertTrue(
+            $responseCreateSecond->isSuccessful(),
+            'Got order'
+        );
+
+        $order = ['id' => $responseCreateFirst['id']];
+        $resultOrder = ['id' => $responseCreateSecond['id']];
+
+        $response = $client->ordersCombine($order, $resultOrder, 'ours');
+
+        static::assertTrue(
+            $response->isSuccessful(),
+            'Orders combined'
+        );
+    }
+
+    public function testOrdersPayment()
+    {
+        $client = static::getApiClient();
+        $externalId = 'AA-' . time();
+
+        $responseCreateFirst = $client->ordersCreate([
+            'firstName'  => 'Aaa111aaA',
+            'phone'      => '+79999999990'
+        ]);
+
+        static::assertTrue(
+            $responseCreateFirst->isSuccessful(),
+            'Got order'
+        );
+
+        $payment = array(
+            'externalId' => $externalId,
+            'order' => array('id' => $responseCreateFirst['id']),
+            'amount' => 1200,
+            'comment' => 'test payment',
+            'type' => 'cash',
+            'status' => 'paid'
+        );
+
+        $response = $client->ordersPaymentCreate($payment);
+
+        static::assertTrue(
+            $response->isSuccessful(),
+            'Got payment'
+        );
+
+        $paymentEdit = array(
+            'externalId' => $externalId,
+            'amount' => 1500,
+            'comment' => 'test payment!',
+            'type' => 'cash',
+            'status' => 'paid'
+        );
+
+        $responseAgain = $client->ordersPaymentEdit($paymentEdit);
+
+        static::assertTrue(
+            $responseAgain->isSuccessful(),
+            'Got payment'
         );
     }
 }

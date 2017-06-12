@@ -1,6 +1,6 @@
 # PHP-клиент для retailCRM API
 
-PHP-клиент для работы с [retailCRM API](http://www.retailcrm.ru/docs/Developers/ApiVersion4).
+PHP-клиент для работы с [retailCRM API](http://www.retailcrm.ru/docs/Developers/ApiVersion5).
 
 Рекомендуем обращаться к [документации](http://retailcrm.github.io/api-client-php) по библиотеке, в частности по классу [RetailCrm\ApiClient](http://retailcrm.github.io/api-client-php/class-RetailCrm.ApiClient.html).
 

@@ -1,10 +1,27 @@
 <?php
 
+/**
+ * PHP version 5.3
+ *
+ * Test case class
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
+ */
+
 namespace RetailCrm\Test;
 
 use RetailCrm\ApiClient;
 use RetailCrm\Http\Client;
 
+/**
+ * Class TestCase
+ *
+ * @package RetailCrm\Test
+ */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -13,6 +30,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * @param  string    $url (default: null)
      * @param  string    $apiKey (default: null)
      * @param  string    $site (default: null)
+     *
      * @return ApiClient
      */
     public static function getApiClient($url = null, $apiKey = null, $site = null)
@@ -44,4 +62,3 @@ class TestCase extends \PHPUnit_Framework_TestCase
         );
     }
 }
-
