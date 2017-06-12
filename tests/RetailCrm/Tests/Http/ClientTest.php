@@ -9,7 +9,7 @@
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Http;
@@ -25,7 +25,7 @@ use RetailCrm\Http\Client;
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ClientTest extends TestCase
 {
@@ -36,7 +36,7 @@ class ClientTest extends TestCase
     {
         $client = new Client('https://asdf.df', array());
 
-        $this->assertInstanceOf('RetailCrm\Http\Client', $client);
+        static::assertInstanceOf('RetailCrm\Http\Client', $client);
     }
 
     /**
@@ -53,7 +53,7 @@ class ClientTest extends TestCase
      * @group unit
      * @expectedException \InvalidArgumentException
      */
-    public function testMakeRequestWrongMethod()
+    public function testRequestWrongMethod()
     {
         $client = static::getClient();
         $client->makeRequest('/a', 'adsf');
@@ -63,7 +63,7 @@ class ClientTest extends TestCase
      * @group integration
      * @expectedException \RetailCrm\Exception\CurlException
      */
-    public function testMakeRequestWrongUrl()
+    public function testRequestWrongUrl()
     {
         $client = new Client('https://asdf.df', array());
         $client->makeRequest('/a', Client::METHOD_GET, array());
@@ -72,12 +72,12 @@ class ClientTest extends TestCase
     /**
      * @group integration
      */
-    public function testMakeRequestSuccess()
+    public function testRequestSuccess()
     {
         $client = static::getClient();
         $response = $client->makeRequest('/orders', Client::METHOD_GET);
 
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
     }
 }

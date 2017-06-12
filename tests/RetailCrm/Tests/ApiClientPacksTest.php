@@ -9,7 +9,7 @@
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests;
@@ -23,7 +23,7 @@ use RetailCrm\Test\TestCase;
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientPacksTest extends TestCase
 {
@@ -33,19 +33,19 @@ class ApiClientPacksTest extends TestCase
      * @group  packs
      * @return void
      */
-    public function testOrdersPacksHistory()
+    public function testPacksHistory()
     {
         $client = static::getApiClient();
 
         $response = $client->ordersPacksHistory();
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->success);
-        $this->assertTrue(
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->success);
+        static::assertTrue(
             isset($response['history']),
             'API returns orders assembly history'
         );
-        $this->assertTrue(
+        static::assertTrue(
             isset($response['generatedAt']),
             'API returns generatedAt in orders assembly history'
         );
@@ -57,7 +57,7 @@ class ApiClientPacksTest extends TestCase
      * @group  packs
      * @return void
      */
-    public function testOrdersPacksCreateFailed()
+    public function testPacksCreateFailed()
     {
         $client = static::getApiClient();
         $pack = array(
@@ -67,8 +67,8 @@ class ApiClientPacksTest extends TestCase
         );
 
         $response = $client->ordersPacksCreate($pack);
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(400, $response->getStatusCode());
-        $this->assertFalse($response->success);
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(400, $response->getStatusCode());
+        static::assertFalse($response->success);
     }
 }
