@@ -241,7 +241,7 @@ class ApiClientOrdersTest extends TestCase
 
     /**
      * @group orders
-]     */
+     */
     public function testOrdersFixExternalIds()
     {
         $client = static::getApiClient();
