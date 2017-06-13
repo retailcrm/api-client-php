@@ -9,11 +9,12 @@
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm;
 
+use function json_encode;
 use RetailCrm\Http\Client;
 use RetailCrm\Response\ApiResponse;
 
@@ -26,12 +27,12 @@ use RetailCrm\Response\ApiResponse;
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClient
 {
 
-    const VERSION = 'v4';
+    const VERSION = 'v5';
 
     protected $client;
 
@@ -141,6 +142,31 @@ class ApiClient
     }
 
     /**
+     * Change user status
+     *
+     * @param integer $id     user ID
+     * @param string  $status user status
+     *
+     * @return ApiResponse
+     */
+    public function usersStatus($id, $status)
+    {
+        $statuses = array("free", "busy", "dinner", "break");
+
+        if (empty($status) || !in_array($status, $statuses)) {
+            throw new \InvalidArgumentException(
+                'Parameter `status` must be not empty & must be equal one of these values: free|busy|dinner|break'
+            );
+        }
+
+        return $this->client->makeRequest(
+            "/users/$id/status",
+            Client::METHOD_POST,
+            array('status' => $status)
+        );
+    }
+
+    /**
      * Returns filtered orders list
      *
      * @param array $filter (default: array())
@@ -175,7 +201,43 @@ class ApiClient
     }
 
     /**
-     * Create a order
+     * Combine orders
+     *
+     * @param string $technique
+     * @param array  $order
+     * @param array  $resultOrder
+     *
+     * @return ApiResponse
+     */
+    public function ordersCombine($order, $resultOrder, $technique = 'ours')
+    {
+        $techniques = array('ours', 'summ', 'theirs');
+
+        if (!count($order) || !count($resultOrder)) {
+            throw new \InvalidArgumentException(
+                'Parameters `order` & `resultOrder` must contains a data'
+            );
+        }
+
+        if (!in_array($technique, $techniques)) {
+            throw new \InvalidArgumentException(
+                'Parameter `technique` must be on of ours|summ|theirs'
+            );
+        }
+
+        return $this->client->makeRequest(
+            '/orders/combine',
+            Client::METHOD_POST,
+            array(
+                'technique' => $technique,
+                'order' => json_encode($order),
+                'resultOrder' => json_encode($resultOrder)
+            )
+        );
+    }
+
+    /**
+     * Create an order
      *
      * @param array  $order order data
      * @param string $site  (default: null)
@@ -202,7 +264,7 @@ class ApiClient
     }
 
     /**
-     * Save order IDs' (id and externalId) association in the CRM
+     * Save order IDs' (id and externalId) association into CRM
      *
      * @param array $ids order identificators
      *
@@ -310,7 +372,7 @@ class ApiClient
     }
 
     /**
-     * Edit a order
+     * Edit an order
      *
      * @param array  $order order data
      * @param string $by    (default: 'externalId')
@@ -378,6 +440,67 @@ class ApiClient
     }
 
     /**
+     * Create an order payment
+     *
+     * @param array $payment order data
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return ApiResponse
+     */
+    public function ordersPaymentCreate(array $payment)
+    {
+        if (!count($payment)) {
+            throw new \InvalidArgumentException(
+                'Parameter `payment` must contains a data'
+            );
+        }
+
+        return $this->client->makeRequest(
+            '/orders/payments/create',
+            Client::METHOD_POST,
+            array('payment' => json_encode($payment))
+        );
+    }
+
+    /**
+     * Edit an order payment
+     *
+     * @param array  $payment order data
+     * @param string $by      by key
+     * @param null   $site    site code
+     *
+     * @return ApiResponse
+     */
+    public function ordersPaymentEdit(array $payment, $by = 'externalId', $site = null)
+    {
+        if (!count($payment)) {
+            throw new \InvalidArgumentException(
+                'Parameter `payment` must contains a data'
+            );
+        }
+
+        $this->checkIdParameter($by);
+
+        if (!array_key_exists($by, $payment)) {
+            throw new \InvalidArgumentException(
+                sprintf('Order array must contain the "%s" parameter.', $by)
+            );
+        }
+
+        return $this->client->makeRequest(
+            sprintf('/orders/payments/%s/edit', $payment[$by]),
+            Client::METHOD_POST,
+            $this->fillSite(
+                $site,
+                array('payment' => json_encode($payment), 'by' => $by)
+            )
+        );
+    }
+
+    /**
      * Returns filtered customers list
      *
      * @param array $filter (default: array())
@@ -408,6 +531,33 @@ class ApiClient
             '/customers',
             Client::METHOD_GET,
             $parameters
+        );
+    }
+
+    /**
+     * Combine customers
+     *
+     * @param array $customers
+     * @param array $resultCustomer
+     *
+     * @return ApiResponse
+     */
+    public function customersCombine(array $customers, $resultCustomer)
+    {
+
+        if (!count($customers) || !count($resultCustomer)) {
+            throw new \InvalidArgumentException(
+                'Parameters `customers` & `resultCustomer` must contains a data'
+            );
+        }
+
+        return $this->client->makeRequest(
+            '/customers/combine',
+            Client::METHOD_POST,
+            array(
+                'customers' => json_encode($customers),
+                'resultCustomer' => json_encode($resultCustomer)
+            )
         );
     }
 
@@ -918,6 +1068,40 @@ class ApiClient
 
         return $this->client->makeRequest(
             '/store/products',
+            Client::METHOD_GET,
+            $parameters
+        );
+    }
+
+    /**
+     * Get products groups
+     *
+     * @param array $filter (default: array())
+     * @param int   $page   (default: null)
+     * @param int   $limit  (default: null)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return ApiResponse
+     */
+    public function storeProductsGroups(array $filter = array(), $page = null, $limit = null)
+    {
+        $parameters = array();
+
+        if (count($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest(
+            '/store/product-groups',
             Client::METHOD_GET,
             $parameters
         );
@@ -1578,8 +1762,7 @@ class ApiClient
         $outputEventSupported = false,
         $hangupEventSupported = false,
         $changeUserStatusUrl = false
-    )
-    {
+    ) {
         if (!isset($code)) {
             throw new \InvalidArgumentException('Code must be set');
         }
@@ -1671,8 +1854,7 @@ class ApiClient
         $hangupStatus,
         $externalPhone = null,
         $webAnalyticsData = array()
-    )
-    {
+    ) {
         if (!isset($phone)) {
             throw new \InvalidArgumentException('Phone number must be set');
         }
@@ -1793,6 +1975,362 @@ class ApiClient
     {
         return $this->client->makeRequest(
             '/statistic/update',
+            Client::METHOD_GET
+        );
+    }
+
+    /**
+     * Get custom fields list
+     *
+     * @param array $filter
+     * @param null  $limit
+     * @param null  $page
+     *
+     * @return ApiResponse
+     */
+    public function customFieldsList(array $filter = array(), $limit = null, $page = null)
+    {
+        $parameters = array();
+
+        if (count($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest(
+            '/custom-fields',
+            Client::METHOD_GET,
+            $parameters
+        );
+    }
+
+    /**
+     * Create custom field
+     *
+     * @param $entity
+     * @param $customField
+     *
+     * @return ApiResponse
+     */
+    public function customFieldsCreate($entity, $customField)
+    {
+        if (!count($customField) ||
+            empty($customField['code']) ||
+            empty($customField['name']) ||
+            empty($customField['type'])
+        ) {
+            throw new \InvalidArgumentException(
+                'Parameter `customField` must contain a data & fields `code`, `name` & `type` must be set'
+            );
+        }
+
+        if (empty($entity) || $entity != 'customer' || $entity != 'order') {
+            throw new \InvalidArgumentException(
+                'Parameter `entity` must contain a data & value must be `order` or `customer`'
+            );
+        }
+
+        return $this->client->makeRequest(
+            "/custom-fields/$entity/create",
+            Client::METHOD_POST,
+            array('customField' => json_encode($customField))
+        );
+    }
+
+    /**
+     * Edit custom field
+     *
+     * @param $entity
+     * @param $customField
+     *
+     * @return ApiResponse
+     */
+    public function customFieldsEdit($entity, $customField)
+    {
+        if (!count($customField) || empty($customField['code'])) {
+            throw new \InvalidArgumentException(
+                'Parameter `customField` must contain a data & fields `code` must be set'
+            );
+        }
+
+        if (empty($entity) || $entity != 'customer' || $entity != 'order') {
+            throw new \InvalidArgumentException(
+                'Parameter `entity` must contain a data & value must be `order` or `customer`'
+            );
+        }
+
+        return $this->client->makeRequest(
+            "/custom-fields/$entity/edit/{$customField['code']}",
+            Client::METHOD_POST,
+            array('customField' => json_encode($customField))
+        );
+    }
+
+    /**
+     * Get custom field
+     *
+     * @param $entity
+     * @param $code
+     *
+     * @return ApiResponse
+     */
+    public function customFieldsGet($entity, $code)
+    {
+        if (empty($code)) {
+            throw new \InvalidArgumentException(
+                'Parameter `code` must be not empty'
+            );
+        }
+
+        if (empty($entity) || $entity != 'customer' || $entity != 'order') {
+            throw new \InvalidArgumentException(
+                'Parameter `entity` must contain a data & value must be `order` or `customer`'
+            );
+        }
+
+        return $this->client->makeRequest(
+            "/custom-fields/$entity/$code",
+            Client::METHOD_GET
+        );
+    }
+
+    /**
+     * Get custom dictionaries list
+     *
+     * @param array $filter
+     * @param null  $limit
+     * @param null  $page
+     *
+     * @return ApiResponse
+     */
+    public function customDictionariesList(array $filter = array(), $limit = null, $page = null)
+    {
+        $parameters = array();
+
+        if (count($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest(
+            '/custom-fields/dictionaries',
+            Client::METHOD_GET,
+            $parameters
+        );
+    }
+
+    /**
+     * Create custom dictionary
+     *
+     * @param $customDictionary
+     *
+     * @return ApiResponse
+     */
+    public function customDictionariesCreate($customDictionary)
+    {
+        if (!count($customDictionary) ||
+            empty($customDictionary['code']) ||
+            empty($customDictionary['elements'])
+        ) {
+            throw new \InvalidArgumentException(
+                'Parameter `dictionary` must contain a data & fields `code` & `elemets` must be set'
+            );
+        }
+
+        return $this->client->makeRequest(
+            "/custom-fields/dictionaries/{$customDictionary['code']}/create",
+            Client::METHOD_POST,
+            array('customDictionary' => json_encode($customDictionary))
+        );
+    }
+
+    /**
+     * Edit custom dictionary
+     *
+     * @param $customDictionary
+     *
+     * @return ApiResponse
+     */
+    public function customDictionariesEdit($customDictionary)
+    {
+        if (!count($customDictionary) ||
+            empty($customDictionary['code']) ||
+            empty($customDictionary['elements'])
+        ) {
+            throw new \InvalidArgumentException(
+                'Parameter `dictionary` must contain a data & fields `code` & `elemets` must be set'
+            );
+        }
+
+        return $this->client->makeRequest(
+            "/custom-fields/dictionaries/{$customDictionary['code']}/edit",
+            Client::METHOD_POST,
+            array('customDictionary' => json_encode($customDictionary))
+        );
+    }
+
+    /**
+     * Get custom dictionary
+     *
+     * @param $code
+     *
+     * @return ApiResponse
+     */
+    public function customDictionariesGet($code)
+    {
+        if (empty($code)) {
+            throw new \InvalidArgumentException(
+                'Parameter `code` must be not empty'
+            );
+        }
+
+        return $this->client->makeRequest(
+            "/custom-fields/dictionaries/$code",
+            Client::METHOD_GET
+        );
+    }
+
+    /**
+     * Get segments list
+     *
+     * @param array $filter
+     * @param null  $limit
+     * @param null  $page
+     *
+     * @return ApiResponse
+     */
+    public function segmentsList(array $filter = array(), $limit = null, $page = null)
+    {
+        $parameters = array();
+
+        if (count($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest(
+            '/segments',
+            Client::METHOD_GET,
+            $parameters
+        );
+    }
+
+    /**
+     * Get tasks list
+     *
+     * @param array $filter
+     * @param null  $limit
+     * @param null  $page
+     *
+     * @return ApiResponse
+     */
+    public function tasksList(array $filter = array(), $limit = null, $page = null)
+    {
+        $parameters = array();
+
+        if (count($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest(
+            '/tasks',
+            Client::METHOD_GET,
+            $parameters
+        );
+    }
+
+    /**
+     * Create task
+     *
+     * @param array $task
+     * @param null  $site
+     *
+     * @return ApiResponse
+     *
+     */
+    public function tasksCreate($task, $site = null)
+    {
+        if (!count($task)) {
+            throw new \InvalidArgumentException(
+                'Parameter `task` must contain a data'
+            );
+        }
+
+        return $this->client->makeRequest(
+            "/tasks/create",
+            Client::METHOD_POST,
+            $this->fillSite(
+                $site,
+                array('task' => json_encode($task))
+            )
+        );
+    }
+
+    /**
+     * Edit task
+     *
+     * @param array $task
+     * @param null  $site
+     *
+     * @return ApiResponse
+     *
+     */
+    public function tasksEdit($task, $site = null)
+    {
+        if (!count($task)) {
+            throw new \InvalidArgumentException(
+                'Parameter `task` must contain a data'
+            );
+        }
+
+        return $this->client->makeRequest(
+            "/tasks/{$task['id']}/edit",
+            Client::METHOD_POST,
+            $this->fillSite(
+                $site,
+                array('task' => json_encode($task))
+            )
+        );
+    }
+
+    /**
+     * Get custom dictionary
+     *
+     * @param $id
+     *
+     * @return ApiResponse
+     */
+    public function tasksGet($id)
+    {
+        if (empty($id)) {
+            throw new \InvalidArgumentException(
+                'Parameter `id` must be not empty'
+            );
+        }
+
+        return $this->client->makeRequest(
+            "/tasks/$id",
             Client::METHOD_GET
         );
     }

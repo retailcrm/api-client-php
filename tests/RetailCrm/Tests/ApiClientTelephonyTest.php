@@ -9,7 +9,7 @@
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests;
@@ -22,7 +22,7 @@ use RetailCrm\Test\TestCase;
  * @package RetailCrm\Tests
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientTelephonyTest extends TestCase
 {
@@ -53,9 +53,9 @@ class ApiClientTelephonyTest extends TestCase
             array(array('siteCode' => 'api-client-php', 'externalPhone' => '+74950000000'))
         );
 
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertTrue(in_array($response->getStatusCode(), array(200, 201)));
-        $this->assertTrue($response->isSuccessful());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertTrue(in_array($response->getStatusCode(), array(200, 201)));
+        static::assertTrue($response->isSuccessful());
     }
 
     /**
@@ -70,9 +70,9 @@ class ApiClientTelephonyTest extends TestCase
         $client = static::getApiClient();
 
         $response = $client->telephonySettingsGet(self::TEL_CODE);
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->isSuccessful());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
     }
 
     /**
@@ -95,9 +95,9 @@ class ApiClientTelephonyTest extends TestCase
 
         );
 
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->isSuccessful());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
     }
 
     /**
@@ -119,8 +119,8 @@ class ApiClientTelephonyTest extends TestCase
                     'phone' => '+79999999999',
                     'code' => '101',
                     'result' => 'answered',
-                    'externalId' => rand(10,100),
-                    'recordUrl' => 'https://dl.dropboxusercontent.com/u/15492750/dontry2bfunny.mp3'
+                    'externalId' => rand(10, 100),
+                    'recordUrl' => 'http://download.retailcrm.pro/api-client-files/beep1.mp3'
                 ),
                 array(
                     'date' => '2016-07-22 00:24:00',
@@ -128,15 +128,15 @@ class ApiClientTelephonyTest extends TestCase
                     'phone' => '+79999999999',
                     'code' => '101',
                     'result' => 'answered',
-                    'externalId' => rand(10,100),
-                    'recordUrl' => 'https://dl.dropboxusercontent.com/u/15492750/donttytobefunny.mp3'
+                    'externalId' => rand(10, 100),
+                    'recordUrl' => 'http://download.retailcrm.pro/api-client-files/beep2.mp3'
                 )
             )
         );
 
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->isSuccessful());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
     }
 
     /**
@@ -152,8 +152,8 @@ class ApiClientTelephonyTest extends TestCase
 
         $response = $client->telephonyCallManager('+79999999999', 1);
 
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue($response->isSuccessful());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
     }
 }
