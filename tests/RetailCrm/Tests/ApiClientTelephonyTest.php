@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client telephony test class
  *
@@ -49,12 +49,12 @@ class ApiClientTelephonyTest extends TestCase
             'TestTelephony',
             false,
             self::TEL_IMAGE,
-            array(array('userId' => $_SERVER['CRM_USER_ID'], 'code' => '101')),
-            array(array('siteCode' => 'api-client-php', 'externalPhone' => '+74950000000'))
+            [['userId' => $_SERVER['CRM_USER_ID'], 'code' => '101']],
+            [['siteCode' => 'api-client-php', 'externalPhone' => '+74950000000']]
         );
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertTrue(in_array($response->getStatusCode(), array(200, 201)));
+        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());
     }
 
@@ -89,7 +89,7 @@ class ApiClientTelephonyTest extends TestCase
         $response = $client->telephonyCallEvent(
             '+79999999999',
             'in',
-            array('101'),
+            ['101'],
             'failed',
             '+74950000000'
 
@@ -112,8 +112,8 @@ class ApiClientTelephonyTest extends TestCase
         $client = static::getApiClient();
 
         $response = $client->telephonyCallsUpload(
-            array(
-                array(
+            [
+                [
                     'date' => '2016-07-22 00:18:00',
                     'type' => 'in',
                     'phone' => '+79999999999',
@@ -121,8 +121,8 @@ class ApiClientTelephonyTest extends TestCase
                     'result' => 'answered',
                     'externalId' => rand(10, 100),
                     'recordUrl' => 'http://download.retailcrm.pro/api-client-files/beep1.mp3'
-                ),
-                array(
+                ],
+                [
                     'date' => '2016-07-22 00:24:00',
                     'type' => 'in',
                     'phone' => '+79999999999',
@@ -130,8 +130,8 @@ class ApiClientTelephonyTest extends TestCase
                     'result' => 'answered',
                     'externalId' => rand(10, 100),
                     'recordUrl' => 'http://download.retailcrm.pro/api-client-files/beep2.mp3'
-                )
-            )
+                ]
+            ]
         );
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);

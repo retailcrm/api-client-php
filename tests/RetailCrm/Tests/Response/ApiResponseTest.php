@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client response test class
  *

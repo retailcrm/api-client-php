@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client packs test class
  *
@@ -60,11 +60,11 @@ class ApiClientPacksTest extends TestCase
     public function testPacksCreateFailed()
     {
         $client = static::getApiClient();
-        $pack = array(
+        $pack = [
             'itemId' => 12,
             'store' => 'test',
             'quantity' => 2
-        );
+        ];
 
         $response = $client->ordersPacksCreate($pack);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);

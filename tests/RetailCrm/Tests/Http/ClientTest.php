@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client test class
  *
@@ -34,7 +34,7 @@ class ClientTest extends TestCase
      */
     public function testConstruct()
     {
-        $client = new Client('https://asdf.df', array());
+        $client = new Client('https://asdf.df', []);
 
         static::assertInstanceOf('RetailCrm\Http\Client', $client);
     }
@@ -45,7 +45,7 @@ class ClientTest extends TestCase
      */
     public function testHttpRequiring()
     {
-        $client = new Client('http://demo.retailcrm.ru/api/' . ApiClient::VERSION, array('apiKey' => '123'));
+        $client = new Client('http://demo.retailcrm.ru/api/' . ApiClient::VERSION, ['apiKey' => '123']);
         return $client;
     }
 
@@ -65,8 +65,8 @@ class ClientTest extends TestCase
      */
     public function testRequestWrongUrl()
     {
-        $client = new Client('https://asdf.df', array());
-        $client->makeRequest('/a', Client::METHOD_GET, array());
+        $client = new Client('https://asdf.df', []);
+        $client->makeRequest('/a', Client::METHOD_GET, []);
     }
 
     /**

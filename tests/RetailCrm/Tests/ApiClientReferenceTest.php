@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client references test class
  *
@@ -59,7 +59,7 @@ class ApiClientReferenceTest extends TestCase
         $client = static::getApiClient();
 
         $method = $name . 'Edit';
-        $client->$method(array());
+        $client->$method([]);
     }
 
     /**
@@ -74,11 +74,11 @@ class ApiClientReferenceTest extends TestCase
 
         $code = 'dict-' . strtolower($name) . '-' . time();
         $method = $name . 'Edit';
-        $params = array(
+        $params = [
             'code' => $code,
             'name' => 'Aaa' . $code,
             'active' => false
-        );
+        ];
         if ($name == 'statuses') {
             $params['group'] = 'new';
         }
@@ -86,15 +86,15 @@ class ApiClientReferenceTest extends TestCase
         $response = $client->$method($params);
         /* @var \RetailCrm\Response\ApiResponse $response */
 
-        static::assertTrue(in_array($response->getStatusCode(), array(200, 201)));
+        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
 
-        $response = $client->$method(array(
+        $response = $client->$method([
             'code' => $code,
             'name' => 'Bbb' . $code,
             'active' => false
-        ));
+        ]);
 
-        static::assertTrue(in_array($response->getStatusCode(), array(200, 201)));
+        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
     }
 
     /**
@@ -108,11 +108,11 @@ class ApiClientReferenceTest extends TestCase
 
         $code = 'dict-' . strtolower($name) . '-' . time();
         $method = $name . 'Edit';
-        $params = array(
+        $params = [
             'code' => $code,
             'name' => 'Aaa',
             'active' => false
-        );
+        ];
 
         $response = $client->$method($params);
         /* @var \RetailCrm\Response\ApiResponse $response */
@@ -121,11 +121,11 @@ class ApiClientReferenceTest extends TestCase
 
         if ($code == $client->getSite()) {
             $method = $name . 'Edit';
-            $params = array(
+            $params = [
                 'code' => $code,
                 'name' => 'Aaa' . time(),
                 'active' => false
-            );
+            ];
 
             $response = $client->$method($params);
             static::assertEquals(200, $response->getStatusCode());
@@ -137,18 +137,18 @@ class ApiClientReferenceTest extends TestCase
      */
     public function getListDictionaries()
     {
-        return array(
-            array('deliveryServices'),
-            array('deliveryTypes'),
-            array('orderMethods'),
-            array('orderTypes'),
-            array('paymentStatuses'),
-            array('paymentTypes'),
-            array('productStatuses'),
-            array('statusGroups'),
-            array('statuses'),
-            array('sites'),
-        );
+        return [
+            ['deliveryServices'],
+            ['deliveryTypes'],
+            ['orderMethods'],
+            ['orderTypes'],
+            ['paymentStatuses'],
+            ['paymentTypes'],
+            ['productStatuses'],
+            ['statusGroups'],
+            ['statuses'],
+            ['sites'],
+        ];
     }
 
     /**
@@ -156,15 +156,15 @@ class ApiClientReferenceTest extends TestCase
      */
     public function getEditDictionaries()
     {
-        return array(
-            array('deliveryServices'),
-            array('deliveryTypes'),
-            array('orderMethods'),
-            array('orderTypes'),
-            array('paymentStatuses'),
-            array('paymentTypes'),
-            array('productStatuses'),
-            array('statuses'),
-        );
+        return [
+            ['deliveryServices'],
+            ['deliveryTypes'],
+            ['orderMethods'],
+            ['orderTypes'],
+            ['paymentStatuses'],
+            ['paymentTypes'],
+            ['productStatuses'],
+            ['statuses'],
+        ];
     }
 }

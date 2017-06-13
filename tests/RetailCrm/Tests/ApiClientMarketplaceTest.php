@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client marketplace test class
  *
@@ -34,16 +34,16 @@ class ApiClientMarketplaceTest extends TestCase
         $client = static::getApiClient();
 
         $response = $client->marketplaceSettingsEdit(
-            array(
+            [
                 'name' => self::SNAME,
                 'code' => self::SCODE,
                 'logo' => 'http://download.retailcrm.pro/logos/setup.svg',
                 'active' => 'true'
-            )
+            ]
         );
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertTrue(in_array($response->getStatusCode(), array(200, 201)));
+        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());
     }
 }

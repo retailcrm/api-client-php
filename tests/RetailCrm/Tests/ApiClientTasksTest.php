@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client orders test class
  *
@@ -47,19 +47,19 @@ class ApiClientTasksTest extends TestCase
     public function testTasksCreateExceptionEmpty()
     {
         $client = static::getApiClient();
-        $client->tasksCreate(array());
+        $client->tasksCreate([]);
     }
 
     public function testTasksCRU()
     {
         $client = static::getApiClient();
 
-        $task = array(
+        $task = [
             'text' => 'test task',
             'commentary' => 'test task commentary',
             'performerId' => $_SERVER['CRM_USER_ID'],
             'complete' => false
-        );
+        ];
 
         $responseCreate = $client->tasksCreate($task);
 

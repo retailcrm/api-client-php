@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * Test case class
  *
@@ -50,15 +50,15 @@ class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @return Client
      */
-    public static function getClient($url = null, $defaultParameters = array())
+    public static function getClient($url = null, $defaultParameters = [])
     {
         return new Client(
             $url ?: $_SERVER['CRM_URL'] . '/api/' . ApiClient::VERSION,
-            array(
+            [
                 'apiKey' => array_key_exists('apiKey', $defaultParameters)
                     ? $defaultParameters['apiKey']
                     : $_SERVER['CRM_API_KEY']
-            )
+            ]
         );
     }
 }

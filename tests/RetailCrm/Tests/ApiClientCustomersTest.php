@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client customers test class
  *
@@ -39,19 +39,19 @@ class ApiClientCustomersTest extends TestCase
 
         $externalId = 'c-create-' . time();
 
-        $response = $client->customersCreate(array(
+        $response = $client->customersCreate([
             'firstName' => self::FIRST_NAME,
             'externalId' => $externalId,
-        ));
+        ]);
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(201, $response->getStatusCode());
         static::assertTrue(is_int($response['id']));
 
-        return array(
+        return [
             'id' => $response['id'],
             'externalId' => $externalId,
-        );
+        ];
     }
 
     /**
@@ -61,7 +61,7 @@ class ApiClientCustomersTest extends TestCase
     public function testCreateExceptionEmpty()
     {
         $client = static::getApiClient();
-        $client->customersCreate(array());
+        $client->customersCreate([]);
     }
 
     /**
@@ -115,19 +115,19 @@ class ApiClientCustomersTest extends TestCase
         $client = static::getApiClient();
 
         $response = $client->customersEdit(
-            array(
+            [
                 'id' => 22342134,
                 'lastName' => '12345',
-            ),
+            ],
             'id'
         );
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(404, $response->getStatusCode());
 
-        $response = $client->customersEdit(array(
+        $response = $client->customersEdit([
             'externalId' => $ids['externalId'],
             'lastName' => '12345',
-        ));
+        ]);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->isSuccessful());
@@ -140,7 +140,7 @@ class ApiClientCustomersTest extends TestCase
     public function testCustomersEditExceptionEmpty()
     {
         $client = static::getApiClient();
-        $client->customersEdit(array(), 'asdf');
+        $client->customersEdit([], 'asdf');
     }
 
     /**
@@ -150,7 +150,7 @@ class ApiClientCustomersTest extends TestCase
     public function testCustomersEditException()
     {
         $client = static::getApiClient();
-        $client->customersEdit(array('id' => 678678678), 'asdf');
+        $client->customersEdit(['id' => 678678678], 'asdf');
     }
 
     /**
@@ -165,14 +165,14 @@ class ApiClientCustomersTest extends TestCase
         static::assertTrue($response->isSuccessful());
         static::assertTrue(isset($response['customers']));
 
-        $response = $client->customersList(array(), 1, 300);
+        $response = $client->customersList([], 1, 300);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertFalse(
             $response->isSuccessful(),
             'Pagination error'
         );
 
-        $response = $client->customersList(array('maxOrdersCount' => 10), 1);
+        $response = $client->customersList(['maxOrdersCount' => 10], 1);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(
             $response->isSuccessful(),
@@ -187,7 +187,7 @@ class ApiClientCustomersTest extends TestCase
     public function testCustomersFixExternalIdsException()
     {
         $client = static::getApiClient();
-        $client->customersFixExternalIds(array());
+        $client->customersFixExternalIds([]);
     }
 
     /**
@@ -197,9 +197,9 @@ class ApiClientCustomersTest extends TestCase
     {
         $client = static::getApiClient();
 
-        $response = $client->ordersCreate(array(
+        $response = $client->ordersCreate([
             'firstName' => 'Aaa111',
-        ));
+        ]);
 
         static::assertTrue(
             $response->isSuccessful(),
@@ -215,9 +215,9 @@ class ApiClientCustomersTest extends TestCase
         $id = $response['order']['customer']['id'];
         $externalId = 'asdf' . time();
 
-        $response = $client->customersFixExternalIds(array(
-            array('id' => $id, 'externalId' => $externalId)
-        ));
+        $response = $client->customersFixExternalIds([
+            ['id' => $id, 'externalId' => $externalId]
+        ]);
 
         static::assertTrue(
             $response->isSuccessful(),
@@ -248,7 +248,7 @@ class ApiClientCustomersTest extends TestCase
     public function testCustomersUploadExceptionEmpty()
     {
         $client = static::getApiClient();
-        $client->customersUpload(array());
+        $client->customersUpload([]);
     }
 
     /**
@@ -261,16 +261,16 @@ class ApiClientCustomersTest extends TestCase
         $externalIdA = 'upload-a-' . time();
         $externalIdB = 'upload-b-' . time();
 
-        $response = $client->customersUpload(array(
-            array(
+        $response = $client->customersUpload([
+            [
                 'externalId' => $externalIdA,
                 'firstName' => 'Aaa',
-            ),
-            array(
+            ],
+            [
                 'externalId' => $externalIdB,
                 'lastName' => 'Bbb',
-            ),
-        ));
+            ],
+        ]);
         static::assertTrue(
             $response->isSuccessful(),
             'Got customer'
@@ -292,41 +292,41 @@ class ApiClientCustomersTest extends TestCase
     {
         $client = static::getApiClient();
 
-        $responseCreateFirst = $client->customersCreate(array(
+        $responseCreateFirst = $client->customersCreate([
             'firstName' => 'Aaa111',
             'externalId' => 'AA-' . time(),
-            'phones' => array(
-                array(
+            'phones' => [
+                [
                     'number' => '+79999999990'
-                )
-            )
-        ));
+                ]
+            ]
+        ]);
 
         static::assertTrue(
             $responseCreateFirst->isSuccessful(),
             'Got customer'
         );
 
-        $responseCreateSecond = $client->customersCreate(array(
+        $responseCreateSecond = $client->customersCreate([
             'firstName' => 'Aaa222',
             'externalId' => 'BB-' . time(),
-            'phones' => array(
-                array(
+            'phones' => [
+                [
                     'number' => '+79999999991'
-                )
-            )
-        ));
+                ]
+            ]
+        ]);
 
         static::assertTrue(
             $responseCreateSecond->isSuccessful(),
             'Got customer'
         );
 
-        $customers = array(
-            array('id' => $responseCreateFirst['id'])
-        );
+        $customers = [
+            ['id' => $responseCreateFirst['id']]
+        ];
 
-        $resultCustomer = array('id' => $responseCreateSecond['id']);
+        $resultCustomer = ['id' => $responseCreateSecond['id']];
 
         $response = $client->customersCombine($customers, $resultCustomer);
 

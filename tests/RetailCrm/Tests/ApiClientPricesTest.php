@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client prices test class
  *
@@ -74,12 +74,12 @@ class ApiClientPricesTest extends TestCase
         $client = static::getApiClient();
 
         $response = $client->pricesEdit(
-            array(
+            [
                 'code' => $this->code,
                 'name' => $this->code,
                 'ordering' => 500,
                 'active' => true
-            )
+            ]
         );
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -94,7 +94,7 @@ class ApiClientPricesTest extends TestCase
     public function testPricesUploadExceptionEmpty()
     {
         $client = static::getApiClient();
-        $client->storePricesUpload(array());
+        $client->storePricesUpload([]);
     }
 
     /**
@@ -107,26 +107,26 @@ class ApiClientPricesTest extends TestCase
         $xmlIdA = 'upload-a-' . time();
         $xmlIdB = 'upload-b-' . time();
 
-        $response = $client->storePricesUpload(array(
-            array(
+        $response = $client->storePricesUpload([
+            [
                 'xmlId' => $xmlIdA,
-                'prices' => array(
-                    array(
+                'prices' => [
+                    [
                         'code' => $this->code,
                         'price' => 1700
-                    )
-                )
-            ),
-            array(
+                    ]
+                ]
+            ],
+            [
                 'xmlId' => $xmlIdB,
-                'prices' => array(
-                    array(
+                'prices' => [
+                    [
                         'code' => $this->code,
                         'price' => 1500
-                    )
-                )
-            ),
-        ));
+                    ]
+                ]
+            ],
+        ]);
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());

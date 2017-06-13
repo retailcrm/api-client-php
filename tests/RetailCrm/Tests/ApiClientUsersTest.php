@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client users test class
  *
@@ -36,7 +36,7 @@ class ApiClientUsersTest extends TestCase
 
         $response = $client->usersList();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertTrue(in_array($response->getStatusCode(), array(200, 201)));
+        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());
     }
 
@@ -49,7 +49,7 @@ class ApiClientUsersTest extends TestCase
 
         $response = $client->usersGet($_SERVER["CRM_USER_ID"]);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertTrue(in_array($response->getStatusCode(), array(200, 201)));
+        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());
     }
 
@@ -62,7 +62,7 @@ class ApiClientUsersTest extends TestCase
 
         $response = $client->usersStatus($_SERVER["CRM_USER_ID"], 'dinner');
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertTrue(in_array($response->getStatusCode(), array(200, 201)));
+        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());
     }
 }

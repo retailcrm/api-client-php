@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client store test class
  *
@@ -37,9 +37,9 @@ class ApiClientStoreTest extends TestCase
     {
         $client = static::getApiClient();
 
-        $response = $client->storesEdit(array('name' => self::SNAME, 'code' => self::SCODE));
+        $response = $client->storesEdit(['name' => self::SNAME, 'code' => self::SCODE]);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertTrue(in_array($response->getStatusCode(), array(200, 201)));
+        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());
     }
 
@@ -67,7 +67,7 @@ class ApiClientStoreTest extends TestCase
     public function testInventoriesException()
     {
         $client = static::getApiClient();
-        $client->storeInventoriesUpload(array());
+        $client->storeInventoriesUpload([]);
     }
 
     /**
@@ -77,28 +77,28 @@ class ApiClientStoreTest extends TestCase
     {
         $client = static::getApiClient();
 
-        $response = $client->storeInventoriesUpload(array(
-            array(
+        $response = $client->storeInventoriesUpload([
+            [
                 'externalId' => 'pTKIKAeghYzX21HTdzFCe1',
-                'stores' => array(
-                    array(
+                'stores' => [
+                    [
                         'code' => self::SCODE,
                         'available' => 10,
                         'purchasePrice' => 1700
-                    )
-                )
-            ),
-            array(
+                    ]
+                ]
+            ],
+            [
                 'externalId' => 'JQIvcrCtiSpOV3AAfMiQB3',
-                'stores' => array(
-                    array(
+                'stores' => [
+                    [
                         'code' => self::SCODE,
                         'available' => 20,
                         'purchasePrice' => 1500
-                    )
-                )
-            ),
-        ));
+                    ]
+                ]
+            ],
+        ]);
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue($response->isSuccessful());
@@ -114,18 +114,18 @@ class ApiClientStoreTest extends TestCase
         $externalIdA = 'upload-a-' . time();
         $externalIdB = 'upload-b-' . time();
 
-        $response = $client->storeInventoriesUpload(array(
-            array(
+        $response = $client->storeInventoriesUpload([
+            [
                 'externalId' => $externalIdA,
                 'available' => 10,
                 'purchasePrice' => 1700
-            ),
-            array(
+            ],
+            [
                 'externalId' => $externalIdB,
                 'available' => 20,
                 'purchasePrice' => 1500
-            ),
-        ));
+            ],
+        ]);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(400, $response->getStatusCode());
         static::assertTrue(isset($response['errorMsg']), $response['errorMsg']);

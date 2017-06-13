@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * Class CurlException
+ * TelephonyTrait
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -12,12 +12,14 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm\Exception;
+namespace RetailCrm\Traits\V5;
+
+use RetailCrm\Traits\V4\TelephonyTrait as Previous;
 
 /**
  * PHP version 5.4
  *
- * Class CurlException
+ * TelephonyTrait class
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -25,6 +27,7 @@ namespace RetailCrm\Exception;
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
-class CurlException extends \RuntimeException
+trait TelephonyTrait
 {
+    use Previous;
 }
