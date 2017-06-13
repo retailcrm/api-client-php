@@ -474,7 +474,7 @@ class ApiClient
      *
      * @return ApiResponse
      */
-    public function ordersPaymentEdit(array $payment, $by = 'externalId', $site = null)
+    public function ordersPaymentEdit(array $payment, $by = 'id', $site = null)
     {
         if (!count($payment)) {
             throw new \InvalidArgumentException(
