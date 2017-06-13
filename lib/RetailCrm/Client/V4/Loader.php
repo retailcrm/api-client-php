@@ -15,9 +15,6 @@
 namespace RetailCrm\Client\V4;
 
 use RetailCrm\Http\Client;
-use RetailCrm\Response\ApiResponse;
-use RetailCrm\Traits\CoreTrait;
-use RetailCrm\Traits\StatisticTrait;
 use RetailCrm\Traits\V4;
 
 /**
