@@ -402,6 +402,7 @@ class ApiClientOrdersTest extends TestCase
         );
 
         $paymentEdit = array(
+            'id' => $response['id'],
             'externalId' => $externalId,
             'amount' => 1500,
             'comment' => 'test payment!',
