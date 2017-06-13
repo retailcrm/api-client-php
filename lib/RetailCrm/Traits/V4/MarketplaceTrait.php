@@ -12,7 +12,7 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm\Traits\V4;;
+namespace RetailCrm\Traits\V4;
 
 /**
  * PHP version 5.4
