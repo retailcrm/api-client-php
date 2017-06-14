@@ -12,13 +12,9 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm;
+namespace RetailCrm\Client;
 
-use RetailCrm\Client\ApiVersion3;
-use RetailCrm\Client\ApiVersion4;
-use RetailCrm\Client\ApiVersion5;
-use RetailCrm\Methods\Core;
-use RetailCrm\Methods\Statistic;
+use RetailCrm\Http\Client;
 
 /**
  * PHP version 5.4
@@ -31,9 +27,10 @@ use RetailCrm\Methods\Statistic;
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
-class ApiClient
+abstract class AbstractLoader
 {
-    public $request;
+    protected $siteCode;
+    protected $client;
 
     /**
      * Init version based client
@@ -42,23 +39,22 @@ class ApiClient
      * @param string $apiKey  api key
      * @param string $version api version
      * @param string $site    site code
-     *
      */
-    public function __construct($url, $apiKey, $version = 'v5', $site = null)
+    public function __construct($url, $apiKey, $version, $site = null)
     {
-        switch ($version) {
-            case 'v5':
-                $this->request = new ApiVersion5($url, $apiKey, $version, $site);
-                break;
-            case 'v4':
-                $this->request = new ApiVersion4($url, $apiKey, $version, $site);
-                break;
-            case 'v3':
-                $this->request = new ApiVersion3($url, $apiKey, $version, $site);
-                break;
+        if ('/' !== $url[strlen($url) - 1]) {
+            $url .= '/';
         }
-    }
 
-    use Core;
-    use Statistic;
+        if (empty($version) || !in_array($version, ['v3', 'v4', 'v5'])) {
+            throw new \InvalidArgumentException(
+                'Version parameter must be not empty and must be equal one of v3|v4|v5'
+            );
+        }
+
+        $url = $url . 'api/' . $version;
+
+        $this->client = new Client($url, ['apiKey' => $apiKey]);
+        $this->siteCode = $site;
+    }
 }

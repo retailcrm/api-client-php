@@ -29,16 +29,23 @@ class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @param  string    $url (default: null)
      * @param  string    $apiKey (default: null)
+     * @param  string    $version (default: null)
      * @param  string    $site (default: null)
      *
      * @return ApiClient
      */
-    public static function getApiClient($url = null, $apiKey = null, $site = null)
+    public static function getApiClient($url = null, $apiKey = null, $version = null, $site = null)
     {
+        $configUrl     = getenv('CRM_API_URL') ?: $_SERVER['CRM_API_URL'];
+        $configKey     = getenv('CRM_API_KEY') ?: $_SERVER['CRM_API_KEY'];
+        $configVersion = getenv('CRM_API_VERSION') ?: $_SERVER['CRM_API_VERSION'];
+        $configSite    = getenv('CRM_API_SITE') ?: $_SERVER['CRM_API_SITE'];
+
         return new ApiClient(
-            $url ?: $_SERVER['CRM_URL'],
-            $apiKey ?: $_SERVER['CRM_API_KEY'],
-            $site ?: (isset($_SERVER['CRM_SITE']) ? $_SERVER['CRM_SITE'] : null)
+            $url ?: $configUrl,
+            $apiKey ?: $configKey,
+            $version ?: $configVersion,
+            $site ?: (isset($configSite) ? $configSite: null)
         );
     }
 
@@ -53,7 +60,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     public static function getClient($url = null, $defaultParameters = [])
     {
         return new Client(
-            $url ?: $_SERVER['CRM_URL'] . '/api/' . ApiClient::VERSION,
+            $url ?: $_SERVER['CRM_URL'] . '/api/' . getenv('CRM_API_VERSION') ?: $_SERVER['CRM_API_VERSION'],
             [
                 'apiKey' => array_key_exists('apiKey', $defaultParameters)
                     ? $defaultParameters['apiKey']

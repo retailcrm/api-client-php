@@ -12,13 +12,9 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm;
+namespace RetailCrm\Client;
 
-use RetailCrm\Client\ApiVersion3;
-use RetailCrm\Client\ApiVersion4;
-use RetailCrm\Client\ApiVersion5;
-use RetailCrm\Methods\Core;
-use RetailCrm\Methods\Statistic;
+use RetailCrm\Methods\V3;
 
 /**
  * PHP version 5.4
@@ -31,10 +27,8 @@ use RetailCrm\Methods\Statistic;
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
-class ApiClient
+class ApiVersion3 extends AbstractLoader
 {
-    public $request;
-
     /**
      * Init version based client
      *
@@ -44,21 +38,15 @@ class ApiClient
      * @param string $site    site code
      *
      */
-    public function __construct($url, $apiKey, $version = 'v5', $site = null)
+    public function __construct($url, $apiKey, $version, $site)
     {
-        switch ($version) {
-            case 'v5':
-                $this->request = new ApiVersion5($url, $apiKey, $version, $site);
-                break;
-            case 'v4':
-                $this->request = new ApiVersion4($url, $apiKey, $version, $site);
-                break;
-            case 'v3':
-                $this->request = new ApiVersion3($url, $apiKey, $version, $site);
-                break;
-        }
+        parent::__construct($url, $apiKey, $version, $site);
     }
 
-    use Core;
-    use Statistic;
+    use V3\Customers;
+    use V3\Orders;
+    use V3\Packs;
+    use V3\References;
+    use V3\Stores;
+    use V3\Telephony;
 }
