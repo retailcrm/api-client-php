@@ -6,7 +6,7 @@ PHP-клиент для работы с [retailCRM API](http://www.retailcrm.ru/
 
 ## Обязательные требования
 
-* PHP версии 5.3 и выше
+* PHP версии 5.4 и выше
 * PHP-расширение cURL
 
 ## Установка
@@ -31,12 +31,12 @@ require 'path/to/vendor/autoload.php';
 ```php
 $client = new \RetailCrm\ApiClient(
     'https://demo.retailcrm.ru',
-    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
+    'v5'
 );
 
-
 try {
-    $response = $client->ordersGet('M-2342');
+    $response = $client-request->ordersGet('M-2342');
 } catch (\RetailCrm\Exception\CurlException $e) {
     echo "Сетевые проблемы. Ошибка подключения к retailCRM: " . $e->getMessage();
 }
@@ -66,11 +66,12 @@ if ($response->isSuccessful()) {
 
 $client = new \RetailCrm\ApiClient(
     'https://demo.retailcrm.ru',
-    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
+    'v4'
 );
 
 try {
-    $response = $client->ordersCreate(array(
+    $response = $client-request->ordersCreate(array(
         'externalId' => 'some-shop-order-id',
         'firstName' => 'Vasily',
         'lastName' => 'Pupkin',
