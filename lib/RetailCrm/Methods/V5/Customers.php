@@ -50,7 +50,7 @@ trait Customers
 
         return $this->client->makeRequest(
             '/customers/combine',
-            $this->client::METHOD_POST,
+            "POST",
             [
                 'customers' => json_encode($customers),
                 'resultCustomer' => json_encode($resultCustomer)

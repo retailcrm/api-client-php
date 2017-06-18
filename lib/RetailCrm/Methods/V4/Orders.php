@@ -61,7 +61,7 @@ trait Orders
 
         return $this->client->makeRequest(
             '/orders',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }
@@ -88,7 +88,7 @@ trait Orders
 
         return $this->client->makeRequest(
             '/orders/create',
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite($site, ['order' => json_encode($order)])
         );
     }
@@ -114,7 +114,7 @@ trait Orders
 
         return $this->client->makeRequest(
             '/orders/fix-external-ids',
-            $this->client::METHOD_POST,
+            "POST",
             ['orders' => json_encode($ids)
             ]
         );
@@ -145,7 +145,7 @@ trait Orders
 
         return $this->client->makeRequest(
             '/orders/statuses',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }
@@ -172,7 +172,7 @@ trait Orders
 
         return $this->client->makeRequest(
             '/orders/upload',
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite($site, ['orders' => json_encode($orders)])
         );
     }
@@ -196,7 +196,7 @@ trait Orders
 
         return $this->client->makeRequest(
             "/orders/$id",
-            $this->client::METHOD_GET,
+            "GET",
             $this->fillSite($site, ['by' => $by])
         );
     }
@@ -232,7 +232,7 @@ trait Orders
 
         return $this->client->makeRequest(
             sprintf('/orders/%s/edit', $order[$by]),
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite(
                 $site,
                 ['order' => json_encode($order), 'by' => $by]
@@ -264,7 +264,7 @@ trait Orders
 
         return $this->client->makeRequest(
             '/orders/history',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }

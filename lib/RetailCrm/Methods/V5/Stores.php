@@ -60,7 +60,7 @@ trait Stores
 
         return $this->client->makeRequest(
             '/store/product-groups',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }

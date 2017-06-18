@@ -49,7 +49,7 @@ trait Marketplace
 
         return $this->client->makeRequest(
             sprintf('/marketplace/external/setting/%s/edit', $configuration['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['configuration' => json_encode($configuration)]
         );
     }

@@ -52,7 +52,7 @@ trait Segments
 
         return $this->client->makeRequest(
             '/segments',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }

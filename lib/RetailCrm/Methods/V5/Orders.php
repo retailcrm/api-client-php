@@ -59,7 +59,7 @@ trait Orders
 
         return $this->client->makeRequest(
             '/orders/combine',
-            $this->client::METHOD_POST,
+            "POST",
             [
                 'technique' => $technique,
                 'order' => json_encode($order),
@@ -89,7 +89,7 @@ trait Orders
 
         return $this->client->makeRequest(
             '/orders/payments/create',
-            $this->client::METHOD_POST,
+            "POST",
             ['payment' => json_encode($payment)]
         );
     }
@@ -121,7 +121,7 @@ trait Orders
 
         return $this->client->makeRequest(
             sprintf('/orders/payments/%s/edit', $payment[$by]),
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite(
                 $site,
                 ['payment' => json_encode($payment), 'by' => $by]

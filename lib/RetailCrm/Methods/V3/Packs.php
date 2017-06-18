@@ -56,7 +56,7 @@ trait Packs
 
         return $this->client->makeRequest(
             '/orders/packs',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }
@@ -83,7 +83,7 @@ trait Packs
 
         return $this->client->makeRequest(
             '/orders/packs/create',
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite($site, ['pack' => json_encode($pack)])
         );
     }
@@ -117,7 +117,7 @@ trait Packs
 
         return $this->client->makeRequest(
             '/orders/packs/history',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }
@@ -141,7 +141,7 @@ trait Packs
 
         return $this->client->makeRequest(
             "/orders/packs/$id",
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -164,7 +164,7 @@ trait Packs
 
         return $this->client->makeRequest(
             sprintf('/orders/packs/%s/delete', $id),
-            $this->client::METHOD_POST
+            "POST"
         );
     }
 
@@ -190,7 +190,7 @@ trait Packs
 
         return $this->client->makeRequest(
             sprintf('/orders/packs/%s/edit', $pack['id']),
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite($site, ['pack' => json_encode($pack)])
         );
     }

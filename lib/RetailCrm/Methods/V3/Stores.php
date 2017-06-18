@@ -56,7 +56,7 @@ trait Stores
 
         return $this->client->makeRequest(
             '/store/inventories',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }
@@ -83,7 +83,7 @@ trait Stores
 
         return $this->client->makeRequest(
             '/store/inventories/upload',
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite($site, ['offers' => json_encode($offers)])
         );
     }

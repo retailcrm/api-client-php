@@ -43,7 +43,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/price-types',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -74,7 +74,7 @@ trait References
 
         return $this->client->makeRequest(
             sprintf('/reference/price-types/%s/edit', $data['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['priceType' => json_encode($data)]
         );
     }

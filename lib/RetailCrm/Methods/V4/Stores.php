@@ -51,7 +51,7 @@ trait Stores
 
         return $this->client->makeRequest(
             "/store/setting/$code",
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -76,7 +76,7 @@ trait Stores
 
         return $this->client->makeRequest(
             sprintf('/store/setting/%s/edit', $configuration['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['configuration' => json_encode($configuration)]
         );
     }
@@ -103,7 +103,7 @@ trait Stores
 
         return $this->client->makeRequest(
             '/store/prices/upload',
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite($site, ['prices' => json_encode($prices)])
         );
     }
@@ -137,7 +137,7 @@ trait Stores
 
         return $this->client->makeRequest(
             '/store/products',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }

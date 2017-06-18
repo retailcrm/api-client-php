@@ -46,7 +46,7 @@ trait Delivery
 
         return $this->client->makeRequest(
             "/delivery/generic/setting/$code",
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -71,7 +71,7 @@ trait Delivery
 
         return $this->client->makeRequest(
             sprintf('/delivery/generic/setting/%s/edit', $configuration['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['configuration' => json_encode($configuration)]
         );
     }
@@ -102,7 +102,7 @@ trait Delivery
 
         return $this->client->makeRequest(
             sprintf('/delivery/generic/%s/tracking', $code),
-            $this->client::METHOD_POST,
+            "POST",
             ['statusUpdate' => json_encode($statusUpdate)]
         );
     }

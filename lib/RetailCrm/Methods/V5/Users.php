@@ -53,7 +53,7 @@ trait Users
         /** @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/users/$id/status",
-            $this->client::METHOD_POST,
+            "POST",
             ['status' => $status]
         );
     }

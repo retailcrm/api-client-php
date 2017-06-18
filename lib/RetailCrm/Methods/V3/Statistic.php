@@ -40,7 +40,7 @@ trait Statistic
     {
         return $this->client->makeRequest(
             '/statistic/update',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 }

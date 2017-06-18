@@ -57,7 +57,7 @@ trait Users
         /** @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/users',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }
@@ -87,7 +87,7 @@ trait Users
         /** @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/user-groups',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }
@@ -106,6 +106,6 @@ trait Users
     public function usersGet($id)
     {
         /** @noinspection PhpUndefinedMethodInspection */
-        return $this->client->makeRequest("/users/$id", $this->client::METHOD_GET);
+        return $this->client->makeRequest("/users/$id", "GET");
     }
 }

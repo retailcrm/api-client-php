@@ -40,7 +40,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/countries',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -57,7 +57,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/delivery-services',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -82,7 +82,7 @@ trait References
 
         return $this->client->makeRequest(
             sprintf('/reference/delivery-services/%s/edit', $data['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['deliveryService' => json_encode($data)]
         );
     }
@@ -100,7 +100,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/delivery-types',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -125,7 +125,7 @@ trait References
 
         return $this->client->makeRequest(
             sprintf('/reference/delivery-types/%s/edit', $data['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['deliveryType' => json_encode($data)]
         );
     }
@@ -143,7 +143,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/order-methods',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -168,7 +168,7 @@ trait References
 
         return $this->client->makeRequest(
             sprintf('/reference/order-methods/%s/edit', $data['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['orderMethod' => json_encode($data)]
         );
     }
@@ -186,7 +186,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/order-types',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -211,7 +211,7 @@ trait References
 
         return $this->client->makeRequest(
             sprintf('/reference/order-types/%s/edit', $data['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['orderType' => json_encode($data)]
         );
     }
@@ -229,7 +229,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/payment-statuses',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -254,7 +254,7 @@ trait References
 
         return $this->client->makeRequest(
             sprintf('/reference/payment-statuses/%s/edit', $data['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['paymentStatus' => json_encode($data)]
         );
     }
@@ -272,7 +272,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/payment-types',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -297,7 +297,7 @@ trait References
 
         return $this->client->makeRequest(
             sprintf('/reference/payment-types/%s/edit', $data['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['paymentType' => json_encode($data)]
         );
     }
@@ -315,7 +315,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/product-statuses',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -340,7 +340,7 @@ trait References
 
         return $this->client->makeRequest(
             sprintf('/reference/product-statuses/%s/edit', $data['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['productStatus' => json_encode($data)]
         );
     }
@@ -358,7 +358,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/sites',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -383,7 +383,7 @@ trait References
 
         return $this->client->makeRequest(
             sprintf('/reference/sites/%s/edit', $data['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['site' => json_encode($data)]
         );
     }
@@ -401,7 +401,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/status-groups',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -418,7 +418,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/statuses',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -443,7 +443,7 @@ trait References
 
         return $this->client->makeRequest(
             sprintf('/reference/statuses/%s/edit', $data['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['status' => json_encode($data)]
         );
     }
@@ -461,7 +461,7 @@ trait References
     {
         return $this->client->makeRequest(
             '/reference/stores',
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -492,7 +492,7 @@ trait References
 
         return $this->client->makeRequest(
             sprintf('/reference/stores/%s/edit', $data['code']),
-            $this->client::METHOD_POST,
+            "POST",
             ['store' => json_encode($data)]
         );
     }

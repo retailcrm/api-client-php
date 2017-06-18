@@ -52,7 +52,7 @@ trait CustomFields
 
         return $this->client->makeRequest(
             '/custom-fields',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }
@@ -85,7 +85,7 @@ trait CustomFields
 
         return $this->client->makeRequest(
             "/custom-fields/$entity/create",
-            $this->client::METHOD_POST,
+            "POST",
             ['customField' => json_encode($customField)]
         );
     }
@@ -114,7 +114,7 @@ trait CustomFields
 
         return $this->client->makeRequest(
             "/custom-fields/$entity/edit/{$customField['code']}",
-            $this->client::METHOD_POST,
+            "POST",
             ['customField' => json_encode($customField)]
         );
     }
@@ -143,7 +143,7 @@ trait CustomFields
 
         return $this->client->makeRequest(
             "/custom-fields/$entity/$code",
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -172,7 +172,7 @@ trait CustomFields
 
         return $this->client->makeRequest(
             '/custom-fields/dictionaries',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }
@@ -197,7 +197,7 @@ trait CustomFields
 
         return $this->client->makeRequest(
             "/custom-fields/dictionaries/{$customDictionary['code']}/create",
-            $this->client::METHOD_POST,
+            "POST",
             ['customDictionary' => json_encode($customDictionary)]
         );
     }
@@ -222,7 +222,7 @@ trait CustomFields
 
         return $this->client->makeRequest(
             "/custom-fields/dictionaries/{$customDictionary['code']}/edit",
-            $this->client::METHOD_POST,
+            "POST",
             ['customDictionary' => json_encode($customDictionary)]
         );
     }
@@ -244,7 +244,7 @@ trait CustomFields
 
         return $this->client->makeRequest(
             "/custom-fields/dictionaries/$code",
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 }

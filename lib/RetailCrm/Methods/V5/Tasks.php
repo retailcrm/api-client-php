@@ -52,7 +52,7 @@ trait Tasks
 
         return $this->client->makeRequest(
             '/tasks',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }
@@ -76,7 +76,7 @@ trait Tasks
 
         return $this->client->makeRequest(
             "/tasks/create",
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite(
                 $site,
                 ['task' => json_encode($task)]
@@ -103,7 +103,7 @@ trait Tasks
 
         return $this->client->makeRequest(
             "/tasks/{$task['id']}/edit",
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite(
                 $site,
                 ['task' => json_encode($task)]
@@ -128,7 +128,7 @@ trait Tasks
 
         return $this->client->makeRequest(
             "/tasks/$id",
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 }

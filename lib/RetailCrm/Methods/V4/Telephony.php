@@ -130,7 +130,7 @@ trait Telephony
 
         return $this->client->makeRequest(
             "/telephony/setting/$code/edit",
-            $this->client::METHOD_POST,
+            "POST",
             ['configuration' => json_encode($parameters)]
         );
     }

@@ -55,7 +55,7 @@ trait Customers
 
         return $this->client->makeRequest(
             '/customers/history',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }

@@ -46,7 +46,7 @@ trait Telephony
 
         return $this->client->makeRequest(
             "/telephony/setting/$code",
-            $this->client::METHOD_GET
+            "GET"
         );
     }
 
@@ -95,7 +95,7 @@ trait Telephony
 
         return $this->client->makeRequest(
             '/telephony/call/event',
-            $this->client::METHOD_POST,
+            "POST",
             ['event' => json_encode($parameters)]
         );
     }
@@ -121,7 +121,7 @@ trait Telephony
 
         return $this->client->makeRequest(
             '/telephony/calls/upload',
-            $this->client::METHOD_POST,
+            "POST",
             ['calls' => json_encode($calls)]
         );
     }
@@ -149,7 +149,7 @@ trait Telephony
 
         return $this->client->makeRequest(
             '/telephony/manager',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }

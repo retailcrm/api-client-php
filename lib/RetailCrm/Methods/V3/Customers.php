@@ -56,7 +56,7 @@ trait Customers
 
         return $this->client->makeRequest(
             '/customers',
-            $this->client::METHOD_GET,
+            "GET",
             $parameters
         );
     }
@@ -83,7 +83,7 @@ trait Customers
 
         return $this->client->makeRequest(
             '/customers/create',
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite($site, ['customer' => json_encode($customer)])
         );
     }
@@ -109,7 +109,7 @@ trait Customers
 
         return $this->client->makeRequest(
             '/customers/fix-external-ids',
-            $this->client::METHOD_POST,
+            "POST",
             ['customers' => json_encode($ids)]
         );
     }
@@ -136,7 +136,7 @@ trait Customers
 
         return $this->client->makeRequest(
             '/customers/upload',
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite($site, ['customers' => json_encode($customers)])
         );
     }
@@ -160,7 +160,7 @@ trait Customers
 
         return $this->client->makeRequest(
             "/customers/$id",
-            $this->client::METHOD_GET,
+            "GET",
             $this->fillSite($site, ['by' => $by])
         );
     }
@@ -196,7 +196,7 @@ trait Customers
 
         return $this->client->makeRequest(
             sprintf('/customers/%s/edit', $customer[$by]),
-            $this->client::METHOD_POST,
+            "POST",
             $this->fillSite(
                 $site,
                 ['customer' => json_encode($customer), 'by' => $by]
