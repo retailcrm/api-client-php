@@ -39,13 +39,12 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $configUrl     = getenv('CRM_API_URL') ?: $_SERVER['CRM_API_URL'];
         $configKey     = getenv('CRM_API_KEY') ?: $_SERVER['CRM_API_KEY'];
         $configVersion = getenv('CRM_API_VERSION') ?: $_SERVER['CRM_API_VERSION'];
-        $configSite    = getenv('CRM_API_SITE') ?: $_SERVER['CRM_API_SITE'];
 
         return new ApiClient(
             $url ?: $configUrl,
             $apiKey ?: $configKey,
             $version ?: $configVersion,
-            $site ?: (isset($configSite) ? $configSite: null)
+            $site ?: null
         );
     }
 
@@ -59,8 +58,14 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     public static function getClient($url = null, $defaultParameters = [])
     {
+        $version = getenv('CRM_API_VERSION');
+
+        if (false == $version) {
+            $version = $_SERVER['CRM_API_VERSION'];
+        }
+
         return new Client(
-            $url ?: $_SERVER['CRM_URL'] . '/api/' . getenv('CRM_API_VERSION') ?: $_SERVER['CRM_API_VERSION'],
+            $url ?: $_SERVER['CRM_API_URL'] . '/api/' .  $version,
             [
                 'apiKey' => array_key_exists('apiKey', $defaultParameters)
                     ? $defaultParameters['apiKey']

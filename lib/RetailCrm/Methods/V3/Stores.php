@@ -38,7 +38,7 @@ trait Stores
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function storeInventories(array $filter = [], $page = null, $limit = null)
     {
@@ -71,7 +71,7 @@ trait Stores
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function storeInventoriesUpload(array $offers, $site = null)
     {

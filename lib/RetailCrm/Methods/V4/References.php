@@ -37,7 +37,7 @@ trait References
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function pricesTypes()
     {
@@ -56,7 +56,7 @@ trait References
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function pricesTypesEdit(array $data)
     {

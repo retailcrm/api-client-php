@@ -38,7 +38,7 @@ trait Packs
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersPacksList(array $filter = [], $page = null, $limit = null)
     {
@@ -71,7 +71,7 @@ trait Packs
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersPacksCreate(array $pack, $site = null)
     {
@@ -99,7 +99,7 @@ trait Packs
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersPacksHistory(array $filter = [], $page = null, $limit = null)
     {
@@ -131,7 +131,7 @@ trait Packs
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersPacksGet($id)
     {
@@ -154,7 +154,7 @@ trait Packs
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersPacksDelete($id)
     {
@@ -178,7 +178,7 @@ trait Packs
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersPacksEdit(array $pack, $site = null)
     {

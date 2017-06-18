@@ -12,7 +12,7 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm\Tests;
+namespace RetailCrm\Tests\Methods\Version4;
 
 use RetailCrm\Test\TestCase;
 
@@ -27,30 +27,30 @@ use RetailCrm\Test\TestCase;
  */
 class ApiClientStoreTest extends TestCase
 {
-    const SNAME = 'Test Store';
-    const SCODE = 'test-store';
+    const SNAME = 'Test Store V4';
+    const SCODE = 'test-store-v4';
 
     /**
-     * @group store
+     * @group store_v4
      */
     public function testStoreCreate()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
-        $response = $client->storesEdit(['name' => self::SNAME, 'code' => self::SCODE]);
+        $response = $client->request->storesEdit(['name' => self::SNAME, 'code' => self::SCODE]);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());
     }
 
     /**
-     * @group store
+     * @group store_v4
      */
     public function testStoreInventories()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
-        $response = $client->storeInventories();
+        $response = $client->request->storeInventories();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->isSuccessful());
@@ -61,23 +61,23 @@ class ApiClientStoreTest extends TestCase
     }
 
     /**
-     * @group store
+     * @group store_v4
      * @expectedException \InvalidArgumentException
      */
     public function testInventoriesException()
     {
-        $client = static::getApiClient();
-        $client->storeInventoriesUpload([]);
+        $client = static::getApiClient(null, null, 'v4');
+        $client->request->storeInventoriesUpload([]);
     }
 
     /**
-     * @group store
+     * @group store_v4
      */
     public function testInventoriesUpload()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
-        $response = $client->storeInventoriesUpload([
+        $response = $client->request->storeInventoriesUpload([
             [
                 'externalId' => 'pTKIKAeghYzX21HTdzFCe1',
                 'stores' => [
@@ -109,12 +109,12 @@ class ApiClientStoreTest extends TestCase
      */
     public function testInventoriesFailed()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
         $externalIdA = 'upload-a-' . time();
         $externalIdB = 'upload-b-' . time();
 
-        $response = $client->storeInventoriesUpload([
+        $response = $client->request->storeInventoriesUpload([
             [
                 'externalId' => $externalIdA,
                 'available' => 10,
@@ -132,26 +132,13 @@ class ApiClientStoreTest extends TestCase
     }
 
     /**
-     * @group store
+     * @group store_v4
      */
     public function testStoreProducts()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
-        $response = $client->storeProducts();
-        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertEquals(200, $response->getStatusCode());
-        static::assertTrue($response->isSuccessful());
-    }
-
-    /**
-     * @group store
-     */
-    public function testStoreProductsGroups()
-    {
-        $client = static::getApiClient();
-
-        $response = $client->storeProductsGroups();
+        $response = $client->request->storeProducts();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->isSuccessful());

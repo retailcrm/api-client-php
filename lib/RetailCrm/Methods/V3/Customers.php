@@ -38,7 +38,7 @@ trait Customers
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customersList(array $filter = [], $page = null, $limit = null)
     {
@@ -71,7 +71,7 @@ trait Customers
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customersCreate(array $customer, $site = null)
     {
@@ -97,7 +97,7 @@ trait Customers
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customersFixExternalIds(array $ids)
     {
@@ -124,7 +124,7 @@ trait Customers
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customersUpload(array $customers, $site = null)
     {
@@ -152,7 +152,7 @@ trait Customers
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customersGet($id, $by = 'externalId', $site = null)
     {
@@ -176,7 +176,7 @@ trait Customers
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customersEdit(array $customer, $by = 'externalId', $site = null)
     {

@@ -36,12 +36,12 @@ trait Stores
      *
      * @param string $code get settings code
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      * @throws \RetailCrm\Exception\InvalidJsonException
      * @throws \RetailCrm\Exception\CurlException
      * @throws \InvalidArgumentException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function storeSettingsGet($code)
     {
@@ -64,7 +64,7 @@ trait Stores
      * @throws \RetailCrm\Exception\CurlException
      * @throws \InvalidArgumentException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function storeSettingsEdit(array $configuration)
     {
@@ -91,7 +91,7 @@ trait Stores
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function storePricesUpload(array $prices, $site = null)
     {
@@ -119,7 +119,7 @@ trait Stores
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function storeProducts(array $filter = [], $page = null, $limit = null)
     {

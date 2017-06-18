@@ -42,7 +42,7 @@ trait Stores
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function storeProductsGroups(array $filter = [], $page = null, $limit = null)
     {

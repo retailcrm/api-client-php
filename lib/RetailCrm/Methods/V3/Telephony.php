@@ -36,7 +36,7 @@ trait Telephony
      * @throws \RetailCrm\Exception\CurlException
      * @throws \InvalidArgumentException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function telephonySettingsGet($code)
     {
@@ -60,7 +60,7 @@ trait Telephony
      * @param string $externalPhone
      * @param array  $webAnalyticsData
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      * @internal param string $code additional phone code
      * @internal param string $status call status
      *
@@ -109,7 +109,7 @@ trait Telephony
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function telephonyCallsUpload(array $calls)
     {
@@ -136,7 +136,7 @@ trait Telephony
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function telephonyCallManager($phone, $details)
     {

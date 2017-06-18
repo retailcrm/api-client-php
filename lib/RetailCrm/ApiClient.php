@@ -17,8 +17,6 @@ namespace RetailCrm;
 use RetailCrm\Client\ApiVersion3;
 use RetailCrm\Client\ApiVersion4;
 use RetailCrm\Client\ApiVersion5;
-use RetailCrm\Methods\Core;
-use RetailCrm\Methods\Statistic;
 
 /**
  * PHP version 5.4
@@ -34,6 +32,7 @@ use RetailCrm\Methods\Statistic;
 class ApiClient
 {
     public $request;
+    public $version;
 
     /**
      * Init version based client
@@ -46,6 +45,8 @@ class ApiClient
      */
     public function __construct($url, $apiKey, $version = 'v5', $site = null)
     {
+        $this->version = $version;
+
         switch ($version) {
             case 'v5':
                 $this->request = new ApiVersion5($url, $apiKey, $version, $site);
@@ -59,6 +60,13 @@ class ApiClient
         }
     }
 
-    use Core;
-    use Statistic;
+    /**
+     * Get API version
+     *
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
 }

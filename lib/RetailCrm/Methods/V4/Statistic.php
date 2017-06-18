@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * API client test class
+ * TaskTrait
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -12,12 +12,14 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm\Tests;
+namespace RetailCrm\Methods\V4;
 
-use RetailCrm\Test\TestCase;
+use RetailCrm\Methods\V3\Statistic as Previous;
 
 /**
- * Class ApiClientTest
+ * PHP version 5.4
+ *
+ * TaskTrait class
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -25,15 +27,7 @@ use RetailCrm\Test\TestCase;
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
-class ApiClientTest extends TestCase
+trait Statistic
 {
-    /**
-     * @group client
-     */
-    public function testConstruct()
-    {
-        $client = static::getApiClient();
-
-        static::assertInstanceOf('RetailCrm\ApiClient', $client);
-    }
+    use Previous;
 }

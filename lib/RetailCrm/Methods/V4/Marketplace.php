@@ -37,7 +37,7 @@ trait Marketplace
      * @throws \RetailCrm\Exception\CurlException
      * @throws \InvalidArgumentException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function marketplaceSettingsEdit(array $configuration)
     {

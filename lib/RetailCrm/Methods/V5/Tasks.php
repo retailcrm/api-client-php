@@ -34,7 +34,7 @@ trait Tasks
      * @param null  $limit
      * @param null  $page
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function tasksList(array $filter = [], $limit = null, $page = null)
     {
@@ -63,7 +63,7 @@ trait Tasks
      * @param array $task
      * @param null  $site
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      *
      */
     public function tasksCreate($task, $site = null)
@@ -90,7 +90,7 @@ trait Tasks
      * @param array $task
      * @param null  $site
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      *
      */
     public function tasksEdit($task, $site = null)
@@ -116,7 +116,7 @@ trait Tasks
      *
      * @param $id
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function tasksGet($id)
     {

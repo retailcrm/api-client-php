@@ -12,7 +12,7 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm\Tests;
+namespace RetailCrm\Tests\Methods\Version5;
 
 use RetailCrm\Test\TestCase;
 
@@ -27,8 +27,8 @@ use RetailCrm\Test\TestCase;
 class ApiClientTelephonyTest extends TestCase
 {
 
-    const TEL_CODE = 'telephony-code';
-    const TEL_CLIENT = '123';
+    const TEL_CODE = 'telephony-code-v5';
+    const TEL_CLIENT = '456';
     const TEL_IMAGE = 'http://www.mec.ph/horizon/wp-content/uploads/2011/11/telephony.svg';
 
     /**
@@ -40,13 +40,13 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonySettingsEdit()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, "v5");
 
-        $response = $client->telephonySettingsEdit(
+        $response = $client->request->telephonySettingsEdit(
             self::TEL_CODE,
             self::TEL_CLIENT,
             true,
-            'TestTelephony',
+            'TestTelephonyV5',
             false,
             self::TEL_IMAGE,
             [['userId' => $_SERVER['CRM_USER_ID'], 'code' => '101']],
@@ -67,9 +67,9 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonySettingsGet()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, "v5");
 
-        $response = $client->telephonySettingsGet(self::TEL_CODE);
+        $response = $client->request->telephonySettingsGet(self::TEL_CODE);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->isSuccessful());
@@ -84,9 +84,9 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonyEvent()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, "v5");
 
-        $response = $client->telephonyCallEvent(
+        $response = $client->request->telephonyCallEvent(
             '+79999999999',
             'in',
             ['101'],
@@ -109,9 +109,9 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonyUpload()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, "v5");
 
-        $response = $client->telephonyCallsUpload(
+        $response = $client->request->telephonyCallsUpload(
             [
                 [
                     'date' => '2016-07-22 00:18:00',
@@ -148,9 +148,9 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonyManager()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, "v5");
 
-        $response = $client->telephonyCallManager('+79999999999', 1);
+        $response = $client->request->telephonyCallManager('+79999999999', 1);
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());

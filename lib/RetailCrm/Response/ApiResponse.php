@@ -21,6 +21,7 @@ use RetailCrm\Exception\InvalidJsonException;
  *
  * Response from retailCRM API
  *
+ * @property mixed success
  * @category RetailCrm
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>

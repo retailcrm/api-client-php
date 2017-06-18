@@ -34,7 +34,7 @@ trait Segments
      * @param null  $limit
      * @param null  $page
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function segmentsList(array $filter = [], $limit = null, $page = null)
     {

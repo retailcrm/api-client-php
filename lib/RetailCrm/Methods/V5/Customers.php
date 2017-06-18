@@ -37,7 +37,7 @@ trait Customers
      * @param array $customers
      * @param array $resultCustomer
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customersCombine(array $customers, $resultCustomer)
     {

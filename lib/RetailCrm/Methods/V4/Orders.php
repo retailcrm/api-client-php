@@ -43,7 +43,7 @@ trait Orders
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersList(array $filter = [], $page = null, $limit = null)
     {
@@ -76,7 +76,7 @@ trait Orders
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersCreate(array $order, $site = null)
     {
@@ -102,7 +102,7 @@ trait Orders
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersFixExternalIds(array $ids)
     {
@@ -130,7 +130,7 @@ trait Orders
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersStatuses(array $ids = [], array $externalIds = [])
     {
@@ -160,7 +160,7 @@ trait Orders
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersUpload(array $orders, $site = null)
     {
@@ -188,7 +188,7 @@ trait Orders
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersGet($id, $by = 'externalId', $site = null)
     {
@@ -212,7 +212,7 @@ trait Orders
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersEdit(array $order, $by = 'externalId', $site = null)
     {
@@ -246,7 +246,7 @@ trait Orders
      * @param null $page
      * @param null $limit
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersHistory(array $filter = [], $page = null, $limit = null)
     {

@@ -36,7 +36,7 @@ trait Delivery
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function deliverySettingsGet($code)
     {
@@ -59,7 +59,7 @@ trait Delivery
      * @throws \RetailCrm\Exception\CurlException
      * @throws \InvalidArgumentException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function deliverySettingsEdit(array $configuration)
     {
@@ -86,7 +86,7 @@ trait Delivery
      * @throws \RetailCrm\Exception\CurlException
      * @throws \InvalidArgumentException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function deliveryTracking($code, array $statusUpdate)
     {

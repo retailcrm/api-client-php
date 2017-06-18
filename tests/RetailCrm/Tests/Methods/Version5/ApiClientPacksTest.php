@@ -12,7 +12,7 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm\Tests;
+namespace RetailCrm\Tests\Methods\Version5;
 
 use RetailCrm\Test\TestCase;
 
@@ -28,16 +28,13 @@ use RetailCrm\Test\TestCase;
 class ApiClientPacksTest extends TestCase
 {
     /**
-     * Test packs history
-     *
-     * @group  packs
-     * @return void
+     * @group packs_v5
      */
     public function testPacksHistory()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, "v5");
 
-        $response = $client->ordersPacksHistory();
+        $response = $client->request->ordersPacksHistory();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->success);
@@ -52,21 +49,18 @@ class ApiClientPacksTest extends TestCase
     }
 
     /**
-     * Test packs failed create
-     *
-     * @group  packs
-     * @return void
+     * @group packs_v5
      */
     public function testPacksCreateFailed()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, "v5");
         $pack = [
             'itemId' => 12,
             'store' => 'test',
             'quantity' => 2
         ];
 
-        $response = $client->ordersPacksCreate($pack);
+        $response = $client->request->ordersPacksCreate($pack);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(400, $response->getStatusCode());
         static::assertFalse($response->success);

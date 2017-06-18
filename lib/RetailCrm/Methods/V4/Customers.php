@@ -37,7 +37,7 @@ trait Customers
      * @param null $page
      * @param null $limit
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customersHistory(array $filter = [], $page = null, $limit = null)
     {

@@ -34,7 +34,7 @@ trait CustomFields
      * @param null  $limit
      * @param null  $page
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customFieldsList(array $filter = [], $limit = null, $page = null)
     {
@@ -63,7 +63,7 @@ trait CustomFields
      * @param $entity
      * @param $customField
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customFieldsCreate($entity, $customField)
     {
@@ -96,7 +96,7 @@ trait CustomFields
      * @param $entity
      * @param $customField
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customFieldsEdit($entity, $customField)
     {
@@ -125,7 +125,7 @@ trait CustomFields
      * @param $entity
      * @param $code
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customFieldsGet($entity, $code)
     {
@@ -154,7 +154,7 @@ trait CustomFields
      * @param null  $limit
      * @param null  $page
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customDictionariesList(array $filter = [], $limit = null, $page = null)
     {
@@ -182,7 +182,7 @@ trait CustomFields
      *
      * @param $customDictionary
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customDictionariesCreate($customDictionary)
     {
@@ -207,7 +207,7 @@ trait CustomFields
      *
      * @param $customDictionary
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customDictionariesEdit($customDictionary)
     {
@@ -232,7 +232,7 @@ trait CustomFields
      *
      * @param $code
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function customDictionariesGet($code)
     {

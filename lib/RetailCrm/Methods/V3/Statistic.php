@@ -12,9 +12,7 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm\Methods;
-
-use RetailCrm\Response\ApiResponse;
+namespace RetailCrm\Methods\V3;
 
 /**
  * PHP version 5.4
@@ -36,7 +34,7 @@ trait Statistic
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function statisticUpdate()
     {

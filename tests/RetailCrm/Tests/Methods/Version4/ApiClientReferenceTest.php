@@ -12,7 +12,7 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm\Tests;
+namespace RetailCrm\Tests\Methods\Version4;
 
 use RetailCrm\Test\TestCase;
 
@@ -28,16 +28,16 @@ use RetailCrm\Test\TestCase;
 class ApiClientReferenceTest extends TestCase
 {
     /**
-     * @group reference
+     * @group reference_v4
      * @dataProvider getListDictionaries
      * @param $name
      */
     public function testList($name)
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
         $method = $name . 'List';
-        $response = $client->$method();
+        $response = $client->request->$method();
 
         /* @var \RetailCrm\Response\ApiResponse $response */
 
@@ -48,7 +48,7 @@ class ApiClientReferenceTest extends TestCase
     }
 
     /**
-     * @group        reference
+     * @group reference_v4
      * @dataProvider getEditDictionaries
      * @expectedException \InvalidArgumentException
      *
@@ -56,21 +56,21 @@ class ApiClientReferenceTest extends TestCase
      */
     public function testEditingException($name)
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
         $method = $name . 'Edit';
-        $client->$method([]);
+        $client->request->$method([]);
     }
 
     /**
-     * @group        reference
+     * @group reference_v4
      * @dataProvider getEditDictionaries
      *
      * @param $name
      */
     public function testEditing($name)
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
         $code = 'dict-' . strtolower($name) . '-' . time();
         $method = $name . 'Edit';
@@ -83,12 +83,12 @@ class ApiClientReferenceTest extends TestCase
             $params['group'] = 'new';
         }
 
-        $response = $client->$method($params);
+        $response = $client->request->$method($params);
         /* @var \RetailCrm\Response\ApiResponse $response */
 
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
 
-        $response = $client->$method([
+        $response = $client->request->$method([
             'code' => $code,
             'name' => 'Bbb' . $code,
             'active' => false
@@ -98,13 +98,13 @@ class ApiClientReferenceTest extends TestCase
     }
 
     /**
-     * @group reference
+     * @group reference_v4
      * @group site
      */
     public function testSiteEditing()
     {
         $name = 'sites';
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
         $code = 'dict-' . strtolower($name) . '-' . time();
         $method = $name . 'Edit';
@@ -114,12 +114,12 @@ class ApiClientReferenceTest extends TestCase
             'active' => false
         ];
 
-        $response = $client->$method($params);
+        $response = $client->request->$method($params);
         /* @var \RetailCrm\Response\ApiResponse $response */
 
         static::assertEquals(400, $response->getStatusCode());
 
-        if ($code == $client->getSite()) {
+        if ($code == $client->request->getSite()) {
             $method = $name . 'Edit';
             $params = [
                 'code' => $code,
@@ -127,7 +127,7 @@ class ApiClientReferenceTest extends TestCase
                 'active' => false
             ];
 
-            $response = $client->$method($params);
+            $response = $client->request->$method($params);
             static::assertEquals(200, $response->getStatusCode());
         }
     }
@@ -148,6 +148,7 @@ class ApiClientReferenceTest extends TestCase
             ['statusGroups'],
             ['statuses'],
             ['sites'],
+            ['stores'],
         ];
     }
 

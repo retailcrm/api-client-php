@@ -47,6 +47,7 @@ class ApiVersion3 extends AbstractLoader
     use V3\Orders;
     use V3\Packs;
     use V3\References;
+    use V3\Statistic;
     use V3\Stores;
     use V3\Telephony;
 }

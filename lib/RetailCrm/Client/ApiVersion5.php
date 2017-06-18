@@ -51,6 +51,7 @@ class ApiVersion5 extends AbstractLoader
     use V5\Packs;
     use V5\References;
     use V5\Segments;
+    use V5\Statistic;
     use V5\Stores;
     use V5\Tasks;
     use V5\Telephony;

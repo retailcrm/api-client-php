@@ -49,6 +49,7 @@ class ApiVersion4 extends AbstractLoader
     use V4\Orders;
     use V4\Packs;
     use V4\References;
+    use V4\Statistic;
     use V4\Stores;
     use V4\Telephony;
     use V4\Users;

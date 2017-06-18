@@ -49,7 +49,7 @@ trait Telephony
      * @param bool    $hangupEventSupported
      * @param bool    $changeUserStatusUrl
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function telephonySettingsEdit(
         $code,

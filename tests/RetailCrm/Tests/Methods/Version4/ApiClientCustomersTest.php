@@ -12,10 +12,9 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm\Tests;
+namespace RetailCrm\Tests\Methods\Version4;
 
 use RetailCrm\Test\TestCase;
-use function var_dump;
 
 /**
  * Class ApiClientCustomersTest
@@ -31,15 +30,15 @@ class ApiClientCustomersTest extends TestCase
     const FIRST_NAME = 'Иннокентий';
 
     /**
-     * @group customers
+     * @group customers_v4
      */
     public function testCustomersCreate()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
         $externalId = 'c-create-' . time();
 
-        $response = $client->customersCreate([
+        $response = $client->request->customersCreate([
             'firstName' => self::FIRST_NAME,
             'externalId' => $externalId,
         ]);
@@ -55,13 +54,13 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group customers
+     * @group customers_v4
      * @expectedException \InvalidArgumentException
      */
     public function testCreateExceptionEmpty()
     {
-        $client = static::getApiClient();
-        $client->customersCreate([]);
+        $client = static::getApiClient(null, null, 'v4');
+        $client->request->customersCreate([]);
     }
 
     /**
@@ -74,34 +73,34 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersGet(array $ids)
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
-        $response = $client->customersGet(678678678);
+        $response = $client->request->customersGet(678678678);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(404, $response->getStatusCode());
         static::assertFalse($response->isSuccessful());
 
-        $response = $client->customersGet($ids['id'], 'id');
+        $response = $client->request->customersGet($ids['id'], 'id');
         $customerById = $response['customer'];
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->isSuccessful());
         static::assertEquals(self::FIRST_NAME, $response['customer']['firstName']);
 
-        $response = $client->customersGet($ids['externalId'], 'externalId');
+        $response = $client->request->customersGet($ids['externalId'], 'externalId');
         static::assertEquals($customerById['id'], $response['customer']['id']);
 
         return $ids;
     }
 
     /**
-     * @group customers
+     * @group customers_v4
      * @expectedException \InvalidArgumentException
      */
     public function testCustomersGetException()
     {
-        $client = static::getApiClient();
-        $client->customersGet(678678678, 'asdf');
+        $client = static::getApiClient(null, null, 'v4');
+        $client->request->customersGet(678678678, 'asdf');
     }
 
     /**
@@ -112,9 +111,9 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersEdit(array $ids)
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
-        $response = $client->customersEdit(
+        $response = $client->request->customersEdit(
             [
                 'id' => 22342134,
                 'lastName' => '12345',
@@ -124,7 +123,7 @@ class ApiClientCustomersTest extends TestCase
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(404, $response->getStatusCode());
 
-        $response = $client->customersEdit([
+        $response = $client->request->customersEdit([
             'externalId' => $ids['externalId'],
             'lastName' => '12345',
         ]);
@@ -134,45 +133,45 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group customers
+     * @group customers_v4
      * @expectedException \InvalidArgumentException
      */
     public function testCustomersEditExceptionEmpty()
     {
-        $client = static::getApiClient();
-        $client->customersEdit([], 'asdf');
+        $client = static::getApiClient(null, null, 'v4');
+        $client->request->customersEdit([], 'asdf');
     }
 
     /**
-     * @group customers
+     * @group customers_v4
      * @expectedException \InvalidArgumentException
      */
     public function testCustomersEditException()
     {
-        $client = static::getApiClient();
-        $client->customersEdit(['id' => 678678678], 'asdf');
+        $client = static::getApiClient(null, null, 'v4');
+        $client->request->customersEdit(['id' => 678678678], 'asdf');
     }
 
     /**
-     * @group customers
+     * @group customers_v4
      */
     public function testCustomersList()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
-        $response = $client->customersList();
+        $response = $client->request->customersList();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue($response->isSuccessful());
         static::assertTrue(isset($response['customers']));
 
-        $response = $client->customersList([], 1, 300);
+        $response = $client->request->customersList([], 1, 300);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertFalse(
             $response->isSuccessful(),
             'Pagination error'
         );
 
-        $response = $client->customersList(['maxOrdersCount' => 10], 1);
+        $response = $client->request->customersList(['maxOrdersCount' => 10], 1);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(
             $response->isSuccessful(),
@@ -181,23 +180,23 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group customers
+     * @group customers_v4
      * @expectedException \InvalidArgumentException
      */
     public function testCustomersFixExternalIdsException()
     {
-        $client = static::getApiClient();
-        $client->customersFixExternalIds([]);
+        $client = static::getApiClient(null, null, 'v4');
+        $client->request->customersFixExternalIds([]);
     }
 
     /**
-     * @group customers
+     * @group customers_v4
      */
     public function testCustomersFixExternalIds()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
-        $response = $client->ordersCreate([
+        $response = $client->request->ordersCreate([
             'firstName' => 'Aaa111',
         ]);
 
@@ -206,7 +205,7 @@ class ApiClientCustomersTest extends TestCase
             'Order created'
         );
 
-        $response = $client->ordersGet($response['id'], 'id');
+        $response = $client->request->ordersGet($response['id'], 'id');
         static::assertTrue(
             $response->isSuccessful(),
             'Order fetched'
@@ -215,7 +214,7 @@ class ApiClientCustomersTest extends TestCase
         $id = $response['order']['customer']['id'];
         $externalId = 'asdf' . time();
 
-        $response = $client->customersFixExternalIds([
+        $response = $client->request->customersFixExternalIds([
             ['id' => $id, 'externalId' => $externalId]
         ]);
 
@@ -224,7 +223,7 @@ class ApiClientCustomersTest extends TestCase
             'Fixed customer ids'
         );
 
-        $response = $client->customersGet($externalId);
+        $response = $client->request->customersGet($externalId);
         static::assertTrue(
             $response->isSuccessful(),
             'Got customer'
@@ -242,26 +241,26 @@ class ApiClientCustomersTest extends TestCase
     }
 
     /**
-     * @group customers
+     * @group customers_v4
      * @expectedException \InvalidArgumentException
      */
     public function testCustomersUploadExceptionEmpty()
     {
-        $client = static::getApiClient();
-        $client->customersUpload([]);
+        $client = static::getApiClient(null, null, 'v4');
+        $client->request->customersUpload([]);
     }
 
     /**
-     * @group customers
+     * @group customers_v4
      */
     public function testCustomersUpload()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v4');
 
         $externalIdA = 'upload-a-' . time();
         $externalIdB = 'upload-b-' . time();
 
-        $response = $client->customersUpload([
+        $response = $client->request->customersUpload([
             [
                 'externalId' => $externalIdA,
                 'firstName' => 'Aaa',
@@ -282,57 +281,6 @@ class ApiClientCustomersTest extends TestCase
         static::assertEquals(
             $externalIdB,
             $response['uploadedCustomers'][1]['externalId']
-        );
-    }
-
-    /**
-     * @group customers
-     */
-    public function testCustomersCombine()
-    {
-        $client = static::getApiClient();
-
-        $responseCreateFirst = $client->customersCreate([
-            'firstName' => 'Aaa111',
-            'externalId' => 'AA-' . time(),
-            'phones' => [
-                [
-                    'number' => '+79999999990'
-                ]
-            ]
-        ]);
-
-        static::assertTrue(
-            $responseCreateFirst->isSuccessful(),
-            'Got customer'
-        );
-
-        $responseCreateSecond = $client->customersCreate([
-            'firstName' => 'Aaa222',
-            'externalId' => 'BB-' . time(),
-            'phones' => [
-                [
-                    'number' => '+79999999991'
-                ]
-            ]
-        ]);
-
-        static::assertTrue(
-            $responseCreateSecond->isSuccessful(),
-            'Got customer'
-        );
-
-        $customers = [
-            ['id' => $responseCreateFirst['id']]
-        ];
-
-        $resultCustomer = ['id' => $responseCreateSecond['id']];
-
-        $response = $client->customersCombine($customers, $resultCustomer);
-
-        static::assertTrue(
-            $response->isSuccessful(),
-            'Customers combined'
         );
     }
 }

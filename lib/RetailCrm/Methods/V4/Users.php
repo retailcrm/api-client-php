@@ -38,7 +38,7 @@ trait Users
      * @throws \RetailCrm\Exception\CurlException
      * @throws \InvalidArgumentException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function usersList(array $filter = [], $page = null, $limit = null)
     {
@@ -54,6 +54,7 @@ trait Users
             $parameters['limit'] = (int)$limit;
         }
 
+        /** @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/users',
             $this->client::METHOD_GET,
@@ -70,7 +71,7 @@ trait Users
      * @throws \RetailCrm\Exception\InvalidJsonException
      * @throws \RetailCrm\Exception\CurlException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function usersGroups($page = null, $limit = null)
     {
@@ -83,6 +84,7 @@ trait Users
             $parameters['limit'] = (int)$limit;
         }
 
+        /** @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/user-groups',
             $this->client::METHOD_GET,
@@ -99,10 +101,11 @@ trait Users
      * @throws \RetailCrm\Exception\CurlException
      * @throws \InvalidArgumentException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function usersGet($id)
     {
+        /** @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest("/users/$id", $this->client::METHOD_GET);
     }
 }

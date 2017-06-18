@@ -39,7 +39,7 @@ trait Orders
      * @param array  $order
      * @param array  $resultOrder
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersCombine($order, $resultOrder, $technique = 'ours')
     {
@@ -77,7 +77,7 @@ trait Orders
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersPaymentCreate(array $payment)
     {
@@ -101,7 +101,7 @@ trait Orders
      * @param string $by      by key
      * @param null   $site    site code
      *
-     * @return ApiResponse
+     * @return \RetailCrm\Response\ApiResponse
      */
     public function ordersPaymentEdit(array $payment, $by = 'id', $site = null)
     {

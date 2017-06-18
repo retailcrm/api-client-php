@@ -12,7 +12,7 @@
  * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
-namespace RetailCrm\Tests;
+namespace RetailCrm\Tests\Methods\Version5;
 
 use RetailCrm\Test\TestCase;
 
@@ -28,31 +28,31 @@ use RetailCrm\Test\TestCase;
 class ApiClientTasksTest extends TestCase
 {
     /**
-     * @group tasks
+     * @group tasks_v5
      */
     public function testTasksList()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v5');
 
-        $response = $client->tasksList();
+        $response = $client->request->tasksList();
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());
     }
 
     /**
-     * @group tasks
+     * @group tasks_v5
      * @expectedException \InvalidArgumentException
      */
     public function testTasksCreateExceptionEmpty()
     {
-        $client = static::getApiClient();
-        $client->tasksCreate([]);
+        $client = static::getApiClient(null, null, 'v5');
+        $client->request->tasksCreate([]);
     }
 
     public function testTasksCRU()
     {
-        $client = static::getApiClient();
+        $client = static::getApiClient(null, null, 'v5');
 
         $task = [
             'text' => 'test task',
@@ -61,14 +61,14 @@ class ApiClientTasksTest extends TestCase
             'complete' => false
         ];
 
-        $responseCreate = $client->tasksCreate($task);
+        $responseCreate = $client->request->tasksCreate($task);
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $responseCreate);
         static::assertEquals(201, $responseCreate->getStatusCode());
 
         $uid = $responseCreate['id'];
 
-        $responseRead = $client->tasksGet($uid);
+        $responseRead = $client->request->tasksGet($uid);
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $responseRead);
         static::assertEquals(200, $responseRead->getStatusCode());
@@ -76,7 +76,7 @@ class ApiClientTasksTest extends TestCase
         $task['id'] = $uid;
         $task['complete'] = true;
 
-        $responseUpdate = $client->tasksEdit($task);
+        $responseUpdate = $client->request->tasksEdit($task);
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $responseUpdate);
         static::assertEquals(200, $responseUpdate->getStatusCode());
