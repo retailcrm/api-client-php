@@ -11,7 +11,7 @@ php:
   - '7.0'
 
 before_script:
-    - flags="--prefer-dist --no-dev -o"
+    - flags="-o"
     - composer install $flags
     - cp phpunit.xml.dist phpunit.xml
 
