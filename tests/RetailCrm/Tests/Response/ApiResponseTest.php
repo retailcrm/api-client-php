@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client response test class
  *
@@ -29,19 +29,19 @@ use RetailCrm\Response\ApiResponse;
 class ApiResponseTest extends TestCase
 {
     /**
-     * @group unit
+     * @group response
      */
     public function testSuccessConstruct()
     {
         $response = new ApiResponse(200);
-        $this->assertInstanceOf(
+        static::assertInstanceOf(
             'RetailCrm\Response\ApiResponse',
             $response,
             'Response object created'
         );
 
         $response = new ApiResponse(201, '{ "success": true }');
-        $this->assertInstanceOf(
+        static::assertInstanceOf(
             'RetailCrm\Response\ApiResponse',
             $response,
             'Response object created'
@@ -49,28 +49,28 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      * @expectedException \RetailCrm\Exception\InvalidJsonException
      */
     public function testJsonInvalid()
     {
-        $response = new ApiResponse(400, '{ "asdf": }');
+        new ApiResponse(400, '{ "asdf": }');
     }
 
     /**
-     * @group unit
+     * @group response
      */
     public function testStatusCodeGetting()
     {
         $response = new ApiResponse(200);
-        $this->assertEquals(
+        static::assertEquals(
             200,
             $response->getStatusCode(),
             'Response object returns the right status code'
         );
 
         $response = new ApiResponse(460, '{ "success": false }');
-        $this->assertEquals(
+        static::assertEquals(
             460,
             $response->getStatusCode(),
             'Response object returns the right status code'
@@ -78,38 +78,38 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      */
     public function testIsSuccessful()
     {
         $response = new ApiResponse(200);
-        $this->assertTrue(
+        static::assertTrue(
             $response->isSuccessful(),
             'Request was successful'
         );
 
         $response = new ApiResponse(460, '{ "success": false }');
-        $this->assertFalse(
+        static::assertFalse(
             $response->isSuccessful(),
             'Request was failed'
         );
     }
 
     /**
-     * @group unit
+     * @group response
      */
     public function testMagicCall()
     {
         $response = new ApiResponse(201, '{ "success": true }');
-        $this->assertEquals(
+        static::assertEquals(
             true,
-            $response->getSuccess(),
+            $response->isSuccessful(),
             'Response object returns property value throw magic method'
         );
     }
 
     /**
-     * @group unit
+     * @group response
      * @expectedException \InvalidArgumentException
      */
     public function testMagicCallException1()
@@ -119,7 +119,7 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      * @expectedException \InvalidArgumentException
      */
     public function testMagicCallException2()
@@ -129,12 +129,12 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      */
     public function testMagicGet()
     {
         $response = new ApiResponse(201, '{ "success": true }');
-        $this->assertEquals(
+        static::assertEquals(
             true,
             $response->success,
             'Response object returns property value throw magic get'
@@ -142,7 +142,7 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      * @expectedException \InvalidArgumentException
      */
     public function testMagicGetException1()
@@ -152,7 +152,7 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      * @expectedException \InvalidArgumentException
      */
     public function testMagicGetException2()
@@ -162,12 +162,12 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      */
     public function testArrayGet()
     {
         $response = new ApiResponse(201, '{ "success": true }');
-        $this->assertEquals(
+        static::assertEquals(
             true,
             $response['success'],
             'Response object returns property value throw magic array get'
@@ -175,7 +175,7 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      * @expectedException \InvalidArgumentException
      */
     public function testArrayGetException1()
@@ -185,7 +185,7 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      * @expectedException \InvalidArgumentException
      */
     public function testArrayGetException2()
@@ -195,25 +195,25 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      */
     public function testArrayIsset()
     {
         $response = new ApiResponse(201, '{ "success": true }');
 
-        $this->assertTrue(
+        static::assertTrue(
             isset($response['success']),
             'Response object returns property existing'
         );
 
-        $this->assertFalse(
+        static::assertFalse(
             isset($response['suess']),
             'Response object returns property existing'
         );
     }
 
     /**
-     * @group unit
+     * @group response
      * @expectedException \BadMethodCallException
      */
     public function testArraySetException1()
@@ -223,7 +223,7 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      * @expectedException \BadMethodCallException
      */
     public function testArraySetException2()
@@ -233,7 +233,7 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      * @expectedException \BadMethodCallException
      */
     public function testArrayUnsetException1()
@@ -243,7 +243,7 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      * @expectedException \BadMethodCallException
      */
     public function testArrayUnsetException2()
@@ -253,18 +253,18 @@ class ApiResponseTest extends TestCase
     }
 
     /**
-     * @group unit
+     * @group response
      */
     public function testMagicIsset()
     {
         $response = new ApiResponse(201, '{ "success": true }');
 
-        $this->assertTrue(
+        static::assertTrue(
             isset($response->success),
             'Response object returns property existing'
         );
 
-        $this->assertFalse(
+        static::assertFalse(
             isset($response->suess),
             'Response object returns property existing'
         );

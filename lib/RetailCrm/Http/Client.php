@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * HTTP client
  *
@@ -19,7 +19,7 @@ use RetailCrm\Exception\InvalidJsonException;
 use RetailCrm\Response\ApiResponse;
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * HTTP client
  *
@@ -45,7 +45,7 @@ class Client
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($url, array $defaultParameters = array())
+    public function __construct($url, array $defaultParameters = [])
     {
         if (false === stripos($url, 'https://')) {
             throw new \InvalidArgumentException(
@@ -75,9 +75,9 @@ class Client
     public function makeRequest(
         $path,
         $method,
-        array $parameters = array()
+        array $parameters = []
     ) {
-        $allowedMethods = array(self::METHOD_GET, self::METHOD_POST);
+        $allowedMethods = [self::METHOD_GET, self::METHOD_POST];
 
         if (!in_array($method, $allowedMethods, false)) {
             throw new \InvalidArgumentException(

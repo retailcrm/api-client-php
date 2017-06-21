@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * Response from retailCRM API
  *
@@ -17,10 +17,11 @@ namespace RetailCrm\Response;
 use RetailCrm\Exception\InvalidJsonException;
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * Response from retailCRM API
  *
+ * @property mixed success
  * @category RetailCrm
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>

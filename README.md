@@ -6,7 +6,7 @@ Use [API documentation](http://retailcrm.github.io/api-client-php)
 
 ## Requirements
 
-* PHP 5.3 and above
+* PHP 5.4 and above
 * PHP's cURL support
 
 ## Install
@@ -29,12 +29,12 @@ require 'path/to/vendor/autoload.php';
 ```php
 $client = new \RetailCrm\ApiClient(
     'https://demo.retailcrm.ru',
-    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
+    'v5'
 );
 
-
 try {
-    $response = $client->ordersGet('M-2342');
+    $response = $client->request->ordersGet('M-2342');
 } catch (\RetailCrm\Exception\CurlException $e) {
     echo "Connection error: " . $e->getMessage();
 }
@@ -63,12 +63,13 @@ if ($response->isSuccessful()) {
 ```php
 
 $client = new \RetailCrm\ApiClient(
-    'https://demo.retailcrm.pro',
-    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
+    'https://demo.retailcrm.ru',
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
+    'v4'
 );
 
 try {
-    $response = $client->ordersCreate(array(
+    $response = $client->request->ordersCreate(array(
         'externalId' => 'some-shop-order-id',
         'firstName' => 'Vasily',
         'lastName' => 'Pupkin',
