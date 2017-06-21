@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * API client test class
  *
@@ -9,7 +9,7 @@
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Http;
@@ -25,59 +25,59 @@ use RetailCrm\Http\Client;
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ClientTest extends TestCase
 {
     /**
-     * @group unit
+     * @group client
      */
     public function testConstruct()
     {
-        $client = new Client('https://asdf.df', array());
+        $client = new Client('https://asdf.df', []);
 
-        $this->assertInstanceOf('RetailCrm\Http\Client', $client);
+        static::assertInstanceOf('RetailCrm\Http\Client', $client);
     }
 
     /**
-     * @group unit
+     * @group client
      * @expectedException \InvalidArgumentException
      */
     public function testHttpRequiring()
     {
-        $client = new Client('http://demo.retailcrm.ru/api/' . ApiClient::VERSION, array('apiKey' => '123'));
+        $client = new Client('http://demo.retailcrm.ru/api/' . $_SERVER['CRM_API_VERSION'], ['apiKey' => '123']);
         return $client;
     }
 
     /**
-     * @group unit
+     * @group client
      * @expectedException \InvalidArgumentException
      */
-    public function testMakeRequestWrongMethod()
+    public function testRequestWrongMethod()
     {
         $client = static::getClient();
         $client->makeRequest('/a', 'adsf');
     }
 
     /**
-     * @group integration
+     * @group client
      * @expectedException \RetailCrm\Exception\CurlException
      */
-    public function testMakeRequestWrongUrl()
+    public function testRequestWrongUrl()
     {
-        $client = new Client('https://asdf.df', array());
-        $client->makeRequest('/a', Client::METHOD_GET, array());
+        $client = new Client('https://asdf.df', []);
+        $client->makeRequest('/a', Client::METHOD_GET, []);
     }
 
     /**
-     * @group integration
+     * @group client
      */
-    public function testMakeRequestSuccess()
+    public function testRequestSuccess()
     {
         $client = static::getClient();
         $response = $client->makeRequest('/orders', Client::METHOD_GET);
 
-        $this->assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        $this->assertEquals(200, $response->getStatusCode());
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
     }
 }

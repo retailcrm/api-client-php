@@ -1,10 +1,27 @@
 <?php
 
+/**
+ * PHP version 5.4
+ *
+ * Test case class
+ *
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
+ */
+
 namespace RetailCrm\Test;
 
 use RetailCrm\ApiClient;
 use RetailCrm\Http\Client;
 
+/**
+ * Class TestCase
+ *
+ * @package RetailCrm\Test
+ */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -12,15 +29,22 @@ class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @param  string    $url (default: null)
      * @param  string    $apiKey (default: null)
+     * @param  string    $version (default: null)
      * @param  string    $site (default: null)
+     *
      * @return ApiClient
      */
-    public static function getApiClient($url = null, $apiKey = null, $site = null)
+    public static function getApiClient($url = null, $apiKey = null, $version = null, $site = null)
     {
+        $configUrl     = getenv('CRM_API_URL') ?: $_SERVER['CRM_API_URL'];
+        $configKey     = getenv('CRM_API_KEY') ?: $_SERVER['CRM_API_KEY'];
+        $configVersion = getenv('CRM_API_VERSION') ?: $_SERVER['CRM_API_VERSION'];
+
         return new ApiClient(
-            $url ?: $_SERVER['CRM_URL'],
-            $apiKey ?: $_SERVER['CRM_API_KEY'],
-            $site ?: (isset($_SERVER['CRM_SITE']) ? $_SERVER['CRM_SITE'] : null)
+            $url ?: $configUrl,
+            $apiKey ?: $configKey,
+            $version ?: $configVersion,
+            $site ?: null
         );
     }
 
@@ -32,16 +56,21 @@ class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @return Client
      */
-    public static function getClient($url = null, $defaultParameters = array())
+    public static function getClient($url = null, $defaultParameters = [])
     {
+        $version = getenv('CRM_API_VERSION');
+
+        if (false == $version) {
+            $version = $_SERVER['CRM_API_VERSION'];
+        }
+
         return new Client(
-            $url ?: $_SERVER['CRM_URL'] . '/api/' . ApiClient::VERSION,
-            array(
+            $url ?: $_SERVER['CRM_API_URL'] . '/api/' .  $version,
+            [
                 'apiKey' => array_key_exists('apiKey', $defaultParameters)
                     ? $defaultParameters['apiKey']
                     : $_SERVER['CRM_API_KEY']
-            )
+            ]
         );
     }
 }
-

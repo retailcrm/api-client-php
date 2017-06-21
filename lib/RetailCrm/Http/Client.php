@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * HTTP client
  *
@@ -9,7 +9,7 @@
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Http;
@@ -19,7 +19,7 @@ use RetailCrm\Exception\InvalidJsonException;
 use RetailCrm\Response\ApiResponse;
 
 /**
- * PHP version 5.3
+ * PHP version 5.4
  *
  * HTTP client
  *
@@ -27,7 +27,7 @@ use RetailCrm\Response\ApiResponse;
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion4
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class Client
 {
@@ -45,7 +45,7 @@ class Client
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($url, array $defaultParameters = array())
+    public function __construct($url, array $defaultParameters = [])
     {
         if (false === stripos($url, 'https://')) {
             throw new \InvalidArgumentException(
@@ -75,9 +75,9 @@ class Client
     public function makeRequest(
         $path,
         $method,
-        array $parameters = array()
+        array $parameters = []
     ) {
-        $allowedMethods = array(self::METHOD_GET, self::METHOD_POST);
+        $allowedMethods = [self::METHOD_GET, self::METHOD_POST];
 
         if (!in_array($method, $allowedMethods, false)) {
             throw new \InvalidArgumentException(

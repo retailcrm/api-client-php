@@ -11,8 +11,8 @@ php:
   - '7.0'
 
 before_script:
-    - flags="--prefer-dist --no-dev"
+    - flags="-o"
     - composer install $flags
-    - wget -c -O phpunit.xml https://db.tt/uMin8U9t
+    - cp phpunit.xml.dist phpunit.xml
 
 script: phpunit

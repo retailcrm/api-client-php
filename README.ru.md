@@ -1,12 +1,12 @@
 # PHP-клиент для retailCRM API
 
-PHP-клиент для работы с [retailCRM API](http://www.retailcrm.ru/docs/Developers/ApiVersion4).
+PHP-клиент для работы с [retailCRM API](http://www.retailcrm.ru/docs/Developers/ApiVersion5).
 
 Рекомендуем обращаться к [документации](http://retailcrm.github.io/api-client-php) по библиотеке, в частности по классу [RetailCrm\ApiClient](http://retailcrm.github.io/api-client-php/class-RetailCrm.ApiClient.html).
 
 ## Обязательные требования
 
-* PHP версии 5.3 и выше
+* PHP версии 5.4 и выше
 * PHP-расширение cURL
 
 ## Установка
@@ -15,7 +15,7 @@ PHP-клиент для работы с [retailCRM API](http://www.retailcrm.ru/
 
 2) Выполните в папке проекта:
 ```bash
-composer require retailcrm/api-client-php 4.*  --no-dev
+composer require retailcrm/api-client-php 5.*  --no-dev
 ```
 
 В конфиг `composer.json` вашего проекта будет добавлена библиотека `retailcrm/api-client-php`, которая установится в папку `vendor/`. При отсутствии файла конфига или папки с вендорами они будут созданы.
@@ -31,12 +31,12 @@ require 'path/to/vendor/autoload.php';
 ```php
 $client = new \RetailCrm\ApiClient(
     'https://demo.retailcrm.ru',
-    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
+    'v5'
 );
 
-
 try {
-    $response = $client->ordersGet('M-2342');
+    $response = $client-request->ordersGet('M-2342');
 } catch (\RetailCrm\Exception\CurlException $e) {
     echo "Сетевые проблемы. Ошибка подключения к retailCRM: " . $e->getMessage();
 }
@@ -66,11 +66,12 @@ if ($response->isSuccessful()) {
 
 $client = new \RetailCrm\ApiClient(
     'https://demo.retailcrm.ru',
-    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH'
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
+    'v4'
 );
 
 try {
-    $response = $client->ordersCreate(array(
+    $response = $client-request->ordersCreate(array(
         'externalId' => 'some-shop-order-id',
         'firstName' => 'Vasily',
         'lastName' => 'Pupkin',
