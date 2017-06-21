@@ -63,7 +63,7 @@ if ($response->isSuccessful()) {
 ```php
 
 $client = new \RetailCrm\ApiClient(
-    'https://demo.retailcrm.pro',
+    'https://demo.retailcrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
     'v4'
 );
