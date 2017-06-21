@@ -96,6 +96,7 @@ trait Customers
      * Create customer note
      *
      * @param array $note (default: array())
+     * @param string $site     (default: null)
      *
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
@@ -103,7 +104,7 @@ trait Customers
      *
      * @return \RetailCrm\Response\ApiResponse
      */
-    public function customersNotesCreate($note)
+    public function customersNotesCreate($note, $site = null)
     {
         if (empty($note['customer']['id']) && empty($note['customer']['externalId'])) {
             throw new \InvalidArgumentException(
