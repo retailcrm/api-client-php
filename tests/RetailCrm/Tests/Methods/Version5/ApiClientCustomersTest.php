@@ -334,4 +334,114 @@ class ApiClientCustomersTest extends TestCase
             'Customers combined'
         );
     }
+
+    /**
+     * @group customers_v5
+     */
+    public function testCustomersNotesCreate()
+    {
+        $client = static::getApiClient();
+
+        $responseCreateFirst = $client->request->customersCreate([
+            'firstName' => 'Some',
+            'lastName' => 'Test',
+            'externalId' => 'AA-' . time(),
+            'phones' => [
+                [
+                    'number' => '+79999999990'
+                ]
+            ]
+        ]);
+
+        static::assertTrue(
+            $responseCreateFirst->isSuccessful(),
+            'Got customer'
+        );
+
+        $note = [
+            'managerId' => 6,
+            'text' => 'test note',
+            'createdAt' => date('Y-m-d H:i:s'),
+            'customer' => [
+                'id' => $responseCreateFirst['id']
+            ]
+        ];
+
+        $response = $client->request->customersNotesCreate($note);
+
+        static::assertTrue($response->isSuccessful(), 'Note created');
+        static::assertEquals(201, $response->getStatusCode());
+    }
+
+    /**
+     * @group customers_v5
+     */
+    public function testCustomersNotesList()
+    {
+        $client = static::getApiClient();
+
+        $responseCreateFirst = $client->request->customersCreate([
+            'firstName' => 'Some',
+            'lastName' => 'Test',
+            'externalId' => 'AA-' . time(),
+            'phones' => [
+                [
+                    'number' => '+79999999990'
+                ]
+            ]
+        ]);
+
+        static::assertTrue(
+            $responseCreateFirst->isSuccessful(),
+            'Got customer'
+        );
+
+        $response = $client->request->customersNotesList(['customerIds' => [$responseCreateFirst['id']]]);
+
+        static::assertTrue($response->isSuccessful(), 'Got notes list');
+        static::assertEquals(200, $response->getStatusCode());
+    }
+
+    /**
+     * @group customers_v5
+     */
+    public function testCustomersNotesDelete()
+    {
+        $client = static::getApiClient();
+
+        $responseCreateFirst = $client->request->customersCreate([
+            'firstName' => 'Some',
+            'lastName' => 'Test',
+            'externalId' => 'AA-' . time(),
+            'phones' => [
+                [
+                    'number' => '+79999999990'
+                ]
+            ]
+        ]);
+
+        static::assertTrue(
+            $responseCreateFirst->isSuccessful(),
+            'Got customer'
+        );
+
+        $note = [
+            'managerId' => 6,
+            'text' => 'test note',
+            'createdAt' => date('Y-m-d H:i:s'),
+            'customer' => [
+                'id' => $responseCreateFirst['id']
+            ]
+        ];
+
+        $response = $client->request->customersNotesCreate($note);
+
+        static::assertTrue($response->isSuccessful(), 'Note created');
+        static::assertEquals(201, $response->getStatusCode());
+
+        $responseDelete =  $client->request->customersNotesDelete($response['id']);
+
+        static::assertTrue($responseDelete->isSuccessful(), 'Note deleted');
+        static::assertEquals(200, $responseDelete->getStatusCode());
+    }
 }

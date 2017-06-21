@@ -57,4 +57,89 @@ trait Customers
             ]
         );
     }
+
+    /**
+     * Returns filtered customers notes list
+     *
+     * @param array $filter (default: array())
+     * @param int   $page   (default: null)
+     * @param int   $limit  (default: null)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function customersNotesList(array $filter = [], $page = null, $limit = null)
+    {
+        $parameters = [];
+
+        if (count($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        return $this->client->makeRequest(
+            '/customers/notes',
+            "GET",
+            $parameters
+        );
+    }
+
+    /**
+     * Create customer note
+     *
+     * @param array $note (default: array())
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function customersNotesCreate($note)
+    {
+        if (empty($note['customer']['id']) && empty($note['customer']['externalId'])) {
+            throw new \InvalidArgumentException(
+                'Customer identifier must be set'
+            );
+        }
+
+        return $this->client->makeRequest(
+            '/customers/notes/create',
+            "POST",
+            ['note' => json_encode($note)]
+        );
+    }
+
+    /**
+     * Create customer note
+     *
+     * @param integer $id
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function customersNotesDelete($id)
+    {
+        if (empty($id)) {
+            throw new \InvalidArgumentException(
+                'Note id must be set'
+            );
+        }
+
+        return $this->client->makeRequest(
+            "/customers/notes/$id/delete",
+            "POST"
+        );
+    }
 }
