@@ -40,7 +40,7 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonySettingsEdit()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, \RetailCrm\ApiClient::V4);
 
         $response = $client->request->telephonySettingsEdit(
             self::TEL_CODE,
@@ -67,7 +67,7 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonySettingsGet()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, \RetailCrm\ApiClient::V4);
 
         $response = $client->request->telephonySettingsGet(self::TEL_CODE);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -84,7 +84,7 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonyEvent()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, \RetailCrm\ApiClient::V4);
 
         $response = $client->request->telephonyCallEvent(
             '+79999999999',
@@ -109,7 +109,7 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonyUpload()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, \RetailCrm\ApiClient::V4);
 
         $response = $client->request->telephonyCallsUpload(
             [
@@ -148,7 +148,7 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonyManager()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, \RetailCrm\ApiClient::V4);
 
         $response = $client->request->telephonyCallManager('+79999999999', 1);
 

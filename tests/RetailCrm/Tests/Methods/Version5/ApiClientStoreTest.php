@@ -35,7 +35,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testStoreCreate()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->storesEdit(['name' => self::SNAME, 'code' => self::SCODE]);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -48,7 +48,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testStoreInventories()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->storeInventories();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -66,7 +66,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testInventoriesException()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
         $client->request->storeInventoriesUpload([]);
     }
 
@@ -75,7 +75,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testInventoriesUpload()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->storeInventoriesUpload([
             [
@@ -109,7 +109,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testInventoriesFailed()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $externalIdA = 'upload-a-' . time();
         $externalIdB = 'upload-b-' . time();
@@ -136,7 +136,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testStoreProducts()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->storeProducts();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -149,7 +149,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testStoreProductsGroups()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->storeProductsGroups();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);

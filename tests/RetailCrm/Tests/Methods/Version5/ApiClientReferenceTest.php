@@ -34,7 +34,7 @@ class ApiClientReferenceTest extends TestCase
      */
     public function testList($name)
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $method = $name . 'List';
         $response = $client->request->$method();
@@ -56,7 +56,7 @@ class ApiClientReferenceTest extends TestCase
      */
     public function testEditingException($name)
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $method = $name . 'Edit';
         $client->request->$method([]);
@@ -70,7 +70,7 @@ class ApiClientReferenceTest extends TestCase
      */
     public function testEditing($name)
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $code = 'dict-' . strtolower($name) . '-' . time();
         $method = $name . 'Edit';
@@ -104,7 +104,7 @@ class ApiClientReferenceTest extends TestCase
     public function testSiteEditing()
     {
         $name = 'sites';
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $code = 'dict-' . strtolower($name) . '-' . time();
         $method = $name . 'Edit';

@@ -32,7 +32,7 @@ class ApiClientTasksTest extends TestCase
      */
     public function testTasksList()
     {
-        $client = static::getApiClient(null, null, 'v5');
+        $client = static::getApiClient();
 
         $response = $client->request->tasksList();
 
@@ -46,13 +46,13 @@ class ApiClientTasksTest extends TestCase
      */
     public function testTasksCreateExceptionEmpty()
     {
-        $client = static::getApiClient(null, null, 'v5');
+        $client = static::getApiClient();
         $client->request->tasksCreate([]);
     }
 
     public function testTasksCRU()
     {
-        $client = static::getApiClient(null, null, 'v5');
+        $client = static::getApiClient();
 
         $task = [
             'text' => 'test task',

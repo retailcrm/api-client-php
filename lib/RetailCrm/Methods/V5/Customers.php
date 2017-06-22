@@ -115,7 +115,7 @@ trait Customers
         return $this->client->makeRequest(
             '/customers/notes/create',
             "POST",
-            ['note' => json_encode($note)]
+            $this->fillSite($site, ['note' => json_encode($note)])
         );
     }
 
