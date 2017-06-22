@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Orders
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -14,13 +14,12 @@
 
 namespace RetailCrm\Methods\V5;
 
-use RetailCrm\Response\ApiResponse;
 use RetailCrm\Methods\V4\Orders as Previous;
 
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Orders class
  *
  * @category RetailCrm
  * @package  RetailCrm

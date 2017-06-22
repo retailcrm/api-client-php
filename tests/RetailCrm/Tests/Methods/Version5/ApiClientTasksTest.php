@@ -32,8 +32,8 @@ class ApiClientTasksTest extends TestCase
      */
     public function testTasksList()
     {
-        $client = static::getApiClient(null, null, 'v5');
 
+        $client = static::getApiClient();
         $response = $client->request->tasksList();
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -46,14 +46,14 @@ class ApiClientTasksTest extends TestCase
      */
     public function testTasksCreateExceptionEmpty()
     {
-        $client = static::getApiClient(null, null, 'v5');
+        $client = static::getApiClient();
         $client->request->tasksCreate([]);
     }
 
     public function testTasksCRU()
     {
-        $client = static::getApiClient(null, null, 'v5');
 
+        $client = static::getApiClient();
         $task = [
             'text' => 'test task',
             'commentary' => 'test task commentary',

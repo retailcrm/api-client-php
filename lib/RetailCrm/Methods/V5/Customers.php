@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Customers
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -19,7 +19,7 @@ use RetailCrm\Methods\V4\Customers as Previous;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Customers class
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -115,12 +115,12 @@ trait Customers
         return $this->client->makeRequest(
             '/customers/notes/create',
             "POST",
-            ['note' => json_encode($note)]
+            $this->fillSite($site, ['note' => json_encode($note)])
         );
     }
 
     /**
-     * Create customer note
+     * Delete customer note
      *
      * @param integer $id
      *

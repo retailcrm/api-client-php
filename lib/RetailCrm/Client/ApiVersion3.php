@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * API client class
+ * API client v3
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -19,7 +19,7 @@ use RetailCrm\Methods\V3;
 /**
  * PHP version 5.4
  *
- * API client class
+ * API client v3 class
  *
  * @category RetailCrm
  * @package  RetailCrm

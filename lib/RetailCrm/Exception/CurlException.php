@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * Class CurlException
+ * CurlException
  *
  * @category RetailCrm
  * @package  RetailCrm

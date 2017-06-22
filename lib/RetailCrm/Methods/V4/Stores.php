@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Stores
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -19,7 +19,7 @@ use RetailCrm\Methods\V3\Stores as Previous;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Stores class
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -55,31 +55,6 @@ trait Stores
         );
     }
 
-    /**
-     * Edit store configuration
-     *
-     * @param array $configuration
-     *
-     * @throws \RetailCrm\Exception\InvalidJsonException
-     * @throws \RetailCrm\Exception\CurlException
-     * @throws \InvalidArgumentException
-     *
-     * @return \RetailCrm\Response\ApiResponse
-     */
-    public function storeSettingsEdit(array $configuration)
-    {
-        if (!count($configuration) || empty($configuration['code'])) {
-            throw new \InvalidArgumentException(
-                'Parameter `configuration` must contains a data & configuration `code` must be set'
-            );
-        }
-
-        return $this->client->makeRequest(
-            sprintf('/store/setting/%s/edit', $configuration['code']),
-            "POST",
-            ['configuration' => json_encode($configuration)]
-        );
-    }
 
     /**
      * Upload store prices

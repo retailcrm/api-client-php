@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * API client class
+ * API client v4
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -19,7 +19,7 @@ use RetailCrm\Methods\V4;
 /**
  * PHP version 5.4
  *
- * API client class
+ * API client v4 class
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -49,6 +49,7 @@ class ApiVersion4 extends AbstractLoader
     use V4\Orders;
     use V4\Packs;
     use V4\References;
+    use V4\Settings;
     use V4\Statistic;
     use V4\Stores;
     use V4\Telephony;

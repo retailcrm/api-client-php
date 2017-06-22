@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * Class InvalidJsonException
+ * InvalidJsonException
  *
  * @category RetailCrm
  * @package  RetailCrm

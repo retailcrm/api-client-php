@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Delivery
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -17,7 +17,7 @@ namespace RetailCrm\Methods\V4;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Delivery class
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -47,32 +47,6 @@ trait Delivery
         return $this->client->makeRequest(
             "/delivery/generic/setting/$code",
             "GET"
-        );
-    }
-
-    /**
-     * Edit delivery configuration
-     *
-     * @param array $configuration
-     *
-     * @throws \RetailCrm\Exception\InvalidJsonException
-     * @throws \RetailCrm\Exception\CurlException
-     * @throws \InvalidArgumentException
-     *
-     * @return \RetailCrm\Response\ApiResponse
-     */
-    public function deliverySettingsEdit(array $configuration)
-    {
-        if (!count($configuration) || empty($configuration['code'])) {
-            throw new \InvalidArgumentException(
-                'Parameter `configuration` must contains a data & configuration `code` must be set'
-            );
-        }
-
-        return $this->client->makeRequest(
-            sprintf('/delivery/generic/setting/%s/edit', $configuration['code']),
-            "POST",
-            ['configuration' => json_encode($configuration)]
         );
     }
 

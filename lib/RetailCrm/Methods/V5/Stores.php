@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Stores
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -19,7 +19,7 @@ use RetailCrm\Methods\V4\Stores as Previous;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Stores class
  *
  * @category RetailCrm
  * @package  RetailCrm
