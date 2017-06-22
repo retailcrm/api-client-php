@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Statistic
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -19,7 +19,7 @@ use RetailCrm\Methods\V3\Statistic as Previous;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Statistic class
  *
  * @category RetailCrm
  * @package  RetailCrm

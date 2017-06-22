@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * Statistic class
+ * Statistic
  *
  * @category RetailCrm
  * @package  RetailCrm
