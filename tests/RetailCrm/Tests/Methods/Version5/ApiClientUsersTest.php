@@ -32,7 +32,7 @@ class ApiClientUsersTest extends TestCase
      */
     public function testUsersGroups()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->usersGroups();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -45,7 +45,7 @@ class ApiClientUsersTest extends TestCase
      */
     public function testUsersList()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->usersList();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -58,8 +58,7 @@ class ApiClientUsersTest extends TestCase
      */
     public function testUsersGet()
     {
-        $client = static::getApiClient(null, null, "v5");
-
+        $client = static::getApiClient();
         $response = $client->request->usersGet($_SERVER["CRM_USER_ID"]);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
@@ -71,8 +70,7 @@ class ApiClientUsersTest extends TestCase
      */
     public function testUsersStatus()
     {
-        $client = static::getApiClient(null, null, "v5");
-
+        $client = static::getApiClient();
         $response = $client->request->usersStatus($_SERVER["CRM_USER_ID"], 'dinner');
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));

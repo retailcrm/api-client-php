@@ -15,7 +15,7 @@ Use [API documentation](http://retailcrm.github.io/api-client-php)
 
 2) Run into your project directory:
 ```bash
-composer require retailcrm/api-client-php 5.* --no-dev
+composer require retailcrm/api-client-php ~5.0
 ```
 
 If you have not used `composer` before, include autoloader into your project.
@@ -30,7 +30,7 @@ require 'path/to/vendor/autoload.php';
 $client = new \RetailCrm\ApiClient(
     'https://demo.retailcrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
-    'v5'
+    \RetailCrm\ApiClient::V5
 );
 
 try {
@@ -65,7 +65,7 @@ if ($response->isSuccessful()) {
 $client = new \RetailCrm\ApiClient(
     'https://demo.retailcrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
-    'v4'
+    \RetailCrm\ApiClient::V4
 );
 
 try {
