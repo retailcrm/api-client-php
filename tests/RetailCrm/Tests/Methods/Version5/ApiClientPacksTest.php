@@ -32,7 +32,7 @@ class ApiClientPacksTest extends TestCase
      */
     public function testPacksHistory()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->ordersPacksHistory();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -53,7 +53,8 @@ class ApiClientPacksTest extends TestCase
      */
     public function testPacksCreateFailed()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
+
         $pack = [
             'itemId' => 12,
             'store' => 'test',

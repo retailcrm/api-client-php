@@ -33,8 +33,7 @@ class ApiClientPricesTest extends TestCase
      */
     public function testPricesEdit()
     {
-
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->pricesTypesEdit(
             [
@@ -56,8 +55,7 @@ class ApiClientPricesTest extends TestCase
      */
     public function testPricesGet()
     {
-        $client = static::getApiClient(null, null, "v5");
-
+        $client = static::getApiClient();
         $response = $client->request->pricesTypes();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
@@ -72,7 +70,7 @@ class ApiClientPricesTest extends TestCase
      */
     public function testPricesUploadExceptionEmpty()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
         $client->request->storePricesUpload([]);
     }
 
@@ -82,7 +80,8 @@ class ApiClientPricesTest extends TestCase
      */
     public function testPricesUpload()
     {
-        $client = static::getApiClient(null, null, "v5");
+
+        $client = static::getApiClient();
 
         $xmlIdA = 'upload-a-' . time();
         $xmlIdB = 'upload-b-' . time();

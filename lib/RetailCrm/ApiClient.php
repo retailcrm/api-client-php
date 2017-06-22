@@ -34,6 +34,10 @@ class ApiClient
     public $request;
     public $version;
 
+    const V3 = 'v3';
+    const V4 = 'v4';
+    const V5 = 'v5';
+
     /**
      * Init version based client
      *
@@ -43,18 +47,18 @@ class ApiClient
      * @param string $site    site code
      *
      */
-    public function __construct($url, $apiKey, $version = 'v5', $site = null)
+    public function __construct($url, $apiKey, $version = self::V5, $site = null)
     {
         $this->version = $version;
 
         switch ($version) {
-            case 'v5':
+            case self::V5:
                 $this->request = new ApiVersion5($url, $apiKey, $version, $site);
                 break;
-            case 'v4':
+            case self::V4:
                 $this->request = new ApiVersion4($url, $apiKey, $version, $site);
                 break;
-            case 'v3':
+            case self::V3:
                 $this->request = new ApiVersion3($url, $apiKey, $version, $site);
                 break;
         }
