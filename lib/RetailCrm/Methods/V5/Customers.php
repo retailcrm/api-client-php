@@ -120,7 +120,7 @@ trait Customers
     }
 
     /**
-     * Create customer note
+     * Delete customer note
      *
      * @param integer $id
      *
