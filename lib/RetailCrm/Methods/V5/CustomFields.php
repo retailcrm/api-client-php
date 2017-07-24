@@ -196,7 +196,7 @@ trait CustomFields
         }
 
         return $this->client->makeRequest(
-            "/custom-fields/dictionaries/{$customDictionary['code']}/create",
+            "/custom-fields/dictionaries/create",
             "POST",
             ['customDictionary' => json_encode($customDictionary)]
         );

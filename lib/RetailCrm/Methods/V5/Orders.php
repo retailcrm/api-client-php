@@ -94,14 +94,14 @@ trait Orders
     }
 
     /**
-     * Edit an order payment
-     *
-     * @param array  $payment order data
-     * @param string $by      by key
-     * @param null   $site    site code
-     *
-     * @return \RetailCrm\Response\ApiResponse
-     */
+ * Edit an order payment
+ *
+ * @param array  $payment order data
+ * @param string $by      by key
+ * @param null   $site    site code
+ *
+ * @return \RetailCrm\Response\ApiResponse
+ */
     public function ordersPaymentEdit(array $payment, $by = 'id', $site = null)
     {
         if (!count($payment)) {
@@ -125,6 +125,27 @@ trait Orders
                 $site,
                 ['payment' => json_encode($payment), 'by' => $by]
             )
+        );
+    }
+
+    /**
+     * Edit an order payment
+     *
+     * @param string $id payment id
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function ordersPaymentDelete($id)
+    {
+        if (!$id) {
+            throw new \InvalidArgumentException(
+                'Parameter `id` must be set'
+            );
+        }
+
+        return $this->client->makeRequest(
+            sprintf('/orders/payments/%s/delete', $id),
+            "POST"
         );
     }
 }
