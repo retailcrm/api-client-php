@@ -403,10 +403,8 @@ class ApiClientOrdersTest extends TestCase
 
         $paymentEdit = [
             'id' => $response['id'],
-            'externalId' => $externalId,
             'amount' => 1500,
             'comment' => 'test payment!',
-            'type' => 'cash',
             'status' => 'paid'
         ];
 
@@ -414,7 +412,14 @@ class ApiClientOrdersTest extends TestCase
 
         static::assertTrue(
             $responseAgain->isSuccessful(),
-            'Got payment'
+            'Edit payment'
+        );
+
+        $responseLast = $client->request->ordersPaymentDelete($response['id']);
+
+        static::assertTrue(
+            $responseLast->isSuccessful(),
+            'Delete payment'
         );
     }
 }
