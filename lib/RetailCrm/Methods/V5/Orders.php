@@ -71,6 +71,7 @@ trait Orders
      * Create an order payment
      *
      * @param array $payment order data
+     * @param null  $site   site code
      *
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
@@ -78,7 +79,7 @@ trait Orders
      *
      * @return \RetailCrm\Response\ApiResponse
      */
-    public function ordersPaymentCreate(array $payment)
+    public function ordersPaymentCreate(array $payment, $site = null)
     {
         if (!count($payment)) {
             throw new \InvalidArgumentException(
@@ -89,7 +90,10 @@ trait Orders
         return $this->client->makeRequest(
             '/orders/payments/create',
             "POST",
-            ['payment' => json_encode($payment)]
+            $this->fillSite(
+                $site,
+                ['payment' => json_encode($payment)]
+            )
         );
     }
 
