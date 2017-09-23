@@ -113,7 +113,7 @@ trait CustomFields
         }
 
         return $this->client->makeRequest(
-            "/custom-fields/$entity/edit/{$customField['code']}",
+            "/custom-fields/$entity/{$customField['code']}/edit",
             "POST",
             ['customField' => json_encode($customField)]
         );
