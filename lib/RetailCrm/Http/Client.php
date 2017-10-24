@@ -63,6 +63,7 @@ class Client
      * @param string $path       request url
      * @param string $method     (default: 'GET')
      * @param array  $parameters (default: array())
+     * @param bool $fullPath (default: false)
      *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      *
@@ -75,7 +76,8 @@ class Client
     public function makeRequest(
         $path,
         $method,
-        array $parameters = []
+        array $parameters = [],
+        $fullPath = false
     ) {
         $allowedMethods = [self::METHOD_GET, self::METHOD_POST];
 
@@ -91,7 +93,7 @@ class Client
 
         $parameters = array_merge($this->defaultParameters, $parameters);
 
-        $url = $this->url . $path;
+        $url = $fullPath ? $path : $this->url . $path;
 
         if (self::METHOD_GET === $method && count($parameters)) {
             $url .= '?' . http_build_query($parameters, '', '&');

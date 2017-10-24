@@ -31,6 +31,7 @@ abstract class AbstractLoader
 {
     protected $siteCode;
     protected $client;
+    protected $crmUrl;
 
     /**
      * Init version based client
@@ -45,6 +46,7 @@ abstract class AbstractLoader
         if ('/' !== $url[strlen($url) - 1]) {
             $url .= '/';
         }
+        $this->crmUrl = $url;
 
         if (empty($version) || !in_array($version, ['v3', 'v4', 'v5'])) {
             throw new \InvalidArgumentException(
@@ -128,5 +130,33 @@ abstract class AbstractLoader
         return $this->siteCode;
     }
 
+    /**
+     * Getting the list of available api versions
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function availableVersions()
+    {
+        return $this->client->makeRequest(
+            $this->crmUrl . 'api/api-versions',
+            "GET",
+            [],
+            true
+        );
+    }
 
+    /**
+     * Getting the list of available api methods and stores for current key
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function credentials()
+    {
+        return $this->client->makeRequest(
+            $this->crmUrl . 'api/credentials',
+            "GET",
+            [],
+            true
+        );
+    }
 }
