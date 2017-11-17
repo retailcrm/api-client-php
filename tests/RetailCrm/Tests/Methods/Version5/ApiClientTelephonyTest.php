@@ -32,22 +32,6 @@ class ApiClientTelephonyTest extends TestCase
     const TEL_IMAGE = 'http://www.mec.ph/horizon/wp-content/uploads/2011/11/telephony.svg';
 
     /**
-     * Settings Get test
-     *
-     * @group telephony
-     *
-     * @return void
-     */
-    public function testTelephonySettingsGet()
-    {
-        $client = static::getApiClient();
-        $response = $client->request->telephonySettingsGet(self::TEL_CODE);
-        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertEquals(200, $response->getStatusCode());
-        static::assertTrue($response->isSuccessful());
-    }
-
-    /**
      * Event test
      *
      * @group telephony
@@ -124,5 +108,15 @@ class ApiClientTelephonyTest extends TestCase
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->isSuccessful());
+    }
+
+    /**
+     * @group telephony_v5
+     * @expectedException \InvalidArgumentException
+     */
+    public function testTelephonySettingsGet()
+    {
+        $client = static::getApiClient();
+        $client->request->telephonySettingsGet(self::TEL_CODE);
     }
 }

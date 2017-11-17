@@ -32,6 +32,23 @@ trait Stores
     use Previous;
 
     /**
+     * Get store settings
+     *
+     * @param string $code get settings code
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \InvalidArgumentException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function storeSettingsGet($code)
+    {
+        throw new \InvalidArgumentException('This method is not available');
+    }
+
+    /**
      * Get products groups
      *
      * @param array $filter (default: array())

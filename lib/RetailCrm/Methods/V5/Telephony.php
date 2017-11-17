@@ -30,4 +30,9 @@ use RetailCrm\Methods\V4\Telephony as Previous;
 trait Telephony
 {
     use Previous;
+
+    public function telephonySettingsGet($code)
+    {
+        throw new \InvalidArgumentException('This method is not available');
+    }
 }
