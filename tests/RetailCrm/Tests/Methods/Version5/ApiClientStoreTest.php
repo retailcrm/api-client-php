@@ -31,7 +31,7 @@ class ApiClientStoreTest extends TestCase
     const SCODE = 'test-store-v5';
 
     /**
-     * @group store_v4
+     * @group store_v5
      */
     public function testStoreCreate()
     {
@@ -45,7 +45,7 @@ class ApiClientStoreTest extends TestCase
     }
 
     /**
-     * @group store_v4
+     * @group store_v5
      */
     public function testStoreInventories()
     {
@@ -63,7 +63,7 @@ class ApiClientStoreTest extends TestCase
     }
 
     /**
-     * @group store_v4
+     * @group store_v5
      * @expectedException \InvalidArgumentException
      */
     public function testInventoriesException()
@@ -74,7 +74,7 @@ class ApiClientStoreTest extends TestCase
     }
 
     /**
-     * @group store_v4
+     * @group store_v5
      */
     public function testInventoriesUpload()
     {
@@ -109,7 +109,7 @@ class ApiClientStoreTest extends TestCase
     }
 
     /**
-     * @group integration
+     * @group store_v5
      */
     public function testInventoriesFailed()
     {
@@ -137,7 +137,7 @@ class ApiClientStoreTest extends TestCase
     }
 
     /**
-     * @group store_v4
+     * @group store_v5
      */
     public function testStoreProducts()
     {
@@ -151,7 +151,7 @@ class ApiClientStoreTest extends TestCase
     }
 
     /**
-     * @group store_v4
+     * @group store_v5
      */
     public function testStoreProductsGroups()
     {
@@ -162,5 +162,15 @@ class ApiClientStoreTest extends TestCase
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->isSuccessful());
+    }
+
+    /**
+     * @group store_v5
+     * @expectedException \InvalidArgumentException
+     */
+    public function testStoreSettingsGet()
+    {
+        $client = static::getApiClient();
+        $client->request->storeSettingsGet(self::SCODE);
     }
 }
