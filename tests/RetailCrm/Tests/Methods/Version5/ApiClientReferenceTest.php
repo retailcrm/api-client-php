@@ -38,6 +38,7 @@ class ApiClientReferenceTest extends TestCase
         $client = static::getApiClient();
 
         $method = $name . 'List';
+        echo $method;
         $response = $client->request->$method();
 
         /* @var \RetailCrm\Response\ApiResponse $response */
@@ -153,6 +154,8 @@ class ApiClientReferenceTest extends TestCase
             ['statuses'],
             ['sites'],
             ['stores'],
+            ['couriers'],
+            ['costs']
         ];
     }
 
