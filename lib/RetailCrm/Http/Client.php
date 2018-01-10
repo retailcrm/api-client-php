@@ -63,7 +63,7 @@ class Client
      * @param string $path       request url
      * @param string $method     (default: 'GET')
      * @param array  $parameters (default: array())
-     * @param bool $fullPath (default: false)
+     * @param bool   $fullPath   (default: false)
      *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      *

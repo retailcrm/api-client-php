@@ -28,7 +28,11 @@ use RetailCrm\Test\TestCase;
 class CommonMethodsTest extends TestCase
 {
     /**
+     * Available versions
+     *
      * @group api_methods
+     *
+     * @return void
      */
     public function testAvailableVersions()
     {
@@ -37,12 +41,16 @@ class CommonMethodsTest extends TestCase
         $response = $client->request->availableVersions();
 
         static::assertEquals(200, $response->getStatusCode());
-        static::assertTrue($response->getSuccess());
-        static::assertGreaterThan(0, count($response->getVersions()));
+        static::assertTrue($response->isSuccessful());
+        static::assertGreaterThan(0, count($response['versions']));
     }
 
     /**
+     * Available methods
+     *
      * @group api_methods
+     *
+     * @return void
      */
     public function testCredentials()
     {
@@ -51,7 +59,7 @@ class CommonMethodsTest extends TestCase
         $response = $client->request->credentials();
 
         static::assertEquals(200, $response->getStatusCode());
-        static::assertTrue($response->getSuccess());
-        static::assertGreaterThan(0, count($response->getCredentials()));
+        static::assertTrue($response->isSuccessful());
+        static::assertGreaterThan(0, count($response['credentials']));
     }
 }

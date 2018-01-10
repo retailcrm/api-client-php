@@ -50,7 +50,7 @@ abstract class AbstractLoader
 
         if (empty($version) || !in_array($version, ['v3', 'v4', 'v5'])) {
             throw new \InvalidArgumentException(
-                'Version parameter must be not empty and must be equal one of v3|v4|v5'
+                'Version must be not empty and must be equal one of v3|v4|v5'
             );
         }
 
