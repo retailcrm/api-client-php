@@ -242,9 +242,14 @@ trait Orders
 
     /**
      * Get orders history
-     * @param array $filter
-     * @param null $page
-     * @param null $limit
+     *
+     * @param array $filter (default: array())
+     * @param int   $page   (default: null)
+     * @param int   $limit  (default: null)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return \RetailCrm\Response\ApiResponse
      */

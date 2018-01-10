@@ -19,7 +19,11 @@ use RetailCrm\Test\TestCase;
 /**
  * Class ApiClientMarketplaceTest
  *
- * @package RetailCrm\Tests
+ * @category RetailCrm
+ * @package  RetailCrm
+ * @author   RetailCrm <integration@retailcrm.ru>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientMarketplaceTest extends TestCase
 {
@@ -27,12 +31,21 @@ class ApiClientMarketplaceTest extends TestCase
     const SERVICE_CODE = 'integration_v5';
 
     /**
+     * Test configuration
+     *
      * @group marketplace_v5
+     *
+     * @return void
      */
     public function testConfigurationEdit()
     {
         $client = static::getApiClient();
 
+        /**
+         * Response
+         *
+         * @var \RetailCrm\Response\ApiResponse $response
+         */
         $response = $client->request->integrationModulesEdit(
             [
                 'name' => self::SERVICE_NAME,

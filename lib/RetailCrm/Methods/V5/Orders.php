@@ -34,9 +34,9 @@ trait Orders
     /**
      * Combine orders
      *
-     * @param string $technique
-     * @param array  $order
-     * @param array  $resultOrder
+     * @param array  $order       orgin order
+     * @param array  $resultOrder result order
+     * @param string $technique   combining technique
      *
      * @return \RetailCrm\Response\ApiResponse
      */
@@ -71,7 +71,7 @@ trait Orders
      * Create an order payment
      *
      * @param array $payment order data
-     * @param null  $site   site code
+     * @param null  $site    site code
      *
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
@@ -98,14 +98,14 @@ trait Orders
     }
 
     /**
- * Edit an order payment
- *
- * @param array  $payment order data
- * @param string $by      by key
- * @param null   $site    site code
- *
- * @return \RetailCrm\Response\ApiResponse
- */
+     * Edit an order payment
+     *
+     * @param array  $payment order data
+     * @param string $by      by key
+     * @param null   $site    site code
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
     public function ordersPaymentEdit(array $payment, $by = 'id', $site = null)
     {
         if (!count($payment)) {
