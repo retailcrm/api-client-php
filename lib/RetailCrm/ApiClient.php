@@ -61,6 +61,9 @@ class ApiClient
             case self::V3:
                 $this->request = new ApiVersion3($url, $apiKey, $version, $site);
                 break;
+            default:
+                $this->request = new ApiVersion5($url, $apiKey, $version, $site);
+                break;
         }
     }
 

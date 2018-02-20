@@ -50,6 +50,7 @@ trait Segments
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/segments',
             "GET",

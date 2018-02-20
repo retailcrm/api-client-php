@@ -54,6 +54,7 @@ trait Customers
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers',
             "GET",
@@ -81,6 +82,7 @@ trait Customers
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers/create',
             "POST",
@@ -107,6 +109,7 @@ trait Customers
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers/fix-external-ids',
             "POST",
@@ -134,6 +137,7 @@ trait Customers
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers/upload',
             "POST",
@@ -158,6 +162,7 @@ trait Customers
     {
         $this->checkIdParameter($by);
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/customers/$id",
             "GET",
@@ -194,6 +199,7 @@ trait Customers
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/customers/%s/edit', $customer[$by]),
             "POST",

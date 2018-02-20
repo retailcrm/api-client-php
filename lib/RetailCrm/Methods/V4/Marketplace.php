@@ -47,6 +47,7 @@ trait Marketplace
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/marketplace/external/setting/%s/edit', $configuration['code']),
             "POST",

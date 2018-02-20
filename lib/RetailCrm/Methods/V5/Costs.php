@@ -53,6 +53,7 @@ trait Costs
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/costs',
             "GET",
@@ -80,6 +81,7 @@ trait Costs
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/costs/create',
             "POST",
@@ -106,6 +108,7 @@ trait Costs
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/costs/delete',
             "POST"
@@ -131,6 +134,7 @@ trait Costs
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/costs/upload',
             "POST",
@@ -151,6 +155,7 @@ trait Costs
      */
     public function costsGet($id)
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/costs/$id",
             "GET"
@@ -177,6 +182,7 @@ trait Costs
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/costs/%s/edit', $cost['id']),
             "POST",
@@ -206,6 +212,7 @@ trait Costs
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/costs/%s/delete', $id),
             "POST"

@@ -46,6 +46,7 @@ trait Module
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/integration-modules/%s', $code),
             "GET"
@@ -71,6 +72,7 @@ trait Module
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/integration-modules/%s/edit', $configuration['code']),
             "POST",

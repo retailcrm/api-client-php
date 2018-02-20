@@ -33,6 +33,7 @@ class ApiClientMarketplaceTest extends TestCase
     {
         $client = static::getApiClient(null, null, "v4");
 
+        /* @var \RetailCrm\Response\ApiResponse $response */
         $response = $client->request->marketplaceSettingsEdit(
             [
                 'name' => self::SNAME,

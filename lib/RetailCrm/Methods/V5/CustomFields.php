@@ -50,6 +50,7 @@ trait CustomFields
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/custom-fields',
             "GET",
@@ -83,6 +84,7 @@ trait CustomFields
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/custom-fields/$entity/create",
             "POST",
@@ -112,6 +114,7 @@ trait CustomFields
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/custom-fields/$entity/{$customField['code']}/edit",
             "POST",
@@ -141,6 +144,7 @@ trait CustomFields
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/custom-fields/$entity/$code",
             "GET"
@@ -170,6 +174,7 @@ trait CustomFields
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/custom-fields/dictionaries',
             "GET",
@@ -195,6 +200,7 @@ trait CustomFields
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/custom-fields/dictionaries/create",
             "POST",
@@ -220,6 +226,7 @@ trait CustomFields
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/custom-fields/dictionaries/{$customDictionary['code']}/edit",
             "POST",
@@ -242,6 +249,7 @@ trait CustomFields
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/custom-fields/dictionaries/$code",
             "GET"

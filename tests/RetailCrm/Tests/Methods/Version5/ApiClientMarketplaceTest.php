@@ -60,6 +60,4 @@ class ApiClientMarketplaceTest extends TestCase
         static::assertEquals($response->getStatusCode(), 200);
         static::assertTrue($response->isSuccessful());
     }
-
-
 }

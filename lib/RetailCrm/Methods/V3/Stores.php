@@ -54,6 +54,7 @@ trait Stores
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/store/inventories',
             "GET",
@@ -81,6 +82,7 @@ trait Stores
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/store/inventories/upload',
             "POST",

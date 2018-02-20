@@ -59,7 +59,8 @@ class ApiClientUsersTest extends TestCase
     public function testUsersGet()
     {
         $client = static::getApiClient();
-        $response = $client->request->usersGet($_SERVER["CRM_USER_ID"]);
+        $user = getenv('RETAILCRM_USER') ?: $_SERVER['RETAILCRM_USER'];
+        $response = $client->request->usersGet($user);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());
@@ -71,7 +72,8 @@ class ApiClientUsersTest extends TestCase
     public function testUsersStatus()
     {
         $client = static::getApiClient();
-        $response = $client->request->usersStatus($_SERVER["CRM_USER_ID"], 'dinner');
+        $user = getenv('RETAILCRM_USER') ?: $_SERVER['RETAILCRM_USER'];
+        $response = $client->request->usersStatus($user, 'dinner');
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());

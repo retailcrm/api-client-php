@@ -14,7 +14,6 @@
 
 namespace RetailCrm\Methods\V5;
 
-use RetailCrm\Response\ApiResponse;
 use RetailCrm\Methods\V4\Users as Previous;
 
 /**

@@ -36,16 +36,12 @@ trait Stores
      *
      * @param string $code get settings code
      *
-     * @return \RetailCrm\Response\ApiResponse
-     * @throws \RetailCrm\Exception\InvalidJsonException
-     * @throws \RetailCrm\Exception\CurlException
-     * @throws \InvalidArgumentException
+     * @return void
      *
-     * @return \RetailCrm\Response\ApiResponse
      */
     public function storeSettingsGet($code)
     {
-        throw new \InvalidArgumentException('This method is not available');
+        throw new \InvalidArgumentException("This method is not available, setting code: $code is unnecessary");
     }
 
     /**
@@ -58,7 +54,6 @@ trait Stores
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
-     *
      * @return \RetailCrm\Response\ApiResponse
      */
     public function storeProductsGroups(array $filter = [], $page = null, $limit = null)
@@ -75,6 +70,7 @@ trait Stores
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/store/product-groups',
             "GET",

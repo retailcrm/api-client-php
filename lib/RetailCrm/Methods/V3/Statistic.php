@@ -38,6 +38,7 @@ trait Statistic
      */
     public function statisticUpdate()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/statistic/update',
             "GET"

@@ -14,6 +14,7 @@
 
 namespace RetailCrm\Tests\Methods\Version4;
 
+use RetailCrm\ApiClient;
 use RetailCrm\Test\TestCase;
 
 /**
@@ -40,8 +41,10 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonySettingsEdit()
     {
-        $client = static::getApiClient(null, null, \RetailCrm\ApiClient::V4);
+        $client = static::getApiClient(null, null, ApiClient::V4);
+        $user = getenv('RETAILCRM_USER') ?: $_SERVER['RETAILCRM_USER'];
 
+        /* @var \RetailCrm\Response\ApiResponse $response */
         $response = $client->request->telephonySettingsEdit(
             self::TEL_CODE,
             self::TEL_CLIENT,
@@ -49,7 +52,7 @@ class ApiClientTelephonyTest extends TestCase
             'TestTelephonyV4',
             false,
             self::TEL_IMAGE,
-            [['userId' => $_SERVER['CRM_USER_ID'], 'code' => '101']],
+            [['userId' => $user, 'code' => '101']],
             [['siteCode' => 'api-client-php', 'externalPhone' => '+74950000000']]
         );
 
@@ -67,8 +70,9 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonySettingsGet()
     {
-        $client = static::getApiClient(null, null, \RetailCrm\ApiClient::V4);
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
+        /* @var \RetailCrm\Response\ApiResponse $response */
         $response = $client->request->telephonySettingsGet(self::TEL_CODE);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertEquals(200, $response->getStatusCode());
@@ -84,7 +88,7 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonyEvent()
     {
-        $client = static::getApiClient(null, null, \RetailCrm\ApiClient::V4);
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $response = $client->request->telephonyCallEvent(
             '+79999999999',
@@ -92,7 +96,6 @@ class ApiClientTelephonyTest extends TestCase
             ['101'],
             'failed',
             '+74950000000'
-
         );
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -109,7 +112,7 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonyUpload()
     {
-        $client = static::getApiClient(null, null, \RetailCrm\ApiClient::V4);
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $response = $client->request->telephonyCallsUpload(
             [
@@ -148,7 +151,7 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonyManager()
     {
-        $client = static::getApiClient(null, null, \RetailCrm\ApiClient::V4);
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $response = $client->request->telephonyCallManager('+79999999999', 1);
 

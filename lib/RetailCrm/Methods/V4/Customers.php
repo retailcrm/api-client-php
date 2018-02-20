@@ -53,6 +53,7 @@ trait Customers
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers/history',
             "GET",
