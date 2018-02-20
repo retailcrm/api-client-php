@@ -48,6 +48,7 @@ trait Customers
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers/combine',
             "POST",
@@ -85,6 +86,7 @@ trait Customers
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers/notes',
             "GET",
@@ -112,6 +114,7 @@ trait Customers
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers/notes/create',
             "POST",
@@ -138,6 +141,7 @@ trait Customers
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/customers/notes/$id/delete",
             "POST"

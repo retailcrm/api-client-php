@@ -44,6 +44,7 @@ trait Telephony
             throw new \InvalidArgumentException('Parameter `code` must be set');
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/telephony/setting/$code",
             "GET"
@@ -93,6 +94,7 @@ trait Telephony
         $parameters['webAnalyticsData'] = $webAnalyticsData;
 
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/telephony/call/event',
             "POST",
@@ -119,6 +121,7 @@ trait Telephony
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/telephony/calls/upload',
             "POST",
@@ -147,6 +150,7 @@ trait Telephony
         $parameters['phone'] = $phone;
         $parameters['details'] = isset($details) ? $details : 0;
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/telephony/manager',
             "GET",

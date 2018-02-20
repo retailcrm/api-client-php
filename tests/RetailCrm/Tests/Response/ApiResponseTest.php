@@ -115,6 +115,7 @@ class ApiResponseTest extends TestCase
     public function testMagicCallException1()
     {
         $response = new ApiResponse(200);
+        /* @noinspection PhpUndefinedMethodInspection */
         $response->getSome();
     }
 
@@ -125,6 +126,7 @@ class ApiResponseTest extends TestCase
     public function testMagicCallException2()
     {
         $response = new ApiResponse(201, '{ "success": true }');
+        /* @noinspection PhpUndefinedMethodInspection */
         $response->getSomeSuccess();
     }
 
@@ -148,6 +150,7 @@ class ApiResponseTest extends TestCase
     public function testMagicGetException1()
     {
         $response = new ApiResponse(200);
+        /* @noinspection PhpUndefinedFieldInspection */
         $response->some;
     }
 
@@ -158,6 +161,7 @@ class ApiResponseTest extends TestCase
     public function testMagicGetException2()
     {
         $response = new ApiResponse(201, '{ "success": true }');
+        /* @noinspection PhpUndefinedFieldInspection */
         $response->someSuccess;
     }
 

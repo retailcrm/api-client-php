@@ -44,7 +44,7 @@ trait Delivery
      */
     public function deliverySettingsGet($code)
     {
-        throw new \InvalidArgumentException('This method is not available');
+        throw new \InvalidArgumentException("This method is not available, setting code: $code is unnecessary");
     }
 
     /**
@@ -77,6 +77,7 @@ trait Delivery
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/delivery/shipments',
             "GET",
@@ -108,6 +109,7 @@ trait Delivery
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/delivery/shipments/create',
             "POST",
@@ -134,6 +136,7 @@ trait Delivery
      */
     public function deliveryShipmentGet($id)
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf("/delivery/shipments/%s", $id),
             "GET"
@@ -166,6 +169,7 @@ trait Delivery
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf("/delivery/shipments/%s/edit", $shipment['id']),
             "POST",

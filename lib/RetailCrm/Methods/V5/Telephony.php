@@ -31,8 +31,12 @@ trait Telephony
 {
     use Previous;
 
+
+    /**
+     * @param string $code integration code
+     */
     public function telephonySettingsGet($code)
     {
-        throw new \InvalidArgumentException('This method is not available');
+        throw new \InvalidArgumentException("This method is not available, setting code: $code is unnecessary");
     }
 }

@@ -47,6 +47,7 @@ trait Settings
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/store/setting/%s/edit', $configuration['code']),
             "POST",
@@ -151,6 +152,7 @@ trait Settings
             $parameters['changeUserStatusUrl'] = $changeUserStatusUrl;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/telephony/setting/$code/edit",
             "POST",
@@ -177,6 +179,7 @@ trait Settings
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/delivery/generic/setting/%s/edit', $configuration['code']),
             "POST",

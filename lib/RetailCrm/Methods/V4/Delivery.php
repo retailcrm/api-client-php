@@ -44,6 +44,7 @@ trait Delivery
             throw new \InvalidArgumentException('Parameter `code` must be set');
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/delivery/generic/setting/$code",
             "GET"
@@ -74,6 +75,7 @@ trait Delivery
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/delivery/generic/%s/tracking', $code),
             "POST",

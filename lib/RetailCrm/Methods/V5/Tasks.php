@@ -50,6 +50,7 @@ trait Tasks
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/tasks',
             "GET",
@@ -74,6 +75,7 @@ trait Tasks
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/tasks/create",
             "POST",
@@ -101,6 +103,7 @@ trait Tasks
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/tasks/{$task['id']}/edit",
             "POST",
@@ -126,6 +129,7 @@ trait Tasks
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/tasks/$id",
             "GET"

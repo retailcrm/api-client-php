@@ -47,7 +47,6 @@ class ApiClientTelephonyTest extends TestCase
             ['101'],
             'failed',
             '+74950000000'
-
         );
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);

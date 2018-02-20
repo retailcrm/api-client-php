@@ -52,12 +52,12 @@ class ApiClientTasksTest extends TestCase
 
     public function testTasksCRU()
     {
-
         $client = static::getApiClient();
+        $user = getenv('RETAILCRM_USER') ?: $_SERVER['RETAILCRM_USER'];
         $task = [
             'text' => 'test task',
             'commentary' => 'test task commentary',
-            'performerId' => $_SERVER['CRM_USER_ID'],
+            'performerId' => $user,
             'complete' => false
         ];
 

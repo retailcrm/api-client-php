@@ -44,15 +44,16 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $version = null,
         $site = null
     ) {
-        $configUrl     = getenv('CRM_API_URL') ?: $_SERVER['CRM_API_URL'];
-        $configKey     = getenv('CRM_API_KEY') ?: $_SERVER['CRM_API_KEY'];
-        $configVersion = getenv('CRM_API_VERSION') ?: $_SERVER['CRM_API_VERSION'];
+        $configUrl     = getenv('RETAILCRM_URL') ?: $_SERVER['RETAILCRM_URL'];
+        $configKey     = getenv('RETAILCRM_KEY') ?: $_SERVER['RETAILCRM_KEY'];
+        $configVersion = getenv('RETAILCRM_VERSION') ?: $_SERVER['RETAILCRM_VERSION'];
+        $configSite    = getenv('RETAILCRM_SITE') ?: $_SERVER['RETAILCRM_SITE'];
 
         return new ApiClient(
             $url ?: $configUrl,
             $apiKey ?: $configKey,
             $version ?: $configVersion,
-            $site ?: null
+            $site ?: $configSite
         );
     }
 
@@ -66,18 +67,16 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     public static function getClient($url = null, $defaultParameters = [])
     {
-        $version = getenv('CRM_API_VERSION');
-
-        if (false == $version) {
-            $version = $_SERVER['CRM_API_VERSION'];
-        }
+        $configUrl     = getenv('RETAILCRM_URL') ?: $_SERVER['RETAILCRM_URL'];
+        $configKey     = getenv('RETAILCRM_KEY') ?: $_SERVER['RETAILCRM_KEY'];
+        $configVersion = getenv('RETAILCRM_VERSION') ?: $_SERVER['RETAILCRM_VERSION'];
 
         return new Client(
-            $url ?: $_SERVER['CRM_API_URL'] . '/api/' .  $version,
+            $url ?: $configUrl . '/api/' .  $configVersion,
             [
                 'apiKey' => array_key_exists('apiKey', $defaultParameters)
                     ? $defaultParameters['apiKey']
-                    : $_SERVER['CRM_API_KEY']
+                    : $configKey
             ]
         );
     }

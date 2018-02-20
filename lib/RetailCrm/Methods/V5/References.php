@@ -41,6 +41,7 @@ trait References
      */
     public function costGroups()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/cost-groups',
             "GET"
@@ -78,6 +79,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/cost-groups/%s/edit', $data['code']),
             "POST",
@@ -95,6 +97,7 @@ trait References
      */
     public function costItems()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/cost-items',
             "GET"
@@ -126,6 +129,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/cost-items/%s/edit', $data['code']),
             "POST",
@@ -143,6 +147,7 @@ trait References
      */
     public function legalEntities()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/legal-entities',
             "GET"
@@ -168,6 +173,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/legal-entities/%s/edit', $data['code']),
             "POST",
@@ -185,6 +191,7 @@ trait References
      */
     public function couriersList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/couriers',
             "GET"
@@ -204,6 +211,7 @@ trait References
      */
     public function couriersCreate(array $courier)
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/couriers/create',
             "POST",
@@ -230,6 +238,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/couriers/%s/edit', $courier['id']),
             "POST",

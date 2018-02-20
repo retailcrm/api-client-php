@@ -56,6 +56,7 @@ trait Orders
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/combine',
             "POST",
@@ -87,6 +88,7 @@ trait Orders
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/payments/create',
             "POST",
@@ -122,6 +124,7 @@ trait Orders
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/orders/payments/%s/edit', $payment[$by]),
             "POST",
@@ -147,6 +150,7 @@ trait Orders
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/orders/payments/%s/delete', $id),
             "POST"

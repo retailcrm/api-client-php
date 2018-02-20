@@ -41,6 +41,7 @@ trait References
      */
     public function pricesTypes()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/price-types',
             "GET"
@@ -72,6 +73,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/price-types/%s/edit', $data['code']),
             "POST",

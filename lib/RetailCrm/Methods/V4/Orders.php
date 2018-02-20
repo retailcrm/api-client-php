@@ -59,6 +59,7 @@ trait Orders
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders',
             "GET",
@@ -86,6 +87,7 @@ trait Orders
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/create',
             "POST",
@@ -112,6 +114,8 @@ trait Orders
             );
         }
 
+        /** @noinspection PhpUndefinedMethodInspection */
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/fix-external-ids',
             "POST",
@@ -143,6 +147,7 @@ trait Orders
             $parameters['externalIds'] = $externalIds;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/statuses',
             "GET",
@@ -170,6 +175,7 @@ trait Orders
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/upload',
             "POST",
@@ -194,6 +200,7 @@ trait Orders
     {
         $this->checkIdParameter($by);
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/orders/$id",
             "GET",
@@ -230,6 +237,7 @@ trait Orders
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/orders/%s/edit', $order[$by]),
             "POST",
@@ -267,6 +275,7 @@ trait Orders
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/history',
             "GET",

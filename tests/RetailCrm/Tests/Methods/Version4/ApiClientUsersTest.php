@@ -59,8 +59,9 @@ class ApiClientUsersTest extends TestCase
     public function testUsersGet()
     {
         $client = static::getApiClient(null, null, "v4");
+        $user = getenv('RETAILCRM_USER') ?: $_SERVER['RETAILCRM_USER'];
 
-        $response = $client->request->usersGet($_SERVER["CRM_USER_ID"]);
+        $response = $client->request->usersGet($user);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());

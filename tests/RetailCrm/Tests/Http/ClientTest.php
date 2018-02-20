@@ -15,7 +15,6 @@
 namespace RetailCrm\Tests\Http;
 
 use RetailCrm\Test\TestCase;
-use RetailCrm\ApiClient;
 use RetailCrm\Http\Client;
 
 /**
@@ -45,7 +44,9 @@ class ClientTest extends TestCase
      */
     public function testHttpRequiring()
     {
-        $client = new Client('http://demo.retailcrm.ru/api/' . $_SERVER['CRM_API_VERSION'], ['apiKey' => '123']);
+        $configVersion = getenv('RETAILCRM_VERSION') ?: $_SERVER['RETAILCRM_VERSION'];
+        $client = new Client('http://demo.retailcrm.ru/api/' . $configVersion, ['apiKey' => '123']);
+
         return $client;
     }
 

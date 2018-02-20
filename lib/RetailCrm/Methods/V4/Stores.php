@@ -49,6 +49,7 @@ trait Stores
             throw new \InvalidArgumentException('Parameter `code` must be set');
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/store/setting/$code",
             "GET"
@@ -76,6 +77,7 @@ trait Stores
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/store/prices/upload',
             "POST",
@@ -110,6 +112,7 @@ trait Stores
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/store/products',
             "GET",

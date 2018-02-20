@@ -8,14 +8,6 @@
     processIsolation="false"
     stopOnFailure="false">
 
-    <!-- Dummy values used to provide credentials. No need to change these. -->
-    <php>
-        <server name="CRM_API_URL" value="https://demo.retailcrm.ru" />
-        <server name="CRM_API_KEY" value="nSBFWecViONG5c96wUQQgZzHkilTnaa6" />
-        <server name="CRM_API_VERSION" value="v5" />
-        <server name="CRM_USER_ID" value="1" />
-    </php>
-
     <testsuites>
         <testsuite name="RetailCrm">
             <directory>tests/RetailCrm/Tests</directory>
