@@ -111,9 +111,11 @@
 
 			<h3>Traits</h3>
 			<ul>
+				<li><a href="class-RetailCrm.Methods.V5.Costs.html">Costs</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Customers.html">Customers</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.CustomFields.html">CustomFields</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Delivery.html">Delivery</a></li>
+				<li><a href="class-RetailCrm.Methods.V5.Module.html">Module</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Orders.html">Orders</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Packs.html">Packs</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.References.html">References</a></li>
@@ -182,7 +184,7 @@
 				RetailCrm <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;:&#x69;&#110;&#x74;&#101;&#x67;&#114;&#97;&#x74;&#105;&#x6f;&#110;&#64;&#x72;&#101;&#x74;&#97;&#x69;&#108;c&#x72;&#109;&#x2e;&#114;&#x75;">&#x69;&#110;&#x74;&#101;&#x67;&#114;&#97;&#x74;&#105;&#x6f;&#110;&#64;&#x72;&#101;&#x74;&#97;&#x69;&#108;c&#x72;&#109;&#x2e;&#114;&#x75;</a><br>
 				<b>Link:</b>
 				<a href="http://www.retailcrm.ru/docs/Developers/ApiVersion5">http://www.retailcrm.ru/docs/Developers/ApiVersion5</a><br>
-			<b>Located at</b> <a href="source-class-RetailCrm.Methods.V5.Stores.html#19-67" title="Go to source code">RetailCrm/Methods/V5/Stores.php</a>
+			<b>Located at</b> <a href="source-class-RetailCrm.Methods.V5.Stores.html#19-116" title="Go to source code">RetailCrm/Methods/V5/Stores.php</a>
 		<br>
 	</div>
 
@@ -191,7 +193,40 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-			
+		<tr data-order="storeSettingsGet" id="_storeSettingsGet">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_storeSettingsGet">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Stores.html#34-45" title="Go to source code">storeSettingsGet</a>( <span>string <var>$code</var></span> )</code>
+
+			<div class="description short">
+				<p>Get store settings</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get store settings</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$code</var></dt>
+						<dd>get settings code</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="storeProductsGroups" id="_storeProductsGroups">
 
 			<td class="attributes"><code>
@@ -203,7 +238,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_storeProductsGroups">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.Stores.html#34-66" title="Go to source code">storeProductsGroups</a>( <span>array <var>$filter</var> = []</span>, <span>integer <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$limit</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-RetailCrm.Methods.V5.Stores.html#47-80" title="Go to source code">storeProductsGroups</a>( <span>array <var>$filter</var> = []</span>, <span>integer <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$limit</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Get products groups</p>
@@ -211,6 +246,54 @@
 
 			<div class="description detailed hidden">
 				<p>Get products groups</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$filter</var></dt>
+						<dd>(default: array())</dd>
+						<dt><var>$page</var></dt>
+						<dd>(default: null)</dd>
+						<dt><var>$limit</var></dt>
+						<dd>(default: null)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="storeProductsProperties" id="_storeProductsProperties">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_storeProductsProperties">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Stores.html#82-115" title="Go to source code">storeProductsProperties</a>( <span>array <var>$filter</var> = []</span>, <span>integer <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$limit</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Get products properties</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get products properties</p>
 
 
 					<h4>Parameters</h4>
@@ -248,8 +331,7 @@
 	        <div class="panel-heading"><h3>Methods used from <a href="class-RetailCrm.Methods.V4.Stores.html#methods">RetailCrm\Methods\V4\Stores</a></h3></div>
 			<p class="elementList">
 				<code><a href="class-RetailCrm.Methods.V4.Stores.html#_storePricesUpload">storePricesUpload()</a></code>, 
-				<code><a href="class-RetailCrm.Methods.V4.Stores.html#_storeProducts">storeProducts()</a></code>, 
-				<code><a href="class-RetailCrm.Methods.V4.Stores.html#_storeSettingsGet">storeSettingsGet()</a></code>
+				<code><a href="class-RetailCrm.Methods.V4.Stores.html#_storeProducts">storeProducts()</a></code>
 			</p>
 		</div>
 

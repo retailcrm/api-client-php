@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Trait RetailCrm\Methods\V5\CustomFields | retailCRM PHP API client</title>
+	<title>Trait RetailCrm\Methods\V5\Costs | retailCRM PHP API client</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?70c1d062672daa3f906b72e4f5d03d4bc5c4174d">
@@ -111,9 +111,9 @@
 
 			<h3>Traits</h3>
 			<ul>
-				<li><a href="class-RetailCrm.Methods.V5.Costs.html">Costs</a></li>
+				<li class="active"><a href="class-RetailCrm.Methods.V5.Costs.html">Costs</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Customers.html">Customers</a></li>
-				<li class="active"><a href="class-RetailCrm.Methods.V5.CustomFields.html">CustomFields</a></li>
+				<li><a href="class-RetailCrm.Methods.V5.CustomFields.html">CustomFields</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Delivery.html">Delivery</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Module.html">Module</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Orders.html">Orders</a></li>
@@ -138,13 +138,13 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Trait CustomFields</h1>
+	<h1>Trait Costs</h1>
 
 
 	<div class="description">
 	<p>PHP version 5.4</p>
 
-<p>CustomFields class</p>
+<p>CostsTrait class</p>
 	</div>
 
 
@@ -175,7 +175,7 @@
 				RetailCrm <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;:&#x69;&#110;&#x74;&#101;&#x67;&#114;&#97;&#x74;&#105;&#x6f;&#110;&#64;&#x72;&#101;&#x74;&#97;&#x69;&#108;c&#x72;&#109;&#x2e;&#114;&#x75;">&#x69;&#110;&#x74;&#101;&#x67;&#114;&#97;&#x74;&#105;&#x6f;&#110;&#64;&#x72;&#101;&#x74;&#97;&#x69;&#108;c&#x72;&#109;&#x2e;&#114;&#x75;</a><br>
 				<b>Link:</b>
 				<a href="http://www.retailcrm.ru/docs/Developers/ApiVersion5">http://www.retailcrm.ru/docs/Developers/ApiVersion5</a><br>
-			<b>Located at</b> <a href="source-class-RetailCrm.Methods.V5.CustomFields.html#17-258" title="Go to source code">RetailCrm/Methods/V5/CustomFields.php</a>
+			<b>Located at</b> <a href="source-class-RetailCrm.Methods.V5.Costs.html#16-221" title="Go to source code">RetailCrm/Methods/V5/Costs.php</a>
 		<br>
 	</div>
 
@@ -184,7 +184,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="customFieldsList" id="_customFieldsList">
+		<tr data-order="costsList" id="_costsList">
 
 			<td class="attributes"><code>
 				 public 
@@ -194,25 +194,25 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_customFieldsList">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.CustomFields.html#30-59" title="Go to source code">customFieldsList</a>( <span>array <var>$filter</var> = []</span>, <span>null <var>$limit</var> = <span class="php-keyword1">null</span></span>, <span>null <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
+			<a class="anchor" href="#_costsList">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Costs.html#29-62" title="Go to source code">costsList</a>( <span>array <var>$filter</var> = []</span>, <span>integer <var>$limit</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Get custom fields list</p>
+				<p>Returns filtered costs list</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Get custom fields list</p>
+				<p>Returns filtered costs list</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd></dd>
+						<dd>(default: array())</dd>
 						<dt><var>$limit</var></dt>
-						<dd></dd>
+						<dd>$page   (default: null)</dd>
 						<dt><var>$page</var></dt>
-						<dd></dd>
+						<dd>$limit  (default: null)</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -220,13 +220,19 @@
 						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
 
 
 
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="customFieldsCreate" id="_customFieldsCreate">
+		<tr data-order="costsCreate" id="_costsCreate">
 
 			<td class="attributes"><code>
 				 public 
@@ -236,23 +242,23 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_customFieldsCreate">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.CustomFields.html#61-93" title="Go to source code">customFieldsCreate</a>( <span> <var>$entity</var></span>, <span> <var>$customField</var></span> )</code>
+			<a class="anchor" href="#_costsCreate">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Costs.html#64-90" title="Go to source code">costsCreate</a>( <span>array <var>$cost</var></span>, <span>string <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Create custom field</p>
+				<p>Create a cost</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Create custom field</p>
+				<p>Create a cost</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$entity</var></dt>
-						<dd></dd>
-						<dt><var>$customField</var></dt>
-						<dd></dd>
+						<dt><var>$cost</var></dt>
+						<dd>cost data</dd>
+						<dt><var>$site</var></dt>
+						<dd>(default: null)</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -260,13 +266,19 @@
 						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
 
 
 
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="customFieldsEdit" id="_customFieldsEdit">
+		<tr data-order="costsDelete" id="_costsDelete">
 
 			<td class="attributes"><code>
 				 public 
@@ -276,23 +288,21 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_customFieldsEdit">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.CustomFields.html#95-123" title="Go to source code">customFieldsEdit</a>( <span> <var>$entity</var></span>, <span> <var>$customField</var></span> )</code>
+			<a class="anchor" href="#_costsDelete">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Costs.html#92-116" title="Go to source code">costsDelete</a>( <span>array <var>$ids</var></span> )</code>
 
 			<div class="description short">
-				<p>Edit custom field</p>
+				<p>Delete costs set</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Edit custom field</p>
+				<p>Delete costs set</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$entity</var></dt>
-						<dd></dd>
-						<dt><var>$customField</var></dt>
-						<dd></dd>
+						<dt><var>$ids</var></dt>
+						<dd>costs identifiers</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -300,13 +310,19 @@
 						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
 
 
 
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="customFieldsGet" id="_customFieldsGet">
+		<tr data-order="costsUpload" id="_costsUpload">
 
 			<td class="attributes"><code>
 				 public 
@@ -316,23 +332,21 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_customFieldsGet">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.CustomFields.html#125-152" title="Go to source code">customFieldsGet</a>( <span> <var>$entity</var></span>, <span> <var>$code</var></span> )</code>
+			<a class="anchor" href="#_costsUpload">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Costs.html#118-143" title="Go to source code">costsUpload</a>( <span>array <var>$costs</var></span> )</code>
 
 			<div class="description short">
-				<p>Get custom field</p>
+				<p>Upload costs</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Get custom field</p>
+				<p>Upload costs</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$entity</var></dt>
-						<dd></dd>
-						<dt><var>$code</var></dt>
-						<dd></dd>
+						<dt><var>$costs</var></dt>
+						<dd>costs array</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -340,13 +354,19 @@
 						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
 
 
 
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="customDictionariesList" id="_customDictionariesList">
+		<tr data-order="costsGet" id="_costsGet">
 
 			<td class="attributes"><code>
 				 public 
@@ -356,25 +376,21 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_customDictionariesList">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.CustomFields.html#154-183" title="Go to source code">customDictionariesList</a>( <span>array <var>$filter</var> = []</span>, <span>null <var>$limit</var> = <span class="php-keyword1">null</span></span>, <span>null <var>$page</var> = <span class="php-keyword1">null</span></span> )</code>
+			<a class="anchor" href="#_costsGet">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Costs.html#145-163" title="Go to source code">costsGet</a>( <span>string <var>$id</var></span> )</code>
 
 			<div class="description short">
-				<p>Get custom dictionaries list</p>
+				<p>Get cost by id</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Get custom dictionaries list</p>
+				<p>Get cost by id</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$filter</var></dt>
-						<dd></dd>
-						<dt><var>$limit</var></dt>
-						<dd></dd>
-						<dt><var>$page</var></dt>
-						<dd></dd>
+						<dt><var>$id</var></dt>
+						<dd>customer identificator</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -382,13 +398,19 @@
 						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
 
 
 
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="customDictionariesCreate" id="_customDictionariesCreate">
+		<tr data-order="costsEdit" id="_costsEdit">
 
 			<td class="attributes"><code>
 				 public 
@@ -398,21 +420,23 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_customDictionariesCreate">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.CustomFields.html#185-209" title="Go to source code">customDictionariesCreate</a>( <span> <var>$customDictionary</var></span> )</code>
+			<a class="anchor" href="#_costsEdit">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Costs.html#165-194" title="Go to source code">costsEdit</a>( <span>array <var>$cost</var></span>, <span>string <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Create custom dictionary</p>
+				<p>Edit a cost</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Create custom dictionary</p>
+				<p>Edit a cost</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$customDictionary</var></dt>
-						<dd></dd>
+						<dt><var>$cost</var></dt>
+						<dd>cost data</dd>
+						<dt><var>$site</var></dt>
+						<dd>(default: null)</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -420,13 +444,19 @@
 						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
 
 
 
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="customDictionariesEdit" id="_customDictionariesEdit">
+		<tr data-order="costsDeleteById" id="_costsDeleteById">
 
 			<td class="attributes"><code>
 				 public 
@@ -436,21 +466,21 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_customDictionariesEdit">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.CustomFields.html#211-235" title="Go to source code">customDictionariesEdit</a>( <span> <var>$customDictionary</var></span> )</code>
+			<a class="anchor" href="#_costsDeleteById">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Costs.html#196-220" title="Go to source code">costsDeleteById</a>( <span>string <var>$id</var></span> )</code>
 
 			<div class="description short">
-				<p>Edit custom dictionary</p>
+				<p>Delete cost by id</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Edit custom dictionary</p>
+				<p>Delete cost by id</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$customDictionary</var></dt>
-						<dd></dd>
+						<dt><var>$id</var></dt>
+						<dd>cost identifier</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -458,44 +488,12 @@
 						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
 					</div>
 
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="customDictionariesGet" id="_customDictionariesGet">
-
-			<td class="attributes"><code>
-				 public 
-				<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_customDictionariesGet">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.CustomFields.html#237-257" title="Go to source code">customDictionariesGet</a>( <span> <var>$code</var></span> )</code>
-
-			<div class="description short">
-				<p>Get custom dictionary</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Get custom dictionary</p>
-
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$code</var></dt>
-						<dd></dd>
-					</dl></div>
-
-					<h4>Returns</h4>
+					<h4>Throws</h4>
 					<div class="list">
-						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
 					</div>
-
 
 
 

@@ -111,9 +111,11 @@
 
 			<h3>Traits</h3>
 			<ul>
+				<li><a href="class-RetailCrm.Methods.V5.Costs.html">Costs</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Customers.html">Customers</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.CustomFields.html">CustomFields</a></li>
 				<li class="active"><a href="class-RetailCrm.Methods.V5.Delivery.html">Delivery</a></li>
+				<li><a href="class-RetailCrm.Methods.V5.Module.html">Module</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Orders.html">Orders</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Packs.html">Packs</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.References.html">References</a></li>
@@ -182,7 +184,7 @@
 				RetailCrm <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;:&#x69;&#110;&#x74;&#101;&#x67;&#114;&#97;&#x74;&#105;&#x6f;&#110;&#64;&#x72;&#101;&#x74;&#97;&#x69;&#108;c&#x72;&#109;&#x2e;&#114;&#x75;">&#x69;&#110;&#x74;&#101;&#x67;&#114;&#97;&#x74;&#105;&#x6f;&#110;&#64;&#x72;&#101;&#x74;&#97;&#x69;&#108;c&#x72;&#109;&#x2e;&#114;&#x75;</a><br>
 				<b>Link:</b>
 				<a href="http://www.retailcrm.ru/docs/Developers/ApiVersion5">http://www.retailcrm.ru/docs/Developers/ApiVersion5</a><br>
-			<b>Located at</b> <a href="source-class-RetailCrm.Methods.V5.Delivery.html#19-33" title="Go to source code">RetailCrm/Methods/V5/Delivery.php</a>
+			<b>Located at</b> <a href="source-class-RetailCrm.Methods.V5.Delivery.html#19-184" title="Go to source code">RetailCrm/Methods/V5/Delivery.php</a>
 		<br>
 	</div>
 
@@ -190,13 +192,240 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="deliverySettingsGet" id="_deliverySettingsGet">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_deliverySettingsGet">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Delivery.html#34-48" title="Go to source code">deliverySettingsGet</a>( <span>string <var>$code</var></span> )</code>
+
+			<div class="description short">
+				<p>Get delivery settings</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get delivery settings</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$code</var></dt>
+						<dd>delivery code</dd>
+					</dl></div>
+
+
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="deliveryShipmentsList" id="_deliveryShipmentsList">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_deliveryShipmentsList">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Delivery.html#50-86" title="Go to source code">deliveryShipmentsList</a>( <span>array <var>$filter</var> = []</span>, <span>integer <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$limit</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+			<div class="description short">
+				<p>Get delivery list</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get delivery list</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$filter</var></dt>
+						<dd>(default: array())</dd>
+						<dt><var>$page</var></dt>
+						<dd>(default: null)</dd>
+						<dt><var>$limit</var></dt>
+						<dd>(default: null)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="deliveryShipmentsCreate" id="_deliveryShipmentsCreate">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_deliveryShipmentsCreate">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Delivery.html#88-124" title="Go to source code">deliveryShipmentsCreate</a>( <span>array <var>$shipment</var></span>, <span>string <var>$deliveryType</var></span>, <span>null <var>$site</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+			<div class="description short">
+				<p>Create delivery shipment</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Create delivery shipment</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$shipment</var></dt>
+						<dd>(default: array())</dd>
+						<dt><var>$deliveryType</var></dt>
+						<dd>(default: string)</dd>
+						<dt><var>$site</var></dt>
+						<dd>(default: null)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="deliveryShipmentGet" id="_deliveryShipmentGet">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_deliveryShipmentGet">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Delivery.html#126-144" title="Go to source code">deliveryShipmentGet</a>( <span>string <var>$id</var></span> )</code>
+
+			<div class="description short">
+				<p>Get shipment</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get shipment</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd>shipment id</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="deliveryShipmentsEdit" id="_deliveryShipmentsEdit">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_deliveryShipmentsEdit">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Delivery.html#146-183" title="Go to source code">deliveryShipmentsEdit</a>( <span>array <var>$shipment</var></span>, <span>null <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Edit delivery shipment</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Edit delivery shipment</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$shipment</var></dt>
+						<dd>(default: array())</dd>
+						<dt><var>$site</var></dt>
+						<dd>(default: null)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException<br>
+						<code><a href="class-RetailCrm.Exception.CurlException.html">RetailCrm\Exception\CurlException</a></code><br>
+						<code><a href="class-RetailCrm.Exception.InvalidJsonException.html">RetailCrm\Exception\InvalidJsonException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
 		</div>
 
 
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods used from <a href="class-RetailCrm.Methods.V4.Delivery.html#methods">RetailCrm\Methods\V4\Delivery</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-RetailCrm.Methods.V4.Delivery.html#_deliverySettingsGet">deliverySettingsGet()</a></code>, 
 				<code><a href="class-RetailCrm.Methods.V4.Delivery.html#_deliveryTracking">deliveryTracking()</a></code>
 			</p>
 		</div>

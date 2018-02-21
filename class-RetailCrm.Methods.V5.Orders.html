@@ -111,9 +111,11 @@
 
 			<h3>Traits</h3>
 			<ul>
+				<li><a href="class-RetailCrm.Methods.V5.Costs.html">Costs</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Customers.html">Customers</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.CustomFields.html">CustomFields</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Delivery.html">Delivery</a></li>
+				<li><a href="class-RetailCrm.Methods.V5.Module.html">Module</a></li>
 				<li class="active"><a href="class-RetailCrm.Methods.V5.Orders.html">Orders</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.Packs.html">Packs</a></li>
 				<li><a href="class-RetailCrm.Methods.V5.References.html">References</a></li>
@@ -182,7 +184,7 @@
 				RetailCrm <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;:&#x69;&#110;&#x74;&#101;&#x67;&#114;&#97;&#x74;&#105;&#x6f;&#110;&#64;&#x72;&#101;&#x74;&#97;&#x69;&#108;c&#x72;&#109;&#x2e;&#114;&#x75;">&#x69;&#110;&#x74;&#101;&#x67;&#114;&#97;&#x74;&#105;&#x6f;&#110;&#64;&#x72;&#101;&#x74;&#97;&#x69;&#108;c&#x72;&#109;&#x2e;&#114;&#x75;</a><br>
 				<b>Link:</b>
 				<a href="http://www.retailcrm.ru/docs/Developers/ApiVersion5">http://www.retailcrm.ru/docs/Developers/ApiVersion5</a><br>
-			<b>Located at</b> <a href="source-class-RetailCrm.Methods.V5.Orders.html#19-130" title="Go to source code">RetailCrm/Methods/V5/Orders.php</a>
+			<b>Located at</b> <a href="source-class-RetailCrm.Methods.V5.Orders.html#19-159" title="Go to source code">RetailCrm/Methods/V5/Orders.php</a>
 		<br>
 	</div>
 
@@ -191,7 +193,6 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-			
 		<tr data-order="ordersCombine" id="_ordersCombine">
 
 			<td class="attributes"><code>
@@ -203,7 +204,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordersCombine">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.Orders.html#34-68" title="Go to source code">ordersCombine</a>( <span>string <var>$order</var></span>, <span>array <var>$resultOrder</var></span>, <span>array <var>$technique</var> = <span class="php-quote">'ours'</span></span> )</code>
+			<code><a href="source-class-RetailCrm.Methods.V5.Orders.html#34-69" title="Go to source code">ordersCombine</a>( <span>array <var>$order</var></span>, <span>array <var>$resultOrder</var></span>, <span>string <var>$technique</var> = <span class="php-quote">'ours'</span></span> )</code>
 
 			<div class="description short">
 				<p>Combine orders</p>
@@ -216,11 +217,11 @@
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$order</var></dt>
-						<dd>$technique</dd>
+						<dd>orgin order</dd>
 						<dt><var>$resultOrder</var></dt>
-						<dd>$order</dd>
+						<dd>result order</dd>
 						<dt><var>$technique</var></dt>
-						<dd>$resultOrder</dd>
+						<dd>combining technique</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -234,7 +235,6 @@
 			</div>
 			</div></td>
 		</tr>
-
 		<tr data-order="ordersPaymentCreate" id="_ordersPaymentCreate">
 
 			<td class="attributes"><code>
@@ -246,7 +246,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordersPaymentCreate">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.Orders.html#70-94" title="Go to source code">ordersPaymentCreate</a>( <span>array <var>$payment</var></span> )</code>
+			<code><a href="source-class-RetailCrm.Methods.V5.Orders.html#71-100" title="Go to source code">ordersPaymentCreate</a>( <span>array <var>$payment</var></span>, <span>null <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Create an order payment</p>
@@ -260,6 +260,8 @@
 					<div class="list"><dl>
 						<dt><var>$payment</var></dt>
 						<dd>order data</dd>
+						<dt><var>$site</var></dt>
+						<dd>site code</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -279,7 +281,6 @@
 			</div>
 			</div></td>
 		</tr>
-
 		<tr data-order="ordersPaymentEdit" id="_ordersPaymentEdit">
 
 			<td class="attributes"><code>
@@ -291,7 +292,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ordersPaymentEdit">#</a>
-			<code><a href="source-class-RetailCrm.Methods.V5.Orders.html#96-129" title="Go to source code">ordersPaymentEdit</a>( <span>array <var>$payment</var></span>, <span>string <var>$by</var> = <span class="php-quote">'id'</span></span>, <span>null <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-RetailCrm.Methods.V5.Orders.html#102-136" title="Go to source code">ordersPaymentEdit</a>( <span>array <var>$payment</var></span>, <span>string <var>$by</var> = <span class="php-quote">'id'</span></span>, <span>null <var>$site</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Edit an order payment</p>
@@ -309,6 +310,44 @@
 						<dd>by key</dd>
 						<dt><var>$site</var></dt>
 						<dd>site code</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="ordersPaymentDelete" id="_ordersPaymentDelete">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-RetailCrm.Response.ApiResponse.html">RetailCrm\Response\ApiResponse</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_ordersPaymentDelete">#</a>
+			<code><a href="source-class-RetailCrm.Methods.V5.Orders.html#138-158" title="Go to source code">ordersPaymentDelete</a>( <span>string <var>$id</var></span> )</code>
+
+			<div class="description short">
+				<p>Edit an order payment</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Edit an order payment</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd>payment id</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
