@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/retailcrm/api-client-php.svg?branch=master)](https://travis-ci.org/retailcrm/api-client-php)
+
 # retailCRM API PHP client
 
 PHP-client for [retailCRM API](http://www.retailcrm.pro/docs/Developers/ApiVersion5).

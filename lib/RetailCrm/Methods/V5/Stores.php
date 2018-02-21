@@ -54,6 +54,7 @@ trait Stores
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
+     *
      * @return \RetailCrm\Response\ApiResponse
      */
     public function storeProductsGroups(array $filter = [], $page = null, $limit = null)
@@ -73,6 +74,41 @@ trait Stores
         /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/store/product-groups',
+            "GET",
+            $parameters
+        );
+    }
+
+    /**
+     * Get products properties
+     *
+     * @param array $filter (default: array())
+     * @param int   $page   (default: null)
+     * @param int   $limit  (default: null)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function storeProductsProperties(array $filter = [], $page = null, $limit = null)
+    {
+        $parameters = [];
+
+        if (count($filter)) {
+            $parameters['filter'] = $filter;
+        }
+        if (null !== $page) {
+            $parameters['page'] = (int) $page;
+        }
+        if (null !== $limit) {
+            $parameters['limit'] = (int) $limit;
+        }
+
+        /* @noinspection PhpUndefinedMethodInspection */
+        return $this->client->makeRequest(
+            '/store/products/properties',
             "GET",
             $parameters
         );
