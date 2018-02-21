@@ -21,6 +21,7 @@ groups: auto
 
 accessLevels:
 	- public
+	- protected
 
 internal: true
 php: false

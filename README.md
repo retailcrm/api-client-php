@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/retailcrm/api-client-php.svg?branch=master)](https://travis-ci.org/retailcrm/api-client-php)
+[![Build Status](https://img.shields.io/travis/retailcrm/api-client-php/master.svg?style=flat-square)](https://travis-ci.org/retailcrm/api-client-php)
+[![Downloads](https://img.shields.io/packagist/dt/retailcrm/api-client-php.svg?style=flat-square)](https://packagist.org/packages/retailcrm/api-client-php/stats)
+[![Latest stable](https://img.shields.io/packagist/v/retailcrm/api-client-php.svg?style=flat-square)](https://packagist.org/packages/retailcrm/api-client-php)
 
 # retailCRM API PHP client
 
