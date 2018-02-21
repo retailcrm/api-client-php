@@ -407,7 +407,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersNotesDelete()
     {
-        self::markTestSkipped('Sould be fixed.');
+        self::markTestSkipped('Should be fixed.');
 
         $client = static::getApiClient();
 
