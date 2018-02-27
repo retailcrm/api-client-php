@@ -55,7 +55,7 @@ class ApiClientDeliveryTest extends TestCase
      */
     public function testDeliveryShipments()
     {
-        self::markTestSkipped('Sould be fixed.');
+        self::markTestSkipped('Should be fixed.');
 
         $client = static::getApiClient();
 
