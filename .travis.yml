@@ -16,4 +16,4 @@ before_script:
     - flags="-o"
     - composer install $flags
 
-script: phpunit
+script: php ./vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist
