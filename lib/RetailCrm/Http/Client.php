@@ -16,6 +16,7 @@ namespace RetailCrm\Http;
 
 use RetailCrm\Exception\CurlException;
 use RetailCrm\Exception\InvalidJsonException;
+use RetailCrm\Exception\LimitException;
 use RetailCrm\Response\ApiResponse;
 
 /**
@@ -116,6 +117,11 @@ class Client
 
         $responseBody = curl_exec($curlHandler);
         $statusCode = curl_getinfo($curlHandler, CURLINFO_HTTP_CODE);
+
+        if ($statusCode == 503) {
+            throw new LimitException("Service temporary unavalable");
+        }
+
         $errno = curl_errno($curlHandler);
         $error = curl_error($curlHandler);
 
