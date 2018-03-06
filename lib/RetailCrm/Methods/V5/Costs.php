@@ -111,7 +111,8 @@ trait Costs
         /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/costs/delete',
-            "POST"
+            "POST",
+            ['ids' => json_encode($ids)]
         );
     }
 
