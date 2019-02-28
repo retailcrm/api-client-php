@@ -33,6 +33,9 @@ class ApiResponse implements \ArrayAccess
     // HTTP response status code
     protected $statusCode;
 
+    // raw json response
+    protected $rawResponse;
+
     // response assoc array
     protected $response;
 
@@ -47,6 +50,7 @@ class ApiResponse implements \ArrayAccess
     public function __construct($statusCode, $responseBody = null)
     {
         $this->statusCode = (int) $statusCode;
+        $this->rawResponse = $responseBody;
 
         if (!empty($responseBody)) {
             $response = json_decode($responseBody, true);
@@ -70,6 +74,26 @@ class ApiResponse implements \ArrayAccess
     public function getStatusCode()
     {
         return $this->statusCode;
+    }
+
+    /**
+     * Return HTTP response
+     *
+     * @return int
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * Return HTTP raw response body
+     *
+     * @return int
+     */
+    public function getResponseBody()
+    {
+        return $this->rawResponse;
     }
 
     /**
