@@ -190,4 +190,15 @@ class ApiResponse implements \ArrayAccess
 
         return $this->response[$offset];
     }
+
+    /**
+     * Get response
+     *
+     * @return array
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
 }
