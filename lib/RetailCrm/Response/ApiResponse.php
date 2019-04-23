@@ -79,7 +79,7 @@ class ApiResponse implements \ArrayAccess
     /**
      * Return HTTP response
      *
-     * @return int
+     * @return array
      */
     public function getResponse()
     {
@@ -89,7 +89,7 @@ class ApiResponse implements \ArrayAccess
     /**
      * Return HTTP raw response body
      *
-     * @return int
+     * @return string
      */
     public function getResponseBody()
     {
@@ -215,3 +215,4 @@ class ApiResponse implements \ArrayAccess
         return $this->response[$offset];
     }
 }
+
