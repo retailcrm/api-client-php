@@ -70,7 +70,7 @@ trait Telephony
         $phone,
         $type,
         $codes,
-        $hangupStatus,
+        $hangupStatus = null,
         $externalPhone = null,
         $webAnalyticsData = []
     ) {
