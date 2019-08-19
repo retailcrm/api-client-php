@@ -43,17 +43,9 @@ class Client
      *
      * @param string $url               api url
      * @param array  $defaultParameters array of parameters
-     *
-     * @throws \InvalidArgumentException
      */
     public function __construct($url, array $defaultParameters = [])
     {
-        if (false === stripos($url, 'https://')) {
-            throw new \InvalidArgumentException(
-                'API schema requires HTTPS protocol'
-            );
-        }
-
         $this->url = $url;
         $this->defaultParameters = $defaultParameters;
     }
