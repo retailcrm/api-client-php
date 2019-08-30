@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * Customers
+ * CostsTrait
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -11,13 +11,12 @@
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
-
-namespace RetailCrm\Methods\V3;
+namespace RetailCrm\Methods\V5;
 
 /**
  * PHP version 5.4
  *
- * Customers class
+ * Files trait
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -25,10 +24,10 @@ namespace RetailCrm\Methods\V3;
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
-trait Customers
+trait Files
 {
     /**
-     * Returns filtered customers list
+     * Returns filtered files list
      *
      * @param array $filter (default: array())
      * @param int   $page   (default: null)
@@ -40,7 +39,7 @@ trait Customers
      *
      * @return \RetailCrm\Response\ApiResponse
      */
-    public function customersList(array $filter = [], $page = null, $limit = null)
+    public function filesList(array $filter = [], $limit = null, $page = null)
     {
         $parameters = [];
 
@@ -56,17 +55,16 @@ trait Customers
 
         /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
-            '/customers',
+            '/files',
             "GET",
             $parameters
         );
     }
 
     /**
-     * Create a customer
+     * Upload file
      *
-     * @param array  $customer customer data
-     * @param string $site     (default: null)
+     * @param string $file filepath
      *
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
@@ -74,26 +72,28 @@ trait Customers
      *
      * @return \RetailCrm\Response\ApiResponse
      */
-    public function customersCreate(array $customer, $site = null)
+    public function fileUpload($file)
     {
-        if (! count($customer)) {
-            throw new \InvalidArgumentException(
-                'Parameter `customer` must contains a data'
-            );
+        if (!file_exists($file)) {
+            throw new \InvalidArgumentException("File doesn't exist");
+        }
+
+        if (filesize($file) == 0) {
+            throw new \InvalidArgumentException("Empty file provided");
         }
 
         /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
-            '/customers/create',
+            '/files/upload',
             "POST",
-            $this->fillSite($site, ['customer' => json_encode($customer)])
+            ["file" => $file]
         );
     }
 
     /**
-     * Save customer IDs' (id and externalId) association in the CRM
+     * Get file by id
      *
-     * @param array $ids ids mapping
+     * @param string $id file ID
      *
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
@@ -101,27 +101,19 @@ trait Customers
      *
      * @return \RetailCrm\Response\ApiResponse
      */
-    public function customersFixExternalIds(array $ids)
+    public function fileGet($id)
     {
-        if (! count($ids)) {
-            throw new \InvalidArgumentException(
-                'Method parameter must contains at least one IDs pair'
-            );
-        }
-
         /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
-            '/customers/fix-external-ids',
-            "POST",
-            ['customers' => json_encode($ids)]
+            "/files/$id",
+            "GET"
         );
     }
 
     /**
-     * Upload array of the customers
+     * Delete file by id
      *
-     * @param array  $customers array of customers
-     * @param string $site      (default: null)
+     * @param string $id file ID
      *
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
@@ -129,28 +121,25 @@ trait Customers
      *
      * @return \RetailCrm\Response\ApiResponse
      */
-    public function customersUpload(array $customers, $site = null)
+    public function fileDelete($id)
     {
-        if (! count($customers)) {
+        if (empty($id)) {
             throw new \InvalidArgumentException(
-                'Parameter `customers` must contains array of the customers'
+                'Parameter `id` must contains a data'
             );
         }
 
         /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
-            '/customers/upload',
-            "POST",
-            $this->fillSite($site, ['customers' => json_encode($customers)])
+            sprintf('/files/%s/delete', $id),
+            "POST"
         );
     }
 
     /**
-     * Get customer by id or externalId
+     * Download file by id
      *
-     * @param string $id   customer identificator
-     * @param string $by   (default: 'externalId')
-     * @param string $site (default: null)
+     * @param string $id file ID
      *
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
@@ -158,24 +147,19 @@ trait Customers
      *
      * @return \RetailCrm\Response\ApiResponse
      */
-    public function customersGet($id, $by = 'externalId', $site = null)
+    public function fileDownload($id)
     {
-        $this->checkIdParameter($by);
-
         /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
-            "/customers/$id",
-            "GET",
-            $this->fillSite($site, ['by' => $by])
+            sprintf('/files/%s/download', $id),
+            "GET"
         );
     }
 
     /**
-     * Edit a customer
+     * Edit file data
      *
-     * @param array  $customer customer data
-     * @param string $by       (default: 'externalId')
-     * @param string $site     (default: null)
+     * @param array $file file data
      *
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
@@ -183,30 +167,19 @@ trait Customers
      *
      * @return \RetailCrm\Response\ApiResponse
      */
-    public function customersEdit(array $customer, $by = 'externalId', $site = null)
+    public function fileEdit(array $file)
     {
-        if (!count($customer)) {
+        if (!empty($file)) {
             throw new \InvalidArgumentException(
-                'Parameter `customer` must contains a data'
-            );
-        }
-
-        $this->checkIdParameter($by);
-
-        if (!array_key_exists($by, $customer)) {
-            throw new \InvalidArgumentException(
-                sprintf('Customer array must contain the "%s" parameter.', $by)
+                'Parameter `file` must contains a data'
             );
         }
 
         /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
-            sprintf('/customers/%s/edit', $customer[$by]),
+            sprintf('/files/%s/edit', $file['id']),
             "POST",
-            $this->fillSite(
-                $site,
-                ['customer' => json_encode($customer), 'by' => $by]
-            )
+            ['file' => json_encode($file)]
         );
     }
 }

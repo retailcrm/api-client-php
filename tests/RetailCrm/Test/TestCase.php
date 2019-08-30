@@ -9,13 +9,14 @@
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
+ * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Test;
 
 use RetailCrm\ApiClient;
 use RetailCrm\Http\Client;
+use PHPUnit\Framework\TestCase as BaseCase;
 
 /**
  * Class TestCase
@@ -24,9 +25,9 @@ use RetailCrm\Http\Client;
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
+ * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends BaseCase
 {
     /**
      * Return ApiClient object

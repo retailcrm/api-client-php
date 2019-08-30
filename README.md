@@ -1,4 +1,5 @@
 [![Build Status](https://img.shields.io/travis/retailcrm/api-client-php/master.svg?style=flat-square)](https://travis-ci.org/retailcrm/api-client-php)
+[![Covarage](https://img.shields.io/codecov/c/gh/retailcrm/api-client-php/master.svg?style=flat-square)](https://codecov.io/gh/retailcrm/api-client-php)
 [![Latest stable](https://img.shields.io/packagist/v/retailcrm/api-client-php.svg?style=flat-square)](https://packagist.org/packages/retailcrm/api-client-php)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/retailcrm/api-client-php.svg?style=flat-square)](https://packagist.org/packages/retailcrm/api-client-php)
 
@@ -11,6 +12,8 @@ This is php retailCRM API client. This library allows to use all available API v
 
 * PHP 5.4 and above
 * PHP's cURL support
+* PHP's JSON support
+* PHP's Fileinfo support
 
 ## Install
 
@@ -107,6 +110,5 @@ if ($response->isSuccessful() && 201 === $response->getStatusCode()) {
 
 ### Documentation
 
-* [English](http://www.retailcrm.pro/docs/Developers/Index)
-* [Russian](http://www.retailcrm.ru/docs/Developers/Index)
-* [API documentation](http://retailcrm.github.io/api-client-php)
+* [English](https://help.retailcrm.pro/Developers)
+* [Russian](https://help.retailcrm.ru/Developers)
