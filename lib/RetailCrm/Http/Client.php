@@ -9,7 +9,7 @@
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
+ * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Http;
@@ -28,7 +28,7 @@ use RetailCrm\Response\ApiResponse;
  * @package  RetailCrm
  * @author   RetailCrm <integration@retailcrm.ru>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
+ * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
 class Client
 {
@@ -43,12 +43,13 @@ class Client
      *
      * @param string $url               api url
      * @param array  $defaultParameters array of parameters
+     * @param bool   $debug             debug mode
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($url, array $defaultParameters = [])
+    public function __construct($url, array $defaultParameters = [], $debug = false)
     {
-        if (false === stripos($url, 'https://')) {
+        if (false === stripos($url, 'https://') && false === $debug) {
             throw new \InvalidArgumentException(
                 'API schema requires HTTPS protocol'
             );
@@ -100,6 +101,10 @@ class Client
             $url .= '?' . http_build_query($parameters, '', '&');
         }
 
+        if (self::METHOD_POST === $method && '/files/upload' == $path) {
+            $url .= '?apiKey=' . $parameters['apiKey'];
+        }
+
         $curlHandler = curl_init();
         curl_setopt($curlHandler, CURLOPT_URL, $url);
         curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, 1);
@@ -112,14 +117,19 @@ class Client
 
         if (self::METHOD_POST === $method) {
             curl_setopt($curlHandler, CURLOPT_POST, true);
-            curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $parameters);
+
+            if ('/files/upload' == $path) {
+                curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $parameters['file']);
+            } else {
+                curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $parameters);
+            }
         }
 
         $responseBody = curl_exec($curlHandler);
         $statusCode = curl_getinfo($curlHandler, CURLINFO_HTTP_CODE);
 
         if ($statusCode == 503) {
-            throw new LimitException("Service temporary unavalable");
+            throw new LimitException("Service temporary unavailable");
         }
 
         $errno = curl_errno($curlHandler);

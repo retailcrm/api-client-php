@@ -3,7 +3,7 @@
 /**
  * PHP version 5.4
  *
- * API client users test class
+ * API client prices test class
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -17,7 +17,7 @@ namespace RetailCrm\Tests\Methods\Version5;
 use RetailCrm\Test\TestCase;
 
 /**
- * Class ApiClientUsersTest
+ * Class ApiClientPricesTest
  *
  * @category RetailCrm
  * @package  RetailCrm
@@ -25,57 +25,54 @@ use RetailCrm\Test\TestCase;
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
-class ApiClientUsersTest extends TestCase
+class ApiClientFilesTest extends TestCase
 {
     /**
-     * @group users_v5
+     * @group files_v5
      */
-    public function testUsersGroups()
+    public function testFilesList()
     {
         $client = static::getApiClient();
 
-        $response = $client->request->usersGroups();
+        $response = $client->request->filesList();
+
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
+        static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->isSuccessful());
     }
 
     /**
-     * @group users_v5
+     * @group files_v5
      */
-    public function testUsersList()
+    public function testFileUpload()
     {
+
         $client = static::getApiClient();
 
-        $response = $client->request->usersList();
-        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
-        static::assertTrue($response->isSuccessful());
-    }
+        $response = $client->request->fileUpload(__DIR__ . '/../../../Tests/Resources/Report.pdf');
 
-    /**
-     * @group users_v5
-     */
-    public function testUsersGet()
-    {
-        $client = static::getApiClient();
-        $user = getenv('RETAILCRM_USER') ?: $_SERVER['RETAILCRM_USER'];
-        $response = $client->request->usersGet($user);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
+        static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->isSuccessful());
-    }
 
-    /**
-     * @group users_v5
-     */
-    public function testUsersStatus()
-    {
-        $client = static::getApiClient();
-        $user = getenv('RETAILCRM_USER') ?: $_SERVER['RETAILCRM_USER'];
-        $response = $client->request->usersStatus($user, 'dinner');
+        sleep(1);
+
+        $fileId = $response['file']['id'];
+
+        $response = $client->request->fileGet($fileId);
+
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
+        static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->isSuccessful());
+
+        sleep(1);
+
+        $response = $client->request->fileDelete($fileId);
+
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
+
+        sleep(1);
     }
 }
