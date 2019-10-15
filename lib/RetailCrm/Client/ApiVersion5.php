@@ -44,6 +44,7 @@ class ApiVersion5 extends AbstractLoader
     }
 
     use V5\Customers;
+    use V5\CustomersCorporate;
     use V5\Costs;
     use V5\CustomFields;
     use V5\Delivery;
