@@ -169,7 +169,7 @@ trait Files
      */
     public function fileEdit(array $file)
     {
-        if (!empty($file)) {
+        if (empty($file)) {
             throw new \InvalidArgumentException(
                 'Parameter `file` must contains a data'
             );
