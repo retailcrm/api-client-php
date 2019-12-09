@@ -54,17 +54,17 @@ trait Telephony
     /**
      * Call event
      *
-     * @param string $phone phone number
-     * @param string $type  call type
+     * @param string $phone            phone number
+     * @param string $type             call type
      * @param array  $codes
      * @param string $hangupStatus
      * @param string $externalPhone
      * @param array  $webAnalyticsData
+     * @param string $site             (default: null)
      *
      * @return \RetailCrm\Response\ApiResponse
      * @internal param string $code additional phone code
      * @internal param string $status call status
-     *
      */
     public function telephonyCallEvent(
         $phone,
@@ -72,7 +72,8 @@ trait Telephony
         $codes,
         $hangupStatus = null,
         $externalPhone = null,
-        $webAnalyticsData = []
+        $webAnalyticsData = [],
+        $site = null
     ) {
         if (!isset($phone)) {
             throw new \InvalidArgumentException('Phone number must be set');
@@ -93,32 +94,35 @@ trait Telephony
         $parameters['callExternalId'] = $externalPhone;
         $parameters['webAnalyticsData'] = $webAnalyticsData;
 
-
         /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/telephony/call/event',
             "POST",
-            ['event' => json_encode($parameters)]
+            ['event' => json_encode($this->fillSite($site, $parameters))]
         );
     }
 
     /**
      * Upload calls
      *
-     * @param array $calls calls data
+     * @param array $calls        calls data
      *
-     * @throws \InvalidArgumentException
-     * @throws \RetailCrm\Exception\CurlException
-     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @param bool  $autoFillSite fill site code from API client in provided calls
      *
      * @return \RetailCrm\Response\ApiResponse
      */
-    public function telephonyCallsUpload(array $calls)
+    public function telephonyCallsUpload(array $calls, $autoFillSite = false)
     {
         if (!count($calls)) {
             throw new \InvalidArgumentException(
                 'Parameter `calls` must contains array of the calls'
             );
+        }
+
+        if ($autoFillSite) {
+            foreach ($calls as $key => $call) {
+                $calls[$key] = $this->fillSite(null, $call);
+            }
         }
 
         /* @noinspection PhpUndefinedMethodInspection */
