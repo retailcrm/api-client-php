@@ -78,9 +78,12 @@ trait CustomFields
             );
         }
 
-        if (empty($entity) || !in_array($entity, ['customer', 'order'])) {
+        if (empty($entity) || !in_array($entity, ['customer', 'order', 'customer_corporate', 'company'])) {
             throw new \InvalidArgumentException(
-                'Parameter `entity` must contain a data & value must be `order` or `customer`'
+                sprintf(
+                    'Parameter `entity` must contain a data & value must be %s',
+                    '`order`, `customer`, `customer_corporate` or `company`'
+                )
             );
         }
 
@@ -108,9 +111,12 @@ trait CustomFields
             );
         }
 
-        if (empty($entity) || !in_array($entity, ['customer', 'order'])) {
+        if (empty($entity) || !in_array($entity, ['customer', 'order', 'customer_corporate', 'company'])) {
             throw new \InvalidArgumentException(
-                'Parameter `entity` must contain a data & value must be `order` or `customer`'
+                sprintf(
+                    'Parameter `entity` must contain a data & value must be %s',
+                    '`order`, `customer`, `customer_corporate` or `company`'
+                )
             );
         }
 
@@ -138,9 +144,12 @@ trait CustomFields
             );
         }
 
-        if (empty($entity) || !in_array($entity, ['customer', 'order'])) {
+        if (empty($entity) || !in_array($entity, ['customer', 'order', 'customer_corporate', 'company'])) {
             throw new \InvalidArgumentException(
-                'Parameter `entity` must contain a data & value must be `order` or `customer`'
+                sprintf(
+                    'Parameter `entity` must contain a data & value must be %s',
+                    '`order`, `customer`, `customer_corporate` or `company`'
+                )
             );
         }
 
