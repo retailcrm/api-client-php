@@ -42,7 +42,7 @@ trait Orders
      */
     public function ordersCombine($order, $resultOrder, $technique = 'ours')
     {
-        $techniques = ['ours', 'summ', 'theirs'];
+        $techniques = ['ours', 'summ', 'theirs', 'merge'];
 
         if (!count($order) || !count($resultOrder)) {
             throw new \InvalidArgumentException(
