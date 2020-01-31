@@ -73,7 +73,7 @@ class Client
      * @throws CurlException
      * @throws InvalidJsonException
      *
-     * @return ApiResponse
+     * @return ApiResponse|string
      */
     public function makeRequest(
         $path,
@@ -139,6 +139,10 @@ class Client
 
         if ($errno) {
             throw new CurlException($error, $errno);
+        }
+
+        if (strpos($path, '/download') !== false) {
+            return $responseBody;
         }
 
         return new ApiResponse($statusCode, $responseBody);

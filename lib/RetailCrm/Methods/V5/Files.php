@@ -145,7 +145,7 @@ trait Files
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return \RetailCrm\Response\ApiResponse
+     * @return string
      */
     public function fileDownload($id)
     {
