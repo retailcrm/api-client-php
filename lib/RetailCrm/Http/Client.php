@@ -75,7 +75,7 @@ class Client
      *
      * @return ApiResponse
      */
-    public function makeRequest(
+    public function makeRawRequest(
         $path,
         $method,
         array $parameters = [],
@@ -119,7 +119,7 @@ class Client
             curl_setopt($curlHandler, CURLOPT_POST, true);
 
             if ('/files/upload' == $path) {
-                curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $parameters['file']);
+                curl_setopt($curlHandler, CURLOPT_POSTFIELDS, file_get_contents($parameters['file']));
             } else {
                 curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $parameters);
             }
@@ -142,5 +142,30 @@ class Client
         }
 
         return new ApiResponse($statusCode, $responseBody);
+    }
+
+    /**
+     * Make HTTP request and deserialize JSON body (throws exception otherwise)
+     *
+     * @param string $path       request url
+     * @param string $method     (default: 'GET')
+     * @param array  $parameters (default: array())
+     * @param bool   $fullPath   (default: false)
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+     *
+     * @throws \InvalidArgumentException
+     * @throws CurlException
+     * @throws InvalidJsonException
+     *
+     * @return ApiResponse
+     */
+    public function makeRequest(
+        $path,
+        $method,
+        array $parameters = [],
+        $fullPath = false
+    ) {
+        return $this->makeRawRequest($path, $method, $parameters, $fullPath)->asJsonResponse();
     }
 }

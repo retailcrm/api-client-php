@@ -150,7 +150,7 @@ trait Files
     public function fileDownload($id)
     {
         /* @noinspection PhpUndefinedMethodInspection */
-        return $this->client->makeRequest(
+        return $this->client->makeRawRequest(
             sprintf('/files/%s/download', $id),
             "GET"
         );

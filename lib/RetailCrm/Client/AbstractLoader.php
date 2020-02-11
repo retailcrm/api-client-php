@@ -29,8 +29,13 @@ use RetailCrm\Http\Client;
  */
 abstract class AbstractLoader
 {
+    /** @var string|null */
     protected $siteCode;
+
+    /** @var \RetailCrm\Http\Client */
     protected $client;
+
+    /** @var string */
     protected $crmUrl;
 
     /**
