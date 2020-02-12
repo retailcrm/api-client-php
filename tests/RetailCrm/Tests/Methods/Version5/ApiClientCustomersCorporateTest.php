@@ -308,7 +308,7 @@ class ApiClientCustomersCorporateTest extends TestCase
     {
         $client = static::getApiClient();
         $response = $client->request->customersCorporateAddresses($ids['externalId'], ['name' => 'name'], 1, 20);
-
+        
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(
             $response->isSuccessful(),
