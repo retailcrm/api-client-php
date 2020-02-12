@@ -93,6 +93,22 @@ class ClientTest extends TestCase
         $response = $client->makeRequest('/orders', Client::METHOD_GET);
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertNotEmpty($response->getResponseBody());
+        static::assertNotEmpty($response->getResponse());
+        static::assertEquals(200, $response->getStatusCode());
+    }
+
+    /**
+     * @group client
+     */
+    public function testRequestSuccessNoDeserialization()
+    {
+        $client = static::getClient();
+        $response = $client->makeRawRequest('/orders', Client::METHOD_GET);
+
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertNotEmpty($response->getResponseBody());
+        static::assertEmpty($response->getResponse());
         static::assertEquals(200, $response->getStatusCode());
     }
 }
