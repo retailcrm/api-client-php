@@ -245,4 +245,49 @@ trait References
             ['courier' => json_encode($courier)]
         );
     }
+
+    /**
+     * Get units
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function unitsList()
+    {
+        /* @noinspection PhpUndefinedMethodInspection */
+        return $this->client->makeRequest(
+            '/reference/units',
+            "GET"
+        );
+    }
+
+    /**
+     * Edit unit
+     *
+     * @param array $unit
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function unitsEdit(array $unit)
+    {
+        if (empty($unit['code']) || empty($unit['name']) || empty($unit['sym'])) {
+            throw new \InvalidArgumentException(
+                '`code`, `name` and `sym` parameters must not be empty.'
+            );
+        }
+
+        /* @noinspection PhpUndefinedMethodInspection */
+        return $this->client->makeRequest(
+            sprintf('/reference/units/%s/edit', $unit['code']),
+            "POST",
+            ['unit' => json_encode($unit)]
+        );
+    }
 }
