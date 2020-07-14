@@ -62,4 +62,22 @@ class CommonMethodsTest extends TestCase
         static::assertTrue($response->isSuccessful());
         static::assertGreaterThan(0, count($response['credentials']));
     }
+
+    /**
+     * System settings
+     *
+     * @group api_methods
+     *
+     * @return void
+     */
+    public function testSettings()
+    {
+        $client = static::getApiClient();
+
+        $response = $client->request->settings();
+
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
+        static::assertGreaterThan(0, count($response['settings']));
+    }
 }
