@@ -115,7 +115,7 @@ class Client
         curl_setopt($curlHandler, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curlHandler, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($curlHandler, CURLOPT_TIMEOUT, $this->options->getClientTimeout());
-        curl_setopt($curlHandler, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($curlHandler, CURLOPT_CONNECTTIMEOUT, $this->options->getClientTimeout());
 
         if ($this->options->getHeaders()) {
             curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $this->options->getHeaders());
