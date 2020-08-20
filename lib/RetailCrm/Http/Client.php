@@ -37,6 +37,7 @@ class Client
 
     protected $url;
     protected $defaultParameters;
+    protected $options;
 
     /**
      * Client constructor.
@@ -57,6 +58,7 @@ class Client
 
         $this->url = $url;
         $this->defaultParameters = $defaultParameters;
+        $this->options = new RequestOptions();
     }
 
     /**
@@ -112,8 +114,12 @@ class Client
         curl_setopt($curlHandler, CURLOPT_FAILONERROR, false);
         curl_setopt($curlHandler, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curlHandler, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curlHandler, CURLOPT_TIMEOUT, 30);
+        curl_setopt($curlHandler, CURLOPT_TIMEOUT, $this->options->getClientTimeout());
         curl_setopt($curlHandler, CURLOPT_CONNECTTIMEOUT, 30);
+
+        if ($this->options->getHeaders()) {
+            curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $this->options->getHeaders());
+        }
 
         if (self::METHOD_POST === $method) {
             curl_setopt($curlHandler, CURLOPT_POST, true);
@@ -167,5 +173,15 @@ class Client
         $fullPath = false
     ) {
         return $this->makeRawRequest($path, $method, $parameters, $fullPath)->asJsonResponse();
+    }
+
+    /**
+     * Set request options
+     *
+     * @param RequestOptions $options
+     */
+    public function setOptions(RequestOptions $options)
+    {
+        $this->options = $options;
     }
 }
