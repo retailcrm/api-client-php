@@ -108,6 +108,23 @@ if ($response->isSuccessful() && 201 === $response->getStatusCode()) {
 }
 ```
 
+### Set custom headers and client timeout
+```php
+$client = new \RetailCrm\ApiClient(
+    'https://demo.retailcrm.ru',
+    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
+    \RetailCrm\ApiClient::V4
+);
+
+$options = new \RetailCrm\Http\RequestOptions(
+    ['X-Rlimit-Token' => 'example_token'], // array of custom headers
+    10 // client timeout (in seconds)
+);
+
+$client->request->setOptions($options);
+```
+
+
 ### Documentation
 
 * [English](https://help.retailcrm.pro/Developers)
