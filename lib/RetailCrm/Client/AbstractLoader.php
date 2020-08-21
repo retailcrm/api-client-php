@@ -15,6 +15,7 @@
 namespace RetailCrm\Client;
 
 use RetailCrm\Http\Client;
+use RetailCrm\Http\RequestOptions;
 
 /**
  * PHP version 5.4
@@ -65,6 +66,16 @@ abstract class AbstractLoader
 
         $this->client = new Client($url, ['apiKey' => $apiKey], $debug);
         $this->siteCode = $site;
+    }
+
+    /**
+     * Set request options
+     *
+     * @param RequestOptions $options
+     */
+    public function setOptions(RequestOptions $options)
+    {
+        $this->client->setOptions($options);
     }
 
     /**
