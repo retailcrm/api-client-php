@@ -118,7 +118,7 @@ class Client
         curl_setopt($curlHandler, CURLOPT_CONNECTTIMEOUT, $this->options->getClientTimeout());
 
         if ($this->options->getHeaders()) {
-            curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $this->options->getHeaders());
+            curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $this->options->getHttpHeaders());
         }
 
         if (self::METHOD_POST === $method) {

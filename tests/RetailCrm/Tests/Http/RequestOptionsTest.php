@@ -9,10 +9,11 @@ class RequestOptionsTest extends TestCase
 {
     public function testGetHeaders()
     {
-        $headers = ['Test header' => 'Test'];
+        $headers = ['X-Test-Header' => 'Test'];
         $options = new RequestOptions($headers);
 
-        self::assertEquals('Test header: Test', $options->getHeaders()[0]);
+        self::assertEquals('X-Test-Header: Test', $options->getHttpHeaders()[0]);
+        self::assertEquals('Test', $options->getHeaders()['X-Test-Header']);
     }
 
     public function testGetClientTimeout()

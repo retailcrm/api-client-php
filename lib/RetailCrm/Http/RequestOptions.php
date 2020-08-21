@@ -50,6 +50,14 @@ class RequestOptions
      */
     public function getHeaders()
     {
+        return $this->headers;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHttpHeaders()
+    {
         $headers = [];
 
         foreach ($this->headers as $header => $value) {
