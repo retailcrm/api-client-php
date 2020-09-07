@@ -97,8 +97,10 @@ class ApiClientTelephonyTest extends TestCase
             '+79999999999',
             'in',
             ['101'],
+            [2],
             'failed',
-            '+74950000000'
+            '+74950000000',
+            '123456789'
         );
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
