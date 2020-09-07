@@ -54,15 +54,15 @@ trait Telephony
     /**
      * Call event
      *
-     * @param string $phone            phone number
-     * @param string $type             call type
+     * @param string $phone phone number
+     * @param string $type call type
      * @param array  $codes
-     * @param array $userIds
-     * @param string $callExternalId'
+     * @param array  $userIds
+     * @param string $callExternalId
      * @param string $hangupStatus
      * @param string $externalPhone
      * @param array  $webAnalyticsData
-     * @param string $site             (default: null)
+     * @param string $site (default: null)
      *
      * @return \RetailCrm\Response\ApiResponse
      * @internal param string $code additional phone code
