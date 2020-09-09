@@ -54,13 +54,15 @@ trait Telephony
     /**
      * Call event
      *
-     * @param string $phone            phone number
-     * @param string $type             call type
+     * @param string $phone phone number
+     * @param string $type call type
      * @param array  $codes
+     * @param array  $userIds
+     * @param string $callExternalId
      * @param string $hangupStatus
      * @param string $externalPhone
      * @param array  $webAnalyticsData
-     * @param string $site             (default: null)
+     * @param string $site (default: null)
      *
      * @return \RetailCrm\Response\ApiResponse
      * @internal param string $code additional phone code
@@ -70,8 +72,10 @@ trait Telephony
         $phone,
         $type,
         $codes,
+        $userIds = [],
         $hangupStatus = null,
         $externalPhone = null,
+        $callExternalId = null,
         $webAnalyticsData = [],
         $site = null
     ) {
@@ -90,8 +94,14 @@ trait Telephony
         $parameters['phone'] = $phone;
         $parameters['type'] = $type;
         $parameters['codes'] = $codes;
+
+        if (!empty($userIds)) {
+            $parameters['userIds'] = $userIds;
+        }
+
         $parameters['hangupStatus'] = $hangupStatus;
-        $parameters['callExternalId'] = $externalPhone;
+        $parameters['callExternalId'] = $callExternalId;
+        $parameters['externalPhone'] = $externalPhone;
         $parameters['webAnalyticsData'] = $webAnalyticsData;
 
         /* @noinspection PhpUndefinedMethodInspection */
