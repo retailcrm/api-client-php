@@ -14,9 +14,8 @@
 
 namespace RetailCrm\Tests\Methods\Version4;
 
-use http\Client;
-use http\Client\Request;
 use RetailCrm\ApiClient;
+use RetailCrm\Response\ApiResponse;
 use RetailCrm\Test\TestCase;
 
 /**
@@ -113,7 +112,7 @@ class ApiClientTelephonyTest extends TestCase
             '/telephony/call/event',
             "POST",
             ['event' => json_encode($parameters)]
-        )->willReturn(['success' => true]);
+        )->willReturn((new ApiResponse(200, json_encode(['success' => true])))->asJsonResponse());
 
         $client = static::getMockedApiClient($stub);
 
