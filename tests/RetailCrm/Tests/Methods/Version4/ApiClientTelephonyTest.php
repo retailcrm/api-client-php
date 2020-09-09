@@ -107,7 +107,6 @@ class ApiClientTelephonyTest extends TestCase
             'externalPhone' => '123456789',
             'webAnalyticsData' => [],
             'site' => 'retailcrm-ru'
-
         ];
 
         $stub->expects(self::once())->method('makeRequest')->with(
@@ -115,6 +114,7 @@ class ApiClientTelephonyTest extends TestCase
             "POST",
             ['event' => json_encode($parameters)]
         )->willReturn(['success' => true]);
+
         $client = static::getMockedApiClient($stub);
 
         $response = $client->request->telephonyCallEvent(
