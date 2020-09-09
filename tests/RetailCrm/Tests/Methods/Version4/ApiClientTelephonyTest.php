@@ -14,6 +14,8 @@
 
 namespace RetailCrm\Tests\Methods\Version4;
 
+use http\Client;
+use http\Client\Request;
 use RetailCrm\ApiClient;
 use RetailCrm\Test\TestCase;
 
@@ -90,8 +92,30 @@ class ApiClientTelephonyTest extends TestCase
      */
     public function testTelephonyEvent()
     {
-        self::markTestSkipped('Should be fixed.');
-        $client = static::getApiClient(null, null, ApiClient::V4);
+        $stub = $this->getMockBuilder(\RetailCrm\Http\Client::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['makeRequest'])
+            ->getMock();
+
+        $parameters = [
+            'phone' => '+79999999999',
+            'type' => 'in',
+            'codes' => ['101'],
+            'userIds' => [2],
+            'hangupStatus' => 'failed',
+            'callExternalId' => '+74950000000',
+            'externalPhone' => '123456789',
+            'webAnalyticsData' => [],
+            'site' => 'retailcrm-ru'
+
+        ];
+
+        $stub->expects(self::once())->method('makeRequest')->with(
+            '/telephony/call/event',
+            "POST",
+            ['event' => json_encode($parameters)]
+        )->willReturn(['success' => true]);
+        $client = static::getMockedApiClient($stub);
 
         $response = $client->request->telephonyCallEvent(
             '+79999999999',
@@ -99,12 +123,11 @@ class ApiClientTelephonyTest extends TestCase
             ['101'],
             [2],
             'failed',
+            '123456789',
             '+74950000000',
-            '123456789'
+            []
         );
 
-        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertEquals(200, $response->getStatusCode());
         static::assertTrue($response->isSuccessful());
     }
 
