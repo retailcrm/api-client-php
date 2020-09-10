@@ -28,6 +28,30 @@ namespace RetailCrm\Methods\V5;
 trait IntegrationPayments
 {
     /**
+     * Create Invoice
+     *
+     * @param array $createInvoice
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function paymentCreateInvoice($createInvoice)
+    {
+        if (!count($createInvoice)) {
+            throw new \InvalidArgumentException(
+                'Parameters `createInvoice` must contains a data'
+            );
+        }
+
+        /* @noinspection PhpUndefinedMethodInspection */
+        return $this->client->makeRequest(
+            '/payment/create-invoice',
+            'POST',
+            [
+                'createInvoice' => json_encode($createInvoice)
+            ]
+        );
+    }
+
+    /**
      * Update Invoice
      *
      * @param array $updateInvoice
