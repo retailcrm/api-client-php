@@ -159,7 +159,22 @@ trait Files
     /**
      * Edit file data
      *
+     * @param int $id file ID
      * @param array $file file data
+     *
+     * $file = [
+     *     'filename' => 'Test file',
+     *     'attachment' => [
+     *         [
+     *             'customer' => [
+     *                  'id' => 1
+     *              ],
+     *              'order' => [
+     *                  'id' => 1
+     *              ]
+     *         ]
+     *     ]
+     * ];
      *
      * @throws \InvalidArgumentException
      * @throws \RetailCrm\Exception\CurlException
@@ -167,19 +182,34 @@ trait Files
      *
      * @return \RetailCrm\Response\ApiResponse
      */
-    public function fileEdit(array $file)
+    public function fileEdit($id, array $file)
     {
+        if (empty($id)) {
+            throw new \InvalidArgumentException(
+                'Parameter `id` can`t be blank'
+            );
+        }
+
         if (empty($file)) {
             throw new \InvalidArgumentException(
                 'Parameter `file` must contains a data'
             );
         }
 
+        $allowedFields = ['filename', 'attachment'];
+        foreach (array_keys($file) as $field) {
+            if (!in_array($field, $allowedFields)) {
+                throw new \InvalidArgumentException(
+                    'Invalid structure of `file` parameter'
+                );
+            }
+        }
+
         /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
-            sprintf('/files/%s/edit', $file['id']),
+            sprintf('/files/%s/edit', $id),
             "POST",
-            ['file' => json_encode($file)]
+            ['file' => json_encode($file), 'id' => $id]
         );
     }
 }

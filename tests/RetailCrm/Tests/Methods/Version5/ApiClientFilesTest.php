@@ -46,7 +46,6 @@ class ApiClientFilesTest extends TestCase
      */
     public function testFileUpload()
     {
-
         $client = static::getApiClient();
 
         $response = $client->request->fileUpload(__DIR__ . '/../../../Tests/Resources/Report.pdf');
@@ -67,6 +66,14 @@ class ApiClientFilesTest extends TestCase
 
         sleep(1);
 
+        $response = $client->request->fileEdit($fileId, ['filename' => 'Test file']);
+
+        static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
+
+        sleep(1);
+
         $response = $client->request->fileDelete($fileId);
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -74,5 +81,13 @@ class ApiClientFilesTest extends TestCase
         static::assertTrue($response->isSuccessful());
 
         sleep(1);
+    }
+
+    public function testFileEditFailure()
+    {
+        static::expectExceptionObject(new \InvalidArgumentException('Invalid structure of `file` parameter'));
+        $client = static::getApiClient();
+
+        $client->request->fileEdit(1, ['file' => []]);
     }
 }
