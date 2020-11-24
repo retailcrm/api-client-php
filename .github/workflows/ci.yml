@@ -13,6 +13,7 @@ env:
   RETAILCRM_KEY: ${{ secrets.RETAILCRM_KEY }}
   RETAILCRM_VERSION: ${{ secrets.RETAILCRM_VERSION }}
   RETAILCRM_SITE: ${{ secrets.RETAILCRM_SITE }}
+  RETAILCRM_USER: ${{ secrets.RETAILCRM_USER }}
 
 jobs:
   test:
