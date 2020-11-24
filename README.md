@@ -1,7 +1,8 @@
-[![Build Status](https://img.shields.io/travis/retailcrm/api-client-php/master.svg?style=flat-square)](https://travis-ci.org/retailcrm/api-client-php)
-[![Covarage](https://img.shields.io/codecov/c/gh/retailcrm/api-client-php/master.svg?style=flat-square)](https://codecov.io/gh/retailcrm/api-client-php)
-[![Latest stable](https://img.shields.io/packagist/v/retailcrm/api-client-php.svg?style=flat-square)](https://packagist.org/packages/retailcrm/api-client-php)
-[![PHP from Packagist](https://img.shields.io/packagist/php-v/retailcrm/api-client-php.svg?style=flat-square)](https://packagist.org/packages/retailcrm/api-client-php)
+[![Build Status](https://github.com/retailcrm/api-client-php/workflows/ci/badge.svg)](https://github.com/retailcrm/api-client-php/actions)
+[![Covarage](https://img.shields.io/codecov/c/gh/retailcrm/api-client-php/master.svg?logo=codecov)](https://codecov.io/gh/retailcrm/api-client-php)
+[![GitHub release](https://img.shields.io/github/release/retailcrm/api-client-php.svg?logo=github)](https://github.com/retailcrm/api-client-php/releases)
+[![Latest stable](https://img.shields.io/packagist/v/retailcrm/api-client-php.svg)](https://packagist.org/packages/retailcrm/api-client-php)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/retailcrm/api-client-php.svg?logo=php)](https://packagist.org/packages/retailcrm/api-client-php)
 
 
 # retailCRM API PHP client
