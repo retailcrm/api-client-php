@@ -8,6 +8,13 @@ on:
       - '*.*'
   pull_request:
 
+env:
+  RETAILCRM_URL: ${{ secrets.RETAILCRM_URL }}
+  RETAILCRM_KEY: ${{ secrets.RETAILCRM_KEY }}
+  RETAILCRM_VERSION: ${{ secrets.RETAILCRM_VERSION }}
+  RETAILCRM_SITE: ${{ secrets.RETAILCRM_SITE }}
+  RETAILCRM_USER: ${{ secrets.RETAILCRM_USER }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
