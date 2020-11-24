@@ -25,6 +25,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.HOME }}/.composer/cache
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
       - name: Install dependencies
         run: composer install -o
       - name: Run tests
