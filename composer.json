@@ -1,14 +1,14 @@
 {
     "name": "retailcrm/api-client-php",
-    "description": "PHP client for retailCRM API",
+    "description": "PHP client for RetailCRM API",
     "type": "library",
-    "keywords": ["API", "retailCRM", "REST"],
-    "homepage": "http://www.retailcrm.ru/",
+    "keywords": ["API", "RetailCRM", "REST"],
+    "homepage": "http://www.retailcrm.pro/",
     "license": "MIT",
     "authors": [
         {
-            "name": "retailCRM",
-            "email": "support@retailcrm.ru"
+            "name": "RetailCRM",
+            "email": "support@retailcrm.pro"
         }
     ],
     "require": {
@@ -22,7 +22,7 @@
         "squizlabs/php_codesniffer": "3.*"
     },
     "support": {
-        "email": "support@retailcrm.ru"
+        "email": "support@retailcrm.pro"
     },
     "autoload": {
         "psr-0": { "RetailCrm\\": "lib/" }
