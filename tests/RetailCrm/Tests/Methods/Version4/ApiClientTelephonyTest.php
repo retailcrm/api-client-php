@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Methods\Version4;
@@ -22,9 +19,6 @@ use RetailCrm\Test\TestCase;
  * Class ApiClientTelephonyTest
  * @category RetailCrm
  * @package RetailCrm\Tests
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
 class ApiClientTelephonyTest extends TestCase
 {

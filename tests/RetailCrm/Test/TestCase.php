@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Test;
@@ -24,9 +21,6 @@ use PHPUnit\Framework\TestCase as BaseCase;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
 class TestCase extends BaseCase
 {

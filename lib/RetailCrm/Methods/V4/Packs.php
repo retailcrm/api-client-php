@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V4;
@@ -23,9 +20,6 @@ use RetailCrm\Methods\V3\Packs as Previous;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     https://help.retailcrm.ru/Developers/ApiVersion5
  */
 trait Packs
 {
