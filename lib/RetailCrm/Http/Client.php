@@ -126,8 +126,7 @@ class Client
             }
         }
 
-        $responseBody = curl_exec($curlHandler);
-        $statusCode = $this->checkResponse($curlHandler, $method);
+        list($statusCode, $responseBody) = $this->checkResponse($curlHandler, $method);
 
         return new ApiResponse($statusCode, $responseBody);
     }
@@ -171,10 +170,11 @@ class Client
      * @param $curlHandler
      * @param $method
      *
-     * @return mixed
+     * @return array
      */
     private function checkResponse($curlHandler, $method)
     {
+        $responseBody = curl_exec($curlHandler);
         $statusCode = curl_getinfo($curlHandler, CURLINFO_HTTP_CODE);
         $contentType = curl_getinfo($curlHandler, CURLINFO_CONTENT_TYPE);
 
@@ -183,7 +183,7 @@ class Client
         }
 
         if (
-            404 === $statusCode
+            (404 === $statusCode && false !== stripos($responseBody, 'Account does not exist'))
             || ('GET' !== $method && 405 === $statusCode && false !== stripos($contentType, 'text/html'))
         ) {
             throw new NotFoundException("Account does not exist");
@@ -198,6 +198,6 @@ class Client
             throw new CurlException($error, $errno);
         }
 
-        return $statusCode;
+        return [$statusCode, $responseBody];
     }
 }
