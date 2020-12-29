@@ -14,6 +14,7 @@ namespace RetailCrm\Http;
 use RetailCrm\Exception\CurlException;
 use RetailCrm\Exception\InvalidJsonException;
 use RetailCrm\Exception\LimitException;
+use RetailCrm\Exception\NotFoundException;
 use RetailCrm\Response\ApiResponse;
 
 /**
@@ -126,20 +127,7 @@ class Client
         }
 
         $responseBody = curl_exec($curlHandler);
-        $statusCode = curl_getinfo($curlHandler, CURLINFO_HTTP_CODE);
-
-        if ($statusCode == 503) {
-            throw new LimitException("Service temporary unavailable");
-        }
-
-        $errno = curl_errno($curlHandler);
-        $error = curl_error($curlHandler);
-
-        curl_close($curlHandler);
-
-        if ($errno) {
-            throw new CurlException($error, $errno);
-        }
+        $statusCode = $this->checkResponse($curlHandler, $method);
 
         return new ApiResponse($statusCode, $responseBody);
     }
@@ -177,5 +165,39 @@ class Client
     public function setOptions(RequestOptions $options)
     {
         $this->options = $options;
+    }
+
+    /**
+     * @param $curlHandler
+     * @param $method
+     *
+     * @return mixed
+     */
+    private function checkResponse($curlHandler, $method)
+    {
+        $statusCode = curl_getinfo($curlHandler, CURLINFO_HTTP_CODE);
+        $contentType = curl_getinfo($curlHandler, CURLINFO_CONTENT_TYPE);
+
+        if (503 === $statusCode) {
+            throw new LimitException("Service temporary unavailable");
+        }
+
+        if (
+            404 === $statusCode
+            || ('GET' !== $method && 405 === $statusCode && false !== stripos($contentType, 'text/html'))
+        ) {
+            throw new NotFoundException("Account does not exist");
+        }
+
+        $errno = curl_errno($curlHandler);
+        $error = curl_error($curlHandler);
+
+        curl_close($curlHandler);
+
+        if ($errno) {
+            throw new CurlException($error, $errno);
+        }
+
+        return $statusCode;
     }
 }
