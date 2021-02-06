@@ -34,7 +34,7 @@ require 'path/to/vendor/autoload.php';
 ### Get order
 ```php
 $client = new \RetailCrm\ApiClient(
-    'https://demo.retailcrm.pro',
+    'https://demo.retailcrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
     \RetailCrm\ApiClient::V5
 );
@@ -69,7 +69,7 @@ if ($response->isSuccessful()) {
 ```php
 
 $client = new \RetailCrm\ApiClient(
-    'https://demo.retailcrm.pro',
+    'https://demo.retailcrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
     \RetailCrm\ApiClient::V5
 );
@@ -111,7 +111,7 @@ if ($response->isSuccessful() && 201 === $response->getStatusCode()) {
 ### Set custom headers and client timeout
 ```php
 $client = new \RetailCrm\ApiClient(
-    'https://demo.retailcrm.pro',
+    'https://demo.retailcrm.ru',
     'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
     \RetailCrm\ApiClient::V5
 );
