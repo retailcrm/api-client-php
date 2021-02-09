@@ -7,4 +7,9 @@ if (function_exists('date_default_timezone_set')
 }
 
 $loader = include dirname(__DIR__) . '/vendor/autoload.php';
-$loader->add('RetailCrm\\Test', __DIR__);
+$loader->add('Tests\\RetailCrm', __DIR__);
+
+if (file_exists(__DIR__ . '/../.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->load();
+}

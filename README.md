@@ -10,7 +10,7 @@ This is php RetailCRM API client. This library allows to use all available API v
 
 ## Requirements
 
-* PHP 5.4 and above
+* PHP 7.3 and above
 * PHP's cURL support
 * PHP's JSON support
 * PHP's Fileinfo support

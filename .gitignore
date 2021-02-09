@@ -12,3 +12,4 @@ phpunit.xml
 .project
 .swp
 /nbproject
+.php_cs.cache
