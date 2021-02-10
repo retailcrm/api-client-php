@@ -28,7 +28,7 @@ jobs:
       - name: Run php check code with reviewdog
         uses: GeneaLabs/action-reviewdog-phpmd@1.0.0
         with:
-          github_token: '${{ github.token }}'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           level: 'warning'
           reporter: github-pr-check
           standard: './phpmd.xml'
@@ -42,4 +42,5 @@ jobs:
       - name: Run php check code with reviewdog
         uses: GeneaLabs/action-reviewdog-phpstan@1.0.0
         with:
-          args: '-c phpstan.neon src --memory-limit=-1 --no-progress --error-format=raw'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          args: '-c phpstan.neon src --memory-limit=-1 --no-progress'
