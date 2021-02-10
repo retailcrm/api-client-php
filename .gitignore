@@ -13,3 +13,4 @@ phpunit.xml
 .swp
 /nbproject
 .php_cs.cache
+.phpunit.result.cache
