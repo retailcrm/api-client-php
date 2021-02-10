@@ -40,6 +40,6 @@ jobs:
       - name: Check out code into the workspace
         uses: actions/checkout@v2
       - name: Run php check code with reviewdog
-        uses: GeneaLabs/action-reviewdog-phpstan
+        uses: GeneaLabs/action-reviewdog-phpstan@1.0.0
         with:
           args: '-c phpstan.neon src --memory-limit=-1 --no-progress --error-format=raw'
