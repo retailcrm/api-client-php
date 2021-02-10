@@ -1,0 +1,45 @@
+name: "Code Quality Check"
+
+on:
+  pull_request:
+    paths:
+      - "**.php"
+      - "phpcs.xml"
+      - ".github/workflows/code_quality.yml"
+
+jobs:
+  phpcs:
+    name: "PHP CodeSniffer"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: phpcs
+        uses: shirobrak/action-phpcs@v1.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-check
+          phpcs_flags: '-p src --runtime-set testVersion 7.3'
+  phpmd:
+    name: "PHP MessDetector"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code into the workspace
+        uses: actions/checkout@v2
+      - name: Run php check code with reviewdog
+        uses: GeneaLabs/action-reviewdog-phpmd@1.0.0
+        with:
+          github_token: '${{ github.token }}'
+          level: 'warning'
+          reporter: github-pr-check
+          standard: './phpmd.xml'
+          target_directory: 'src'
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code into the workspace
+        uses: actions/checkout@v2
+      - name: Run php check code with reviewdog
+        uses: GeneaLabs/action-reviewdog-phpstan
+        with:
+          args: '-c phpstan.neon src --memory-limit=-1 --no-progress --error-format=raw'

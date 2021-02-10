@@ -29,6 +29,6 @@ jobs:
       - name: Install dependencies
         run: composer install -o
       - name: Run tests
-        run: php ./vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist
+        run: composer run-script phpunit
       - name: Coverage
         run: bash <(curl -s https://codecov.io/bash)
