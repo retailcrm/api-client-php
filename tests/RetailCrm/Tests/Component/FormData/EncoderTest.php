@@ -31,7 +31,6 @@ class EncoderTest extends TestCase
         $encoder = new Encoder();
         $result = $encoder->encodeArray($testObject);
 
-        print_r($result);
         self::assertArrayHasKey('exists', $result);
         self::assertEquals('data', $result['exists']);
     }
