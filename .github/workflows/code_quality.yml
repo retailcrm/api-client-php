@@ -40,7 +40,7 @@ jobs:
       - name: Check out code into the workspace
         uses: actions/checkout@v2
       - name: Run php check code with reviewdog
-        uses: Neur0toxine/action-reviewdog-phpstan@v1.0.1
+        uses: Neur0toxine/action-reviewdog-phpstan@v1.0.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           args: '-c phpstan.neon src --memory-limit=1G'
