@@ -9,24 +9,14 @@
 
 namespace RetailCrm\Api\Builder;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\CachedReader;
-use Doctrine\Common\Cache\Cache;
-use Doctrine\Common\Cache\FilesystemCache;
 use Http\Discovery\Psr18ClientDiscovery;
-use InvalidArgumentException;
-use JMS\Serializer\SerializerBuilder;
-use Metadata\Cache\DoctrineCacheAdapter;
 use Psr\Http\Client\ClientInterface;
 use RetailCrm\Api\Client;
 use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
-use RetailCrm\Api\Component\Authenticator\HeaderAuthenticator;
 use RetailCrm\Api\Component\Exception\BuilderException;
 use RetailCrm\Api\Component\FormData\FormEncoder;
-use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
-use RuntimeException;
 
 /**
  * Class ClientBuilder

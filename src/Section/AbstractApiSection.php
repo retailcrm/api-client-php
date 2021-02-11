@@ -11,6 +11,7 @@ namespace RetailCrm\Api\Section;
 
 use Psr\Http\Client\ClientInterface;
 use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
+use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
 
@@ -38,13 +39,15 @@ abstract class AbstractApiSection
     protected $responseFactory;
 
     /**
-     * Api constructor.
+     * AbstractApiSection constructor.
      *
      * @param string                                                        $apiUrl
      * @param \RetailCrm\Api\Component\Authenticator\AuthenticatorInterface $authenticator
      * @param \Psr\Http\Client\ClientInterface                              $httpClient
      * @param \RetailCrm\Api\Factory\RequestFactory                         $requestFactory
      * @param \RetailCrm\Api\Factory\ResponseFactory                        $responseFactory
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function __construct(
         string $apiUrl,
@@ -53,7 +56,7 @@ abstract class AbstractApiSection
         RequestFactory $requestFactory,
         ResponseFactory $responseFactory
     ) {
-        $this->apiUrl         = $apiUrl;
+        $this->apiUrl         = Utils::removeTrailingSlash($apiUrl);
         $this->authenticator  = $authenticator;
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
@@ -80,5 +83,17 @@ abstract class AbstractApiSection
     {
         $this->authenticator = $authenticator;
         return $this;
+    }
+
+    /**
+     * Returns route with base URI.
+     *
+     * @param string $route
+     *
+     * @return string
+     */
+    protected function route(string $route): string
+    {
+        return sprintf('%s/%s', $this->apiUrl, $route);
     }
 }

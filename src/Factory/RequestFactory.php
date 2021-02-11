@@ -13,7 +13,9 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\RequestInterface as PsrRequestInterface;
 use Psr\Http\Message\UriFactoryInterface;
+use ReflectionException;
 use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
+use RetailCrm\Api\Component\Exception\FactoryException;
 use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\RequestInterface;
@@ -75,19 +77,34 @@ class RequestFactory
     }
 
     /**
-     * @param string                                        $method
-     * @param string                                        $uri
-     * @param \RetailCrm\Api\Model\Request\RequestInterface $request
+     * @param string                                             $method
+     * @param string                                             $uri
+     * @param \RetailCrm\Api\Model\Request\RequestInterface|null $request
      *
      * @return \Psr\Http\Message\RequestInterface
-     * @throws \ReflectionException
+     * @throws \RetailCrm\Api\Component\Exception\FactoryException
      */
-    public function createPsrRequest(string $method, string $uri, RequestInterface $request): PsrRequestInterface
-    {
+    public function createPsrRequest(
+        string $method,
+        string $uri,
+        ?RequestInterface $request = null
+    ): PsrRequestInterface {
+        $formData = '';
         $method = strtoupper($method);
-        $formData = $this->formEncoder->encode($request);
         $uriData = $this->uriFactory->createUri($uri);
         $psrRequest = $this->requestFactory->createRequest($method, $uriData);
+
+        if (null !== $request) {
+            try {
+                $formData = $this->formEncoder->encode($request);
+            } catch (ReflectionException $exception) {
+                throw new FactoryException(
+                    sprintf('Cannot marshal request into form-data: %s', $exception->getMessage()),
+                    0,
+                    $exception
+                );
+            }
+        }
 
         if (RequestMethod::GET === $method || RequestMethod::DELETE === $method) {
             return $this->authenticator->authenticate(

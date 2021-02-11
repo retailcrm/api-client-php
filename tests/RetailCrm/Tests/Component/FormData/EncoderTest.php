@@ -31,7 +31,14 @@ class EncoderTest extends TestCase
 
         self::assertArrayHasKey('exists', $result);
         self::assertArrayHasKey('filter', $result);
+        self::assertArrayHasKey('encodedSelf', $result);
         self::assertEquals('data', $result['exists']);
+        self::assertEquals([
+            'sites' => [91],
+            'first' => 'one',
+            'second' => 'two',
+        ], $result['filter']);
+        self::assertEquals('{"key_exists":"data2"}', $result['encodedSelf']);
     }
 
     /**
@@ -39,10 +46,21 @@ class EncoderTest extends TestCase
      */
     public function testEncode(EncoderTestObject $sample): void
     {
+        $result = [];
         $encoder = new FormEncoder();
-        $result = $encoder->encode($sample);
 
-        print_r($result);
+        parse_str($encoder->encode($sample), $result);
+
+        self::assertArrayHasKey('exists', $result);
+        self::assertArrayHasKey('filter', $result);
+        self::assertArrayHasKey('encodedSelf', $result);
+        self::assertEquals('data', $result['exists']);
+        self::assertEquals([
+            'sites' => [91],
+            'first' => 'one',
+            'second' => 'two',
+        ], $result['filter']);
+        self::assertEquals('{"key_exists":"data2"}', $result['encodedSelf']);
     }
 
     /**
