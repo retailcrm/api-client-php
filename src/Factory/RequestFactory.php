@@ -10,15 +10,15 @@
 namespace RetailCrm\Api\Factory;
 
 use Psr\Http\Message\RequestFactoryInterface;
-use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\RequestInterface as PsrRequestInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use ReflectionException;
-use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
-use RetailCrm\Api\Exception\FactoryException;
 use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Enum\RequestMethod;
-use RetailCrm\Api\Model\Request\RequestInterface;
+use RetailCrm\Api\Exception\FactoryException;
+use RetailCrm\Api\Interfaces\AuthenticatorInterface;
+use RetailCrm\Api\Interfaces\RequestInterface;
 
 /**
  * Class RequestFactory
@@ -56,11 +56,11 @@ class RequestFactory
     /**
      * RequestFactory constructor.
      *
-     * @param \Psr\Http\Message\StreamFactoryInterface                      $streamFactory
-     * @param \Psr\Http\Message\RequestFactoryInterface                     $requestFactory
-     * @param \Psr\Http\Message\UriFactoryInterface                         $uriFactory
-     * @param \RetailCrm\Api\Component\Authenticator\AuthenticatorInterface $authenticator
-     * @param \RetailCrm\Api\Component\FormData\FormEncoder|null            $formEncoder
+     * @param \Psr\Http\Message\StreamFactoryInterface           $streamFactory
+     * @param \Psr\Http\Message\RequestFactoryInterface          $requestFactory
+     * @param \Psr\Http\Message\UriFactoryInterface              $uriFactory
+     * @param \RetailCrm\Api\Interfaces\AuthenticatorInterface   $authenticator
+     * @param \RetailCrm\Api\Component\FormData\FormEncoder|null $formEncoder
      */
     public function __construct(
         StreamFactoryInterface $streamFactory,
@@ -77,9 +77,9 @@ class RequestFactory
     }
 
     /**
-     * @param string                                             $method
-     * @param string                                             $uri
-     * @param \RetailCrm\Api\Model\Request\RequestInterface|null $request
+     * @param string                                          $method
+     * @param string                                          $uri
+     * @param \RetailCrm\Api\Interfaces\RequestInterface|null $request
      *
      * @return \Psr\Http\Message\RequestInterface
      * @throws \RetailCrm\Api\Exception\FactoryException
@@ -122,7 +122,7 @@ class RequestFactory
     }
 
     /**
-     * @return \RetailCrm\Api\Component\Authenticator\AuthenticatorInterface
+     * @return \RetailCrm\Api\Interfaces\AuthenticatorInterface
      */
     public function getAuthenticator(): AuthenticatorInterface
     {

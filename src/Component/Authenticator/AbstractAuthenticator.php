@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Component\Authenticator;
 
 use Psr\Http\Message\RequestInterface;
+use RetailCrm\Api\Interfaces\AuthenticatorInterface;
 
 /**
  * Class AbstractAuthenticator

@@ -10,9 +10,9 @@
 namespace RetailCrm\Api;
 
 use Psr\Http\Client\ClientInterface;
-use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
 use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
+use RetailCrm\Api\Interfaces\AuthenticatorInterface;
 use RetailCrm\Api\Section\Api;
 
 /**
@@ -29,11 +29,11 @@ class Client
     /**
      * Client constructor.
      *
-     * @param string                                                        $apiUrl
-     * @param \RetailCrm\Api\Component\Authenticator\AuthenticatorInterface $authenticator
-     * @param \Psr\Http\Client\ClientInterface                              $httpClient
-     * @param \RetailCrm\Api\Factory\RequestFactory                         $requestFactory
-     * @param \RetailCrm\Api\Factory\ResponseFactory                        $responseFactory
+     * @param string                                           $apiUrl
+     * @param \RetailCrm\Api\Interfaces\AuthenticatorInterface $authenticator
+     * @param \Psr\Http\Client\ClientInterface                 $httpClient
+     * @param \RetailCrm\Api\Factory\RequestFactory            $requestFactory
+     * @param \RetailCrm\Api\Factory\ResponseFactory           $responseFactory
      */
     public function __construct(
         string $apiUrl,

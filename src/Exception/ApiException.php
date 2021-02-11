@@ -10,9 +10,8 @@
 namespace RetailCrm\Api\Exception;
 
 use Exception;
+use RetailCrm\Api\Interfaces\ResponseInterface;
 use RetailCrm\Api\Model\Response\ErrorResponse;
-use RetailCrm\Api\Model\Response\ResponseInterface;
-use RuntimeException;
 use Throwable;
 
 /**
@@ -23,15 +22,15 @@ use Throwable;
  */
 class ApiException extends Exception
 {
-    /** @var \RetailCrm\Api\Model\Response\ResponseInterface */
+    /** @var \RetailCrm\Api\Interfaces\ResponseInterface */
     private $response;
 
     /**
      * ApiException constructor.
      *
-     * @param \RetailCrm\Api\Model\Response\ResponseInterface $errorResponse
-     * @param int                                             $code
-     * @param \Throwable|null                                 $previous
+     * @param \RetailCrm\Api\Interfaces\ResponseInterface $errorResponse
+     * @param int                                         $code
+     * @param \Throwable|null                             $previous
      */
     public function __construct(ResponseInterface $errorResponse, $code = 0, Throwable $previous = null)
     {
@@ -53,7 +52,7 @@ class ApiException extends Exception
     /**
      * Returns the error message.
      *
-     * @param \RetailCrm\Api\Model\Response\ResponseInterface $errorResponse
+     * @param \RetailCrm\Api\Interfaces\ResponseInterface $errorResponse
      *
      * @return string
      */

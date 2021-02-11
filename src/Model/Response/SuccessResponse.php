@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Model\Response;
 
 use JMS\Serializer\Annotation as JMS;
+use RetailCrm\Api\Interfaces\ResponseInterface;
 
 /**
  * Class SuccessResponse

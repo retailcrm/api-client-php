@@ -4,16 +4,16 @@
  * PHP version 7.3
  *
  * @category BuilderInterface
- * @package  RetailCrm\Api\Builder
+ * @package  RetailCrm\Api\Interfaces
  */
 
-namespace RetailCrm\Api\Builder;
+namespace RetailCrm\Api\Interfaces;
 
 /**
  * Interface BuilderInterface
  *
  * @category BuilderInterface
- * @package  RetailCrm\Api\Builder
+ * @package  RetailCrm\Api\Interfaces
  */
 interface BuilderInterface
 {

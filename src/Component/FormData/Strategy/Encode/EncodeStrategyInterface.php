@@ -18,6 +18,7 @@ use RetailCrm\Api\Component\FormData\PropertyAnnotations;
 /**
  * Interface EncodeStrategyInterface
  *
+ * @internal
  * @package RetailCrm\Api\Component\FormData\Strategy\Encode
  */
 interface EncodeStrategyInterface

@@ -13,10 +13,11 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
-use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
+use RetailCrm\Api\Interfaces\AuthenticatorInterface;
 use RetailCrm\Api\Exception\BuilderException;
 use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Factory\RequestFactory;
+use RetailCrm\Api\Interfaces\BuilderInterface;
 
 /**
  * Class RequestFactoryBuilder
@@ -85,7 +86,7 @@ class RequestFactoryBuilder implements BuilderInterface
     }
 
     /**
-     * @param \RetailCrm\Api\Component\Authenticator\AuthenticatorInterface $authenticator
+     * @param \RetailCrm\Api\Interfaces\AuthenticatorInterface $authenticator
      *
      * @return RequestFactoryBuilder
      */

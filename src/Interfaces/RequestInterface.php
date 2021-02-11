@@ -4,16 +4,16 @@
  * PHP version 7.3
  *
  * @category RequestInterface
- * @package  RetailCrm\Api\Model\Request
+ * @package  RetailCrm\Api\Interfaces
  */
 
-namespace RetailCrm\Api\Model\Request;
+namespace RetailCrm\Api\Interfaces;
 
 /**
  * Interface RequestInterface
  *
  * @category RequestInterface
- * @package  RetailCrm\Api\Model\Request
+ * @package  RetailCrm\Api\Interfaces
  */
 interface RequestInterface
 {

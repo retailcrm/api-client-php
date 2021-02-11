@@ -17,6 +17,7 @@ use JMS\Serializer\SerializerBuilder;
 use Metadata\Cache\DoctrineCacheAdapter;
 use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Enum\CacheDirectories;
+use RetailCrm\Api\Interfaces\BuilderInterface;
 use RuntimeException;
 
 /**

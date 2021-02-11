@@ -12,11 +12,12 @@ namespace RetailCrm\Api\Builder;
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
 use RetailCrm\Api\Client;
-use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
+use RetailCrm\Api\Interfaces\AuthenticatorInterface;
 use RetailCrm\Api\Exception\BuilderException;
 use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
+use RetailCrm\Api\Interfaces\BuilderInterface;
 
 /**
  * Class ClientBuilder
@@ -56,7 +57,7 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
-     * @param \RetailCrm\Api\Component\Authenticator\AuthenticatorInterface $authenticator
+     * @param \RetailCrm\Api\Interfaces\AuthenticatorInterface $authenticator
      *
      * @return ClientBuilder
      */

@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category AuthenticatorInterface
- * @package  RetailCrm\Api\Component\Authenticator
+ * @package  RetailCrm\Api\Interfaces\Authenticator
  */
 
-namespace RetailCrm\Api\Component\Authenticator;
+namespace RetailCrm\Api\Interfaces;
 
 use Psr\Http\Message\RequestInterface;
 
@@ -15,7 +15,7 @@ use Psr\Http\Message\RequestInterface;
  * Interface AuthenticatorInterface
  *
  * @category AuthenticatorInterface
- * @package  RetailCrm\Api\Component\Authenticator
+ * @package  RetailCrm\Api\Interfaces\Authenticator
  */
 interface AuthenticatorInterface
 {

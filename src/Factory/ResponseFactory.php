@@ -14,7 +14,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use RetailCrm\Api\Exception\ApiException;
 use RetailCrm\Api\Model\Response\ErrorResponse;
-use RetailCrm\Api\Model\Response\ResponseInterface as RetailcrmResponse;
+use RetailCrm\Api\Interfaces\ResponseInterface as RetailcrmResponse;
 
 /**
  * Class ResponseFactory
