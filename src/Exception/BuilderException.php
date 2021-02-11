@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category BuilderException
- * @package  RetailCrm\Api\Component\Exception
+ * @package  RetailCrm\Api\Exception
  */
 
-namespace RetailCrm\Api\Component\Exception;
+namespace RetailCrm\Api\Exception;
 
 use Exception;
 use Throwable;
@@ -16,7 +16,7 @@ use Throwable;
  * Class BuilderException
  *
  * @category BuilderException
- * @package  RetailCrm\Api\Component\Exception
+ * @package  RetailCrm\Api\Exception
  */
 class BuilderException extends Exception
 {

@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category ApiException
- * @package  RetailCrm\Api\Component\Exception
+ * @package  RetailCrm\Api\Exception
  */
 
-namespace RetailCrm\Api\Component\Exception;
+namespace RetailCrm\Api\Exception;
 
 use Exception;
 use RetailCrm\Api\Model\Response\ErrorResponse;
@@ -19,7 +19,7 @@ use Throwable;
  * Class ApiException
  *
  * @category ApiException
- * @package  RetailCrm\Api\Component\Exception
+ * @package  RetailCrm\Api\Exception
  */
 class ApiException extends Exception
 {

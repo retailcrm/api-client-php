@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category InvalidAnnotationException
- * @package  RetailCrm\Api\Component\FormData\Exception
+ * @package  RetailCrm\Api\Exception
  */
 
-namespace RetailCrm\Api\Component\FormData\Exception;
+namespace RetailCrm\Api\Exception;
 
 use Exception;
 
@@ -15,7 +15,7 @@ use Exception;
  * Class InvalidAnnotationException
  *
  * @category InvalidAnnotationException
- * @package RetailCrm\Api\Component\FormData\Exception
+ * @package RetailCrm\Api\Exception
  */
 class InvalidAnnotationException extends Exception
 {

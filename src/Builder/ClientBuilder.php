@@ -13,7 +13,7 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
 use RetailCrm\Api\Client;
 use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
-use RetailCrm\Api\Component\Exception\BuilderException;
+use RetailCrm\Api\Exception\BuilderException;
 use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
@@ -144,7 +144,7 @@ class ClientBuilder implements BuilderInterface
      * @param \RetailCrm\Api\Component\FormData\FormEncoder $formEncoder
      *
      * @return \RetailCrm\Api\Factory\RequestFactory
-     * @throws \RetailCrm\Api\Component\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\BuilderException
      */
     private function buildRequestFactory(FormEncoder $formEncoder): RequestFactory
     {

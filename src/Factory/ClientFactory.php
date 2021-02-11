@@ -30,7 +30,7 @@ class ClientFactory
      * @param string $apiKey
      *
      * @return \RetailCrm\Api\Client
-     * @throws \RetailCrm\Api\Component\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\BuilderException
      */
     public static function create(string $apiUrl, string $apiKey): Client
     {
@@ -49,7 +49,7 @@ class ClientFactory
      * @param \Doctrine\Common\Cache\Cache $cache
      *
      * @return \RetailCrm\Api\Client
-     * @throws \RetailCrm\Api\Component\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\BuilderException
      */
     public static function createWithCache(string $apiUrl, string $apiKey, Cache $cache): Client
     {
@@ -71,7 +71,7 @@ class ClientFactory
      * @param string $cacheDir
      *
      * @return \RetailCrm\Api\Client
-     * @throws \RetailCrm\Api\Component\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\BuilderException
      */
     public static function createWithCacheDir(string $apiUrl, string $apiKey, string $cacheDir): Client
     {

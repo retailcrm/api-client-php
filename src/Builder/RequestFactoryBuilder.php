@@ -14,7 +14,7 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
-use RetailCrm\Api\Component\Exception\BuilderException;
+use RetailCrm\Api\Exception\BuilderException;
 use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Factory\RequestFactory;
 

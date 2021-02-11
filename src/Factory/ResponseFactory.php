@@ -12,7 +12,7 @@ namespace RetailCrm\Api\Factory;
 use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use RetailCrm\Api\Component\Exception\ApiException;
+use RetailCrm\Api\Exception\ApiException;
 use RetailCrm\Api\Model\Response\ErrorResponse;
 use RetailCrm\Api\Model\Response\ResponseInterface as RetailcrmResponse;
 
@@ -44,7 +44,7 @@ class ResponseFactory
      * @param string                              $type
      *
      * @return RetailcrmResponse
-     * @throws \RetailCrm\Api\Component\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\ApiException
      */
     public function createResponse(ResponseInterface $response, string $type): RetailcrmResponse
     {

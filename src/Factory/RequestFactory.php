@@ -15,7 +15,7 @@ use Psr\Http\Message\RequestInterface as PsrRequestInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use ReflectionException;
 use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
-use RetailCrm\Api\Component\Exception\FactoryException;
+use RetailCrm\Api\Exception\FactoryException;
 use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\RequestInterface;
@@ -82,7 +82,7 @@ class RequestFactory
      * @param \RetailCrm\Api\Model\Request\RequestInterface|null $request
      *
      * @return \Psr\Http\Message\RequestInterface
-     * @throws \RetailCrm\Api\Component\Exception\FactoryException
+     * @throws \RetailCrm\Api\Exception\FactoryException
      */
     public function createPsrRequest(
         string $method,
