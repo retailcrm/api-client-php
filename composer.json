@@ -23,7 +23,8 @@
     "php-http/message-factory": "^1.0",
     "php-http/discovery": "^1.13",
     "jms/serializer": "^3.11",
-    "doctrine/annotations": "^1.11"
+    "doctrine/annotations": "^1.11",
+    "doctrine/cache": "^1.10"
   },
   "require-dev": {
     "php-http/mock-client": "^1.0",
@@ -39,17 +40,13 @@
     "phpunit": "./vendor/bin/phpunit -c phpunit.xml.dist",
     "phpmd": "./vendor/bin/phpmd src text ./phpmd.xml",
     "phpcs": "./vendor/bin/phpcs -p src --runtime-set testVersion 7.3",
-    "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon src --memory-limit=-1 --no-progress --error-format=raw",
+    "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon src --memory-limit=-1 --no-progress",
     "lint": [
       "@phpcs",
       "@phpmd",
       "@phpstan"
     ],
-    "lint:fix": "./vendor/bin/phpcbf src",
-    "ci": [
-      "@lint",
-      "@phpunit"
-    ]
+    "lint:fix": "./vendor/bin/phpcbf src"
   },
   "support": {
     "email": "support@retailcrm.pro"

@@ -17,7 +17,7 @@ use JMS\Serializer\Annotation as JMS;
  * @category SuccessResponse
  * @package  RetailCrm\Api\Model\Response
  */
-class SuccessResponse
+class SuccessResponse implements ResponseInterface
 {
     /**
      * @var bool

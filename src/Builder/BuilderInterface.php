@@ -21,6 +21,7 @@ interface BuilderInterface
      * Builds something, returns result.
      *
      * @return mixed
+     * @throws \RetailCrm\Api\Component\Exception\BuilderException
      */
     public function build();
 }

@@ -9,23 +9,20 @@ on:
 
 jobs:
   phpcs:
-    name: "PHP CodeSniffer"
+    name: PHPCS
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: phpcs
-        uses: shirobrak/action-phpcs@v1.0.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-check
-          phpcs_flags: '-p src --runtime-set testVersion 7.3'
+      - name: Check out code into the workspace
+        uses: actions/checkout@v2
+      - name: Run PHPCS
+        uses: chekalsky/phpcs-action@v1
   phpmd:
     name: "PHP MessDetector"
     runs-on: ubuntu-latest
     steps:
       - name: Check out code into the workspace
         uses: actions/checkout@v2
-      - name: Run php check code with reviewdog
+      - name: Run PHPMD
         uses: GeneaLabs/action-reviewdog-phpmd@1.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -39,8 +36,7 @@ jobs:
     steps:
       - name: Check out code into the workspace
         uses: actions/checkout@v2
-      - name: Run php check code with reviewdog
-        uses: Neur0toxine/action-reviewdog-phpstan@v1.0.2
+      - name: Run PHPStan
+        uses: docker://oskarstark/phpstan-ga
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          args: '-c phpstan.neon src --memory-limit=1G'
+          args: analyse src -c phpstan.neon --memory-limit=1G --no-progress

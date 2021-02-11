@@ -9,10 +9,24 @@
 
 namespace RetailCrm\Api\Builder;
 
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\CachedReader;
+use Doctrine\Common\Cache\Cache;
+use Doctrine\Common\Cache\FilesystemCache;
+use Http\Discovery\Psr18ClientDiscovery;
 use InvalidArgumentException;
+use JMS\Serializer\SerializerBuilder;
+use Metadata\Cache\DoctrineCacheAdapter;
+use Psr\Http\Client\ClientInterface;
 use RetailCrm\Api\Client;
 use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
 use RetailCrm\Api\Component\Authenticator\HeaderAuthenticator;
+use RetailCrm\Api\Component\Exception\BuilderException;
+use RetailCrm\Api\Component\FormData\FormEncoder;
+use RetailCrm\Api\Enum\CacheDirectories;
+use RetailCrm\Api\Factory\RequestFactory;
+use RetailCrm\Api\Factory\ResponseFactory;
+use RuntimeException;
 
 /**
  * Class ClientBuilder
@@ -25,11 +39,20 @@ class ClientBuilder implements BuilderInterface
     /** @var string */
     private $apiUrl;
 
-    /** @var string */
-    private $apiKey;
-
     /** @var AuthenticatorInterface */
     private $authenticator;
+
+    /** @var ?ClientInterface */
+    private $httpClient;
+
+    /** @var ?\RetailCrm\Api\Factory\RequestFactory */
+    private $requestFactory;
+
+    /** @var ?ResponseFactory */
+    protected $responseFactory;
+
+    /** @var FormEncoder */
+    private $formEncoder;
 
     /**
      * @param string $apiUrl
@@ -39,17 +62,6 @@ class ClientBuilder implements BuilderInterface
     public function setApiUrl(string $apiUrl): ClientBuilder
     {
         $this->apiUrl = $apiUrl;
-        return $this;
-    }
-
-    /**
-     * @param string $apiKey
-     *
-     * @return ClientBuilder
-     */
-    public function setApiKey(string $apiKey): ClientBuilder
-    {
-        $this->apiKey = $apiKey;
         return $this;
     }
 
@@ -65,22 +77,90 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
+     * @param \Psr\Http\Client\ClientInterface $httpClient
+     *
+     * @return ClientBuilder
+     */
+    public function setHttpClient(ClientInterface $httpClient): ClientBuilder
+    {
+        $this->httpClient = $httpClient;
+        return $this;
+    }
+
+    /**
+     * @param \RetailCrm\Api\Factory\RequestFactory|null $requestFactory
+     *
+     * @return ClientBuilder
+     */
+    public function setRequestFactory(?RequestFactory $requestFactory): ClientBuilder
+    {
+        $this->requestFactory = $requestFactory;
+        return $this;
+    }
+
+    /**
+     * @param \RetailCrm\Api\Factory\ResponseFactory|null $responseFactory
+     *
+     * @return ClientBuilder
+     */
+    public function setResponseFactory(?ResponseFactory $responseFactory): ClientBuilder
+    {
+        $this->responseFactory = $responseFactory;
+        return $this;
+    }
+
+    /**
+     * @param \RetailCrm\Api\Component\FormData\FormEncoder $formEncoder
+     *
+     * @return ClientBuilder
+     */
+    public function setFormEncoder(FormEncoder $formEncoder): ClientBuilder
+    {
+        $this->formEncoder = $formEncoder;
+        return $this;
+    }
+
+    /**
      * @inheritDoc
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function build(): Client
     {
         if (empty($this->apiUrl)) {
-            throw new InvalidArgumentException("apiUrl must not be empty");
+            throw new BuilderException('apiUrl must not be empty', ['apiUrl']);
         }
 
-        if (empty($this->apiKey) && empty($this->authenticator)) {
-            throw new InvalidArgumentException("Either apiKey or authenticator must be present");
+        if (empty($this->authenticator) && empty($this->requestFactory)) {
+            throw new BuilderException(
+                'Authenticator or RequestFactory with authenticator must be present',
+                ['authenticator', 'requestFactory']
+            );
         }
 
-        if (!empty($this->apiKey)) {
-            $this->authenticator = new HeaderAuthenticator($this->apiKey);
+        if (null === $this->authenticator) {
+            $this->authenticator = $this->requestFactory->getAuthenticator();
         }
 
-        return new Client($this->apiUrl, $this->authenticator);
+        return new Client(
+            $this->apiUrl,
+            $this->authenticator,
+            $this->httpClient ?: Psr18ClientDiscovery::find(),
+            $this->requestFactory ?: $this->buildRequestFactory($this->formEncoder),
+            $this->responseFactory ?: new ResponseFactory($this->formEncoder->getSerializer()),
+        );
+    }
+
+    /**
+     * @param \RetailCrm\Api\Component\FormData\FormEncoder $formEncoder
+     *
+     * @return \RetailCrm\Api\Factory\RequestFactory
+     * @throws \RetailCrm\Api\Component\Exception\BuilderException
+     */
+    private function buildRequestFactory(FormEncoder $formEncoder): RequestFactory
+    {
+        return (new RequestFactoryBuilder())
+            ->setAuthenticator($this->authenticator)
+            ->setFormEncoder($formEncoder)
+            ->build();
     }
 }

@@ -9,7 +9,10 @@
 
 namespace RetailCrm\Api\Section;
 
+use Psr\Http\Client\ClientInterface;
 use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
+use RetailCrm\Api\Factory\RequestFactory;
+use RetailCrm\Api\Factory\ResponseFactory;
 
 /**
  * Class AbstractApiSection
@@ -20,21 +23,41 @@ use RetailCrm\Api\Component\Authenticator\AuthenticatorInterface;
 abstract class AbstractApiSection
 {
     /** @var string */
-    private $apiUrl;
+    protected $apiUrl;
 
     /** @var AuthenticatorInterface */
-    private $authenticator;
+    protected $authenticator;
+
+    /** @var ClientInterface */
+    protected $httpClient;
+
+    /** @var RequestFactory */
+    protected $requestFactory;
+
+    /** @var ResponseFactory */
+    protected $responseFactory;
 
     /**
      * Api constructor.
      *
      * @param string                                                        $apiUrl
      * @param \RetailCrm\Api\Component\Authenticator\AuthenticatorInterface $authenticator
+     * @param \Psr\Http\Client\ClientInterface                              $httpClient
+     * @param \RetailCrm\Api\Factory\RequestFactory                         $requestFactory
+     * @param \RetailCrm\Api\Factory\ResponseFactory                        $responseFactory
      */
-    public function __construct(string $apiUrl, AuthenticatorInterface $authenticator)
-    {
-        $this->apiUrl = $apiUrl;
-        $this->authenticator = $authenticator;
+    public function __construct(
+        string $apiUrl,
+        AuthenticatorInterface $authenticator,
+        ClientInterface $httpClient,
+        RequestFactory $requestFactory,
+        ResponseFactory $responseFactory
+    ) {
+        $this->apiUrl         = $apiUrl;
+        $this->authenticator  = $authenticator;
+        $this->httpClient = $httpClient;
+        $this->requestFactory = $requestFactory;
+        $this->responseFactory = $responseFactory;
     }
 
     /**

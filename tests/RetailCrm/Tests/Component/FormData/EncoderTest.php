@@ -10,7 +10,7 @@
 namespace RetailCrm\Tests\Component\FormData;
 
 use PHPUnit\Framework\TestCase;
-use RetailCrm\Api\Component\FormData\Encoder;
+use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Test\EncoderTestObject;
 
 /**
@@ -21,17 +21,45 @@ use RetailCrm\Test\EncoderTestObject;
  */
 class EncoderTest extends TestCase
 {
-    public function testEncodeArray(): void
+    /**
+     * @dataProvider objectProvider
+     */
+    public function testEncodeArray(EncoderTestObject $sample): void
+    {
+        $encoder = new FormEncoder();
+        $result = $encoder->encodeArray($sample);
+
+        self::assertArrayHasKey('exists', $result);
+        self::assertArrayHasKey('filter', $result);
+        self::assertEquals('data', $result['exists']);
+    }
+
+    /**
+     * @dataProvider objectProvider
+     */
+    public function testEncode(EncoderTestObject $sample): void
+    {
+        $encoder = new FormEncoder();
+        $result = $encoder->encode($sample);
+
+        print_r($result);
+    }
+
+    /**
+     * @return \RetailCrm\Test\EncoderTestObject[][]
+     */
+    public function objectProvider(): array
     {
         $testObject            = new EncoderTestObject();
         $testObject->keyExists = 'data';
+        $testObject->keyFilter = [
+            'sites' => [91],
+            'first' => 'one',
+            'second' => 'two'
+        ];
         $testObject->self = new EncoderTestObject();
         $testObject->self->keyExists = 'data2';
 
-        $encoder = new Encoder();
-        $result = $encoder->encodeArray($testObject);
-
-        self::assertArrayHasKey('exists', $result);
-        self::assertEquals('data', $result['exists']);
+        return [['sample' => $testObject]];
     }
 }

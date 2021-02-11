@@ -9,8 +9,6 @@
 
 namespace RetailCrm\Api\Component\FormData\Strategy\Encode;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use JMS\Serializer\SerializerInterface;
 use RetailCrm\Api\Component\FormData\PropertyAnnotations;
 use RetailCrm\Api\Component\FormData\Strategy\StrategyFactory;
 
@@ -40,21 +38,31 @@ class SimpleTypeStrategy extends AbstractEncodeStrategy
             case 'string':
                 return (string) $value;
             default:
-                if (is_iterable($value)) {
-                    $result = [];
-
-                    foreach ($value as $key => $item) {
-                        $result[$key] = StrategyFactory::encodeStrategyByType(
-                            gettype($item),
-                            $this->annotationReader,
-                            $this->jmsSerializer
-                        )->encode($item, new PropertyAnnotations());
-                    }
-
-                    return $result;
-                }
-
-                return null;
+                return $this->encodeDefault($value);
         }
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return mixed[]|null
+     */
+    private function encodeDefault($value): ?array
+    {
+        if (is_iterable($value)) {
+            $result = [];
+
+            foreach ($value as $key => $item) {
+                $result[$key] = StrategyFactory::encodeStrategyByType(
+                    gettype($item),
+                    $this->annotationReader,
+                    $this->jmsSerializer
+                )->encode($item, new PropertyAnnotations());
+            }
+
+            return $result;
+        }
+
+        return null;
     }
 }

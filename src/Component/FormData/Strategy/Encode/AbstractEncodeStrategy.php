@@ -9,7 +9,7 @@
 
 namespace RetailCrm\Api\Component\FormData\Strategy\Encode;
 
-use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\Reader;
 use JMS\Serializer\SerializerInterface;
 
 /**
@@ -20,7 +20,7 @@ use JMS\Serializer\SerializerInterface;
  */
 abstract class AbstractEncodeStrategy implements EncodeStrategyInterface
 {
-    /** @var \Doctrine\Common\Annotations\AnnotationReader */
+    /** @var \Doctrine\Common\Annotations\Reader */
     protected $annotationReader;
 
     /** @var string $innerType */
@@ -32,13 +32,13 @@ abstract class AbstractEncodeStrategy implements EncodeStrategyInterface
     /**
      * AbstractEncodeStrategy constructor.
      *
-     * @param \Doctrine\Common\Annotations\AnnotationReader $annotationReader
-     * @param \JMS\Serializer\SerializerInterface           $jmsSerializer
+     * @param \Doctrine\Common\Annotations\Reader $annotationReader
+     * @param \JMS\Serializer\SerializerInterface $jmsSerializer
      */
-    public function __construct(AnnotationReader $annotationReader, SerializerInterface $jmsSerializer)
+    public function __construct(Reader $annotationReader, SerializerInterface $jmsSerializer)
     {
         $this->annotationReader = $annotationReader;
-        $this->jmsSerializer = $jmsSerializer;
+        $this->jmsSerializer    = $jmsSerializer;
     }
 
     /**

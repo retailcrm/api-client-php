@@ -3,13 +3,14 @@
 /**
  * PHP version 7.3
  *
- * @category Encoder
+ * @category FormEncoder
  * @package  RetailCrm\Api\Component\FormData
  */
 
 namespace RetailCrm\Api\Component\FormData;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\Reader;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use ReflectionClass;
@@ -18,26 +19,26 @@ use RetailCrm\Api\Component\FormData\Mapping\PostSerialize;
 use RetailCrm\Api\Component\FormData\Strategy\StrategyFactory;
 
 /**
- * Class Serializer
+ * Class FormEncoder
  *
- * @category Encoder
+ * @category FormEncoder
  * @package  RetailCrm\Api\Component\FormData
  */
-class Encoder
+class FormEncoder
 {
-    /** @var \Doctrine\Common\Annotations\AnnotationReader */
+    /** @var \Doctrine\Common\Annotations\Reader */
     private $annotationReader;
 
     /** @var \JMS\Serializer\SerializerInterface */
     private $serializer;
 
     /**
-     * Encoder constructor.
+     * FormEncoder constructor.
      *
-     * @param \Doctrine\Common\Annotations\AnnotationReader|null $annotationReader
-     * @param \JMS\Serializer\SerializerInterface|null           $serializer
+     * @param \Doctrine\Common\Annotations\Reader|null $annotationReader
+     * @param \JMS\Serializer\SerializerInterface|null $serializer
      */
-    public function __construct(?AnnotationReader $annotationReader = null, ?SerializerInterface $serializer = null)
+    public function __construct(?Reader $annotationReader = null, ?SerializerInterface $serializer = null)
     {
         $this->annotationReader = $annotationReader ?: new AnnotationReader();
         $this->serializer = $serializer ?: static::createSerializer();
@@ -73,6 +74,14 @@ class Encoder
             ->encode($object, null);
 
         return $this->processPostSerialize($object, $result);
+    }
+
+    /**
+     * @return \JMS\Serializer\SerializerInterface
+     */
+    public function getSerializer(): SerializerInterface
+    {
+        return $this->serializer;
     }
 
     /**

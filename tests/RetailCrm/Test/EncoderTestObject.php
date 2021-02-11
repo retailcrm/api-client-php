@@ -28,6 +28,14 @@ class EncoderTestObject
     public $keyExists;
 
     /**
+     * @var mixed[]
+     *
+     * @Form\Type("array")
+     * @Form\SerializedName("filter")
+     */
+    public $keyFilter;
+
+    /**
      * @var self
      *
      * @Form\Type("RetailCrm\Test\EncoderTestObject")

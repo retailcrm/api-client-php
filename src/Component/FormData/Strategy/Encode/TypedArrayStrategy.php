@@ -19,6 +19,7 @@ use RetailCrm\Api\Component\FormData\Strategy\StrategyFactory;
  */
 class TypedArrayStrategy extends AbstractEncodeStrategy
 {
+    /** @var string */
     private static $innerTypesMatcher = '/^([a-z]+)\s*\,?\s*(.+?\>)/m';
 
     /**
@@ -26,6 +27,8 @@ class TypedArrayStrategy extends AbstractEncodeStrategy
      * @param \RetailCrm\Api\Component\FormData\PropertyAnnotations|null $annotations
      *
      * @return mixed[]
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function encode($value, ?PropertyAnnotations $annotations = null): array
     {

@@ -10,7 +10,7 @@
 namespace RetailCrm\Api\Component\FormData\Strategy;
 
 use DateTime;
-use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\Reader;
 use JMS\Serializer\SerializerInterface;
 use RetailCrm\Api\Component\FormData\Strategy\Encode;
 use RetailCrm\Api\Component\FormData\Strategy\Encode\EncodeStrategyInterface;
@@ -19,7 +19,7 @@ use RetailCrm\Api\Component\FormData\Strategy\Encode\EncodeStrategyInterface;
  * Class StrategyFactory
  *
  * @category StrategyFactory
- * @package RetailCrm\Api\Component\FormData\Strategy
+ * @package  RetailCrm\Api\Component\FormData\Strategy
  */
 class StrategyFactory
 {
@@ -41,15 +41,15 @@ class StrategyFactory
     /**
      * Returns encode strategy for provided type
      *
-     * @param string                                        $dataType
-     * @param \Doctrine\Common\Annotations\AnnotationReader $annotationReader
-     * @param \JMS\Serializer\SerializerInterface           $serializer
+     * @param string                              $dataType
+     * @param \Doctrine\Common\Annotations\Reader $annotationReader
+     * @param \JMS\Serializer\SerializerInterface $serializer
      *
      * @return \RetailCrm\Api\Component\FormData\Strategy\Encode\EncodeStrategyInterface
      */
     public static function encodeStrategyByType(
         string $dataType,
-        AnnotationReader $annotationReader,
+        Reader $annotationReader,
         SerializerInterface $serializer
     ): EncodeStrategyInterface {
         if (in_array($dataType, static::$simpleTypes)) {
@@ -73,6 +73,20 @@ class StrategyFactory
         }
 
         return new Encode\EntityStrategy($annotationReader, $serializer);
+    }
+
+    /**
+     * Returns true if provided type is DateTime
+     *
+     * @param string $dataType
+     *
+     * @return bool
+     */
+    private static function isDateTime(string $dataType): bool
+    {
+        return strlen($dataType) > 1
+            && (DateTime::class === $dataType
+                || ('\\' === $dataType[0] && DateTime::class === substr($dataType, 1)));
     }
 
     /**
@@ -134,19 +148,5 @@ class StrategyFactory
         }
 
         return '';
-    }
-
-    /**
-     * Returns true if provided type is DateTime
-     *
-     * @param string $dataType
-     *
-     * @return bool
-     */
-    private static function isDateTime(string $dataType): bool
-    {
-        return strlen($dataType) > 1
-            && (DateTime::class === $dataType
-                || ('\\' === $dataType[0] && DateTime::class === substr($dataType, 1)));
     }
 }

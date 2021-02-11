@@ -62,6 +62,8 @@ class EntityStrategy extends AbstractEncodeStrategy
      * @param mixed               $object
      * @param \ReflectionProperty $property
      * @param mixed[]             $result
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     protected function encodeProperty($object, \ReflectionProperty $property, array &$result): void
     {
