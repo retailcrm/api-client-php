@@ -128,7 +128,7 @@ class ClientBuilder implements BuilderInterface
             );
         }
 
-        if (null === $this->authenticator) {
+        if (null === $this->authenticator && null !== $this->requestFactory) {
             $this->authenticator = $this->requestFactory->getAuthenticator();
         }
 

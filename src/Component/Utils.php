@@ -26,7 +26,7 @@ class Utils
      */
     public static function removeVersionFromUri(string $uri): string
     {
-        return preg_replace('/\/v\d{1,3}\/?/', '', $uri);
+        return (string) preg_replace('/\/v\d{1,3}\/?/', '', $uri);
     }
 
     /**
@@ -38,6 +38,6 @@ class Utils
      */
     public static function removeTrailingSlash(string $text): string
     {
-        return preg_replace('/\/$/', '', $text);
+        return (string) preg_replace('/\/$/', '', $text);
     }
 }
