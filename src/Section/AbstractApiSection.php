@@ -11,9 +11,11 @@ namespace RetailCrm\Api\Section;
 
 use Psr\Http\Client\ClientInterface;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
 use RetailCrm\Api\Interfaces\AuthenticatorInterface;
+use RetailCrm\Api\Interfaces\ResponseInterface;
 
 /**
  * Class AbstractApiSection
@@ -95,5 +97,26 @@ abstract class AbstractApiSection
     protected function route(string $route): string
     {
         return sprintf('%s/%s', $this->apiUrl, $route);
+    }
+
+    /**
+     * Sends GET request to provided route, returns response of provided type.
+     *
+     * @param string $route
+     * @param string $type
+     *
+     * @return \RetailCrm\Api\Interfaces\ResponseInterface
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\FactoryException
+     */
+    protected function sendGetRequest(string $route, string $type): ResponseInterface
+    {
+        return $this->responseFactory->createResponse($this->httpClient->sendRequest(
+            $this->requestFactory->createPsrRequest(
+                RequestMethod::GET,
+                $this->route($route)
+            )
+        ), $type);
     }
 }

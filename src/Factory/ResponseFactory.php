@@ -49,7 +49,10 @@ class ResponseFactory
     public function createResponse(ResponseInterface $response, string $type): RetailcrmResponse
     {
         if ($response->getStatusCode() >= 400) {
-            throw new ApiException($this->unmarshalBody($response, ErrorResponse::class));
+            throw new ApiException(
+                $this->unmarshalBody($response, ErrorResponse::class),
+                $response->getStatusCode()
+            );
         }
 
         return $this->unmarshalBody($response, $type);

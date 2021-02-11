@@ -29,14 +29,24 @@ class ApiException extends Exception
      * ApiException constructor.
      *
      * @param \RetailCrm\Api\Interfaces\ResponseInterface $errorResponse
-     * @param int                                         $code
+     * @param int                                         $statusCode
      * @param \Throwable|null                             $previous
      */
-    public function __construct(ResponseInterface $errorResponse, $code = 0, Throwable $previous = null)
+    public function __construct(ResponseInterface $errorResponse, int $statusCode = 0, Throwable $previous = null)
     {
-        parent::__construct(static::getErrorMessage($errorResponse), $code, $previous);
+        parent::__construct(static::getErrorMessage($errorResponse), $statusCode, $previous);
 
         $this->response = $errorResponse;
+    }
+
+    /**
+     * Returns response status code
+     *
+     * @return int
+     */
+    public function getStatusCode(): int
+    {
+        return $this->code;
     }
 
     /**

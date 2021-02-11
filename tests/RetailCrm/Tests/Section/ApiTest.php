@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Tests\Section;
 
+use RetailCrm\Api\Enum\SiteAccess;
 use RetailCrm\Test\TestClientFactory;
 
 /**
@@ -40,5 +41,32 @@ EOF;
 
         self::assertTrue($apiVersions->success);
         self::assertEquals(["3.0", "4.0", "5.0"], $apiVersions->versions);
+    }
+
+    public function testCredentials(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "credentials": [
+    "/api/integration-modules/{code}",
+    "/api/integration-modules/{code}/edit"
+  ],
+  "siteAccess": "access_full"
+}
+EOF;
+
+        $mock = static::getMockClient();
+        $mock->on(static::createUnversionedRequestMatcher('credentials'), static::responseJson(200, $json));
+
+        $client      = TestClientFactory::createClient($mock);
+        $credentials = $client->api->credentials();
+
+        self::assertTrue($credentials->success);
+        self::assertEquals(SiteAccess::ACCESS_FULL, $credentials->siteAccess);
+        self::assertEquals([
+            "/api/integration-modules/{code}",
+            "/api/integration-modules/{code}/edit"
+        ], $credentials->credentials);
     }
 }

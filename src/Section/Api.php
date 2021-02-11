@@ -17,6 +17,7 @@ use RetailCrm\Api\Factory\ResponseFactory;
 use RetailCrm\Api\Interfaces\AuthenticatorInterface;
 use RetailCrm\Api\Model\Response\Api as Response;
 use RetailCrm\Api\Model\Response\Api\ApiVersionsResponse;
+use RetailCrm\Api\Model\Response\Api\Credentials;
 
 /**
  * Class Api
@@ -74,13 +75,32 @@ class Api extends AbstractApiSection
     public function apiVersions(): ApiVersionsResponse
     {
         /** @var ApiVersionsResponse $response */
-        $response = $this->responseFactory->createResponse($this->httpClient->sendRequest(
-            $this->requestFactory->createPsrRequest(
-                RequestMethod::GET,
-                $this->route('api-versions')
-            )
-        ), Response\ApiVersionsResponse::class);
+        $response = $this->sendGetRequest('api-versions', Response\ApiVersionsResponse::class);
+        return $response;
+    }
 
+    /**
+     * Makes "/api/credentials" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\ClientFactory();
+     *
+     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $credentials = $client->api->credentials();
+     *
+     * echo 'Available methods ' . implode(', ', $credentials->credentials);
+     * ```
+     *
+     * @return \RetailCrm\Api\Model\Response\Api\Credentials
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\FactoryException
+     */
+    public function credentials(): Credentials
+    {
+        /** @var Credentials $response */
+        $response = $this->sendGetRequest('credentials', Response\Credentials::class);
         return $response;
     }
 }
