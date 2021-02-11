@@ -53,15 +53,19 @@ class CostsTest extends AbstractApiSectionTest
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(static::createRequestMatcher('costs'), static::responseJson(200, $json));
-
         $costsRequest = new CostsRequest();
         $costsRequest->limit = 20;
         $costsRequest->page = 1;
         $costsRequest->filter = new CostsFilter();
         $costsRequest->filter->sites = ['moysklad', 'aliexpress'];
         $costsRequest->filter->maxSumm = 20;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('costs')
+                ->setQueryParams(static::encodeFormArray($costsRequest)),
+            static::responseJson(200, $json)
+        );
 
         $client = TestClientFactory::createClient($mock);
         $costs  = $client->costs->costs($costsRequest);

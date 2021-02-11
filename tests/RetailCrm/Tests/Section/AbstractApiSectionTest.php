@@ -20,11 +20,13 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Api\Interfaces\RequestInterface as RetailCrmRequestInterface;
+use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponseInterface;
 use RetailCrm\Test\MatcherException;
 use RetailCrm\Test\RequestMatcher;
 use RetailCrm\Test\TestConfig;
-use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponseInterface;
 
 /**
  * Class AbstractApiSectionTest
@@ -36,6 +38,9 @@ abstract class AbstractApiSectionTest extends TestCase
 {
     /** @var SerializerInterface */
     protected static $serializer;
+
+    /** @var FormEncoder */
+    protected static $formEncoder;
 
     /** @var ResponseFactoryInterface */
     protected static $responseFactory;
@@ -168,7 +173,60 @@ abstract class AbstractApiSectionTest extends TestCase
             static::$responseFactory = Psr17FactoryDiscovery::findResponseFactory();
         }
 
-        return self::$responseFactory;
+        return static::$responseFactory;
+    }
+
+    /**
+     * @return \RetailCrm\Api\Component\FormData\FormEncoder
+     */
+    public static function getFormEncoder(): FormEncoder
+    {
+        if (null === static::$formEncoder) {
+            static::$formEncoder = new FormEncoder();
+        }
+
+        return static::$formEncoder;
+    }
+
+    /**
+     * @param \RetailCrm\Api\Interfaces\RequestInterface $request
+     *
+     * @return mixed[]
+     * @throws \ReflectionException
+     */
+    public static function encodeFormArray(RetailCrmRequestInterface $request): array
+    {
+        return static::clearArray(static::getFormEncoder()->encodeArray($request));
+    }
+
+    /**
+     * Removes all empty fields from arrays, works for nested arrays
+     *
+     * @param mixed[] $arr
+     *
+     * @return mixed
+     */
+    public static function clearArray(array $arr)
+    {
+        if (!is_array($arr)) {
+            return $arr;
+        }
+
+        $result = [];
+
+        foreach ($arr as $index => $node) {
+            $result[$index] = is_array($node) === true ? static::clearArray($node) : trim($node);
+
+            if (
+                '' === $result[$index] ||
+                null === $result[$index] ||
+                (is_array($result[$index]) && count($result[$index]) < 1)
+            ) {
+                unset($result[$index]);
+            }
+        }
+
+        return $result;
     }
 
     /**

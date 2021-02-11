@@ -212,7 +212,7 @@ class RequestMatcher implements RequestMatcherInterface
 
         if (
             !empty($this->queryParams)
-            && count(array_diff_assoc($this->queryParams, $this->getQueryData($request->getUri()->getQuery()))) > 0
+            && count(static::arrayDiff($this->queryParams, $this->getQueryData($request->getUri()->getQuery()))) > 0
         ) {
             return false;
         }
