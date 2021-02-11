@@ -14,6 +14,7 @@ use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
 use RetailCrm\Api\Interfaces\AuthenticatorInterface;
 use RetailCrm\Api\Section\Api;
+use RetailCrm\Api\Section\Costs;
 
 /**
  * Class Client
@@ -25,6 +26,9 @@ class Client
 {
     /** @var \RetailCrm\Api\Section\Api */
     public $api;
+
+    /** @var \RetailCrm\Api\Section\Costs */
+    public $costs;
 
     /**
      * Client constructor.
@@ -43,5 +47,6 @@ class Client
         ResponseFactory $responseFactory
     ) {
         $this->api = new Api($apiUrl, $authenticator, $httpClient, $requestFactory, $responseFactory);
+        $this->costs = new Costs($apiUrl, $authenticator, $httpClient, $requestFactory, $responseFactory);
     }
 }

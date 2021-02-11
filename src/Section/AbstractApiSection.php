@@ -15,6 +15,7 @@ use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
 use RetailCrm\Api\Interfaces\AuthenticatorInterface;
+use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface;
 
 /**
@@ -102,20 +103,22 @@ abstract class AbstractApiSection
     /**
      * Sends GET request to provided route, returns response of provided type.
      *
-     * @param string $route
-     * @param string $type
+     * @param string                                          $route
+     * @param \RetailCrm\Api\Interfaces\RequestInterface|null $request
+     * @param string                                          $type
      *
      * @return \RetailCrm\Api\Interfaces\ResponseInterface
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \RetailCrm\Api\Exception\ApiException
      * @throws \RetailCrm\Api\Exception\FactoryException
      */
-    protected function sendGetRequest(string $route, string $type): ResponseInterface
+    protected function sendGetRequest(string $route, ?RequestInterface $request, string $type): ResponseInterface
     {
         return $this->responseFactory->createResponse($this->httpClient->sendRequest(
             $this->requestFactory->createPsrRequest(
                 RequestMethod::GET,
-                $this->route($route)
+                $this->route($route),
+                $request
             )
         ), $type);
     }

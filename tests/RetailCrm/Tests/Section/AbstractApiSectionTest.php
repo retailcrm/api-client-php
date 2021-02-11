@@ -24,8 +24,7 @@ use RetailCrm\Api\Component\Utils;
 use RetailCrm\Test\MatcherException;
 use RetailCrm\Test\RequestMatcher;
 use RetailCrm\Test\TestConfig;
-
-use function _HumbugBox7b277e069751\RingCentral\Psr7\str;
+use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponseInterface;
 
 /**
  * Class AbstractApiSectionTest
@@ -170,5 +169,21 @@ abstract class AbstractApiSectionTest extends TestCase
         }
 
         return self::$responseFactory;
+    }
+
+    /**
+     * @param string                                      $expectedJson
+     * @param \RetailCrm\Api\Interfaces\ResponseInterface $response
+     *
+     * @throws \JsonException
+     */
+    protected static function assertModelEqualsToResponse(
+        string $expectedJson,
+        RetailCrmResponseInterface $response
+    ): void {
+        self::assertEquals(
+            json_decode($expectedJson, true, 512, JSON_THROW_ON_ERROR),
+            self::getSerializer()->toArray($response)
+        );
     }
 }

@@ -26,12 +26,16 @@ class TypedArrayStrategy extends AbstractEncodeStrategy
      * @param mixed                                                      $value
      * @param \RetailCrm\Api\Component\FormData\PropertyAnnotations|null $annotations
      *
-     * @return mixed[]
+     * @return mixed[]|mixed
      *
      * @SuppressWarnings(PHPMD.ElseExpression)
      */
-    public function encode($value, ?PropertyAnnotations $annotations = null): array
+    public function encode($value, ?PropertyAnnotations $annotations = null)
     {
+        if (!is_array($value)) {
+            return $value;
+        }
+
         $valueType = '';
         $result = [];
 
