@@ -53,6 +53,24 @@ class Api extends AbstractApiSection
         );
     }
 
+    /**
+     * Makes "/api/api-versions" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\ClientFactory();
+     *
+     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $apiVersions = $client->api->apiVersions();
+     *
+     * echo 'Available API versions: ' . implode(', ', $apiVersions->versions);
+     * ```
+     *
+     * @return \RetailCrm\Api\Model\Response\Api\ApiVersionsResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\FactoryException
+     */
     public function apiVersions(): ApiVersionsResponse
     {
         /** @var ApiVersionsResponse $response */
