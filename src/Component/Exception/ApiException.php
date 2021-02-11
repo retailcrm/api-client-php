@@ -12,6 +12,7 @@ namespace RetailCrm\Api\Component\Exception;
 use Exception;
 use RetailCrm\Api\Model\Response\ErrorResponse;
 use RetailCrm\Api\Model\Response\ResponseInterface;
+use RuntimeException;
 use Throwable;
 
 /**
@@ -40,25 +41,13 @@ class ApiException extends Exception
     }
 
     /**
-     * @return \RetailCrm\Api\Model\Response\ResponseInterface
-     */
-    public function getResponse(): ResponseInterface
-    {
-        return $this->response;
-    }
-
-    /**
-     * Returns ErrorResponse if underlying response is ErrorResponse. Returns null otherwise.
+     * Returns ErrorResponse if underlying response is ErrorResponse. Throws exception otherwise.
      *
-     * @return \RetailCrm\Api\Model\Response\ErrorResponse|null
+     * @return \RetailCrm\Api\Model\Response\ErrorResponse
      */
-    public function getErrorResponse(): ?ErrorResponse
+    public function getErrorResponse(): ErrorResponse
     {
-        if ($this->response instanceof ErrorResponse) {
-            return $this->response;
-        }
-
-        return null;
+        return $this->response; // @phpstan-ignore-line
     }
 
     /**
