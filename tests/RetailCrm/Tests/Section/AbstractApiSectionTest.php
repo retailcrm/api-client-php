@@ -36,13 +36,13 @@ use function _HumbugBox7b277e069751\RingCentral\Psr7\str;
 abstract class AbstractApiSectionTest extends TestCase
 {
     /** @var SerializerInterface */
-    private static $serializer;
+    protected static $serializer;
 
     /** @var ResponseFactoryInterface */
-    private static $responseFactory;
+    protected static $responseFactory;
 
     /** @var StreamFactoryInterface */
-    private static $streamFactory;
+    protected static $streamFactory;
 
     /**
      * @return \Http\Mock\Client
@@ -135,7 +135,7 @@ abstract class AbstractApiSectionTest extends TestCase
     /**
      * @return \JMS\Serializer\SerializerInterface
      */
-    private static function getSerializer(): SerializerInterface
+    protected static function getSerializer(): SerializerInterface
     {
         if (null === static::$serializer) {
             static::$serializer = SerializerBuilder::create()
@@ -151,7 +151,7 @@ abstract class AbstractApiSectionTest extends TestCase
     /**
      * @return \Psr\Http\Message\StreamFactoryInterface
      */
-    private static function getStreamFactory(): StreamFactoryInterface
+    protected static function getStreamFactory(): StreamFactoryInterface
     {
         if (null === static::$streamFactory) {
             static::$streamFactory = Psr17FactoryDiscovery::findStreamFactory();
@@ -163,7 +163,7 @@ abstract class AbstractApiSectionTest extends TestCase
     /**
      * @return \Psr\Http\Message\ResponseFactoryInterface
      */
-    public static function getResponseFactory(): ResponseFactoryInterface
+    protected static function getResponseFactory(): ResponseFactoryInterface
     {
         if (null === static::$responseFactory) {
             static::$responseFactory = Psr17FactoryDiscovery::findResponseFactory();
