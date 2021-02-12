@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Model\Request\Costs;
 
 use RetailCrm\Api\Component\FormData\Mapping as Form;
+use RetailCrm\Api\Interfaces\RequestInterface;
 
 /**
  * Class CostsCreateRequest
@@ -17,7 +18,7 @@ use RetailCrm\Api\Component\FormData\Mapping as Form;
  * @category CostsCreateRequest
  * @package  RetailCrm\Api\Model\Request\Costs
  */
-class CostsCreateRequest
+class CostsCreateRequest implements RequestInterface
 {
     /**
      * @var string

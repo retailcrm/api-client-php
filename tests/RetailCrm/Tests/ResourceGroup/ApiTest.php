@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
+use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Enum\SiteAccess;
 use RetailCrm\Test\TestClientFactory;
 
@@ -34,7 +35,10 @@ class ApiTest extends AbstractApiResourceGroupTest
 EOF;
 
         $mock = static::getMockClient();
-        $mock->on(static::createUnversionedRequestMatcher('api-versions'), static::responseJson(200, $json));
+        $mock->on(
+            static::createUnversionedRequestMatcher('api-versions')->setMethod(RequestMethod::GET),
+            static::responseJson(200, $json)
+        );
 
         $client = TestClientFactory::createClient($mock);
         $apiVersions = $client->api->apiVersions();
@@ -57,7 +61,10 @@ EOF;
 EOF;
 
         $mock = static::getMockClient();
-        $mock->on(static::createUnversionedRequestMatcher('credentials'), static::responseJson(200, $json));
+        $mock->on(
+            static::createUnversionedRequestMatcher('credentials')->setMethod(RequestMethod::GET),
+            static::responseJson(200, $json)
+        );
 
         $client      = TestClientFactory::createClient($mock);
         $credentials = $client->api->credentials();

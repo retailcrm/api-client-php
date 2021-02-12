@@ -119,73 +119,14 @@ abstract class AbstractApiResourceGroupTest extends TestCase
     }
 
     /**
-     * @param string $text
+     * @param \RetailCrm\Api\Interfaces\RequestInterface $request
      *
      * @return string
+     * @throws \ReflectionException
      */
-    private static function addTrailingSlash(string $text): string
+    public static function encodeForm(RetailCrmRequestInterface $request): string
     {
-        if ('' === $text) {
-            return '';
-        }
-
-        if ('/' !== $text[strlen($text) - 1]) {
-            return $text . '/';
-        }
-
-        return $text;
-    }
-
-    /**
-     * @return \JMS\Serializer\SerializerInterface
-     */
-    protected static function getSerializer(): SerializerInterface
-    {
-        if (null === static::$serializer) {
-            static::$serializer = SerializerBuilder::create()
-                ->addDefaultHandlers()
-                ->addDefaultListeners()
-                ->setMetadataCache(new DoctrineCacheAdapter('retailcrm', new ArrayCache()))
-                ->build();
-        }
-
-        return static::$serializer;
-    }
-
-    /**
-     * @return \Psr\Http\Message\StreamFactoryInterface
-     */
-    protected static function getStreamFactory(): StreamFactoryInterface
-    {
-        if (null === static::$streamFactory) {
-            static::$streamFactory = Psr17FactoryDiscovery::findStreamFactory();
-        }
-
-        return static::$streamFactory;
-    }
-
-    /**
-     * @return \Psr\Http\Message\ResponseFactoryInterface
-     */
-    protected static function getResponseFactory(): ResponseFactoryInterface
-    {
-        if (null === static::$responseFactory) {
-            static::$responseFactory = Psr17FactoryDiscovery::findResponseFactory();
-        }
-
-        return static::$responseFactory;
-    }
-
-    /**
-     * @return \RetailCrm\Api\Component\FormData\FormEncoder
-     */
-    public static function getFormEncoder(): FormEncoder
-    {
-        if (null === static::$formEncoder) {
-            static::$formEncoder = new FormEncoder();
-        }
-
-        return static::$formEncoder;
+        return static::getFormEncoder()->encode($request);
     }
 
     /**
@@ -197,6 +138,16 @@ abstract class AbstractApiResourceGroupTest extends TestCase
     public static function encodeFormArray(RetailCrmRequestInterface $request): array
     {
         return static::clearArray(static::getFormEncoder()->encodeArray($request));
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return string
+     */
+    public static function serialize($value): string
+    {
+        return static::getSerializer()->serialize($value, 'json');
     }
 
     /**
@@ -243,5 +194,75 @@ abstract class AbstractApiResourceGroupTest extends TestCase
             json_decode($expectedJson, true, 512, JSON_THROW_ON_ERROR),
             self::getSerializer()->toArray($response)
         );
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
+    private static function addTrailingSlash(string $text): string
+    {
+        if ('' === $text) {
+            return '';
+        }
+
+        if ('/' !== $text[strlen($text) - 1]) {
+            return $text . '/';
+        }
+
+        return $text;
+    }
+
+    /**
+     * @return \JMS\Serializer\SerializerInterface
+     */
+    private static function getSerializer(): SerializerInterface
+    {
+        if (null === static::$serializer) {
+            static::$serializer = SerializerBuilder::create()
+                ->addDefaultHandlers()
+                ->addDefaultListeners()
+                ->setMetadataCache(new DoctrineCacheAdapter('retailcrm', new ArrayCache()))
+                ->build();
+        }
+
+        return static::$serializer;
+    }
+
+    /**
+     * @return \Psr\Http\Message\StreamFactoryInterface
+     */
+    private static function getStreamFactory(): StreamFactoryInterface
+    {
+        if (null === static::$streamFactory) {
+            static::$streamFactory = Psr17FactoryDiscovery::findStreamFactory();
+        }
+
+        return static::$streamFactory;
+    }
+
+    /**
+     * @return \Psr\Http\Message\ResponseFactoryInterface
+     */
+    private static function getResponseFactory(): ResponseFactoryInterface
+    {
+        if (null === static::$responseFactory) {
+            static::$responseFactory = Psr17FactoryDiscovery::findResponseFactory();
+        }
+
+        return static::$responseFactory;
+    }
+
+    /**
+     * @return \RetailCrm\Api\Component\FormData\FormEncoder
+     */
+    private static function getFormEncoder(): FormEncoder
+    {
+        if (null === static::$formEncoder) {
+            static::$formEncoder = new FormEncoder();
+        }
+
+        return static::$formEncoder;
     }
 }

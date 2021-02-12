@@ -12,6 +12,7 @@ namespace RetailCrm\Test;
 use Http\Message\RequestMatcher as RequestMatcherInterface;
 use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
+use RetailCrm\Api\Component\Utils;
 
 /**
  * Class RequestMatcher
@@ -65,6 +66,9 @@ class RequestMatcher implements RequestMatcherInterface
      * @var mixed[][]
      */
     private $optionalPostFields = [];
+
+    /** @var string */
+    private $body = '';
 
     /**
      * RequestMatcher constructor.
@@ -186,6 +190,17 @@ class RequestMatcher implements RequestMatcherInterface
     }
 
     /**
+     * @param string $body
+     *
+     * @return RequestMatcher
+     */
+    public function setBody(string $body): RequestMatcher
+    {
+        $this->body = $body;
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function matches(RequestInterface $request)
@@ -238,9 +253,13 @@ class RequestMatcher implements RequestMatcherInterface
             !empty($this->optionalPostFields)
             && !$this->firstArrayPresentInSecond(
                 $this->optionalPostFields,
-                $this->getQueryData((string) $request->getBody())
+                $this->getQueryData(Utils::getBodyContents($request->getBody()))
             )
         ) {
+            return false;
+        }
+
+        if (!empty($this->body) && Utils::getBodyContents($request->getBody()) !== $this->body) {
             return false;
         }
 
