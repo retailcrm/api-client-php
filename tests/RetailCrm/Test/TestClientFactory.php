@@ -32,7 +32,7 @@ class TestClientFactory
      * @param \Psr\Http\Client\ClientInterface $client
      *
      * @return \RetailCrm\Api\Client
-     * @throws \RetailCrm\Api\Component\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\BuilderException
      */
     public static function createClient(ClientInterface $client): Client
     {
@@ -42,17 +42,12 @@ class TestClientFactory
             ->setFormEncoder($encoder)
             ->build();
 
-        $clientBuilder = (new ClientBuilder())
+        return (new ClientBuilder())
             ->setApiUrl(TestConfig::getApiUrl())
             ->setRequestFactory($requestFactory)
             ->setResponseFactory(new ResponseFactory($encoder->getSerializer()))
             ->setFormEncoder($encoder)
-            ->setHttpClient($client);
-
-        if (TestConfig::isUseRealNetwork()) {
-            $clientBuilder->setHttpClient(new CurlClient());
-        }
-
-        return $clientBuilder->build();
+            ->setHttpClient($client)
+            ->build();
     }
 }

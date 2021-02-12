@@ -9,6 +9,8 @@
 
 namespace RetailCrm\Api\Component;
 
+use Psr\Http\Message\StreamInterface;
+
 /**
  * Class Utils
  *
@@ -39,5 +41,17 @@ class Utils
     public static function removeTrailingSlash(string $text): string
     {
         return (string) preg_replace('/\/$/', '', $text);
+    }
+
+    /**
+     * Returns body stream data (it should work like that in order to keep compatibility with some implementations).
+     *
+     * @param \Psr\Http\Message\StreamInterface $stream
+     *
+     * @return string
+     */
+    public static function getBodyContents(StreamInterface $stream): string
+    {
+        return $stream->isSeekable() ? $stream->__toString() : $stream->getContents();
     }
 }

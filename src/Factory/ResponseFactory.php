@@ -12,6 +12,7 @@ namespace RetailCrm\Api\Factory;
 use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Exception\ApiException;
 use RetailCrm\Api\Model\Response\ErrorResponse;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailcrmResponse;
@@ -63,22 +64,11 @@ class ResponseFactory
      * @param string                              $type
      *
      * @return RetailcrmResponse
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     private function unmarshalBody(ResponseInterface $response, string $type): RetailcrmResponse
     {
         /** @phpstan-ignore-next-line */
-        return $this->serializer->deserialize(static::getBodyContents($response->getBody()), $type, 'json');
-    }
-
-    /**
-     * Returns body stream data (it should work like that in order to keep compatibility with some implementations).
-     *
-     * @param \Psr\Http\Message\StreamInterface $stream
-     *
-     * @return string
-     */
-    protected static function getBodyContents(StreamInterface $stream): string
-    {
-        return $stream->isSeekable() ? $stream->__toString() : $stream->getContents();
+        return $this->serializer->deserialize(Utils::getBodyContents($response->getBody()), $type, 'json');
     }
 }

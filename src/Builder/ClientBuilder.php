@@ -11,6 +11,7 @@ namespace RetailCrm\Api\Builder;
 
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
+use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Client;
 use RetailCrm\Api\Interfaces\AuthenticatorInterface;
 use RetailCrm\Api\Exception\BuilderException;
@@ -35,6 +36,9 @@ class ClientBuilder implements BuilderInterface
 
     /** @var ?ClientInterface */
     private $httpClient;
+
+    /** @var ?\Psr\Log\LoggerInterface */
+    private $debugLogger;
 
     /** @var ?\RetailCrm\Api\Factory\RequestFactory */
     private $requestFactory;
@@ -75,6 +79,17 @@ class ClientBuilder implements BuilderInterface
     public function setHttpClient(ClientInterface $httpClient): ClientBuilder
     {
         $this->httpClient = $httpClient;
+        return $this;
+    }
+
+    /**
+     * @param \Psr\Log\LoggerInterface|null $debugLogger
+     *
+     * @return ClientBuilder
+     */
+    public function setDebugLogger(?LoggerInterface $debugLogger): ClientBuilder
+    {
+        $this->debugLogger = $debugLogger;
         return $this;
     }
 
@@ -138,6 +153,7 @@ class ClientBuilder implements BuilderInterface
             $this->httpClient ?: Psr18ClientDiscovery::find(),
             $this->requestFactory ?: $this->buildRequestFactory($this->formEncoder),
             $this->responseFactory ?: new ResponseFactory($this->formEncoder->getSerializer()),
+            $this->debugLogger
         );
     }
 

@@ -34,14 +34,6 @@ class TestConfig
     }
 
     /**
-     * @return bool
-     */
-    public static function isUseRealNetwork(): bool
-    {
-        return self::getenv('USE_REAL_NETWORK', 'false') === 'true';
-    }
-
-    /**
      * @param string $variable
      * @param mixed   $default
      *

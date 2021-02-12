@@ -10,6 +10,8 @@
 namespace RetailCrm\Api\Section;
 
 use Psr\Http\Client\ClientInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Factory\RequestFactory;
@@ -23,6 +25,9 @@ use RetailCrm\Api\Interfaces\ResponseInterface;
  *
  * @category AbstractApiSection
  * @package  RetailCrm\Api\Modules
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 abstract class AbstractApiSection
 {
@@ -41,29 +46,33 @@ abstract class AbstractApiSection
     /** @var ResponseFactory */
     protected $responseFactory;
 
+    /** @var ?\Psr\Log\LoggerInterface */
+    protected $logger;
+
     /**
      * AbstractApiSection constructor.
      *
-     * @param string                                           $apiUrl
+     * @param string                                           $baseUrl
      * @param \RetailCrm\Api\Interfaces\AuthenticatorInterface $authenticator
      * @param \Psr\Http\Client\ClientInterface                 $httpClient
      * @param \RetailCrm\Api\Factory\RequestFactory            $requestFactory
      * @param \RetailCrm\Api\Factory\ResponseFactory           $responseFactory
-     *
-     * @SuppressWarnings(PHPMD.StaticAccess)
+     * @param \Psr\Log\LoggerInterface|null                    $logger
      */
     public function __construct(
-        string $apiUrl,
+        string $baseUrl,
         AuthenticatorInterface $authenticator,
         ClientInterface $httpClient,
         RequestFactory $requestFactory,
-        ResponseFactory $responseFactory
+        ResponseFactory $responseFactory,
+        ?LoggerInterface $logger = null
     ) {
-        $this->apiUrl         = Utils::removeTrailingSlash($apiUrl);
+        $this->apiUrl         = Utils::removeTrailingSlash($baseUrl);
         $this->authenticator  = $authenticator;
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
         $this->responseFactory = $responseFactory;
+        $this->logger = $logger;
     }
 
     /**
@@ -114,12 +123,32 @@ abstract class AbstractApiSection
      */
     protected function sendGetRequest(string $route, ?RequestInterface $request, string $type): ResponseInterface
     {
-        return $this->responseFactory->createResponse($this->httpClient->sendRequest(
-            $this->requestFactory->createPsrRequest(
-                RequestMethod::GET,
-                $this->route($route),
-                $request
-            )
-        ), $type);
+        $psrRequest  = $this->requestFactory->createPsrRequest(
+            RequestMethod::GET,
+            $this->route($route),
+            $request
+        );
+
+        if ($this->logger instanceof LoggerInterface && !($this->logger instanceof NullLogger)) {
+            $this->logger->debug(sprintf(
+                '[RetailCRM API Request]: %s URL: "%s", Headers: "%s", Body: "%s"',
+                $psrRequest->getMethod(),
+                (string) $psrRequest->getUri(),
+                json_encode($psrRequest->getHeaders()),
+                Utils::getBodyContents($psrRequest->getBody())
+            ));
+        }
+
+        $psrResponse = $this->httpClient->sendRequest($psrRequest);
+
+        if ($this->logger instanceof LoggerInterface && !($this->logger instanceof NullLogger)) {
+            $this->logger->debug(sprintf(
+                '[RetailCRM API Response]: Status: "%d", Body: "%s"',
+                $psrResponse->getStatusCode(),
+                Utils::getBodyContents($psrResponse->getBody())
+            ));
+        }
+
+        return $this->responseFactory->createResponse($psrResponse, $type);
     }
 }

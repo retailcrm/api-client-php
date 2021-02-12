@@ -10,6 +10,7 @@
 namespace RetailCrm\Api;
 
 use Psr\Http\Client\ClientInterface;
+use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
 use RetailCrm\Api\Interfaces\AuthenticatorInterface;
@@ -38,15 +39,31 @@ class Client
      * @param \Psr\Http\Client\ClientInterface                 $httpClient
      * @param \RetailCrm\Api\Factory\RequestFactory            $requestFactory
      * @param \RetailCrm\Api\Factory\ResponseFactory           $responseFactory
+     * @param \Psr\Log\LoggerInterface|null                    $logger
      */
     public function __construct(
         string $apiUrl,
         AuthenticatorInterface $authenticator,
         ClientInterface $httpClient,
         RequestFactory $requestFactory,
-        ResponseFactory $responseFactory
+        ResponseFactory $responseFactory,
+        ?LoggerInterface $logger = null
     ) {
-        $this->api = new Api($apiUrl, $authenticator, $httpClient, $requestFactory, $responseFactory);
-        $this->costs = new Costs($apiUrl, $authenticator, $httpClient, $requestFactory, $responseFactory);
+        $baseUrl = static::getBaseUrl($apiUrl);
+
+        $this->api = new Api($baseUrl, $authenticator, $httpClient, $requestFactory, $responseFactory, $logger);
+        $this->costs = new Costs($baseUrl, $authenticator, $httpClient, $requestFactory, $responseFactory, $logger);
+    }
+
+    /**
+     * Parses provided URL, builds API url with version out of it.
+     *
+     * @param string $url
+     *
+     * @return string
+     */
+    public static function getBaseUrl(string $url): string
+    {
+        return sprintf('https://%s/api/v5', parse_url(trim($url), PHP_URL_HOST));
     }
 }

@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Section;
 
 use Psr\Http\Client\ClientInterface;
+use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
@@ -28,27 +29,29 @@ class Api extends AbstractApiSection
     /**
      * Api constructor.
      *
-     * @param string                                           $apiUrl
+     * @param string                                           $baseUrl
      * @param \RetailCrm\Api\Interfaces\AuthenticatorInterface $authenticator
      * @param \Psr\Http\Client\ClientInterface                 $httpClient
      * @param \RetailCrm\Api\Factory\RequestFactory            $requestFactory
      * @param \RetailCrm\Api\Factory\ResponseFactory           $responseFactory
-     *
+     * @param \Psr\Log\LoggerInterface|null                    $logger
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function __construct(
-        string $apiUrl,
+        string $baseUrl,
         AuthenticatorInterface $authenticator,
         ClientInterface $httpClient,
         RequestFactory $requestFactory,
-        ResponseFactory $responseFactory
+        ResponseFactory $responseFactory,
+        ?LoggerInterface $logger = null
     ) {
         parent::__construct(
-            Utils::removeVersionFromUri($apiUrl),
+            Utils::removeVersionFromUri($baseUrl),
             $authenticator,
             $httpClient,
             $requestFactory,
-            $responseFactory
+            $responseFactory,
+            $logger
         );
     }
 
