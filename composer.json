@@ -39,7 +39,7 @@
   },
   "scripts": {
     "phpunit": "./vendor/bin/phpunit -c phpunit.xml.dist",
-    "phpunit-ci": "./vendor/bin/phpunit --teamcity -c phpunit.xml.dist",
+    "phpunit-ci": "@php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude=\"~vendor~\" ./vendor/bin/phpunit --teamcity -c phpunit.xml.dist",
     "phpmd": "./vendor/bin/phpmd src text ./phpmd.xml",
     "phpcs": "./vendor/bin/phpcs -p src --runtime-set testVersion 7.3",
     "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon src --memory-limit=-1",
