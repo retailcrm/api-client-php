@@ -1,4 +1,4 @@
-name: ci
+name: "Continuous Integration"
 
 on:
   push:
@@ -10,12 +10,14 @@ on:
 
 jobs:
   test:
+    name: "PHPUnit"
     runs-on: ubuntu-latest
     strategy:
       matrix:
         php-version: ['7.3', '7.4', '8.0']
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out code into the workspace
+        uses: actions/checkout@v2
       - name: Setup PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:

@@ -9,7 +9,7 @@ on:
 
 jobs:
   phpcs:
-    name: PHPCS
+    name: "PHP CodeSniffer"
     runs-on: ubuntu-latest
     steps:
       - name: Check out code into the workspace
