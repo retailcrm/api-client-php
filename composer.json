@@ -15,7 +15,6 @@
     "php": ">=7.3.0",
     "ext-curl": "*",
     "ext-json": "*",
-    "ext-fileinfo": "*",
     "psr/log": "^1.1",
     "psr/http-client": "^1.0",
     "psr/http-message": "^1.0",

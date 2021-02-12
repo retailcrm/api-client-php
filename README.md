@@ -1,19 +1,22 @@
 [![Build Status](https://github.com/retailcrm/api-client-php/workflows/Continuous+Integration/badge.svg)](https://github.com/retailcrm/api-client-php/actions)
-[![Covarage](https://img.shields.io/codecov/c/gh/retailcrm/api-client-php/master.svg?logo=codecov&logoColor=white)](https://codecov.io/gh/retailcrm/api-client-php)
+[![Coverage](https://img.shields.io/codecov/c/gh/retailcrm/api-client-php/master.svg?logo=codecov&logoColor=white)](https://codecov.io/gh/retailcrm/api-client-php)
 [![Latest stable](https://img.shields.io/packagist/v/retailcrm/api-client-php.svg)](https://packagist.org/packages/retailcrm/api-client-php)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/retailcrm/api-client-php.svg?logo=php&logoColor=white)](https://packagist.org/packages/retailcrm/api-client-php)
 
 
-# RetailCRM API PHP client
+# [DRAFT] RetailCRM API PHP client
 
-This is php RetailCRM API client. This library allows to use all available API versions. [API documentation](http://retailcrm.github.io/api-client-php)
+This is php RetailCRM API client. This library allows to use actual API version. [API documentation](http://retailcrm.github.io/api-client-php)
 
 ## Requirements
 
 * PHP 7.3 and above
 * PHP's cURL support
 * PHP's JSON support
-* PHP's Fileinfo support
+* Any HTTP-client compatible with PSR-18.  
+* Any HTTP factories implementation compatible with PSR-17.  
+* Any HTTP messages implementation compatible with PSR-7.  
+* Other dependencies listed in the `composer.json`
 
 ## Install
 
@@ -21,105 +24,16 @@ This is php RetailCRM API client. This library allows to use all available API v
 
 2) Run into your project directory:
 ```bash
-composer require retailcrm/api-client-php ~5.0
+composer require php-http/curl-client nyholm/psr7 php-http/message retailcrm/api-client-php:"~6.0"
 ```
 
-If you have not used `composer` before, include autoloader into your project.
+If you have not used `composer` before, include an autoloader into your project.
 ```php
 require 'path/to/vendor/autoload.php';
 ```
 
 ## Usage
 
-### Get order
-```php
-$client = new \RetailCrm\ApiClient(
-    'https://demo.retailcrm.pro',
-    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
-    \RetailCrm\ApiClient::V5
-);
+> TODO
 
-try {
-    $response = $client->request->ordersGet('M-2342');
-} catch (\RetailCrm\Exception\CurlException $e) {
-    echo "Connection error: " . $e->getMessage();
-}
-
-if ($response->isSuccessful()) {
-    echo $response->order['totalSumm'];
-    // or $response['order']['totalSumm'];
-    // or
-    //    $order = $response->getOrder();
-    //    $order['totalSumm'];
-} else {
-    echo sprintf(
-        "Error: [HTTP-code %s] %s",
-        $response->getStatusCode(),
-        $response->getErrorMsg()
-    );
-
-    // error details
-    //if (isset($response['errors'])) {
-    //    print_r($response['errors']);
-    //}
-}
-```
-
-### Create order
-```php
-
-$client = new \RetailCrm\ApiClient(
-    'https://demo.retailcrm.pro',
-    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
-    \RetailCrm\ApiClient::V5
-);
-
-try {
-    $response = $client->request->ordersCreate(array(
-        'externalId' => 'some-shop-order-id',
-        'firstName' => 'John',
-        'lastName' => 'Doe',
-        'items' => array(
-            //...
-        ),
-        'delivery' => array(
-            'code' => 'fedex',
-        )
-    ));
-} catch (\RetailCrm\Exception\CurlException $e) {
-    echo "Connection error: " . $e->getMessage();
-}
-
-if ($response->isSuccessful() && 201 === $response->getStatusCode()) {
-    echo 'Order successfully created. Order ID into RetailCRM = ' . $response->id;
-        // or $response['id'];
-        // or $response->getId();
-} else {
-    echo sprintf(
-        "Error: [HTTP-code %s] %s",
-        $response->getStatusCode(),
-        $response->getErrorMsg()
-    );
-
-    // error details
-    //if (isset($response['errors'])) {
-    //    print_r($response['errors']);
-    //}
-}
-```
-
-### Set custom headers and client timeout
-```php
-$client = new \RetailCrm\ApiClient(
-    'https://demo.retailcrm.pro',
-    'T9DMPvuNt7FQJMszHUdG8Fkt6xHsqngH',
-    \RetailCrm\ApiClient::V5
-);
-
-$options = new \RetailCrm\Http\RequestOptions(
-    ['X-Rlimit-Token' => 'example_token'], // array of custom headers
-    10 // client timeout (in seconds)
-);
-
-$client->request->setOptions($options);
-```
+This library uses HTTPlug HTTP client abstraction. Visit [official documentation](http://docs.php-http.org/en/latest/httplug/users.html) to learn more about it.
