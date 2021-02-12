@@ -22,7 +22,7 @@ class TestConfig
      */
     public static function getApiUrl(): string
     {
-        return self::getenv('API_URL', 'https://test.retailcrm.pro/api/v5');
+        return self::getenv('API_URL', 'https://test.retailcrm.pro/');
     }
 
     /**
