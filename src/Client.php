@@ -11,6 +11,7 @@ namespace RetailCrm\Api;
 
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
+use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
 use RetailCrm\Api\Interfaces\AuthenticatorInterface;
@@ -61,9 +62,10 @@ class Client
      * @param string $url
      *
      * @return string
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public static function getBaseUrl(string $url): string
     {
-        return sprintf('https://%s/api/v5', parse_url(trim($url), PHP_URL_HOST));
+        return Utils::removeTrailingSlash($url) . '/api/v5';
     }
 }

@@ -12,6 +12,7 @@ namespace RetailCrm\Api\Section;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Factory\RequestFactory;
 use RetailCrm\Api\Factory\ResponseFactory;
 use RetailCrm\Api\Interfaces\AuthenticatorInterface;
@@ -76,7 +77,12 @@ class Api extends AbstractApiSection
     public function apiVersions(): ApiVersionsResponse
     {
         /** @var ApiVersionsResponse $response */
-        $response = $this->sendGetRequest('api-versions', null, ApiVersionsResponse::class);
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'api-versions',
+            null,
+            ApiVersionsResponse::class
+        );
         return $response;
     }
 
@@ -101,7 +107,12 @@ class Api extends AbstractApiSection
     public function credentials(): Credentials
     {
         /** @var Credentials $response */
-        $response = $this->sendGetRequest('credentials', null, Credentials::class);
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'credentials',
+            null,
+            Credentials::class
+        );
         return $response;
     }
 }

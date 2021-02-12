@@ -32,7 +32,7 @@ use RetailCrm\Api\Interfaces\ResponseInterface;
 abstract class AbstractApiSection
 {
     /** @var string */
-    protected $apiUrl;
+    protected $baseUrl;
 
     /** @var AuthenticatorInterface */
     protected $authenticator;
@@ -67,8 +67,8 @@ abstract class AbstractApiSection
         ResponseFactory $responseFactory,
         ?LoggerInterface $logger = null
     ) {
-        $this->apiUrl         = Utils::removeTrailingSlash($baseUrl);
-        $this->authenticator  = $authenticator;
+        $this->baseUrl       = $baseUrl;
+        $this->authenticator = $authenticator;
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
         $this->responseFactory = $responseFactory;
@@ -76,13 +76,13 @@ abstract class AbstractApiSection
     }
 
     /**
-     * @param string $apiUrl
+     * @param string $baseUrl
      *
      * @return AbstractApiSection
      */
-    public function setApiUrl(string $apiUrl): AbstractApiSection
+    public function setBaseUrl(string $baseUrl): AbstractApiSection
     {
-        $this->apiUrl = $apiUrl;
+        $this->baseUrl = $baseUrl;
         return $this;
     }
 
@@ -106,12 +106,14 @@ abstract class AbstractApiSection
      */
     protected function route(string $route): string
     {
-        return sprintf('%s/%s', $this->apiUrl, $route);
+        return sprintf('%s/%s', $this->baseUrl, $route);
     }
 
     /**
-     * Sends GET request to provided route, returns response of provided type.
+     * Sends request to provided route with provided method and body, returns response of provided type.
+     * Request will be put into GET parameters or into POST form-data (depends on method).
      *
+     * @param string                                          $method
      * @param string                                          $route
      * @param \RetailCrm\Api\Interfaces\RequestInterface|null $request
      * @param string                                          $type
@@ -121,10 +123,14 @@ abstract class AbstractApiSection
      * @throws \RetailCrm\Api\Exception\ApiException
      * @throws \RetailCrm\Api\Exception\FactoryException
      */
-    protected function sendGetRequest(string $route, ?RequestInterface $request, string $type): ResponseInterface
-    {
+    protected function sendRequest(
+        string $method,
+        string $route,
+        ?RequestInterface $request,
+        string $type
+    ): ResponseInterface {
         $psrRequest  = $this->requestFactory->createPsrRequest(
-            RequestMethod::GET,
+            $method,
             $this->route($route),
             $request
         );

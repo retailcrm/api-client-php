@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Section;
 
+use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\Costs\CostsRequest;
 use RetailCrm\Api\Model\Response\Costs\CostsResponse;
 
@@ -53,7 +54,12 @@ class Costs extends AbstractApiSection
     public function costs(?CostsRequest $request = null): CostsResponse
     {
         /** @var CostsResponse $response */
-        $response = $this->sendGetRequest('costs', $request, CostsResponse::class);
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'costs',
+            $request,
+            CostsResponse::class
+        );
         return $response;
     }
 }

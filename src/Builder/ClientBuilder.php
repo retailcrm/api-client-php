@@ -133,7 +133,7 @@ class ClientBuilder implements BuilderInterface
     public function build(): Client
     {
         if (empty($this->apiUrl)) {
-            throw new BuilderException('apiUrl must not be empty', ['apiUrl']);
+            throw new BuilderException('baseUrl must not be empty', ['baseUrl']);
         }
 
         if (empty($this->authenticator) && empty($this->requestFactory)) {
