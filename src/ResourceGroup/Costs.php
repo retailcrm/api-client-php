@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category Costs
- * @package  RetailCrm\Api\Section
+ * @package  RetailCrm\Api\ResourceGroup
  */
 
-namespace RetailCrm\Api\Section;
+namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\Costs\CostsRequest;
@@ -17,18 +17,19 @@ use RetailCrm\Api\Model\Response\Costs\CostsResponse;
  * Class Costs
  *
  * @category Costs
- * @package  RetailCrm\Api\Section
+ * @package  RetailCrm\Api\ResourceGroup
  */
-class Costs extends AbstractApiSection
+class Costs extends AbstractApiResourceGroup
 {
     /**
      * Makes "/api/v5/costs" request.
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Factory\ClientFactory();
+     * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Filter\Costs\CostsFilter;
      * use RetailCrm\Api\Model\Request\Costs\CostsRequest;
+     * use RetailCrm\Api\Exception\ApiException;
      *
      * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
      *
@@ -39,7 +40,19 @@ class Costs extends AbstractApiSection
      * $costsRequest->filter->sites = ['moysklad', 'aliexpress'];
      * $costsRequest->filter->maxSumm = 20;
      *
-     * $costs = $client->costs->costs($costsRequest);
+     * try {
+     *     $costs = $client->costs->costs($costsRequest);
+     * } catch (ApiException $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
      *
      * echo 'Received costs: ' . print_r($costs, true);
      * ```
@@ -48,8 +61,10 @@ class Costs extends AbstractApiSection
      *
      * @return \RetailCrm\Api\Model\Response\Costs\CostsResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Exception\ApiException
-     * @throws \RetailCrm\Api\Exception\FactoryException
+     * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function costs(?CostsRequest $request = null): CostsResponse
     {

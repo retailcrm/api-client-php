@@ -3,7 +3,7 @@
 /**
  * PHP version 7.3
  *
- * @category FactoryException
+ * @category HandlerException
  * @package  RetailCrm\Api\Exception
  */
 
@@ -12,11 +12,11 @@ namespace RetailCrm\Api\Exception;
 use Exception;
 
 /**
- * Class FactoryException
+ * Class HandlerException
  *
- * @category FactoryException
+ * @category HandlerException
  * @package  RetailCrm\Api\Exception
  */
-class FactoryException extends Exception
+class HandlerException extends Exception
 {
 }

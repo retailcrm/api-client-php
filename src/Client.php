@@ -11,12 +11,11 @@ namespace RetailCrm\Api;
 
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
+use RetailCrm\Api\Component\Transformer\RequestTransformer;
+use RetailCrm\Api\Component\Transformer\ResponseTransformer;
 use RetailCrm\Api\Component\Utils;
-use RetailCrm\Api\Factory\RequestFactory;
-use RetailCrm\Api\Factory\ResponseFactory;
-use RetailCrm\Api\Interfaces\AuthenticatorInterface;
-use RetailCrm\Api\Section\Api;
-use RetailCrm\Api\Section\Costs;
+use RetailCrm\Api\ResourceGroup\Api;
+use RetailCrm\Api\ResourceGroup\Costs;
 
 /**
  * Class Client
@@ -26,34 +25,32 @@ use RetailCrm\Api\Section\Costs;
  */
 class Client
 {
-    /** @var \RetailCrm\Api\Section\Api */
+    /** @var \RetailCrm\Api\ResourceGroup\Api */
     public $api;
 
-    /** @var \RetailCrm\Api\Section\Costs */
+    /** @var \RetailCrm\Api\ResourceGroup\Costs */
     public $costs;
 
     /**
      * Client constructor.
      *
-     * @param string                                           $apiUrl
-     * @param \RetailCrm\Api\Interfaces\AuthenticatorInterface $authenticator
-     * @param \Psr\Http\Client\ClientInterface                 $httpClient
-     * @param \RetailCrm\Api\Factory\RequestFactory            $requestFactory
-     * @param \RetailCrm\Api\Factory\ResponseFactory           $responseFactory
-     * @param \Psr\Log\LoggerInterface|null                    $logger
+     * @param string                                                   $apiUrl
+     * @param \Psr\Http\Client\ClientInterface                         $httpClient
+     * @param \RetailCrm\Api\Component\Transformer\RequestTransformer  $requestTransformer
+     * @param \RetailCrm\Api\Component\Transformer\ResponseTransformer $responseTransformer
+     * @param \Psr\Log\LoggerInterface|null                            $logger
      */
     public function __construct(
         string $apiUrl,
-        AuthenticatorInterface $authenticator,
         ClientInterface $httpClient,
-        RequestFactory $requestFactory,
-        ResponseFactory $responseFactory,
+        RequestTransformer $requestTransformer,
+        ResponseTransformer $responseTransformer,
         ?LoggerInterface $logger = null
     ) {
         $baseUrl = static::getBaseUrl($apiUrl);
 
-        $this->api = new Api($baseUrl, $authenticator, $httpClient, $requestFactory, $responseFactory, $logger);
-        $this->costs = new Costs($baseUrl, $authenticator, $httpClient, $requestFactory, $responseFactory, $logger);
+        $this->api = new Api($baseUrl, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->costs = new Costs($baseUrl, $httpClient, $requestTransformer, $responseTransformer, $logger);
     }
 
     /**
@@ -62,7 +59,6 @@ class Client
      * @param string $url
      *
      * @return string
-     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public static function getBaseUrl(string $url): string
     {

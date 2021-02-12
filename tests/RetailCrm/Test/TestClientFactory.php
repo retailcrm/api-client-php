@@ -9,14 +9,11 @@
 
 namespace RetailCrm\Test;
 
-use Http\Client\Curl\Client as CurlClient;
 use Psr\Http\Client\ClientInterface;
-use RetailCrm\Api\Client;
 use RetailCrm\Api\Builder\ClientBuilder;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
-use RetailCrm\Api\Builder\RequestFactoryBuilder;
-use RetailCrm\Api\Component\Authenticator\HeaderAuthenticator;
-use RetailCrm\Api\Factory\ResponseFactory;
+use RetailCrm\Api\Client;
+use RetailCrm\Api\Handler\Request\HeaderAuthenticatorHandler;
 
 /**
  * Class TestClientFactory
@@ -37,15 +34,10 @@ class TestClientFactory
     public static function createClient(ClientInterface $client): Client
     {
         $encoder = (new FormEncoderBuilder())->build();
-        $requestFactory = (new RequestFactoryBuilder())
-            ->setAuthenticator(new HeaderAuthenticator(TestConfig::getApiKey()))
-            ->setFormEncoder($encoder)
-            ->build();
 
         return (new ClientBuilder())
             ->setApiUrl(TestConfig::getApiUrl())
-            ->setRequestFactory($requestFactory)
-            ->setResponseFactory(new ResponseFactory($encoder->getSerializer()))
+            ->setAuthenticatorHandler(new HeaderAuthenticatorHandler(TestConfig::getApiKey()))
             ->setFormEncoder($encoder)
             ->setHttpClient($client)
             ->build();

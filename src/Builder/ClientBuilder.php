@@ -13,12 +13,14 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Client;
-use RetailCrm\Api\Interfaces\AuthenticatorInterface;
 use RetailCrm\Api\Exception\BuilderException;
 use RetailCrm\Api\Component\FormData\FormEncoder;
-use RetailCrm\Api\Factory\RequestFactory;
-use RetailCrm\Api\Factory\ResponseFactory;
+use RetailCrm\Api\Component\Transformer\RequestTransformer;
+use RetailCrm\Api\Factory\RequestPipelineFactory;
+use RetailCrm\Api\Component\Transformer\ResponseTransformer;
+use RetailCrm\Api\Factory\ResponsePipelineFactory;
 use RetailCrm\Api\Interfaces\BuilderInterface;
+use RetailCrm\Api\Interfaces\HandlerInterface;
 
 /**
  * Class ClientBuilder
@@ -31,7 +33,7 @@ class ClientBuilder implements BuilderInterface
     /** @var string */
     private $apiUrl;
 
-    /** @var AuthenticatorInterface */
+    /** @var ?HandlerInterface */
     private $authenticator;
 
     /** @var ?ClientInterface */
@@ -40,13 +42,13 @@ class ClientBuilder implements BuilderInterface
     /** @var ?\Psr\Log\LoggerInterface */
     private $debugLogger;
 
-    /** @var ?\RetailCrm\Api\Factory\RequestFactory */
-    private $requestFactory;
+    /** @var ?\RetailCrm\Api\Component\Transformer\RequestTransformer */
+    private $requestTransformer;
 
-    /** @var ?ResponseFactory */
-    protected $responseFactory;
+    /** @var ?ResponseTransformer */
+    protected $responseTransformer;
 
-    /** @var FormEncoder */
+    /** @var ?FormEncoder */
     private $formEncoder;
 
     /**
@@ -61,11 +63,15 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
-     * @param \RetailCrm\Api\Interfaces\AuthenticatorInterface $authenticator
+     * Request authenticator to append into request transformer pipeline.
+     * Don't set if you already added proper authenticator in the pipeline manually.
+     * You can use this method to drop authenticator from client builder (use null).
+     *
+     * @param \RetailCrm\Api\Interfaces\HandlerInterface|null $authenticator
      *
      * @return ClientBuilder
      */
-    public function setAuthenticator(AuthenticatorInterface $authenticator): ClientBuilder
+    public function setAuthenticatorHandler(?HandlerInterface $authenticator): ClientBuilder
     {
         $this->authenticator = $authenticator;
         return $this;
@@ -94,24 +100,24 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
-     * @param \RetailCrm\Api\Factory\RequestFactory|null $requestFactory
+     * @param \RetailCrm\Api\Component\Transformer\RequestTransformer|null $requestTransformer
      *
      * @return ClientBuilder
      */
-    public function setRequestFactory(?RequestFactory $requestFactory): ClientBuilder
+    public function setRequestTransformer(?RequestTransformer $requestTransformer): ClientBuilder
     {
-        $this->requestFactory = $requestFactory;
+        $this->requestTransformer = $requestTransformer;
         return $this;
     }
 
     /**
-     * @param \RetailCrm\Api\Factory\ResponseFactory|null $responseFactory
+     * @param \RetailCrm\Api\Component\Transformer\ResponseTransformer|null $responseTransformer
      *
      * @return ClientBuilder
      */
-    public function setResponseFactory(?ResponseFactory $responseFactory): ClientBuilder
+    public function setResponseTransformer(?ResponseTransformer $responseTransformer): ClientBuilder
     {
-        $this->responseFactory = $responseFactory;
+        $this->responseTransformer = $responseTransformer;
         return $this;
     }
 
@@ -128,46 +134,85 @@ class ClientBuilder implements BuilderInterface
 
     /**
      * @inheritDoc
-     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function build(): Client
     {
         if (empty($this->apiUrl)) {
-            throw new BuilderException('baseUrl must not be empty', ['baseUrl']);
+            throw new BuilderException('apiUrl must not be empty', ['apiUrl']);
         }
 
-        if (empty($this->authenticator) && empty($this->requestFactory)) {
+        if (empty($this->authenticator) && empty($this->requestTransformer)) {
             throw new BuilderException(
-                'Authenticator or RequestFactory with authenticator must be present',
-                ['authenticator', 'requestFactory']
+                'Authenticator or RequestTransformer must be present',
+                ['authenticator', 'requestTransformer']
             );
         }
 
-        if (null === $this->authenticator && null !== $this->requestFactory) {
-            $this->authenticator = $this->requestFactory->getAuthenticator();
+        if (null !== $this->authenticator && null !== $this->requestTransformer) {
+            $this->requestTransformer->getHandler()->append($this->authenticator);
+        }
+
+        if (null === $this->requestTransformer) {
+            $this->requestTransformer = $this->buildRequestTransformer();
+        }
+
+        if (null === $this->responseTransformer) {
+            $this->responseTransformer = $this->buildResponseTransformer();
         }
 
         return new Client(
             $this->apiUrl,
-            $this->authenticator,
             $this->httpClient ?: Psr18ClientDiscovery::find(),
-            $this->requestFactory ?: $this->buildRequestFactory($this->formEncoder),
-            $this->responseFactory ?: new ResponseFactory($this->formEncoder->getSerializer()),
+            $this->requestTransformer,
+            $this->responseTransformer,
             $this->debugLogger
         );
     }
 
     /**
-     * @param \RetailCrm\Api\Component\FormData\FormEncoder $formEncoder
+     * Builds RequestTransformer with default pipeline and authenticator.
      *
-     * @return \RetailCrm\Api\Factory\RequestFactory
+     * @return \RetailCrm\Api\Component\Transformer\RequestTransformer
      * @throws \RetailCrm\Api\Exception\BuilderException
      */
-    private function buildRequestFactory(FormEncoder $formEncoder): RequestFactory
+    private function buildRequestTransformer(): RequestTransformer
     {
-        return (new RequestFactoryBuilder())
-            ->setAuthenticator($this->authenticator)
-            ->setFormEncoder($formEncoder)
-            ->build();
+        if (null === $this->formEncoder) {
+            throw new BuilderException(
+                "You must provide a FormEncoder instance in order to delegate " .
+                "RequestTransformer instantiation to the ClientBuilder."
+            );
+        }
+
+        if (null === $this->authenticator) {
+            throw new BuilderException(
+                "You must provide an authenticator handler instance in order to delegate " .
+                "RequestTransformer instantiation to the ClientBuilder."
+            );
+        }
+
+        return new RequestTransformer(
+            RequestPipelineFactory::createDefaultPipeline($this->formEncoder, $this->authenticator)
+        );
+    }
+
+    /**
+     * Builds ResponseTransformer.
+     *
+     * @return \RetailCrm\Api\Component\Transformer\ResponseTransformer
+     * @throws \RetailCrm\Api\Exception\BuilderException
+     */
+    public function buildResponseTransformer(): ResponseTransformer
+    {
+        if (null === $this->formEncoder) {
+            throw new BuilderException(
+                "You must provide a FormEncoder instance in order to delegate " .
+                "ResponseTransformer instantiation to the ClientBuilder."
+            );
+        }
+
+        return new ResponseTransformer(
+            ResponsePipelineFactory::createDefaultPipeline($this->formEncoder->getSerializer())
+        );
     }
 }

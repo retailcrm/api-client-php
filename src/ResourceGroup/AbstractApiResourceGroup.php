@@ -3,97 +3,77 @@
 /**
  * PHP version 7.3
  *
- * @category AbstractApiSection
+ * @category AbstractApiResourceGroup
  * @package  RetailCrm\Api\Modules
  */
 
-namespace RetailCrm\Api\Section;
+namespace RetailCrm\Api\ResourceGroup;
 
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use RetailCrm\Api\Component\Transformer\RequestTransformer;
+use RetailCrm\Api\Component\Transformer\ResponseTransformer;
 use RetailCrm\Api\Component\Utils;
-use RetailCrm\Api\Enum\RequestMethod;
-use RetailCrm\Api\Factory\RequestFactory;
-use RetailCrm\Api\Factory\ResponseFactory;
-use RetailCrm\Api\Interfaces\AuthenticatorInterface;
 use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface;
 
 /**
- * Class AbstractApiSection
+ * Class AbstractApiResourceGroup
  *
- * @category AbstractApiSection
+ * @category AbstractApiResourceGroup
  * @package  RetailCrm\Api\Modules
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
-abstract class AbstractApiSection
+abstract class AbstractApiResourceGroup
 {
     /** @var string */
     protected $baseUrl;
 
-    /** @var AuthenticatorInterface */
-    protected $authenticator;
-
     /** @var ClientInterface */
     protected $httpClient;
 
-    /** @var RequestFactory */
-    protected $requestFactory;
+    /** @var RequestTransformer */
+    protected $requestTransformer;
 
-    /** @var ResponseFactory */
-    protected $responseFactory;
+    /** @var ResponseTransformer */
+    protected $responseTransformer;
 
     /** @var ?\Psr\Log\LoggerInterface */
     protected $logger;
 
     /**
-     * AbstractApiSection constructor.
+     * AbstractApiResourceGroup constructor.
      *
-     * @param string                                           $baseUrl
-     * @param \RetailCrm\Api\Interfaces\AuthenticatorInterface $authenticator
-     * @param \Psr\Http\Client\ClientInterface                 $httpClient
-     * @param \RetailCrm\Api\Factory\RequestFactory            $requestFactory
-     * @param \RetailCrm\Api\Factory\ResponseFactory           $responseFactory
-     * @param \Psr\Log\LoggerInterface|null                    $logger
+     * @param string                                                   $baseUrl
+     * @param \Psr\Http\Client\ClientInterface                         $httpClient
+     * @param \RetailCrm\Api\Component\Transformer\RequestTransformer  $requestTransformer
+     * @param \RetailCrm\Api\Component\Transformer\ResponseTransformer $responseTransformer
+     * @param \Psr\Log\LoggerInterface|null                            $logger
      */
     public function __construct(
         string $baseUrl,
-        AuthenticatorInterface $authenticator,
         ClientInterface $httpClient,
-        RequestFactory $requestFactory,
-        ResponseFactory $responseFactory,
+        RequestTransformer $requestTransformer,
+        ResponseTransformer $responseTransformer,
         ?LoggerInterface $logger = null
     ) {
-        $this->baseUrl       = $baseUrl;
-        $this->authenticator = $authenticator;
-        $this->httpClient = $httpClient;
-        $this->requestFactory = $requestFactory;
-        $this->responseFactory = $responseFactory;
-        $this->logger = $logger;
+        $this->baseUrl             = $baseUrl;
+        $this->httpClient          = $httpClient;
+        $this->requestTransformer  = $requestTransformer;
+        $this->responseTransformer = $responseTransformer;
+        $this->logger              = $logger;
     }
 
     /**
      * @param string $baseUrl
      *
-     * @return AbstractApiSection
+     * @return AbstractApiResourceGroup
      */
-    public function setBaseUrl(string $baseUrl): AbstractApiSection
+    public function setBaseUrl(string $baseUrl): AbstractApiResourceGroup
     {
         $this->baseUrl = $baseUrl;
-        return $this;
-    }
-
-    /**
-     * @param \RetailCrm\Api\Interfaces\AuthenticatorInterface $authenticator
-     *
-     * @return AbstractApiSection
-     */
-    public function setAuthenticator(AuthenticatorInterface $authenticator): AbstractApiSection
-    {
-        $this->authenticator = $authenticator;
         return $this;
     }
 
@@ -120,8 +100,10 @@ abstract class AbstractApiSection
      *
      * @return \RetailCrm\Api\Interfaces\ResponseInterface
      * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Exception\ApiException
-     * @throws \RetailCrm\Api\Exception\FactoryException
+     * @throws \RetailCrm\Api\Exception\HandlerException
      */
     protected function sendRequest(
         string $method,
@@ -129,7 +111,7 @@ abstract class AbstractApiSection
         ?RequestInterface $request,
         string $type
     ): ResponseInterface {
-        $psrRequest  = $this->requestFactory->createPsrRequest(
+        $psrRequest  = $this->requestTransformer->createPsrRequest(
             $method,
             $this->route($route),
             $request
@@ -155,6 +137,6 @@ abstract class AbstractApiSection
             ));
         }
 
-        return $this->responseFactory->createResponse($psrResponse, $type);
+        return $this->responseTransformer->createResponse($psrResponse, $type);
     }
 }

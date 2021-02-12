@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category CostsTest
- * @package  RetailCrm\Tests\Section
+ * @package  RetailCrm\Tests\ResourceGroup
  */
 
-namespace RetailCrm\Tests\Section;
+namespace RetailCrm\Tests\ResourceGroup;
 
 use RetailCrm\Api\Model\Filter\Costs\CostsFilter;
 use RetailCrm\Api\Model\Request\Costs\CostsRequest;
@@ -17,9 +17,9 @@ use RetailCrm\Test\TestClientFactory;
  * Class CostsTest
  *
  * @category CostsTest
- * @package  RetailCrm\Tests\Section
+ * @package  RetailCrm\Tests\ResourceGroup
  */
-class CostsTest extends AbstractApiSectionTest
+class CostsTest extends AbstractApiResourceGroupTest
 {
     public function testCosts(): void
     {

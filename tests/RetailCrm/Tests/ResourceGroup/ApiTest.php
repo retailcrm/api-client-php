@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category ApiTest
- * @package  RetailCrm\Tests\Section
+ * @package  RetailCrm\Tests\ResourceGroup
  */
 
-namespace RetailCrm\Tests\Section;
+namespace RetailCrm\Tests\ResourceGroup;
 
 use RetailCrm\Api\Enum\SiteAccess;
 use RetailCrm\Test\TestClientFactory;
@@ -16,9 +16,9 @@ use RetailCrm\Test\TestClientFactory;
  * Class ApiTest
  *
  * @category ApiTest
- * @package  RetailCrm\Tests\Section
+ * @package  RetailCrm\Tests\ResourceGroup
  */
-class ApiTest extends AbstractApiSectionTest
+class ApiTest extends AbstractApiResourceGroupTest
 {
     public function testApiVersions(): void
     {

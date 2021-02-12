@@ -3,11 +3,11 @@
 /**
  * PHP version 7.3
  *
- * @category AbstractApiSectionTest
- * @package  RetailCrm\Tests\Section
+ * @category AbstractApiResourceGroupTest
+ * @package  RetailCrm\Tests\ResourceGroup
  */
 
-namespace RetailCrm\Tests\Section;
+namespace RetailCrm\Tests\ResourceGroup;
 
 use Doctrine\Common\Cache\ArrayCache;
 use Http\Discovery\Psr17FactoryDiscovery;
@@ -29,12 +29,12 @@ use RetailCrm\Test\RequestMatcher;
 use RetailCrm\Test\TestConfig;
 
 /**
- * Class AbstractApiSectionTest
+ * Class AbstractApiResourceGroupTest
  *
- * @category AbstractApiSectionTest
- * @package  RetailCrm\Tests\Section
+ * @category AbstractApiResourceGroupTest
+ * @package  RetailCrm\Tests\ResourceGroup
  */
-abstract class AbstractApiSectionTest extends TestCase
+abstract class AbstractApiResourceGroupTest extends TestCase
 {
     /** @var SerializerInterface */
     protected static $serializer;
