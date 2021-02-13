@@ -45,6 +45,28 @@ EOF;
         $client->api->apiVersions();
     }
 
+    public function testPostErrorResponseHandling()
+    {
+        $json = <<<'EOF'
+{
+    "success": false,
+    "errorMsg": "Invalid data"
+}
+EOF;
+        $this->expectException(ApiException::class);
+        $this->expectExceptionCode(405);
+        $this->expectExceptionMessage('Invalid data');
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('costs/create')->setMethod(RequestMethod::POST),
+            static::responseJson(405, $json)
+        );
+
+        $client = TestClientFactory::createClient($mock);
+        $client->costs->costsCreate(new CostsCreateRequest());
+    }
+
     public function testHtmlAccountDoesntExistHandling()
     {
         $html = <<<'EOF'
