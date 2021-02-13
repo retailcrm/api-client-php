@@ -30,17 +30,9 @@ class AccountNotFoundHandler extends AbstractResponseHandler
     protected function handleResponse(ResponseData $responseData)
     {
         if (
-            (
-                RequestMethod::GET !== $responseData->method &&
-                405 === $responseData->response->getStatusCode() &&
-                static::isContentType($responseData->response, 'text/html')
-            ) || (
-                404 === $responseData->response->getStatusCode() &&
-                false !== stripos(
-                    Utils::getBodyContents($responseData->response->getBody()),
-                    'Account does not exist'
-                )
-            )
+            RequestMethod::GET !== $responseData->method &&
+            405 === $responseData->response->getStatusCode() &&
+            static::isContentType($responseData->response, 'text/html')
         ) {
             $errorResponse = new ErrorResponse();
             $errorResponse->errorMsg = 'Account does not exist';
