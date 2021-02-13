@@ -19,6 +19,9 @@ use Psr\Http\Message\ResponseInterface;
  */
 class ResponseData
 {
+    /** @var string */
+    public $method;
+
     /** @var ResponseInterface */
     public $response;
 
@@ -31,11 +34,13 @@ class ResponseData
     /**
      * ResponseData constructor.
      *
+     * @param string                              $method
      * @param \Psr\Http\Message\ResponseInterface $response
      * @param string                              $type
      */
-    public function __construct(ResponseInterface $response, string $type)
+    public function __construct(string $method, ResponseInterface $response, string $type)
     {
+        $this->method   = $method;
         $this->response = $response;
         $this->type     = $type;
     }

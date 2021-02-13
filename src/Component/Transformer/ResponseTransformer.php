@@ -38,6 +38,9 @@ class ResponseTransformer
     }
 
     /**
+     * Create response model from PSR-7 response.
+     *
+     * @param string                              $method
      * @param \Psr\Http\Message\ResponseInterface $response
      * @param string                              $type
      *
@@ -45,9 +48,9 @@ class ResponseTransformer
      * @throws \RetailCrm\Api\Exception\ApiException
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
-    public function createResponse(ResponseInterface $response, string $type): RetailCrmResponse
+    public function createResponse(string $method, ResponseInterface $response, string $type): RetailCrmResponse
     {
-        $responseData = new ResponseData($response, $type);
+        $responseData = new ResponseData($method, $response, $type);
         $this->handler->handle($responseData);
 
         return $responseData->responseModel;

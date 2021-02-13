@@ -22,7 +22,7 @@ use Throwable;
  */
 class ApiException extends Exception
 {
-    /** @var \RetailCrm\Api\Interfaces\ResponseInterface */
+    /** @var \RetailCrm\Api\Model\Response\ErrorResponse */
     private $response;
 
     /**
@@ -34,9 +34,9 @@ class ApiException extends Exception
      */
     public function __construct(ResponseInterface $errorResponse, int $statusCode = 0, Throwable $previous = null)
     {
-        parent::__construct(static::getErrorMessage($errorResponse), $statusCode, $previous);
+        $this->response = $errorResponse instanceof ErrorResponse ? $errorResponse : new ErrorResponse();
 
-        $this->response = $errorResponse;
+        parent::__construct(static::getErrorMessage($this->response), $statusCode, $previous);
     }
 
     /**
@@ -50,32 +50,30 @@ class ApiException extends Exception
     }
 
     /**
-     * Returns ErrorResponse if underlying response is ErrorResponse. Throws exception otherwise.
+     * Returns ErrorResponse.
      *
      * @return \RetailCrm\Api\Model\Response\ErrorResponse
      */
     public function getErrorResponse(): ErrorResponse
     {
-        return $this->response; // @phpstan-ignore-line
+        return $this->response;
     }
 
     /**
      * Returns the error message.
      *
-     * @param \RetailCrm\Api\Interfaces\ResponseInterface $errorResponse
+     * @param \RetailCrm\Api\Model\Response\ErrorResponse $errorResponse
      *
      * @return string
      */
-    private static function getErrorMessage(ResponseInterface $errorResponse): string
+    private static function getErrorMessage(ErrorResponse $errorResponse): string
     {
-        if ($errorResponse instanceof ErrorResponse) {
-            if (!empty($errorResponse->errorMsg)) {
-                return $errorResponse->errorMsg;
-            }
+        if (!empty($errorResponse->errorMsg)) {
+            return $errorResponse->errorMsg;
+        }
 
-            if (!empty($errorResponse->errors)) {
-                return (string) reset($errorResponse->errors);
-            }
+        if (!empty($errorResponse->errors)) {
+            return (string) reset($errorResponse->errors);
         }
 
         return 'RetailCRM API Error';

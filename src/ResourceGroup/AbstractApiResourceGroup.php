@@ -111,6 +111,7 @@ abstract class AbstractApiResourceGroup
         ?RequestInterface $request,
         string $type
     ): ResponseInterface {
+        $method = strtoupper($method);
         $psrRequest  = $this->requestTransformer->createPsrRequest(
             $method,
             $this->route($route),
@@ -137,6 +138,6 @@ abstract class AbstractApiResourceGroup
             ));
         }
 
-        return $this->responseTransformer->createResponse($psrResponse, $type);
+        return $this->responseTransformer->createResponse($method, $psrResponse, $type);
     }
 }

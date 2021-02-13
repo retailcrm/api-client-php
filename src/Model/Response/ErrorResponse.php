@@ -20,6 +20,14 @@ use JMS\Serializer\Annotation as JMS;
 class ErrorResponse extends SuccessResponse
 {
     /**
+     * ErrorResponse constructor.
+     */
+    public function __construct()
+    {
+        $this->success = false;
+    }
+
+    /**
      * @var string[]
      *
      * @JMS\Type("array")

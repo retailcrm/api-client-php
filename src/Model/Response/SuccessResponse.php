@@ -26,5 +26,5 @@ class SuccessResponse implements ResponseInterface
      * @JMS\Type("boolean")
      * @JMS\SerializedName("success")
      */
-    public $success;
+    public $success = true;
 }

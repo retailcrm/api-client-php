@@ -215,6 +215,30 @@ abstract class AbstractApiResourceGroupTest extends TestCase
     }
 
     /**
+     * @return \Psr\Http\Message\StreamFactoryInterface
+     */
+    protected static function getStreamFactory(): StreamFactoryInterface
+    {
+        if (null === static::$streamFactory) {
+            static::$streamFactory = Psr17FactoryDiscovery::findStreamFactory();
+        }
+
+        return static::$streamFactory;
+    }
+
+    /**
+     * @return \Psr\Http\Message\ResponseFactoryInterface
+     */
+    protected static function getResponseFactory(): ResponseFactoryInterface
+    {
+        if (null === static::$responseFactory) {
+            static::$responseFactory = Psr17FactoryDiscovery::findResponseFactory();
+        }
+
+        return static::$responseFactory;
+    }
+
+    /**
      * @return \JMS\Serializer\SerializerInterface
      */
     private static function getSerializer(): SerializerInterface
@@ -228,30 +252,6 @@ abstract class AbstractApiResourceGroupTest extends TestCase
         }
 
         return static::$serializer;
-    }
-
-    /**
-     * @return \Psr\Http\Message\StreamFactoryInterface
-     */
-    private static function getStreamFactory(): StreamFactoryInterface
-    {
-        if (null === static::$streamFactory) {
-            static::$streamFactory = Psr17FactoryDiscovery::findStreamFactory();
-        }
-
-        return static::$streamFactory;
-    }
-
-    /**
-     * @return \Psr\Http\Message\ResponseFactoryInterface
-     */
-    private static function getResponseFactory(): ResponseFactoryInterface
-    {
-        if (null === static::$responseFactory) {
-            static::$responseFactory = Psr17FactoryDiscovery::findResponseFactory();
-        }
-
-        return static::$responseFactory;
     }
 
     /**
