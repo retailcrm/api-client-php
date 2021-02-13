@@ -39,10 +39,10 @@ class ApiExceptionTest extends AbstractApiResourceGroupTest
         $response = new ErrorResponse();
         $response->errorMsg = 'Account does not exist';
 
-        $exception = new ApiException($response, 405);
+        $exception = new ApiException($response, 404);
 
-        self::assertEquals(405, $exception->getCode());
-        self::assertEquals(405, $exception->getStatusCode());
+        self::assertEquals(404, $exception->getCode());
+        self::assertEquals(404, $exception->getStatusCode());
         self::assertEquals($response->errorMsg, $exception->getMessage());
         self::assertEquals($response->errorMsg, $exception->getErrorResponse()->errorMsg);
         self::assertFalse($exception->getErrorResponse()->success);
