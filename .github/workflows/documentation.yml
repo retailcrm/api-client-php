@@ -2,6 +2,8 @@ name: phpDocumentor
 
 on:
   push:
+    branches:
+      - 'master'
     tags:
       - 'v*'
 
@@ -11,13 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check GitHub Pages status
+        if: ${{ github.ref != 'refs/heads/master' }}
         uses: crazy-max/ghaction-github-status@v2
         with:
           pages_threshold: major_outage
       - name: Check out code into the workspace
-        if: success()
+        if: success() && ${{ github.ref != 'refs/heads/master' }}
         uses: actions/checkout@v2
       - name: Setup PHP 7.4
+        if: ${{ github.ref != 'refs/heads/master' }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: "7.4"
@@ -31,8 +35,10 @@ jobs:
         if: steps.cache-phpdocumentor.outputs.cache-hit != 'true'
         run: curl -O -L https://phpdoc.org/phpDocumentor.phar
       - name: Generate documentation
+        if: ${{ github.ref != 'refs/heads/master' }}
         run: php phpDocumentor.phar -d src -t docs
       - name: Deploy documentation to GitHub Pages
+        if: ${{ github.ref != 'refs/heads/master' }}
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
