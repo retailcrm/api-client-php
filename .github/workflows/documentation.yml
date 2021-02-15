@@ -36,12 +36,12 @@ jobs:
         run: curl -O -L https://phpdoc.org/phpDocumentor.phar
       - name: Generate documentation
         if: ${{ github.ref != 'refs/heads/master' }}
-        run: php phpDocumentor.phar -d src -t docs
+        run: php phpDocumentor.phar
       - name: Deploy documentation to GitHub Pages
         if: ${{ github.ref != 'refs/heads/master' }}
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
-          build_dir: docs
+          build_dir: docs/build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
