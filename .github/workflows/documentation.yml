@@ -2,10 +2,8 @@ name: phpDocumentor
 
 on:
   push:
-    branches:
-      - "!*"
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+*'
+      - 'v*'
 
 jobs:
   test:
