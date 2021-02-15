@@ -404,7 +404,7 @@ class Costs extends AbstractApiResourceGroup
      * $request->cost->summ             = 100.10;
      *
      * try {
-     *     $response = $client->costs->edit($request);
+     *     $response = $client->costs->edit(1, $request);
      * } catch (ApiException $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
