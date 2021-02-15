@@ -15,3 +15,6 @@ phpunit.xml
 .php_cs.cache
 .phpunit.result.cache
 .env
+.phpdoc
+docs
+phpDocumentor.phar
