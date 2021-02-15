@@ -53,7 +53,7 @@ class Api extends AbstractApiResourceGroup
     }
 
     /**
-     * Makes "/api/api-versions" request.
+     * Makes GET "/api/api-versions" request.
      *
      * Example:
      * ```php
@@ -99,7 +99,7 @@ class Api extends AbstractApiResourceGroup
     }
 
     /**
-     * Makes "/api/credentials" request.
+     * Makes GET "/api/credentials" request.
      *
      * Example:
      * ```php

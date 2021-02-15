@@ -64,7 +64,7 @@ EOF;
         );
 
         $client = TestClientFactory::createClient($mock);
-        $client->costs->costsCreate(new CostsCreateRequest());
+        $client->costs->create(new CostsCreateRequest());
     }
 
     public function testHtmlAccountDoesntExistHandling()
@@ -100,6 +100,6 @@ EOF;
         );
 
         $client = TestClientFactory::createClient($mock);
-        $client->costs->costsCreate(new CostsCreateRequest());
+        $client->costs->create(new CostsCreateRequest());
     }
 }
