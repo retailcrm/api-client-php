@@ -3,10 +3,9 @@ name: CI
 on:
   push:
     branches:
-      - 'master'
-      - 'docs-generation'
-    tags-ignore:
-      - '*.*'
+      - "!*"
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
   test:
