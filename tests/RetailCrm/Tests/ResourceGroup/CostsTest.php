@@ -12,7 +12,7 @@ namespace RetailCrm\Tests\ResourceGroup;
 use DateTime;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Costs\Cost;
-use RetailCrm\Api\Model\Filter\Costs\CostsFilter;
+use RetailCrm\Api\Model\Filter\Costs\CostFilter;
 use RetailCrm\Api\Model\Request\Costs\CostsCreateRequest;
 use RetailCrm\Api\Model\Request\Costs\CostsDeleteRequest;
 use RetailCrm\Api\Model\Request\Costs\CostsEditRequest;
@@ -64,7 +64,7 @@ EOF;
         $costsRequest = new CostsRequest();
         $costsRequest->limit = 20;
         $costsRequest->page = 1;
-        $costsRequest->filter = new CostsFilter();
+        $costsRequest->filter = new CostFilter();
         $costsRequest->filter->sites = ['moysklad', 'aliexpress'];
         $costsRequest->filter->maxSumm = 20;
 
@@ -77,7 +77,7 @@ EOF;
         );
 
         $client = TestClientFactory::createClient($mock);
-        $costs  = $client->costs->costs($costsRequest);
+        $costs  = $client->costs->list($costsRequest);
 
         self::assertModelEqualsToResponse($json, $costs);
     }

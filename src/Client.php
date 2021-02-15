@@ -16,6 +16,7 @@ use RetailCrm\Api\Component\Transformer\ResponseTransformer;
 use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\ResourceGroup\Api;
 use RetailCrm\Api\ResourceGroup\Costs;
+use RetailCrm\Api\ResourceGroup\CustomFields;
 
 /**
  * Class Client
@@ -30,6 +31,9 @@ class Client
 
     /** @var \RetailCrm\Api\ResourceGroup\Costs */
     public $costs;
+
+    /** @var \RetailCrm\Api\ResourceGroup\CustomFields */
+    public $customFields;
 
     /**
      * Client constructor.
@@ -47,10 +51,11 @@ class Client
         ResponseTransformer $responseTransformer,
         ?LoggerInterface $logger = null
     ) {
-        $baseUrl = static::getBaseUrl($apiUrl);
+        $url = static::getBaseUrl($apiUrl);
 
-        $this->api = new Api($baseUrl, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->costs = new Costs($baseUrl, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->api = new Api($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->costs = new Costs($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->customFields = new CustomFields($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
     }
 
     /**

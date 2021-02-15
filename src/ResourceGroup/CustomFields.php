@@ -1,0 +1,515 @@
+<?php
+
+/**
+ * PHP version 7.3
+ *
+ * @category CustomFields
+ * @package  RetailCrm\Api\ResourceGroup
+ */
+
+namespace RetailCrm\Api\ResourceGroup;
+
+use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary;
+use RetailCrm\Api\Model\Entity\CustomFields\CustomField;
+use RetailCrm\Api\Model\Request\CustomFields\CustomDictionaryCreateRequest;
+use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsCreateRequest;
+use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsDictionariesRequest;
+use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsRequest;
+use RetailCrm\Api\Model\Response\CustomFields\CustomDictionaryCreateResponse;
+use RetailCrm\Api\Model\Response\CustomFields\CustomDictionaryGetResponse;
+use RetailCrm\Api\Model\Response\CustomFields\CustomFieldsCreateResponse;
+use RetailCrm\Api\Model\Response\CustomFields\CustomFieldsDictionariesResponse;
+use RetailCrm\Api\Model\Response\CustomFields\CustomFieldsEditResponse;
+use RetailCrm\Api\Model\Response\CustomFields\CustomFieldsGetResponse;
+use RetailCrm\Api\Model\Response\CustomFields\CustomFieldsResponse;
+
+/**
+ * Class CustomFields
+ *
+ * @category CustomFields
+ * @package  RetailCrm\Api\ResourceGroup
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
+class CustomFields extends AbstractApiResourceGroup
+{
+    /**
+     * Makes GET "/api/v5/custom-fields" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Model\Filter\CustomFields\CustomFieldFilter;
+     * use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsRequest;
+     *
+     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request = new CustomFieldsRequest();
+     * $request->page = 1;
+     * $request->limit = 20;
+     * $request->filter = new CustomFieldFilter();
+     * $request->filter->entity = 'order';
+     * $request->filter->viewMode = ['editable'];
+     * $request->filter->displayArea = ['customer'];
+     * $request->filter->type = ['string'];
+     * $request->filter->code = 'bonus';
+     * $request->filter->name = 'бонус';
+     *
+     * try {
+     *     $response = $client->customFields->list($request);
+     * } catch (ApiException $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Received fields: ' . print_r($response->customFields, true);
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\CustomFields\CustomFieldsRequest|null $request
+     *
+     * @return \RetailCrm\Api\Model\Response\CustomFields\CustomFieldsResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     */
+    public function list(?CustomFieldsRequest $request): CustomFieldsResponse
+    {
+        /** @var CustomFieldsResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'custom-fields',
+            $request,
+            CustomFieldsResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/custom-fields/dictionaries" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Model\Filter\CustomFields\CustomDictionaryFilter;
+     * use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsDictionariesRequest;
+
+     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+
+     * $request = new CustomFieldsDictionariesRequest();
+     * $request->page = 1;
+     * $request->limit = 20;
+     * $request->filter = new CustomDictionaryFilter();
+     * $request->filter->code = 'test22';
+     * $request->filter->name = 'test22';
+
+     * try {
+     *     $response = $client->customFields->dictionaries($request);
+     * } catch (ApiException $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+
+     * echo 'Received dictionaries: ' . print_r($response->customDictionaries, true);
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\CustomFields\CustomFieldsDictionariesRequest|null $request
+     *
+     * @return \RetailCrm\Api\Model\Response\CustomFields\CustomFieldsDictionariesResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     */
+    public function dictionaries(?CustomFieldsDictionariesRequest $request): CustomFieldsDictionariesResponse
+    {
+        /** @var CustomFieldsDictionariesResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'custom-fields/dictionaries',
+            $request,
+            CustomFieldsDictionariesResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/custom-fields/dictionaries/create" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary;
+     * use RetailCrm\Api\Model\Entity\CustomFields\SerializedCustomDictionaryElement;
+     *
+     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $dictionary                = new CustomDictionary();
+     * $element                   = new SerializedCustomDictionaryElement();
+     * $element->name             = 'test_1';
+     * $element->code             = 'test_1';
+     * $element->ordering         = 10;
+     * $dictionary->name          = 'TestDict';
+     * $dictionary->code          = 'test_dict';
+     * $dictionary->elements      = [$element];
+     *
+     * try {
+     *     $response = $client->customFields->dictionariesCreate($dictionary);
+     * } catch (ApiException $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Created dictionary ' . $response->code;
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary $customDictionary
+     *
+     * @return \RetailCrm\Api\Model\Response\CustomFields\CustomDictionaryCreateResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     */
+    public function dictionariesCreate(CustomDictionary $customDictionary): CustomDictionaryCreateResponse
+    {
+        $request                   = new CustomDictionaryCreateRequest();
+        $request->customDictionary = $customDictionary;
+
+        /** @var CustomDictionaryCreateResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'custom-fields/dictionaries/create',
+            $request,
+            CustomDictionaryCreateResponse::class
+        );
+
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/custom-fields/dictionaries/{code}" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Factory\ClientFactory;
+     *
+     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     *
+     * try {
+     *     $response = $client->customFields->dictionariesGet('test');
+     * } catch (ApiException $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Received dictionary ' . print_r($response->customDictionary, true);
+     * ```
+     *
+     * @param string $code
+     *
+     * @return \RetailCrm\Api\Model\Response\CustomFields\CustomDictionaryGetResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     */
+    public function dictionariesGet(string $code): CustomDictionaryGetResponse
+    {
+        /** @var CustomDictionaryGetResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            sprintf('custom-fields/dictionaries/%s', $code),
+            null,
+            CustomDictionaryGetResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/custom-fields/dictionaries/{code}/edit" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary;
+     * use RetailCrm\Api\Model\Entity\CustomFields\SerializedCustomDictionaryElement;
+     *
+     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $dictionary                = new CustomDictionary();
+     * $element                   = new SerializedCustomDictionaryElement();
+     * $element->name             = 'test_1';
+     * $element->code             = 'test_1';
+     * $element->ordering         = 10;
+     * $dictionary->name          = 'TestDict';
+     * $dictionary->elements      = [$element];
+     *
+     * try {
+     *     $response = $client->customFields->dictionariesEdit('test_dict', $dictionary);
+     * } catch (ApiException $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Edited dictionary ' . $response->code;
+     * ```
+     *
+     * @param string                                                    $code
+     * @param \RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary $dictionary
+     *
+     * @return \RetailCrm\Api\Model\Response\CustomFields\CustomDictionaryCreateResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     */
+    public function dictionariesEdit(string $code, CustomDictionary $dictionary): CustomDictionaryCreateResponse
+    {
+        $request                   = new CustomDictionaryCreateRequest();
+        $request->customDictionary = $dictionary;
+
+        /** @var CustomDictionaryCreateResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            sprintf('custom-fields/dictionaries/%s/edit', $code),
+            $request,
+            CustomDictionaryCreateResponse::class
+        );
+
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/custom-fields/{entity}/create" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\CustomFields\CustomFieldDisplayArea;
+     * use RetailCrm\Api\Enum\CustomFields\CustomFieldEntity;
+     * use RetailCrm\Api\Enum\CustomFields\CustomFieldType;
+     * use RetailCrm\Api\Enum\CustomFields\CustomFieldViewMode;
+     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Model\Entity\CustomFields\CustomField;
+     *
+     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $field                 = new CustomField();
+     * $field->name           = 'Description';
+     * $field->code           = 'description';
+     * $field->type           = CustomFieldType::STRING;
+     * $field->ordering       = 10;
+     * $field->displayArea    = CustomFieldDisplayArea::CUSTOMER;
+     * $field->viewMode       = CustomFieldViewMode::EDITABLE;
+     * $field->inFilter       = true;
+     * $field->inList         = true;
+     * $field->inGroupActions = true;
+     *
+     * try {
+     *     $response = $client->customFields->create(CustomFieldEntity::CUSTOMER, $field);
+     * } catch (ApiException $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Created field ' . print_r($response->code, true);
+     * ```
+     *
+     * @param string                                               $entity
+     * @param \RetailCrm\Api\Model\Entity\CustomFields\CustomField $customField
+     *
+     * @return \RetailCrm\Api\Model\Response\CustomFields\CustomFieldsCreateResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     */
+    public function create(string $entity, CustomField $customField): CustomFieldsCreateResponse
+    {
+        $request = new CustomFieldsCreateRequest();
+        $request->customField = $customField;
+
+        /** @var CustomFieldsCreateResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            sprintf('custom-fields/%s/create', $entity),
+            $request,
+            CustomFieldsCreateResponse::class
+        );
+
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/custom-fields/{entity}/{code}" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\CustomFields\CustomFieldEntity;
+     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Factory\ClientFactory;
+     *
+     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     *
+     * try {
+     *     $response = $client->customFields->get(CustomFieldEntity::ORDER, 'item');
+     * } catch (ApiException $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Received field: ' . print_r($response->customField, true);
+     * ```
+     *
+     * @param string $entity
+     * @param string $code
+     *
+     * @return \RetailCrm\Api\Model\Response\CustomFields\CustomFieldsGetResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     */
+    public function get(string $entity, string $code): CustomFieldsGetResponse
+    {
+        /** @var CustomFieldsGetResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            sprintf('custom-fields/%s/%s', $entity, $code),
+            null,
+            CustomFieldsGetResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/custom-fields/{entity}/{code}/edit" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\CustomFields\CustomFieldDisplayArea;
+     * use RetailCrm\Api\Enum\CustomFields\CustomFieldEntity;
+     * use RetailCrm\Api\Enum\CustomFields\CustomFieldType;
+     * use RetailCrm\Api\Enum\CustomFields\CustomFieldViewMode;
+     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Model\Entity\CustomFields\CustomField;
+     *
+     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $field                 = new CustomField();
+     * $field->name           = 'Description';
+     * $field->type           = CustomFieldType::STRING;
+     * $field->ordering       = 10;
+     * $field->viewMode       = CustomFieldViewMode::EDITABLE;
+     * $field->inFilter       = true;
+     * $field->inList         = true;
+     * $field->inGroupActions = true;
+     *
+     * try {
+     *     $response = $client->customFields->edit(CustomFieldEntity::CUSTOMER, 'description', $field);
+     * } catch (ApiException $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Edited field ' . print_r($response->code, true);
+     * ```
+     *
+     * @param string                                               $entity
+     * @param string                                               $code
+     * @param \RetailCrm\Api\Model\Entity\CustomFields\CustomField $customField
+     *
+     * @return \RetailCrm\Api\Model\Response\CustomFields\CustomFieldsEditResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     */
+    public function edit(string $entity, string $code, CustomField $customField): CustomFieldsEditResponse
+    {
+        $request              = new CustomFieldsCreateRequest();
+        $request->customField = $customField;
+
+        /** @var CustomFieldsEditResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            sprintf('custom-fields/%s/%s/edit', $entity, $code),
+            $request,
+            CustomFieldsEditResponse::class
+        );
+
+        return $response;
+    }
+}

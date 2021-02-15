@@ -10,8 +10,7 @@
 namespace RetailCrm\Api\Model\Response\Costs;
 
 use JMS\Serializer\Annotation as JMS;
-use RetailCrm\Api\Model\Pagination;
-use RetailCrm\Api\Model\Response\SuccessResponse;
+use RetailCrm\Api\Model\Response\AbstractPaginatedResponse;
 
 /**
  * Class CostsResponse
@@ -19,16 +18,8 @@ use RetailCrm\Api\Model\Response\SuccessResponse;
  * @category CostsResponse
  * @package  RetailCrm\Api\Model\Response\Costs
  */
-class CostsResponse extends SuccessResponse
+class CostsResponse extends AbstractPaginatedResponse
 {
-    /**
-     * @var Pagination
-     *
-     * @JMS\Type("RetailCrm\Api\Model\Pagination")
-     * @JMS\SerializedName("pagination")
-     */
-    public $pagination;
-
     /**
      * @var \RetailCrm\Api\Model\Entity\Costs\Cost[]
      *

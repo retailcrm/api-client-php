@@ -38,7 +38,7 @@ class Costs extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Factory\ClientFactory;
-     * use RetailCrm\Api\Model\Filter\Costs\CostsFilter;
+     * use RetailCrm\Api\Model\Filter\Costs\CostFilter;
      * use RetailCrm\Api\Model\Request\Costs\CostsRequest;
      * use RetailCrm\Api\Exception\ApiException;
      *
@@ -47,12 +47,12 @@ class Costs extends AbstractApiResourceGroup
      * $costsRequest = new CostsRequest();
      * $costsRequest->limit = 20;
      * $costsRequest->page = 1;
-     * $costsRequest->filter = new CostsFilter();
+     * $costsRequest->filter = new CostFilter();
      * $costsRequest->filter->sites = ['moysklad', 'aliexpress'];
      * $costsRequest->filter->maxSumm = 20;
      *
      * try {
-     *     $costs = $client->costs->costs($costsRequest);
+     *     $response = $client->costs->list($costsRequest);
      * } catch (ApiException $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -65,7 +65,7 @@ class Costs extends AbstractApiResourceGroup
      *     }
      * }
      *
-     * echo 'Received costs: ' . print_r($costs, true);
+     * echo 'Received costs: ' . print_r($response->costs, true);
      * ```
      *
      * @param \RetailCrm\Api\Model\Request\Costs\CostsRequest|null $request
@@ -77,7 +77,7 @@ class Costs extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\ApiException
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
-    public function costs(?CostsRequest $request = null): CostsResponse
+    public function list(?CostsRequest $request = null): CostsResponse
     {
         /** @var CostsResponse $response */
         $response = $this->sendRequest(

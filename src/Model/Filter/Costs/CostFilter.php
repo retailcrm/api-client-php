@@ -3,7 +3,7 @@
 /**
  * PHP version 7.3
  *
- * @category CostsFilter
+ * @category CostFilter
  * @package  RetailCrm\Api\Model\Filter\Costs
  */
 
@@ -12,12 +12,12 @@ namespace RetailCrm\Api\Model\Filter\Costs;
 use RetailCrm\Api\Component\FormData\Mapping as Form;
 
 /**
- * Class CostsFilter
+ * Class CostFilter
  *
- * @category CostsFilter
+ * @category CostFilter
  * @package  RetailCrm\Api\Model\Filter\Costs
  */
-class CostsFilter
+class CostFilter
 {
     /**
      * @var string
