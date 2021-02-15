@@ -27,7 +27,7 @@ use RetailCrm\Test\TestClientFactory;
  * @category CostsTest
  * @package  RetailCrm\Tests\ResourceGroup
  */
-class CostsTest extends AbstractApiResourceGroupTest
+class CostsTest extends AbstractApiResourceGroupTestCase
 {
     public function testCosts(): void
     {

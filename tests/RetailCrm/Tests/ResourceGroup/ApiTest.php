@@ -19,7 +19,7 @@ use RetailCrm\Test\TestClientFactory;
  * @category ApiTest
  * @package  RetailCrm\Tests\ResourceGroup
  */
-class ApiTest extends AbstractApiResourceGroupTest
+class ApiTest extends AbstractApiResourceGroupTestCase
 {
     public function testApiVersions(): void
     {

@@ -12,7 +12,7 @@ namespace RetailCrm\Tests\Exception;
 use RetailCrm\Api\Exception\ApiException;
 use RetailCrm\Api\Model\Response\ErrorResponse;
 use RetailCrm\Api\Model\Response\SuccessResponse;
-use RetailCrm\Tests\ResourceGroup\AbstractApiResourceGroupTest;
+use RetailCrm\Tests\ResourceGroup\AbstractApiResourceGroupTestCase;
 
 /**
  * Class ApiExceptionTest
@@ -20,7 +20,7 @@ use RetailCrm\Tests\ResourceGroup\AbstractApiResourceGroupTest;
  * @category ApiExceptionTest
  * @package  RetailCrm\Tests\Exception
  */
-class ApiExceptionTest extends AbstractApiResourceGroupTest
+class ApiExceptionTest extends AbstractApiResourceGroupTestCase
 {
     public function testWrongOrEmptyResponse(): void
     {

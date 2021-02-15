@@ -21,7 +21,7 @@ use RetailCrm\Test\TestClientFactory;
  * @category ErrorTest
  * @package  RetailCrm\Tests\ResourceGroup
  */
-class ErrorTest extends AbstractApiResourceGroupTest
+class ErrorTest extends AbstractApiResourceGroupTestCase
 {
     public function testErrorResponseHandling()
     {

@@ -31,7 +31,7 @@ use RetailCrm\Test\TestClientFactory;
  * @category CustomFieldsTest
  * @package  RetailCrm\Tests\ResourceGroup
  */
-class CustomFieldsTest extends AbstractApiResourceGroupTest
+class CustomFieldsTest extends AbstractApiResourceGroupTestCase
 {
     public function testList()
     {
