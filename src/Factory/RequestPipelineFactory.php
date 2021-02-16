@@ -10,9 +10,9 @@
 namespace RetailCrm\Api\Factory;
 
 use Http\Discovery\Psr17FactoryDiscovery;
-use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Handler\Request\ModelDataHandler;
 use RetailCrm\Api\Handler\Request\PsrRequestHandler;
+use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Interfaces\HandlerInterface;
 
 /**
@@ -27,13 +27,13 @@ class RequestPipelineFactory
      * Instantiates default request pipeline with provided FormEncoder.
      * You still need to append your own authenticator handler. Otherwise your requests won't work.
      *
-     * @param \RetailCrm\Api\Component\FormData\FormEncoder $formEncoder
-     * @param \RetailCrm\Api\Interfaces\HandlerInterface    ...$additionalHandlers
+     * @param \RetailCrm\Api\Interfaces\FormEncoderInterface $formEncoder
+     * @param \RetailCrm\Api\Interfaces\HandlerInterface     ...$additionalHandlers
      *
      * @return \RetailCrm\Api\Interfaces\HandlerInterface
      */
     public static function createDefaultPipeline(
-        FormEncoder $formEncoder,
+        FormEncoderInterface $formEncoder,
         HandlerInterface ...$additionalHandlers
     ): HandlerInterface {
         $handler = new PsrRequestHandler(

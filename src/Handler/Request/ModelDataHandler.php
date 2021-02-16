@@ -11,10 +11,10 @@ namespace RetailCrm\Api\Handler\Request;
 
 use Psr\Http\Message\StreamFactoryInterface;
 use ReflectionException;
-use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Exception\HandlerException;
 use RetailCrm\Api\Handler\AbstractHandler;
+use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Model\RequestData;
 
 /**
@@ -31,17 +31,17 @@ class ModelDataHandler extends AbstractHandler
     private $streamFactory;
 
     /**
-     * @var \RetailCrm\Api\Component\FormData\FormEncoder
+     * @var \RetailCrm\Api\Interfaces\FormEncoderInterface
      */
     private $formEncoder;
 
     /**
      * ModelDataHandler constructor.
      *
-     * @param \RetailCrm\Api\Component\FormData\FormEncoder $formEncoder
-     * @param \Psr\Http\Message\StreamFactoryInterface      $streamFactory
+     * @param \RetailCrm\Api\Interfaces\FormEncoderInterface $formEncoder
+     * @param \Psr\Http\Message\StreamFactoryInterface       $streamFactory
      */
-    public function __construct(FormEncoder $formEncoder, StreamFactoryInterface $streamFactory)
+    public function __construct(FormEncoderInterface $formEncoder, StreamFactoryInterface $streamFactory)
     {
         $this->formEncoder = $formEncoder;
         $this->streamFactory = $streamFactory;

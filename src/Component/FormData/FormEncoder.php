@@ -16,6 +16,7 @@ use ReflectionClass;
 use ReflectionException;
 use RetailCrm\Api\Component\FormData\Mapping\PostSerialize;
 use RetailCrm\Api\Component\FormData\Strategy\StrategyFactory;
+use RetailCrm\Api\Interfaces\FormEncoderInterface;
 
 /**
  * Class FormEncoder
@@ -29,7 +30,7 @@ use RetailCrm\Api\Component\FormData\Strategy\StrategyFactory;
  * @category FormEncoder
  * @package  RetailCrm\Api\Component\FormData
  */
-class FormEncoder
+class FormEncoder implements FormEncoderInterface
 {
     /** @var \Doctrine\Common\Annotations\Reader */
     private $annotationReader;

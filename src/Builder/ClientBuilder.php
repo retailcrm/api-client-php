@@ -13,13 +13,13 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Client;
-use RetailCrm\Api\Exception\BuilderException;
-use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Component\Transformer\RequestTransformer;
-use RetailCrm\Api\Factory\RequestPipelineFactory;
 use RetailCrm\Api\Component\Transformer\ResponseTransformer;
+use RetailCrm\Api\Exception\BuilderException;
+use RetailCrm\Api\Factory\RequestPipelineFactory;
 use RetailCrm\Api\Factory\ResponsePipelineFactory;
 use RetailCrm\Api\Interfaces\BuilderInterface;
+use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Interfaces\HandlerInterface;
 
 /**
@@ -48,7 +48,7 @@ class ClientBuilder implements BuilderInterface
     /** @var ?ResponseTransformer */
     protected $responseTransformer;
 
-    /** @var ?FormEncoder */
+    /** @var ?\RetailCrm\Api\Interfaces\FormEncoderInterface */
     private $formEncoder;
 
     /**
@@ -150,11 +150,11 @@ class ClientBuilder implements BuilderInterface
      * Form encoder is a vital part of the API client. Its purpose is to transform provided request models
      * into form-data. The result will be used as a query or POST body (depends on request type).
      *
-     * @param \RetailCrm\Api\Component\FormData\FormEncoder $formEncoder
+     * @param \RetailCrm\Api\Interfaces\FormEncoderInterface $formEncoder
      *
      * @return ClientBuilder
      */
-    public function setFormEncoder(FormEncoder $formEncoder): ClientBuilder
+    public function setFormEncoder(FormEncoderInterface $formEncoder): ClientBuilder
     {
         $this->formEncoder = $formEncoder;
         return $this;

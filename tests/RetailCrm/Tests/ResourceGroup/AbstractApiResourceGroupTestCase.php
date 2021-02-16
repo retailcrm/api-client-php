@@ -22,9 +22,9 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
-use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Component\Serializer\JmsHandlersInjector;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Interfaces\RequestInterface as RetailCrmRequestInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponseInterface;
 use RetailCrm\Test\MatcherException;
@@ -42,7 +42,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
     /** @var SerializerInterface */
     protected static $serializer;
 
-    /** @var FormEncoder */
+    /** @var \RetailCrm\Api\Interfaces\FormEncoderInterface */
     protected static $formEncoder;
 
     /** @var ResponseFactoryInterface */
@@ -268,9 +268,10 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
     }
 
     /**
-     * @return \RetailCrm\Api\Component\FormData\FormEncoder
+     * @return \RetailCrm\Api\Interfaces\FormEncoderInterface
+     * @throws \RetailCrm\Api\Exception\BuilderException
      */
-    private static function getFormEncoder(): FormEncoder
+    private static function getFormEncoder(): FormEncoderInterface
     {
         if (null === static::$formEncoder) {
             static::$formEncoder = (new FormEncoderBuilder())->build();

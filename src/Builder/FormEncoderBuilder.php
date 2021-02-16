@@ -21,6 +21,7 @@ use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Component\Serializer\JmsHandlersInjector;
 use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Interfaces\BuilderInterface;
+use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RuntimeException;
 
 /**
@@ -111,7 +112,7 @@ class FormEncoderBuilder implements BuilderInterface
      *
      * @inheritDoc
      */
-    public function build(): FormEncoder
+    public function build(): FormEncoderInterface
     {
         $this->buildCaches();
         $this->buildAnnotationReader();
