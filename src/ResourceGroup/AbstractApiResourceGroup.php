@@ -67,17 +67,6 @@ abstract class AbstractApiResourceGroup
     }
 
     /**
-     * @param string $baseUrl
-     *
-     * @return AbstractApiResourceGroup
-     */
-    public function setBaseUrl(string $baseUrl): AbstractApiResourceGroup
-    {
-        $this->baseUrl = $baseUrl;
-        return $this;
-    }
-
-    /**
      * Returns route with base URI.
      *
      * @param string $route
