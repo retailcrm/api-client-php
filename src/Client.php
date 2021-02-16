@@ -22,8 +22,12 @@ use RetailCrm\Api\ResourceGroup\CustomFields;
 /**
  * Class Client
  *
+ * Do not instantiate API client directly! Use `ClientFactory` or `ClientBuilder`.
+ *
  * @category Client
  * @package  RetailCrm\Api
+ * @see \RetailCrm\Api\Factory\ClientFactory
+ * @see \RetailCrm\Api\Builder\ClientBuilder
  */
 class Client
 {
@@ -70,7 +74,7 @@ class Client
      *
      * @return string
      */
-    public static function getBaseUrl(string $url): string
+    private static function getBaseUrl(string $url): string
     {
         return Utils::removeTrailingSlash($url) . '/api/v5';
     }

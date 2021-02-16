@@ -52,6 +52,11 @@ class FormEncoderBuilder implements BuilderInterface
     private $annotationReader;
 
     /**
+     * Sets cache directory.
+     *
+     * This directory will be used by FormEncoder component and underlying serializer to store annotations cache.
+     * Annotations parsing consumes a lot of resources, which is the reason why you should cache results.
+     *
      * @param string $cacheDir
      *
      * @return FormEncoderBuilder
@@ -63,6 +68,11 @@ class FormEncoderBuilder implements BuilderInterface
     }
 
     /**
+     * Sets cache implementation.
+     *
+     * This cache implementation will be used by FormEncoder component and underlying serializer to store
+     * annotations cache. Any cache from `doctrine/cache` should work just fine.
+     *
      * @param \Doctrine\Common\Cache\Cache $cache
      *
      * @return FormEncoderBuilder
@@ -74,6 +84,15 @@ class FormEncoderBuilder implements BuilderInterface
     }
 
     /**
+     * Sets serializer.
+     *
+     * Use any JMS Serializer instance. Keep in mind that this serializer instance should support some custom types
+     * we use to provide full support for our API.
+     *
+     * You can use `JmsHandlersRegisterMiddleware::registerLibraryHandlers` to register handlers for those types.
+     *
+     * @see http://jmsyst.com/libs/serializer/master/handlers#subscribing-handlers
+     *
      * @param \JMS\Serializer\SerializerInterface $serializer
      *
      * @return FormEncoderBuilder
@@ -85,6 +104,11 @@ class FormEncoderBuilder implements BuilderInterface
     }
 
     /**
+     * Builds FormEncoder.
+     *
+     * **Note:** Cache won't be set into provided serializer instance. It only works for instance built by
+     * this builder. You must manually inject the proper cache into the custom JMS Serializer instance.
+     *
      * @inheritDoc
      */
     public function build(): FormEncoder

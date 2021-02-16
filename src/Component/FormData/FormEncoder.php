@@ -20,6 +20,12 @@ use RetailCrm\Api\Component\FormData\Strategy\StrategyFactory;
 /**
  * Class FormEncoder
  *
+ * FormEncoder is a vital part of the library. Our API expects form-data for all requests, but some fields may contain
+ * JSON data (for example, `/api/v5/customers/create` method works like that). FormEncoder is our custom serializer that
+ * converts request instances to form-data and uses JMS serializer under the hood to fill some fields with JSON data.
+ *
+ * @see https://docs.retailcrm.ru/Developers/API/APIVersions/APIv5#post--api-v5-customers-create
+ *
  * @category FormEncoder
  * @package  RetailCrm\Api\Component\FormData
  */
@@ -76,6 +82,8 @@ class FormEncoder
     }
 
     /**
+     * Returns underlying serializer instance.
+     *
      * @return \JMS\Serializer\SerializerInterface
      */
     public function getSerializer(): SerializerInterface

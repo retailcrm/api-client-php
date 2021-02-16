@@ -38,7 +38,9 @@ class ResponseTransformer
     }
 
     /**
-     * Create response model from PSR-7 response.
+     * Transforms PSR-7 response into response model.
+     *
+     * You can alter the results by providing your chain of handlers.
      *
      * @param string                              $method
      * @param \Psr\Http\Message\ResponseInterface $response

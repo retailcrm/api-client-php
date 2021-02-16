@@ -52,6 +52,8 @@ class ClientBuilder implements BuilderInterface
     private $formEncoder;
 
     /**
+     * API URL. Looks like this: "https://test.retailcrm.pro/"
+     *
      * @param string $apiUrl
      *
      * @return ClientBuilder
@@ -64,7 +66,8 @@ class ClientBuilder implements BuilderInterface
 
     /**
      * Request authenticator to append into request transformer pipeline.
-     * Don't set if you already added proper authenticator in the pipeline manually.
+     *
+     * Do not use it if you already added a proper authenticator in the pipeline manually.
      * You can use this method to drop authenticator from client builder (use null).
      *
      * @param \RetailCrm\Api\Interfaces\HandlerInterface|null $authenticator
@@ -78,6 +81,10 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
+     * Set your own PSR-18 HTTP client.
+     *
+     * Service discovery will be used if no client has been provided.
+     *
      * @param \Psr\Http\Client\ClientInterface $httpClient
      *
      * @return ClientBuilder
@@ -89,6 +96,11 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
+     * Set debug logger.
+     *
+     * The provided logger will be used to record all requests and responses.
+     * This feature consumes a lot of resources and shouldn't be used in production.
+     *
      * @param \Psr\Log\LoggerInterface|null $debugLogger
      *
      * @return ClientBuilder
@@ -100,6 +112,11 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
+     * Set request transformer into API client.
+     *
+     * You can use this method to set your request transformer which will execute the pipeline.
+     * The default request transformer doesn't do anything besides calling provided chain of handlers.
+     *
      * @param \RetailCrm\Api\Component\Transformer\RequestTransformer|null $requestTransformer
      *
      * @return ClientBuilder
@@ -111,6 +128,12 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
+     * Set response transformer into API client.
+     *
+     * You can use this method to set your response transformer which will execute the pipeline.
+     * The default response transformer doesn't do anything besides calling provided chain of handlers.
+     * The serializer instance for the request pipeline can be inferred from the provided FormEncoder instance.
+     *
      * @param \RetailCrm\Api\Component\Transformer\ResponseTransformer|null $responseTransformer
      *
      * @return ClientBuilder
@@ -122,6 +145,11 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
+     * Set form encoder into API client.
+     *
+     * Form encoder is a vital part of the API client. Its purpose is to transform provided request models
+     * into form-data. The result will be used as a query or POST body (depends on request type).
+     *
      * @param \RetailCrm\Api\Component\FormData\FormEncoder $formEncoder
      *
      * @return ClientBuilder
@@ -133,6 +161,8 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
+     * Builds client with provided dependencies.
+     *
      * @inheritDoc
      */
     public function build(): Client
@@ -202,7 +232,7 @@ class ClientBuilder implements BuilderInterface
      * @return \RetailCrm\Api\Component\Transformer\ResponseTransformer
      * @throws \RetailCrm\Api\Exception\BuilderException
      */
-    public function buildResponseTransformer(): ResponseTransformer
+    private function buildResponseTransformer(): ResponseTransformer
     {
         if (null === $this->formEncoder) {
             throw new BuilderException(

@@ -39,6 +39,10 @@ class RequestTransformer
     }
 
     /**
+     * Transforms provided request data into PSR-7 request model.
+     *
+     * You can alter the results by providing your chain of handlers.
+     *
      * @param string                                          $method
      * @param string                                          $uri
      * @param \RetailCrm\Api\Interfaces\RequestInterface|null $request

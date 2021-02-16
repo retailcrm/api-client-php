@@ -17,6 +17,9 @@ use JMS\Serializer\VisitorInterface;
 /**
  * Class MixedHandler
  *
+ * This handler allows us to serialize and deserialize models without modifying some subset of their fields.
+ * It is useful when we expect a `mixed` data type.
+ *
  * @category MixedHandler
  * @package  RetailCrm\Api\Component\Serializer
  */

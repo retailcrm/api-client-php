@@ -14,6 +14,10 @@ use RetailCrm\Api\Interfaces\HandlerInterface;
 /**
  * Class AbstractHandler
  *
+ * All handlers are modeled as a chain of responsibility.
+ *
+ * @see https://refactoring.guru/design-patterns/chain-of-responsibility
+ *
  * @category AbstractHandler
  * @package  RetailCrm\Api\Handler
  */

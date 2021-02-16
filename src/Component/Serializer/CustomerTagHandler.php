@@ -19,6 +19,8 @@ use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 /**
  * Class CustomerTagHandler
  *
+ * This handler provides support for (de)serialization of customer tags both for modifying and receiving data.
+ *
  * @category CustomerTagHandler
  * @package  RetailCrm\Api\Component\Serializer
  */

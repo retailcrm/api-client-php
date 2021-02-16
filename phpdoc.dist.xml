@@ -12,6 +12,7 @@
     </paths>
     <version number="latest">
         <api>
+            <visibility>public</visibility>
             <source dsn=".">
                 <path>src</path>
             </source>
