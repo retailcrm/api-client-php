@@ -35,11 +35,12 @@ class AbstractApiResourceGroupTest extends AbstractApiResourceGroupTestCase
   ]
 }
 EOF;
+        $host = parse_url(TestConfig::getApiUrl(), PHP_URL_HOST);
         $logs = [
             [
                 'level' => 'debug',
-                'message' => '[RetailCRM API Request]: GET URL: "https://azgalot.retailcrm.ru/api/api-versions", ' .
-                    'Headers: "{"Host":["' . parse_url(TestConfig::getApiUrl(), PHP_URL_HOST) . '"],' .
+                'message' => sprintf('[RetailCRM API Request]: GET URL: "https://%s/api/api-versions", ', $host) .
+                    'Headers: "{"Host":["' . $host . '"],' .
                     '"x-api-key":["' . TestConfig::getApiKey() . '"]}", ' .
                     'Body: ""',
                 'context' => []
