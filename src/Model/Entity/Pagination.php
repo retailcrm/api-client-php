@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category Pagination
- * @package  RetailCrm\Api\Model
+ * @package  RetailCrm\Api\Model\Entity
  */
 
-namespace RetailCrm\Api\Model;
+namespace RetailCrm\Api\Model\Entity;
 
 use JMS\Serializer\Annotation as JMS;
 
@@ -15,7 +15,7 @@ use JMS\Serializer\Annotation as JMS;
  * Class Pagination
  *
  * @category Pagination
- * @package  RetailCrm\Api\Model
+ * @package  RetailCrm\Api\Model\Entity
  */
 class Pagination
 {

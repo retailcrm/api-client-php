@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Component\FormData\Strategy\Encode;
 
+use RetailCrm\Api\Component\FormData\Mapping\JsonField;
 use RetailCrm\Api\Component\FormData\PropertyAnnotations;
 use RetailCrm\Api\Component\FormData\Strategy\StrategyFactory;
 
@@ -32,6 +33,10 @@ class TypedArrayStrategy extends AbstractEncodeStrategy
      */
     public function encode($value, ?PropertyAnnotations $annotations = null)
     {
+        if (null !== $annotations && $annotations->jsonField instanceof JsonField && !empty($value)) {
+            return $this->jmsSerializer->serialize($value, 'json');
+        }
+
         if (!is_array($value)) {
             return $value;
         }

@@ -11,7 +11,6 @@ namespace RetailCrm\Api\Component\FormData;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
-use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use ReflectionClass;
 use ReflectionException;
@@ -35,13 +34,13 @@ class FormEncoder
     /**
      * FormEncoder constructor.
      *
+     * @param \JMS\Serializer\SerializerInterface      $serializer
      * @param \Doctrine\Common\Annotations\Reader|null $annotationReader
-     * @param \JMS\Serializer\SerializerInterface|null $serializer
      */
-    public function __construct(?Reader $annotationReader = null, ?SerializerInterface $serializer = null)
+    public function __construct(SerializerInterface $serializer, ?Reader $annotationReader = null)
     {
+        $this->serializer       = $serializer;
         $this->annotationReader = $annotationReader ?: new AnnotationReader();
-        $this->serializer = $serializer ?: static::createSerializer();
     }
 
     /**
@@ -115,16 +114,5 @@ class FormEncoder
         }
 
         return $result;
-    }
-
-    /**
-     * @return \JMS\Serializer\SerializerInterface
-     */
-    private static function createSerializer(): SerializerInterface
-    {
-        return SerializerBuilder::create()
-            ->addDefaultHandlers()
-            ->addDefaultListeners()
-            ->build();
     }
 }

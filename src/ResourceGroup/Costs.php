@@ -150,7 +150,7 @@ class Costs extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Entity\Costs\Cost;
      * use RetailCrm\Api\Model\Request\Costs\CostsUploadRequest;
-     * use RetailCrm\Api\Model\Source;
+     * use RetailCrm\Api\Model\Entity\Source;
      *
      * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
      *
@@ -218,7 +218,7 @@ class Costs extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Entity\Costs\Cost;
      * use RetailCrm\Api\Model\Request\Costs\CostsCreateRequest;
-     * use RetailCrm\Api\Model\Source;
+     * use RetailCrm\Api\Model\Entity\Source;
      *
      * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
      *
@@ -382,7 +382,7 @@ class Costs extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Entity\Costs\Cost;
      * use RetailCrm\Api\Model\Request\Costs\CostsEditRequest;
-     * use RetailCrm\Api\Model\Source;
+     * use RetailCrm\Api\Model\Entity\Source;
      *
      * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
      *

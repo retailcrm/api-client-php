@@ -18,7 +18,7 @@ use RetailCrm\Api\Model\Request\Costs\CostsDeleteRequest;
 use RetailCrm\Api\Model\Request\Costs\CostsEditRequest;
 use RetailCrm\Api\Model\Request\Costs\CostsRequest;
 use RetailCrm\Api\Model\Request\Costs\CostsUploadRequest;
-use RetailCrm\Api\Model\Source;
+use RetailCrm\Api\Model\Entity\Source;
 use RetailCrm\Test\TestClientFactory;
 
 /**

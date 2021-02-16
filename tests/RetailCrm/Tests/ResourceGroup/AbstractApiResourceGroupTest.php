@@ -65,7 +65,7 @@ EOF;
         );
 
         $client = TestClientFactory::createClient($mock, $logger);
-        $apiVersions = $client->api->apiVersions();
+        $client->api->apiVersions();
 
         self::assertEquals($logs, $logger->getMessages());
     }

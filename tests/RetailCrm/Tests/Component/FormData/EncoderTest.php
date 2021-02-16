@@ -10,7 +10,7 @@
 namespace RetailCrm\Tests\Component\FormData;
 
 use PHPUnit\Framework\TestCase;
-use RetailCrm\Api\Component\FormData\FormEncoder;
+use RetailCrm\Api\Builder\FormEncoderBuilder;
 use RetailCrm\Test\EncoderTestObject;
 
 /**
@@ -26,7 +26,7 @@ class EncoderTest extends TestCase
      */
     public function testEncodeArray(EncoderTestObject $sample): void
     {
-        $encoder = new FormEncoder();
+        $encoder = (new FormEncoderBuilder())->build();
         $result = $encoder->encodeArray($sample);
 
         self::assertArrayHasKey('exists', $result);
@@ -47,7 +47,7 @@ class EncoderTest extends TestCase
     public function testEncode(EncoderTestObject $sample): void
     {
         $result = [];
-        $encoder = new FormEncoder();
+        $encoder = (new FormEncoderBuilder())->build();
 
         parse_str($encoder->encode($sample), $result);
 

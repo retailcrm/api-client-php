@@ -23,6 +23,7 @@ use RetailCrm\Api\Model\Response\Api\Credentials;
  *
  * @category Api
  * @package  RetailCrm\Api\Modules
+ *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Api extends AbstractApiResourceGroup

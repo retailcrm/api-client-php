@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Component\FormData\Strategy\Encode;
 
+use RetailCrm\Api\Component\FormData\Mapping\JsonField;
 use RetailCrm\Api\Component\FormData\PropertyAnnotations;
 use RetailCrm\Api\Component\FormData\Strategy\StrategyFactory;
 
@@ -23,6 +24,22 @@ class SimpleTypeStrategy extends AbstractEncodeStrategy
      * @inheritDoc
      */
     public function encode($value, ?PropertyAnnotations $annotations)
+    {
+        if (null !== $annotations && $annotations->jsonField instanceof JsonField && !empty($value)) {
+            return $this->jmsSerializer->serialize($value, 'json');
+        }
+
+        return $this->encodeValue($value);
+    }
+
+    /**
+     * Encode simple value.
+     *
+     * @param mixed $value
+     *
+     * @return bool|float|int|mixed[]|string|null
+     */
+    private function encodeValue($value)
     {
         switch (gettype($value)) {
             case 'bool':

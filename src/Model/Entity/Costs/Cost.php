@@ -21,9 +21,9 @@ use JMS\Serializer\Annotation as JMS;
 class Cost
 {
     /**
-     * @var \RetailCrm\Api\Model\Source
+     * @var \RetailCrm\Api\Model\Entity\Source
      *
-     * @JMS\Type("RetailCrm\Api\Model\Source")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Source")
      * @JMS\SerializedName("source")
      */
     public $source;

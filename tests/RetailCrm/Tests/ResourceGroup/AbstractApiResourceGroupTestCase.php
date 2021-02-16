@@ -13,6 +13,7 @@ use Doctrine\Common\Cache\ArrayCache;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Mock\Client as MockClient;
 use InvalidArgumentException;
+use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use Metadata\Cache\DoctrineCacheAdapter;
@@ -20,7 +21,9 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use RetailCrm\Api\Builder\FormEncoderBuilder;
 use RetailCrm\Api\Component\FormData\FormEncoder;
+use RetailCrm\Api\Component\Serializer\JmsHandlersRegisterMiddleware;
 use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Interfaces\RequestInterface as RetailCrmRequestInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponseInterface;
@@ -183,17 +186,24 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
     /**
      * @param string                                      $expectedJson
      * @param \RetailCrm\Api\Interfaces\ResponseInterface $response
+     * @param bool                                        $stripNilValues
      *
      * @throws \JsonException
      */
     protected static function assertModelEqualsToResponse(
         string $expectedJson,
-        RetailCrmResponseInterface $response
+        RetailCrmResponseInterface $response,
+        bool $stripNilValues = false
     ): void {
-        self::assertEquals(
-            json_decode($expectedJson, true, 512, JSON_THROW_ON_ERROR),
-            self::getSerializer()->toArray($response)
-        );
+        $expected = json_decode($expectedJson, true, 512, JSON_THROW_ON_ERROR);
+        $actual   = self::getSerializer()->toArray($response);
+
+        if ($stripNilValues) {
+            $expected = static::clearArray($expected);
+            $actual   = static::clearArray($actual);
+        }
+
+        self::assertEquals($expected, $actual);
     }
 
     /**
@@ -245,6 +255,9 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
     {
         if (null === static::$serializer) {
             static::$serializer = SerializerBuilder::create()
+                ->configureHandlers(function (HandlerRegistry $registry) {
+                    JmsHandlersRegisterMiddleware::registerLibraryHandlers($registry);
+                })
                 ->addDefaultHandlers()
                 ->addDefaultListeners()
                 ->setMetadataCache(new DoctrineCacheAdapter('retailcrm', new ArrayCache()))
@@ -260,7 +273,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
     private static function getFormEncoder(): FormEncoder
     {
         if (null === static::$formEncoder) {
-            static::$formEncoder = new FormEncoder();
+            static::$formEncoder = (new FormEncoderBuilder())->build();
         }
 
         return static::$formEncoder;

@@ -13,9 +13,12 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\CachedReader;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache;
+use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
 use Metadata\Cache\DoctrineCacheAdapter;
 use RetailCrm\Api\Component\FormData\FormEncoder;
+use RetailCrm\Api\Component\Serializer\JmsHandlersRegisterMiddleware;
 use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Interfaces\BuilderInterface;
 use RuntimeException;
@@ -25,14 +28,28 @@ use RuntimeException;
  *
  * @category FormEncoderBuilder
  * @package  RetailCrm\Api\Builder
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class FormEncoderBuilder implements BuilderInterface
 {
     /** @var string */
     private $cacheDir;
 
-    /** @var \Doctrine\Common\Cache\Cache */
+    /** @var \Doctrine\Common\Cache\Cache|null */
     private $cache;
+
+    /** @var \JMS\Serializer\SerializerInterface */
+    private $serializer;
+
+    /** @var \Doctrine\Common\Cache\Cache|null */
+    private $jsonCache;
+
+    /** @var \Doctrine\Common\Cache\Cache|null */
+    private $formCache;
+
+    /** @var \Doctrine\Common\Annotations\Reader */
+    private $annotationReader;
 
     /**
      * @param string $cacheDir
@@ -57,34 +74,78 @@ class FormEncoderBuilder implements BuilderInterface
     }
 
     /**
+     * @param \JMS\Serializer\SerializerInterface $serializer
+     *
+     * @return FormEncoderBuilder
+     */
+    public function setSerializer(SerializerInterface $serializer): FormEncoderBuilder
+    {
+        $this->serializer = $serializer;
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      */
     public function build(): FormEncoder
     {
-        $jsonCache = null;
-        $formCache = null;
+        $this->buildCaches();
+        $this->buildAnnotationReader();
+        $this->buildSerializer();
 
+        return new FormEncoder($this->serializer, $this->annotationReader);
+    }
+
+    /**
+     * Builds caches if needed.
+     */
+    private function buildCaches(): void
+    {
         if (!empty($this->cacheDir) && is_dir($this->cacheDir)) {
-            $this->createDir($this->cacheDir . CacheDirectories::JSON_DIR);
             $this->createDir($this->cacheDir . CacheDirectories::FORM_DIR);
+            $this->formCache = new FilesystemCache($this->cacheDir . CacheDirectories::FORM_DIR);
 
-            $jsonCache = new FilesystemCache($this->cacheDir . CacheDirectories::JSON_DIR);
-            $formCache = new FilesystemCache($this->cacheDir . CacheDirectories::FORM_DIR);
+            if (null === $this->serializer) {
+                $this->createDir($this->cacheDir . CacheDirectories::JSON_DIR);
+                $this->jsonCache = new FilesystemCache($this->cacheDir . CacheDirectories::JSON_DIR);
+            }
+        }
+    }
+
+    /**
+     * Builds annotation reader.
+     */
+    private function buildAnnotationReader(): void
+    {
+        $this->annotationReader = new AnnotationReader();
+
+        if (null !== $this->formCache) {
+            $this->annotationReader = new CachedReader(new AnnotationReader(), $this->formCache);
+        }
+    }
+
+    /**
+     * Builds serializer if necessary.
+     */
+    private function buildSerializer(): void
+    {
+        if (null !== $this->serializer) {
+            return;
         }
 
-        $annotationReader = new AnnotationReader();
         $serializerBuilder = SerializerBuilder::create()
-            ->addDefaultHandlers()
+            ->configureHandlers(function (HandlerRegistry $registry) {
+                JmsHandlersRegisterMiddleware::registerLibraryHandlers($registry);
+            })->addDefaultHandlers()
             ->addDefaultListeners();
 
-        if (null !== $jsonCache && null !== $formCache) {
-            $serializerBuilder->setMetadataCache(new DoctrineCacheAdapter('retailcrm', $jsonCache));
-            $annotationReader = new CachedReader(new AnnotationReader(), $formCache);
+        if (null !== $this->jsonCache) {
+            $serializerBuilder->setMetadataCache(new DoctrineCacheAdapter('retailcrm', $this->jsonCache));
         } elseif (null !== $this->cache) {
             $serializerBuilder->setMetadataCache(new DoctrineCacheAdapter('retailcrm', $this->cache));
         }
 
-        return new FormEncoder($annotationReader, $serializerBuilder->build());
+        $this->serializer = $serializerBuilder->build();
     }
 
     /**
