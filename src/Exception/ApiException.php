@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Exception;
 
 use Exception;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface;
 use RetailCrm\Api\Model\Response\ErrorResponse;
 use Throwable;
@@ -20,7 +21,7 @@ use Throwable;
  * @category ApiException
  * @package  RetailCrm\Api\Exception
  */
-class ApiException extends Exception
+class ApiException extends Exception implements ApiExceptionInterface
 {
     /** @var \RetailCrm\Api\Model\Response\ErrorResponse */
     private $response;

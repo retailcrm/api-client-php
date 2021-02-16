@@ -13,6 +13,7 @@ use Psr\Http\Message\RequestInterface as PsrRequestInterface;
 use RetailCrm\Api\Exception\HandlerException;
 use RetailCrm\Api\Interfaces\HandlerInterface;
 use RetailCrm\Api\Interfaces\RequestInterface;
+use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\Model\RequestData;
 
 /**
@@ -21,7 +22,7 @@ use RetailCrm\Api\Model\RequestData;
  * @category RequestTransformer
  * @package  RetailCrm\Api\Component\Transformer
  */
-class RequestTransformer
+class RequestTransformer implements RequestTransformerInterface
 {
     /**
      * @var HandlerInterface
@@ -66,9 +67,9 @@ class RequestTransformer
     }
 
     /**
-     * @return \RetailCrm\Api\Interfaces\HandlerInterface
+     * @return \RetailCrm\Api\Interfaces\HandlerInterface|null
      */
-    public function getHandler(): HandlerInterface
+    public function getHandler(): ?HandlerInterface
     {
         return $this->handler;
     }

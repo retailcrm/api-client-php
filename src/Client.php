@@ -11,9 +11,9 @@ namespace RetailCrm\Api;
 
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
-use RetailCrm\Api\Component\Transformer\RequestTransformer;
-use RetailCrm\Api\Component\Transformer\ResponseTransformer;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Api\Interfaces\RequestTransformerInterface;
+use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
 use RetailCrm\Api\ResourceGroup\Api;
 use RetailCrm\Api\ResourceGroup\Costs;
 use RetailCrm\Api\ResourceGroup\Customers;
@@ -46,17 +46,17 @@ class Client
     /**
      * Client constructor.
      *
-     * @param string                                                   $apiUrl
-     * @param \Psr\Http\Client\ClientInterface                         $httpClient
-     * @param \RetailCrm\Api\Component\Transformer\RequestTransformer  $requestTransformer
-     * @param \RetailCrm\Api\Component\Transformer\ResponseTransformer $responseTransformer
-     * @param \Psr\Log\LoggerInterface|null                            $logger
+     * @param string                                                 $apiUrl
+     * @param \Psr\Http\Client\ClientInterface                       $httpClient
+     * @param \RetailCrm\Api\Interfaces\RequestTransformerInterface  $requestTransformer
+     * @param \RetailCrm\Api\Interfaces\ResponseTransformerInterface $responseTransformer
+     * @param \Psr\Log\LoggerInterface|null                          $logger
      */
     public function __construct(
         string $apiUrl,
         ClientInterface $httpClient,
-        RequestTransformer $requestTransformer,
-        ResponseTransformer $responseTransformer,
+        RequestTransformerInterface $requestTransformer,
+        ResponseTransformerInterface $responseTransformer,
         ?LoggerInterface $logger = null
     ) {
         $url = static::getBaseUrl($apiUrl);

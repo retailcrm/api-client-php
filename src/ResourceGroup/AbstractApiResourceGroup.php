@@ -12,11 +12,11 @@ namespace RetailCrm\Api\ResourceGroup;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use RetailCrm\Api\Component\Transformer\RequestTransformer;
-use RetailCrm\Api\Component\Transformer\ResponseTransformer;
 use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Interfaces\RequestInterface;
+use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface;
+use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
 
 /**
  * Class AbstractApiResourceGroup
@@ -34,10 +34,10 @@ abstract class AbstractApiResourceGroup
     /** @var ClientInterface */
     protected $httpClient;
 
-    /** @var RequestTransformer */
+    /** @var \RetailCrm\Api\Interfaces\RequestTransformerInterface */
     protected $requestTransformer;
 
-    /** @var ResponseTransformer */
+    /** @var \RetailCrm\Api\Interfaces\ResponseTransformerInterface */
     protected $responseTransformer;
 
     /** @var ?\Psr\Log\LoggerInterface */
@@ -46,17 +46,17 @@ abstract class AbstractApiResourceGroup
     /**
      * AbstractApiResourceGroup constructor.
      *
-     * @param string                                                   $baseUrl
-     * @param \Psr\Http\Client\ClientInterface                         $httpClient
-     * @param \RetailCrm\Api\Component\Transformer\RequestTransformer  $requestTransformer
-     * @param \RetailCrm\Api\Component\Transformer\ResponseTransformer $responseTransformer
-     * @param \Psr\Log\LoggerInterface|null                            $logger
+     * @param string                                                 $baseUrl
+     * @param \Psr\Http\Client\ClientInterface                       $httpClient
+     * @param \RetailCrm\Api\Interfaces\RequestTransformerInterface  $requestTransformer
+     * @param \RetailCrm\Api\Interfaces\ResponseTransformerInterface $responseTransformer
+     * @param \Psr\Log\LoggerInterface|null                          $logger
      */
     public function __construct(
         string $baseUrl,
         ClientInterface $httpClient,
-        RequestTransformer $requestTransformer,
-        ResponseTransformer $responseTransformer,
+        RequestTransformerInterface $requestTransformer,
+        ResponseTransformerInterface $responseTransformer,
         ?LoggerInterface $logger = null
     ) {
         $this->baseUrl             = $baseUrl;
@@ -91,7 +91,7 @@ abstract class AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     protected function sendRequest(

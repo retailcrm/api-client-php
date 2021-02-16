@@ -12,6 +12,7 @@ namespace RetailCrm\Api\Component\Transformer;
 use Psr\Http\Message\ResponseInterface;
 use RetailCrm\Api\Interfaces\HandlerInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponse;
+use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
 use RetailCrm\Api\Model\ResponseData;
 
 /**
@@ -20,7 +21,7 @@ use RetailCrm\Api\Model\ResponseData;
  * @category ResponseTransformer
  * @package  RetailCrm\Api\Component\Transformer
  */
-class ResponseTransformer
+class ResponseTransformer implements ResponseTransformerInterface
 {
     /**
      * @var HandlerInterface
@@ -47,7 +48,7 @@ class ResponseTransformer
      * @param string                              $type
      *
      * @return RetailCrmResponse
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function createResponse(string $method, ResponseInterface $response, string $type): RetailCrmResponse

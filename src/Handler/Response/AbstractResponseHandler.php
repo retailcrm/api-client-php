@@ -41,7 +41,7 @@ abstract class AbstractResponseHandler extends AbstractHandler
 
     /**
      * @inheritDoc
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
     final public function handle($item)
     {
@@ -84,7 +84,7 @@ abstract class AbstractResponseHandler extends AbstractHandler
      *
      * @return mixed
      * @throws \RetailCrm\Api\Exception\HandlerException
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
     abstract protected function handleResponse(ResponseData $responseData);
 }

@@ -11,10 +11,10 @@ namespace RetailCrm\Api\ResourceGroup;
 
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
-use RetailCrm\Api\Component\Transformer\RequestTransformer;
 use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Enum\RequestMethod;
-use RetailCrm\Api\Component\Transformer\ResponseTransformer;
+use RetailCrm\Api\Interfaces\RequestTransformerInterface;
+use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
 use RetailCrm\Api\Model\Response\Api\ApiVersionsResponse;
 use RetailCrm\Api\Model\Response\Api\Credentials;
 
@@ -31,17 +31,17 @@ class Api extends AbstractApiResourceGroup
     /**
      * Api constructor.
      *
-     * @param string                                                   $baseUrl
-     * @param \Psr\Http\Client\ClientInterface                         $httpClient
-     * @param \RetailCrm\Api\Component\Transformer\RequestTransformer  $requestTransformer
-     * @param \RetailCrm\Api\Component\Transformer\ResponseTransformer $responseTransformer
-     * @param \Psr\Log\LoggerInterface|null                            $logger
+     * @param string                                                 $baseUrl
+     * @param \Psr\Http\Client\ClientInterface                       $httpClient
+     * @param \RetailCrm\Api\Interfaces\RequestTransformerInterface  $requestTransformer
+     * @param \RetailCrm\Api\Interfaces\ResponseTransformerInterface $responseTransformer
+     * @param \Psr\Log\LoggerInterface|null                          $logger
      */
     public function __construct(
         string $baseUrl,
         ClientInterface $httpClient,
-        RequestTransformer $requestTransformer,
-        ResponseTransformer $responseTransformer,
+        RequestTransformerInterface $requestTransformer,
+        ResponseTransformerInterface $responseTransformer,
         ?LoggerInterface $logger = null
     ) {
         parent::__construct(
@@ -65,7 +65,7 @@ class Api extends AbstractApiResourceGroup
      *
      * try {
      *     $apiVersions = $client->api->apiVersions();
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -84,7 +84,7 @@ class Api extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function apiVersions(): ApiVersionsResponse
@@ -111,7 +111,7 @@ class Api extends AbstractApiResourceGroup
      *
      * try {
      *     $credentials = $client->api->credentials();
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -130,7 +130,7 @@ class Api extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function credentials(): Credentials

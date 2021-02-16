@@ -51,7 +51,7 @@ class Customers extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customers->list($request);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -72,7 +72,7 @@ class Customers extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function list(?CustomersRequest $request = null): CustomersResponse
@@ -109,7 +109,7 @@ class Customers extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customers->combine($request);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -130,7 +130,7 @@ class Customers extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function combine(CustomersCombineRequest $request): SuccessResponse
@@ -193,7 +193,7 @@ class Customers extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customers->create($request);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -214,7 +214,7 @@ class Customers extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function create(CustomersCreateRequest $request): IdResponse
@@ -250,7 +250,7 @@ class Customers extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customers->fixExternalIds($request);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -269,7 +269,7 @@ class Customers extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function fixExternalIds(CustomersFixExternalIdsRequest $request): SuccessResponse
@@ -304,7 +304,7 @@ class Customers extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customers->history($request);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -325,7 +325,7 @@ class Customers extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function history(?CustomersHistoryRequest $request = null): CustomersHistoryResponse

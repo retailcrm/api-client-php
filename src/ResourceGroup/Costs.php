@@ -53,7 +53,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->costs->list($costsRequest);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -74,7 +74,7 @@ class Costs extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function list(?CostsRequest $request = null): CostsResponse
@@ -105,7 +105,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->costs->costsDelete($request);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -126,7 +126,7 @@ class Costs extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function costsDelete(CostsDeleteRequest $request): CostsDeleteResponse
@@ -173,7 +173,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->costs->costsUpload($request);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -194,7 +194,7 @@ class Costs extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function costsUpload(CostsUploadRequest $request): CostsUploadResponse
@@ -241,7 +241,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->costs->create($request);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -262,7 +262,7 @@ class Costs extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function create(CostsCreateRequest $request): IdResponse
@@ -289,7 +289,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->costs->get(1);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -310,7 +310,7 @@ class Costs extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function get(int $id): CostsGetResponse
@@ -337,7 +337,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->costs->delete(1);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -358,7 +358,7 @@ class Costs extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function delete(int $id): SuccessResponse
@@ -405,7 +405,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->costs->edit(1, $request);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -427,7 +427,7 @@ class Costs extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function edit(int $id, CostsEditRequest $request): IdResponse

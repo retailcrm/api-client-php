@@ -59,7 +59,7 @@ class CustomFields extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customFields->list($request);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -80,7 +80,7 @@ class CustomFields extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function list(?CustomFieldsRequest $request): CustomFieldsResponse
@@ -116,7 +116,7 @@ class CustomFields extends AbstractApiResourceGroup
 
      * try {
      *     $response = $client->customFields->dictionaries($request);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -137,7 +137,7 @@ class CustomFields extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function dictionaries(?CustomFieldsDictionariesRequest $request): CustomFieldsDictionariesResponse
@@ -175,7 +175,7 @@ class CustomFields extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customFields->dictionariesCreate($dictionary);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -196,7 +196,7 @@ class CustomFields extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function dictionariesCreate(CustomDictionary $customDictionary): CustomDictionaryCreateResponse
@@ -227,7 +227,7 @@ class CustomFields extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customFields->dictionariesGet('test');
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -248,7 +248,7 @@ class CustomFields extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function dictionariesGet(string $code): CustomDictionaryGetResponse
@@ -285,7 +285,7 @@ class CustomFields extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customFields->dictionariesEdit('test_dict', $dictionary);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -307,7 +307,7 @@ class CustomFields extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function dictionariesEdit(string $code, CustomDictionary $dictionary): CustomDictionaryCreateResponse
@@ -354,7 +354,7 @@ class CustomFields extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customFields->create(CustomFieldEntity::CUSTOMER, $field);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -376,7 +376,7 @@ class CustomFields extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function create(string $entity, CustomField $customField): CustomFieldsCreateResponse
@@ -408,7 +408,7 @@ class CustomFields extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customFields->get(CustomFieldEntity::ORDER, 'item');
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -430,7 +430,7 @@ class CustomFields extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function get(string $entity, string $code): CustomFieldsGetResponse
@@ -471,7 +471,7 @@ class CustomFields extends AbstractApiResourceGroup
      *
      * try {
      *     $response = $client->customFields->edit(CustomFieldEntity::CUSTOMER, 'description', $field);
-     * } catch (ApiException $exception) {
+     * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
      *         $exception->getStatusCode(),
@@ -494,7 +494,7 @@ class CustomFields extends AbstractApiResourceGroup
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
     public function edit(string $entity, string $code, CustomField $customField): CustomFieldsEditResponse

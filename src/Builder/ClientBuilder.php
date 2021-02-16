@@ -21,12 +21,16 @@ use RetailCrm\Api\Factory\ResponsePipelineFactory;
 use RetailCrm\Api\Interfaces\BuilderInterface;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Interfaces\HandlerInterface;
+use RetailCrm\Api\Interfaces\RequestTransformerInterface;
+use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
 
 /**
  * Class ClientBuilder
  *
  * @category ClientBuilder
  * @package  RetailCrm\Api\Builder
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class ClientBuilder implements BuilderInterface
 {
@@ -42,10 +46,10 @@ class ClientBuilder implements BuilderInterface
     /** @var ?\Psr\Log\LoggerInterface */
     private $debugLogger;
 
-    /** @var ?\RetailCrm\Api\Component\Transformer\RequestTransformer */
+    /** @var RequestTransformerInterface|null */
     private $requestTransformer;
 
-    /** @var ?ResponseTransformer */
+    /** @var ?\RetailCrm\Api\Interfaces\ResponseTransformerInterface */
     protected $responseTransformer;
 
     /** @var ?\RetailCrm\Api\Interfaces\FormEncoderInterface */
@@ -117,11 +121,11 @@ class ClientBuilder implements BuilderInterface
      * You can use this method to set your request transformer which will execute the pipeline.
      * The default request transformer doesn't do anything besides calling provided chain of handlers.
      *
-     * @param \RetailCrm\Api\Component\Transformer\RequestTransformer|null $requestTransformer
+     * @param \RetailCrm\Api\Interfaces\RequestTransformerInterface|null $requestTransformer
      *
      * @return ClientBuilder
      */
-    public function setRequestTransformer(?RequestTransformer $requestTransformer): ClientBuilder
+    public function setRequestTransformer(?RequestTransformerInterface $requestTransformer): ClientBuilder
     {
         $this->requestTransformer = $requestTransformer;
         return $this;
@@ -134,11 +138,11 @@ class ClientBuilder implements BuilderInterface
      * The default response transformer doesn't do anything besides calling provided chain of handlers.
      * The serializer instance for the request pipeline can be inferred from the provided FormEncoder instance.
      *
-     * @param \RetailCrm\Api\Component\Transformer\ResponseTransformer|null $responseTransformer
+     * @param \RetailCrm\Api\Interfaces\ResponseTransformerInterface|null $responseTransformer
      *
      * @return ClientBuilder
      */
-    public function setResponseTransformer(?ResponseTransformer $responseTransformer): ClientBuilder
+    public function setResponseTransformer(?ResponseTransformerInterface $responseTransformer): ClientBuilder
     {
         $this->responseTransformer = $responseTransformer;
         return $this;
@@ -164,6 +168,7 @@ class ClientBuilder implements BuilderInterface
      * Builds client with provided dependencies.
      *
      * @inheritDoc
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function build(): Client
     {
@@ -178,7 +183,11 @@ class ClientBuilder implements BuilderInterface
             );
         }
 
-        if (null !== $this->authenticator && null !== $this->requestTransformer) {
+        if (
+            null !== $this->authenticator &&
+            null !== $this->requestTransformer &&
+            null !== $this->requestTransformer->getHandler()
+        ) {
             $this->requestTransformer->getHandler()->append($this->authenticator);
         }
 
