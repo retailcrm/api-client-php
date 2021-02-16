@@ -23,7 +23,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
 use RetailCrm\Api\Component\FormData\FormEncoder;
-use RetailCrm\Api\Component\Serializer\JmsHandlersRegisterMiddleware;
+use RetailCrm\Api\Component\Serializer\JmsHandlersInjector;
 use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Interfaces\RequestInterface as RetailCrmRequestInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponseInterface;
@@ -256,7 +256,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
         if (null === static::$serializer) {
             static::$serializer = SerializerBuilder::create()
                 ->configureHandlers(function (HandlerRegistry $registry) {
-                    JmsHandlersRegisterMiddleware::registerLibraryHandlers($registry);
+                    JmsHandlersInjector::registerLibraryHandlers($registry);
                 })
                 ->addDefaultHandlers()
                 ->addDefaultListeners()

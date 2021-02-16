@@ -3,7 +3,7 @@
 /**
  * PHP version 7.3
  *
- * @category JmsHandlersRegisterMiddleware
+ * @category JmsHandlersInjector
  * @package  RetailCrm\Api\Component\Serializer
  */
 
@@ -12,12 +12,12 @@ namespace RetailCrm\Api\Component\Serializer;
 use JMS\Serializer\Handler\HandlerRegistry;
 
 /**
- * Class JmsHandlersRegisterMiddleware
+ * Class JmsHandlersInjector
  *
- * @category JmsHandlersRegisterMiddleware
+ * @category JmsHandlersInjector
  * @package  RetailCrm\Api\Component\Serializer
  */
-class JmsHandlersRegisterMiddleware
+class JmsHandlersInjector
 {
     /**
      * This method will register library handlers in provided JMS HandlerRegistry.

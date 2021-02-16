@@ -18,7 +18,7 @@ use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use Metadata\Cache\DoctrineCacheAdapter;
 use RetailCrm\Api\Component\FormData\FormEncoder;
-use RetailCrm\Api\Component\Serializer\JmsHandlersRegisterMiddleware;
+use RetailCrm\Api\Component\Serializer\JmsHandlersInjector;
 use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Interfaces\BuilderInterface;
 use RuntimeException;
@@ -89,7 +89,7 @@ class FormEncoderBuilder implements BuilderInterface
      * Use any JMS Serializer instance. Keep in mind that this serializer instance should support some custom types
      * we use to provide full support for our API.
      *
-     * You can use `JmsHandlersRegisterMiddleware::registerLibraryHandlers` to register handlers for those types.
+     * You can use `JmsHandlersInjector::registerLibraryHandlers` to register handlers for those types.
      *
      * @see http://jmsyst.com/libs/serializer/master/handlers#subscribing-handlers
      *
@@ -159,7 +159,7 @@ class FormEncoderBuilder implements BuilderInterface
 
         $serializerBuilder = SerializerBuilder::create()
             ->configureHandlers(function (HandlerRegistry $registry) {
-                JmsHandlersRegisterMiddleware::registerLibraryHandlers($registry);
+                JmsHandlersInjector::registerLibraryHandlers($registry);
             })->addDefaultHandlers()
             ->addDefaultListeners();
 
