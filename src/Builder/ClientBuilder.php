@@ -168,20 +168,10 @@ class ClientBuilder implements BuilderInterface
      * Builds client with provided dependencies.
      *
      * @inheritDoc
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function build(): Client
     {
-        if (empty($this->apiUrl)) {
-            throw new BuilderException('apiUrl must not be empty', ['apiUrl']);
-        }
-
-        if (empty($this->authenticator) && empty($this->requestTransformer)) {
-            throw new BuilderException(
-                'Authenticator or RequestTransformer must be present',
-                ['authenticator', 'requestTransformer']
-            );
-        }
+        $this->validateBuilder();
 
         if (
             null !== $this->authenticator &&
@@ -206,6 +196,25 @@ class ClientBuilder implements BuilderInterface
             $this->responseTransformer,
             $this->debugLogger
         );
+    }
+
+    /**
+     * Check if builder is ready to build a Client instance.
+     *
+     * @throws \RetailCrm\Api\Exception\BuilderException
+     */
+    private function validateBuilder(): void
+    {
+        if (empty($this->apiUrl)) {
+            throw new BuilderException('apiUrl must not be empty', ['apiUrl']);
+        }
+
+        if (empty($this->authenticator) && empty($this->requestTransformer)) {
+            throw new BuilderException(
+                'Authenticator or RequestTransformer must be present',
+                ['authenticator', 'requestTransformer']
+            );
+        }
     }
 
     /**

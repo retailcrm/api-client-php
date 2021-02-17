@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
+use RetailCrm\Api\Enum\ByIdentifier;
 use RetailCrm\Api\Enum\Customers\ContragentType;
 use RetailCrm\Api\Enum\Customers\CustomerType;
 use RetailCrm\Api\Enum\Customers\SerializedCustomerReference;
@@ -16,16 +17,23 @@ use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
 use RetailCrm\Api\Model\Entity\Customers\CustomerContragent;
+use RetailCrm\Api\Model\Entity\Customers\CustomerNote;
 use RetailCrm\Api\Model\Entity\Customers\CustomerPhone;
 use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
 use RetailCrm\Api\Model\Filter\Customers\CustomerFilter;
 use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
+use RetailCrm\Api\Model\Filter\Customers\CustomerNoteFilter;
 use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersCreateRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersEditRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersFixExternalIdsRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersGetRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersUploadRequest;
 use RetailCrm\Test\TestClientFactory;
 
 /**
@@ -36,7 +44,7 @@ use RetailCrm\Test\TestClientFactory;
  */
 class CustomersTest extends AbstractApiResourceGroupTestCase
 {
-    public function testCustomers(): void
+    public function testCustomersList(): void
     {
         $json = <<<'EOF'
 {
@@ -2352,5 +2360,339 @@ EOF;
         $costs  = $client->customers->history($request);
 
         self::assertModelEqualsToResponse($json, $costs, true);
+    }
+
+    public function testCustomersNotes(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "pagination": {
+    "limit": 20,
+    "totalCount": 2,
+    "currentPage": 1,
+    "totalPageCount": 1
+  },
+  "notes": [
+    {
+      "customer": {
+        "site": "moysklad",
+        "id": 1057,
+        "externalId": "10",
+        "type": "customer"
+      },
+      "id": 42,
+      "text": "note",
+      "createdAt": "2019-08-06 18:04:56"
+    },
+    {
+      "customer": {
+        "site": "moysklad",
+        "id": 1057,
+        "externalId": "10",
+        "type": "customer"
+      },
+      "id": 43,
+      "text": "note2",
+      "createdAt": "2019-08-06 18:05:27"
+    }
+  ]
+}
+EOF;
+
+        $request                              = new CustomersNotesRequest();
+        $request->limit                       = 20;
+        $request->page                        = 1;
+        $request->filter                      = new CustomerNoteFilter();
+        $request->filter->customerExternalIds = ['10'];
+        $request->filter->createdAtFrom       = '2019-08-06 12:00:00';
+        $request->filter->text                = 'note';
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers/notes')
+                ->setMethod(RequestMethod::GET)
+                ->setQueryParams(static::encodeFormArray($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client = TestClientFactory::createClient($mock);
+        $costs  = $client->customers->notes($request);
+
+        self::assertModelEqualsToResponse($json, $costs);
+    }
+
+    public function testCustomersNotesCreate(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 1
+}
+EOF;
+
+        $request                             = new CustomersNotesCreateRequest();
+        $request->site                       = 'moysklad';
+        $request->note                       = new CustomerNote();
+        $request->note->customer             = new Customer();
+        $request->note->customer->externalId = '10';
+        $request->note->managerId            = 21;
+        $request->note->text                 = 'Text';
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers/notes/create')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customers->notesCreate($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCustomersUpload(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "uploadedCustomers": [{
+    "id": 1,
+    "externalId": "test_10"
+  }]
+}
+EOF;
+
+        $customer                             = new Customer();
+        $customer->type                       = CustomerType::CUSTOMER;
+        $customer->externalId                 = 'test_10';
+        $customer->managerId                  = 24;
+        $customer->contragent                 = new CustomerContragent();
+        $customer->contragent->contragentType = ContragentType::INDIVIDUAL;
+        $customer->tags                       = [
+            new CustomerTag('first'),
+            new CustomerTag('second'),
+            new CustomerTag('third'),
+        ];
+        $customer->customFields               = [
+            'galkatrue' => true
+        ];
+        $customer->address                    = new CustomerAddress();
+        $customer->address->text              = '(719) 395-5645 13990 W County 270 Rd Nathrop, Colorado(CO), 81236';
+        $customer->firstName                  = 'Test';
+        $customer->lastName                   = 'User';
+        $customer->patronymic                 = 'Tester';
+        $customer->email                      = 'tester@example.com';
+        $customer->phones                     = [
+            new CustomerPhone('(603) 292-6810')
+        ];
+
+        $request           = new CustomersUploadRequest();
+        $request->site     = 'aliexpress';
+        $request->customers = [$customer];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers/upload')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customers->upload($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCustomersGet(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "customer": {
+    "type": "customer",
+    "id": 4770,
+    "externalId": "5",
+    "isContact": false,
+    "createdAt": "2022-03-11 15:39:08",
+    "managerId": 24,
+    "vip": false,
+    "bad": false,
+    "site": "bb_demo",
+    "contragent": {
+      "contragentType": "individual"
+    },
+    "tags": [
+      {
+        "name": "test",
+        "color": "#3e89b6",
+        "attached": false
+      },
+      {
+        "name": "first",
+        "color": "#eff8e3",
+        "attached": false
+      },
+      {
+        "name": "third",
+        "color": "#3e89b6",
+        "attached": false
+      },
+      {
+        "name": "second",
+        "color": "#ef5e67",
+        "attached": false
+      }
+    ],
+    "marginSumm": 7057,
+    "totalSumm": 7057,
+    "averageSumm": 7057,
+    "ordersCount": 1,
+    "costSumm": 0,
+    "customFields": {
+      "galkatrue": true
+    },
+    "personalDiscount": 0,
+    "cumulativeDiscount": 0,
+    "address": {
+      "id": 3492,
+      "text": "ул. Красноармейская, д. 63/90, кв. 45"
+    },
+    "segments": [
+      {
+        "id": 9,
+        "code": "nedavnie",
+        "name": "Недавние",
+        "createdAt": "2018-09-04 16:35:59",
+        "isDynamic": true,
+        "customersCount": 77,
+        "active": true
+      },
+      {
+        "id": 14,
+        "code": "malenkaya-summa-pokupok",
+        "name": "Маленькая сумма покупок",
+        "createdAt": "2018-09-04 16:35:59",
+        "isDynamic": true,
+        "customersCount": 1040,
+        "active": true
+      },
+      {
+        "id": 16,
+        "code": "sredniy-ltv",
+        "name": "Средний LTV",
+        "createdAt": "2018-09-04 16:35:59",
+        "isDynamic": true,
+        "customersCount": 21,
+        "active": true
+      },
+      {
+        "id": 19,
+        "code": "normalniy-sredniy-chek",
+        "name": "Нормальный средний чек",
+        "createdAt": "2018-09-04 16:35:59",
+        "isDynamic": true,
+        "customersCount": 20,
+        "active": true
+      },
+      {
+        "id": 26,
+        "code": "bez-otmen",
+        "name": "Без отмен",
+        "createdAt": "2018-09-04 16:35:59",
+        "isDynamic": true,
+        "customersCount": 1284,
+        "active": true
+      },
+      {
+        "id": 31,
+        "code": "pol-ne-ukazan",
+        "name": "Пол не указан",
+        "createdAt": "2018-09-04 16:35:59",
+        "isDynamic": true,
+        "customersCount": 1281,
+        "active": true
+      }
+    ],
+    "firstName": "Omega",
+    "email": "omega@omega.com",
+    "emailMarketingUnsubscribedAt": "2020-10-30 14:22:12",
+    "phones": [
+      {
+        "number": "79094055045"
+      },
+      {
+        "number": "+79094055044"
+      }
+    ]
+  }
+}
+EOF;
+
+        $request       = new CustomersGetRequest();
+        $request->site = 'bb_demo';
+        $request->by   = ByIdentifier::ID;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers/4770')
+                ->setMethod(RequestMethod::GET)
+                ->setQueryParams(static::encodeFormArray($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client = TestClientFactory::createClient($mock);
+        $costs  = $client->customers->get(4770, $request);
+
+        self::assertModelsCallback($json, $costs, static function ($expected, $actual) {
+            $actualTags                                 = $actual['customer']['tags'];
+            $actual['customer']['tags']                 = array_filter(
+                array_map(static function ($tag) use ($actualTags) {
+                    if (in_array($tag['name'], $actualTags, true)) {
+                        return $tag;
+                    }
+                }, $expected['customer']['tags'])
+            );
+            $expected['customer']['marginSumm']         = (float)$expected['customer']['marginSumm'];
+            $expected['customer']['totalSumm']          = (float)$expected['customer']['totalSumm'];
+            $expected['customer']['averageSumm']        = (float)$expected['customer']['averageSumm'];
+            $expected['customer']['costSumm']           = (float)$expected['customer']['costSumm'];
+            $expected['customer']['personalDiscount']   = (float)$expected['customer']['personalDiscount'];
+            $expected['customer']['cumulativeDiscount'] = (float)$expected['customer']['cumulativeDiscount'];
+
+            self::assertEquals($expected, $actual);
+        });
+    }
+
+    public function testCustomersEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 4770
+}
+EOF;
+
+        $request                      = new CustomersEditRequest();
+        $request->customer            = new Customer();
+        $request->by                  = ByIdentifier::ID;
+        $request->site                = 'aliexpress';
+        $request->customer->firstName = 'Test';
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers/4770/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customers->edit(4770, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
     }
 }

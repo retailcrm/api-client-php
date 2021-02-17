@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
+use Closure;
 use Doctrine\Common\Cache\ArrayCache;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Mock\Client as MockClient;
@@ -204,6 +205,24 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
         }
 
         self::assertEquals($expected, $actual);
+    }
+
+    /**
+     * @param string                                      $expectedJson
+     * @param \RetailCrm\Api\Interfaces\ResponseInterface $response
+     * @param \Closure                                    $callback
+     *
+     * @throws \JsonException
+     */
+    protected static function assertModelsCallback(
+        string $expectedJson,
+        RetailCrmResponseInterface $response,
+        Closure $callback
+    ): void {
+        $expected = json_decode($expectedJson, true, 512, JSON_THROW_ON_ERROR);
+        $actual   = self::getSerializer()->toArray($response);
+
+        $callback($expected, $actual);
     }
 
     /**
