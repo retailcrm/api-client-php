@@ -3,22 +3,22 @@
 /**
  * PHP version 7.3
  *
- * @category CustomerHistory
- * @package  RetailCrm\Api\Model\Entity\Customers
+ * @category CustomerCorporateHistory
+ * @package  RetailCrm\Api\Model\Entity\CustomersCorporate
  */
 
-namespace RetailCrm\Api\Model\Entity\Customers;
+namespace RetailCrm\Api\Model\Entity\CustomersCorporate;
 
 use DateTime;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class CustomerHistory
+ * Class CustomerCorporateHistory
  *
- * @category CustomerHistory
- * @package  RetailCrm\Api\Model\Entity\Customers
+ * @category CustomerCorporateHistory
+ * @package  RetailCrm\Api\Model\Entity\CustomersCorporate
  */
-class CustomerHistory
+class CustomerCorporateHistory
 {
     /**
      * @var int
@@ -101,26 +101,42 @@ class CustomerHistory
     public $apiKey;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Customers\Customer
+     * @var \RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\Customers\Customer")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate")
      * @JMS\SerializedName("customer")
      */
     public $customer;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Customers\HistoryAddress
+     * @var \RetailCrm\Api\Model\Entity\Customers\CustomerAddress
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\Customers\HistoryAddress")
-     * @JMS\SerializedName("address")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Customers\CustomerAddress")
+     * @JMS\SerializedName("customer")
      */
     public $address;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Customers\Customer
+     * @var \RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\Customers\Customer")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate")
      * @JMS\SerializedName("combinedTo")
      */
     public $combinedTo;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerContact
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerContact")
+     * @JMS\SerializedName("customerContact")
+     */
+    public $customerContact;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\CustomersCorporate\Company
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\CustomersCorporate\Company")
+     * @JMS\SerializedName("company")
+     */
+    public $company;
 }

@@ -59,7 +59,7 @@ class Api extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Factory\ClientFactory;
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      *
      * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
      *
@@ -105,7 +105,7 @@ class Api extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Factory\ClientFactory;
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      *
      * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
      *

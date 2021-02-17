@@ -10,7 +10,6 @@
 namespace RetailCrm\Api\Handler\Response;
 
 use Psr\Http\Message\ResponseInterface;
-use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Exception\ApiException;
 use RetailCrm\Api\Model\Response\ErrorResponse;

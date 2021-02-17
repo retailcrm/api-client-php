@@ -10,8 +10,8 @@
 namespace RetailCrm\Api\Handler\Response;
 
 use RetailCrm\Api\Exception\ApiException;
-use RetailCrm\Api\Model\ResponseData;
 use RetailCrm\Api\Model\Response\ErrorResponse;
+use RetailCrm\Api\Model\ResponseData;
 
 /**
  * Class ErrorResponseHandler

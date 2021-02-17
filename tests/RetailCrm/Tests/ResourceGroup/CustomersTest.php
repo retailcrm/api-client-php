@@ -2357,9 +2357,9 @@ EOF;
         );
 
         $client = TestClientFactory::createClient($mock);
-        $costs  = $client->customers->history($request);
+        $response = $client->customers->history($request);
 
-        self::assertModelEqualsToResponse($json, $costs, true);
+        self::assertModelEqualsToResponse($json, $response, true);
     }
 
     public function testCustomersNotes(): void

@@ -3,65 +3,48 @@
 /**
  * PHP version 7.3
  *
- * @category CustomerFilter
- * @package  RetailCrm\Api\Model\Filter\Customers
+ * @category CustomerCorporateFilter
+ * @package  RetailCrm\Api\Model\Filter\CustomersCorporate
  */
 
-namespace RetailCrm\Api\Model\Filter\Customers;
+namespace RetailCrm\Api\Model\Filter\CustomersCorporate;
 
 use RetailCrm\Api\Component\FormData\Mapping as Form;
 
 /**
- * Class CustomerFilter
+ * Class CustomerCorporateFilter
  *
- * @category CustomerFilter
- * @package  RetailCrm\Api\Model\Filter\Customers
+ * @category CustomerCorporateFilter
+ * @package  RetailCrm\Api\Model\Filter\CustomersCorporate
  *
  * @SuppressWarnings(PHPMD.TooManyFields)
- * @SuppressWarnings(PHPMD.ExcessivePublicCount)
  * @SuppressWarnings(PHPMD.LongVariable)
  */
-class CustomerFilter
+class CustomerCorporateFilter
 {
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("isContact")
-     */
-    public $isContact;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("online")
-     */
-    public $online;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("sex")
-     */
-    public $sex;
-
-    /**
-     * @var int
-     *
-     * @Form\Type("int")
-     * @Form\SerializedName("emailMarketingUnsubscribed")
-     */
-    public $emailMarketingUnsubscribed;
-
     /**
      * @var string[]
      *
      * @Form\Type("string[]")
-     * @Form\SerializedName("countries")
+     * @Form\SerializedName("nickName")
      */
-    public $countries;
+    public $nickName;
+
+    /**
+     * @var string
+     *
+     * @Form\Type("string")
+     * @Form\SerializedName("contactName")
+     */
+    public $contactName;
+
+    /**
+     * @var string
+     *
+     * @Form\Type("string")
+     * @Form\SerializedName("addressName")
+     */
+    public $addressName;
 
     /**
      * @var string
@@ -70,14 +53,6 @@ class CustomerFilter
      * @Form\SerializedName("contragentName")
      */
     public $contragentName;
-
-    /**
-     * @var string[]
-     *
-     * @Form\Type("string[]")
-     * @Form\SerializedName("contragentTypes")
-     */
-    public $contragentTypes;
 
     /**
      * @var string
@@ -118,6 +93,14 @@ class CustomerFilter
      * @Form\SerializedName("contragentBankAccount")
      */
     public $contragentBankAccount;
+
+    /**
+     * @var string[]
+     *
+     * @Form\Type("string[]")
+     * @Form\SerializedName("contragentTypes")
+     */
+    public $contragentTypes;
 
     /**
      * @var string[]
@@ -288,22 +271,6 @@ class CustomerFilter
     public $ids;
 
     /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("segment")
-     */
-    public $segment;
-
-    /**
-     * @var int[]
-     *
-     * @Form\Type("int[]")
-     * @Form\SerializedName("mgChannels")
-     */
-    public $mgChannels;
-
-    /**
      * @var string[]
      *
      * @Form\Type("string[]")
@@ -326,38 +293,6 @@ class CustomerFilter
      * @Form\SerializedName("managerGroups")
      */
     public $managerGroups;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("firstWebVisitFrom")
-     */
-    public $firstWebVisitFrom;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("firstWebVisitTo")
-     */
-    public $firstWebVisitTo;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("lastWebVisitFrom")
-     */
-    public $lastWebVisitFrom;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("lastWebVisitTo")
-     */
-    public $lastWebVisitTo;
 
     /**
      * @var string
@@ -408,98 +343,26 @@ class CustomerFilter
     public $lastOrderTo;
 
     /**
-     * @var array<string, mixed>
+     * @var mixed[][]
      *
      * @Form\Type("array")
-     * @Form\SerializedName("customFields")
+     * @Form\SerializedName("CustomersCorporate")
      */
-    public $customFields;
+    public $CustomersCorporate;
+
+    /**
+     * @var int[]
+     *
+     * @Form\Type("int[]")
+     * @Form\SerializedName("contactIds")
+     */
+    public $contactIds;
 
     /**
      * @var string
      *
      * @Form\Type("string")
-     * @Form\SerializedName("browserId")
+     * @Form\SerializedName("companyName")
      */
-    public $browserId;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("commentary")
-     */
-    public $commentary;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("sourceName")
-     */
-    public $sourceName;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("mediumName")
-     */
-    public $mediumName;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("campaignName")
-     */
-    public $campaignName;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("keywordName")
-     */
-    public $keywordName;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("adContentName")
-     */
-    public $adContentName;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("mgCustomerId")
-     */
-    public $mgCustomerId;
-
-    /**
-     * @var string[]
-     *
-     * @Form\Type("string[]")
-     * @Form\SerializedName("tags")
-     */
-    public $tags;
-
-    /**
-     * @var string[]
-     *
-     * @Form\Type("string[]")
-     * @Form\SerializedName("attachedTags")
-     */
-    public $attachedTags;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("mgCustomerIds")
-     */
-    public $mgCustomerIds;
+    public $companyName;
 }

@@ -44,7 +44,7 @@ class Customers extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Filter\Customers\CustomerFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersRequest;
@@ -102,7 +102,7 @@ class Customers extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Enum\Customers\SerializedCustomerReference;
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
      *
@@ -161,7 +161,7 @@ class Customers extends AbstractApiResourceGroup
      * ```php
      * use RetailCrm\Api\Enum\Customers\ContragentType;
      * use RetailCrm\Api\Enum\Customers\CustomerType;
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Entity\Customers\Customer;
      * use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
@@ -243,7 +243,7 @@ class Customers extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
      * use RetailCrm\Api\Model\Request\Customers\CustomersFixExternalIdsRequest;
@@ -298,7 +298,7 @@ class Customers extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;

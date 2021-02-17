@@ -28,6 +28,14 @@ class CustomerAddress
     public $id;
 
     /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("isMain")
+     */
+    public $isMain;
+
+    /**
      * @var string
      *
      * @JMS\Type("string")

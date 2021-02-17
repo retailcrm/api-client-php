@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category HistoryUser
- * @package  RetailCrm\Api\Model\Entity\Customers
+ * @package  RetailCrm\Api\Model\Entity
  */
 
-namespace RetailCrm\Api\Model\Entity\Customers;
+namespace RetailCrm\Api\Model\Entity;
 
 use JMS\Serializer\Annotation as JMS;
 
@@ -15,7 +15,7 @@ use JMS\Serializer\Annotation as JMS;
  * Class HistoryUser
  *
  * @category HistoryUser
- * @package  RetailCrm\Api\Model\Entity\Customers
+ * @package  RetailCrm\Api\Model\Entity
  */
 class HistoryUser
 {

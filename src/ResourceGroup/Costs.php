@@ -40,7 +40,7 @@ class Costs extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Filter\Costs\CostFilter;
      * use RetailCrm\Api\Model\Request\Costs\CostsRequest;
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      *
      * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
      *
@@ -94,7 +94,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Request\Costs\CostsDeleteRequest;
      *
@@ -146,7 +146,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Entity\Costs\Cost;
      * use RetailCrm\Api\Model\Request\Costs\CostsUploadRequest;
@@ -214,7 +214,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Entity\Costs\Cost;
      * use RetailCrm\Api\Model\Request\Costs\CostsCreateRequest;
@@ -283,7 +283,7 @@ class Costs extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Factory\ClientFactory;
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      *
      * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
      *
@@ -331,7 +331,7 @@ class Costs extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Factory\ClientFactory;
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      *
      * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
      *
@@ -378,7 +378,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Exception\ApiException;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Entity\Costs\Cost;
      * use RetailCrm\Api\Model\Request\Costs\CostsEditRequest;

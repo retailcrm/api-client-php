@@ -100,8 +100,8 @@ abstract class AbstractApiResourceGroup
         ?RequestInterface $request,
         string $type
     ): ResponseInterface {
-        $method = strtoupper($method);
-        $psrRequest  = $this->requestTransformer->createPsrRequest(
+        $method     = strtoupper($method);
+        $psrRequest = $this->requestTransformer->createPsrRequest(
             $method,
             $this->route($route),
             $request

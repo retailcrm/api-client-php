@@ -17,6 +17,7 @@ use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
 use RetailCrm\Api\ResourceGroup\Api;
 use RetailCrm\Api\ResourceGroup\Costs;
 use RetailCrm\Api\ResourceGroup\Customers;
+use RetailCrm\Api\ResourceGroup\CustomersCorporate;
 use RetailCrm\Api\ResourceGroup\CustomFields;
 
 /**
@@ -43,6 +44,9 @@ class Client
     /** @var \RetailCrm\Api\ResourceGroup\Customers */
     public $customers;
 
+    /** @var \RetailCrm\Api\ResourceGroup\CustomersCorporate */
+    public $customersCorporate;
+
     /**
      * Client constructor.
      *
@@ -65,6 +69,13 @@ class Client
         $this->costs = new Costs($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->customFields = new CustomFields($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->customers = new Customers($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->customersCorporate = new CustomersCorporate(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $logger
+        );
     }
 
     /**

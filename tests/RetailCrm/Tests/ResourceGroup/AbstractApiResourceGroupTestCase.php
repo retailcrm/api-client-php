@@ -270,7 +270,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
     /**
      * @return \JMS\Serializer\SerializerInterface
      */
-    private static function getSerializer(): SerializerInterface
+    protected static function getSerializer(): SerializerInterface
     {
         if (null === static::$serializer) {
             static::$serializer = SerializerBuilder::create()
