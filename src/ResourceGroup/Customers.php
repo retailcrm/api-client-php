@@ -45,11 +45,11 @@ class Customers extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Filter\Customers\CustomerFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                = new CustomersRequest();
      * $request->limit         = 20;
@@ -103,10 +103,10 @@ class Customers extends AbstractApiResourceGroup
      * ```php
      * use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                = new CustomersCombineRequest();
      * $request->customers     = [
@@ -162,7 +162,7 @@ class Customers extends AbstractApiResourceGroup
      * use RetailCrm\Api\Enum\Customers\ContragentType;
      * use RetailCrm\Api\Enum\Customers\CustomerType;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\Customers\Customer;
      * use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
      * use RetailCrm\Api\Model\Entity\Customers\CustomerContragent;
@@ -170,7 +170,7 @@ class Customers extends AbstractApiResourceGroup
      * use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
      * use RetailCrm\Api\Model\Request\Customers\CustomersCreateRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $customer                             = new Customer();
      * $customer->type                       = CustomerType::CUSTOMER;
@@ -244,11 +244,11 @@ class Customers extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
      * use RetailCrm\Api\Model\Request\Customers\CustomersFixExternalIdsRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request            = new CustomersFixExternalIdsRequest();
      * $request->customers = [
@@ -299,11 +299,11 @@ class Customers extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                  = new CustomersHistoryRequest();
      * $request->limit           = 20;
@@ -354,12 +354,12 @@ class Customers extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Filter\Customers\CustomerNoteFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                              = new CustomersNotesRequest();
      * $request->limit                       = 20;
@@ -412,13 +412,13 @@ class Customers extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Customers\Customer;
      * use RetailCrm\Api\Model\Entity\Customers\CustomerNote;
      * use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                             = new CustomersNotesCreateRequest();
      * $request->site                       = 'moysklad';
@@ -471,10 +471,10 @@ class Customers extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * try {
      *     $response = $client->customers->notesDelete(1);
@@ -519,7 +519,7 @@ class Customers extends AbstractApiResourceGroup
      * ```php
      * use RetailCrm\Api\Enum\Customers\ContragentType;
      * use RetailCrm\Api\Enum\Customers\CustomerType;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Customers\Customer;
      * use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
@@ -529,7 +529,7 @@ class Customers extends AbstractApiResourceGroup
      * use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
      * use RetailCrm\Api\Model\Request\Customers\CustomersUploadRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $customer                             = new Customer();
      * $customer->type                       = CustomerType::CUSTOMER;
@@ -605,11 +605,11 @@ class Customers extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Enum\ByIdentifier;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Request\Customers\CustomersGetRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request       = new CustomersGetRequest();
      * $request->site = 'bb_demo';
@@ -660,12 +660,12 @@ class Customers extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Enum\ByIdentifier;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Customers\Customer;
      * use RetailCrm\Api\Model\Request\Customers\CustomersEditRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                      = new CustomersEditRequest();
      * $request->customer            = new Customer();

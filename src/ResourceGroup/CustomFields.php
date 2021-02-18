@@ -40,11 +40,11 @@ class CustomFields extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Filter\CustomFields\CustomFieldFilter;
      * use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request = new CustomFieldsRequest();
      * $request->page = 1;
@@ -101,11 +101,11 @@ class CustomFields extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Filter\CustomFields\CustomDictionaryFilter;
      * use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsDictionariesRequest;
 
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
 
      * $request = new CustomFieldsDictionariesRequest();
      * $request->page = 1;
@@ -158,11 +158,11 @@ class CustomFields extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary;
      * use RetailCrm\Api\Model\Entity\CustomFields\SerializedCustomDictionaryElement;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $dictionary                = new CustomDictionary();
      * $element                   = new SerializedCustomDictionaryElement();
@@ -221,9 +221,9 @@ class CustomFields extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * try {
      *     $response = $client->customFields->dictionariesGet('test');
@@ -269,11 +269,11 @@ class CustomFields extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary;
      * use RetailCrm\Api\Model\Entity\CustomFields\SerializedCustomDictionaryElement;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $dictionary                = new CustomDictionary();
      * $element                   = new SerializedCustomDictionaryElement();
@@ -336,10 +336,10 @@ class CustomFields extends AbstractApiResourceGroup
      * use RetailCrm\Api\Enum\CustomFields\CustomFieldType;
      * use RetailCrm\Api\Enum\CustomFields\CustomFieldViewMode;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\CustomFields\CustomField;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $field                 = new CustomField();
      * $field->name           = 'Description';
@@ -402,9 +402,9 @@ class CustomFields extends AbstractApiResourceGroup
      * ```php
      * use RetailCrm\Api\Enum\CustomFields\CustomFieldEntity;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * try {
      *     $response = $client->customFields->get(CustomFieldEntity::ORDER, 'item');
@@ -455,10 +455,10 @@ class CustomFields extends AbstractApiResourceGroup
      * use RetailCrm\Api\Enum\CustomFields\CustomFieldType;
      * use RetailCrm\Api\Enum\CustomFields\CustomFieldViewMode;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\CustomFields\CustomField;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $field                 = new CustomField();
      * $field->name           = 'Description';

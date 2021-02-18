@@ -23,11 +23,12 @@ use RetailCrm\Api\ResourceGroup\CustomFields;
 /**
  * Class Client
  *
- * Do not instantiate API client directly! Use `ClientFactory` or `ClientBuilder`.
+ * Do not instantiate API client directly! Use `ClientFactory`, `SimpleClientFactory` or `ClientBuilder`.
  *
  * @category Client
  * @package  RetailCrm\Api
  * @see \RetailCrm\Api\Factory\ClientFactory
+ * @see \RetailCrm\Api\Factory\SimpleClientFactory
  * @see \RetailCrm\Api\Builder\ClientBuilder
  */
 class Client

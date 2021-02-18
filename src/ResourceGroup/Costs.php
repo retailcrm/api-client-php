@@ -37,12 +37,12 @@ class Costs extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Filter\Costs\CostFilter;
      * use RetailCrm\Api\Model\Request\Costs\CostsRequest;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $costsRequest = new CostsRequest();
      * $costsRequest->limit = 20;
@@ -95,10 +95,10 @@ class Costs extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Request\Costs\CostsDeleteRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request      = new CostsDeleteRequest();
      * $request->ids = [2, 3, 5, 8, 13, 21];
@@ -147,12 +147,12 @@ class Costs extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\Costs\Cost;
      * use RetailCrm\Api\Model\Request\Costs\CostsUploadRequest;
      * use RetailCrm\Api\Model\Entity\Source;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                = new CostsUploadRequest();
      * $cost                   = new Cost();
@@ -215,12 +215,12 @@ class Costs extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\Costs\Cost;
      * use RetailCrm\Api\Model\Request\Costs\CostsCreateRequest;
      * use RetailCrm\Api\Model\Entity\Source;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                         = new CostsCreateRequest();
      * $request->site                   = 'aliexpress';
@@ -282,10 +282,10 @@ class Costs extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * try {
      *     $response = $client->costs->get(1);
@@ -330,10 +330,10 @@ class Costs extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * try {
      *     $response = $client->costs->delete(1);
@@ -379,12 +379,12 @@ class Costs extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\Costs\Cost;
      * use RetailCrm\Api\Model\Request\Costs\CostsEditRequest;
      * use RetailCrm\Api\Model\Entity\Source;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                         = new CostsEditRequest();
      * $request->site                   = 'aliexpress';

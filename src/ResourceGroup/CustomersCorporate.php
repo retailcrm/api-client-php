@@ -35,12 +35,12 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Filter\CustomersCorporate\CustomerCorporateFilter;
      * use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                        = new CustomersCorporateRequest();
      * $request->filter                = new CustomerCorporateFilter();
@@ -94,11 +94,11 @@ class CustomersCorporate extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                = new CustomersCombineRequest();
      * $request->customers     = [
@@ -152,7 +152,7 @@ class CustomersCorporate extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Model\Entity\Source;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Enum\Customers\CustomerType;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
@@ -163,7 +163,7 @@ class CustomersCorporate extends AbstractApiResourceGroup
      * use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer;
      * use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateCreateRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $address       = new CustomerAddress();
      * $address->text = '(719) 395-5645 13990 W County 270 Rd Nathrop, Colorado(CO), 81236';
@@ -245,11 +245,11 @@ class CustomersCorporate extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
      * use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateFixExternalIdsRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request            = new CustomersCorporateFixExternalIdsRequest();
      * $request->customersCorporate = [
@@ -299,12 +299,12 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Factory\ClientFactory;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
      *
-     * $client = ClientFactory::create('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                  = new CustomersHistoryRequest();
      * $request->limit           = 20;
