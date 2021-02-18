@@ -14,13 +14,13 @@ use RetailCrm\Api\Builder\ClientBuilder;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
 use RetailCrm\Api\Client;
 use RetailCrm\Api\Handler\Request\HeaderAuthenticatorHandler;
-use RetailCrm\Api\Interfaces\FormEncoderInterface;
 
 /**
  * Class SimpleClientFactory
  *
  * @category SimpleClientFactory
  * @package  RetailCrm\Api\Factory
+ * @see \RetailCrm\Api\Factory\ClientFactory
  */
 class SimpleClientFactory
 {

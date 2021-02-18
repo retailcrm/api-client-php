@@ -59,6 +59,8 @@ class ClientFactory implements ClientFactoryInterface
     private $responseTransformer;
 
     /**
+     * Sets cache directory which will be used to store metadata cache.
+     *
      * @param string $cacheDir
      *
      * @return ClientFactory
@@ -70,6 +72,8 @@ class ClientFactory implements ClientFactoryInterface
     }
 
     /**
+     * Sets cache implementation which will be used to store metadata cache.
+     *
      * @param \Doctrine\Common\Cache\Cache $cache
      *
      * @return ClientFactory
