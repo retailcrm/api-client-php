@@ -11,10 +11,21 @@ namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersGetRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesCreateRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesEditRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateCreateRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateFixExternalIdsRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateUploadRequest;
+use RetailCrm\Api\Model\Response\Customers\CustomerNotesResponse;
+use RetailCrm\Api\Model\Response\Customers\CustomersUploadResponse;
+use RetailCrm\Api\Model\Response\CustomersCorporate\CustomersCorporateAddressesResponse;
+use RetailCrm\Api\Model\Response\CustomersCorporate\CustomersCorporateGetResponse;
 use RetailCrm\Api\Model\Response\CustomersCorporate\CustomersCorporateHistoryResponse;
 use RetailCrm\Api\Model\Response\CustomersCorporate\CustomersCorporateResponse;
 use RetailCrm\Api\Model\Response\IdResponse;
@@ -346,6 +357,498 @@ class CustomersCorporate extends AbstractApiResourceGroup
             'customers-corporate/history',
             $request,
             CustomersCorporateHistoryResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/customers-corporate/notes" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Filter\Customers\CustomerNoteFilter;
+     * use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request                              = new CustomersNotesRequest();
+     * $request->limit                       = 20;
+     * $request->page                        = 1;
+     * $request->filter                      = new CustomerNoteFilter();
+     * $request->filter->customerExternalIds = ['10'];
+     * $request->filter->createdAtFrom       = '2019-08-06 12:00:00';
+     * $request->filter->text                = 'note';
+     *
+     * try {
+     *     $response = $client->customersCorporate->notes($request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Notes: ' . print_r($response->notes, true);
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest|null $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Customers\CustomerNotesResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     */
+    public function notes(?CustomersNotesRequest $request = null): CustomerNotesResponse
+    {
+        /** @var CustomerNotesResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'customers-corporate/notes',
+            $request,
+            CustomerNotesResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/customers-corporate/notes/create" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Entity\Customers\Customer;
+     * use RetailCrm\Api\Model\Entity\Customers\CustomerNote;
+     * use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request                             = new CustomersNotesCreateRequest();
+     * $request->site                       = 'moysklad';
+     * $request->note                       = new CustomerNote();
+     * $request->note->customer             = new Customer();
+     * $request->note->customer->externalId = '10';
+     * $request->note->managerId            = 21;
+     * $request->note->text                 = 'Text';
+     *
+     * try {
+     *     $response = $client->customersCorporate->notesCreate($request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Created note with id: ' . $response->id;
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\IdResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     */
+    public function notesCreate(CustomersNotesCreateRequest $request): IdResponse
+    {
+        /** @var IdResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'customers-corporate/notes/create',
+            $request,
+            IdResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/customers-corporate/notes/{id}/delete" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * try {
+     *     $response = $client->customersCorporate->notesDelete(1);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     * ```
+     *
+     * @param int $id
+     *
+     * @return \RetailCrm\Api\Model\Response\SuccessResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function notesDelete(int $id): SuccessResponse
+    {
+        /** @var IdResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            sprintf('customers-corporate/notes/%d/delete', $id),
+            null,
+            IdResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/customers-corporate/upload" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\Customers\CustomerType;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
+     * use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
+     * use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
+     * use RetailCrm\Api\Model\Entity\CustomersCorporate\Company;
+     * use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerContact;
+     * use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
+     * use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer;
+     * use RetailCrm\Api\Model\Entity\Source;
+     * use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateUploadRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $address       = new CustomerAddress();
+     * $address->text = '(719) 395-5645 13990 W County 270 Rd Nathrop, Colorado(CO), 81236';
+     *
+     * $contact                       = new CustomerContact();
+     * $contact->customer             = new SerializedRelationAbstractCustomer();
+     * $contact->customer->externalId = 'test_10';
+     * $contact->customer->site       = 'aliexpress';
+     *
+     * $company         = new Company();
+     * $company->name   = 'Test Company';
+     * $company->brand  = 'Test Brand';
+     * $company->isMain = true;
+     *
+     * $customer                   = new CustomerCorporate();
+     * $customer->source           = new Source();
+     * $customer->addresses        = [$address];
+     * $customer->customerContacts = [$contact];
+     * $customer->companies        = [$company];
+     * $customer->source->source   = 'chats';
+     * $customer->type             = CustomerType::CORPORATE_CUSTOMER;
+     * $customer->externalId       = 'test_20';
+     * $customer->managerId        = 24;
+     * $customer->nickName         = 'Test Corp Company';
+     * $customer->tags             = [
+     *     new CustomerTag('first'),
+     *     new CustomerTag('second'),
+     *     new CustomerTag('third'),
+     * ];
+     * $customer->customFields     = [
+     *     'galkatrue' => true
+     * ];
+     *
+     * $request                     = new CustomersCorporateUploadRequest();
+     * $request->site               = 'aliexpress';
+     * $request->customersCorporate = [$customer];
+     *
+     * try {
+     *     $response = $client->customersCorporate->upload($request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Uploaded customers: ' . implode(', ', array_map(static function (FixExternalRow $row) {
+     *         return $row->id;
+     * }, $response->uploadedCustomers));
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateUploadRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Customers\CustomersUploadResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function upload(CustomersCorporateUploadRequest $request): CustomersUploadResponse
+    {
+        /** @var CustomersUploadResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'customers-corporate/upload',
+            $request,
+            CustomersUploadResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/customers-corporate/{externalId}" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\ByIdentifier;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Request\Customers\CustomersGetRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request       = new CustomersGetRequest();
+     * $request->site = 'bb_demo';
+     * $request->by   = ByIdentifier::ID;
+     *
+     * try {
+     *     $response = $client->customersCorporate->get(4770, $request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Corporate customer: ' . print_r($response->customerCorporate);
+     * ```
+     *
+     * @param string|int                                                      $identifier
+     * @param \RetailCrm\Api\Model\Request\Customers\CustomersGetRequest|null $request
+     *
+     * @return \RetailCrm\Api\Model\Response\CustomersCorporate\CustomersCorporateGetResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function get($identifier, ?CustomersGetRequest $request = null): CustomersCorporateGetResponse
+    {
+        /** @var CustomersCorporateGetResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'customers-corporate/' . $identifier,
+            $request,
+            CustomersCorporateGetResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/customers-corporate/{externalId}/addresses" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\ByIdentifier;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Filter\CustomersCorporate\CustomerAddressFilter;
+     * use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request              = new CustomersCorporateAddressesRequest();
+     * $request->filter      = new CustomerAddressFilter();
+     * $request->site        = 'aliexpress';
+     * $request->by          = ByIdentifier::ID;
+     * $request->filter->ids = [1];
+     *
+     * try {
+     *     $response = $client->customersCorporate->addresses(1, $request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Addresses: ' . print_r($response->addresses, true);
+     * ```
+     *
+     * @param string|int                                                                              $identifier
+     * @param \RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesRequest|null $request
+     *
+     * @return \RetailCrm\Api\Model\Response\CustomersCorporate\CustomersCorporateAddressesResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function addresses(
+        $identifier,
+        ?CustomersCorporateAddressesRequest $request = null
+    ): CustomersCorporateAddressesResponse {
+        /** @var CustomersCorporateAddressesResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'customers-corporate/' . $identifier . '/addresses',
+            $request,
+            CustomersCorporateAddressesResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/customers-corporate/{externalId}/addresses/create" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\ByIdentifier;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
+     * use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesCreateRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request                = new CustomersCorporateAddressesCreateRequest();
+     * $request->address       = new CustomerAddress();
+     * $request->site          = 'aliexpress';
+     * $request->by            = ByIdentifier::ID;
+     * $request->address->text = '(719) 395-5645 13990 W County 270 Rd Nathrop, Colorado(CO), 81236';
+     *
+     * try {
+     *     $response = $client->customersCorporate->addressesCreate(1, $request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Address ID: ' . $response->id;
+     * ```
+     *
+     * @param int|string                                                                               $identifier
+     * @param \RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesCreateRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\IdResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function addressesCreate($identifier, CustomersCorporateAddressesCreateRequest $request): IdResponse
+    {
+        /** @var IdResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'customers-corporate/' . $identifier . '/addresses/create',
+            $request,
+            IdResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/customers-corporate/{externalId}/addresses/{entityExternalId}/edit" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\ByIdentifier;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
+     * use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesEditRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request                = new CustomersCorporateAddressesEditRequest();
+     * $request->address       = new CustomerAddress();
+     * $request->site          = 'aliexpress';
+     * $request->by            = ByIdentifier::ID;
+     * $request->entityBy      = ByIdentifier::ID;
+     * $request->address->text = '(719) 395-5645 13990 W County 270 Rd Nathrop, Colorado(CO), 81236';
+     *
+     * try {
+     *     $response = $client->customersCorporate->addressesEdit(1, 1, $request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     *
+     * echo 'Edited address ID: ' . $response->id;
+     * ```
+     *
+     * @param int|string                                                                             $customerId
+     * @param int|string                                                                             $addressId
+     * @param \RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesEditRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\IdResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function addressesEdit($customerId, $addressId, CustomersCorporateAddressesEditRequest $request): IdResponse
+    {
+        /** @var IdResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'customers-corporate/' . $customerId . '/addresses/' . $addressId . '/edit',
+            $request,
+            IdResponse::class
         );
         return $response;
     }

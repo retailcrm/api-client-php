@@ -2453,6 +2453,27 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
+    public function testCustomersNotesDelete(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers/notes/1/delete')
+                ->setMethod(RequestMethod::POST),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customers->notesDelete(1);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
     public function testCustomersUpload(): void
     {
         $json = <<<'EOF'

@@ -9,9 +9,12 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
+use RetailCrm\Api\Enum\ByIdentifier;
 use RetailCrm\Api\Enum\Customers\CustomerType;
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
+use RetailCrm\Api\Model\Entity\Customers\CustomerNote;
 use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
 use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
@@ -21,12 +24,21 @@ use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer;
 use RetailCrm\Api\Model\Entity\Source;
 use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
+use RetailCrm\Api\Model\Filter\Customers\CustomerNoteFilter;
+use RetailCrm\Api\Model\Filter\CustomersCorporate\CustomerAddressFilter;
 use RetailCrm\Api\Model\Filter\CustomersCorporate\CustomerCorporateFilter;
 use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersGetRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesCreateRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesEditRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateCreateRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateFixExternalIdsRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateUploadRequest;
 use RetailCrm\Test\TestClientFactory;
 
 /**
@@ -514,5 +526,344 @@ EOF;
 
             self::assertEquals($expected, $actual);
         });
+    }
+
+    public function testCustomersNotes(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "pagination": {
+    "limit": 20,
+    "totalCount": 2,
+    "currentPage": 1,
+    "totalPageCount": 1
+  },
+  "notes": [
+    {
+      "customer": {
+        "site": "moysklad",
+        "id": 1057,
+        "externalId": "10",
+        "type": "customer"
+      },
+      "id": 42,
+      "text": "note",
+      "createdAt": "2019-08-06 18:04:56"
+    },
+    {
+      "customer": {
+        "site": "moysklad",
+        "id": 1057,
+        "externalId": "10",
+        "type": "customer"
+      },
+      "id": 43,
+      "text": "note2",
+      "createdAt": "2019-08-06 18:05:27"
+    }
+  ]
+}
+EOF;
+
+        $request                              = new CustomersNotesRequest();
+        $request->limit                       = 20;
+        $request->page                        = 1;
+        $request->filter                      = new CustomerNoteFilter();
+        $request->filter->customerExternalIds = ['10'];
+        $request->filter->createdAtFrom       = '2019-08-06 12:00:00';
+        $request->filter->text                = 'note';
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/notes')
+                ->setMethod(RequestMethod::GET)
+                ->setQueryParams(static::encodeFormArray($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client = TestClientFactory::createClient($mock);
+        $costs  = $client->customersCorporate->notes($request);
+
+        self::assertModelEqualsToResponse($json, $costs);
+    }
+
+    public function testCustomersNotesCreate(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 1
+}
+EOF;
+
+        $request                             = new CustomersNotesCreateRequest();
+        $request->site                       = 'moysklad';
+        $request->note                       = new CustomerNote();
+        $request->note->customer             = new Customer();
+        $request->note->customer->externalId = '10';
+        $request->note->managerId            = 21;
+        $request->note->text                 = 'Text';
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/notes/create')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->notesCreate($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCustomersNotesDelete(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/notes/1/delete')
+                ->setMethod(RequestMethod::POST),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->notesDelete(1);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testUpload(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "uploadedCustomers": [{
+    "id": 1,
+    "externalId": "test_20"
+  }]
+}
+EOF;
+
+        $address       = new CustomerAddress();
+        $address->text = '(719) 395-5645 13990 W County 270 Rd Nathrop, Colorado(CO), 81236';
+
+        $contact                       = new CustomerContact();
+        $contact->customer             = new SerializedRelationAbstractCustomer();
+        $contact->customer->externalId = 'test_10';
+        $contact->customer->site       = 'aliexpress';
+
+        $company         = new Company();
+        $company->name   = 'Test Company';
+        $company->brand  = 'Test Brand';
+        $company->isMain = true;
+
+        $customer                   = new CustomerCorporate();
+        $customer->source           = new Source();
+        $customer->addresses        = [$address];
+        $customer->customerContacts = [$contact];
+        $customer->companies        = [$company];
+        $customer->source->source   = 'chats';
+        $customer->type             = CustomerType::CORPORATE_CUSTOMER;
+        $customer->externalId       = 'test_20';
+        $customer->managerId        = 24;
+        $customer->nickName         = 'Test Corp Company';
+        $customer->tags             = [
+            new CustomerTag('first'),
+            new CustomerTag('second'),
+            new CustomerTag('third'),
+        ];
+        $customer->customFields     = [
+            'galkatrue' => true
+        ];
+
+        $request                     = new CustomersCorporateUploadRequest();
+        $request->site               = 'moysklad';
+        $request->customersCorporate = [$customer];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/upload')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->upload($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCustomersGet(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "customerCorporate": {
+    "type": "customer_corporate",
+    "id": 5043,
+    "externalId": "test_20",
+    "nickName": "Test Corp Company",
+    "mainAddress": {
+      "id": 3554
+    },
+    "createdAt": "2021-02-17 14:42:52",
+    "managerId": 24,
+    "vip": false,
+    "bad": false,
+    "site": "aliexpress",
+    "tags": [
+
+    ],
+    "marginSumm": 0,
+    "totalSumm": 0,
+    "averageSumm": 0,
+    "ordersCount": 0,
+    "costSumm": 0,
+    "customFields": {
+      "galkatrue": true
+    },
+    "personalDiscount": 0,
+    "mainCompany": {
+      "id": 772,
+      "name": "Test Company"
+    }
+  }
+}
+EOF;
+
+        $request       = new CustomersGetRequest();
+        $request->site = 'aliexpress';
+        $request->by   = ByIdentifier::ID;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/5043')
+                ->setMethod(RequestMethod::GET)
+                ->setQueryParams(static::encodeFormArray($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->get(5043, $request);
+
+        self::assertModelsCallback($json, $response, static function ($expected, $actual) {
+            $expected['customerCorporate']['marginSumm']         = (float)$expected['customerCorporate']['marginSumm'];
+            $expected['customerCorporate']['totalSumm']          = (float)$expected['customerCorporate']['totalSumm'];
+            $expected['customerCorporate']['averageSumm']        = (float)$expected['customerCorporate']['averageSumm'];
+            $expected['customerCorporate']['costSumm']           = (float)$expected['customerCorporate']['costSumm'];
+            $expected['customerCorporate']['personalDiscount']   =
+                (float)$expected['customerCorporate']['personalDiscount'];
+
+            self::assertEquals($expected, $actual);
+        });
+    }
+
+    public function testAddresses(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "addresses": [
+    {
+      "id": 3554,
+      "text": "(719) 395-5645 13990 W County 270 Rd Nathrop, Colorado(CO), 81236",
+      "isMain": true
+    }
+  ],
+  "pagination": {
+    "limit": 20,
+    "totalCount": 1,
+    "currentPage": 1,
+    "totalPageCount": 1
+  }
+}
+EOF;
+
+        $request              = new CustomersCorporateAddressesRequest();
+        $request->filter      = new CustomerAddressFilter();
+        $request->site        = 'aliexpress';
+        $request->by          = ByIdentifier::ID;
+        $request->filter->ids = [3554];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/5043/addresses')
+                ->setMethod(RequestMethod::GET)
+                ->setQueryParams(static::encodeFormArray($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->addresses(5043, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testAddressesCreate(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 3559
+}
+EOF;
+
+        $request                = new CustomersCorporateAddressesCreateRequest();
+        $request->address       = new CustomerAddress();
+        $request->site          = 'aliexpress';
+        $request->by            = ByIdentifier::ID;
+        $request->address->text = '(719) 395-5645 13990 W County 270 Rd Nathrop, Colorado(CO), 81236';
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/5043/addresses/create')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->addressesCreate(5043, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testAddressesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 3559
+}
+EOF;
+
+        $request                = new CustomersCorporateAddressesEditRequest();
+        $request->address       = new CustomerAddress();
+        $request->site          = 'aliexpress';
+        $request->by            = ByIdentifier::ID;
+        $request->entityBy      = ByIdentifier::ID;
+        $request->address->text = '(719) 395-5645 13990 W County 270 Rd Nathrop, Colorado2(CO), 81236';
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/5043/addresses/3559/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->addressesEdit(5043, 3559, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
     }
 }

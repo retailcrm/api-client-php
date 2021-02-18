@@ -17,6 +17,8 @@ use RetailCrm\Api\Interfaces\ResponseInterface;
  *
  * @category SuccessResponse
  * @package  RetailCrm\Api\Model\Response
+ *
+ * @SuppressWarnings(PHPMD.NumberOfChildren)
  */
 class SuccessResponse implements ResponseInterface
 {
