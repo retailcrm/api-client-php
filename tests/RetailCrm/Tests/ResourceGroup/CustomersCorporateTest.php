@@ -9,7 +9,6 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
-use DateTimeInterface;
 use RetailCrm\Api\Enum\Customers\CustomerType;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
@@ -509,6 +508,11 @@ EOF;
         $client   = TestClientFactory::createClient($mock);
         $response = $client->customersCorporate->history($request);
 
-        self::assertModelEqualsToResponse($json, $response);
+        self::assertModelsCallback($json, $response, static function ($expected, $actual) {
+            $expected = static::clearArray($expected);
+            $actual   = static::clearArray($actual);
+
+            self::assertEquals($expected, $actual);
+        });
     }
 }

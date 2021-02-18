@@ -28,6 +28,14 @@ class CustomerAddress
     public $id;
 
     /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("name")
+     */
+    public $name;
+
+    /**
      * @var bool
      *
      * @JMS\Type("bool")
@@ -194,12 +202,4 @@ class CustomerAddress
      * @JMS\SerializedName("externalId")
      */
     public $externalId;
-
-    /**
-     * @var string
-     *
-     * @JMS\Type("string")
-     * @JMS\SerializedName("name")
-     */
-    public $name;
 }

@@ -112,7 +112,7 @@ class CustomerCorporateHistory
      * @var \RetailCrm\Api\Model\Entity\Customers\CustomerAddress
      *
      * @JMS\Type("RetailCrm\Api\Model\Entity\Customers\CustomerAddress")
-     * @JMS\SerializedName("customer")
+     * @JMS\SerializedName("address")
      */
     public $address;
 

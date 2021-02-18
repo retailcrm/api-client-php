@@ -93,9 +93,9 @@ class Company
     public $contragent;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\CustomersCorporate\EntityWithExternalIdInput
+     * @var \RetailCrm\Api\Model\Entity\Customers\CustomerAddress
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\CustomersCorporate\EntityWithExternalIdInput")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Customers\CustomerAddress")
      * @JMS\SerializedName("address")
      */
     public $address;
@@ -107,4 +107,36 @@ class Company
      * @JMS\SerializedName("customFields")
      */
     public $customFields;
+
+    /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("marginSumm")
+     */
+    public $marginSumm;
+
+    /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("totalSumm")
+     */
+    public $totalSumm;
+
+    /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("averageSumm")
+     */
+    public $averageSumm;
+
+    /**
+     * @var int
+     *
+     * @JMS\Type("int")
+     * @JMS\SerializedName("ordersCount")
+     */
+    public $ordersCount;
 }
