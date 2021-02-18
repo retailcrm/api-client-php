@@ -11,20 +11,10 @@ namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
-use RetailCrm\Api\Model\Request\Customers\CustomersEditRequest;
-use RetailCrm\Api\Model\Request\Customers\CustomersGetRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
-use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
-use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
-use RetailCrm\Api\Model\Request\Customers\CustomersUploadRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateCreateRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateFixExternalIdsRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateRequest;
-use RetailCrm\Api\Model\Response\Customers\CustomerNotesResponse;
-use RetailCrm\Api\Model\Response\Customers\CustomersEditResponse;
-use RetailCrm\Api\Model\Response\Customers\CustomersGetResponse;
-use RetailCrm\Api\Model\Response\Customers\CustomersHistoryResponse;
-use RetailCrm\Api\Model\Response\Customers\CustomersUploadResponse;
 use RetailCrm\Api\Model\Response\CustomersCorporate\CustomersCorporateHistoryResponse;
 use RetailCrm\Api\Model\Response\CustomersCorporate\CustomersCorporateResponse;
 use RetailCrm\Api\Model\Response\IdResponse;
@@ -103,7 +93,7 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Enum\Customers\SerializedCustomerReference;
+     * use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;

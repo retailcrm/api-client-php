@@ -20,6 +20,7 @@ use Metadata\Cache\DoctrineCacheAdapter;
 use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Component\Serializer\JmsHandlersInjector;
 use RetailCrm\Api\Enum\CacheDirectories;
+use RetailCrm\Api\Exception\BuilderException;
 use RetailCrm\Api\Interfaces\BuilderInterface;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RuntimeException;
@@ -34,9 +35,6 @@ use RuntimeException;
  */
 class FormEncoderBuilder implements BuilderInterface
 {
-    /** @var string */
-    private $cacheDir;
-
     /** @var \Doctrine\Common\Cache\Cache|null */
     private $cache;
 
@@ -44,13 +42,24 @@ class FormEncoderBuilder implements BuilderInterface
     private $serializer;
 
     /** @var \Doctrine\Common\Cache\Cache|null */
-    private $jsonCache;
-
-    /** @var \Doctrine\Common\Cache\Cache|null */
     private $formCache;
+
+    /** @var \Metadata\Cache\CacheInterface|null */
+    private $jsonCache;
 
     /** @var \Doctrine\Common\Annotations\Reader */
     private $annotationReader;
+
+    /** @var \RetailCrm\Api\Builder\FilesystemCacheBuilder */
+    private $fsCacheBuilder;
+
+    /**
+     * FormEncoderBuilder constructor.
+     */
+    public function __construct()
+    {
+        $this->fsCacheBuilder = new FilesystemCacheBuilder();
+    }
 
     /**
      * Sets cache directory.
@@ -64,7 +73,7 @@ class FormEncoderBuilder implements BuilderInterface
      */
     public function setCacheDir(string $cacheDir): FormEncoderBuilder
     {
-        $this->cacheDir = $cacheDir;
+        $this->fsCacheBuilder->setCacheDir($cacheDir);
         return $this;
     }
 
@@ -123,17 +132,16 @@ class FormEncoderBuilder implements BuilderInterface
 
     /**
      * Builds caches if needed.
+     *
+     * @throws \RetailCrm\Api\Exception\BuilderException
      */
     private function buildCaches(): void
     {
-        if (!empty($this->cacheDir) && is_dir($this->cacheDir)) {
-            $this->createDir($this->cacheDir . CacheDirectories::FORM_DIR);
-            $this->formCache = new FilesystemCache($this->cacheDir . CacheDirectories::FORM_DIR);
-
-            if (null === $this->serializer) {
-                $this->createDir($this->cacheDir . CacheDirectories::JSON_DIR);
-                $this->jsonCache = new FilesystemCache($this->cacheDir . CacheDirectories::JSON_DIR);
-            }
+        if (null !== $this->cache) {
+            $this->formCache = $this->cache;
+            $this->jsonCache = new DoctrineCacheAdapter('retailcrm', $this->cache);
+        } elseif ($this->fsCacheBuilder->canBuild()) {
+            [$this->formCache, $this->jsonCache] = $this->fsCacheBuilder->build();
         }
     }
 
@@ -165,25 +173,9 @@ class FormEncoderBuilder implements BuilderInterface
             ->addDefaultListeners();
 
         if (null !== $this->jsonCache) {
-            $serializerBuilder->setMetadataCache(new DoctrineCacheAdapter('retailcrm', $this->jsonCache));
-        } elseif (null !== $this->cache) {
-            $serializerBuilder->setMetadataCache(new DoctrineCacheAdapter('retailcrm', $this->cache));
+            $serializerBuilder->setMetadataCache($this->jsonCache);
         }
 
         $this->serializer = $serializerBuilder->build();
-    }
-
-    /**
-     * @param string $dir
-     */
-    private function createDir(string $dir): void
-    {
-        if (is_dir($dir)) {
-            return;
-        }
-
-        if (false === mkdir($dir, 0777, true) && false === is_dir($dir)) {
-            throw new RuntimeException(sprintf('Could not create directory "%s".', $dir));
-        }
     }
 }

@@ -21,17 +21,17 @@ use RetailCrm\Api\Interfaces\RequestInterface;
 class CustomersCombineRequest implements RequestInterface
 {
     /**
-     * @var \RetailCrm\Api\Enum\Customers\SerializedCustomerReference
+     * @var \RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference
      *
-     * @Form\Type("RetailCrm\Api\Enum\Customers\SerializedCustomerReference")
+     * @Form\Type("RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference")
      * @Form\SerializedName("resultCustomer")
      */
     public $resultCustomer;
 
     /**
-     * @var \RetailCrm\Api\Enum\Customers\SerializedCustomerReference[]
+     * @var \RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference[]
      *
-     * @Form\Type("RetailCrm\Api\Enum\Customers\SerializedCustomerReference[]")
+     * @Form\Type("RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference[]")
      * @Form\SerializedName("customers")
      */
     public $customers;

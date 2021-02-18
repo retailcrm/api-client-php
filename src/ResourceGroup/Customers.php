@@ -101,7 +101,7 @@ class Customers extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
-     * use RetailCrm\Api\Enum\Customers\SerializedCustomerReference;
+     * use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\ClientFactory;
      * use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;

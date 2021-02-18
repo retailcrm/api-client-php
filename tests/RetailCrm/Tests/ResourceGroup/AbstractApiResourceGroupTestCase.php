@@ -22,6 +22,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use RetailCrm\Api\Builder\FilesystemCacheBuilder;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
 use RetailCrm\Api\Component\Serializer\JmsHandlersInjector;
 use RetailCrm\Api\Component\Utils;
@@ -155,6 +156,16 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
     }
 
     /**
+     * @param mixed $value
+     *
+     * @return mixed[]
+     */
+    public static function serializeArray($value): array
+    {
+        return static::getSerializer()->toArray($value);
+    }
+
+    /**
      * Removes all empty fields from arrays, works for nested arrays
      *
      * @param mixed[] $arr
@@ -269,6 +280,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
 
     /**
      * @return \JMS\Serializer\SerializerInterface
+     * @throws \RetailCrm\Api\Exception\BuilderException
      */
     protected static function getSerializer(): SerializerInterface
     {
@@ -279,7 +291,11 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
                 })
                 ->addDefaultHandlers()
                 ->addDefaultListeners()
-                ->setMetadataCache(new DoctrineCacheAdapter('retailcrm', new ArrayCache()))
+                ->setMetadataCache(
+                    (new FilesystemCacheBuilder())
+                        ->setCacheDir(sys_get_temp_dir())
+                        ->buildJsonCache()
+                )
                 ->build();
         }
 

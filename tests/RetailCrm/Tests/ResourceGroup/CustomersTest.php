@@ -12,7 +12,7 @@ namespace RetailCrm\Tests\ResourceGroup;
 use RetailCrm\Api\Enum\ByIdentifier;
 use RetailCrm\Api\Enum\Customers\ContragentType;
 use RetailCrm\Api\Enum\Customers\CustomerType;
-use RetailCrm\Api\Enum\Customers\SerializedCustomerReference;
+use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;

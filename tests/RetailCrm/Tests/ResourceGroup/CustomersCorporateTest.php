@@ -9,12 +9,13 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
+use DateTimeInterface;
 use RetailCrm\Api\Enum\Customers\CustomerType;
-use RetailCrm\Api\Enum\Customers\SerializedCustomerReference;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
 use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
+use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\Company;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerContact;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
@@ -505,8 +506,8 @@ EOF;
             static::responseJson(200, $json)
         );
 
-        $client    = TestClientFactory::createClient($mock);
-        $response  = $client->customersCorporate->history($request);
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->history($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

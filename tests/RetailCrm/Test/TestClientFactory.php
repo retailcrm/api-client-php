@@ -35,7 +35,9 @@ class TestClientFactory
      */
     public static function createClient(ClientInterface $client, LoggerInterface $logger = null): Client
     {
-        $encoder = (new FormEncoderBuilder())->build();
+        $encoder = (new FormEncoderBuilder())
+            ->setCacheDir(sys_get_temp_dir())
+            ->build();
 
         return (new ClientBuilder())
             ->setApiUrl(TestConfig::getApiUrl())

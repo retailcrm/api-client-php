@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category SerializedCustomerReference
- * @package  RetailCrm\Api\Enum\Customers
+ * @package  RetailCrm\Api\Model\Entity\Customers
  */
 
-namespace RetailCrm\Api\Enum\Customers;
+namespace RetailCrm\Api\Model\Entity\Customers;
 
 use RetailCrm\Api\Component\FormData\Mapping as Form;
 
@@ -15,7 +15,7 @@ use RetailCrm\Api\Component\FormData\Mapping as Form;
  * Class SerializedCustomerReference
  *
  * @category SerializedCustomerReference
- * @package  RetailCrm\Api\Enum\Customers
+ * @package  RetailCrm\Api\Model\Entity\Customers
  */
 class SerializedCustomerReference
 {
