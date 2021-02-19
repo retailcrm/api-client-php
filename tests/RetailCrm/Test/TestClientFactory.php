@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Test;
 
+use Doctrine\Common\Cache\ArrayCache;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Builder\ClientBuilder;
@@ -24,6 +25,9 @@ use RetailCrm\Api\Handler\Request\HeaderAuthenticatorHandler;
  */
 class TestClientFactory
 {
+    /** @var \Doctrine\Common\Cache\Cache */
+    private static $cache;
+
     /**
      * Create client using environment variables.
      *
@@ -35,8 +39,12 @@ class TestClientFactory
      */
     public static function createClient(ClientInterface $client, LoggerInterface $logger = null): Client
     {
+        if (null === static::$cache) {
+            static::$cache = new ArrayCache();
+        }
+
         $encoder = (new FormEncoderBuilder())
-            ->setCacheDir(sys_get_temp_dir())
+            ->setCache(static::$cache)
             ->build();
 
         return (new ClientBuilder())

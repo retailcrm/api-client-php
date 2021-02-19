@@ -85,6 +85,14 @@ class Company
     public $createdAt;
 
     /**
+     * @var \RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedEntityCustomer
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedEntityCustomer")
+     * @JMS\SerializedName("customer")
+     */
+    public $customer;
+
+    /**
      * @var \RetailCrm\Api\Model\Entity\Customers\CustomerContragent
      *
      * @JMS\Type("RetailCrm\Api\Model\Entity\Customers\CustomerContragent")
@@ -139,4 +147,12 @@ class Company
      * @JMS\SerializedName("ordersCount")
      */
     public $ordersCount;
+
+    /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("costSumm")
+     */
+    public $costSumm;
 }

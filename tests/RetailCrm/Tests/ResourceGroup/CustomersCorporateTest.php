@@ -20,12 +20,15 @@ use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
 use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\Company;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerContact;
+use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerContactCompany;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer;
 use RetailCrm\Api\Model\Entity\Source;
 use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
 use RetailCrm\Api\Model\Filter\Customers\CustomerNoteFilter;
+use RetailCrm\Api\Model\Filter\CustomersCorporate\CompanyFilter;
 use RetailCrm\Api\Model\Filter\CustomersCorporate\CustomerAddressFilter;
+use RetailCrm\Api\Model\Filter\CustomersCorporate\CustomerContactFilter;
 use RetailCrm\Api\Model\Filter\CustomersCorporate\CustomerCorporateFilter;
 use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersGetRequest;
@@ -35,7 +38,14 @@ use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesCreateRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesEditRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateAddressesRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateCompaniesCreateRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateCompaniesEditRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateCompaniesRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateContactsCreateRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateContactsEditRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateContactsRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateCreateRequest;
+use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateEditRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateFixExternalIdsRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateUploadRequest;
@@ -863,6 +873,277 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->customersCorporate->addressesEdit(5043, 3559, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCompanies(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "companies": [
+    {
+      "isMain": true,
+      "id": 772,
+      "customer": {
+        "site": "aliexpress",
+        "id": 5043,
+        "externalId": "test_20",
+        "type": "customer_corporate"
+      },
+      "active": true,
+      "name": "Test Company",
+      "brand": "Test Brand",
+      "createdAt": "2021-02-17 14:42:52",
+      "contragent": {
+        "contragentType": "legal-entity"
+      },
+      "marginSumm": 0,
+      "totalSumm": 0,
+      "averageSumm": 0,
+      "ordersCount": 0,
+      "costSumm": 0,
+      "customFields": [
+
+      ]
+    }
+  ],
+  "pagination": {
+    "limit": 20,
+    "totalCount": 1,
+    "currentPage": 1,
+    "totalPageCount": 1
+  }
+}
+EOF;
+
+        $request              = new CustomersCorporateCompaniesRequest();
+        $request->filter      = new CompanyFilter();
+        $request->site        = 'aliexpress';
+        $request->by          = ByIdentifier::ID;
+        $request->filter->ids = [772];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/5043/companies')
+                ->setMethod(RequestMethod::GET)
+                ->setQueryParams(static::encodeFormArray($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->companies(5043, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCompaniesCreate(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 3559
+}
+EOF;
+
+        $request                       = new CustomersCorporateCompaniesCreateRequest();
+        $request->company              = new Company();
+        $request->company->address     = new CustomerAddress();
+        $request->site                 = 'aliexpress';
+        $request->by                   = ByIdentifier::ID;
+        $request->company->name        = 'Test Company';
+        $request->company->brand       = 'Test Brand';
+        $request->company->address->id = 1;
+        $request->company->isMain      = true;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/5043/companies/create')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->companiesCreate(5043, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCompaniesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 3559
+}
+EOF;
+
+        $request                       = new CustomersCorporateCompaniesEditRequest();
+        $request->company              = new Company();
+        $request->company->address     = new CustomerAddress();
+        $request->site                 = 'aliexpress';
+        $request->by                   = ByIdentifier::ID;
+        $request->entityBy             = ByIdentifier::ID;
+        $request->company->name        = 'Test Company';
+        $request->company->brand       = 'Test Brand';
+        $request->company->address->id = 3559;
+        $request->company->isMain      = true;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/5043/companies/772/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->companiesEdit(5043, 772, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testContacts(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "contacts": [
+    {
+      "isMain": false,
+      "id": 945,
+      "customer": {
+        "id": 5039,
+        "externalId": "test_10",
+        "site": "aliexpress"
+      },
+      "companies": [
+
+      ]
+    }
+  ],
+  "pagination": {
+    "limit": 20,
+    "totalCount": 1,
+    "currentPage": 1,
+    "totalPageCount": 1
+  }
+}
+EOF;
+
+        $request                             = new CustomersCorporateContactsRequest();
+        $request->filter                     = new CustomerContactFilter();
+        $request->site                       = 'aliexpress';
+        $request->by                         = ByIdentifier::ID;
+        $request->filter->contactIds         = [5039];
+        $request->filter->contactExternalIds = ['test_10'];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/5043/contacts')
+                ->setMethod(RequestMethod::GET)
+                ->setQueryParams(static::encodeFormArray($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->contacts(5043, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testContactsCreate(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 949
+}
+EOF;
+        $company = new CustomerContactCompany();
+        $company->id = 776;
+
+        $request                        = new CustomersCorporateContactsCreateRequest();
+        $request->contact               = new CustomerContact();
+        $request->contact->customer     = new SerializedRelationAbstractCustomer();
+        $request->contact->customer->id = 4985;
+        $request->site                  = 'aliexpress';
+        $request->by                    = ByIdentifier::ID;
+        $request->contact->companies    = [$company];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/5043/contacts/create')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->contactsCreate(5043, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testContactsEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 5039
+}
+EOF;
+        $company = new CustomerContactCompany();
+        $company->id = 776;
+
+        $request                     = new CustomersCorporateContactsEditRequest();
+        $request->contact            = new CustomerContact();
+        $request->site               = 'aliexpress';
+        $request->by                 = ByIdentifier::ID;
+        $request->entityBy           = ByIdentifier::ID;
+        $request->contact->companies = [$company];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/5043/contacts/5039/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->contactsEdit(5043, 5039, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 5043
+}
+EOF;
+
+        $request                              = new CustomersCorporateEditRequest();
+        $request->customerCorporate           = new CustomerCorporate();
+        $request->customerCorporate->nickName = 'Test Edited Customer';
+        $request->site                        = 'aliexpress';
+        $request->by                          = ByIdentifier::ID;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('customers-corporate/5043/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->customersCorporate->edit(5043, $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
