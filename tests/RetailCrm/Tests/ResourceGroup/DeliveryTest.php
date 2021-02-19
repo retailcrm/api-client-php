@@ -1,0 +1,211 @@
+<?php
+
+/**
+ * PHP version 7.3
+ *
+ * @category DeliveryTest
+ * @package  RetailCrm\Tests\ResourceGroup
+ */
+
+namespace RetailCrm\Tests\ResourceGroup;
+
+use DateInterval;
+use DateTime;
+use RetailCrm\Api\Enum\CountryCodeIso3166;
+use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Model\Entity\Delivery\RequestStatusUpdateItem;
+use RetailCrm\Api\Model\Entity\Delivery\SerializedOrder;
+use RetailCrm\Api\Model\Entity\Delivery\SerializedOrderDelivery;
+use RetailCrm\Api\Model\Entity\Delivery\SerializedOrderProduct;
+use RetailCrm\Api\Model\Entity\Delivery\StatusInfo;
+use RetailCrm\Api\Model\Entity\Delivery\TimeInterval;
+use RetailCrm\Api\Model\Entity\Order\OrderDeliveryAddress;
+use RetailCrm\Api\Model\Filter\Delivery\ApiDeliveryShipmentFilterType;
+use RetailCrm\Api\Model\Request\Delivery\DeliveryCalculateRequest;
+use RetailCrm\Api\Model\Request\Delivery\DeliveryShipmentsRequest;
+use RetailCrm\Api\Model\Request\Delivery\TrackingRequest;
+use RetailCrm\Test\TestClientFactory;
+
+/**
+ * Class DeliveryTest
+ *
+ * @category DeliveryTest
+ * @package  RetailCrm\Tests\ResourceGroup
+ */
+class DeliveryTest extends AbstractApiResourceGroupTestCase
+{
+    public function testCalculate()
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "calculations": [
+    {
+      "code": "2",
+      "available": true,
+      "cost": 500
+    },
+    {
+      "code": "3",
+      "available": true,
+      "cost": 0
+    },
+    {
+      "code": "8",
+      "available": true,
+      "cost": 0
+    },
+    {
+      "code": "9",
+      "available": true,
+      "cost": 0
+    },
+    {
+      "code": "10",
+      "available": true,
+      "cost": 0
+    },
+    {
+      "code": "11",
+      "available": true,
+      "cost": 0
+    }
+  ]
+}
+EOF;
+
+        $delivery                      = new SerializedOrderDelivery();
+        $delivery->address             = new OrderDeliveryAddress();
+        $delivery->date                = (new DateTime())->add(new DateInterval('P1D'));
+        $delivery->time                = TimeInterval::withCustomInterval('from 9:00 am to 18:00 pm');
+        $delivery->address->index      = '12010';
+        $delivery->address->building   = '9850';
+        $delivery->address->countryIso = CountryCodeIso3166::UNITED_STATES_OF_AMERICA;
+        $delivery->address->city       = 'New York';
+        $delivery->address->street     = 'Griffin Ave.';
+
+        $item                        = new SerializedOrderProduct();
+        $item->initialPrice          = 1000.0;
+        $item->discountManualPercent = 5.0;
+        $item->quantity              = 10;
+
+        $order           = new SerializedOrder();
+        $order->delivery = $delivery;
+        $order->items    = [$item];
+        $order->height   = 100;
+        $order->width    = 100;
+        $order->weight   = 100;
+        $order->length   = 100;
+
+        $request                    = new DeliveryCalculateRequest();
+        $request->order             = $order;
+        $request->deliveryTypeCodes = ['2', '3', '8', '9', '10', '11'];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('delivery/calculate')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->delivery->calculate($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testTracking()
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $status            = new StatusInfo();
+        $status->code      = 'code';
+        $status->comment   = 'comment';
+        $status->updatedAt = new DateTime();
+
+        $item              = new RequestStatusUpdateItem();
+        $item->deliveryId  = 'boxberry';
+        $item->trackNumber = 'track';
+        $item->cost        = 100;
+        $item->history     = [$status];
+
+        $request               = new TrackingRequest();
+        $request->statusUpdate = [$item];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('delivery/generic/boxberry-1-5f8064212c612/tracking')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->delivery->tracking('boxberry-1-5f8064212c612', $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testShipments()
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "pagination": {
+    "limit": 20,
+    "totalCount": 1,
+    "currentPage": 1,
+    "totalPageCount": 1
+  },
+  "deliveryShipments": [
+    {
+      "integrationCode": "boxberry-249",
+      "id": 9,
+      "externalId": "13825126",
+      "deliveryType": "boxberry",
+      "store": "main1",
+      "managerId": 19,
+      "status": "processing",
+      "date": "2021-02-15",
+      "time": {
+        "from": "18:00",
+        "to": "22:00"
+      },
+      "orders": [
+        {
+          "id": 6911,
+          "number": "6911C"
+        }
+      ],
+      "extraData": {
+        "test": "string"
+      }
+    }
+  ]
+}
+EOF;
+
+        $request                      = new DeliveryShipmentsRequest();
+        $request->filter              = new ApiDeliveryShipmentFilterType();
+        $request->filter->dateFrom    = '2020-01-15';
+        $request->filter->orderNumber = '6911C';
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('delivery/shipments')
+                ->setMethod(RequestMethod::GET)
+                ->setQueryParams(static::encodeFormArray($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->delivery->shipments($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+}

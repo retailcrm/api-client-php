@@ -19,6 +19,7 @@ use RetailCrm\Api\ResourceGroup\Costs;
 use RetailCrm\Api\ResourceGroup\Customers;
 use RetailCrm\Api\ResourceGroup\CustomersCorporate;
 use RetailCrm\Api\ResourceGroup\CustomFields;
+use RetailCrm\Api\ResourceGroup\Delivery;
 
 /**
  * Class Client
@@ -47,6 +48,9 @@ class Client
 
     /** @var \RetailCrm\Api\ResourceGroup\CustomersCorporate */
     public $customersCorporate;
+
+    /** @var \RetailCrm\Api\ResourceGroup\Delivery */
+    public $delivery;
 
     /**
      * Client constructor.
@@ -77,6 +81,7 @@ class Client
             $responseTransformer,
             $logger
         );
+        $this->delivery = new Delivery($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
     }
 
     /**
