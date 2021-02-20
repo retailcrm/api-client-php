@@ -199,7 +199,7 @@ class Files extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      *
-     * $client   = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * try {
      *     $response = $client->files->delete(1);
