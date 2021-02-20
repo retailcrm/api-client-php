@@ -11,6 +11,7 @@ namespace RetailCrm\Api\Model\Entity\Delivery;
 
 use DateTime;
 use JMS\Serializer\Annotation as JMS;
+use RuntimeException;
 
 /**
  * Class TimeInterval
@@ -62,6 +63,24 @@ class TimeInterval
     }
 
     /**
+     * Creates a new instance of TimeInterval with provided time boundaries.
+     * Time must be in "H:i" format. If time cannot be parsed, then RuntimeException will be thrown.
+     *
+     * @param string $from
+     * @param string $to
+     *
+     * @return \RetailCrm\Api\Model\Entity\Delivery\TimeInterval
+     */
+    public static function withTextInterval(string $from, string $to): TimeInterval
+    {
+        $interval       = new TimeInterval();
+        $interval->from = static::createTime($from);
+        $interval->to   = static::createTime($to);
+
+        return $interval;
+    }
+
+    /**
      * Returns TimeInterval with provided custom interval.
      *
      * @param string $customInterval
@@ -74,5 +93,23 @@ class TimeInterval
         $interval->custom = $customInterval;
 
         return $interval;
+    }
+
+    /**
+     * Parses string into DateTime using "H:i" format. Throws RuntimeException on failure.
+     *
+     * @param string $time
+     *
+     * @return \DateTime
+     */
+    private static function createTime(string $time): DateTime
+    {
+        $result = DateTime::createFromFormat('H:i', $time);
+
+        if (false === $result) {
+            throw new RuntimeException(sprintf('Cannot parse provided time "%s" using "H:i" format.', $time));
+        }
+
+        return $result;
     }
 }

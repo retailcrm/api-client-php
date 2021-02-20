@@ -115,4 +115,12 @@ class DeliveryShipment
      * @JMS\SerializedName("extraData")
      */
     public $extraData;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Delivery\TimeInterval
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Delivery\TimeInterval")
+     * @JMS\SerializedName("lunchTime")
+     */
+    public $lunchTime;
 }

@@ -280,7 +280,6 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
 
     /**
      * @return \JMS\Serializer\SerializerInterface
-     * @throws \RetailCrm\Api\Exception\BuilderException
      */
     protected static function getSerializer(): SerializerInterface
     {

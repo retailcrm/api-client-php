@@ -13,7 +13,9 @@ use DateInterval;
 use DateTime;
 use RetailCrm\Api\Enum\CountryCodeIso3166;
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Model\Entity\Delivery\DeliveryShipment;
 use RetailCrm\Api\Model\Entity\Delivery\RequestStatusUpdateItem;
+use RetailCrm\Api\Model\Entity\Delivery\SerializedEntityOrder;
 use RetailCrm\Api\Model\Entity\Delivery\SerializedOrder;
 use RetailCrm\Api\Model\Entity\Delivery\SerializedOrderDelivery;
 use RetailCrm\Api\Model\Entity\Delivery\SerializedOrderProduct;
@@ -22,6 +24,7 @@ use RetailCrm\Api\Model\Entity\Delivery\TimeInterval;
 use RetailCrm\Api\Model\Entity\Order\OrderDeliveryAddress;
 use RetailCrm\Api\Model\Filter\Delivery\ApiDeliveryShipmentFilterType;
 use RetailCrm\Api\Model\Request\Delivery\DeliveryCalculateRequest;
+use RetailCrm\Api\Model\Request\Delivery\DeliveryShipmentsCreateRequest;
 use RetailCrm\Api\Model\Request\Delivery\DeliveryShipmentsRequest;
 use RetailCrm\Api\Model\Request\Delivery\TrackingRequest;
 use RetailCrm\Test\TestClientFactory;
@@ -205,6 +208,130 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->delivery->shipments($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testShipmentsCreate()
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 1,
+  "status": "processing"
+}
+EOF;
+
+        $shipment                  = new DeliveryShipment();
+        $shipment->integrationCode = 'boxberry-249';
+        $shipment->externalId      = 'test_30';
+        $shipment->managerId       = 19;
+        $shipment->store           = 'main1';
+        $shipment->date            = new DateTime();
+        $shipment->time            = TimeInterval::withTextInterval('18:00', '22:00');
+        $shipment->orders          = [
+            SerializedEntityOrder::withNumber('8124705923428910')
+        ];
+
+        $request                   = new DeliveryShipmentsCreateRequest();
+        $request->site             = 'aliexpress';
+        $request->deliveryType     = 'boxberry';
+        $request->deliveryShipment = $shipment;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('delivery/shipments/create')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->delivery->shipmentsCreate($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testShipmentsGet()
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "deliveryShipment": {
+    "integrationCode": "boxberry-249",
+    "id": 9,
+    "externalId": "13825126",
+    "deliveryType": "boxberry",
+    "store": "main1",
+    "managerId": 19,
+    "status": "processing",
+    "date": "2021-02-15",
+    "time": {
+      "from": "18:00",
+      "to": "22:00"
+    },
+    "orders": [
+      {
+        "id": 6911,
+        "number": "6911C"
+      }
+    ],
+    "extraData": {
+      "test": "string"
+    }
+  }
+}
+EOF;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('delivery/shipments/9')
+                ->setMethod(RequestMethod::GET),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->delivery->shipmentsGet('9');
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testShipmentsEdit()
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 1,
+  "status": "processing"
+}
+EOF;
+
+        $shipment                  = new DeliveryShipment();
+        $shipment->integrationCode = 'boxberry-249';
+        $shipment->externalId      = 'test_30';
+        $shipment->managerId       = 19;
+        $shipment->store           = 'main1';
+        $shipment->date            = new DateTime();
+        $shipment->time            = TimeInterval::withTextInterval('18:00', '22:00');
+        $shipment->orders          = [
+            SerializedEntityOrder::withNumber('8124705923428910')
+        ];
+
+        $request                   = new DeliveryShipmentsCreateRequest();
+        $request->site             = 'aliexpress';
+        $request->deliveryType     = 'boxberry';
+        $request->deliveryShipment = $shipment;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('delivery/shipments/1/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->delivery->shipmentsEdit('1', $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
