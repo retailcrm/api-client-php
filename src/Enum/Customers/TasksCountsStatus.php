@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum\Customers;
  * @category TasksCountsStatus
  * @package  RetailCrm\Api\Enum\Customers
  */
-class TasksCountsStatus
+final class TasksCountsStatus
 {
     public const NO_UNFINISHED_TASKS = 1;
     public const HAS_UNFINISHED_TASKS = 2;

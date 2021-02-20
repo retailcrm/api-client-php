@@ -44,7 +44,7 @@ class HeaderAuthenticatorHandler extends AbstractHandler
     public function handle($item)
     {
         if ($item instanceof RequestData && null !== $item->request) {
-            $item->request = $item->request->withAddedHeader('x-api-key', $this->apiKey);
+            $item->request = $item->request->withAddedHeader('X-Api-Key', $this->apiKey);
         }
 
         return parent::handle($item);

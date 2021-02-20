@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum;
  * @category CacheDirectories
  * @package  RetailCrm\Api\Enum
  */
-class CacheDirectories
+final class CacheDirectories
 {
     public const MAIN_DIR  = DIRECTORY_SEPARATOR . 'retailcrm_metadata_cache';
     public const JSON_DIR  = DIRECTORY_SEPARATOR . 'json';

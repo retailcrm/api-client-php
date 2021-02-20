@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum\CustomFields;
  * @category CustomFieldEntity
  * @package  RetailCrm\Api\Enum\CustomFields
  */
-class CustomFieldEntity
+final class CustomFieldEntity
 {
     public const CUSTOMER = 'customer';
     public const LOYALTY_ACCOUNT = 'loyalty_account';

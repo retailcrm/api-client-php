@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum;
  * @category CountryCodeIso3166
  * @package  RetailCrm\Api\Enum
  */
-class CountryCodeIso3166
+final class CountryCodeIso3166
 {
     public const AFGHANISTAN = 'AF';
     public const ALBANIA = 'AL';

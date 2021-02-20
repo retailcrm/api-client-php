@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum;
  * @category YesNo
  * @package  RetailCrm\Api\Enum
  */
-class YesNo
+final class YesNo
 {
     public const NO = 'No';
     public const YES = 'Yes';

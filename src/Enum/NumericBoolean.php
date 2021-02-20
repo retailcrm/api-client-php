@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum;
  * @category NumericBoolean
  * @package  RetailCrm\Api\Enum
  */
-class NumericBoolean
+final class NumericBoolean
 {
     public const TRUE = 1;
     public const FALSE = 0;

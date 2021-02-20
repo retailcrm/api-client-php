@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum;
  * @category PaginationLimit
  * @package  RetailCrm\Api\Enum
  */
-class PaginationLimit
+final class PaginationLimit
 {
     public const LIMIT_20 = '20';
     public const LIMIT_50 = '50';

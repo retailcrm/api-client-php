@@ -15,6 +15,6 @@ namespace RetailCrm\Api\Enum\CustomFields;
  * @category CustomFieldViewModeMobile
  * @package  RetailCrm\Api\Enum\CustomFields
  */
-class CustomFieldViewModeMobile extends CustomFieldViewMode
+final class CustomFieldViewModeMobile extends CustomFieldViewMode
 {
 }

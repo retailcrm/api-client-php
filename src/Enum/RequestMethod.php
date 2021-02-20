@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum;
  * @category RequestMethod
  * @package  RetailCrm\Api\Enum
  */
-class RequestMethod
+final class RequestMethod
 {
     public const GET = 'GET';
     public const HEAD = 'HEAD';

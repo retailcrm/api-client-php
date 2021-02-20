@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum\Customers;
  * @category ContragentType
  * @package  RetailCrm\Api\Enum\Customers
  */
-class ContragentType
+final class ContragentType
 {
     public const ENTERPRENEUR = 'enterpreneur';
     public const INDIVIDUAL = 'individual';

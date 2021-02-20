@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum\Customers;
  * @category Gender
  * @package  RetailCrm\Api\Enum\Customers
  */
-class Gender
+final class Gender
 {
     public const FEMALE = 'female';
     public const MALE = 'male';

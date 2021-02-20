@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum\Customers;
  * @category AttachmentsStatus
  * @package  RetailCrm\Api\Enum\Customers
  */
-class AttachmentsStatus
+final class AttachmentsStatus
 {
     public const NO_ATTACHMENTS = 1;
     public const FILE_ATTACHMENTS = 2;

@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum\Customers;
  * @category CustomerType
  * @package  RetailCrm\Api\Enum\Customers
  */
-class CustomerType
+final class CustomerType
 {
     public const CUSTOMER = 'customer';
     public const CORPORATE_CUSTOMER = 'customer_corporate';

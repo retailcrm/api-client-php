@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum;
  * @category SiteAccess
  * @package  RetailCrm\Api\Enum
  */
-class SiteAccess
+final class SiteAccess
 {
     public const ACCESS_FULL = 'access_full';
     public const ACCESS_SELECTIVE = 'access_selective';

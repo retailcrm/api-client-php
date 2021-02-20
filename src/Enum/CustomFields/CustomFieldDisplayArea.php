@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum\CustomFields;
  * @category CustomFieldDisplayArea
  * @package  RetailCrm\Api\Enum\CustomFields
  */
-class CustomFieldDisplayArea
+final class CustomFieldDisplayArea
 {
     public const ADDRESS = 'address';
     public const CUSTOMER = 'customer';

@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum\CustomFields;
  * @category CustomFieldType
  * @package  RetailCrm\Api\Enum\CustomFields
  */
-class CustomFieldType
+final class CustomFieldType
 {
     public const BOOLEAN = 'boolean';
     public const DATE = 'date';

@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum;
  * @category ByIdentifier
  * @package  RetailCrm\Api\Enum
  */
-class ByIdentifier
+final class ByIdentifier
 {
     public const ID = 'id';
     public const EXTERNAL_ID = 'externalId';
