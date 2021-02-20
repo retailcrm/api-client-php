@@ -24,9 +24,9 @@ use RetailCrm\Api\Component\FormData\Mapping as Form;
 class CustomerFilter
 {
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("isContact")
      */
     public $isContact;

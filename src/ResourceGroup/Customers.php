@@ -48,15 +48,17 @@ class Customers extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Filter\Customers\CustomerFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersRequest;
+     * use RetailCrm\Api\Enum\NumericBoolean;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
-     * $request                = new CustomersRequest();
-     * $request->limit         = 20;
-     * $request->page          = 1;
-     * $request->filter        = new CustomerFilter();
-     * $request->filter->sites = ['moysklad', 'aliexpress'];
-     * $request->filter->name  = '89229112322';
+     * $request                    = new CustomersRequest();
+     * $request->limit             = 20;
+     * $request->page              = 1;
+     * $request->filter            = new CustomerFilter();
+     * $request->filter->sites     = ['moysklad', 'aliexpress'];
+     * $request->filter->name      = '89229112322';
+     * $request->filter->isContact = NumericBoolean::TRUE;
      *
      * try {
      *     $response = $client->customers->list($request);

@@ -12,7 +12,8 @@ namespace RetailCrm\Tests\ResourceGroup;
 use RetailCrm\Api\Enum\ByIdentifier;
 use RetailCrm\Api\Enum\Customers\ContragentType;
 use RetailCrm\Api\Enum\Customers\CustomerType;
-use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
+use RetailCrm\Api\Enum\Customers\IsContact;
+use RetailCrm\Api\Enum\NumericBoolean;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
@@ -21,6 +22,7 @@ use RetailCrm\Api\Model\Entity\Customers\CustomerNote;
 use RetailCrm\Api\Model\Entity\Customers\CustomerPhone;
 use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
+use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
 use RetailCrm\Api\Model\Filter\Customers\CustomerFilter;
 use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
 use RetailCrm\Api\Model\Filter\Customers\CustomerNoteFilter;
@@ -60,7 +62,7 @@ class CustomersTest extends AbstractApiResourceGroupTestCase
       "type": "customer",
       "id": 1233,
       "externalId": "11",
-      "isContact": false,
+      "isContact": true,
       "createdAt": "2019-05-27 09:42:45",
       "managerId": 24,
       "vip": false,
@@ -180,12 +182,13 @@ class CustomersTest extends AbstractApiResourceGroupTestCase
 }
 EOF;
 
-        $request                = new CustomersRequest();
-        $request->limit         = 20;
-        $request->page          = 1;
-        $request->filter        = new CustomerFilter();
-        $request->filter->sites = ['moysklad', 'aliexpress'];
-        $request->filter->name  = '89229112322';
+        $request                    = new CustomersRequest();
+        $request->limit             = 20;
+        $request->page              = 1;
+        $request->filter            = new CustomerFilter();
+        $request->filter->sites     = ['moysklad', 'aliexpress'];
+        $request->filter->name      = '89229112322';
+        $request->filter->isContact = NumericBoolean::TRUE;
 
         $mock = static::getMockClient();
         $mock->on(
