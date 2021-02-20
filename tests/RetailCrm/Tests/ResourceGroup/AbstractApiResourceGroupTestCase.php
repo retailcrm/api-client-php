@@ -291,11 +291,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
                 })
                 ->addDefaultHandlers()
                 ->addDefaultListeners()
-                ->setMetadataCache(
-                    (new FilesystemCacheBuilder())
-                        ->setCacheDir(sys_get_temp_dir())
-                        ->buildJsonCache()
-                )
+                ->setMetadataCache(new DoctrineCacheAdapter('retailcrm', new ArrayCache()))
                 ->build();
         }
 

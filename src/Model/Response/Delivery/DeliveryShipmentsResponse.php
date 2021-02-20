@@ -21,9 +21,9 @@ use RetailCrm\Api\Model\Response\AbstractPaginatedResponse;
 class DeliveryShipmentsResponse extends AbstractPaginatedResponse
 {
     /**
-     * @var \RetailCrm\Api\Model\Request\Delivery\DeliveryShipment[]
+     * @var \RetailCrm\Api\Model\Entity\Delivery\DeliveryShipment[]
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Request\Delivery\DeliveryShipment>")
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Delivery\DeliveryShipment>")
      * @JMS\SerializedName("deliveryShipments")
      */
     public $deliveryShipments;

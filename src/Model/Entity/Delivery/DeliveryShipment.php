@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category DeliveryShipment
- * @package  RetailCrm\Api\Model\Request\Delivery
+ * @package  RetailCrm\Api\Model\Entity\Delivery
  */
 
-namespace RetailCrm\Api\Model\Request\Delivery;
+namespace RetailCrm\Api\Model\Entity\Delivery;
 
 use DateTime;
 use JMS\Serializer\Annotation as JMS;
@@ -16,7 +16,7 @@ use JMS\Serializer\Annotation as JMS;
  * Class DeliveryShipment
  *
  * @category DeliveryShipment
- * @package  RetailCrm\Api\Model\Request\Delivery
+ * @package  RetailCrm\Api\Model\Entity\Delivery
  */
 class DeliveryShipment
 {
