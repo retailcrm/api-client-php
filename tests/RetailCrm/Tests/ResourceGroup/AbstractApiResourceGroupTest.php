@@ -42,7 +42,7 @@ EOF;
                 'message' => sprintf('[RetailCRM API Request]: GET URL: "https://%s/api/api-versions", ', $host) .
                     'Headers: "{"Host":["' . $host . '"],' .
                     '"User-Agent":["RetailCRM PHP API Client \/ v6.x"],"Accept":["application\/json"],' .
-                    '"x-api-key":["' . TestConfig::getApiKey() . '"]}", ' .
+                    '"X-Api-Key":["' . TestConfig::getApiKey() . '"]}", ' .
                     'Body: ""',
                 'context' => []
             ],

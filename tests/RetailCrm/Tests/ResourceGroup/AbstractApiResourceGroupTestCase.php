@@ -22,7 +22,6 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use RetailCrm\Api\Builder\FilesystemCacheBuilder;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
 use RetailCrm\Api\Component\Serializer\JmsHandlersInjector;
 use RetailCrm\Api\Component\Utils;
@@ -105,7 +104,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
         $url = parse_url(TestConfig::getApiUrl());
 
         return RequestMatcher::createMatcher($url['host'])
-            ->setOptionalHeaders(['x-api-key' => [TestConfig::getApiKey()]])
+            ->setOptionalHeaders(['X-Api-Key' => [TestConfig::getApiKey()]])
             ->setPath(static::addTrailingSlash($url['path']) . $path);
     }
 
@@ -119,7 +118,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
         $url = parse_url(TestConfig::getApiUrl());
 
         return RequestMatcher::createMatcher($url['host'])
-            ->setOptionalHeaders(['x-api-key' => [TestConfig::getApiKey()]])
+            ->setOptionalHeaders(['X-Api-Key' => [TestConfig::getApiKey()]])
             ->setPath(static::addTrailingSlash(Utils::removeVersionFromUri($url['path'])) . $path);
     }
 

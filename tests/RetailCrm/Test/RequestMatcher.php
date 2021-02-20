@@ -141,7 +141,7 @@ class RequestMatcher implements RequestMatcherInterface
      */
     public function setHeaders(array $headers): RequestMatcher
     {
-        $this->headers = $headers;
+        $this->headers = static::lowercaseKeys($headers);
         return $this;
     }
 
@@ -152,7 +152,7 @@ class RequestMatcher implements RequestMatcherInterface
      */
     public function setOptionalHeaders(array $optionalHeaders): RequestMatcher
     {
-        $this->optionalHeaders = $optionalHeaders;
+        $this->optionalHeaders = static::lowercaseKeys($optionalHeaders);
         return $this;
     }
 
@@ -221,7 +221,10 @@ class RequestMatcher implements RequestMatcherInterface
             return false;
         }
 
-        if (!empty($this->headers) && count(static::arrayDiff($this->headers, $request->getHeaders())) > 0) {
+        if (
+            !empty($this->headers) &&
+            count(static::arrayDiff($this->headers, static::lowercaseKeys($request->getHeaders()))) > 0
+        ) {
             return false;
         }
 
@@ -234,7 +237,7 @@ class RequestMatcher implements RequestMatcherInterface
 
         if (
             !empty($this->optionalHeaders)
-            && !$this->firstArrayPresentInSecond($this->optionalHeaders, $request->getHeaders())
+            && !$this->firstArrayPresentInSecond($this->optionalHeaders, static::lowercaseKeys($request->getHeaders()))
         ) {
             return false;
         }
@@ -351,6 +354,24 @@ class RequestMatcher implements RequestMatcherInterface
         }
 
         return $intersectValues;
+    }
+
+    /**
+     * Makes all keys in the array lowercase
+     *
+     * @param array $items
+     *
+     * @return array
+     */
+    private static function lowercaseKeys(array $items): array
+    {
+        $result = [];
+
+        foreach ($items as $key => $value) {
+            $result[strtolower($key)] = $value;
+        }
+
+        return $result;
     }
 
     /**
