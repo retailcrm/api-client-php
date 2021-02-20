@@ -12,6 +12,7 @@ namespace RetailCrm\Api\Handler\Request;
 use InvalidArgumentException;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
+use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Exception\HandlerException;
 use RetailCrm\Api\Handler\AbstractHandler;
 use RetailCrm\Api\Model\RequestData;
@@ -24,6 +25,13 @@ use RetailCrm\Api\Model\RequestData;
  */
 class PsrRequestHandler extends AbstractHandler
 {
+    /** @var string[] */
+    private static $methodsWithBody = [
+        RequestMethod::POST,
+        RequestMethod::PUT,
+        RequestMethod::PATCH,
+    ];
+
     /**
      * @var \Psr\Http\Message\UriFactoryInterface $uriFactory
      */
@@ -57,13 +65,24 @@ class PsrRequestHandler extends AbstractHandler
     public function handle($item)
     {
         if ($item instanceof RequestData) {
+            $item->method = strtoupper($item->method);
+
             try {
                 $uri = $this->uriFactory->createUri($item->uri);
             } catch (InvalidArgumentException $exception) {
                 throw new HandlerException("Cannot parse URI", 0, $exception);
             }
 
-            $item->request = $this->requestFactory->createRequest(strtoupper($item->method), $uri);
+            $request = $this->requestFactory
+                ->createRequest($item->method, $uri)
+                ->withHeader('User-Agent', 'RetailCRM PHP API Client / v6.x')
+                ->withHeader('Accept', 'application/json');
+
+            if (in_array($item->method, static::$methodsWithBody)) {
+                $request = $request->withHeader('Content-Type', 'application/x-www-form-urlencoded');
+            }
+
+            $item->request = $request;
         }
 
         return parent::handle($item);
