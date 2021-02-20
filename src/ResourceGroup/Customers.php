@@ -49,11 +49,12 @@ class Customers extends AbstractApiResourceGroup
      * use RetailCrm\Api\Model\Filter\Customers\CustomerFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersRequest;
      * use RetailCrm\Api\Enum\NumericBoolean;
+     * use RetailCrm\Api\Enum\PaginationLimit;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                    = new CustomersRequest();
-     * $request->limit             = 20;
+     * $request->limit             = PaginationLimit::LIMIT_20;
      * $request->page              = 1;
      * $request->filter            = new CustomerFilter();
      * $request->filter->sites     = ['moysklad', 'aliexpress'];
@@ -72,6 +73,8 @@ class Customers extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Received customers: ' . print_r($response->customers, true);
@@ -130,6 +133,8 @@ class Customers extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Result: ' . var_export($response->success, true);
@@ -214,6 +219,8 @@ class Customers extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Created customer with ID: ' . $response->id;
@@ -271,6 +278,8 @@ class Customers extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      * ```
      *
@@ -304,11 +313,12 @@ class Customers extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
+     * use RetailCrm\Api\Enum\PaginationLimit;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                  = new CustomersHistoryRequest();
-     * $request->limit           = 20;
+     * $request->limit           = PaginationLimit::LIMIT_20;
      * $request->page            = 1;
      * $request->filter          = new CustomerHistoryFilter();
      * $request->filter->sinceId = 2691;
@@ -325,6 +335,8 @@ class Customers extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'History: ' . print_r($response->history, true);
@@ -360,11 +372,12 @@ class Customers extends AbstractApiResourceGroup
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Filter\Customers\CustomerNoteFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
+     * use RetailCrm\Api\Enum\PaginationLimit;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                              = new CustomersNotesRequest();
-     * $request->limit                       = 20;
+     * $request->limit                       = PaginationLimit::LIMIT_20;
      * $request->page                        = 1;
      * $request->filter                      = new CustomerNoteFilter();
      * $request->filter->customerExternalIds = ['10'];
@@ -383,6 +396,8 @@ class Customers extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Notes: ' . print_r($response->notes, true);
@@ -442,6 +457,8 @@ class Customers extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Created note with id: ' . $response->id;
@@ -490,6 +507,8 @@ class Customers extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      * ```
      *
@@ -573,6 +592,8 @@ class Customers extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Uploaded customers: ' . implode(', ', array_map(static function (FixExternalRow $row) {
@@ -629,6 +650,8 @@ class Customers extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Customer: ' . print_r($response->customer);
@@ -687,6 +710,8 @@ class Customers extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Edited customer: ' . $response->id;

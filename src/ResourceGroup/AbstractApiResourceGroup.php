@@ -127,6 +127,6 @@ abstract class AbstractApiResourceGroup
             ));
         }
 
-        return $this->responseTransformer->createResponse($method, $psrResponse, $type);
+        return $this->responseTransformer->createResponse($method, $psrRequest->getUri(), $psrResponse, $type);
     }
 }

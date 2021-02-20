@@ -58,8 +58,12 @@ class TypedArrayStrategy extends AbstractEncodeStrategy
 
         foreach (array_keys($value) as $key) {
             $result[$simpleStrategy->encode($key, new PropertyAnnotations())]
-                = StrategyFactory::encodeStrategyByType($valueType, $this->annotationReader, $this->jmsSerializer)
-                ->encode($value[$key], new PropertyAnnotations());
+                = StrategyFactory::encodeStrategyByType(
+                    $valueType,
+                    $value[$key],
+                    $this->annotationReader,
+                    $this->jmsSerializer
+                )->encode($value[$key], new PropertyAnnotations());
         }
 
         return $result;

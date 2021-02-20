@@ -86,6 +86,8 @@ class Delivery extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Calculate result: ' . print_r($response->calculations, true);
@@ -151,6 +153,8 @@ class Delivery extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      * ```
      *
@@ -205,6 +209,8 @@ class Delivery extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Shipments: ' . print_r($response->deliveryShipments, true);
@@ -273,6 +279,8 @@ class Delivery extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * printf('Created shipment %d with status "%s"', $response->id, $response->status);
@@ -321,6 +329,8 @@ class Delivery extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Shipment №1: ' . print_r($response->deliveryShipment, true);
@@ -389,6 +399,8 @@ class Delivery extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * printf('Edited shipment %d with status "%s"', $response->id, $response->status);

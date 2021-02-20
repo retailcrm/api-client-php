@@ -76,8 +76,12 @@ class FormEncoder implements FormEncoderInterface
     public function encodeArray($object, string $type = ''): array
     {
         $type = empty($type) ? gettype($object) : $type;
-        $result = (array) StrategyFactory::encodeStrategyByType($type, $this->annotationReader, $this->serializer)
-            ->encode($object, null);
+        $result = (array) StrategyFactory::encodeStrategyByType(
+            $type,
+            $object,
+            $this->annotationReader,
+            $this->serializer
+        )->encode($object, null);
 
         return $this->processPostSerialize($object, $result);
     }

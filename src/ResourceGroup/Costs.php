@@ -37,6 +37,7 @@ class Costs extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
+     * use RetailCrm\Api\Enum\PaginationLimit;
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Filter\Costs\CostFilter;
      * use RetailCrm\Api\Model\Request\Costs\CostsRequest;
@@ -44,11 +45,11 @@ class Costs extends AbstractApiResourceGroup
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
-     * $costsRequest = new CostsRequest();
-     * $costsRequest->limit = 20;
-     * $costsRequest->page = 1;
-     * $costsRequest->filter = new CostFilter();
-     * $costsRequest->filter->sites = ['moysklad', 'aliexpress'];
+     * $costsRequest                  = new CostsRequest();
+     * $costsRequest->limit           = PaginationLimit::LIMIT_20;
+     * $costsRequest->page            = 1;
+     * $costsRequest->filter          = new CostFilter();
+     * $costsRequest->filter->sites   = ['moysklad', 'aliexpress'];
      * $costsRequest->filter->maxSumm = 20;
      *
      * try {
@@ -63,6 +64,8 @@ class Costs extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Received costs: ' . print_r($response->costs, true);
@@ -115,6 +118,8 @@ class Costs extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * printf('Deleted %d costs.', $response->count);
@@ -183,6 +188,8 @@ class Costs extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Uploaded costs with IDs: ' . implode(', ', $response->uploadedCosts);
@@ -251,6 +258,8 @@ class Costs extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Created cost with ID: ' . $response->id;
@@ -299,6 +308,8 @@ class Costs extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Received cost: ' . print_r($response->cost, true);
@@ -347,6 +358,8 @@ class Costs extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Status: ' . var_export($response->success, true);
@@ -415,6 +428,8 @@ class Costs extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Edited cost with ID: ' . $response->id;

@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RetailCrm\Api\Factory\SimpleClientFactory;
-use RetailCrm\Api\Handler\Request\ModelDataHandler;
+use RetailCrm\Api\Handler\Request\RequestDataHandler;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Interfaces\HandlerInterface;
 use RetailCrm\Api\Interfaces\RequestTransformerInterface;
@@ -86,21 +86,21 @@ class ClientTest extends TestCase
     /**
      * @param \RetailCrm\Api\Interfaces\HandlerInterface $handler
      *
-     * @return \RetailCrm\Api\Handler\Request\ModelDataHandler
+     * @return \RetailCrm\Api\Handler\Request\RequestDataHandler
      */
-    private static function findModelDataHandler(HandlerInterface $handler): ModelDataHandler
+    private static function findModelDataHandler(HandlerInterface $handler): RequestDataHandler
     {
-        if ($handler instanceof ModelDataHandler) {
+        if ($handler instanceof RequestDataHandler) {
             return $handler;
         }
 
         while ($handler = $handler->getNext()) {
-            if ($handler instanceof ModelDataHandler) {
+            if ($handler instanceof RequestDataHandler) {
                 return $handler;
             }
         }
 
-        throw new RuntimeException('ModelDataHandler is not present in the chain.');
+        throw new RuntimeException('RequestDataHandler is not present in the chain.');
     }
 
     /**

@@ -12,6 +12,7 @@ namespace RetailCrm\Api\Factory;
 use JMS\Serializer\SerializerInterface;
 use RetailCrm\Api\Handler\Response\AccountNotFoundHandler;
 use RetailCrm\Api\Handler\Response\ErrorResponseHandler;
+use RetailCrm\Api\Handler\Response\FilesDownloadResponseHandler;
 use RetailCrm\Api\Handler\Response\UnmarshalResponseHandler;
 use RetailCrm\Api\Interfaces\HandlerInterface;
 
@@ -38,6 +39,7 @@ class ResponsePipelineFactory
         $handler = new AccountNotFoundHandler($serializer);
         $nextHandler = $handler
             ->setNext(new ErrorResponseHandler($serializer))
+            ->setNext(new FilesDownloadResponseHandler($serializer))
             ->setNext(new UnmarshalResponseHandler($serializer));
 
         if (count($additionalHandlers) > 0) {

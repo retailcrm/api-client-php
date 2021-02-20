@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Interfaces;
 
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\UriInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponse;
 
 /**
@@ -28,6 +29,7 @@ interface ResponseTransformerInterface
      * - It should automatically detect an API error and throw an `ApiExceptionInterface` instance.
      * - It can throw a `HandlerException` instance if necessary.
      *
+     * @param \Psr\Http\Message\UriInterface      $uri
      * @param string                              $method
      * @param \Psr\Http\Message\ResponseInterface $response
      * @param string                              $type
@@ -36,5 +38,10 @@ interface ResponseTransformerInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
-    public function createResponse(string $method, ResponseInterface $response, string $type): RetailCrmResponse;
+    public function createResponse(
+        string $method,
+        UriInterface $uri,
+        ResponseInterface $response,
+        string $type
+    ): RetailCrmResponse;
 }

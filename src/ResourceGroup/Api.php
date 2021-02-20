@@ -75,6 +75,8 @@ class Api extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Available API versions: ' . implode(', ', $apiVersions->versions);
@@ -121,6 +123,8 @@ class Api extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Available methods ' . implode(', ', $credentials->credentials);

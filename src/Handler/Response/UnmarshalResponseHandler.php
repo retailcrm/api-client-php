@@ -9,7 +9,6 @@
 
 namespace RetailCrm\Api\Handler\Response;
 
-use RetailCrm\Api\Interfaces\ResponseInterface;
 use RetailCrm\Api\Model\ResponseData;
 
 /**

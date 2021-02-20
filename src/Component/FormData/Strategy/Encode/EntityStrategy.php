@@ -86,6 +86,7 @@ class EntityStrategy extends AbstractEncodeStrategy
             $result[$annotations->serializedName->name] =
                 StrategyFactory::encodeStrategyByType(
                     $annotations->type->type,
+                    $value,
                     $this->annotationReader,
                     $this->jmsSerializer
                 )->encode($value, $annotations);
@@ -93,6 +94,7 @@ class EntityStrategy extends AbstractEncodeStrategy
             $result[$annotations->serializedName->name] =
                 StrategyFactory::encodeStrategyByType(
                     gettype($value),
+                    $value,
                     $this->annotationReader,
                     $this->jmsSerializer
                 )->encode($value, $annotations);

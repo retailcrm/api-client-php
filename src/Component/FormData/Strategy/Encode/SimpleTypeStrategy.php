@@ -72,6 +72,7 @@ class SimpleTypeStrategy extends AbstractEncodeStrategy
             foreach ($value as $key => $item) {
                 $result[$key] = StrategyFactory::encodeStrategyByType(
                     gettype($item),
+                    $item,
                     $this->annotationReader,
                     $this->jmsSerializer
                 )->encode($item, new PropertyAnnotations());

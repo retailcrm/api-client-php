@@ -10,6 +10,7 @@
 namespace RetailCrm\Api;
 
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Interfaces\RequestTransformerInterface;
@@ -20,6 +21,7 @@ use RetailCrm\Api\ResourceGroup\Customers;
 use RetailCrm\Api\ResourceGroup\CustomersCorporate;
 use RetailCrm\Api\ResourceGroup\CustomFields;
 use RetailCrm\Api\ResourceGroup\Delivery;
+use RetailCrm\Api\ResourceGroup\Files;
 
 /**
  * Class Client
@@ -31,6 +33,8 @@ use RetailCrm\Api\ResourceGroup\Delivery;
  * @see \RetailCrm\Api\Factory\ClientFactory
  * @see \RetailCrm\Api\Factory\SimpleClientFactory
  * @see \RetailCrm\Api\Builder\ClientBuilder
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Client
 {
@@ -52,6 +56,12 @@ class Client
     /** @var \RetailCrm\Api\ResourceGroup\Delivery */
     public $delivery;
 
+    /** @var \RetailCrm\Api\ResourceGroup\Files */
+    public $files;
+
+    /** @var StreamFactoryInterface */
+    private $streamFactory;
+
     /**
      * Client constructor.
      *
@@ -59,6 +69,7 @@ class Client
      * @param \Psr\Http\Client\ClientInterface                       $httpClient
      * @param \RetailCrm\Api\Interfaces\RequestTransformerInterface  $requestTransformer
      * @param \RetailCrm\Api\Interfaces\ResponseTransformerInterface $responseTransformer
+     * @param \Psr\Http\Message\StreamFactoryInterface               $streamFactory
      * @param \Psr\Log\LoggerInterface|null                          $logger
      */
     public function __construct(
@@ -66,9 +77,12 @@ class Client
         ClientInterface $httpClient,
         RequestTransformerInterface $requestTransformer,
         ResponseTransformerInterface $responseTransformer,
+        StreamFactoryInterface $streamFactory,
         ?LoggerInterface $logger = null
     ) {
         $url = static::getBaseUrl($apiUrl);
+
+        $this->streamFactory = $streamFactory;
 
         $this->api = new Api($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->costs = new Costs($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
@@ -82,6 +96,19 @@ class Client
             $logger
         );
         $this->delivery = new Delivery($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->files = new Files($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+    }
+
+    /**
+     * Returns PSR-17 stream factory.
+     *
+     * StreamFactory can be used to create a PSR-7 StreamInterface from various sources.
+     *
+     * @return \Psr\Http\Message\StreamFactoryInterface
+     */
+    public function getStreamFactory(): StreamFactoryInterface
+    {
+        return $this->streamFactory;
     }
 
     /**

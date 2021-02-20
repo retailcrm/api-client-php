@@ -12,6 +12,7 @@ namespace RetailCrm\Api\Component\FormData\Strategy;
 use DateTime;
 use Doctrine\Common\Annotations\Reader;
 use JMS\Serializer\SerializerInterface;
+use Psr\Http\Message\StreamInterface;
 use RetailCrm\Api\Component\FormData\Strategy\Encode;
 use RetailCrm\Api\Component\FormData\Strategy\Encode\EncodeStrategyInterface;
 
@@ -42,6 +43,7 @@ class StrategyFactory
      * Returns encode strategy for provided type
      *
      * @param string                              $dataType
+     * @param mixed                               $value
      * @param \Doctrine\Common\Annotations\Reader $annotationReader
      * @param \JMS\Serializer\SerializerInterface $serializer
      *
@@ -49,6 +51,7 @@ class StrategyFactory
      */
     public static function encodeStrategyByType(
         string $dataType,
+        $value,
         Reader $annotationReader,
         SerializerInterface $serializer
     ): EncodeStrategyInterface {
@@ -70,6 +73,10 @@ class StrategyFactory
 
         if (!empty($dateTimeFormat)) {
             return (new Encode\DateTimeStrategy($annotationReader, $serializer))->setInnerType($dateTimeFormat);
+        }
+
+        if ($value instanceof StreamInterface) {
+            return new Encode\StreamInterfaceStrategy($annotationReader, $serializer);
         }
 
         return new Encode\EntityStrategy($annotationReader, $serializer);

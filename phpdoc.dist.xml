@@ -7,8 +7,8 @@
 >
     <title>RetailCRM API Client</title>
     <paths>
-        <output>docs/build</output>
-        <cache>docs/cache</cache>
+        <output>docs/build/html</output>
+        <cache>docs/build/cache</cache>
     </paths>
     <version number="latest">
         <api>

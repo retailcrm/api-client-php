@@ -43,19 +43,20 @@ class CustomFields extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Filter\CustomFields\CustomFieldFilter;
      * use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsRequest;
+     * use RetailCrm\Api\Enum\PaginationLimit;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
-     * $request = new CustomFieldsRequest();
-     * $request->page = 1;
-     * $request->limit = 20;
-     * $request->filter = new CustomFieldFilter();
-     * $request->filter->entity = 'order';
-     * $request->filter->viewMode = ['editable'];
+     * $request                      = new CustomFieldsRequest();
+     * $request->page                = 1;
+     * $request->limit               = PaginationLimit::LIMIT_20;
+     * $request->filter              = new CustomFieldFilter();
+     * $request->filter->entity      = 'order';
+     * $request->filter->viewMode    = ['editable'];
      * $request->filter->displayArea = ['customer'];
-     * $request->filter->type = ['string'];
-     * $request->filter->code = 'bonus';
-     * $request->filter->name = 'бонус';
+     * $request->filter->type        = ['string'];
+     * $request->filter->code        = 'bonus';
+     * $request->filter->name        = 'бонус';
      *
      * try {
      *     $response = $client->customFields->list($request);
@@ -69,6 +70,8 @@ class CustomFields extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Received fields: ' . print_r($response->customFields, true);
@@ -104,13 +107,14 @@ class CustomFields extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Filter\CustomFields\CustomDictionaryFilter;
      * use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsDictionariesRequest;
+     * use RetailCrm\Api\Enum\PaginationLimit;
 
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
 
-     * $request = new CustomFieldsDictionariesRequest();
-     * $request->page = 1;
-     * $request->limit = 20;
-     * $request->filter = new CustomDictionaryFilter();
+     * $request               = new CustomFieldsDictionariesRequest();
+     * $request->page         = 1;
+     * $request->limit        = PaginationLimit::LIMIT_20;
+     * $request->filter       = new CustomDictionaryFilter();
      * $request->filter->code = 'test22';
      * $request->filter->name = 'test22';
 
@@ -126,6 +130,8 @@ class CustomFields extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
 
      * echo 'Received dictionaries: ' . print_r($response->customDictionaries, true);
@@ -185,6 +191,8 @@ class CustomFields extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Created dictionary ' . $response->code;
@@ -237,6 +245,8 @@ class CustomFields extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Received dictionary ' . print_r($response->customDictionary, true);
@@ -295,6 +305,8 @@ class CustomFields extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Edited dictionary ' . $response->code;
@@ -364,6 +376,8 @@ class CustomFields extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Created field ' . print_r($response->code, true);
@@ -418,6 +432,8 @@ class CustomFields extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Received field: ' . print_r($response->customField, true);
@@ -481,6 +497,8 @@ class CustomFields extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Edited field ' . print_r($response->code, true);

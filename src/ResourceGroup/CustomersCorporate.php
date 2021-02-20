@@ -61,12 +61,13 @@ class CustomersCorporate extends AbstractApiResourceGroup
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Filter\CustomersCorporate\CustomerCorporateFilter;
      * use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateRequest;
+     * use RetailCrm\Api\Enum\PaginationLimit;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                        = new CustomersCorporateRequest();
      * $request->filter                = new CustomerCorporateFilter();
-     * $request->limit                 = 20;
+     * $request->limit                 = PaginationLimit::LIMIT_20;
      * $request->page                  = 1;
      * $request->filter->sites         = ['moysklad', 'aliexpress'];
      * $request->filter->nickName      = ['Test'];
@@ -84,6 +85,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Corporate customers: ' . print_r($response->customersCorporate);
@@ -142,6 +145,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Result: ' . var_export($response->success, true);
@@ -235,6 +240,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Created new corporate customer with id: ' . $response->id;
@@ -292,6 +299,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      * ```
      *
@@ -325,11 +334,12 @@ class CustomersCorporate extends AbstractApiResourceGroup
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
+     * use RetailCrm\Api\Enum\PaginationLimit;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                  = new CustomersHistoryRequest();
-     * $request->limit           = 20;
+     * $request->limit           = PaginationLimit::LIMIT_20;
      * $request->page            = 1;
      * $request->filter          = new CustomerHistoryFilter();
      * $request->filter->sinceId = 4241;
@@ -346,6 +356,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'History: ' . $response->history;
@@ -381,11 +393,12 @@ class CustomersCorporate extends AbstractApiResourceGroup
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Filter\Customers\CustomerNoteFilter;
      * use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
+     * use RetailCrm\Api\Enum\PaginationLimit;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request                              = new CustomersNotesRequest();
-     * $request->limit                       = 20;
+     * $request->limit                       = PaginationLimit::LIMIT_20;
      * $request->page                        = 1;
      * $request->filter                      = new CustomerNoteFilter();
      * $request->filter->customerExternalIds = ['10'];
@@ -404,6 +417,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Notes: ' . print_r($response->notes, true);
@@ -463,6 +478,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Created note with id: ' . $response->id;
@@ -511,6 +528,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      * ```
      *
@@ -603,6 +622,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Uploaded customers: ' . implode(', ', array_map(static function (FixExternalRow $row) {
@@ -659,6 +680,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Corporate customer: ' . print_r($response->customerCorporate);
@@ -717,6 +740,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Addresses: ' . print_r($response->addresses, true);
@@ -777,6 +802,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Address ID: ' . $response->id;
@@ -836,6 +863,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Edited address ID: ' . $response->id;
@@ -895,6 +924,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Companies: ' . print_r($response->companies, true);
@@ -960,6 +991,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Created company ID: ' . $response->id;
@@ -1024,6 +1057,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Edited company ID: ' . $response->id;
@@ -1084,6 +1119,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Contacts: ' . print_r($response->contacts, true);
@@ -1151,6 +1188,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Created contact: ' . $response->id;
@@ -1214,6 +1253,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Edited contact: ' . $response->id;
@@ -1273,6 +1314,8 @@ class CustomersCorporate extends AbstractApiResourceGroup
      *     if (count($exception->getErrorResponse()->errors) > 0) {
      *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
      *     }
+     *
+     *     return;
      * }
      *
      * echo 'Edited corporate customer with ID: ' . $response->id;

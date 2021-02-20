@@ -9,7 +9,6 @@
 
 namespace RetailCrm\Api\Model;
 
-use Psr\Http\Message\RequestInterface;
 use RetailCrm\Api\Interfaces\RequestInterface as RequestModel;
 
 /**
@@ -26,7 +25,7 @@ class RequestData
     /** @var string */
     public $uri;
 
-    /** @var ?\RetailCrm\Api\Interfaces\RequestInterface */
+    /** @var \RetailCrm\Api\Interfaces\RequestInterface|null */
     public $requestModel;
 
     /** @var ?\Psr\Http\Message\RequestInterface */

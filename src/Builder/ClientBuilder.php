@@ -9,8 +9,13 @@
 
 namespace RetailCrm\Api\Builder;
 
+use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\UriFactoryInterface;
 use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Client;
 use RetailCrm\Api\Component\Transformer\RequestTransformer;
@@ -49,11 +54,20 @@ class ClientBuilder implements BuilderInterface
     /** @var RequestTransformerInterface|null */
     private $requestTransformer;
 
-    /** @var ?\RetailCrm\Api\Interfaces\ResponseTransformerInterface */
+    /** @var \RetailCrm\Api\Interfaces\ResponseTransformerInterface|null */
     protected $responseTransformer;
 
-    /** @var ?\RetailCrm\Api\Interfaces\FormEncoderInterface */
+    /** @var \RetailCrm\Api\Interfaces\FormEncoderInterface|null */
     private $formEncoder;
+
+    /** @var \Psr\Http\Message\StreamFactoryInterface|null */
+    private $streamFactory;
+
+    /** @var \Psr\Http\Message\RequestFactoryInterface|null */
+    private $requestFactory;
+
+    /** @var \Psr\Http\Message\UriFactoryInterface|null */
+    private $uriFactory;
 
     /**
      * API URL. Looks like this: "https://test.retailcrm.pro/"
@@ -165,6 +179,45 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
+     * Sets PSR-17 compatible stream factory. You can skip this step if you want to use service discovery.
+     *
+     * @param \Psr\Http\Message\StreamFactoryInterface|null $streamFactory
+     *
+     * @return ClientBuilder
+     */
+    public function setStreamFactory(?StreamFactoryInterface $streamFactory): ClientBuilder
+    {
+        $this->streamFactory = $streamFactory;
+        return $this;
+    }
+
+    /**
+     * Sets PSR-17 compatible request factory. You can skip this step if you want to use service discovery.
+     *
+     * @param \Psr\Http\Message\RequestFactoryInterface|null $requestFactory
+     *
+     * @return ClientBuilder
+     */
+    public function setRequestFactory(?RequestFactoryInterface $requestFactory): ClientBuilder
+    {
+        $this->requestFactory = $requestFactory;
+        return $this;
+    }
+
+    /**
+     * Sets PSR-17 compatible URI factory. You can skip this step if you want to use service discovery.
+     *
+     * @param \Psr\Http\Message\UriFactoryInterface|null $uriFactory
+     *
+     * @return ClientBuilder
+     */
+    public function setUriFactory(?UriFactoryInterface $uriFactory): ClientBuilder
+    {
+        $this->uriFactory = $uriFactory;
+        return $this;
+    }
+
+    /**
      * Builds client with provided dependencies.
      *
      * @inheritDoc
@@ -194,6 +247,7 @@ class ClientBuilder implements BuilderInterface
             $this->httpClient ?: Psr18ClientDiscovery::find(),
             $this->requestTransformer,
             $this->responseTransformer,
+            $this->streamFactory ?: Psr17FactoryDiscovery::findStreamFactory(),
             $this->debugLogger
         );
     }
@@ -240,7 +294,13 @@ class ClientBuilder implements BuilderInterface
         }
 
         return new RequestTransformer(
-            RequestPipelineFactory::createDefaultPipeline($this->formEncoder, $this->authenticator)
+            RequestPipelineFactory::createDefaultPipeline(
+                $this->formEncoder,
+                $this->uriFactory ?: Psr17FactoryDiscovery::findUriFactory(),
+                $this->requestFactory ?: Psr17FactoryDiscovery::findRequestFactory(),
+                $this->streamFactory ?: Psr17FactoryDiscovery::findStreamFactory(),
+                $this->authenticator
+            )
         );
     }
 
