@@ -26,6 +26,10 @@ use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
  */
 class CustomerTagHandler implements SubscribingHandlerInterface
 {
+    use SkippableHandlerTrait;
+
+    private const SKIP_FLAG = 'tag_is_being_handled';
+
     /**
      * @return array[]
      */
@@ -78,24 +82,19 @@ class CustomerTagHandler implements SubscribingHandlerInterface
      */
     public function deserialize(JsonDeserializationVisitor $visitor, $tag, array $type, Context $context): CustomerTag
     {
+        if (
+            array_key_exists('params', $type) &&
+            is_array($type['params']) &&
+            array_key_exists(static::SKIP_FLAG, $type['params'])
+        ) {
+            static::skip();
+        }
+
         if (is_array($tag)) {
-            $instance = new CustomerTag();
-
-            foreach ($tag as $key => $value) {
-                switch ($key) {
-                    case 'name':
-                        $instance->name = (string) $value;
-                        break;
-                    case 'color':
-                        $instance->color = (string) $value;
-                        break;
-                    case 'attached':
-                        $instance->attached = (bool) $value;
-                        break;
-                }
-            }
-
-            return $instance;
+            return $context->getNavigator()->accept($tag, [
+                'name' => CustomerTag::class,
+                'params' => [static::SKIP_FLAG => true]
+            ]);
         }
 
         return new CustomerTag((string) $tag);

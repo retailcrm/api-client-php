@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum\Loyalty;
  * @category PrivilegeType
  * @package  RetailCrm\Api\Enum\Loyalty
  */
-class PrivilegeType
+final class PrivilegeType
 {
     public const NONE = 'none';
     public const LOYALTY_LEVEL = 'loyalty_level';

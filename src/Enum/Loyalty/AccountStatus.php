@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum\Loyalty;
  * @category AccountStatus
  * @package  RetailCrm\Api\Enum\Loyalty
  */
-class AccountStatus
+final class AccountStatus
 {
     public const ACTIVATED = 'activated';
     public const DEACTIVATED = 'deactivated';

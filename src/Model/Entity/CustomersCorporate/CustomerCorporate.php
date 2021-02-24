@@ -11,6 +11,7 @@ namespace RetailCrm\Api\Model\Entity\CustomersCorporate;
 
 use DateTime;
 use JMS\Serializer\Annotation as JMS;
+use RetailCrm\Api\Interfaces\Order\CustomerInterface;
 
 /**
  * Class CustomerCorporate
@@ -18,7 +19,7 @@ use JMS\Serializer\Annotation as JMS;
  * @category CustomerCorporate
  * @package  RetailCrm\Api\Model\Entity\CustomersCorporate
  */
-class CustomerCorporate
+class CustomerCorporate implements CustomerInterface
 {
     /**
      * @var string

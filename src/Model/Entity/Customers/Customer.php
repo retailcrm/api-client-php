@@ -11,6 +11,7 @@ namespace RetailCrm\Api\Model\Entity\Customers;
 
 use DateTime;
 use JMS\Serializer\Annotation as JMS;
+use RetailCrm\Api\Interfaces\Order\CustomerInterface;
 
 /**
  * Class Customer
@@ -21,7 +22,7 @@ use JMS\Serializer\Annotation as JMS;
  * @SuppressWarnings(PHPMD.TooManyFields)
  * @SuppressWarnings(PHPMD.LongVariable)
  */
-class Customer
+class Customer implements CustomerInterface
 {
     /**
      * @var string
