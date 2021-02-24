@@ -23,6 +23,7 @@ use RetailCrm\Api\ResourceGroup\CustomFields;
 use RetailCrm\Api\ResourceGroup\Delivery;
 use RetailCrm\Api\ResourceGroup\Files;
 use RetailCrm\Api\ResourceGroup\Integration;
+use RetailCrm\Api\ResourceGroup\Loyalty;
 
 /**
  * Class Client
@@ -63,6 +64,9 @@ class Client
     /** @var \RetailCrm\Api\ResourceGroup\Integration */
     public $integration;
 
+    /** @var \RetailCrm\Api\ResourceGroup\Loyalty */
+    public $loyalty;
+
     /** @var StreamFactoryInterface */
     private $streamFactory;
 
@@ -102,6 +106,7 @@ class Client
         $this->delivery = new Delivery($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->files = new Files($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->integration = new Integration($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->loyalty = new Loyalty($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
     }
 
     /**

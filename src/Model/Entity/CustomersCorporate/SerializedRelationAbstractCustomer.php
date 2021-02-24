@@ -58,4 +58,36 @@ class SerializedRelationAbstractCustomer
      * @JMS\SerializedName("companies")
      */
     public $companies;
+
+    /**
+     * Returns customer with provided ID.
+     *
+     * @param int $id
+     *
+     * @return self
+     */
+    public static function withId(int $id): self
+    {
+        $customer     = new self();
+        $customer->id = $id;
+
+        return $customer;
+    }
+
+    /**
+     * Returns customer with provided external ID and site.
+     *
+     * @param string $externalId
+     * @param string $site
+     *
+     * @return self
+     */
+    public static function withExternalId(string $externalId, string $site): self
+    {
+        $customer             = new self();
+        $customer->externalId = $externalId;
+        $customer->site       = $site;
+
+        return $customer;
+    }
 }

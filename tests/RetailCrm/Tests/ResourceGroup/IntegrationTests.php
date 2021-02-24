@@ -105,12 +105,7 @@ EOF;
         );
 
         $client   = TestClientFactory::createClient($mock);
-
-        try {
-            $response = $client->integration->edit('mg-fbmessenger', $module);
-        } catch (ApiExceptionInterface $exception) {
-            print_r($exception->getErrorResponse());
-        }
+        $response = $client->integration->edit('mg-fbmessenger', $module);
 
         self::assertModelEqualsToResponse($json, $response);
     }
