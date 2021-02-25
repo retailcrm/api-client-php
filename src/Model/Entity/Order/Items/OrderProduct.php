@@ -167,9 +167,9 @@ class OrderProduct
     public $isCanceled;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\Items\ItemProperty[]
+     * @var array<string, \RetailCrm\Api\Model\Entity\Order\Items\ItemProperty>
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Order\Items\ItemProperty>")
+     * @JMS\Type("array<string, RetailCrm\Api\Model\Entity\Order\Items\ItemProperty>")
      * @JMS\SerializedName("properties")
      */
     public $properties;

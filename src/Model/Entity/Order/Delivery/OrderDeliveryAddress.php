@@ -20,6 +20,14 @@ use JMS\Serializer\Annotation as JMS;
 class OrderDeliveryAddress
 {
     /**
+     * @var int
+     *
+     * @JMS\Type("int")
+     * @JMS\SerializedName("id")
+     */
+    public $id;
+
+    /**
      * @var string
      *
      * @JMS\Type("string")

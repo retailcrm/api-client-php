@@ -13,9 +13,11 @@ use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\Orders\OrdersCombineRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCreateRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersFixExternalIdsRequest;
+use RetailCrm\Api\Model\Request\Orders\OrdersHistoryRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersRequest;
 use RetailCrm\Api\Model\Response\Orders\OrdersCombineResponse;
 use RetailCrm\Api\Model\Response\Orders\OrdersCreateResponse;
+use RetailCrm\Api\Model\Response\Orders\OrdersHistoryResponse;
 use RetailCrm\Api\Model\Response\Orders\OrdersResponse;
 use RetailCrm\Api\Model\Response\SuccessResponse;
 
@@ -327,6 +329,64 @@ class Orders extends AbstractApiResourceGroup
             'orders/fix-external-ids',
             $request,
             SuccessResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/orders/history" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Filter\Order\OrderHistoryFilterV4Type;
+     * use RetailCrm\Api\Model\Request\Orders\OrdersHistoryRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request                  = new OrdersHistoryRequest();
+     * $request->limit           = 100;
+     * $request->page            = 1;
+     * $request->filter          = new OrderHistoryFilterV4Type();
+     * $request->filter->sinceId = 2691;
+     *
+     * try {
+     *     $response = $client->orders->history($request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Orders history: ' . print_r($response->history, true);
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\Orders\OrdersHistoryRequest|null $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Orders\OrdersHistoryResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function history(?OrdersHistoryRequest $request = null): OrdersHistoryResponse
+    {
+        /** @var OrdersHistoryResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'orders/history',
+            $request,
+            OrdersHistoryResponse::class
         );
         return $response;
     }
