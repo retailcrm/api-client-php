@@ -17,6 +17,8 @@ use RetailCrm\Api\Model\Entity\Pagination;
  *
  * @category AbstractPaginatedResponse
  * @package  RetailCrm\Api\Model\Response
+ *
+ * @SuppressWarnings(PHPMD.NumberOfChildren)
  */
 abstract class AbstractPaginatedResponse extends SuccessResponse
 {

@@ -21,9 +21,9 @@ use RetailCrm\Api\Model\Response\SuccessResponse;
 class CustomersUploadResponse extends SuccessResponse
 {
     /**
-     * @var \RetailCrm\Api\Model\Entity\Customers\FixExternalRow[]
+     * @var \RetailCrm\Api\Model\Entity\FixExternalRow[]
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Customers\FixExternalRow>")
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\FixExternalRow>")
      * @JMS\SerializedName("uploadedCustomers")
      */
     public $uploadedCustomers;

@@ -37,9 +37,9 @@ class SerializedOrderDelivery
     public $time;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\OrderDeliveryAddress
+     * @var \RetailCrm\Api\Model\Entity\Order\Delivery\OrderDeliveryAddress
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\Order\OrderDeliveryAddress")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Order\Delivery\OrderDeliveryAddress")
      * @JMS\SerializedName("address")
      */
     public $address;

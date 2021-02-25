@@ -21,7 +21,7 @@ use RetailCrm\Api\Model\Entity\Delivery\SerializedOrderDelivery;
 use RetailCrm\Api\Model\Entity\Delivery\SerializedOrderProduct;
 use RetailCrm\Api\Model\Entity\Delivery\StatusInfo;
 use RetailCrm\Api\Model\Entity\Delivery\TimeInterval;
-use RetailCrm\Api\Model\Entity\Order\OrderDeliveryAddress;
+use RetailCrm\Api\Model\Entity\Order\Delivery\OrderDeliveryAddress;
 use RetailCrm\Api\Model\Filter\Delivery\ApiDeliveryShipmentFilterType;
 use RetailCrm\Api\Model\Request\Delivery\DeliveryCalculateRequest;
 use RetailCrm\Api\Model\Request\Delivery\DeliveryShipmentsCreateRequest;

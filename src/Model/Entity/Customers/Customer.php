@@ -92,6 +92,14 @@ class Customer implements CustomerInterface
      * @var string
      *
      * @JMS\Type("string")
+     * @JMS\SerializedName("browserId")
+     */
+    public $browserId;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
      * @JMS\SerializedName("site")
      */
     public $site;

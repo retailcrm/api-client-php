@@ -21,9 +21,9 @@ use RetailCrm\Api\Interfaces\RequestInterface;
 class CustomersFixExternalIdsRequest implements RequestInterface
 {
     /**
-     * @var \RetailCrm\Api\Model\Entity\Customers\FixExternalRow[]
+     * @var \RetailCrm\Api\Model\Entity\FixExternalRow[]
      *
-     * @Form\Type("array<RetailCrm\Api\Model\Entity\Customers\FixExternalRow>")
+     * @Form\Type("array<RetailCrm\Api\Model\Entity\FixExternalRow>")
      * @Form\SerializedName("customers")
      * @Form\JsonField()
      */

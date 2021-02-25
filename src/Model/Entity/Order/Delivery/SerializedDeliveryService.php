@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category SerializedDeliveryService
- * @package  RetailCrm\Api\Model\Entity\Order
+ * @package  RetailCrm\Api\Model\Entity\Order\Delivery
  */
 
-namespace RetailCrm\Api\Model\Entity\Order;
+namespace RetailCrm\Api\Model\Entity\Order\Delivery;
 
 use JMS\Serializer\Annotation as JMS;
 
@@ -15,7 +15,7 @@ use JMS\Serializer\Annotation as JMS;
  * Class SerializedDeliveryService
  *
  * @category SerializedDeliveryService
- * @package  RetailCrm\Api\Model\Entity\Order
+ * @package  RetailCrm\Api\Model\Entity\Order\Delivery
  */
 class SerializedDeliveryService
 {

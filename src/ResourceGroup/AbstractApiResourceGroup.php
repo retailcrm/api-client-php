@@ -23,6 +23,7 @@ use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
  *
  * @category AbstractApiResourceGroup
  * @package  RetailCrm\Api\Modules
+ * @internal
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
@@ -81,6 +82,12 @@ abstract class AbstractApiResourceGroup
     /**
      * Sends request to provided route with provided method and body, returns response of provided type.
      * Request will be put into GET parameters or into POST form-data (depends on method).
+     *
+     * Note: do not remove "useless" exceptions which are marked as "never thrown" by IDE.
+     * PSR-18's ClientInterface doesn't have them in the DocBlock, but, according to PSR-18,
+     * they can be thrown by clients, and therefore should be present here.
+     *
+     * @see https://www.php-fig.org/psr/psr-18/#error-handling
      *
      * @param string                                          $method
      * @param string                                          $route

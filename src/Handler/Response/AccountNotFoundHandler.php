@@ -34,7 +34,7 @@ class AccountNotFoundHandler extends AbstractResponseHandler
             static::isContentType($responseData->response, 'text/html')
         ) {
             $errorResponse = new ErrorResponse();
-            $errorResponse->errorMsg = 'Account does not exist';
+            $errorResponse->errorMsg = 'Account does not exist.';
 
             throw new ApiException($errorResponse, $responseData->response->getStatusCode());
         }

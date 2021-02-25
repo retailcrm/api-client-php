@@ -23,8 +23,19 @@ use Throwable;
  */
 class ApiException extends Exception implements ApiExceptionInterface
 {
+    /** @var string[] */
+    private $errorMessagesMapping = [
+        '"apiKey" is missing.' => self::MISSING_CREDENTIALS,
+        'Account does not exist.' => self::ACCOUNT_DOES_NOT_EXIST,
+        'Errors in the entity format' => self::VALIDATION_ERROR,
+        'Validation error' => self::VALIDATION_ERROR
+    ];
+
     /** @var \RetailCrm\Api\Model\Response\ErrorResponse */
     private $response;
+
+    /** @var string */
+    private $errorType;
 
     /**
      * ApiException constructor.
@@ -35,7 +46,8 @@ class ApiException extends Exception implements ApiExceptionInterface
      */
     public function __construct(ResponseInterface $errorResponse, int $statusCode = 0, Throwable $previous = null)
     {
-        $this->response = $errorResponse instanceof ErrorResponse ? $errorResponse : new ErrorResponse();
+        $this->response  = $errorResponse instanceof ErrorResponse ? $errorResponse : new ErrorResponse();
+        $this->errorType = $this->getErrorTypeByMessage($this->response->errorMsg ?? '');
 
         parent::__construct(static::getErrorMessage($this->response), $statusCode, $previous);
     }
@@ -58,6 +70,36 @@ class ApiException extends Exception implements ApiExceptionInterface
     public function getErrorResponse(): ErrorResponse
     {
         return $this->response;
+    }
+
+    /**
+     * Returns error type.
+     *
+     * @return string
+     */
+    public function getErrorType(): string
+    {
+        return $this->errorType;
+    }
+
+    /**
+     * Returns error type by error message.
+     *
+     * @param string $message
+     *
+     * @return string
+     */
+    private function getErrorTypeByMessage(string $message): string
+    {
+        if (array_key_exists($message, $this->errorMessagesMapping)) {
+            return $this->errorMessagesMapping[$message];
+        }
+
+        if (preg_match('/^Parameter \'[\w\]\[\_\-]+\' is missing$/', $message)) {
+            return self::MISSING_PARAMETER;
+        }
+
+        return self::GENERIC_ERROR;
     }
 
     /**

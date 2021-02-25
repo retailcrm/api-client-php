@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category SerializedOrderDelivery
- * @package  RetailCrm\Api\Model\Entity\Order
+ * @package  RetailCrm\Api\Model\Entity\Order\Delivery
  */
 
-namespace RetailCrm\Api\Model\Entity\Order;
+namespace RetailCrm\Api\Model\Entity\Order\Delivery;
 
 use DateTime;
 use JMS\Serializer\Annotation as JMS;
@@ -17,7 +17,7 @@ use RetailCrm\Api\Model\Entity\Delivery\TimeInterval;
  * Class SerializedOrderDelivery
  *
  * @category SerializedOrderDelivery
- * @package  RetailCrm\Api\Model\Entity\Order
+ * @package  RetailCrm\Api\Model\Entity\Order\Delivery
  */
 class SerializedOrderDelivery
 {
@@ -38,17 +38,17 @@ class SerializedOrderDelivery
     public $integrationCode;
 
     /**
-     * @var \RetailCrm\Api\Interfaces\Order\DeliveryDataInterface
+     * @var \RetailCrm\Api\Model\Entity\Order\Delivery\DeliveryData
      *
-     * @JMS\Type("RetailCrm\Api\Interfaces\Order\DeliveryDataInterface")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Order\Delivery\DeliveryData")
      * @JMS\SerializedName("data")
      */
     public $data;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\SerializedDeliveryService
+     * @var \RetailCrm\Api\Model\Entity\Order\Delivery\SerializedDeliveryService
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\Order\SerializedDeliveryService")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Order\Delivery\SerializedDeliveryService")
      * @JMS\SerializedName("service")
      */
     public $service;
@@ -86,9 +86,9 @@ class SerializedOrderDelivery
     public $time;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\OrderDeliveryAddress
+     * @var \RetailCrm\Api\Model\Entity\Order\Delivery\OrderDeliveryAddress
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\Order\OrderDeliveryAddress")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Order\Delivery\OrderDeliveryAddress")
      * @JMS\SerializedName("address")
      */
     public $address;

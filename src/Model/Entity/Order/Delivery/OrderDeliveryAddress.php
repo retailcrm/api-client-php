@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category OrderDeliveryAddress
- * @package  RetailCrm\Api\Model\Entity\Order
+ * @package  RetailCrm\Api\Model\Entity\Order\Delivery
  */
 
-namespace RetailCrm\Api\Model\Entity\Order;
+namespace RetailCrm\Api\Model\Entity\Order\Delivery;
 
 use JMS\Serializer\Annotation as JMS;
 
@@ -15,7 +15,7 @@ use JMS\Serializer\Annotation as JMS;
  * Class OrderDeliveryAddress
  *
  * @category OrderDeliveryAddress
- * @package  RetailCrm\Api\Model\Entity\Order
+ * @package  RetailCrm\Api\Model\Entity\Order\Delivery
  */
 class OrderDeliveryAddress
 {
@@ -154,4 +154,12 @@ class OrderDeliveryAddress
      * @JMS\SerializedName("metro")
      */
     public $metro;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("text")
+     */
+    public $text;
 }

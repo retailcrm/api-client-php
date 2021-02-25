@@ -28,8 +28,6 @@ class JmsHandlersInjector
     public static function registerLibraryHandlers(HandlerRegistry $registry): void
     {
         $registry->registerSubscribingHandler(new OrderCustomerHandler());
-        $registry->registerSubscribingHandler(new SerializedOrderDeliveryHandler());
-        $registry->registerSubscribingHandler(new OrderDeliveryDataHandler());
         $registry->registerSubscribingHandler(new CustomerTagHandler());
         $registry->registerSubscribingHandler(new MixedHandler());
     }

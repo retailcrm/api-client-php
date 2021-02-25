@@ -24,6 +24,7 @@ use RetailCrm\Api\ResourceGroup\Delivery;
 use RetailCrm\Api\ResourceGroup\Files;
 use RetailCrm\Api\ResourceGroup\Integration;
 use RetailCrm\Api\ResourceGroup\Loyalty;
+use RetailCrm\Api\ResourceGroup\Orders;
 
 /**
  * Class Client
@@ -67,6 +68,9 @@ class Client
     /** @var \RetailCrm\Api\ResourceGroup\Loyalty */
     public $loyalty;
 
+    /** @var \RetailCrm\Api\ResourceGroup\Orders */
+    public $orders;
+
     /** @var StreamFactoryInterface */
     private $streamFactory;
 
@@ -107,6 +111,7 @@ class Client
         $this->files = new Files($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->integration = new Integration($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->loyalty = new Loyalty($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->orders = new Orders($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
     }
 
     /**

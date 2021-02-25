@@ -9,7 +9,7 @@
 
 namespace RetailCrm\Api\Model\Entity\Customers;
 
-use RetailCrm\Api\Component\FormData\Mapping as Form;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class SerializedCustomerReference
@@ -22,8 +22,8 @@ class SerializedCustomerReference
     /**
      * @var int
      *
-     * @Form\Type("int")
-     * @Form\SerializedName("id")
+     * @JMS\Type("int")
+     * @JMS\SerializedName("id")
      */
     public $id;
 

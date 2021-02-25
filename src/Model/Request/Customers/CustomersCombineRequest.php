@@ -25,6 +25,7 @@ class CustomersCombineRequest implements RequestInterface
      *
      * @Form\Type("RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference")
      * @Form\SerializedName("resultCustomer")
+     * @Form\JsonField()
      */
     public $resultCustomer;
 
@@ -33,6 +34,7 @@ class CustomersCombineRequest implements RequestInterface
      *
      * @Form\Type("RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference[]")
      * @Form\SerializedName("customers")
+     * @Form\JsonField()
      */
     public $customers;
 }

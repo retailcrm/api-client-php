@@ -42,7 +42,7 @@ class Delivery extends AbstractApiResourceGroup
      * use RetailCrm\Api\Model\Entity\Delivery\SerializedOrderDelivery;
      * use RetailCrm\Api\Model\Entity\Delivery\SerializedOrderProduct;
      * use RetailCrm\Api\Model\Entity\Delivery\TimeInterval;
-     * use RetailCrm\Api\Model\Entity\Order\OrderDeliveryAddress;
+     * use RetailCrm\Api\Model\Entity\Order\Delivery\OrderDeliveryAddress;
      * use RetailCrm\Api\Model\Request\Delivery\DeliveryCalculateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
