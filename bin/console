@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+namespace RetailCrm\Api;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RecursiveRegexIterator;
+use RegexIterator;
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+$directory   = new RecursiveDirectoryIterator(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'src', 'Command']));
+$commands    = new RegexIterator(
+    new RecursiveIteratorIterator($directory),
+    '/^.+\.php$/i',
+    RecursiveRegexIterator::GET_MATCH
+);
+
+foreach ($commands as $commandsList) {
+    foreach ($commandsList as $commandFile) {
+        $command = __NAMESPACE__ . '\\' . str_replace(
+            DIRECTORY_SEPARATOR,
+            '\\', str_replace(
+                implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'src']) . DIRECTORY_SEPARATOR,
+                '',
+                str_ireplace('.php', '', $commandFile)
+            )
+        );
+        $application->add(new $command());
+
+    }
+}
+
+$application->run();

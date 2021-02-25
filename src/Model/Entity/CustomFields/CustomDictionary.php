@@ -36,7 +36,7 @@ class CustomDictionary
     public $code;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\CustomFields\SerializedCustomDictionaryElement
+     * @var \RetailCrm\Api\Model\Entity\CustomFields\SerializedCustomDictionaryElement[]
      *
      * @JMS\Type("array<RetailCrm\Api\Model\Entity\CustomFields\SerializedCustomDictionaryElement>")
      * @JMS\SerializedName("elements")
