@@ -13,9 +13,6 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Generator;
 use Liip\MetadataParser\Builder;
 use Liip\MetadataParser\ModelParser\JMSParser;
-use Liip\MetadataParser\ModelParser\LiipMetadataAnnotationParser;
-use Liip\MetadataParser\ModelParser\PhpDocParser;
-use Liip\MetadataParser\ModelParser\ReflectionParser;
 use Liip\MetadataParser\Parser;
 use Liip\MetadataParser\RecursionChecker;
 use Liip\Serializer\Configuration\GeneratorConfiguration;
@@ -27,9 +24,6 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
 use RegexIterator;
-use RetailCrm\Api\Model\Response\Orders\OrdersCreateResponse;
-use RuntimeException;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -39,7 +33,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @category GenerateModelsCommand
  * @package  RetailCrm\Api\Command
  */
-class GenerateModelsCommand extends Command
+class GenerateModelsCommand extends AbstractModelsProcessorCommand
 {
     /**
      * Sets description and help for a command.
@@ -56,7 +50,7 @@ class GenerateModelsCommand extends Command
         $models = [];
         $target = static::getTargetDirectory();
 
-        $this->createDir($target);
+        static::createDir($target);
 
         $output->writeln('Preparing a list of models to generate cache files...');
         $output->writeln(
@@ -71,6 +65,7 @@ class GenerateModelsCommand extends Command
         }
 
         $this->generateModelCache($models, $target);
+        $output->writeln('<fg=black;bg=green>Done!</>');
 
         return 0;
     }
@@ -133,35 +128,5 @@ class GenerateModelsCommand extends Command
         $deserializerGenerator = new DeserializerGenerator(new Deserialization(), $classes, $target);
         $serializerGenerator->generate($builder);
         $deserializerGenerator->generate($builder);
-    }
-
-    /**
-     * Returns target directory for the model cache.
-     *
-     * @return string
-     */
-    private static function getTargetDirectory(): string
-    {
-        $parentDir = implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..']);
-
-        return implode(DIRECTORY_SEPARATOR, [realpath($parentDir), 'models']);
-    }
-
-    /**
-     * Create directory
-     *
-     * @param string $dir
-     *
-     * @throws RuntimeException
-     */
-    private function createDir(string $dir): void
-    {
-        if (is_dir($dir)) {
-            return;
-        }
-
-        if (false === mkdir($dir, 0777, true) && false === is_dir($dir)) {
-            throw new RuntimeException(sprintf('Could not create directory "%s".', $dir));
-        }
     }
 }

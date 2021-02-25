@@ -8,6 +8,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
+use ReflectionClass;
 use RegexIterator;
 use Symfony\Component\Console\Application;
 
@@ -29,8 +30,10 @@ foreach ($commands as $commandsList) {
                 str_ireplace('.php', '', $commandFile)
             )
         );
-        $application->add(new $command());
 
+        if (class_exists($command) && !(new ReflectionClass($command))->isAbstract()) {
+            $application->add(new $command());
+        }
     }
 }
 
