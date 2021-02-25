@@ -59,6 +59,11 @@ class GenerateModelsCommand extends Command
         $this->createDir($target);
 
         $output->writeln('Preparing a list of models to generate cache files...');
+        $output->writeln(
+            '<options=bold>Note:</> Request models will be omitted ' .
+            'because they are being handled by FormEncoder.'
+        );
+        $output->writeln('');
 
         foreach ($this->getModelsList() as $model) {
             $output->writeln(sprintf('- Adding <fg=magenta>%s</>', $model));
@@ -86,7 +91,7 @@ class GenerateModelsCommand extends Command
         $parentDir = realpath(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'Model']));
 
         foreach ($models as $model) {
-            yield 'RetailCrm\\Api\\Model' . str_ireplace(
+            $className = 'RetailCrm\\Api\\Model' . str_ireplace(
                 '.php',
                 '',
                 str_replace(
@@ -95,6 +100,10 @@ class GenerateModelsCommand extends Command
                     str_replace($parentDir, '', realpath($model[0]))
                 )
             );
+
+            if (false === strpos($className, 'RetailCrm\\Api\\Model\\Request')) {
+                yield $className;
+            }
         }
     }
 
