@@ -41,7 +41,10 @@ use Symfony\Component\Filesystem\Filesystem;
  *
  * @category SerializerGenerator
  * @package  RetailCrm\Api\Component\Serializer\Generator
- * @author   Liip
+ * @license  https://github.com/liip/serializer/blob/master/LICENSE MIT License
+ * @author   Liip <https://github.com/liip>
+ * @author   Pavel Kovalenko
+ * @see      https://github.com/liip/serializer
  * @internal
  *
  * @SuppressWarnings(PHPMD)

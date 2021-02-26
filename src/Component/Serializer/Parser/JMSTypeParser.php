@@ -25,7 +25,10 @@ use RetailCrm\Api\Component\Serializer\Type\PropertyTypeMixed;
  *
  * @category JMSTypeParser
  * @package  RetailCrm\Api\Component\Serializer\Parser
- * @author   Liip
+ * @license  https://github.com/liip/metadata-parser/blob/master/LICENSE MIT License
+ * @author   Liip <https://github.com/liip>
+ * @author   Pavel Kovalenko
+ * @see      https://github.com/liip/metadata-parser
  * @internal
  *
  * @SuppressWarnings(PHPMD)
