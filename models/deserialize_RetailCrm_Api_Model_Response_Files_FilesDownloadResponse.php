@@ -5,7 +5,7 @@ function deserialize_RetailCrm_Api_Model_Response_Files_FilesDownloadResponse(ar
     
 $model = new RetailCrm\Api\Model\Response\Files\FilesDownloadResponse();
 if (isset($jsonData['file_name'])) {
-    $model->file_name = $jsonData['file_name'];
+    $model->fileName = $jsonData['file_name'];
 
 }
 if (isset($jsonData['data'])) {

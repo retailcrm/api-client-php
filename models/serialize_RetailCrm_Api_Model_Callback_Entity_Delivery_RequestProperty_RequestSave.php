@@ -302,21 +302,7 @@ if (0 === \count($jsonData["customer"]["contragent"])) {
 if (null !== $model->customer->tags) {
     $jsonData["customer"]["tags"] = [];
 foreach (array_keys($model->customer->tags) as $index20) {
-    $jsonData["customer"]["tags"][$index20] = [];
-if (null !== $model->customer->tags[$index20]->name) {
-    $jsonData["customer"]["tags"][$index20]["name"] = $model->customer->tags[$index20]->name;
-}
-if (null !== $model->customer->tags[$index20]->color) {
-    $jsonData["customer"]["tags"][$index20]["color"] = $model->customer->tags[$index20]->color;
-}
-if (null !== $model->customer->tags[$index20]->attached) {
-    $jsonData["customer"]["tags"][$index20]["attached"] = $model->customer->tags[$index20]->attached;
-}
-
-if (0 === \count($jsonData["customer"]["tags"][$index20])) {
-    $jsonData["customer"]["tags"][$index20] = $emptyObject;
-}
-
+    $jsonData["customer"]["tags"][$index20] = $model->customer->tags[$index20]->name;
 }
 
 }

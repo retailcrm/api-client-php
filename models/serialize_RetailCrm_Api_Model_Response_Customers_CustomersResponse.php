@@ -119,21 +119,7 @@ if (0 === \count($jsonData["customers"][$index13]["contragent"])) {
 if (null !== $model->customers[$index13]->tags) {
     $jsonData["customers"][$index13]["tags"] = [];
 foreach (array_keys($model->customers[$index13]->tags) as $index31) {
-    $jsonData["customers"][$index13]["tags"][$index31] = [];
-if (null !== $model->customers[$index13]->tags[$index31]->name) {
-    $jsonData["customers"][$index13]["tags"][$index31]["name"] = $model->customers[$index13]->tags[$index31]->name;
-}
-if (null !== $model->customers[$index13]->tags[$index31]->color) {
-    $jsonData["customers"][$index13]["tags"][$index31]["color"] = $model->customers[$index13]->tags[$index31]->color;
-}
-if (null !== $model->customers[$index13]->tags[$index31]->attached) {
-    $jsonData["customers"][$index13]["tags"][$index31]["attached"] = $model->customers[$index13]->tags[$index31]->attached;
-}
-
-if (0 === \count($jsonData["customers"][$index13]["tags"][$index31])) {
-    $jsonData["customers"][$index13]["tags"][$index31] = $emptyObject;
-}
-
+    $jsonData["customers"][$index13]["tags"][$index31] = $model->customers[$index13]->tags[$index31]->name;
 }
 
 }

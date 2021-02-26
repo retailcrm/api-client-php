@@ -130,10 +130,6 @@ if (null !== $model->managerId) {
 if (null !== $model->customer) {
     $jsonData["customer"] = [];
 
-if (0 === \count($jsonData["customer"])) {
-    $jsonData["customer"] = $emptyObject;
-}
-
 if ($model->customer instanceof \RetailCrm\Api\Model\Entity\Customers\Customer) {
     $jsonData["customer"] = [];
 if (null !== $model->customer->type) {
@@ -222,21 +218,7 @@ if (0 === \count($jsonData["customer"]["contragent"])) {
 if (null !== $model->customer->tags) {
     $jsonData["customer"]["tags"] = [];
 foreach (array_keys($model->customer->tags) as $index20) {
-    $jsonData["customer"]["tags"][$index20] = [];
-if (null !== $model->customer->tags[$index20]->name) {
-    $jsonData["customer"]["tags"][$index20]["name"] = $model->customer->tags[$index20]->name;
-}
-if (null !== $model->customer->tags[$index20]->color) {
-    $jsonData["customer"]["tags"][$index20]["color"] = $model->customer->tags[$index20]->color;
-}
-if (null !== $model->customer->tags[$index20]->attached) {
-    $jsonData["customer"]["tags"][$index20]["attached"] = $model->customer->tags[$index20]->attached;
-}
-
-if (0 === \count($jsonData["customer"]["tags"][$index20])) {
-    $jsonData["customer"]["tags"][$index20] = $emptyObject;
-}
-
+    $jsonData["customer"]["tags"][$index20] = $model->customer->tags[$index20]->name;
 }
 
 }
@@ -938,21 +920,7 @@ if (null !== $model->customer->site) {
 if (null !== $model->customer->tags) {
     $jsonData["customer"]["tags"] = [];
 foreach (array_keys($model->customer->tags) as $index20) {
-    $jsonData["customer"]["tags"][$index20] = [];
-if (null !== $model->customer->tags[$index20]->name) {
-    $jsonData["customer"]["tags"][$index20]["name"] = $model->customer->tags[$index20]->name;
-}
-if (null !== $model->customer->tags[$index20]->color) {
-    $jsonData["customer"]["tags"][$index20]["color"] = $model->customer->tags[$index20]->color;
-}
-if (null !== $model->customer->tags[$index20]->attached) {
-    $jsonData["customer"]["tags"][$index20]["attached"] = $model->customer->tags[$index20]->attached;
-}
-
-if (0 === \count($jsonData["customer"]["tags"][$index20])) {
-    $jsonData["customer"]["tags"][$index20] = $emptyObject;
-}
-
+    $jsonData["customer"]["tags"][$index20] = $model->customer->tags[$index20]->name;
 }
 
 }
@@ -1124,6 +1092,9 @@ if (0 === \count($jsonData["customer"])) {
 
 }
 
+if (0 === \count($jsonData["customer"])) {
+    $jsonData["customer"] = $emptyObject;
+}
 }
 if (null !== $model->contact) {
     $jsonData["contact"] = [];
@@ -1213,21 +1184,7 @@ if (0 === \count($jsonData["contact"]["contragent"])) {
 if (null !== $model->contact->tags) {
     $jsonData["contact"]["tags"] = [];
 foreach (array_keys($model->contact->tags) as $index19) {
-    $jsonData["contact"]["tags"][$index19] = [];
-if (null !== $model->contact->tags[$index19]->name) {
-    $jsonData["contact"]["tags"][$index19]["name"] = $model->contact->tags[$index19]->name;
-}
-if (null !== $model->contact->tags[$index19]->color) {
-    $jsonData["contact"]["tags"][$index19]["color"] = $model->contact->tags[$index19]->color;
-}
-if (null !== $model->contact->tags[$index19]->attached) {
-    $jsonData["contact"]["tags"][$index19]["attached"] = $model->contact->tags[$index19]->attached;
-}
-
-if (0 === \count($jsonData["contact"]["tags"][$index19])) {
-    $jsonData["contact"]["tags"][$index19] = $emptyObject;
-}
-
+    $jsonData["contact"]["tags"][$index19] = $model->contact->tags[$index19]->name;
 }
 
 }

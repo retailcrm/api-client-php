@@ -416,10 +416,6 @@ class JMSParser implements ModelParserInterface
         PropertyVariationMetadata $property,
         RawClassMetadata $classMetadata
     ): void {
-        $metadataName = new ReflectionProperty(get_parent_class($property), 'name');
-        $metadataName->setAccessible(true);
-        $metadataName->setValue($property, $name);
-
         if ($classMetadata->hasPropertyCollection($defaultName)) {
             $prop = $classMetadata->getPropertyCollection($defaultName);
         } else {

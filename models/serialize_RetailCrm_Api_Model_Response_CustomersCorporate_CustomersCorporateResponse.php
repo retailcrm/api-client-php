@@ -500,21 +500,7 @@ if (null !== $model->customersCorporate[$index22]->site) {
 if (null !== $model->customersCorporate[$index22]->tags) {
     $jsonData["customersCorporate"][$index22]["tags"] = [];
 foreach (array_keys($model->customersCorporate[$index22]->tags) as $index40) {
-    $jsonData["customersCorporate"][$index22]["tags"][$index40] = [];
-if (null !== $model->customersCorporate[$index22]->tags[$index40]->name) {
-    $jsonData["customersCorporate"][$index22]["tags"][$index40]["name"] = $model->customersCorporate[$index22]->tags[$index40]->name;
-}
-if (null !== $model->customersCorporate[$index22]->tags[$index40]->color) {
-    $jsonData["customersCorporate"][$index22]["tags"][$index40]["color"] = $model->customersCorporate[$index22]->tags[$index40]->color;
-}
-if (null !== $model->customersCorporate[$index22]->tags[$index40]->attached) {
-    $jsonData["customersCorporate"][$index22]["tags"][$index40]["attached"] = $model->customersCorporate[$index22]->tags[$index40]->attached;
-}
-
-if (0 === \count($jsonData["customersCorporate"][$index22]["tags"][$index40])) {
-    $jsonData["customersCorporate"][$index22]["tags"][$index40] = $emptyObject;
-}
-
+    $jsonData["customersCorporate"][$index22]["tags"][$index40] = $model->customersCorporate[$index22]->tags[$index40]->name;
 }
 
 }

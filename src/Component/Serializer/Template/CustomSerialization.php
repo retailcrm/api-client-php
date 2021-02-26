@@ -24,16 +24,15 @@ class CustomSerialization extends AbstractTemplate
     private const TMPL_CUSTOMER_INTERFACE = <<<'EOT'
 $jsonData{{jsonPath}} = [];
 
-if (0 === \count($jsonData{{jsonPath}})) {
-    $jsonData{{jsonPath}} = $emptyObject;
-}
-
 if ({{modelPath}} instanceof \RetailCrm\Api\Model\Entity\Customers\Customer) {
     {{customerCode}}
 } elseif ({{modelPath}} instanceof \RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate) {
     {{corporateCode}}
 }
 
+if (0 === \count($jsonData{{jsonPath}})) {
+    $jsonData{{jsonPath}} = $emptyObject;
+}
 EOT;
 
     /**

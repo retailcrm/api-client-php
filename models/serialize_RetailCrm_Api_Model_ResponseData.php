@@ -18,8 +18,8 @@ if (null !== $model->response) {
 if (null !== $model->type) {
     $jsonData["type"] = $model->type;
 }
-if (null !== $model->response_model) {
-    $jsonData["response_model"] = $model->response_model;
+if (null !== $model->responseModel) {
+    $jsonData["response_model"] = $model->responseModel;
 }
 
 if (0 === \count($jsonData)) {

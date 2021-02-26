@@ -478,21 +478,7 @@ if (null !== $model->customerCorporate->site) {
 if (null !== $model->customerCorporate->tags) {
     $jsonData["customerCorporate"]["tags"] = [];
 foreach (array_keys($model->customerCorporate->tags) as $index29) {
-    $jsonData["customerCorporate"]["tags"][$index29] = [];
-if (null !== $model->customerCorporate->tags[$index29]->name) {
-    $jsonData["customerCorporate"]["tags"][$index29]["name"] = $model->customerCorporate->tags[$index29]->name;
-}
-if (null !== $model->customerCorporate->tags[$index29]->color) {
-    $jsonData["customerCorporate"]["tags"][$index29]["color"] = $model->customerCorporate->tags[$index29]->color;
-}
-if (null !== $model->customerCorporate->tags[$index29]->attached) {
-    $jsonData["customerCorporate"]["tags"][$index29]["attached"] = $model->customerCorporate->tags[$index29]->attached;
-}
-
-if (0 === \count($jsonData["customerCorporate"]["tags"][$index29])) {
-    $jsonData["customerCorporate"]["tags"][$index29] = $emptyObject;
-}
-
+    $jsonData["customerCorporate"]["tags"][$index29] = $model->customerCorporate->tags[$index29]->name;
 }
 
 }

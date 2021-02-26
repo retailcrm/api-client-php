@@ -21,7 +21,7 @@ if (isset($jsonData['type'])) {
 
 }
 if (isset($jsonData['response_model'])) {
-    $model->response_model = $jsonData['response_model'];
+    $model->responseModel = $jsonData['response_model'];
 
 }
 

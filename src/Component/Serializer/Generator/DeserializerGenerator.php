@@ -227,25 +227,7 @@ class DeserializerGenerator
         }
 
         if (CustomerInterface::class === $classMetadata->getClassName()) {
-            $customerMetadata = $this->metadataBuilder->build(Customer::class, [
-                new TakeBestReducer(),
-            ]);
-            $corporateMetadata = $this->metadataBuilder->build(CustomerCorporate::class, [
-                new TakeBestReducer(),
-            ]);
-
-            $customerCode = $this->generateCodeForClass($customerMetadata, $arrayPath, $modelPath, $stack);
-            $corporateCode = $this->generateCodeForClass($corporateMetadata, $arrayPath, $modelPath, $stack);
-
-            return $this->customTemplating->renderCustomerInterface(
-                (string) $arrayPath,
-                (string) $modelPath,
-                $classMetadata->getClassName(),
-                [],
-                $customerCode,
-                $corporateCode,
-                $initCode
-            );
+            return $this->generateCustomerInterface($classMetadata, $arrayPath, $modelPath, $initCode, $stack);
         }
 
         return $this->templating->renderClass(
@@ -253,6 +235,45 @@ class DeserializerGenerator
             $classMetadata->getClassName(),
             $constructorArguments,
             $code,
+            $initCode
+        );
+    }
+
+    /**
+     * @param \Liip\MetadataParser\Metadata\ClassMetadata $classMetadata
+     * @param \Liip\Serializer\Path\ArrayPath             $arrayPath
+     * @param \Liip\Serializer\Path\ModelPath             $modelPath
+     * @param string                                      $initCode
+     * @param array<mixed>                                $stack
+     *
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\SyntaxError
+     */
+    private function generateCustomerInterface(
+        ClassMetadata $classMetadata,
+        ArrayPath $arrayPath,
+        ModelPath $modelPath,
+        string $initCode,
+        array $stack = []
+    ): string {
+        $customerMetadata = $this->metadataBuilder->build(Customer::class, [
+            new TakeBestReducer(),
+        ]);
+        $corporateMetadata = $this->metadataBuilder->build(CustomerCorporate::class, [
+            new TakeBestReducer(),
+        ]);
+
+        $customerCode = $this->generateCodeForClass($customerMetadata, $arrayPath, $modelPath, $stack);
+        $corporateCode = $this->generateCodeForClass($corporateMetadata, $arrayPath, $modelPath, $stack);
+
+        return $this->customTemplating->renderCustomerInterface(
+            (string) $arrayPath,
+            (string) $modelPath,
+            $classMetadata->getClassName(),
+            [],
+            $customerCode,
+            $corporateCode,
             $initCode
         );
     }
@@ -381,7 +402,7 @@ class DeserializerGenerator
             case $type instanceof PropertyTypeClass:
                 return $this->generateCodeForClass($type->getClassMetadata(), $arrayPath, $modelPropertyPath, $stack);
             default:
-                throw new RuntimeException('Unexpected type ' . \get_class($type) . ' at ' . $modelPropertyPath);
+                throw new RuntimeException('Unexpected type ' . get_class($type) . ' at ' . $modelPropertyPath);
         }
     }
 

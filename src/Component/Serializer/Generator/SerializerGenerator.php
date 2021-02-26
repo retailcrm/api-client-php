@@ -31,6 +31,7 @@ use RetailCrm\Api\Component\Serializer\Template\CustomSerialization;
 use RetailCrm\Api\Component\Serializer\Type\PropertyTypeMixed;
 use RetailCrm\Api\Interfaces\Order\CustomerInterface;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
+use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
 use RuntimeException;
 use Symfony\Component\Filesystem\Filesystem;
@@ -215,6 +216,10 @@ class SerializerGenerator
             );
         }
 
+        if ($classMetadata->getClassName() === CustomerTag::class) {
+            return $this->generateForCustomerTag($arrayPath, $modelPath);
+        }
+
         $stack[$classMetadata->getClassName()] = ($stack[$classMetadata->getClassName()] ?? 0) + 1;
         $code = '';
 
@@ -275,6 +280,17 @@ class SerializerGenerator
         );
 
         return $this->customTemplating->renderCustomerInterface($arrayPath, $modelPath, $customerCode, $corporateCode);
+    }
+
+    /**
+     * @param string $arrayPath
+     * @param string $modelPath
+     *
+     * @return string
+     */
+    private function generateForCustomerTag(string $arrayPath, string $modelPath): string
+    {
+        return $this->templating->renderAssign($arrayPath, $modelPath . '->name');
     }
 
     /**

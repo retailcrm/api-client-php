@@ -6,8 +6,8 @@ function serialize_RetailCrm_Api_Model_Response_Files_FilesDownloadResponse(Reta
     $emptyObject = $useStdClass ? new \stdClass() : [];
 
     $jsonData = [];
-if (null !== $model->file_name) {
-    $jsonData["file_name"] = $model->file_name;
+if (null !== $model->fileName) {
+    $jsonData["file_name"] = $model->fileName;
 }
 if (null !== $model->data) {
     $jsonData["data"] = $model->data;

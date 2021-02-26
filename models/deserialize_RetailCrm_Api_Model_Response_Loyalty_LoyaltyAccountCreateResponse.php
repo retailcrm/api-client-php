@@ -14,68 +14,68 @@ if (isset($jsonData['site'])) {
 }
 if (isset($jsonData['loyalty_account'])) {
     
-$model->loyalty_account = new RetailCrm\Api\Model\Entity\Loyalty\LoyaltyAccount();
+$model->loyaltyAccount = new RetailCrm\Api\Model\Entity\Loyalty\LoyaltyAccount();
 if (isset($jsonData['loyalty_account']['active'])) {
-    $model->loyalty_account->active = $jsonData['loyalty_account']['active'];
+    $model->loyaltyAccount->active = $jsonData['loyalty_account']['active'];
 
 }
 if (isset($jsonData['loyalty_account']['id'])) {
-    $model->loyalty_account->id = $jsonData['loyalty_account']['id'];
+    $model->loyaltyAccount->id = $jsonData['loyalty_account']['id'];
 
 }
 if (isset($jsonData['loyalty_account']['phoneNumber'])) {
-    $model->loyalty_account->phoneNumber = $jsonData['loyalty_account']['phoneNumber'];
+    $model->loyaltyAccount->phoneNumber = $jsonData['loyalty_account']['phoneNumber'];
 
 }
 if (isset($jsonData['loyalty_account']['cardNumber'])) {
-    $model->loyalty_account->cardNumber = $jsonData['loyalty_account']['cardNumber'];
+    $model->loyaltyAccount->cardNumber = $jsonData['loyalty_account']['cardNumber'];
 
 }
 if (isset($jsonData['loyalty_account']['amount'])) {
-    $model->loyalty_account->amount = (float) $jsonData['loyalty_account']['amount'];
+    $model->loyaltyAccount->amount = (float) $jsonData['loyalty_account']['amount'];
 
 }
 if (isset($jsonData['loyalty_account']['createdAt'])) {
-    $model->loyalty_account->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['loyalty_account']['createdAt']);
+    $model->loyaltyAccount->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['loyalty_account']['createdAt']);
 
 }
 if (isset($jsonData['loyalty_account']['activatedAt'])) {
-    $model->loyalty_account->activatedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['loyalty_account']['activatedAt']);
+    $model->loyaltyAccount->activatedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['loyalty_account']['activatedAt']);
 
 }
 if (isset($jsonData['loyalty_account']['confirmedPhoneAt'])) {
-    $model->loyalty_account->confirmedPhoneAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['loyalty_account']['confirmedPhoneAt']);
+    $model->loyaltyAccount->confirmedPhoneAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['loyalty_account']['confirmedPhoneAt']);
 
 }
 if (isset($jsonData['loyalty_account']['lastCheckId'])) {
-    $model->loyalty_account->lastCheckId = $jsonData['loyalty_account']['lastCheckId'];
+    $model->loyaltyAccount->lastCheckId = $jsonData['loyalty_account']['lastCheckId'];
 
 }
 if (isset($jsonData['loyalty_account']['customFields'])) {
-    $model->loyalty_account->customFields = [];
+    $model->loyaltyAccount->customFields = [];
 foreach (array_keys($jsonData['loyalty_account']['customFields']) as $index44) {
-    $model->loyalty_account->customFields[$index44] = $jsonData['loyalty_account']['customFields'][$index44];
+    $model->loyaltyAccount->customFields[$index44] = $jsonData['loyalty_account']['customFields'][$index44];
 
 }
 
 }
 if (isset($jsonData['loyalty_account']['customer'])) {
     
-$model->loyalty_account->customer = new RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedEntityCustomer();
+$model->loyaltyAccount->customer = new RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedEntityCustomer();
 if (isset($jsonData['loyalty_account']['customer']['site'])) {
-    $model->loyalty_account->customer->site = $jsonData['loyalty_account']['customer']['site'];
+    $model->loyaltyAccount->customer->site = $jsonData['loyalty_account']['customer']['site'];
 
 }
 if (isset($jsonData['loyalty_account']['customer']['id'])) {
-    $model->loyalty_account->customer->id = $jsonData['loyalty_account']['customer']['id'];
+    $model->loyaltyAccount->customer->id = $jsonData['loyalty_account']['customer']['id'];
 
 }
 if (isset($jsonData['loyalty_account']['customer']['externalId'])) {
-    $model->loyalty_account->customer->externalId = $jsonData['loyalty_account']['customer']['externalId'];
+    $model->loyaltyAccount->customer->externalId = $jsonData['loyalty_account']['customer']['externalId'];
 
 }
 if (isset($jsonData['loyalty_account']['customer']['type'])) {
-    $model->loyalty_account->customer->type = $jsonData['loyalty_account']['customer']['type'];
+    $model->loyaltyAccount->customer->type = $jsonData['loyalty_account']['customer']['type'];
 
 }
 

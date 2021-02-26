@@ -473,21 +473,7 @@ if (null !== $model->site) {
 if (null !== $model->tags) {
     $jsonData["tags"] = [];
 foreach (array_keys($model->tags) as $index8) {
-    $jsonData["tags"][$index8] = [];
-if (null !== $model->tags[$index8]->name) {
-    $jsonData["tags"][$index8]["name"] = $model->tags[$index8]->name;
-}
-if (null !== $model->tags[$index8]->color) {
-    $jsonData["tags"][$index8]["color"] = $model->tags[$index8]->color;
-}
-if (null !== $model->tags[$index8]->attached) {
-    $jsonData["tags"][$index8]["attached"] = $model->tags[$index8]->attached;
-}
-
-if (0 === \count($jsonData["tags"][$index8])) {
-    $jsonData["tags"][$index8] = $emptyObject;
-}
-
+    $jsonData["tags"][$index8] = $model->tags[$index8]->name;
 }
 
 }

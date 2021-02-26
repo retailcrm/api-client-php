@@ -12,55 +12,55 @@ if (null !== $model->success) {
 if (null !== $model->site) {
     $jsonData["site"] = $model->site;
 }
-if (null !== $model->loyalty_account) {
+if (null !== $model->loyaltyAccount) {
     $jsonData["loyalty_account"] = [];
-if (null !== $model->loyalty_account->active) {
-    $jsonData["loyalty_account"]["active"] = $model->loyalty_account->active;
+if (null !== $model->loyaltyAccount->active) {
+    $jsonData["loyalty_account"]["active"] = $model->loyaltyAccount->active;
 }
-if (null !== $model->loyalty_account->id) {
-    $jsonData["loyalty_account"]["id"] = $model->loyalty_account->id;
+if (null !== $model->loyaltyAccount->id) {
+    $jsonData["loyalty_account"]["id"] = $model->loyaltyAccount->id;
 }
-if (null !== $model->loyalty_account->phoneNumber) {
-    $jsonData["loyalty_account"]["phoneNumber"] = $model->loyalty_account->phoneNumber;
+if (null !== $model->loyaltyAccount->phoneNumber) {
+    $jsonData["loyalty_account"]["phoneNumber"] = $model->loyaltyAccount->phoneNumber;
 }
-if (null !== $model->loyalty_account->cardNumber) {
-    $jsonData["loyalty_account"]["cardNumber"] = $model->loyalty_account->cardNumber;
+if (null !== $model->loyaltyAccount->cardNumber) {
+    $jsonData["loyalty_account"]["cardNumber"] = $model->loyaltyAccount->cardNumber;
 }
-if (null !== $model->loyalty_account->amount) {
-    $jsonData["loyalty_account"]["amount"] = $model->loyalty_account->amount;
+if (null !== $model->loyaltyAccount->amount) {
+    $jsonData["loyalty_account"]["amount"] = $model->loyaltyAccount->amount;
 }
-if (null !== $model->loyalty_account->createdAt) {
-    $jsonData["loyalty_account"]["createdAt"] = $model->loyalty_account->createdAt->format('Y-m-d H:i:s');;
+if (null !== $model->loyaltyAccount->createdAt) {
+    $jsonData["loyalty_account"]["createdAt"] = $model->loyaltyAccount->createdAt->format('Y-m-d H:i:s');;
 }
-if (null !== $model->loyalty_account->activatedAt) {
-    $jsonData["loyalty_account"]["activatedAt"] = $model->loyalty_account->activatedAt->format('Y-m-d H:i:s');;
+if (null !== $model->loyaltyAccount->activatedAt) {
+    $jsonData["loyalty_account"]["activatedAt"] = $model->loyaltyAccount->activatedAt->format('Y-m-d H:i:s');;
 }
-if (null !== $model->loyalty_account->confirmedPhoneAt) {
-    $jsonData["loyalty_account"]["confirmedPhoneAt"] = $model->loyalty_account->confirmedPhoneAt->format('Y-m-d H:i:s');;
+if (null !== $model->loyaltyAccount->confirmedPhoneAt) {
+    $jsonData["loyalty_account"]["confirmedPhoneAt"] = $model->loyaltyAccount->confirmedPhoneAt->format('Y-m-d H:i:s');;
 }
-if (null !== $model->loyalty_account->lastCheckId) {
-    $jsonData["loyalty_account"]["lastCheckId"] = $model->loyalty_account->lastCheckId;
+if (null !== $model->loyaltyAccount->lastCheckId) {
+    $jsonData["loyalty_account"]["lastCheckId"] = $model->loyaltyAccount->lastCheckId;
 }
-if (null !== $model->loyalty_account->customFields) {
+if (null !== $model->loyaltyAccount->customFields) {
     $jsonData["loyalty_account"]["customFields"] = [];
-foreach (array_keys($model->loyalty_account->customFields) as $index35) {
-    $jsonData["loyalty_account"]["customFields"] = $model->loyalty_account->customFields;
+foreach (array_keys($model->loyaltyAccount->customFields) as $index35) {
+    $jsonData["loyalty_account"]["customFields"] = $model->loyaltyAccount->customFields;
 }
 
 }
-if (null !== $model->loyalty_account->customer) {
+if (null !== $model->loyaltyAccount->customer) {
     $jsonData["loyalty_account"]["customer"] = [];
-if (null !== $model->loyalty_account->customer->site) {
-    $jsonData["loyalty_account"]["customer"]["site"] = $model->loyalty_account->customer->site;
+if (null !== $model->loyaltyAccount->customer->site) {
+    $jsonData["loyalty_account"]["customer"]["site"] = $model->loyaltyAccount->customer->site;
 }
-if (null !== $model->loyalty_account->customer->id) {
-    $jsonData["loyalty_account"]["customer"]["id"] = $model->loyalty_account->customer->id;
+if (null !== $model->loyaltyAccount->customer->id) {
+    $jsonData["loyalty_account"]["customer"]["id"] = $model->loyaltyAccount->customer->id;
 }
-if (null !== $model->loyalty_account->customer->externalId) {
-    $jsonData["loyalty_account"]["customer"]["externalId"] = $model->loyalty_account->customer->externalId;
+if (null !== $model->loyaltyAccount->customer->externalId) {
+    $jsonData["loyalty_account"]["customer"]["externalId"] = $model->loyaltyAccount->customer->externalId;
 }
-if (null !== $model->loyalty_account->customer->type) {
-    $jsonData["loyalty_account"]["customer"]["type"] = $model->loyalty_account->customer->type;
+if (null !== $model->loyaltyAccount->customer->type) {
+    $jsonData["loyalty_account"]["customer"]["type"] = $model->loyaltyAccount->customer->type;
 }
 
 if (0 === \count($jsonData["loyalty_account"]["customer"])) {

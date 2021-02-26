@@ -2668,9 +2668,9 @@ EOF;
         );
 
         $client = TestClientFactory::createClient($mock);
-        $costs  = $client->customers->get(4770, $request);
+        $response  = $client->customers->get(4770, $request);
 
-        self::assertModelsCallback($json, $costs, static function ($expected, $actual) {
+        self::assertModelsCallback($json, $response, static function ($expected, $actual) {
             $actualTags                                 = $actual['customer']['tags'];
             $actual['customer']['tags']                 = array_filter(
                 array_map(static function ($tag) use ($actualTags) {
@@ -2679,6 +2679,7 @@ EOF;
                     }
                 }, $expected['customer']['tags'])
             );
+
             $expected['customer']['marginSumm']         = (float)$expected['customer']['marginSumm'];
             $expected['customer']['totalSumm']          = (float)$expected['customer']['totalSumm'];
             $expected['customer']['averageSumm']        = (float)$expected['customer']['averageSumm'];

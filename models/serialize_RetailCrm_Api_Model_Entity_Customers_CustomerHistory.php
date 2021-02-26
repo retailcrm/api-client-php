@@ -140,21 +140,7 @@ if (0 === \count($jsonData["customer"]["contragent"])) {
 if (null !== $model->customer->tags) {
     $jsonData["customer"]["tags"] = [];
 foreach (array_keys($model->customer->tags) as $index20) {
-    $jsonData["customer"]["tags"][$index20] = [];
-if (null !== $model->customer->tags[$index20]->name) {
-    $jsonData["customer"]["tags"][$index20]["name"] = $model->customer->tags[$index20]->name;
-}
-if (null !== $model->customer->tags[$index20]->color) {
-    $jsonData["customer"]["tags"][$index20]["color"] = $model->customer->tags[$index20]->color;
-}
-if (null !== $model->customer->tags[$index20]->attached) {
-    $jsonData["customer"]["tags"][$index20]["attached"] = $model->customer->tags[$index20]->attached;
-}
-
-if (0 === \count($jsonData["customer"]["tags"][$index20])) {
-    $jsonData["customer"]["tags"][$index20] = $emptyObject;
-}
-
+    $jsonData["customer"]["tags"][$index20] = $model->customer->tags[$index20]->name;
 }
 
 }
@@ -496,21 +482,7 @@ if (0 === \count($jsonData["combinedTo"]["contragent"])) {
 if (null !== $model->combinedTo->tags) {
     $jsonData["combinedTo"]["tags"] = [];
 foreach (array_keys($model->combinedTo->tags) as $index22) {
-    $jsonData["combinedTo"]["tags"][$index22] = [];
-if (null !== $model->combinedTo->tags[$index22]->name) {
-    $jsonData["combinedTo"]["tags"][$index22]["name"] = $model->combinedTo->tags[$index22]->name;
-}
-if (null !== $model->combinedTo->tags[$index22]->color) {
-    $jsonData["combinedTo"]["tags"][$index22]["color"] = $model->combinedTo->tags[$index22]->color;
-}
-if (null !== $model->combinedTo->tags[$index22]->attached) {
-    $jsonData["combinedTo"]["tags"][$index22]["attached"] = $model->combinedTo->tags[$index22]->attached;
-}
-
-if (0 === \count($jsonData["combinedTo"]["tags"][$index22])) {
-    $jsonData["combinedTo"]["tags"][$index22] = $emptyObject;
-}
-
+    $jsonData["combinedTo"]["tags"][$index22] = $model->combinedTo->tags[$index22]->name;
 }
 
 }
