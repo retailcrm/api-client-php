@@ -254,415 +254,6 @@ if (
     \RetailCrm\Api\Enum\Customers\CustomerType::CORPORATE_CUSTOMER === $jsonData['history'][$index20]['order']['customer']['type']
 ) {
     
-$model->history[$index20]->order->customer = new RetailCrm\Api\Model\Entity\Customers\Customer();
-if (isset($jsonData['history'][$index20]['order']['customer']['type'])) {
-    $model->history[$index20]->order->customer->type = $jsonData['history'][$index20]['order']['customer']['type'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['id'])) {
-    $model->history[$index20]->order->customer->id = $jsonData['history'][$index20]['order']['customer']['id'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['externalId'])) {
-    $model->history[$index20]->order->customer->externalId = $jsonData['history'][$index20]['order']['customer']['externalId'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['isContact'])) {
-    $model->history[$index20]->order->customer->isContact = $jsonData['history'][$index20]['order']['customer']['isContact'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['createdAt'])) {
-    $model->history[$index20]->order->customer->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['order']['customer']['createdAt']);
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['managerId'])) {
-    $model->history[$index20]->order->customer->managerId = $jsonData['history'][$index20]['order']['customer']['managerId'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['vip'])) {
-    $model->history[$index20]->order->customer->vip = $jsonData['history'][$index20]['order']['customer']['vip'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['bad'])) {
-    $model->history[$index20]->order->customer->bad = $jsonData['history'][$index20]['order']['customer']['bad'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['browserId'])) {
-    $model->history[$index20]->order->customer->browserId = $jsonData['history'][$index20]['order']['customer']['browserId'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['site'])) {
-    $model->history[$index20]->order->customer->site = $jsonData['history'][$index20]['order']['customer']['site'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent'])) {
-    
-$model->history[$index20]->order->customer->contragent = new RetailCrm\Api\Model\Entity\Customers\CustomerContragent();
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['contragentType'])) {
-    $model->history[$index20]->order->customer->contragent->contragentType = $jsonData['history'][$index20]['order']['customer']['contragent']['contragentType'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['legalName'])) {
-    $model->history[$index20]->order->customer->contragent->legalName = $jsonData['history'][$index20]['order']['customer']['contragent']['legalName'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['legalAddress'])) {
-    $model->history[$index20]->order->customer->contragent->legalAddress = $jsonData['history'][$index20]['order']['customer']['contragent']['legalAddress'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['INN'])) {
-    $model->history[$index20]->order->customer->contragent->INN = $jsonData['history'][$index20]['order']['customer']['contragent']['INN'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['OKPO'])) {
-    $model->history[$index20]->order->customer->contragent->OKPO = $jsonData['history'][$index20]['order']['customer']['contragent']['OKPO'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['KPP'])) {
-    $model->history[$index20]->order->customer->contragent->KPP = $jsonData['history'][$index20]['order']['customer']['contragent']['KPP'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['OGRN'])) {
-    $model->history[$index20]->order->customer->contragent->OGRN = $jsonData['history'][$index20]['order']['customer']['contragent']['OGRN'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['OGRNIP'])) {
-    $model->history[$index20]->order->customer->contragent->OGRNIP = $jsonData['history'][$index20]['order']['customer']['contragent']['OGRNIP'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['certificateNumber'])) {
-    $model->history[$index20]->order->customer->contragent->certificateNumber = $jsonData['history'][$index20]['order']['customer']['contragent']['certificateNumber'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['certificateDate'])) {
-    $model->history[$index20]->order->customer->contragent->certificateDate = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['order']['customer']['contragent']['certificateDate']);
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['BIK'])) {
-    $model->history[$index20]->order->customer->contragent->BIK = $jsonData['history'][$index20]['order']['customer']['contragent']['BIK'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['bank'])) {
-    $model->history[$index20]->order->customer->contragent->bank = $jsonData['history'][$index20]['order']['customer']['contragent']['bank'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['bankAddress'])) {
-    $model->history[$index20]->order->customer->contragent->bankAddress = $jsonData['history'][$index20]['order']['customer']['contragent']['bankAddress'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['corrAccount'])) {
-    $model->history[$index20]->order->customer->contragent->corrAccount = $jsonData['history'][$index20]['order']['customer']['contragent']['corrAccount'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['bankAccount'])) {
-    $model->history[$index20]->order->customer->contragent->bankAccount = $jsonData['history'][$index20]['order']['customer']['contragent']['bankAccount'];
-
-}
-
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['tags'])) {
-    $model->history[$index20]->order->customer->tags = [];
-foreach (array_keys($jsonData['history'][$index20]['order']['customer']['tags']) as $index59) {
-    
-$model->history[$index20]->order->customer->tags[$index59] = new RetailCrm\Api\Model\Entity\Customers\CustomerTag();
-if (isset($jsonData['history'][$index20]['order']['customer']['tags'][$index59]['name'])) {
-    $model->history[$index20]->order->customer->tags[$index59]->name = $jsonData['history'][$index20]['order']['customer']['tags'][$index59]['name'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['tags'][$index59]['color'])) {
-    $model->history[$index20]->order->customer->tags[$index59]->color = $jsonData['history'][$index20]['order']['customer']['tags'][$index59]['color'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['tags'][$index59]['attached'])) {
-    $model->history[$index20]->order->customer->tags[$index59]->attached = $jsonData['history'][$index20]['order']['customer']['tags'][$index59]['attached'];
-
-}
-
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['avgMarginSumm'])) {
-    $model->history[$index20]->order->customer->avgMarginSumm = (float) $jsonData['history'][$index20]['order']['customer']['avgMarginSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['marginSumm'])) {
-    $model->history[$index20]->order->customer->marginSumm = (float) $jsonData['history'][$index20]['order']['customer']['marginSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['totalSumm'])) {
-    $model->history[$index20]->order->customer->totalSumm = (float) $jsonData['history'][$index20]['order']['customer']['totalSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['averageSumm'])) {
-    $model->history[$index20]->order->customer->averageSumm = (float) $jsonData['history'][$index20]['order']['customer']['averageSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['ordersCount'])) {
-    $model->history[$index20]->order->customer->ordersCount = $jsonData['history'][$index20]['order']['customer']['ordersCount'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['costSumm'])) {
-    $model->history[$index20]->order->customer->costSumm = (float) $jsonData['history'][$index20]['order']['customer']['costSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['customFields'])) {
-    $model->history[$index20]->order->customer->customFields = [];
-foreach (array_keys($jsonData['history'][$index20]['order']['customer']['customFields']) as $index67) {
-    $model->history[$index20]->order->customer->customFields[$index67] = $jsonData['history'][$index20]['order']['customer']['customFields'][$index67];
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['personalDiscount'])) {
-    $model->history[$index20]->order->customer->personalDiscount = (float) $jsonData['history'][$index20]['order']['customer']['personalDiscount'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['cumulativeDiscount'])) {
-    $model->history[$index20]->order->customer->cumulativeDiscount = (float) $jsonData['history'][$index20]['order']['customer']['cumulativeDiscount'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['discountCardNumber'])) {
-    $model->history[$index20]->order->customer->discountCardNumber = $jsonData['history'][$index20]['order']['customer']['discountCardNumber'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['firstClientId'])) {
-    $model->history[$index20]->order->customer->firstClientId = $jsonData['history'][$index20]['order']['customer']['firstClientId'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['lastClientId'])) {
-    $model->history[$index20]->order->customer->lastClientId = $jsonData['history'][$index20]['order']['customer']['lastClientId'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address'])) {
-    
-$model->history[$index20]->order->customer->address = new RetailCrm\Api\Model\Entity\Customers\CustomerAddress();
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['id'])) {
-    $model->history[$index20]->order->customer->address->id = $jsonData['history'][$index20]['order']['customer']['address']['id'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['name'])) {
-    $model->history[$index20]->order->customer->address->name = $jsonData['history'][$index20]['order']['customer']['address']['name'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['isMain'])) {
-    $model->history[$index20]->order->customer->address->isMain = $jsonData['history'][$index20]['order']['customer']['address']['isMain'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['index'])) {
-    $model->history[$index20]->order->customer->address->index = $jsonData['history'][$index20]['order']['customer']['address']['index'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['countryIso'])) {
-    $model->history[$index20]->order->customer->address->countryIso = $jsonData['history'][$index20]['order']['customer']['address']['countryIso'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['region'])) {
-    $model->history[$index20]->order->customer->address->region = $jsonData['history'][$index20]['order']['customer']['address']['region'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['regionId'])) {
-    $model->history[$index20]->order->customer->address->regionId = $jsonData['history'][$index20]['order']['customer']['address']['regionId'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['city'])) {
-    $model->history[$index20]->order->customer->address->city = $jsonData['history'][$index20]['order']['customer']['address']['city'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['cityId'])) {
-    $model->history[$index20]->order->customer->address->cityId = $jsonData['history'][$index20]['order']['customer']['address']['cityId'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['cityType'])) {
-    $model->history[$index20]->order->customer->address->cityType = $jsonData['history'][$index20]['order']['customer']['address']['cityType'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['street'])) {
-    $model->history[$index20]->order->customer->address->street = $jsonData['history'][$index20]['order']['customer']['address']['street'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['streetId'])) {
-    $model->history[$index20]->order->customer->address->streetId = $jsonData['history'][$index20]['order']['customer']['address']['streetId'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['streetType'])) {
-    $model->history[$index20]->order->customer->address->streetType = $jsonData['history'][$index20]['order']['customer']['address']['streetType'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['building'])) {
-    $model->history[$index20]->order->customer->address->building = $jsonData['history'][$index20]['order']['customer']['address']['building'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['flat'])) {
-    $model->history[$index20]->order->customer->address->flat = $jsonData['history'][$index20]['order']['customer']['address']['flat'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['floor'])) {
-    $model->history[$index20]->order->customer->address->floor = $jsonData['history'][$index20]['order']['customer']['address']['floor'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['block'])) {
-    $model->history[$index20]->order->customer->address->block = $jsonData['history'][$index20]['order']['customer']['address']['block'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['house'])) {
-    $model->history[$index20]->order->customer->address->house = $jsonData['history'][$index20]['order']['customer']['address']['house'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['housing'])) {
-    $model->history[$index20]->order->customer->address->housing = $jsonData['history'][$index20]['order']['customer']['address']['housing'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['metro'])) {
-    $model->history[$index20]->order->customer->address->metro = $jsonData['history'][$index20]['order']['customer']['address']['metro'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['notes'])) {
-    $model->history[$index20]->order->customer->address->notes = $jsonData['history'][$index20]['order']['customer']['address']['notes'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['text'])) {
-    $model->history[$index20]->order->customer->address->text = $jsonData['history'][$index20]['order']['customer']['address']['text'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['address']['externalId'])) {
-    $model->history[$index20]->order->customer->address->externalId = $jsonData['history'][$index20]['order']['customer']['address']['externalId'];
-
-}
-
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['segments'])) {
-    $model->history[$index20]->order->customer->segments = [];
-foreach (array_keys($jsonData['history'][$index20]['order']['customer']['segments']) as $index63) {
-    
-$model->history[$index20]->order->customer->segments[$index63] = new RetailCrm\Api\Model\Entity\Customers\Segment();
-if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['id'])) {
-    $model->history[$index20]->order->customer->segments[$index63]->id = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['id'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['code'])) {
-    $model->history[$index20]->order->customer->segments[$index63]->code = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['code'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['name'])) {
-    $model->history[$index20]->order->customer->segments[$index63]->name = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['name'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['createdAt'])) {
-    $model->history[$index20]->order->customer->segments[$index63]->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['createdAt']);
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['isDynamic'])) {
-    $model->history[$index20]->order->customer->segments[$index63]->isDynamic = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['isDynamic'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['customersCount'])) {
-    $model->history[$index20]->order->customer->segments[$index63]->customersCount = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['customersCount'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['active'])) {
-    $model->history[$index20]->order->customer->segments[$index63]->active = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['active'];
-
-}
-
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['maturationTime'])) {
-    $model->history[$index20]->order->customer->maturationTime = $jsonData['history'][$index20]['order']['customer']['maturationTime'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['firstName'])) {
-    $model->history[$index20]->order->customer->firstName = $jsonData['history'][$index20]['order']['customer']['firstName'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['lastName'])) {
-    $model->history[$index20]->order->customer->lastName = $jsonData['history'][$index20]['order']['customer']['lastName'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['patronymic'])) {
-    $model->history[$index20]->order->customer->patronymic = $jsonData['history'][$index20]['order']['customer']['patronymic'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['sex'])) {
-    $model->history[$index20]->order->customer->sex = $jsonData['history'][$index20]['order']['customer']['sex'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['presumableSex'])) {
-    $model->history[$index20]->order->customer->presumableSex = $jsonData['history'][$index20]['order']['customer']['presumableSex'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['email'])) {
-    $model->history[$index20]->order->customer->email = $jsonData['history'][$index20]['order']['customer']['email'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['emailMarketingUnsubscribedAt'])) {
-    $model->history[$index20]->order->customer->emailMarketingUnsubscribedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['order']['customer']['emailMarketingUnsubscribedAt']);
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['phones'])) {
-    $model->history[$index20]->order->customer->phones = [];
-foreach (array_keys($jsonData['history'][$index20]['order']['customer']['phones']) as $index61) {
-    
-$model->history[$index20]->order->customer->phones[$index61] = new RetailCrm\Api\Model\Entity\Customers\CustomerPhone();
-if (isset($jsonData['history'][$index20]['order']['customer']['phones'][$index61]['number'])) {
-    $model->history[$index20]->order->customer->phones[$index61]->number = $jsonData['history'][$index20]['order']['customer']['phones'][$index61]['number'];
-
-}
-
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['birthday'])) {
-    $model->history[$index20]->order->customer->birthday = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['order']['customer']['birthday']);
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['source'])) {
-    
-$model->history[$index20]->order->customer->source = new RetailCrm\Api\Model\Entity\Source();
-if (isset($jsonData['history'][$index20]['order']['customer']['source']['source'])) {
-    $model->history[$index20]->order->customer->source->source = $jsonData['history'][$index20]['order']['customer']['source']['source'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['source']['medium'])) {
-    $model->history[$index20]->order->customer->source->medium = $jsonData['history'][$index20]['order']['customer']['source']['medium'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['source']['campaign'])) {
-    $model->history[$index20]->order->customer->source->campaign = $jsonData['history'][$index20]['order']['customer']['source']['campaign'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['source']['keyword'])) {
-    $model->history[$index20]->order->customer->source->keyword = $jsonData['history'][$index20]['order']['customer']['source']['keyword'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['source']['content'])) {
-    $model->history[$index20]->order->customer->source->content = $jsonData['history'][$index20]['order']['customer']['source']['content'];
-
-}
-
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['photoUrl'])) {
-    $model->history[$index20]->order->customer->photoUrl = $jsonData['history'][$index20]['order']['customer']['photoUrl'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['mgCustomerId'])) {
-    $model->history[$index20]->order->customer->mgCustomerId = $jsonData['history'][$index20]['order']['customer']['mgCustomerId'];
-
-}
-if (isset($jsonData['history'][$index20]['order']['customer']['subscribed'])) {
-    $model->history[$index20]->order->customer->subscribed = $jsonData['history'][$index20]['order']['customer']['subscribed'];
-
-}
-
-
-} else {
-    
 $model->history[$index20]->order->customer = new RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate();
 if (isset($jsonData['history'][$index20]['order']['customer']['type'])) {
     $model->history[$index20]->order->customer->type = $jsonData['history'][$index20]['order']['customer']['type'];
@@ -1412,6 +1003,415 @@ if (isset($jsonData['history'][$index20]['order']['customer']['mainCompany']['na
 
 }
 
+
+}
+
+
+} else {
+    
+$model->history[$index20]->order->customer = new RetailCrm\Api\Model\Entity\Customers\Customer();
+if (isset($jsonData['history'][$index20]['order']['customer']['type'])) {
+    $model->history[$index20]->order->customer->type = $jsonData['history'][$index20]['order']['customer']['type'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['id'])) {
+    $model->history[$index20]->order->customer->id = $jsonData['history'][$index20]['order']['customer']['id'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['externalId'])) {
+    $model->history[$index20]->order->customer->externalId = $jsonData['history'][$index20]['order']['customer']['externalId'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['isContact'])) {
+    $model->history[$index20]->order->customer->isContact = $jsonData['history'][$index20]['order']['customer']['isContact'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['createdAt'])) {
+    $model->history[$index20]->order->customer->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['order']['customer']['createdAt']);
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['managerId'])) {
+    $model->history[$index20]->order->customer->managerId = $jsonData['history'][$index20]['order']['customer']['managerId'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['vip'])) {
+    $model->history[$index20]->order->customer->vip = $jsonData['history'][$index20]['order']['customer']['vip'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['bad'])) {
+    $model->history[$index20]->order->customer->bad = $jsonData['history'][$index20]['order']['customer']['bad'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['browserId'])) {
+    $model->history[$index20]->order->customer->browserId = $jsonData['history'][$index20]['order']['customer']['browserId'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['site'])) {
+    $model->history[$index20]->order->customer->site = $jsonData['history'][$index20]['order']['customer']['site'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent'])) {
+    
+$model->history[$index20]->order->customer->contragent = new RetailCrm\Api\Model\Entity\Customers\CustomerContragent();
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['contragentType'])) {
+    $model->history[$index20]->order->customer->contragent->contragentType = $jsonData['history'][$index20]['order']['customer']['contragent']['contragentType'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['legalName'])) {
+    $model->history[$index20]->order->customer->contragent->legalName = $jsonData['history'][$index20]['order']['customer']['contragent']['legalName'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['legalAddress'])) {
+    $model->history[$index20]->order->customer->contragent->legalAddress = $jsonData['history'][$index20]['order']['customer']['contragent']['legalAddress'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['INN'])) {
+    $model->history[$index20]->order->customer->contragent->INN = $jsonData['history'][$index20]['order']['customer']['contragent']['INN'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['OKPO'])) {
+    $model->history[$index20]->order->customer->contragent->OKPO = $jsonData['history'][$index20]['order']['customer']['contragent']['OKPO'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['KPP'])) {
+    $model->history[$index20]->order->customer->contragent->KPP = $jsonData['history'][$index20]['order']['customer']['contragent']['KPP'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['OGRN'])) {
+    $model->history[$index20]->order->customer->contragent->OGRN = $jsonData['history'][$index20]['order']['customer']['contragent']['OGRN'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['OGRNIP'])) {
+    $model->history[$index20]->order->customer->contragent->OGRNIP = $jsonData['history'][$index20]['order']['customer']['contragent']['OGRNIP'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['certificateNumber'])) {
+    $model->history[$index20]->order->customer->contragent->certificateNumber = $jsonData['history'][$index20]['order']['customer']['contragent']['certificateNumber'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['certificateDate'])) {
+    $model->history[$index20]->order->customer->contragent->certificateDate = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['order']['customer']['contragent']['certificateDate']);
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['BIK'])) {
+    $model->history[$index20]->order->customer->contragent->BIK = $jsonData['history'][$index20]['order']['customer']['contragent']['BIK'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['bank'])) {
+    $model->history[$index20]->order->customer->contragent->bank = $jsonData['history'][$index20]['order']['customer']['contragent']['bank'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['bankAddress'])) {
+    $model->history[$index20]->order->customer->contragent->bankAddress = $jsonData['history'][$index20]['order']['customer']['contragent']['bankAddress'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['corrAccount'])) {
+    $model->history[$index20]->order->customer->contragent->corrAccount = $jsonData['history'][$index20]['order']['customer']['contragent']['corrAccount'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['contragent']['bankAccount'])) {
+    $model->history[$index20]->order->customer->contragent->bankAccount = $jsonData['history'][$index20]['order']['customer']['contragent']['bankAccount'];
+
+}
+
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['tags'])) {
+    $model->history[$index20]->order->customer->tags = [];
+foreach (array_keys($jsonData['history'][$index20]['order']['customer']['tags']) as $index59) {
+    
+$model->history[$index20]->order->customer->tags[$index59] = new RetailCrm\Api\Model\Entity\Customers\CustomerTag();
+if (isset($jsonData['history'][$index20]['order']['customer']['tags'][$index59]['name'])) {
+    $model->history[$index20]->order->customer->tags[$index59]->name = $jsonData['history'][$index20]['order']['customer']['tags'][$index59]['name'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['tags'][$index59]['color'])) {
+    $model->history[$index20]->order->customer->tags[$index59]->color = $jsonData['history'][$index20]['order']['customer']['tags'][$index59]['color'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['tags'][$index59]['attached'])) {
+    $model->history[$index20]->order->customer->tags[$index59]->attached = $jsonData['history'][$index20]['order']['customer']['tags'][$index59]['attached'];
+
+}
+
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['avgMarginSumm'])) {
+    $model->history[$index20]->order->customer->avgMarginSumm = (float) $jsonData['history'][$index20]['order']['customer']['avgMarginSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['marginSumm'])) {
+    $model->history[$index20]->order->customer->marginSumm = (float) $jsonData['history'][$index20]['order']['customer']['marginSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['totalSumm'])) {
+    $model->history[$index20]->order->customer->totalSumm = (float) $jsonData['history'][$index20]['order']['customer']['totalSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['averageSumm'])) {
+    $model->history[$index20]->order->customer->averageSumm = (float) $jsonData['history'][$index20]['order']['customer']['averageSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['ordersCount'])) {
+    $model->history[$index20]->order->customer->ordersCount = $jsonData['history'][$index20]['order']['customer']['ordersCount'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['costSumm'])) {
+    $model->history[$index20]->order->customer->costSumm = (float) $jsonData['history'][$index20]['order']['customer']['costSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['customFields'])) {
+    $model->history[$index20]->order->customer->customFields = [];
+foreach (array_keys($jsonData['history'][$index20]['order']['customer']['customFields']) as $index67) {
+    $model->history[$index20]->order->customer->customFields[$index67] = $jsonData['history'][$index20]['order']['customer']['customFields'][$index67];
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['personalDiscount'])) {
+    $model->history[$index20]->order->customer->personalDiscount = (float) $jsonData['history'][$index20]['order']['customer']['personalDiscount'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['cumulativeDiscount'])) {
+    $model->history[$index20]->order->customer->cumulativeDiscount = (float) $jsonData['history'][$index20]['order']['customer']['cumulativeDiscount'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['discountCardNumber'])) {
+    $model->history[$index20]->order->customer->discountCardNumber = $jsonData['history'][$index20]['order']['customer']['discountCardNumber'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['firstClientId'])) {
+    $model->history[$index20]->order->customer->firstClientId = $jsonData['history'][$index20]['order']['customer']['firstClientId'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['lastClientId'])) {
+    $model->history[$index20]->order->customer->lastClientId = $jsonData['history'][$index20]['order']['customer']['lastClientId'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address'])) {
+    
+$model->history[$index20]->order->customer->address = new RetailCrm\Api\Model\Entity\Customers\CustomerAddress();
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['id'])) {
+    $model->history[$index20]->order->customer->address->id = $jsonData['history'][$index20]['order']['customer']['address']['id'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['name'])) {
+    $model->history[$index20]->order->customer->address->name = $jsonData['history'][$index20]['order']['customer']['address']['name'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['isMain'])) {
+    $model->history[$index20]->order->customer->address->isMain = $jsonData['history'][$index20]['order']['customer']['address']['isMain'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['index'])) {
+    $model->history[$index20]->order->customer->address->index = $jsonData['history'][$index20]['order']['customer']['address']['index'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['countryIso'])) {
+    $model->history[$index20]->order->customer->address->countryIso = $jsonData['history'][$index20]['order']['customer']['address']['countryIso'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['region'])) {
+    $model->history[$index20]->order->customer->address->region = $jsonData['history'][$index20]['order']['customer']['address']['region'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['regionId'])) {
+    $model->history[$index20]->order->customer->address->regionId = $jsonData['history'][$index20]['order']['customer']['address']['regionId'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['city'])) {
+    $model->history[$index20]->order->customer->address->city = $jsonData['history'][$index20]['order']['customer']['address']['city'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['cityId'])) {
+    $model->history[$index20]->order->customer->address->cityId = $jsonData['history'][$index20]['order']['customer']['address']['cityId'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['cityType'])) {
+    $model->history[$index20]->order->customer->address->cityType = $jsonData['history'][$index20]['order']['customer']['address']['cityType'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['street'])) {
+    $model->history[$index20]->order->customer->address->street = $jsonData['history'][$index20]['order']['customer']['address']['street'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['streetId'])) {
+    $model->history[$index20]->order->customer->address->streetId = $jsonData['history'][$index20]['order']['customer']['address']['streetId'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['streetType'])) {
+    $model->history[$index20]->order->customer->address->streetType = $jsonData['history'][$index20]['order']['customer']['address']['streetType'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['building'])) {
+    $model->history[$index20]->order->customer->address->building = $jsonData['history'][$index20]['order']['customer']['address']['building'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['flat'])) {
+    $model->history[$index20]->order->customer->address->flat = $jsonData['history'][$index20]['order']['customer']['address']['flat'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['floor'])) {
+    $model->history[$index20]->order->customer->address->floor = $jsonData['history'][$index20]['order']['customer']['address']['floor'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['block'])) {
+    $model->history[$index20]->order->customer->address->block = $jsonData['history'][$index20]['order']['customer']['address']['block'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['house'])) {
+    $model->history[$index20]->order->customer->address->house = $jsonData['history'][$index20]['order']['customer']['address']['house'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['housing'])) {
+    $model->history[$index20]->order->customer->address->housing = $jsonData['history'][$index20]['order']['customer']['address']['housing'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['metro'])) {
+    $model->history[$index20]->order->customer->address->metro = $jsonData['history'][$index20]['order']['customer']['address']['metro'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['notes'])) {
+    $model->history[$index20]->order->customer->address->notes = $jsonData['history'][$index20]['order']['customer']['address']['notes'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['text'])) {
+    $model->history[$index20]->order->customer->address->text = $jsonData['history'][$index20]['order']['customer']['address']['text'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['address']['externalId'])) {
+    $model->history[$index20]->order->customer->address->externalId = $jsonData['history'][$index20]['order']['customer']['address']['externalId'];
+
+}
+
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['segments'])) {
+    $model->history[$index20]->order->customer->segments = [];
+foreach (array_keys($jsonData['history'][$index20]['order']['customer']['segments']) as $index63) {
+    
+$model->history[$index20]->order->customer->segments[$index63] = new RetailCrm\Api\Model\Entity\Customers\Segment();
+if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['id'])) {
+    $model->history[$index20]->order->customer->segments[$index63]->id = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['id'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['code'])) {
+    $model->history[$index20]->order->customer->segments[$index63]->code = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['code'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['name'])) {
+    $model->history[$index20]->order->customer->segments[$index63]->name = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['name'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['createdAt'])) {
+    $model->history[$index20]->order->customer->segments[$index63]->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['createdAt']);
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['isDynamic'])) {
+    $model->history[$index20]->order->customer->segments[$index63]->isDynamic = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['isDynamic'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['customersCount'])) {
+    $model->history[$index20]->order->customer->segments[$index63]->customersCount = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['customersCount'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['segments'][$index63]['active'])) {
+    $model->history[$index20]->order->customer->segments[$index63]->active = $jsonData['history'][$index20]['order']['customer']['segments'][$index63]['active'];
+
+}
+
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['maturationTime'])) {
+    $model->history[$index20]->order->customer->maturationTime = $jsonData['history'][$index20]['order']['customer']['maturationTime'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['firstName'])) {
+    $model->history[$index20]->order->customer->firstName = $jsonData['history'][$index20]['order']['customer']['firstName'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['lastName'])) {
+    $model->history[$index20]->order->customer->lastName = $jsonData['history'][$index20]['order']['customer']['lastName'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['patronymic'])) {
+    $model->history[$index20]->order->customer->patronymic = $jsonData['history'][$index20]['order']['customer']['patronymic'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['sex'])) {
+    $model->history[$index20]->order->customer->sex = $jsonData['history'][$index20]['order']['customer']['sex'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['presumableSex'])) {
+    $model->history[$index20]->order->customer->presumableSex = $jsonData['history'][$index20]['order']['customer']['presumableSex'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['email'])) {
+    $model->history[$index20]->order->customer->email = $jsonData['history'][$index20]['order']['customer']['email'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['emailMarketingUnsubscribedAt'])) {
+    $model->history[$index20]->order->customer->emailMarketingUnsubscribedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['order']['customer']['emailMarketingUnsubscribedAt']);
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['phones'])) {
+    $model->history[$index20]->order->customer->phones = [];
+foreach (array_keys($jsonData['history'][$index20]['order']['customer']['phones']) as $index61) {
+    
+$model->history[$index20]->order->customer->phones[$index61] = new RetailCrm\Api\Model\Entity\Customers\CustomerPhone();
+if (isset($jsonData['history'][$index20]['order']['customer']['phones'][$index61]['number'])) {
+    $model->history[$index20]->order->customer->phones[$index61]->number = $jsonData['history'][$index20]['order']['customer']['phones'][$index61]['number'];
+
+}
+
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['birthday'])) {
+    $model->history[$index20]->order->customer->birthday = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['order']['customer']['birthday']);
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['source'])) {
+    
+$model->history[$index20]->order->customer->source = new RetailCrm\Api\Model\Entity\Source();
+if (isset($jsonData['history'][$index20]['order']['customer']['source']['source'])) {
+    $model->history[$index20]->order->customer->source->source = $jsonData['history'][$index20]['order']['customer']['source']['source'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['source']['medium'])) {
+    $model->history[$index20]->order->customer->source->medium = $jsonData['history'][$index20]['order']['customer']['source']['medium'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['source']['campaign'])) {
+    $model->history[$index20]->order->customer->source->campaign = $jsonData['history'][$index20]['order']['customer']['source']['campaign'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['source']['keyword'])) {
+    $model->history[$index20]->order->customer->source->keyword = $jsonData['history'][$index20]['order']['customer']['source']['keyword'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['source']['content'])) {
+    $model->history[$index20]->order->customer->source->content = $jsonData['history'][$index20]['order']['customer']['source']['content'];
+
+}
+
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['photoUrl'])) {
+    $model->history[$index20]->order->customer->photoUrl = $jsonData['history'][$index20]['order']['customer']['photoUrl'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['mgCustomerId'])) {
+    $model->history[$index20]->order->customer->mgCustomerId = $jsonData['history'][$index20]['order']['customer']['mgCustomerId'];
+
+}
+if (isset($jsonData['history'][$index20]['order']['customer']['subscribed'])) {
+    $model->history[$index20]->order->customer->subscribed = $jsonData['history'][$index20]['order']['customer']['subscribed'];
 
 }
 
@@ -3229,415 +3229,6 @@ if (
     \RetailCrm\Api\Enum\Customers\CustomerType::CORPORATE_CUSTOMER === $jsonData['history'][$index20]['ancestor']['customer']['type']
 ) {
     
-$model->history[$index20]->ancestor->customer = new RetailCrm\Api\Model\Entity\Customers\Customer();
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['type'])) {
-    $model->history[$index20]->ancestor->customer->type = $jsonData['history'][$index20]['ancestor']['customer']['type'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['id'])) {
-    $model->history[$index20]->ancestor->customer->id = $jsonData['history'][$index20]['ancestor']['customer']['id'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['externalId'])) {
-    $model->history[$index20]->ancestor->customer->externalId = $jsonData['history'][$index20]['ancestor']['customer']['externalId'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['isContact'])) {
-    $model->history[$index20]->ancestor->customer->isContact = $jsonData['history'][$index20]['ancestor']['customer']['isContact'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['createdAt'])) {
-    $model->history[$index20]->ancestor->customer->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['ancestor']['customer']['createdAt']);
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['managerId'])) {
-    $model->history[$index20]->ancestor->customer->managerId = $jsonData['history'][$index20]['ancestor']['customer']['managerId'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['vip'])) {
-    $model->history[$index20]->ancestor->customer->vip = $jsonData['history'][$index20]['ancestor']['customer']['vip'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['bad'])) {
-    $model->history[$index20]->ancestor->customer->bad = $jsonData['history'][$index20]['ancestor']['customer']['bad'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['browserId'])) {
-    $model->history[$index20]->ancestor->customer->browserId = $jsonData['history'][$index20]['ancestor']['customer']['browserId'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['site'])) {
-    $model->history[$index20]->ancestor->customer->site = $jsonData['history'][$index20]['ancestor']['customer']['site'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent'])) {
-    
-$model->history[$index20]->ancestor->customer->contragent = new RetailCrm\Api\Model\Entity\Customers\CustomerContragent();
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['contragentType'])) {
-    $model->history[$index20]->ancestor->customer->contragent->contragentType = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['contragentType'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['legalName'])) {
-    $model->history[$index20]->ancestor->customer->contragent->legalName = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['legalName'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['legalAddress'])) {
-    $model->history[$index20]->ancestor->customer->contragent->legalAddress = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['legalAddress'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['INN'])) {
-    $model->history[$index20]->ancestor->customer->contragent->INN = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['INN'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['OKPO'])) {
-    $model->history[$index20]->ancestor->customer->contragent->OKPO = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['OKPO'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['KPP'])) {
-    $model->history[$index20]->ancestor->customer->contragent->KPP = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['KPP'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['OGRN'])) {
-    $model->history[$index20]->ancestor->customer->contragent->OGRN = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['OGRN'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['OGRNIP'])) {
-    $model->history[$index20]->ancestor->customer->contragent->OGRNIP = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['OGRNIP'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['certificateNumber'])) {
-    $model->history[$index20]->ancestor->customer->contragent->certificateNumber = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['certificateNumber'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['certificateDate'])) {
-    $model->history[$index20]->ancestor->customer->contragent->certificateDate = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['ancestor']['customer']['contragent']['certificateDate']);
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['BIK'])) {
-    $model->history[$index20]->ancestor->customer->contragent->BIK = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['BIK'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['bank'])) {
-    $model->history[$index20]->ancestor->customer->contragent->bank = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['bank'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['bankAddress'])) {
-    $model->history[$index20]->ancestor->customer->contragent->bankAddress = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['bankAddress'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['corrAccount'])) {
-    $model->history[$index20]->ancestor->customer->contragent->corrAccount = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['corrAccount'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['bankAccount'])) {
-    $model->history[$index20]->ancestor->customer->contragent->bankAccount = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['bankAccount'];
-
-}
-
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['tags'])) {
-    $model->history[$index20]->ancestor->customer->tags = [];
-foreach (array_keys($jsonData['history'][$index20]['ancestor']['customer']['tags']) as $index62) {
-    
-$model->history[$index20]->ancestor->customer->tags[$index62] = new RetailCrm\Api\Model\Entity\Customers\CustomerTag();
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['name'])) {
-    $model->history[$index20]->ancestor->customer->tags[$index62]->name = $jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['name'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['color'])) {
-    $model->history[$index20]->ancestor->customer->tags[$index62]->color = $jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['color'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['attached'])) {
-    $model->history[$index20]->ancestor->customer->tags[$index62]->attached = $jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['attached'];
-
-}
-
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['avgMarginSumm'])) {
-    $model->history[$index20]->ancestor->customer->avgMarginSumm = (float) $jsonData['history'][$index20]['ancestor']['customer']['avgMarginSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['marginSumm'])) {
-    $model->history[$index20]->ancestor->customer->marginSumm = (float) $jsonData['history'][$index20]['ancestor']['customer']['marginSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['totalSumm'])) {
-    $model->history[$index20]->ancestor->customer->totalSumm = (float) $jsonData['history'][$index20]['ancestor']['customer']['totalSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['averageSumm'])) {
-    $model->history[$index20]->ancestor->customer->averageSumm = (float) $jsonData['history'][$index20]['ancestor']['customer']['averageSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['ordersCount'])) {
-    $model->history[$index20]->ancestor->customer->ordersCount = $jsonData['history'][$index20]['ancestor']['customer']['ordersCount'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['costSumm'])) {
-    $model->history[$index20]->ancestor->customer->costSumm = (float) $jsonData['history'][$index20]['ancestor']['customer']['costSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['customFields'])) {
-    $model->history[$index20]->ancestor->customer->customFields = [];
-foreach (array_keys($jsonData['history'][$index20]['ancestor']['customer']['customFields']) as $index70) {
-    $model->history[$index20]->ancestor->customer->customFields[$index70] = $jsonData['history'][$index20]['ancestor']['customer']['customFields'][$index70];
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['personalDiscount'])) {
-    $model->history[$index20]->ancestor->customer->personalDiscount = (float) $jsonData['history'][$index20]['ancestor']['customer']['personalDiscount'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['cumulativeDiscount'])) {
-    $model->history[$index20]->ancestor->customer->cumulativeDiscount = (float) $jsonData['history'][$index20]['ancestor']['customer']['cumulativeDiscount'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['discountCardNumber'])) {
-    $model->history[$index20]->ancestor->customer->discountCardNumber = $jsonData['history'][$index20]['ancestor']['customer']['discountCardNumber'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['firstClientId'])) {
-    $model->history[$index20]->ancestor->customer->firstClientId = $jsonData['history'][$index20]['ancestor']['customer']['firstClientId'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['lastClientId'])) {
-    $model->history[$index20]->ancestor->customer->lastClientId = $jsonData['history'][$index20]['ancestor']['customer']['lastClientId'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address'])) {
-    
-$model->history[$index20]->ancestor->customer->address = new RetailCrm\Api\Model\Entity\Customers\CustomerAddress();
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['id'])) {
-    $model->history[$index20]->ancestor->customer->address->id = $jsonData['history'][$index20]['ancestor']['customer']['address']['id'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['name'])) {
-    $model->history[$index20]->ancestor->customer->address->name = $jsonData['history'][$index20]['ancestor']['customer']['address']['name'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['isMain'])) {
-    $model->history[$index20]->ancestor->customer->address->isMain = $jsonData['history'][$index20]['ancestor']['customer']['address']['isMain'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['index'])) {
-    $model->history[$index20]->ancestor->customer->address->index = $jsonData['history'][$index20]['ancestor']['customer']['address']['index'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['countryIso'])) {
-    $model->history[$index20]->ancestor->customer->address->countryIso = $jsonData['history'][$index20]['ancestor']['customer']['address']['countryIso'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['region'])) {
-    $model->history[$index20]->ancestor->customer->address->region = $jsonData['history'][$index20]['ancestor']['customer']['address']['region'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['regionId'])) {
-    $model->history[$index20]->ancestor->customer->address->regionId = $jsonData['history'][$index20]['ancestor']['customer']['address']['regionId'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['city'])) {
-    $model->history[$index20]->ancestor->customer->address->city = $jsonData['history'][$index20]['ancestor']['customer']['address']['city'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['cityId'])) {
-    $model->history[$index20]->ancestor->customer->address->cityId = $jsonData['history'][$index20]['ancestor']['customer']['address']['cityId'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['cityType'])) {
-    $model->history[$index20]->ancestor->customer->address->cityType = $jsonData['history'][$index20]['ancestor']['customer']['address']['cityType'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['street'])) {
-    $model->history[$index20]->ancestor->customer->address->street = $jsonData['history'][$index20]['ancestor']['customer']['address']['street'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['streetId'])) {
-    $model->history[$index20]->ancestor->customer->address->streetId = $jsonData['history'][$index20]['ancestor']['customer']['address']['streetId'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['streetType'])) {
-    $model->history[$index20]->ancestor->customer->address->streetType = $jsonData['history'][$index20]['ancestor']['customer']['address']['streetType'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['building'])) {
-    $model->history[$index20]->ancestor->customer->address->building = $jsonData['history'][$index20]['ancestor']['customer']['address']['building'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['flat'])) {
-    $model->history[$index20]->ancestor->customer->address->flat = $jsonData['history'][$index20]['ancestor']['customer']['address']['flat'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['floor'])) {
-    $model->history[$index20]->ancestor->customer->address->floor = $jsonData['history'][$index20]['ancestor']['customer']['address']['floor'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['block'])) {
-    $model->history[$index20]->ancestor->customer->address->block = $jsonData['history'][$index20]['ancestor']['customer']['address']['block'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['house'])) {
-    $model->history[$index20]->ancestor->customer->address->house = $jsonData['history'][$index20]['ancestor']['customer']['address']['house'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['housing'])) {
-    $model->history[$index20]->ancestor->customer->address->housing = $jsonData['history'][$index20]['ancestor']['customer']['address']['housing'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['metro'])) {
-    $model->history[$index20]->ancestor->customer->address->metro = $jsonData['history'][$index20]['ancestor']['customer']['address']['metro'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['notes'])) {
-    $model->history[$index20]->ancestor->customer->address->notes = $jsonData['history'][$index20]['ancestor']['customer']['address']['notes'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['text'])) {
-    $model->history[$index20]->ancestor->customer->address->text = $jsonData['history'][$index20]['ancestor']['customer']['address']['text'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['externalId'])) {
-    $model->history[$index20]->ancestor->customer->address->externalId = $jsonData['history'][$index20]['ancestor']['customer']['address']['externalId'];
-
-}
-
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'])) {
-    $model->history[$index20]->ancestor->customer->segments = [];
-foreach (array_keys($jsonData['history'][$index20]['ancestor']['customer']['segments']) as $index66) {
-    
-$model->history[$index20]->ancestor->customer->segments[$index66] = new RetailCrm\Api\Model\Entity\Customers\Segment();
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['id'])) {
-    $model->history[$index20]->ancestor->customer->segments[$index66]->id = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['id'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['code'])) {
-    $model->history[$index20]->ancestor->customer->segments[$index66]->code = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['code'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['name'])) {
-    $model->history[$index20]->ancestor->customer->segments[$index66]->name = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['name'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['createdAt'])) {
-    $model->history[$index20]->ancestor->customer->segments[$index66]->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['createdAt']);
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['isDynamic'])) {
-    $model->history[$index20]->ancestor->customer->segments[$index66]->isDynamic = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['isDynamic'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['customersCount'])) {
-    $model->history[$index20]->ancestor->customer->segments[$index66]->customersCount = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['customersCount'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['active'])) {
-    $model->history[$index20]->ancestor->customer->segments[$index66]->active = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['active'];
-
-}
-
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['maturationTime'])) {
-    $model->history[$index20]->ancestor->customer->maturationTime = $jsonData['history'][$index20]['ancestor']['customer']['maturationTime'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['firstName'])) {
-    $model->history[$index20]->ancestor->customer->firstName = $jsonData['history'][$index20]['ancestor']['customer']['firstName'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['lastName'])) {
-    $model->history[$index20]->ancestor->customer->lastName = $jsonData['history'][$index20]['ancestor']['customer']['lastName'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['patronymic'])) {
-    $model->history[$index20]->ancestor->customer->patronymic = $jsonData['history'][$index20]['ancestor']['customer']['patronymic'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['sex'])) {
-    $model->history[$index20]->ancestor->customer->sex = $jsonData['history'][$index20]['ancestor']['customer']['sex'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['presumableSex'])) {
-    $model->history[$index20]->ancestor->customer->presumableSex = $jsonData['history'][$index20]['ancestor']['customer']['presumableSex'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['email'])) {
-    $model->history[$index20]->ancestor->customer->email = $jsonData['history'][$index20]['ancestor']['customer']['email'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['emailMarketingUnsubscribedAt'])) {
-    $model->history[$index20]->ancestor->customer->emailMarketingUnsubscribedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['ancestor']['customer']['emailMarketingUnsubscribedAt']);
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['phones'])) {
-    $model->history[$index20]->ancestor->customer->phones = [];
-foreach (array_keys($jsonData['history'][$index20]['ancestor']['customer']['phones']) as $index64) {
-    
-$model->history[$index20]->ancestor->customer->phones[$index64] = new RetailCrm\Api\Model\Entity\Customers\CustomerPhone();
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['phones'][$index64]['number'])) {
-    $model->history[$index20]->ancestor->customer->phones[$index64]->number = $jsonData['history'][$index20]['ancestor']['customer']['phones'][$index64]['number'];
-
-}
-
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['birthday'])) {
-    $model->history[$index20]->ancestor->customer->birthday = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['ancestor']['customer']['birthday']);
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['source'])) {
-    
-$model->history[$index20]->ancestor->customer->source = new RetailCrm\Api\Model\Entity\Source();
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['source']['source'])) {
-    $model->history[$index20]->ancestor->customer->source->source = $jsonData['history'][$index20]['ancestor']['customer']['source']['source'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['source']['medium'])) {
-    $model->history[$index20]->ancestor->customer->source->medium = $jsonData['history'][$index20]['ancestor']['customer']['source']['medium'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['source']['campaign'])) {
-    $model->history[$index20]->ancestor->customer->source->campaign = $jsonData['history'][$index20]['ancestor']['customer']['source']['campaign'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['source']['keyword'])) {
-    $model->history[$index20]->ancestor->customer->source->keyword = $jsonData['history'][$index20]['ancestor']['customer']['source']['keyword'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['source']['content'])) {
-    $model->history[$index20]->ancestor->customer->source->content = $jsonData['history'][$index20]['ancestor']['customer']['source']['content'];
-
-}
-
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['photoUrl'])) {
-    $model->history[$index20]->ancestor->customer->photoUrl = $jsonData['history'][$index20]['ancestor']['customer']['photoUrl'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['mgCustomerId'])) {
-    $model->history[$index20]->ancestor->customer->mgCustomerId = $jsonData['history'][$index20]['ancestor']['customer']['mgCustomerId'];
-
-}
-if (isset($jsonData['history'][$index20]['ancestor']['customer']['subscribed'])) {
-    $model->history[$index20]->ancestor->customer->subscribed = $jsonData['history'][$index20]['ancestor']['customer']['subscribed'];
-
-}
-
-
-} else {
-    
 $model->history[$index20]->ancestor->customer = new RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate();
 if (isset($jsonData['history'][$index20]['ancestor']['customer']['type'])) {
     $model->history[$index20]->ancestor->customer->type = $jsonData['history'][$index20]['ancestor']['customer']['type'];
@@ -4387,6 +3978,415 @@ if (isset($jsonData['history'][$index20]['ancestor']['customer']['mainCompany'][
 
 }
 
+
+}
+
+
+} else {
+    
+$model->history[$index20]->ancestor->customer = new RetailCrm\Api\Model\Entity\Customers\Customer();
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['type'])) {
+    $model->history[$index20]->ancestor->customer->type = $jsonData['history'][$index20]['ancestor']['customer']['type'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['id'])) {
+    $model->history[$index20]->ancestor->customer->id = $jsonData['history'][$index20]['ancestor']['customer']['id'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['externalId'])) {
+    $model->history[$index20]->ancestor->customer->externalId = $jsonData['history'][$index20]['ancestor']['customer']['externalId'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['isContact'])) {
+    $model->history[$index20]->ancestor->customer->isContact = $jsonData['history'][$index20]['ancestor']['customer']['isContact'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['createdAt'])) {
+    $model->history[$index20]->ancestor->customer->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['ancestor']['customer']['createdAt']);
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['managerId'])) {
+    $model->history[$index20]->ancestor->customer->managerId = $jsonData['history'][$index20]['ancestor']['customer']['managerId'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['vip'])) {
+    $model->history[$index20]->ancestor->customer->vip = $jsonData['history'][$index20]['ancestor']['customer']['vip'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['bad'])) {
+    $model->history[$index20]->ancestor->customer->bad = $jsonData['history'][$index20]['ancestor']['customer']['bad'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['browserId'])) {
+    $model->history[$index20]->ancestor->customer->browserId = $jsonData['history'][$index20]['ancestor']['customer']['browserId'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['site'])) {
+    $model->history[$index20]->ancestor->customer->site = $jsonData['history'][$index20]['ancestor']['customer']['site'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent'])) {
+    
+$model->history[$index20]->ancestor->customer->contragent = new RetailCrm\Api\Model\Entity\Customers\CustomerContragent();
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['contragentType'])) {
+    $model->history[$index20]->ancestor->customer->contragent->contragentType = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['contragentType'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['legalName'])) {
+    $model->history[$index20]->ancestor->customer->contragent->legalName = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['legalName'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['legalAddress'])) {
+    $model->history[$index20]->ancestor->customer->contragent->legalAddress = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['legalAddress'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['INN'])) {
+    $model->history[$index20]->ancestor->customer->contragent->INN = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['INN'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['OKPO'])) {
+    $model->history[$index20]->ancestor->customer->contragent->OKPO = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['OKPO'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['KPP'])) {
+    $model->history[$index20]->ancestor->customer->contragent->KPP = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['KPP'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['OGRN'])) {
+    $model->history[$index20]->ancestor->customer->contragent->OGRN = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['OGRN'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['OGRNIP'])) {
+    $model->history[$index20]->ancestor->customer->contragent->OGRNIP = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['OGRNIP'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['certificateNumber'])) {
+    $model->history[$index20]->ancestor->customer->contragent->certificateNumber = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['certificateNumber'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['certificateDate'])) {
+    $model->history[$index20]->ancestor->customer->contragent->certificateDate = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['ancestor']['customer']['contragent']['certificateDate']);
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['BIK'])) {
+    $model->history[$index20]->ancestor->customer->contragent->BIK = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['BIK'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['bank'])) {
+    $model->history[$index20]->ancestor->customer->contragent->bank = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['bank'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['bankAddress'])) {
+    $model->history[$index20]->ancestor->customer->contragent->bankAddress = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['bankAddress'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['corrAccount'])) {
+    $model->history[$index20]->ancestor->customer->contragent->corrAccount = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['corrAccount'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['contragent']['bankAccount'])) {
+    $model->history[$index20]->ancestor->customer->contragent->bankAccount = $jsonData['history'][$index20]['ancestor']['customer']['contragent']['bankAccount'];
+
+}
+
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['tags'])) {
+    $model->history[$index20]->ancestor->customer->tags = [];
+foreach (array_keys($jsonData['history'][$index20]['ancestor']['customer']['tags']) as $index62) {
+    
+$model->history[$index20]->ancestor->customer->tags[$index62] = new RetailCrm\Api\Model\Entity\Customers\CustomerTag();
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['name'])) {
+    $model->history[$index20]->ancestor->customer->tags[$index62]->name = $jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['name'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['color'])) {
+    $model->history[$index20]->ancestor->customer->tags[$index62]->color = $jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['color'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['attached'])) {
+    $model->history[$index20]->ancestor->customer->tags[$index62]->attached = $jsonData['history'][$index20]['ancestor']['customer']['tags'][$index62]['attached'];
+
+}
+
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['avgMarginSumm'])) {
+    $model->history[$index20]->ancestor->customer->avgMarginSumm = (float) $jsonData['history'][$index20]['ancestor']['customer']['avgMarginSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['marginSumm'])) {
+    $model->history[$index20]->ancestor->customer->marginSumm = (float) $jsonData['history'][$index20]['ancestor']['customer']['marginSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['totalSumm'])) {
+    $model->history[$index20]->ancestor->customer->totalSumm = (float) $jsonData['history'][$index20]['ancestor']['customer']['totalSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['averageSumm'])) {
+    $model->history[$index20]->ancestor->customer->averageSumm = (float) $jsonData['history'][$index20]['ancestor']['customer']['averageSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['ordersCount'])) {
+    $model->history[$index20]->ancestor->customer->ordersCount = $jsonData['history'][$index20]['ancestor']['customer']['ordersCount'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['costSumm'])) {
+    $model->history[$index20]->ancestor->customer->costSumm = (float) $jsonData['history'][$index20]['ancestor']['customer']['costSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['customFields'])) {
+    $model->history[$index20]->ancestor->customer->customFields = [];
+foreach (array_keys($jsonData['history'][$index20]['ancestor']['customer']['customFields']) as $index70) {
+    $model->history[$index20]->ancestor->customer->customFields[$index70] = $jsonData['history'][$index20]['ancestor']['customer']['customFields'][$index70];
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['personalDiscount'])) {
+    $model->history[$index20]->ancestor->customer->personalDiscount = (float) $jsonData['history'][$index20]['ancestor']['customer']['personalDiscount'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['cumulativeDiscount'])) {
+    $model->history[$index20]->ancestor->customer->cumulativeDiscount = (float) $jsonData['history'][$index20]['ancestor']['customer']['cumulativeDiscount'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['discountCardNumber'])) {
+    $model->history[$index20]->ancestor->customer->discountCardNumber = $jsonData['history'][$index20]['ancestor']['customer']['discountCardNumber'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['firstClientId'])) {
+    $model->history[$index20]->ancestor->customer->firstClientId = $jsonData['history'][$index20]['ancestor']['customer']['firstClientId'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['lastClientId'])) {
+    $model->history[$index20]->ancestor->customer->lastClientId = $jsonData['history'][$index20]['ancestor']['customer']['lastClientId'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address'])) {
+    
+$model->history[$index20]->ancestor->customer->address = new RetailCrm\Api\Model\Entity\Customers\CustomerAddress();
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['id'])) {
+    $model->history[$index20]->ancestor->customer->address->id = $jsonData['history'][$index20]['ancestor']['customer']['address']['id'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['name'])) {
+    $model->history[$index20]->ancestor->customer->address->name = $jsonData['history'][$index20]['ancestor']['customer']['address']['name'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['isMain'])) {
+    $model->history[$index20]->ancestor->customer->address->isMain = $jsonData['history'][$index20]['ancestor']['customer']['address']['isMain'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['index'])) {
+    $model->history[$index20]->ancestor->customer->address->index = $jsonData['history'][$index20]['ancestor']['customer']['address']['index'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['countryIso'])) {
+    $model->history[$index20]->ancestor->customer->address->countryIso = $jsonData['history'][$index20]['ancestor']['customer']['address']['countryIso'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['region'])) {
+    $model->history[$index20]->ancestor->customer->address->region = $jsonData['history'][$index20]['ancestor']['customer']['address']['region'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['regionId'])) {
+    $model->history[$index20]->ancestor->customer->address->regionId = $jsonData['history'][$index20]['ancestor']['customer']['address']['regionId'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['city'])) {
+    $model->history[$index20]->ancestor->customer->address->city = $jsonData['history'][$index20]['ancestor']['customer']['address']['city'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['cityId'])) {
+    $model->history[$index20]->ancestor->customer->address->cityId = $jsonData['history'][$index20]['ancestor']['customer']['address']['cityId'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['cityType'])) {
+    $model->history[$index20]->ancestor->customer->address->cityType = $jsonData['history'][$index20]['ancestor']['customer']['address']['cityType'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['street'])) {
+    $model->history[$index20]->ancestor->customer->address->street = $jsonData['history'][$index20]['ancestor']['customer']['address']['street'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['streetId'])) {
+    $model->history[$index20]->ancestor->customer->address->streetId = $jsonData['history'][$index20]['ancestor']['customer']['address']['streetId'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['streetType'])) {
+    $model->history[$index20]->ancestor->customer->address->streetType = $jsonData['history'][$index20]['ancestor']['customer']['address']['streetType'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['building'])) {
+    $model->history[$index20]->ancestor->customer->address->building = $jsonData['history'][$index20]['ancestor']['customer']['address']['building'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['flat'])) {
+    $model->history[$index20]->ancestor->customer->address->flat = $jsonData['history'][$index20]['ancestor']['customer']['address']['flat'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['floor'])) {
+    $model->history[$index20]->ancestor->customer->address->floor = $jsonData['history'][$index20]['ancestor']['customer']['address']['floor'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['block'])) {
+    $model->history[$index20]->ancestor->customer->address->block = $jsonData['history'][$index20]['ancestor']['customer']['address']['block'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['house'])) {
+    $model->history[$index20]->ancestor->customer->address->house = $jsonData['history'][$index20]['ancestor']['customer']['address']['house'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['housing'])) {
+    $model->history[$index20]->ancestor->customer->address->housing = $jsonData['history'][$index20]['ancestor']['customer']['address']['housing'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['metro'])) {
+    $model->history[$index20]->ancestor->customer->address->metro = $jsonData['history'][$index20]['ancestor']['customer']['address']['metro'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['notes'])) {
+    $model->history[$index20]->ancestor->customer->address->notes = $jsonData['history'][$index20]['ancestor']['customer']['address']['notes'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['text'])) {
+    $model->history[$index20]->ancestor->customer->address->text = $jsonData['history'][$index20]['ancestor']['customer']['address']['text'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['address']['externalId'])) {
+    $model->history[$index20]->ancestor->customer->address->externalId = $jsonData['history'][$index20]['ancestor']['customer']['address']['externalId'];
+
+}
+
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'])) {
+    $model->history[$index20]->ancestor->customer->segments = [];
+foreach (array_keys($jsonData['history'][$index20]['ancestor']['customer']['segments']) as $index66) {
+    
+$model->history[$index20]->ancestor->customer->segments[$index66] = new RetailCrm\Api\Model\Entity\Customers\Segment();
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['id'])) {
+    $model->history[$index20]->ancestor->customer->segments[$index66]->id = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['id'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['code'])) {
+    $model->history[$index20]->ancestor->customer->segments[$index66]->code = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['code'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['name'])) {
+    $model->history[$index20]->ancestor->customer->segments[$index66]->name = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['name'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['createdAt'])) {
+    $model->history[$index20]->ancestor->customer->segments[$index66]->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['createdAt']);
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['isDynamic'])) {
+    $model->history[$index20]->ancestor->customer->segments[$index66]->isDynamic = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['isDynamic'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['customersCount'])) {
+    $model->history[$index20]->ancestor->customer->segments[$index66]->customersCount = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['customersCount'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['active'])) {
+    $model->history[$index20]->ancestor->customer->segments[$index66]->active = $jsonData['history'][$index20]['ancestor']['customer']['segments'][$index66]['active'];
+
+}
+
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['maturationTime'])) {
+    $model->history[$index20]->ancestor->customer->maturationTime = $jsonData['history'][$index20]['ancestor']['customer']['maturationTime'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['firstName'])) {
+    $model->history[$index20]->ancestor->customer->firstName = $jsonData['history'][$index20]['ancestor']['customer']['firstName'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['lastName'])) {
+    $model->history[$index20]->ancestor->customer->lastName = $jsonData['history'][$index20]['ancestor']['customer']['lastName'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['patronymic'])) {
+    $model->history[$index20]->ancestor->customer->patronymic = $jsonData['history'][$index20]['ancestor']['customer']['patronymic'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['sex'])) {
+    $model->history[$index20]->ancestor->customer->sex = $jsonData['history'][$index20]['ancestor']['customer']['sex'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['presumableSex'])) {
+    $model->history[$index20]->ancestor->customer->presumableSex = $jsonData['history'][$index20]['ancestor']['customer']['presumableSex'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['email'])) {
+    $model->history[$index20]->ancestor->customer->email = $jsonData['history'][$index20]['ancestor']['customer']['email'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['emailMarketingUnsubscribedAt'])) {
+    $model->history[$index20]->ancestor->customer->emailMarketingUnsubscribedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['ancestor']['customer']['emailMarketingUnsubscribedAt']);
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['phones'])) {
+    $model->history[$index20]->ancestor->customer->phones = [];
+foreach (array_keys($jsonData['history'][$index20]['ancestor']['customer']['phones']) as $index64) {
+    
+$model->history[$index20]->ancestor->customer->phones[$index64] = new RetailCrm\Api\Model\Entity\Customers\CustomerPhone();
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['phones'][$index64]['number'])) {
+    $model->history[$index20]->ancestor->customer->phones[$index64]->number = $jsonData['history'][$index20]['ancestor']['customer']['phones'][$index64]['number'];
+
+}
+
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['birthday'])) {
+    $model->history[$index20]->ancestor->customer->birthday = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['ancestor']['customer']['birthday']);
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['source'])) {
+    
+$model->history[$index20]->ancestor->customer->source = new RetailCrm\Api\Model\Entity\Source();
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['source']['source'])) {
+    $model->history[$index20]->ancestor->customer->source->source = $jsonData['history'][$index20]['ancestor']['customer']['source']['source'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['source']['medium'])) {
+    $model->history[$index20]->ancestor->customer->source->medium = $jsonData['history'][$index20]['ancestor']['customer']['source']['medium'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['source']['campaign'])) {
+    $model->history[$index20]->ancestor->customer->source->campaign = $jsonData['history'][$index20]['ancestor']['customer']['source']['campaign'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['source']['keyword'])) {
+    $model->history[$index20]->ancestor->customer->source->keyword = $jsonData['history'][$index20]['ancestor']['customer']['source']['keyword'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['source']['content'])) {
+    $model->history[$index20]->ancestor->customer->source->content = $jsonData['history'][$index20]['ancestor']['customer']['source']['content'];
+
+}
+
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['photoUrl'])) {
+    $model->history[$index20]->ancestor->customer->photoUrl = $jsonData['history'][$index20]['ancestor']['customer']['photoUrl'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['mgCustomerId'])) {
+    $model->history[$index20]->ancestor->customer->mgCustomerId = $jsonData['history'][$index20]['ancestor']['customer']['mgCustomerId'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['customer']['subscribed'])) {
+    $model->history[$index20]->ancestor->customer->subscribed = $jsonData['history'][$index20]['ancestor']['customer']['subscribed'];
 
 }
 
@@ -6440,415 +6440,6 @@ if (
     \RetailCrm\Api\Enum\Customers\CustomerType::CORPORATE_CUSTOMER === $jsonData['history'][$index20]['combinedTo']['customer']['type']
 ) {
     
-$model->history[$index20]->combinedTo->customer = new RetailCrm\Api\Model\Entity\Customers\Customer();
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['type'])) {
-    $model->history[$index20]->combinedTo->customer->type = $jsonData['history'][$index20]['combinedTo']['customer']['type'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['id'])) {
-    $model->history[$index20]->combinedTo->customer->id = $jsonData['history'][$index20]['combinedTo']['customer']['id'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['externalId'])) {
-    $model->history[$index20]->combinedTo->customer->externalId = $jsonData['history'][$index20]['combinedTo']['customer']['externalId'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['isContact'])) {
-    $model->history[$index20]->combinedTo->customer->isContact = $jsonData['history'][$index20]['combinedTo']['customer']['isContact'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['createdAt'])) {
-    $model->history[$index20]->combinedTo->customer->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['combinedTo']['customer']['createdAt']);
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['managerId'])) {
-    $model->history[$index20]->combinedTo->customer->managerId = $jsonData['history'][$index20]['combinedTo']['customer']['managerId'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['vip'])) {
-    $model->history[$index20]->combinedTo->customer->vip = $jsonData['history'][$index20]['combinedTo']['customer']['vip'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['bad'])) {
-    $model->history[$index20]->combinedTo->customer->bad = $jsonData['history'][$index20]['combinedTo']['customer']['bad'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['browserId'])) {
-    $model->history[$index20]->combinedTo->customer->browserId = $jsonData['history'][$index20]['combinedTo']['customer']['browserId'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['site'])) {
-    $model->history[$index20]->combinedTo->customer->site = $jsonData['history'][$index20]['combinedTo']['customer']['site'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent'])) {
-    
-$model->history[$index20]->combinedTo->customer->contragent = new RetailCrm\Api\Model\Entity\Customers\CustomerContragent();
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['contragentType'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->contragentType = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['contragentType'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['legalName'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->legalName = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['legalName'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['legalAddress'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->legalAddress = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['legalAddress'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['INN'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->INN = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['INN'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OKPO'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->OKPO = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OKPO'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['KPP'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->KPP = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['KPP'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OGRN'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->OGRN = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OGRN'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OGRNIP'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->OGRNIP = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OGRNIP'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['certificateNumber'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->certificateNumber = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['certificateNumber'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['certificateDate'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->certificateDate = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['certificateDate']);
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['BIK'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->BIK = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['BIK'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bank'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->bank = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bank'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bankAddress'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->bankAddress = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bankAddress'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['corrAccount'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->corrAccount = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['corrAccount'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bankAccount'])) {
-    $model->history[$index20]->combinedTo->customer->contragent->bankAccount = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bankAccount'];
-
-}
-
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['tags'])) {
-    $model->history[$index20]->combinedTo->customer->tags = [];
-foreach (array_keys($jsonData['history'][$index20]['combinedTo']['customer']['tags']) as $index64) {
-    
-$model->history[$index20]->combinedTo->customer->tags[$index64] = new RetailCrm\Api\Model\Entity\Customers\CustomerTag();
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['name'])) {
-    $model->history[$index20]->combinedTo->customer->tags[$index64]->name = $jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['name'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['color'])) {
-    $model->history[$index20]->combinedTo->customer->tags[$index64]->color = $jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['color'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['attached'])) {
-    $model->history[$index20]->combinedTo->customer->tags[$index64]->attached = $jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['attached'];
-
-}
-
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['avgMarginSumm'])) {
-    $model->history[$index20]->combinedTo->customer->avgMarginSumm = (float) $jsonData['history'][$index20]['combinedTo']['customer']['avgMarginSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['marginSumm'])) {
-    $model->history[$index20]->combinedTo->customer->marginSumm = (float) $jsonData['history'][$index20]['combinedTo']['customer']['marginSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['totalSumm'])) {
-    $model->history[$index20]->combinedTo->customer->totalSumm = (float) $jsonData['history'][$index20]['combinedTo']['customer']['totalSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['averageSumm'])) {
-    $model->history[$index20]->combinedTo->customer->averageSumm = (float) $jsonData['history'][$index20]['combinedTo']['customer']['averageSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['ordersCount'])) {
-    $model->history[$index20]->combinedTo->customer->ordersCount = $jsonData['history'][$index20]['combinedTo']['customer']['ordersCount'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['costSumm'])) {
-    $model->history[$index20]->combinedTo->customer->costSumm = (float) $jsonData['history'][$index20]['combinedTo']['customer']['costSumm'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['customFields'])) {
-    $model->history[$index20]->combinedTo->customer->customFields = [];
-foreach (array_keys($jsonData['history'][$index20]['combinedTo']['customer']['customFields']) as $index72) {
-    $model->history[$index20]->combinedTo->customer->customFields[$index72] = $jsonData['history'][$index20]['combinedTo']['customer']['customFields'][$index72];
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['personalDiscount'])) {
-    $model->history[$index20]->combinedTo->customer->personalDiscount = (float) $jsonData['history'][$index20]['combinedTo']['customer']['personalDiscount'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['cumulativeDiscount'])) {
-    $model->history[$index20]->combinedTo->customer->cumulativeDiscount = (float) $jsonData['history'][$index20]['combinedTo']['customer']['cumulativeDiscount'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['discountCardNumber'])) {
-    $model->history[$index20]->combinedTo->customer->discountCardNumber = $jsonData['history'][$index20]['combinedTo']['customer']['discountCardNumber'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['firstClientId'])) {
-    $model->history[$index20]->combinedTo->customer->firstClientId = $jsonData['history'][$index20]['combinedTo']['customer']['firstClientId'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['lastClientId'])) {
-    $model->history[$index20]->combinedTo->customer->lastClientId = $jsonData['history'][$index20]['combinedTo']['customer']['lastClientId'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address'])) {
-    
-$model->history[$index20]->combinedTo->customer->address = new RetailCrm\Api\Model\Entity\Customers\CustomerAddress();
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['id'])) {
-    $model->history[$index20]->combinedTo->customer->address->id = $jsonData['history'][$index20]['combinedTo']['customer']['address']['id'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['name'])) {
-    $model->history[$index20]->combinedTo->customer->address->name = $jsonData['history'][$index20]['combinedTo']['customer']['address']['name'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['isMain'])) {
-    $model->history[$index20]->combinedTo->customer->address->isMain = $jsonData['history'][$index20]['combinedTo']['customer']['address']['isMain'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['index'])) {
-    $model->history[$index20]->combinedTo->customer->address->index = $jsonData['history'][$index20]['combinedTo']['customer']['address']['index'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['countryIso'])) {
-    $model->history[$index20]->combinedTo->customer->address->countryIso = $jsonData['history'][$index20]['combinedTo']['customer']['address']['countryIso'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['region'])) {
-    $model->history[$index20]->combinedTo->customer->address->region = $jsonData['history'][$index20]['combinedTo']['customer']['address']['region'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['regionId'])) {
-    $model->history[$index20]->combinedTo->customer->address->regionId = $jsonData['history'][$index20]['combinedTo']['customer']['address']['regionId'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['city'])) {
-    $model->history[$index20]->combinedTo->customer->address->city = $jsonData['history'][$index20]['combinedTo']['customer']['address']['city'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['cityId'])) {
-    $model->history[$index20]->combinedTo->customer->address->cityId = $jsonData['history'][$index20]['combinedTo']['customer']['address']['cityId'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['cityType'])) {
-    $model->history[$index20]->combinedTo->customer->address->cityType = $jsonData['history'][$index20]['combinedTo']['customer']['address']['cityType'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['street'])) {
-    $model->history[$index20]->combinedTo->customer->address->street = $jsonData['history'][$index20]['combinedTo']['customer']['address']['street'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['streetId'])) {
-    $model->history[$index20]->combinedTo->customer->address->streetId = $jsonData['history'][$index20]['combinedTo']['customer']['address']['streetId'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['streetType'])) {
-    $model->history[$index20]->combinedTo->customer->address->streetType = $jsonData['history'][$index20]['combinedTo']['customer']['address']['streetType'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['building'])) {
-    $model->history[$index20]->combinedTo->customer->address->building = $jsonData['history'][$index20]['combinedTo']['customer']['address']['building'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['flat'])) {
-    $model->history[$index20]->combinedTo->customer->address->flat = $jsonData['history'][$index20]['combinedTo']['customer']['address']['flat'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['floor'])) {
-    $model->history[$index20]->combinedTo->customer->address->floor = $jsonData['history'][$index20]['combinedTo']['customer']['address']['floor'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['block'])) {
-    $model->history[$index20]->combinedTo->customer->address->block = $jsonData['history'][$index20]['combinedTo']['customer']['address']['block'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['house'])) {
-    $model->history[$index20]->combinedTo->customer->address->house = $jsonData['history'][$index20]['combinedTo']['customer']['address']['house'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['housing'])) {
-    $model->history[$index20]->combinedTo->customer->address->housing = $jsonData['history'][$index20]['combinedTo']['customer']['address']['housing'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['metro'])) {
-    $model->history[$index20]->combinedTo->customer->address->metro = $jsonData['history'][$index20]['combinedTo']['customer']['address']['metro'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['notes'])) {
-    $model->history[$index20]->combinedTo->customer->address->notes = $jsonData['history'][$index20]['combinedTo']['customer']['address']['notes'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['text'])) {
-    $model->history[$index20]->combinedTo->customer->address->text = $jsonData['history'][$index20]['combinedTo']['customer']['address']['text'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['externalId'])) {
-    $model->history[$index20]->combinedTo->customer->address->externalId = $jsonData['history'][$index20]['combinedTo']['customer']['address']['externalId'];
-
-}
-
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'])) {
-    $model->history[$index20]->combinedTo->customer->segments = [];
-foreach (array_keys($jsonData['history'][$index20]['combinedTo']['customer']['segments']) as $index68) {
-    
-$model->history[$index20]->combinedTo->customer->segments[$index68] = new RetailCrm\Api\Model\Entity\Customers\Segment();
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['id'])) {
-    $model->history[$index20]->combinedTo->customer->segments[$index68]->id = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['id'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['code'])) {
-    $model->history[$index20]->combinedTo->customer->segments[$index68]->code = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['code'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['name'])) {
-    $model->history[$index20]->combinedTo->customer->segments[$index68]->name = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['name'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['createdAt'])) {
-    $model->history[$index20]->combinedTo->customer->segments[$index68]->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['createdAt']);
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['isDynamic'])) {
-    $model->history[$index20]->combinedTo->customer->segments[$index68]->isDynamic = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['isDynamic'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['customersCount'])) {
-    $model->history[$index20]->combinedTo->customer->segments[$index68]->customersCount = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['customersCount'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['active'])) {
-    $model->history[$index20]->combinedTo->customer->segments[$index68]->active = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['active'];
-
-}
-
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['maturationTime'])) {
-    $model->history[$index20]->combinedTo->customer->maturationTime = $jsonData['history'][$index20]['combinedTo']['customer']['maturationTime'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['firstName'])) {
-    $model->history[$index20]->combinedTo->customer->firstName = $jsonData['history'][$index20]['combinedTo']['customer']['firstName'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['lastName'])) {
-    $model->history[$index20]->combinedTo->customer->lastName = $jsonData['history'][$index20]['combinedTo']['customer']['lastName'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['patronymic'])) {
-    $model->history[$index20]->combinedTo->customer->patronymic = $jsonData['history'][$index20]['combinedTo']['customer']['patronymic'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['sex'])) {
-    $model->history[$index20]->combinedTo->customer->sex = $jsonData['history'][$index20]['combinedTo']['customer']['sex'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['presumableSex'])) {
-    $model->history[$index20]->combinedTo->customer->presumableSex = $jsonData['history'][$index20]['combinedTo']['customer']['presumableSex'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['email'])) {
-    $model->history[$index20]->combinedTo->customer->email = $jsonData['history'][$index20]['combinedTo']['customer']['email'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['emailMarketingUnsubscribedAt'])) {
-    $model->history[$index20]->combinedTo->customer->emailMarketingUnsubscribedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['combinedTo']['customer']['emailMarketingUnsubscribedAt']);
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['phones'])) {
-    $model->history[$index20]->combinedTo->customer->phones = [];
-foreach (array_keys($jsonData['history'][$index20]['combinedTo']['customer']['phones']) as $index66) {
-    
-$model->history[$index20]->combinedTo->customer->phones[$index66] = new RetailCrm\Api\Model\Entity\Customers\CustomerPhone();
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['phones'][$index66]['number'])) {
-    $model->history[$index20]->combinedTo->customer->phones[$index66]->number = $jsonData['history'][$index20]['combinedTo']['customer']['phones'][$index66]['number'];
-
-}
-
-
-}
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['birthday'])) {
-    $model->history[$index20]->combinedTo->customer->birthday = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['combinedTo']['customer']['birthday']);
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source'])) {
-    
-$model->history[$index20]->combinedTo->customer->source = new RetailCrm\Api\Model\Entity\Source();
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source']['source'])) {
-    $model->history[$index20]->combinedTo->customer->source->source = $jsonData['history'][$index20]['combinedTo']['customer']['source']['source'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source']['medium'])) {
-    $model->history[$index20]->combinedTo->customer->source->medium = $jsonData['history'][$index20]['combinedTo']['customer']['source']['medium'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source']['campaign'])) {
-    $model->history[$index20]->combinedTo->customer->source->campaign = $jsonData['history'][$index20]['combinedTo']['customer']['source']['campaign'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source']['keyword'])) {
-    $model->history[$index20]->combinedTo->customer->source->keyword = $jsonData['history'][$index20]['combinedTo']['customer']['source']['keyword'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source']['content'])) {
-    $model->history[$index20]->combinedTo->customer->source->content = $jsonData['history'][$index20]['combinedTo']['customer']['source']['content'];
-
-}
-
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['photoUrl'])) {
-    $model->history[$index20]->combinedTo->customer->photoUrl = $jsonData['history'][$index20]['combinedTo']['customer']['photoUrl'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['mgCustomerId'])) {
-    $model->history[$index20]->combinedTo->customer->mgCustomerId = $jsonData['history'][$index20]['combinedTo']['customer']['mgCustomerId'];
-
-}
-if (isset($jsonData['history'][$index20]['combinedTo']['customer']['subscribed'])) {
-    $model->history[$index20]->combinedTo->customer->subscribed = $jsonData['history'][$index20]['combinedTo']['customer']['subscribed'];
-
-}
-
-
-} else {
-    
 $model->history[$index20]->combinedTo->customer = new RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate();
 if (isset($jsonData['history'][$index20]['combinedTo']['customer']['type'])) {
     $model->history[$index20]->combinedTo->customer->type = $jsonData['history'][$index20]['combinedTo']['customer']['type'];
@@ -7598,6 +7189,415 @@ if (isset($jsonData['history'][$index20]['combinedTo']['customer']['mainCompany'
 
 }
 
+
+}
+
+
+} else {
+    
+$model->history[$index20]->combinedTo->customer = new RetailCrm\Api\Model\Entity\Customers\Customer();
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['type'])) {
+    $model->history[$index20]->combinedTo->customer->type = $jsonData['history'][$index20]['combinedTo']['customer']['type'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['id'])) {
+    $model->history[$index20]->combinedTo->customer->id = $jsonData['history'][$index20]['combinedTo']['customer']['id'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['externalId'])) {
+    $model->history[$index20]->combinedTo->customer->externalId = $jsonData['history'][$index20]['combinedTo']['customer']['externalId'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['isContact'])) {
+    $model->history[$index20]->combinedTo->customer->isContact = $jsonData['history'][$index20]['combinedTo']['customer']['isContact'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['createdAt'])) {
+    $model->history[$index20]->combinedTo->customer->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['combinedTo']['customer']['createdAt']);
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['managerId'])) {
+    $model->history[$index20]->combinedTo->customer->managerId = $jsonData['history'][$index20]['combinedTo']['customer']['managerId'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['vip'])) {
+    $model->history[$index20]->combinedTo->customer->vip = $jsonData['history'][$index20]['combinedTo']['customer']['vip'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['bad'])) {
+    $model->history[$index20]->combinedTo->customer->bad = $jsonData['history'][$index20]['combinedTo']['customer']['bad'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['browserId'])) {
+    $model->history[$index20]->combinedTo->customer->browserId = $jsonData['history'][$index20]['combinedTo']['customer']['browserId'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['site'])) {
+    $model->history[$index20]->combinedTo->customer->site = $jsonData['history'][$index20]['combinedTo']['customer']['site'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent'])) {
+    
+$model->history[$index20]->combinedTo->customer->contragent = new RetailCrm\Api\Model\Entity\Customers\CustomerContragent();
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['contragentType'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->contragentType = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['contragentType'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['legalName'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->legalName = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['legalName'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['legalAddress'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->legalAddress = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['legalAddress'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['INN'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->INN = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['INN'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OKPO'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->OKPO = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OKPO'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['KPP'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->KPP = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['KPP'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OGRN'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->OGRN = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OGRN'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OGRNIP'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->OGRNIP = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['OGRNIP'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['certificateNumber'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->certificateNumber = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['certificateNumber'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['certificateDate'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->certificateDate = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['certificateDate']);
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['BIK'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->BIK = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['BIK'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bank'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->bank = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bank'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bankAddress'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->bankAddress = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bankAddress'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['corrAccount'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->corrAccount = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['corrAccount'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bankAccount'])) {
+    $model->history[$index20]->combinedTo->customer->contragent->bankAccount = $jsonData['history'][$index20]['combinedTo']['customer']['contragent']['bankAccount'];
+
+}
+
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['tags'])) {
+    $model->history[$index20]->combinedTo->customer->tags = [];
+foreach (array_keys($jsonData['history'][$index20]['combinedTo']['customer']['tags']) as $index64) {
+    
+$model->history[$index20]->combinedTo->customer->tags[$index64] = new RetailCrm\Api\Model\Entity\Customers\CustomerTag();
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['name'])) {
+    $model->history[$index20]->combinedTo->customer->tags[$index64]->name = $jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['name'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['color'])) {
+    $model->history[$index20]->combinedTo->customer->tags[$index64]->color = $jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['color'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['attached'])) {
+    $model->history[$index20]->combinedTo->customer->tags[$index64]->attached = $jsonData['history'][$index20]['combinedTo']['customer']['tags'][$index64]['attached'];
+
+}
+
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['avgMarginSumm'])) {
+    $model->history[$index20]->combinedTo->customer->avgMarginSumm = (float) $jsonData['history'][$index20]['combinedTo']['customer']['avgMarginSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['marginSumm'])) {
+    $model->history[$index20]->combinedTo->customer->marginSumm = (float) $jsonData['history'][$index20]['combinedTo']['customer']['marginSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['totalSumm'])) {
+    $model->history[$index20]->combinedTo->customer->totalSumm = (float) $jsonData['history'][$index20]['combinedTo']['customer']['totalSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['averageSumm'])) {
+    $model->history[$index20]->combinedTo->customer->averageSumm = (float) $jsonData['history'][$index20]['combinedTo']['customer']['averageSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['ordersCount'])) {
+    $model->history[$index20]->combinedTo->customer->ordersCount = $jsonData['history'][$index20]['combinedTo']['customer']['ordersCount'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['costSumm'])) {
+    $model->history[$index20]->combinedTo->customer->costSumm = (float) $jsonData['history'][$index20]['combinedTo']['customer']['costSumm'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['customFields'])) {
+    $model->history[$index20]->combinedTo->customer->customFields = [];
+foreach (array_keys($jsonData['history'][$index20]['combinedTo']['customer']['customFields']) as $index72) {
+    $model->history[$index20]->combinedTo->customer->customFields[$index72] = $jsonData['history'][$index20]['combinedTo']['customer']['customFields'][$index72];
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['personalDiscount'])) {
+    $model->history[$index20]->combinedTo->customer->personalDiscount = (float) $jsonData['history'][$index20]['combinedTo']['customer']['personalDiscount'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['cumulativeDiscount'])) {
+    $model->history[$index20]->combinedTo->customer->cumulativeDiscount = (float) $jsonData['history'][$index20]['combinedTo']['customer']['cumulativeDiscount'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['discountCardNumber'])) {
+    $model->history[$index20]->combinedTo->customer->discountCardNumber = $jsonData['history'][$index20]['combinedTo']['customer']['discountCardNumber'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['firstClientId'])) {
+    $model->history[$index20]->combinedTo->customer->firstClientId = $jsonData['history'][$index20]['combinedTo']['customer']['firstClientId'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['lastClientId'])) {
+    $model->history[$index20]->combinedTo->customer->lastClientId = $jsonData['history'][$index20]['combinedTo']['customer']['lastClientId'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address'])) {
+    
+$model->history[$index20]->combinedTo->customer->address = new RetailCrm\Api\Model\Entity\Customers\CustomerAddress();
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['id'])) {
+    $model->history[$index20]->combinedTo->customer->address->id = $jsonData['history'][$index20]['combinedTo']['customer']['address']['id'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['name'])) {
+    $model->history[$index20]->combinedTo->customer->address->name = $jsonData['history'][$index20]['combinedTo']['customer']['address']['name'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['isMain'])) {
+    $model->history[$index20]->combinedTo->customer->address->isMain = $jsonData['history'][$index20]['combinedTo']['customer']['address']['isMain'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['index'])) {
+    $model->history[$index20]->combinedTo->customer->address->index = $jsonData['history'][$index20]['combinedTo']['customer']['address']['index'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['countryIso'])) {
+    $model->history[$index20]->combinedTo->customer->address->countryIso = $jsonData['history'][$index20]['combinedTo']['customer']['address']['countryIso'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['region'])) {
+    $model->history[$index20]->combinedTo->customer->address->region = $jsonData['history'][$index20]['combinedTo']['customer']['address']['region'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['regionId'])) {
+    $model->history[$index20]->combinedTo->customer->address->regionId = $jsonData['history'][$index20]['combinedTo']['customer']['address']['regionId'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['city'])) {
+    $model->history[$index20]->combinedTo->customer->address->city = $jsonData['history'][$index20]['combinedTo']['customer']['address']['city'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['cityId'])) {
+    $model->history[$index20]->combinedTo->customer->address->cityId = $jsonData['history'][$index20]['combinedTo']['customer']['address']['cityId'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['cityType'])) {
+    $model->history[$index20]->combinedTo->customer->address->cityType = $jsonData['history'][$index20]['combinedTo']['customer']['address']['cityType'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['street'])) {
+    $model->history[$index20]->combinedTo->customer->address->street = $jsonData['history'][$index20]['combinedTo']['customer']['address']['street'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['streetId'])) {
+    $model->history[$index20]->combinedTo->customer->address->streetId = $jsonData['history'][$index20]['combinedTo']['customer']['address']['streetId'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['streetType'])) {
+    $model->history[$index20]->combinedTo->customer->address->streetType = $jsonData['history'][$index20]['combinedTo']['customer']['address']['streetType'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['building'])) {
+    $model->history[$index20]->combinedTo->customer->address->building = $jsonData['history'][$index20]['combinedTo']['customer']['address']['building'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['flat'])) {
+    $model->history[$index20]->combinedTo->customer->address->flat = $jsonData['history'][$index20]['combinedTo']['customer']['address']['flat'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['floor'])) {
+    $model->history[$index20]->combinedTo->customer->address->floor = $jsonData['history'][$index20]['combinedTo']['customer']['address']['floor'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['block'])) {
+    $model->history[$index20]->combinedTo->customer->address->block = $jsonData['history'][$index20]['combinedTo']['customer']['address']['block'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['house'])) {
+    $model->history[$index20]->combinedTo->customer->address->house = $jsonData['history'][$index20]['combinedTo']['customer']['address']['house'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['housing'])) {
+    $model->history[$index20]->combinedTo->customer->address->housing = $jsonData['history'][$index20]['combinedTo']['customer']['address']['housing'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['metro'])) {
+    $model->history[$index20]->combinedTo->customer->address->metro = $jsonData['history'][$index20]['combinedTo']['customer']['address']['metro'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['notes'])) {
+    $model->history[$index20]->combinedTo->customer->address->notes = $jsonData['history'][$index20]['combinedTo']['customer']['address']['notes'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['text'])) {
+    $model->history[$index20]->combinedTo->customer->address->text = $jsonData['history'][$index20]['combinedTo']['customer']['address']['text'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['address']['externalId'])) {
+    $model->history[$index20]->combinedTo->customer->address->externalId = $jsonData['history'][$index20]['combinedTo']['customer']['address']['externalId'];
+
+}
+
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'])) {
+    $model->history[$index20]->combinedTo->customer->segments = [];
+foreach (array_keys($jsonData['history'][$index20]['combinedTo']['customer']['segments']) as $index68) {
+    
+$model->history[$index20]->combinedTo->customer->segments[$index68] = new RetailCrm\Api\Model\Entity\Customers\Segment();
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['id'])) {
+    $model->history[$index20]->combinedTo->customer->segments[$index68]->id = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['id'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['code'])) {
+    $model->history[$index20]->combinedTo->customer->segments[$index68]->code = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['code'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['name'])) {
+    $model->history[$index20]->combinedTo->customer->segments[$index68]->name = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['name'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['createdAt'])) {
+    $model->history[$index20]->combinedTo->customer->segments[$index68]->createdAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['createdAt']);
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['isDynamic'])) {
+    $model->history[$index20]->combinedTo->customer->segments[$index68]->isDynamic = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['isDynamic'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['customersCount'])) {
+    $model->history[$index20]->combinedTo->customer->segments[$index68]->customersCount = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['customersCount'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['active'])) {
+    $model->history[$index20]->combinedTo->customer->segments[$index68]->active = $jsonData['history'][$index20]['combinedTo']['customer']['segments'][$index68]['active'];
+
+}
+
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['maturationTime'])) {
+    $model->history[$index20]->combinedTo->customer->maturationTime = $jsonData['history'][$index20]['combinedTo']['customer']['maturationTime'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['firstName'])) {
+    $model->history[$index20]->combinedTo->customer->firstName = $jsonData['history'][$index20]['combinedTo']['customer']['firstName'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['lastName'])) {
+    $model->history[$index20]->combinedTo->customer->lastName = $jsonData['history'][$index20]['combinedTo']['customer']['lastName'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['patronymic'])) {
+    $model->history[$index20]->combinedTo->customer->patronymic = $jsonData['history'][$index20]['combinedTo']['customer']['patronymic'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['sex'])) {
+    $model->history[$index20]->combinedTo->customer->sex = $jsonData['history'][$index20]['combinedTo']['customer']['sex'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['presumableSex'])) {
+    $model->history[$index20]->combinedTo->customer->presumableSex = $jsonData['history'][$index20]['combinedTo']['customer']['presumableSex'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['email'])) {
+    $model->history[$index20]->combinedTo->customer->email = $jsonData['history'][$index20]['combinedTo']['customer']['email'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['emailMarketingUnsubscribedAt'])) {
+    $model->history[$index20]->combinedTo->customer->emailMarketingUnsubscribedAt = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['combinedTo']['customer']['emailMarketingUnsubscribedAt']);
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['phones'])) {
+    $model->history[$index20]->combinedTo->customer->phones = [];
+foreach (array_keys($jsonData['history'][$index20]['combinedTo']['customer']['phones']) as $index66) {
+    
+$model->history[$index20]->combinedTo->customer->phones[$index66] = new RetailCrm\Api\Model\Entity\Customers\CustomerPhone();
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['phones'][$index66]['number'])) {
+    $model->history[$index20]->combinedTo->customer->phones[$index66]->number = $jsonData['history'][$index20]['combinedTo']['customer']['phones'][$index66]['number'];
+
+}
+
+
+}
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['birthday'])) {
+    $model->history[$index20]->combinedTo->customer->birthday = \DateTime::createFromFormat('Y-m-d H:i:s', $jsonData['history'][$index20]['combinedTo']['customer']['birthday']);
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source'])) {
+    
+$model->history[$index20]->combinedTo->customer->source = new RetailCrm\Api\Model\Entity\Source();
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source']['source'])) {
+    $model->history[$index20]->combinedTo->customer->source->source = $jsonData['history'][$index20]['combinedTo']['customer']['source']['source'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source']['medium'])) {
+    $model->history[$index20]->combinedTo->customer->source->medium = $jsonData['history'][$index20]['combinedTo']['customer']['source']['medium'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source']['campaign'])) {
+    $model->history[$index20]->combinedTo->customer->source->campaign = $jsonData['history'][$index20]['combinedTo']['customer']['source']['campaign'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source']['keyword'])) {
+    $model->history[$index20]->combinedTo->customer->source->keyword = $jsonData['history'][$index20]['combinedTo']['customer']['source']['keyword'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['source']['content'])) {
+    $model->history[$index20]->combinedTo->customer->source->content = $jsonData['history'][$index20]['combinedTo']['customer']['source']['content'];
+
+}
+
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['photoUrl'])) {
+    $model->history[$index20]->combinedTo->customer->photoUrl = $jsonData['history'][$index20]['combinedTo']['customer']['photoUrl'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['mgCustomerId'])) {
+    $model->history[$index20]->combinedTo->customer->mgCustomerId = $jsonData['history'][$index20]['combinedTo']['customer']['mgCustomerId'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['customer']['subscribed'])) {
+    $model->history[$index20]->combinedTo->customer->subscribed = $jsonData['history'][$index20]['combinedTo']['customer']['subscribed'];
 
 }
 

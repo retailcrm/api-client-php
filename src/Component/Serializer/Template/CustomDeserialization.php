@@ -25,9 +25,9 @@ if (
     !empty({{arrayPath}}['type']) &&
     \RetailCrm\Api\Enum\Customers\CustomerType::CORPORATE_CUSTOMER === {{arrayPath}}['type']
 ) {
-    {{customerCode}}
-} else {
     {{corporateCode}}
+} else {
+    {{customerCode}}
 }
 
 EOT;
