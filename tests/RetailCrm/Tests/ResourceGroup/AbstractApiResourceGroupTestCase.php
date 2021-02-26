@@ -10,21 +10,17 @@
 namespace RetailCrm\Tests\ResourceGroup;
 
 use Closure;
-use Doctrine\Common\Cache\ArrayCache;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Mock\Client as MockClient;
 use InvalidArgumentException;
-use JMS\Serializer\Handler\HandlerRegistry;
-use JMS\Serializer\SerializerBuilder;
-use JMS\Serializer\SerializerInterface;
-use Metadata\Cache\DoctrineCacheAdapter;
+use Liip\Serializer\SerializerInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
-use RetailCrm\Api\Component\Serializer\JmsHandlersInjector;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Api\Factory\SerializerFactory;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Interfaces\RequestInterface as RetailCrmRequestInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponseInterface;
@@ -283,14 +279,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
     protected static function getSerializer(): SerializerInterface
     {
         if (null === static::$serializer) {
-            static::$serializer = SerializerBuilder::create()
-                ->configureHandlers(function (HandlerRegistry $registry) {
-                    JmsHandlersInjector::registerLibraryHandlers($registry);
-                })
-                ->addDefaultHandlers()
-                ->addDefaultListeners()
-                ->setMetadataCache(new DoctrineCacheAdapter('retailcrm', new ArrayCache()))
-                ->build();
+            static::$serializer = SerializerFactory::create();
         }
 
         return static::$serializer;

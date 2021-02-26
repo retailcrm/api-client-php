@@ -41,7 +41,7 @@ class EntityStrategy extends AbstractEncodeStrategy
         }
 
         if (null !== $annotations && $annotations->jsonField instanceof JsonField) {
-            return $this->jmsSerializer->serialize($value, 'json');
+            return $this->liipSerializer->serialize($value, 'json');
         }
 
         $result = [];
@@ -88,7 +88,7 @@ class EntityStrategy extends AbstractEncodeStrategy
                     $annotations->type->type,
                     $value,
                     $this->annotationReader,
-                    $this->jmsSerializer
+                    $this->liipSerializer
                 )->encode($value, $annotations);
         } else {
             $result[$annotations->serializedName->name] =
@@ -96,7 +96,7 @@ class EntityStrategy extends AbstractEncodeStrategy
                     gettype($value),
                     $value,
                     $this->annotationReader,
-                    $this->jmsSerializer
+                    $this->liipSerializer
                 )->encode($value, $annotations);
         }
     }

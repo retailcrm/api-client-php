@@ -10,29 +10,28 @@
 namespace RetailCrm\Api\Command;
 
 use RuntimeException;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use SplFileInfo;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class AbstractModelsProcessorCommand
  *
  * @category AbstractModelsProcessorCommand
  * @package  RetailCrm\Api\Command
+ * @internal
  */
 abstract class AbstractModelsProcessorCommand extends Command
 {
     /**
-     * Returns target directory for the model cache.
+     * Returns true if "-v" was provided.
      *
-     * @return string
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     *
+     * @return bool
      */
-    protected static function getTargetDirectory(): string
+    protected static function isVerbose(OutputInterface $output): bool
     {
-        $parentDir = implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..']);
-
-        return implode(DIRECTORY_SEPARATOR, [realpath($parentDir), 'models']);
+        return $output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE;
     }
 
     /**
@@ -51,38 +50,5 @@ abstract class AbstractModelsProcessorCommand extends Command
         if (false === mkdir($dir, 0777, true) && false === is_dir($dir)) {
             throw new RuntimeException(sprintf('Could not create directory "%s".', $dir));
         }
-    }
-
-    /**
-     * Recursively delete a directory and all of it's contents - e.g.the equivalent of `rm -r` on the command-line.
-     * Consistent with `rmdir()` and `unlink()`, an E_WARNING level error will be generated on failure.
-     *
-     * @param string $dir absolute path to directory to delete
-     *
-     * @return bool true on success; false on failure
-     */
-    protected static function recursiveRmdir(string $dir): bool
-    {
-        if (false === file_exists($dir)) {
-            return false;
-        }
-
-        /** @var SplFileInfo[] $files */
-        $files = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
-            RecursiveIteratorIterator::CHILD_FIRST
-        );
-
-        foreach ($files as $fileInfo) {
-            if ($fileInfo->isDir()) {
-                if (false === rmdir((string) $fileInfo->getRealPath())) {
-                    return false;
-                }
-            } elseif (false === unlink((string) $fileInfo->getRealPath())) {
-                return false;
-            }
-        }
-
-        return rmdir($dir);
     }
 }

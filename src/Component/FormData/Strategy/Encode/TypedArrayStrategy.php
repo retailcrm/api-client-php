@@ -9,6 +9,8 @@
 
 namespace RetailCrm\Api\Component\FormData\Strategy\Encode;
 
+use Doctrine\Common\Annotations\Reader;
+use Liip\Serializer\SerializerInterface;
 use RetailCrm\Api\Component\FormData\Mapping\JsonField;
 use RetailCrm\Api\Component\FormData\PropertyAnnotations;
 use RetailCrm\Api\Component\FormData\Strategy\StrategyFactory;
@@ -17,32 +19,41 @@ use RetailCrm\Api\Component\FormData\Strategy\StrategyFactory;
  * Class TypedArrayStrategy
  *
  * @package RetailCrm\Api\Component\FormData\Strategy\Encode
+ *
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 class TypedArrayStrategy extends AbstractEncodeStrategy
 {
     /** @var string */
     private static $innerTypesMatcher = '/^([a-z]+)\s*\,?\s*(.+?\>)/m';
 
+    /** @var \RetailCrm\Api\Component\FormData\Strategy\Encode\SimpleTypeStrategy */
+    private $simpleStrategy;
+
+    /**
+     * TypedArrayStrategy constructor.
+     *
+     * @param \Doctrine\Common\Annotations\Reader  $annotationReader
+     * @param \Liip\Serializer\SerializerInterface $liipSerializer
+     */
+    public function __construct(Reader $annotationReader, SerializerInterface $liipSerializer)
+    {
+        parent::__construct($annotationReader, $liipSerializer);
+
+        $this->simpleStrategy = new SimpleTypeStrategy($this->annotationReader, $this->liipSerializer);
+    }
+
     /**
      * @param mixed                                                      $value
      * @param \RetailCrm\Api\Component\FormData\PropertyAnnotations|null $annotations
      *
      * @return mixed[]|mixed
-     *
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function encode($value, ?PropertyAnnotations $annotations = null)
     {
-        if (null !== $annotations && $annotations->jsonField instanceof JsonField && !empty($value)) {
-            return $this->jmsSerializer->serialize($value, 'json');
-        }
-
         if (!is_array($value)) {
             return $value;
         }
-
-        $valueType = '';
-        $result = [];
 
         if (strpos($this->innerType, ',') !== false) {
             [$keyType, $valueType] = static::getInnerTypes($this->innerType);
@@ -54,15 +65,64 @@ class TypedArrayStrategy extends AbstractEncodeStrategy
             $valueType = $this->innerType;
         }
 
-        $simpleStrategy = new SimpleTypeStrategy($this->annotationReader, $this->jmsSerializer);
+        if (null !== $annotations && $annotations->jsonField instanceof JsonField && !empty($value)) {
+            return json_encode($this->encodeJsonArray($value, $valueType));
+        }
+
+        return $this->encodeRegularArray($value, $valueType);
+    }
+
+    /**
+     * Encode JSON typed array.
+     *
+     * @param array<string|int, mixed> $value
+     * @param string               $valueType
+     *
+     * @return array<string|int, mixed>
+     * @throws \Liip\Serializer\Exception\Exception
+     * @throws \Liip\Serializer\Exception\UnsupportedTypeException
+     */
+    private function encodeJsonArray(array $value, string $valueType): array
+    {
+        $result = [];
 
         foreach (array_keys($value) as $key) {
-            $result[$simpleStrategy->encode($key, new PropertyAnnotations())]
+            if (is_object($value[$key])) {
+                $data = $this->liipSerializer->toArray($value[$key]);
+            } else {
+                $data = StrategyFactory::encodeStrategyByType(
+                    $valueType,
+                    $value[$key],
+                    $this->annotationReader,
+                    $this->liipSerializer
+                )->encode($value[$key], new PropertyAnnotations());
+            }
+
+            $result[$this->simpleStrategy->encode($key, new PropertyAnnotations())] = $data;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Encode regular typed array.
+     *
+     * @param array<string|int, mixed> $value
+     * @param string               $valueType
+     *
+     * @return array<string|int, mixed>
+     */
+    private function encodeRegularArray(array $value, string $valueType): array
+    {
+        $result = [];
+
+        foreach (array_keys($value) as $key) {
+            $result[$this->simpleStrategy->encode($key, new PropertyAnnotations())]
                 = StrategyFactory::encodeStrategyByType(
                     $valueType,
                     $value[$key],
                     $this->annotationReader,
-                    $this->jmsSerializer
+                    $this->liipSerializer
                 )->encode($value[$key], new PropertyAnnotations());
         }
 

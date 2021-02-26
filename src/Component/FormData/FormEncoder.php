@@ -11,7 +11,7 @@ namespace RetailCrm\Api\Component\FormData;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
-use JMS\Serializer\SerializerInterface;
+use Liip\Serializer\SerializerInterface;
 use ReflectionClass;
 use ReflectionException;
 use RetailCrm\Api\Component\FormData\Mapping\PostSerialize;
@@ -23,7 +23,7 @@ use RetailCrm\Api\Interfaces\FormEncoderInterface;
  *
  * FormEncoder is a vital part of the library. Our API expects form-data for all requests, but some fields may contain
  * JSON data (for example, `/api/v5/customers/create` method works like that). FormEncoder is our custom serializer that
- * converts request instances to form-data and uses JMS serializer under the hood to fill some fields with JSON data.
+ * converts request instances to form-data and uses Liip serializer under the hood to fill some fields with JSON data.
  *
  * @see https://docs.retailcrm.ru/Developers/API/APIVersions/APIv5#post--api-v5-customers-create
  *
@@ -35,13 +35,13 @@ class FormEncoder implements FormEncoderInterface
     /** @var \Doctrine\Common\Annotations\Reader */
     private $annotationReader;
 
-    /** @var \JMS\Serializer\SerializerInterface */
+    /** @var \Liip\Serializer\SerializerInterface */
     private $serializer;
 
     /**
      * FormEncoder constructor.
      *
-     * @param \JMS\Serializer\SerializerInterface      $serializer
+     * @param \Liip\Serializer\SerializerInterface      $serializer
      * @param \Doctrine\Common\Annotations\Reader|null $annotationReader
      */
     public function __construct(SerializerInterface $serializer, ?Reader $annotationReader = null)
@@ -89,7 +89,7 @@ class FormEncoder implements FormEncoderInterface
     /**
      * Returns underlying serializer instance.
      *
-     * @return \JMS\Serializer\SerializerInterface
+     * @return \Liip\Serializer\SerializerInterface
      */
     public function getSerializer(): SerializerInterface
     {

@@ -54,4 +54,26 @@ class Utils
     {
         return $stream->isSeekable() ? $stream->__toString() : $stream->getContents();
     }
+
+    /**
+     * Returns models directory.
+     *
+     * @return string
+     */
+    public static function getModelsDirectory(): string
+    {
+        return (string) realpath(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'Model']));
+    }
+
+    /**
+     * Returns target directory for the model cache.
+     *
+     * @return string
+     */
+    public static function getModelsCacheDirectory(): string
+    {
+        $parentDir = implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..']);
+
+        return implode(DIRECTORY_SEPARATOR, [realpath($parentDir), 'models']);
+    }
 }

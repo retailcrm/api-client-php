@@ -9,7 +9,7 @@
 
 namespace RetailCrm\Api\Factory;
 
-use JMS\Serializer\SerializerInterface;
+use Liip\Serializer\SerializerInterface;
 use RetailCrm\Api\Handler\Response\AccountNotFoundHandler;
 use RetailCrm\Api\Handler\Response\ErrorResponseHandler;
 use RetailCrm\Api\Handler\Response\FilesDownloadResponseHandler;
@@ -27,7 +27,7 @@ class ResponsePipelineFactory
     /**
      * Creates default response pipeline.
      *
-     * @param \JMS\Serializer\SerializerInterface        $serializer
+     * @param \Liip\Serializer\SerializerInterface       $serializer
      * @param \RetailCrm\Api\Interfaces\HandlerInterface ...$additionalHandlers
      *
      * @return \RetailCrm\Api\Interfaces\HandlerInterface

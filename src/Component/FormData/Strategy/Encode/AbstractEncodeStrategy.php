@@ -10,7 +10,7 @@
 namespace RetailCrm\Api\Component\FormData\Strategy\Encode;
 
 use Doctrine\Common\Annotations\Reader;
-use JMS\Serializer\SerializerInterface;
+use Liip\Serializer\SerializerInterface;
 
 /**
  * Class AbstractEncodeStrategy
@@ -26,19 +26,19 @@ abstract class AbstractEncodeStrategy implements EncodeStrategyInterface
     /** @var string $innerType */
     protected $innerType;
 
-    /** @var \JMS\Serializer\SerializerInterface */
-    protected $jmsSerializer;
+    /** @var \Liip\Serializer\SerializerInterface */
+    protected $liipSerializer;
 
     /**
      * AbstractEncodeStrategy constructor.
      *
-     * @param \Doctrine\Common\Annotations\Reader $annotationReader
-     * @param \JMS\Serializer\SerializerInterface $jmsSerializer
+     * @param \Doctrine\Common\Annotations\Reader  $annotationReader
+     * @param \Liip\Serializer\SerializerInterface $liipSerializer
      */
-    public function __construct(Reader $annotationReader, SerializerInterface $jmsSerializer)
+    public function __construct(Reader $annotationReader, SerializerInterface $liipSerializer)
     {
         $this->annotationReader = $annotationReader;
-        $this->jmsSerializer    = $jmsSerializer;
+        $this->liipSerializer   = $liipSerializer;
     }
 
     /**

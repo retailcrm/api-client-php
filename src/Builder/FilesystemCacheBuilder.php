@@ -11,8 +11,6 @@ namespace RetailCrm\Api\Builder;
 
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache;
-use Metadata\Cache\CacheInterface;
-use Metadata\Cache\DoctrineCacheAdapter;
 use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Exception\BuilderException;
 use RetailCrm\Api\Interfaces\BuilderInterface;
@@ -40,14 +38,18 @@ class FilesystemCacheBuilder implements BuilderInterface
     }
 
     /**
-     * Builds and returns form and json cache.
+     * Builds and returns filesystem cache.
      *
-     * @return array<Cache|CacheInterface>
+     * @return Cache
      * @inheritDoc
      */
-    public function build(): array
+    public function build(): Cache
     {
-        return [$this->buildFormCache(), $this->buildJsonCache()];
+        $this->validateBuilder();
+        $cacheDir = static::getCacheDirPath($this->cacheDir);
+        $this->createDir($cacheDir);
+
+        return new FilesystemCache($cacheDir);
     }
 
     /**
@@ -68,42 +70,6 @@ class FilesystemCacheBuilder implements BuilderInterface
         if (!$this->canBuild()) {
             throw new BuilderException('cacheDir must be provided');
         }
-    }
-
-    /**
-     * Builds form cache.
-     *
-     * @return \Doctrine\Common\Cache\Cache
-     * @throws \RetailCrm\Api\Exception\BuilderException
-     */
-    public function buildFormCache(): Cache
-    {
-        $this->validateBuilder();
-
-        $cacheDir = static::getCacheDirPath($this->cacheDir);
-
-        $this->createDir($cacheDir);
-        $this->createDir($cacheDir . CacheDirectories::FORM_DIR);
-
-        return new FilesystemCache($cacheDir . CacheDirectories::FORM_DIR);
-    }
-
-    /**
-     * Builds json cache.
-     *
-     * @return \Metadata\Cache\CacheInterface
-     * @throws \RetailCrm\Api\Exception\BuilderException
-     */
-    public function buildJsonCache(): CacheInterface
-    {
-        $this->validateBuilder();
-
-        $cacheDir = static::getCacheDirPath($this->cacheDir);
-
-        $this->createDir($cacheDir);
-        $this->createDir($cacheDir . CacheDirectories::JSON_DIR);
-
-        return new DoctrineCacheAdapter('retailcrm', new FilesystemCache($cacheDir . CacheDirectories::JSON_DIR));
     }
 
     /**

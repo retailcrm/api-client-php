@@ -111,7 +111,7 @@ class DeliveryShipment
     /**
      * @var array<string, mixed>
      *
-     * @JMS\Type("array<string, mixed>")
+     * @JMS\Type("array")
      * @JMS\SerializedName("extraData")
      */
     public $extraData;

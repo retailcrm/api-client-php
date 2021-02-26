@@ -78,9 +78,9 @@ class SerializedOrderDelivery
     public $date;
 
     /**
-     * @var TimeInterval
+     * @var \RetailCrm\Api\Model\Entity\Delivery\TimeInterval
      *
-     * @JMS\Type("TimeInterval")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Delivery\TimeInterval")
      * @JMS\SerializedName("time")
      */
     public $time;

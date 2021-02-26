@@ -11,7 +11,7 @@ namespace RetailCrm\Api\Component\FormData\Strategy;
 
 use DateTime;
 use Doctrine\Common\Annotations\Reader;
-use JMS\Serializer\SerializerInterface;
+use Liip\Serializer\SerializerInterface;
 use Psr\Http\Message\StreamInterface;
 use RetailCrm\Api\Component\FormData\Strategy\Encode;
 use RetailCrm\Api\Component\FormData\Strategy\Encode\EncodeStrategyInterface;
@@ -45,7 +45,7 @@ class StrategyFactory
      * @param string                              $dataType
      * @param mixed                               $value
      * @param \Doctrine\Common\Annotations\Reader $annotationReader
-     * @param \JMS\Serializer\SerializerInterface $serializer
+     * @param \Liip\Serializer\SerializerInterface $serializer
      *
      * @return \RetailCrm\Api\Component\FormData\Strategy\Encode\EncodeStrategyInterface
      */

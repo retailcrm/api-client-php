@@ -78,7 +78,7 @@ class Terminal
     /**
      * @var mixed[]
      *
-     * @JMS\Type("array<mixed>")
+     * @JMS\Type("array")
      * @JMS\SerializedName("extraData")
      */
     public $extraData;

@@ -110,7 +110,7 @@ class PackageItem
     /**
      * @var mixed[][]
      *
-     * @JMS\Type("array<array<string, mixed>>")
+     * @JMS\Type("array")
      * @JMS\SerializedName("properties")
      */
     public $properties;

@@ -12,18 +12,10 @@ namespace RetailCrm\Api\Builder;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\CachedReader;
 use Doctrine\Common\Cache\Cache;
-use Doctrine\Common\Cache\FilesystemCache;
-use JMS\Serializer\Handler\HandlerRegistry;
-use JMS\Serializer\SerializerBuilder;
-use JMS\Serializer\SerializerInterface;
-use Metadata\Cache\DoctrineCacheAdapter;
 use RetailCrm\Api\Component\FormData\FormEncoder;
-use RetailCrm\Api\Component\Serializer\JmsHandlersInjector;
-use RetailCrm\Api\Enum\CacheDirectories;
-use RetailCrm\Api\Exception\BuilderException;
+use RetailCrm\Api\Factory\SerializerFactory;
 use RetailCrm\Api\Interfaces\BuilderInterface;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
-use RuntimeException;
 
 /**
  * Class FormEncoderBuilder
@@ -37,15 +29,6 @@ class FormEncoderBuilder implements BuilderInterface
 {
     /** @var \Doctrine\Common\Cache\Cache|null */
     private $cache;
-
-    /** @var \JMS\Serializer\SerializerInterface */
-    private $serializer;
-
-    /** @var \Doctrine\Common\Cache\Cache|null */
-    private $formCache;
-
-    /** @var \Metadata\Cache\CacheInterface|null */
-    private $jsonCache;
 
     /** @var \Doctrine\Common\Annotations\Reader */
     private $annotationReader;
@@ -94,26 +77,6 @@ class FormEncoderBuilder implements BuilderInterface
     }
 
     /**
-     * Sets serializer.
-     *
-     * Use any JMS Serializer instance. Keep in mind that this serializer instance should support some custom types
-     * we use to provide full support for our API.
-     *
-     * You can use `JmsHandlersInjector::registerLibraryHandlers` to register handlers for those types.
-     *
-     * @see http://jmsyst.com/libs/serializer/master/handlers#subscribing-handlers
-     *
-     * @param \JMS\Serializer\SerializerInterface $serializer
-     *
-     * @return FormEncoderBuilder
-     */
-    public function setSerializer(SerializerInterface $serializer): FormEncoderBuilder
-    {
-        $this->serializer = $serializer;
-        return $this;
-    }
-
-    /**
      * Builds FormEncoder.
      *
      * **Note:** Cache won't be set into provided serializer instance. It only works for instance built by
@@ -123,25 +86,23 @@ class FormEncoderBuilder implements BuilderInterface
      */
     public function build(): FormEncoderInterface
     {
-        $this->buildCaches();
+        $this->buildCache();
         $this->buildAnnotationReader();
-        $this->buildSerializer();
 
-        return new FormEncoder($this->serializer, $this->annotationReader);
+        $serializer = SerializerFactory::create();
+
+        return new FormEncoder($serializer, $this->annotationReader);
     }
 
     /**
-     * Builds caches if needed.
+     * Builds cache if needed.
      *
      * @throws \RetailCrm\Api\Exception\BuilderException
      */
-    private function buildCaches(): void
+    private function buildCache(): void
     {
-        if (null !== $this->cache) {
-            $this->formCache = $this->cache;
-            $this->jsonCache = new DoctrineCacheAdapter('retailcrm', $this->cache);
-        } elseif ($this->fsCacheBuilder->canBuild()) {
-            [$this->formCache, $this->jsonCache] = $this->fsCacheBuilder->build();
+        if ($this->fsCacheBuilder->canBuild()) {
+            $this->cache = $this->fsCacheBuilder->build();
         }
     }
 
@@ -152,30 +113,8 @@ class FormEncoderBuilder implements BuilderInterface
     {
         $this->annotationReader = new AnnotationReader();
 
-        if (null !== $this->formCache) {
-            $this->annotationReader = new CachedReader(new AnnotationReader(), $this->formCache);
+        if (null !== $this->cache) {
+            $this->annotationReader = new CachedReader(new AnnotationReader(), $this->cache);
         }
-    }
-
-    /**
-     * Builds serializer if necessary.
-     */
-    private function buildSerializer(): void
-    {
-        if (null !== $this->serializer) {
-            return;
-        }
-
-        $serializerBuilder = SerializerBuilder::create()
-            ->configureHandlers(function (HandlerRegistry $registry) {
-                JmsHandlersInjector::registerLibraryHandlers($registry);
-            })->addDefaultHandlers()
-            ->addDefaultListeners();
-
-        if (null !== $this->jsonCache) {
-            $serializerBuilder->setMetadataCache($this->jsonCache);
-        }
-
-        $this->serializer = $serializerBuilder->build();
     }
 }

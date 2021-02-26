@@ -26,7 +26,7 @@ class SimpleTypeStrategy extends AbstractEncodeStrategy
     public function encode($value, ?PropertyAnnotations $annotations)
     {
         if (null !== $annotations && $annotations->jsonField instanceof JsonField && !empty($value)) {
-            return $this->jmsSerializer->serialize($value, 'json');
+            return $this->liipSerializer->serialize($value, 'json');
         }
 
         return $this->encodeValue($value);
@@ -74,7 +74,7 @@ class SimpleTypeStrategy extends AbstractEncodeStrategy
                     gettype($item),
                     $item,
                     $this->annotationReader,
-                    $this->jmsSerializer
+                    $this->liipSerializer
                 )->encode($item, new PropertyAnnotations());
             }
 

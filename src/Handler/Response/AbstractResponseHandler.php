@@ -9,12 +9,14 @@
 
 namespace RetailCrm\Api\Handler\Response;
 
-use JMS\Serializer\SerializerInterface;
+use Liip\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Api\Exception\HandlerException;
 use RetailCrm\Api\Handler\AbstractHandler;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailcrmResponse;
 use RetailCrm\Api\Model\ResponseData;
+use Throwable;
 
 /**
  * Class AbstractResponseHandler
@@ -25,14 +27,14 @@ use RetailCrm\Api\Model\ResponseData;
 abstract class AbstractResponseHandler extends AbstractHandler
 {
     /**
-     * @var \JMS\Serializer\SerializerInterface
+     * @var \Liip\Serializer\SerializerInterface
      */
     private $serializer;
 
     /**
      * ResponseTransformer constructor.
      *
-     * @param \JMS\Serializer\SerializerInterface $serializer
+     * @param \Liip\Serializer\SerializerInterface $serializer
      */
     public function __construct(SerializerInterface $serializer)
     {
@@ -70,11 +72,15 @@ abstract class AbstractResponseHandler extends AbstractHandler
      * @param string                              $type
      *
      * @return RetailcrmResponse
+     * @throws \RetailCrm\Api\Exception\HandlerException
      */
     protected function unmarshalBody(ResponseInterface $response, string $type): RetailcrmResponse
     {
-        /** @phpstan-ignore-next-line */
-        return $this->serializer->deserialize(Utils::getBodyContents($response->getBody()), $type, 'json');
+        try {
+            return $this->serializer->deserialize(Utils::getBodyContents($response->getBody()), $type, 'json');
+        } catch (Throwable $throwable) {
+            throw new HandlerException('Cannot deserialize body: ' . $throwable->getMessage(), 0, $throwable);
+        }
     }
 
     /**

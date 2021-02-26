@@ -9,6 +9,8 @@
 
 namespace RetailCrm\Api\Command;
 
+use RetailCrm\Api\Component\PhpFilesIterator;
+use RetailCrm\Api\Component\Utils;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -17,6 +19,9 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @category ClearModelsCommand
  * @package  RetailCrm\Api\Command
+ * @internal
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
 class ClearModelsCommand extends AbstractModelsProcessorCommand
 {
@@ -27,18 +32,49 @@ class ClearModelsCommand extends AbstractModelsProcessorCommand
     {
         $this->setName('models:clear')
             ->setDescription('Removes all generated models, leaves only empty directory behind.')
-            ->setHelp('Use this command if you want to remove existing models.');
+            ->setHelp('Use this command if you want to remove existing model cache.');
     }
 
+    /**
+     * @param \Symfony\Component\Console\Input\InputInterface   $input
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     *
+     * @return int
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $target = static::getTargetDirectory();
+        $target = Utils::getModelsCacheDirectory();
+
+        if (!is_dir($target)) {
+            $output->writeln('<error>The target directory does not exist.</error>');
+            $output->writeln('<info>You can safely use "bin/console models:generate" to generate models.</info>');
+
+            return -1;
+        }
 
         $output->writeln(sprintf('Cleaning up <fg=magenta>"%s"</>...', $target));
-        static::recursiveRmdir($target);
-        static::createDir($target);
-        file_put_contents(implode(DIRECTORY_SEPARATOR, [$target, '.gitkeep']), '');
-        $output->writeln('<fg=black;bg=green>Done!</>');
+
+        if (self::isVerbose($output)) {
+            $output->writeln('');
+        }
+
+        $models = new PhpFilesIterator($target);
+
+        foreach ($models as $model) {
+            if (file_exists($model['file'])) {
+                unlink($model['file']);
+
+                if (self::isVerbose($output)) {
+                    $output->writeln(sprintf('- Removed <fg=magenta>"%s"</>', $model['file']));
+                }
+            }
+        }
+
+        if (self::isVerbose($output)) {
+            $output->writeln('');
+        }
+
+        $output->writeln('<fg=black;bg=green> ✓ Done!</>');
 
         return 0;
     }

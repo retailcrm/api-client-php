@@ -9,7 +9,7 @@
 
 namespace RetailCrm\Api\Interfaces;
 
-use JMS\Serializer\SerializerInterface;
+use Liip\Serializer\SerializerInterface;
 
 /**
  * Interface FormEncoderInterface
@@ -43,7 +43,7 @@ interface FormEncoderInterface
     /**
      * Returns underlying serializer instance.
      *
-     * @return \JMS\Serializer\SerializerInterface
+     * @return \Liip\Serializer\SerializerInterface
      */
     public function getSerializer(): SerializerInterface;
 }

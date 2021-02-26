@@ -5,36 +5,24 @@ namespace RetailCrm\Api;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use RecursiveRegexIterator;
 use ReflectionClass;
-use RegexIterator;
+use RetailCrm\Api\Component\PhpFilesIterator;
 use Symfony\Component\Console\Application;
 
 $application = new Application();
-$directory   = new RecursiveDirectoryIterator(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'src', 'Command']));
-$commands    = new RegexIterator(
-    new RecursiveIteratorIterator($directory),
-    '/^.+\.php$/i',
-    RecursiveRegexIterator::GET_MATCH
-);
+$commands    = new PhpFilesIterator(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'src', 'Command']));
 
-foreach ($commands as $commandsList) {
-    foreach ($commandsList as $commandFile) {
-        $command = __NAMESPACE__ . '\\' . str_replace(
-            DIRECTORY_SEPARATOR,
-            '\\', str_replace(
-                implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'src']) . DIRECTORY_SEPARATOR,
-                '',
-                str_ireplace('.php', '', $commandFile)
-            )
-        );
+foreach ($commands as $command) {
+    if (!array_key_exists('fqn', $command)) {
+        continue;
+    }
 
-        if (class_exists($command) && !(new ReflectionClass($command))->isAbstract()) {
-            $application->add(new $command());
-        }
+    $commandFqn = $command['fqn'];
+
+    if (class_exists($commandFqn) && !(new ReflectionClass($commandFqn))->isAbstract()) {
+        $application->add(new $commandFqn());
     }
 }
 
+$application->setName('RetailCRM API Client Management Tool');
 $application->run();

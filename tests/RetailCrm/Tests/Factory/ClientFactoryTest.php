@@ -47,7 +47,7 @@ class ClientFactoryTest extends ClientTestCase
             ->createClient(TestConfig::getApiUrl(), TestConfig::getApiKey());
         $cacheDir = implode(
             '',
-            [sys_get_temp_dir(), CacheDirectories::MAIN_DIR, CacheDirectories::FORM_DIR]
+            [sys_get_temp_dir(), CacheDirectories::MAIN_DIR]
         );
 
         static::assertDirectoryExists($cacheDir);

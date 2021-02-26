@@ -30,7 +30,7 @@ class RequestShipmentDelete
     /**
      * @var mixed[][]
      *
-     * @JMS\Type("array<array<string, mixed>>")
+     * @JMS\Type("array")
      * @JMS\SerializedName("extraData")
      */
     public $extraData;
