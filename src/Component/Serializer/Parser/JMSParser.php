@@ -11,24 +11,18 @@ namespace RetailCrm\Api\Component\Serializer\Parser;
 
 use Doctrine\Common\Annotations\AnnotationException;
 use Doctrine\Common\Annotations\Reader;
-use JMS\Serializer\Annotation\Accessor;
-use JMS\Serializer\Annotation\AccessorOrder;
-use JMS\Serializer\Annotation\Exclude;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Groups;
-use JMS\Serializer\Annotation\PostDeserialize;
-use JMS\Serializer\Annotation\ReadOnly;
-use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Since;
-use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\Until;
-use JMS\Serializer\Annotation\VirtualProperty;
-use JMS\Serializer\Annotation\XmlAttribute;
-use JMS\Serializer\Annotation\XmlKeyValuePairs;
-use JMS\Serializer\Annotation\XmlList;
-use JMS\Serializer\Annotation\XmlMap;
-use JMS\Serializer\Annotation\XmlRoot;
-use JMS\Serializer\Annotation\XmlValue;
+use RetailCrm\Api\Component\Serializer\Annotation\Accessor;
+use RetailCrm\Api\Component\Serializer\Annotation\AccessorOrder;
+use RetailCrm\Api\Component\Serializer\Annotation\Exclude;
+use RetailCrm\Api\Component\Serializer\Annotation\ExclusionPolicy;
+use RetailCrm\Api\Component\Serializer\Annotation\Groups;
+use RetailCrm\Api\Component\Serializer\Annotation\PostDeserialize;
+use RetailCrm\Api\Component\Serializer\Annotation\ReadOnly;
+use RetailCrm\Api\Component\Serializer\Annotation\SerializedName;
+use RetailCrm\Api\Component\Serializer\Annotation\Since;
+use RetailCrm\Api\Component\Serializer\Annotation\Type;
+use RetailCrm\Api\Component\Serializer\Annotation\Until;
+use RetailCrm\Api\Component\Serializer\Annotation\VirtualProperty;
 use Liip\MetadataParser\Exception\InvalidTypeException;
 use Liip\MetadataParser\Exception\ParseException;
 use Liip\MetadataParser\Metadata\PropertyAccessor;
@@ -222,7 +216,6 @@ class JMSParser implements ModelParserInterface
                         return $order[$propA->getSerializedName()] <=> $order[$propB->getSerializedName()];
                     });
                     break;
-
                 case $annotation instanceof ExclusionPolicy:
                     if (ExclusionPolicy::NONE !== $annotation->policy) {
                         throw ParseException::unsupportedClassAnnotation(
@@ -231,13 +224,14 @@ class JMSParser implements ModelParserInterface
                         );
                     }
                     break;
-
-                case $annotation instanceof XmlRoot:
-                    // skip these attributes, we don't do xml
-                    break;
-
                 default:
-                    if (0 === strncmp('JMS\Serializer\\', get_class($annotation), mb_strlen('JMS\Serializer\\'))) {
+                    if (
+                        0 === strncmp(
+                            'RetailCrm\Api\Component\Serializer\Annotation\\',
+                            get_class($annotation),
+                            mb_strlen('RetailCrm\Api\Component\Serializer\Annotation\\')
+                        )
+                    ) {
                         // if there are annotations we can safely ignore, we need to explicitly ignore them
                         throw ParseException::unsupportedClassAnnotation(
                             (string) $classMetadata,
@@ -343,12 +337,6 @@ class JMSParser implements ModelParserInterface
                     // we handle this separately
                 case $annotation instanceof VirtualProperty:
                     // we handle this separately
-                case $annotation instanceof XmlAttribute:
-                case $annotation instanceof XmlKeyValuePairs:
-                case $annotation instanceof XmlList:
-                case $annotation instanceof XmlMap:
-                case $annotation instanceof XmlValue:
-                    // skip these attributes, we don't do xml
                     break;
                 default:
                     if (0 === strncmp('JMS\Serializer\\', get_class($annotation), mb_strlen('JMS\Serializer\\'))) {

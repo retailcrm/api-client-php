@@ -10,7 +10,7 @@
 namespace RetailCrm\Api\Model\Response\Orders;
 
 use DateTime;
-use JMS\Serializer\Annotation as JMS;
+use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 use RetailCrm\Api\Model\Response\AbstractPaginatedResponse;
 
 /**

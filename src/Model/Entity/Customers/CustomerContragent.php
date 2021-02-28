@@ -10,7 +10,7 @@
 namespace RetailCrm\Api\Model\Entity\Customers;
 
 use DateTime;
-use JMS\Serializer\Annotation as JMS;
+use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 
 /**
  * Class CustomerContragent

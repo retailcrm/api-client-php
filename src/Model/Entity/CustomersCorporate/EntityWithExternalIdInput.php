@@ -9,7 +9,7 @@
 
 namespace RetailCrm\Api\Model\Entity\CustomersCorporate;
 
-use JMS\Serializer\Annotation as JMS;
+use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 
 /**
  * Class EntityWithExternalIdInput

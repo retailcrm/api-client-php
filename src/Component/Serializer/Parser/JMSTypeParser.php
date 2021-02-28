@@ -9,7 +9,6 @@
 
 namespace RetailCrm\Api\Component\Serializer\Parser;
 
-use JMS\Serializer\Type\Parser as TypeParserV2;
 use Liip\MetadataParser\Exception\InvalidTypeException;
 use Liip\MetadataParser\Metadata\DateTimeOptions;
 use Liip\MetadataParser\Metadata\PropertyType;
@@ -38,7 +37,7 @@ class JMSTypeParser
     private const TYPE_ARRAY = 'array';
 
     /**
-     * @var TypeParserV2
+     * @var \RetailCrm\Api\Component\Serializer\Parser\BaseJMSParser
      */
     private $jmsTypeParser;
 
@@ -47,7 +46,7 @@ class JMSTypeParser
      */
     public function __construct()
     {
-        $this->jmsTypeParser = new TypeParserV2();
+        $this->jmsTypeParser = new BaseJMSParser();
     }
 
     /**

@@ -10,7 +10,7 @@
 namespace RetailCrm\Api\Model\Entity\Order\Items;
 
 use DateTime;
-use JMS\Serializer\Annotation as JMS;
+use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 
 /**
  * Class OrderProduct

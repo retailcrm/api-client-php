@@ -9,7 +9,7 @@
 
 namespace RetailCrm\Api\Model\Entity\Order;
 
-use JMS\Serializer\Annotation as JMS;
+use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 use RetailCrm\Api\Interfaces\Order\CustomerInterface;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer;
 

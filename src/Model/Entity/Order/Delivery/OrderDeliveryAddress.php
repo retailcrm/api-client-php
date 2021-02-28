@@ -9,7 +9,7 @@
 
 namespace RetailCrm\Api\Model\Entity\Order\Delivery;
 
-use JMS\Serializer\Annotation as JMS;
+use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 
 /**
  * Class OrderDeliveryAddress

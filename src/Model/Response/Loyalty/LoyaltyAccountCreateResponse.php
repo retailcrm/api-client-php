@@ -9,7 +9,7 @@
 
 namespace RetailCrm\Api\Model\Response\Loyalty;
 
-use JMS\Serializer\Annotation as JMS;
+use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 use RetailCrm\Api\Model\Response\SuccessResponse;
 
 /**
