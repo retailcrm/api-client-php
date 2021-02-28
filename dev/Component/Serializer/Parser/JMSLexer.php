@@ -4,15 +4,15 @@
  * PHP version 7.3
  *
  * @category BaseJMSParser
- * @package  RetailCrm\Api\Component\Serializer\Parser
+ * @package  RetailCrm\Dev\Component\Serializer\Parser
  */
 
 declare(strict_types=1);
 
-namespace RetailCrm\Api\Component\Serializer\Parser;
+namespace RetailCrm\Dev\Component\Serializer\Parser;
 
 use Doctrine\Common\Lexer\AbstractLexer;
-use RetailCrm\Api\Component\Serializer\Exception\SyntaxError;
+use RetailCrm\Dev\Component\Serializer\Exception\SyntaxError;
 use Throwable;
 
 /**

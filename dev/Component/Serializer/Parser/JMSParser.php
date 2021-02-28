@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category JMSParser
- * @package  RetailCrm\Api\Component\Serializer\Parser
+ * @package  RetailCrm\Dev\Component\Serializer\Parser
  */
 
-namespace RetailCrm\Api\Component\Serializer\Parser;
+namespace RetailCrm\Dev\Component\Serializer\Parser;
 
 use Doctrine\Common\Annotations\AnnotationException;
 use Doctrine\Common\Annotations\Reader;
@@ -43,7 +43,7 @@ use UnexpectedValueException;
  * Class JMSParser
  *
  * @category JMSParser
- * @package  RetailCrm\Api\Component\Serializer\Parser
+ * @package  RetailCrm\Dev\Component\Serializer\Parser
  * @license  https://github.com/liip/metadata-parser/blob/master/LICENSE MIT License
  * @author   Liip <https://github.com/liip>
  * @author   Pavel Kovalenko
@@ -227,9 +227,9 @@ class JMSParser implements ModelParserInterface
                 default:
                     if (
                         0 === strncmp(
-                            'RetailCrm\Api\Component\Serializer\Annotation\\',
+                            'RetailCrm\Dev\Component\Serializer\Annotation\\',
                             get_class($annotation),
-                            mb_strlen('RetailCrm\Api\Component\Serializer\Annotation\\')
+                            mb_strlen('RetailCrm\Dev\Component\Serializer\Annotation\\')
                         )
                     ) {
                         // if there are annotations we can safely ignore, we need to explicitly ignore them

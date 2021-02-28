@@ -4,16 +4,16 @@
  * PHP version 7.3
  *
  * @category CustomDeserialization
- * @package  RetailCrm\Api\Component\Serializer\Template
+ * @package  RetailCrm\Dev\Component\Serializer\Template
  */
 
-namespace RetailCrm\Api\Component\Serializer\Template;
+namespace RetailCrm\Dev\Component\Serializer\Template;
 
 /**
  * Class CustomDeserialization
  *
  * @category CustomDeserialization
- * @package  RetailCrm\Api\Component\Serializer\Template
+ * @package  RetailCrm\Dev\Component\Serializer\Template
  * @internal
  */
 class CustomDeserialization extends AbstractTemplate

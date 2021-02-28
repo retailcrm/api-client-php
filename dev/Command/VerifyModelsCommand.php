@@ -4,12 +4,12 @@
  * PHP version 7.3
  *
  * @category VerifyModelsCommand
- * @package  RetailCrm\Api\Command
+ * @package  RetailCrm\Dev\Command
  */
 
-namespace RetailCrm\Api\Command;
+namespace RetailCrm\Dev\Command;
 
-use RetailCrm\Api\Component\Serializer\ModelsChecksumGenerator;
+use RetailCrm\Dev\Component\Serializer\ModelsChecksumGenerator;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -18,7 +18,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  * Class VerifyModelsCommand
  *
  * @category VerifyModelsCommand
- * @package  RetailCrm\Api\Command
+ * @package  RetailCrm\Dev\Command
  * @internal
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
@@ -42,7 +42,7 @@ class VerifyModelsCommand extends AbstractModelsProcessorCommand
      * @return int
      * @throws \JsonException
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 

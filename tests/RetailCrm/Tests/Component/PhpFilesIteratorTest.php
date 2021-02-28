@@ -10,7 +10,7 @@
 namespace RetailCrm\Tests\Component;
 
 use PHPUnit\Framework\TestCase;
-use RetailCrm\Api\Component\PhpFilesIterator;
+use RetailCrm\Dev\Component\PhpFilesIterator;
 
 /**
  * Class PhpFilesIterator

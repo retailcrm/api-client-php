@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category PhpFilesIterator
- * @package  RetailCrm\Api\Component
+ * @package  RetailCrm\Dev\Component
  */
 
-namespace RetailCrm\Api\Component;
+namespace RetailCrm\Dev\Component;
 
 use Iterator;
 use RecursiveDirectoryIterator;
@@ -19,7 +19,7 @@ use RegexIterator;
  * Class PhpFilesIterator
  *
  * @category   PhpFilesIterator
- * @package    RetailCrm\Api\Component
+ * @package    RetailCrm\Dev\Component
  * @implements Iterator<string|int, array<string, string>>
  */
 class PhpFilesIterator implements Iterator

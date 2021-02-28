@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category DeserializerGenerator
- * @package  RetailCrm\Api\Component\Serializer\Generator
+ * @package  RetailCrm\Dev\Component\Serializer\Generator
  */
 
-namespace RetailCrm\Api\Component\Serializer\Generator;
+namespace RetailCrm\Dev\Component\Serializer\Generator;
 
 use Liip\MetadataParser\Builder;
 use Liip\MetadataParser\Metadata\ClassMetadata;
@@ -21,8 +21,8 @@ use Liip\MetadataParser\Reducer\TakeBestReducer;
 use Liip\Serializer\Path\ArrayPath;
 use Liip\Serializer\Path\ModelPath;
 use Liip\Serializer\Template\Deserialization;
-use RetailCrm\Api\Component\Serializer\Template\CustomDeserialization;
-use RetailCrm\Api\Component\Serializer\Type\PropertyTypeMixed;
+use RetailCrm\Dev\Component\Serializer\Template\CustomDeserialization;
+use RetailCrm\Dev\Component\Serializer\Type\PropertyTypeMixed;
 use RetailCrm\Api\Interfaces\Order\CustomerInterface;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
@@ -33,7 +33,7 @@ use Symfony\Component\Filesystem\Filesystem;
  * Class DeserializerGenerator
  *
  * @category DeserializerGenerator
- * @package  RetailCrm\Api\Component\Serializer\Generator
+ * @package  RetailCrm\Dev\Component\Serializer\Generator
  * @license  https://github.com/liip/serializer/blob/master/LICENSE MIT License
  * @author   Liip <https://github.com/liip>
  * @author   Pavel Kovalenko
@@ -52,7 +52,7 @@ class DeserializerGenerator
     private $templating;
 
     /**
-     * @var \RetailCrm\Api\Component\Serializer\Template\CustomDeserialization
+     * @var \RetailCrm\Dev\Component\Serializer\Template\CustomDeserialization
      */
     private $customTemplating;
 
@@ -86,7 +86,7 @@ class DeserializerGenerator
 
     /**
      * @param \Liip\Serializer\Template\Deserialization                          $templating
-     * @param \RetailCrm\Api\Component\Serializer\Template\CustomDeserialization $customTemplating
+     * @param \RetailCrm\Dev\Component\Serializer\Template\CustomDeserialization $customTemplating
      * @param string[]                                                           $classesToGenerate
      * @param string                                                             $cacheDirectory
      */

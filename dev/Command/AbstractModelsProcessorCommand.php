@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category AbstractModelsProcessorCommand
- * @package  RetailCrm\Api\Command
+ * @package  RetailCrm\Dev\Command
  */
 
-namespace RetailCrm\Api\Command;
+namespace RetailCrm\Dev\Command;
 
 use RuntimeException;
 use Symfony\Component\Console\Command\Command;
@@ -17,7 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Class AbstractModelsProcessorCommand
  *
  * @category AbstractModelsProcessorCommand
- * @package  RetailCrm\Api\Command
+ * @package  RetailCrm\Dev\Command
  * @internal
  */
 abstract class AbstractModelsProcessorCommand extends Command

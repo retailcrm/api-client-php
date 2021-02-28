@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category GenerateModelsCommand
- * @package  RetailCrm\Api\Command
+ * @package  RetailCrm\Dev\Command
  */
 
-namespace RetailCrm\Api\Command;
+namespace RetailCrm\Dev\Command;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Generator;
@@ -17,14 +17,15 @@ use Liip\MetadataParser\RecursionChecker;
 use Liip\Serializer\Configuration\GeneratorConfiguration;
 use Liip\Serializer\Template\Deserialization;
 use Liip\Serializer\Template\Serialization;
-use RetailCrm\Api\Component\PhpFilesIterator;
-use RetailCrm\Api\Component\Serializer\Generator\DeserializerGenerator;
-use RetailCrm\Api\Component\Serializer\Generator\SerializerGenerator;
-use RetailCrm\Api\Component\Serializer\ModelsChecksumGenerator;
-use RetailCrm\Api\Component\Serializer\Parser\JMSParser;
-use RetailCrm\Api\Component\Serializer\Template\CustomDeserialization;
-use RetailCrm\Api\Component\Serializer\Template\CustomSerialization;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Dev\Component\Utils as DevUtils;
+use RetailCrm\Dev\Component\PhpFilesIterator;
+use RetailCrm\Dev\Component\Serializer\Generator\DeserializerGenerator;
+use RetailCrm\Dev\Component\Serializer\Generator\SerializerGenerator;
+use RetailCrm\Dev\Component\Serializer\ModelsChecksumGenerator;
+use RetailCrm\Dev\Component\Serializer\Parser\JMSParser;
+use RetailCrm\Dev\Component\Serializer\Template\CustomDeserialization;
+use RetailCrm\Dev\Component\Serializer\Template\CustomSerialization;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -32,7 +33,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Class GenerateModelsCommand
  *
  * @category GenerateModelsCommand
- * @package  RetailCrm\Api\Command
+ * @package  RetailCrm\Dev\Command
  * @internal
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
@@ -106,7 +107,7 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
      */
     private function getModelsList(): Generator
     {
-        $classes = new PhpFilesIterator(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'Model']));
+        $classes = new PhpFilesIterator(DevUtils::getModelsDirectory());
 
         foreach ($classes as $model) {
             if (!array_key_exists('fqn', $model)) {

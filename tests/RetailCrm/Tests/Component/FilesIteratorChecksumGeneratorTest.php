@@ -10,8 +10,8 @@
 namespace RetailCrm\Tests\Component;
 
 use PHPUnit\Framework\TestCase;
-use RetailCrm\Api\Component\FilesIteratorChecksumGenerator;
-use RetailCrm\Api\Component\PhpFilesIterator;
+use RetailCrm\Dev\Component\FilesIteratorChecksumGenerator;
+use RetailCrm\Dev\Component\PhpFilesIterator;
 
 /**
  * Class FilesIteratorChecksumGeneratorTest

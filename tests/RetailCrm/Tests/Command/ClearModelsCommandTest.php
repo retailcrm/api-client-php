@@ -10,7 +10,7 @@
 namespace RetailCrm\Tests\Command;
 
 use PHPUnit\Framework\TestCase;
-use RetailCrm\Api\Command\ClearModelsCommand;
+use RetailCrm\Dev\Command\ClearModelsCommand;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**

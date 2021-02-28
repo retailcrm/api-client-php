@@ -4,12 +4,12 @@
  * PHP version 7.3
  *
  * @category SerializerGenerator
- * @package  RetailCrm\Api\Component\Serializer\Generator
+ * @package  RetailCrm\Dev\Component\Serializer\Generator
  */
 
 declare(strict_types=1);
 
-namespace RetailCrm\Api\Component\Serializer\Generator;
+namespace RetailCrm\Dev\Component\Serializer\Generator;
 
 use DateTime;
 use Liip\MetadataParser\Builder;
@@ -27,8 +27,8 @@ use Liip\MetadataParser\Reducer\TakeBestReducer;
 use Liip\MetadataParser\Reducer\VersionReducer;
 use Liip\Serializer\Configuration\GeneratorConfiguration;
 use Liip\Serializer\Template\Serialization;
-use RetailCrm\Api\Component\Serializer\Template\CustomSerialization;
-use RetailCrm\Api\Component\Serializer\Type\PropertyTypeMixed;
+use RetailCrm\Dev\Component\Serializer\Template\CustomSerialization;
+use RetailCrm\Dev\Component\Serializer\Type\PropertyTypeMixed;
 use RetailCrm\Api\Interfaces\Order\CustomerInterface;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
@@ -40,7 +40,7 @@ use Symfony\Component\Filesystem\Filesystem;
  * Class SerializerGenerator
  *
  * @category SerializerGenerator
- * @package  RetailCrm\Api\Component\Serializer\Generator
+ * @package  RetailCrm\Dev\Component\Serializer\Generator
  * @license  https://github.com/liip/serializer/blob/master/LICENSE MIT License
  * @author   Liip <https://github.com/liip>
  * @author   Pavel Kovalenko
@@ -59,7 +59,7 @@ class SerializerGenerator
     private $templating;
 
     /**
-     * @var \RetailCrm\Api\Component\Serializer\Template\CustomSerialization
+     * @var \RetailCrm\Dev\Component\Serializer\Template\CustomSerialization
      */
     private $customTemplating;
 
@@ -87,7 +87,7 @@ class SerializerGenerator
      * SerializerGenerator constructor.
      *
      * @param \Liip\Serializer\Template\Serialization                          $templating
-     * @param \RetailCrm\Api\Component\Serializer\Template\CustomSerialization $customTemplating
+     * @param \RetailCrm\Dev\Component\Serializer\Template\CustomSerialization $customTemplating
      * @param \Liip\Serializer\Configuration\GeneratorConfiguration<mixed>     $configuration
      * @param string                                                           $cacheDirectory
      */

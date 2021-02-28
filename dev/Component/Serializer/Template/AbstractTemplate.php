@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category AbstractTemplate
- * @package  RetailCrm\Api\Component\Serializer\Template
+ * @package  RetailCrm\Dev\Component\Serializer\Template
  */
 
-namespace RetailCrm\Api\Component\Serializer\Template;
+namespace RetailCrm\Dev\Component\Serializer\Template;
 
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
@@ -16,7 +16,7 @@ use Twig\Loader\ArrayLoader;
  * Class AbstractTemplate
  *
  * @category AbstractTemplate
- * @package  RetailCrm\Api\Component\Serializer\Template
+ * @package  RetailCrm\Dev\Component\Serializer\Template
  * @internal
  */
 abstract class AbstractTemplate

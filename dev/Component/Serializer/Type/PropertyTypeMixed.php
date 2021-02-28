@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category PropertyTypeMixed
- * @package  RetailCrm\Api\Component\Serializer\Type
+ * @package  RetailCrm\Dev\Component\Serializer\Type
  */
 
-namespace RetailCrm\Api\Component\Serializer\Type;
+namespace RetailCrm\Dev\Component\Serializer\Type;
 
 use Liip\MetadataParser\Metadata\AbstractPropertyType;
 use Liip\MetadataParser\Metadata\PropertyType;
@@ -16,7 +16,7 @@ use Liip\MetadataParser\Metadata\PropertyType;
  * Class PropertyTypeMixed
  *
  * @category PropertyTypeMixed
- * @package  RetailCrm\Api\Component\Serializer\Type
+ * @package  RetailCrm\Dev\Component\Serializer\Type
  * @internal
  */
 class PropertyTypeMixed extends AbstractPropertyType

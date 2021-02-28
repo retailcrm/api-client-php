@@ -4,27 +4,27 @@
  * PHP version 7.3
  *
  * @category BaseJMSParser
- * @package  RetailCrm\Api\Component\Serializer\Parser
+ * @package  RetailCrm\Dev\Component\Serializer\Parser
  */
 
 declare(strict_types=1);
 
-namespace RetailCrm\Api\Component\Serializer\Parser;
+namespace RetailCrm\Dev\Component\Serializer\Parser;
 
 use ReflectionClass;
-use RetailCrm\Api\Component\Serializer\Exception\SyntaxError;
+use RetailCrm\Dev\Component\Serializer\Exception\SyntaxError;
 
 /**
  * Class Parser
  *
- * @package RetailCrm\Api\Component\Serializer\Parser
+ * @package RetailCrm\Dev\Component\Serializer\Parser
  * @author  Johannes M. Schmitt <schmittjoh@gmail.com>
  * @internal
  */
 final class BaseJMSParser
 {
     /**
-     * @var \RetailCrm\Api\Component\Serializer\Parser\JMSLexer
+     * @var \RetailCrm\Dev\Component\Serializer\Parser\JMSLexer
      */
     private $lexer;
 

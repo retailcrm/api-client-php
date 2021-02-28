@@ -56,16 +56,6 @@ class Utils
     }
 
     /**
-     * Returns models directory.
-     *
-     * @return string
-     */
-    public static function getModelsDirectory(): string
-    {
-        return (string) realpath(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'Model']));
-    }
-
-    /**
      * Returns target directory for the model cache.
      *
      * @return string

@@ -4,22 +4,23 @@
  * PHP version 7.3
  *
  * @category ModelsChecksumGenerator
- * @package  RetailCrm\Api\Component\Serializer
+ * @package  RetailCrm\Dev\Component\Serializer
  */
 
-namespace RetailCrm\Api\Component\Serializer;
+namespace RetailCrm\Dev\Component\Serializer;
 
 use JsonException;
-use RetailCrm\Api\Component\FilesIteratorChecksumGenerator;
-use RetailCrm\Api\Component\PhpFilesIterator;
+use RetailCrm\Dev\Component\Utils as DevUtils;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Dev\Component\FilesIteratorChecksumGenerator;
+use RetailCrm\Dev\Component\PhpFilesIterator;
 use RuntimeException;
 
 /**
  * Class ModelsChecksumGenerator
  *
  * @category ModelsChecksumGenerator
- * @package  RetailCrm\Api\Component\Serializer
+ * @package  RetailCrm\Dev\Component\Serializer
  * @internal
  */
 class ModelsChecksumGenerator
@@ -78,7 +79,7 @@ class ModelsChecksumGenerator
      */
     private static function getModelsHashes(): array
     {
-        return (new FilesIteratorChecksumGenerator(new PhpFilesIterator(Utils::getModelsDirectory())))
+        return (new FilesIteratorChecksumGenerator(new PhpFilesIterator(DevUtils::getModelsDirectory())))
             ->setFileNameAccessor(static function (array $item) {
                 return $item['file'];
             })->setKeyTransformer(static function (array $item) {

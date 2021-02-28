@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category JMSTypeParser
- * @package  RetailCrm\Api\Component\Serializer\Parser
+ * @package  RetailCrm\Dev\Component\Serializer\Parser
  */
 
-namespace RetailCrm\Api\Component\Serializer\Parser;
+namespace RetailCrm\Dev\Component\Serializer\Parser;
 
 use Liip\MetadataParser\Exception\InvalidTypeException;
 use Liip\MetadataParser\Metadata\DateTimeOptions;
@@ -17,13 +17,13 @@ use Liip\MetadataParser\Metadata\PropertyTypeClass;
 use Liip\MetadataParser\Metadata\PropertyTypeDateTime;
 use Liip\MetadataParser\Metadata\PropertyTypePrimitive;
 use Liip\MetadataParser\Metadata\PropertyTypeUnknown;
-use RetailCrm\Api\Component\Serializer\Type\PropertyTypeMixed;
+use RetailCrm\Dev\Component\Serializer\Type\PropertyTypeMixed;
 
 /**
  * Class JMSTypeParser
  *
  * @category JMSTypeParser
- * @package  RetailCrm\Api\Component\Serializer\Parser
+ * @package  RetailCrm\Dev\Component\Serializer\Parser
  * @license  https://github.com/liip/metadata-parser/blob/master/LICENSE MIT License
  * @author   Liip <https://github.com/liip>
  * @author   Pavel Kovalenko
@@ -37,7 +37,7 @@ class JMSTypeParser
     private const TYPE_ARRAY = 'array';
 
     /**
-     * @var \RetailCrm\Api\Component\Serializer\Parser\BaseJMSParser
+     * @var \RetailCrm\Dev\Component\Serializer\Parser\BaseJMSParser
      */
     private $jmsTypeParser;
 

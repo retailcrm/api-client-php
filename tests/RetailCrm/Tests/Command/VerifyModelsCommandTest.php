@@ -10,7 +10,7 @@
 namespace RetailCrm\Tests\Command;
 
 use PHPUnit\Framework\TestCase;
-use RetailCrm\Api\Command\VerifyModelsCommand;
+use RetailCrm\Dev\Command\VerifyModelsCommand;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**

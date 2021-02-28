@@ -4,10 +4,10 @@
  * PHP version 7.3
  *
  * @category FilesIteratorChecksumGenerator
- * @package  RetailCrm\Api\Component
+ * @package  RetailCrm\Dev\Component
  */
 
-namespace RetailCrm\Api\Component;
+namespace RetailCrm\Dev\Component;
 
 use Iterator;
 
@@ -15,7 +15,7 @@ use Iterator;
  * Class FilesIteratorChecksumGenerator
  *
  * @category FilesIteratorChecksumGenerator
- * @package  RetailCrm\Api\Component
+ * @package  RetailCrm\Dev\Component
  * @internal
  */
 class FilesIteratorChecksumGenerator

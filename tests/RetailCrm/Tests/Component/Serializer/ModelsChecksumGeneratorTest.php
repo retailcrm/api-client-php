@@ -10,7 +10,7 @@
 namespace RetailCrm\Tests\Component\Serializer;
 
 use PHPUnit\Framework\TestCase;
-use RetailCrm\Api\Component\Serializer\ModelsChecksumGenerator;
+use RetailCrm\Dev\Component\Serializer\ModelsChecksumGenerator;
 
 /**
  * Class ModelsChecksumGeneratorTest

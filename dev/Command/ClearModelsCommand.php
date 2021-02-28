@@ -4,13 +4,13 @@
  * PHP version 7.3
  *
  * @category ClearModelsCommand
- * @package  RetailCrm\Api\Command
+ * @package  RetailCrm\Dev\Command
  */
 
-namespace RetailCrm\Api\Command;
+namespace RetailCrm\Dev\Command;
 
-use RetailCrm\Api\Component\PhpFilesIterator;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Dev\Component\PhpFilesIterator;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -18,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Class ClearModelsCommand
  *
  * @category ClearModelsCommand
- * @package  RetailCrm\Api\Command
+ * @package  RetailCrm\Dev\Command
  * @internal
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
@@ -58,7 +58,8 @@ class ClearModelsCommand extends AbstractModelsProcessorCommand
             $output->writeln('');
         }
 
-        $models = new PhpFilesIterator($target);
+        $checksumFile = implode(DIRECTORY_SEPARATOR, [$target, 'checksum.json']);
+        $models       = new PhpFilesIterator($target);
 
         foreach ($models as $model) {
             if (file_exists($model['file'])) {
@@ -68,6 +69,10 @@ class ClearModelsCommand extends AbstractModelsProcessorCommand
                     $output->writeln(sprintf('- Removed <fg=magenta>"%s"</>', $model['file']));
                 }
             }
+        }
+
+        if (file_exists($checksumFile)) {
+            unlink($checksumFile);
         }
 
         if (self::isVerbose($output)) {
