@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use RetailCrm\Dev\Component\Serializer\ModelsChecksumGenerator;
 
 if (
     function_exists('date_default_timezone_set')
@@ -23,4 +24,15 @@ AnnotationRegistry::registerLoader('class_exists');
 if (file_exists(__DIR__ . '/../.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
     $dotenv->load();
+}
+
+if (class_exists('RetailCrm\Dev\Component\Serializer\ModelsChecksumGenerator')) {
+    if (!ModelsChecksumGenerator::verifyChecksum()) {
+        trigger_error(
+            'Models code cache is not consistent with model data. ' .
+            'Perhaps you forgot to regenerate code cache? ' .
+            'Use "bin/console models:generate" command to update model cache.',
+            E_USER_ERROR
+        );
+    }
 }
