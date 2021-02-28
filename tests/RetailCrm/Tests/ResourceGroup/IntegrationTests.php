@@ -9,9 +9,7 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
-use Http\Client\Curl\Client;
 use RetailCrm\Api\Enum\RequestMethod;
-use RetailCrm\Api\Interfaces\ApiExceptionInterface;
 use RetailCrm\Api\Model\Entity\Integration\IntegrationModule;
 use RetailCrm\Api\Model\Entity\Integration\Integrations;
 use RetailCrm\Api\Model\Entity\Integration\Transport\TransportConfiguration;
