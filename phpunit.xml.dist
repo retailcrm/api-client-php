@@ -26,10 +26,11 @@
   </coverage>
   <testsuites>
     <testsuite name="Project Test Suite">
-      <file>tests/RetailCrm/Tests/Command/ClearModelsCommandTest.php</file>
-      <file>tests/RetailCrm/Tests/Command/GenerateModelsCommandTest.php</file>
-      <file>tests/RetailCrm/Tests/Command/VerifyModelsCommandTest.php</file>
-      <directory>tests</directory>
+      <file>tests/dev/Command/ClearModelsCommandTest.php</file>
+      <file>tests/dev/Command/GenerateModelsCommandTest.php</file>
+      <file>tests/dev/Command/VerifyModelsCommandTest.php</file>
+      <directory>tests/dev</directory>
+      <directory>tests/src</directory>
     </testsuite>
   </testsuites>
   <logging>

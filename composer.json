@@ -71,7 +71,11 @@
     "psr-4": { "RetailCrm\\Api\\": "src/" }
   },
   "autoload-dev": {
-    "psr-4": { "RetailCrm\\Dev\\": "dev/" }
+    "psr-4": {
+      "RetailCrm\\Dev\\": "dev/",
+      "RetailCrm\\Tests\\": "tests/src/",
+      "RetailCrm\\DevTests\\": "tests/dev/"
+    }
   },
   "extra": {
     "branch-alias": {

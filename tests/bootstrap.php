@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+use Doctrine\Common\Annotations\AnnotationRegistry;
+
 if (
     function_exists('date_default_timezone_set')
     && function_exists('date_default_timezone_get')
@@ -7,8 +11,14 @@ if (
     date_default_timezone_set(date_default_timezone_get());
 }
 
-$loader = include dirname(__DIR__) . '/vendor/autoload.php';
-$loader->add('RetailCrm\\Test', __DIR__);
+if (!is_file($autoloadFile = __DIR__ . '/../vendor/autoload.php')) {
+    throw new RuntimeException('Did not find vendor/autoload.php. Did you run "composer install --dev"?');
+}
+
+$loader = require $autoloadFile;
+$loader->add('RetailCrm\\Tests', __DIR__ . '/src');
+$loader->add('RetailCrm\\DevTests', __DIR__ . '/dev');
+AnnotationRegistry::registerLoader('class_exists');
 
 if (file_exists(__DIR__ . '/../.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
