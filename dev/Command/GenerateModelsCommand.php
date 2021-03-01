@@ -108,7 +108,7 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
         }
 
         self::generateModelCache($models, $target);
-        ModelsChecksumGenerator::saveChecksums(ModelsChecksumGenerator::generateChecksums());
+        ModelsChecksumGenerator::saveChecksums($this->newChecksums);
 
         $output->writeln(sprintf('<fg=black;bg=green> ✓ Done, generated code for %d models.</>', count($models)));
 
