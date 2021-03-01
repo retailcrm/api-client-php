@@ -53,6 +53,12 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
         'RetailCrm\\Api\\Model\\Filter'
     ];
 
+    /** @var array<string, string> */
+    private $oldChecksums;
+
+    /** @var array<string, string> */
+    private $newChecksums;
+
     /**
      * Sets description and help for a command.
      */
@@ -68,8 +74,9 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
         $models = [];
         $verbose = static::isVerbose($output);
         $target = Utils::getModelsCacheDirectory();
-        $oldChecksums = ModelsChecksumGenerator::getStoredChecksums();
-        $newChecksums = ModelsChecksumGenerator::generateChecksums();
+
+        $this->oldChecksums = ModelsChecksumGenerator::getStoredChecksums();
+        $this->newChecksums = ModelsChecksumGenerator::generateChecksums();
 
         if (!is_dir($target)) {
             static::createDir($target);
@@ -83,7 +90,7 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
         );
         $output->writeln('');
 
-        foreach ($this->getModelsList($oldChecksums, $newChecksums) as $model) {
+        foreach ($this->getModelsList() as $model) {
             if ($verbose) {
                 $output->writeln(sprintf('- Adding <fg=magenta>%s</>', $model));
             }
@@ -100,8 +107,9 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
             $output->writeln('');
         }
 
-        $this->generateModelCache($models, $target);
+        self::generateModelCache($models, $target);
         ModelsChecksumGenerator::saveChecksums(ModelsChecksumGenerator::generateChecksums());
+
         $output->writeln(sprintf('<fg=black;bg=green> ✓ Done, generated code for %d models.</>', count($models)));
 
         return 0;
@@ -110,14 +118,11 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
     /**
      * Returns a list of the models present in the library.
      *
-     * @param array<string, string> $oldChecksums
-     * @param array<string, string> $newChecksums
-     *
      * @return Generator<string>
      */
-    private function getModelsList(array $oldChecksums, array $newChecksums): Generator
+    private function getModelsList(): Generator
     {
-        $classes   = new PhpFilesIterator(DevUtils::getModelsDirectory());
+        $classes = new PhpFilesIterator(DevUtils::getModelsDirectory());
 
         foreach ($classes as $model) {
             if (!array_key_exists('fqn', $model)) {
@@ -126,11 +131,36 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
 
             if (
                 !static::isNamespaceIgnored($model['fqn']) &&
-                !static::shouldGenerateForModel($oldChecksums, $newChecksums, $model['fqn'])
+                !$this->shouldGenerateForModel($model['fqn'])
             ) {
                 yield $model['fqn'];
             }
         }
+    }
+
+    /**
+     * Returns true if cache for model should be generated.
+     *
+     * @param string $className
+     *
+     * @return bool
+     */
+    private function shouldGenerateForModel(string $className): bool
+    {
+        $serializerFile = SerializerGenerator::buildSerializerFunctionName($className, null, []) . '.php';
+        $deserializerFile = DeserializerGenerator::buildDeserializerFunctionName($className) . '.php';
+
+        if (
+            !is_file(implode(DIRECTORY_SEPARATOR, [Utils::getModelsCacheDirectory(), $serializerFile])) ||
+            !is_file(implode(DIRECTORY_SEPARATOR, [Utils::getModelsCacheDirectory(), $deserializerFile]))
+        ) {
+            return false;
+        }
+
+        return (
+            isset($this->oldChecksums[$className]) &&
+            $this->oldChecksums[$className] === $this->newChecksums[$className]
+        );
     }
 
     /**
@@ -141,7 +171,7 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
      *
      * @throws \Exception
      */
-    private function generateModelCache(array $classes, string $target): void
+    private static function generateModelCache(array $classes, string $target): void
     {
         if (empty($classes)) {
             return;
@@ -193,29 +223,5 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
         }
 
         return false;
-    }
-
-    /**
-     * Returns true if cache for model should be generated.
-     *
-     * @param array<string, string> $oldChecksums
-     * @param array<string, string> $newChecksums
-     * @param string                $className
-     *
-     * @return bool
-     */
-    private static function shouldGenerateForModel(array $oldChecksums, array $newChecksums, string $className): bool
-    {
-        $serializerFile = SerializerGenerator::buildSerializerFunctionName($className, null, []) . '.php';
-        $deserializerFile = DeserializerGenerator::buildDeserializerFunctionName($className) . '.php';
-
-        if (
-            !is_file(implode(DIRECTORY_SEPARATOR, [Utils::getModelsCacheDirectory(), $serializerFile])) ||
-            !is_file(implode(DIRECTORY_SEPARATOR, [Utils::getModelsCacheDirectory(), $deserializerFile]))
-        ) {
-            return false;
-        }
-
-        return (isset($oldChecksums[$className]) && $oldChecksums[$className] === $newChecksums[$className]);
     }
 }
