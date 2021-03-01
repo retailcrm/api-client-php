@@ -26,16 +26,20 @@ use RuntimeException;
 class ModelsChecksumGenerator
 {
     /**
-     * Generate checksum for models
+     * Save checksum for models
      *
-     * @throws RuntimeException|JsonException
+     * @param array $checsums
      */
-    public static function generateChecksum(): void
+    public static function saveChecksums(array $checsums = []): void
     {
-        $data = json_encode(static::getModelsHashes(), JSON_THROW_ON_ERROR);
+        try {
+            $data = json_encode($checsums, JSON_THROW_ON_ERROR);
+        } catch (JsonException $exception) {
+            $data = '{}';
+        }
 
         if (false === file_put_contents(static::getChecksumFileName(), $data)) {
-            throw new RuntimeException('Cannot generate checksum for models.');
+            throw new RuntimeException('Cannot save checksums for models.');
         }
     }
 
@@ -43,7 +47,6 @@ class ModelsChecksumGenerator
      * Returns true if checksum is correct. Returns false otherwise.
      *
      * @return bool
-     * @throws JsonException
      */
     public static function verifyChecksum(): bool
     {
@@ -53,13 +56,8 @@ class ModelsChecksumGenerator
             return false;
         }
 
-        $oldHashes = json_decode(
-            (string) file_get_contents($checksumFile),
-            true,
-            512,
-            JSON_THROW_ON_ERROR
-        );
-        $newHashes = static::getModelsHashes();
+        $oldHashes = static::getStoredChecksums();
+        $newHashes = static::generateChecksums();
 
         foreach ($newHashes as $fileName => $hash) {
             if (!array_key_exists($fileName, $oldHashes)) {
@@ -77,7 +75,28 @@ class ModelsChecksumGenerator
     /**
      * @return array<string, string>
      */
-    private static function getModelsHashes(): array
+    public static function getStoredChecksums(): array
+    {
+        if (!is_file(static::getChecksumFileName())) {
+            return [];
+        }
+
+        try {
+            return json_decode(
+                (string) file_get_contents(static::getChecksumFileName()),
+                true,
+                512,
+                JSON_THROW_ON_ERROR
+            );
+        } catch (JsonException $exception) {
+            return [];
+        }
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function generateChecksums(): array
     {
         return (new FilesIteratorChecksumGenerator(new PhpFilesIterator(DevUtils::getModelsDirectory())))
             ->setFileNameAccessor(static function (array $item) {
