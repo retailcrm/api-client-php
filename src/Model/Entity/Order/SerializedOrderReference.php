@@ -10,7 +10,6 @@
 namespace RetailCrm\Api\Model\Entity\Order;
 
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
-use RetailCrm\Api\Component\FormData\Mapping as Form;
 
 /**
  * Class SerializedOrderReference

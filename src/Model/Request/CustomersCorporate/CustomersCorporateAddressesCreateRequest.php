@@ -10,7 +10,7 @@
 namespace RetailCrm\Api\Model\Request\CustomersCorporate;
 
 use RetailCrm\Api\Component\FormData\Mapping as Form;
-use RetailCrm\Api\Interfaces\RequestInterface;
+use RetailCrm\Api\Model\Request\BySiteRequest;
 
 /**
  * Class CustomersCorporateAddressesCreateRequest
@@ -18,24 +18,8 @@ use RetailCrm\Api\Interfaces\RequestInterface;
  * @category CustomersCorporateAddressesCreateRequest
  * @package  RetailCrm\Api\Model\Request\CustomersCorporate
  */
-class CustomersCorporateAddressesCreateRequest implements RequestInterface
+class CustomersCorporateAddressesCreateRequest extends BySiteRequest
 {
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("by")
-     */
-    public $by;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("site")
-     */
-    public $site;
-
     /**
      * @var \RetailCrm\Api\Model\Entity\Customers\CustomerAddress
      *

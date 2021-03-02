@@ -2131,6 +2131,9 @@ if (null !== $model->order->delivery->address->metro) {
 if (null !== $model->order->delivery->address->text) {
     $jsonData["order"]["delivery"]["address"]["text"] = $model->order->delivery->address->text;
 }
+if (null !== $model->order->delivery->address->notes) {
+    $jsonData["order"]["delivery"]["address"]["notes"] = $model->order->delivery->address->notes;
+}
 
 if (0 === \count($jsonData["order"]["delivery"]["address"])) {
     $jsonData["order"]["delivery"]["address"] = $emptyObject;

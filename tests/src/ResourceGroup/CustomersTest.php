@@ -25,11 +25,11 @@ use RetailCrm\Api\Model\Entity\FixExternalRow;
 use RetailCrm\Api\Model\Filter\Customers\CustomerFilter;
 use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
 use RetailCrm\Api\Model\Filter\Customers\CustomerNoteFilter;
+use RetailCrm\Api\Model\Request\BySiteRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersCreateRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersEditRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersFixExternalIdsRequest;
-use RetailCrm\Api\Model\Request\Customers\CustomersGetRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
@@ -2656,9 +2656,7 @@ EOF;
 }
 EOF;
 
-        $request       = new CustomersGetRequest();
-        $request->site = 'bb_demo';
-        $request->by   = ByIdentifier::ID;
+        $request       = new BySiteRequest(ByIdentifier::ID, 'bb_demo');
 
         $mock = static::getMockClient();
         $mock->on(

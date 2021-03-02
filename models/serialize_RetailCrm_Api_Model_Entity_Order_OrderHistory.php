@@ -2171,6 +2171,9 @@ if (null !== $model->order->delivery->address->metro) {
 if (null !== $model->order->delivery->address->text) {
     $jsonData["order"]["delivery"]["address"]["text"] = $model->order->delivery->address->text;
 }
+if (null !== $model->order->delivery->address->notes) {
+    $jsonData["order"]["delivery"]["address"]["notes"] = $model->order->delivery->address->notes;
+}
 
 if (0 === \count($jsonData["order"]["delivery"]["address"])) {
     $jsonData["order"]["delivery"]["address"] = $emptyObject;
@@ -4620,6 +4623,9 @@ if (null !== $model->ancestor->delivery->address->metro) {
 }
 if (null !== $model->ancestor->delivery->address->text) {
     $jsonData["ancestor"]["delivery"]["address"]["text"] = $model->ancestor->delivery->address->text;
+}
+if (null !== $model->ancestor->delivery->address->notes) {
+    $jsonData["ancestor"]["delivery"]["address"]["notes"] = $model->ancestor->delivery->address->notes;
 }
 
 if (0 === \count($jsonData["ancestor"]["delivery"]["address"])) {
@@ -7283,6 +7289,9 @@ if (null !== $model->combinedTo->delivery->address->metro) {
 }
 if (null !== $model->combinedTo->delivery->address->text) {
     $jsonData["combinedTo"]["delivery"]["address"]["text"] = $model->combinedTo->delivery->address->text;
+}
+if (null !== $model->combinedTo->delivery->address->notes) {
+    $jsonData["combinedTo"]["delivery"]["address"]["notes"] = $model->combinedTo->delivery->address->notes;
 }
 
 if (0 === \count($jsonData["combinedTo"]["delivery"]["address"])) {

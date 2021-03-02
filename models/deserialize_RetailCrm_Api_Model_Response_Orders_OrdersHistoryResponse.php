@@ -2701,6 +2701,10 @@ if (isset($jsonData['history'][$index20]['order']['delivery']['address']['text']
     $model->history[$index20]->order->delivery->address->text = $jsonData['history'][$index20]['order']['delivery']['address']['text'];
 
 }
+if (isset($jsonData['history'][$index20]['order']['delivery']['address']['notes'])) {
+    $model->history[$index20]->order->delivery->address->notes = $jsonData['history'][$index20]['order']['delivery']['address']['notes'];
+
+}
 
 
 }
@@ -5674,6 +5678,10 @@ if (isset($jsonData['history'][$index20]['ancestor']['delivery']['address']['met
 }
 if (isset($jsonData['history'][$index20]['ancestor']['delivery']['address']['text'])) {
     $model->history[$index20]->ancestor->delivery->address->text = $jsonData['history'][$index20]['ancestor']['delivery']['address']['text'];
+
+}
+if (isset($jsonData['history'][$index20]['ancestor']['delivery']['address']['notes'])) {
+    $model->history[$index20]->ancestor->delivery->address->notes = $jsonData['history'][$index20]['ancestor']['delivery']['address']['notes'];
 
 }
 
@@ -8885,6 +8893,10 @@ if (isset($jsonData['history'][$index20]['combinedTo']['delivery']['address']['m
 }
 if (isset($jsonData['history'][$index20]['combinedTo']['delivery']['address']['text'])) {
     $model->history[$index20]->combinedTo->delivery->address->text = $jsonData['history'][$index20]['combinedTo']['delivery']['address']['text'];
+
+}
+if (isset($jsonData['history'][$index20]['combinedTo']['delivery']['address']['notes'])) {
+    $model->history[$index20]->combinedTo->delivery->address->notes = $jsonData['history'][$index20]['combinedTo']['delivery']['address']['notes'];
 
 }
 

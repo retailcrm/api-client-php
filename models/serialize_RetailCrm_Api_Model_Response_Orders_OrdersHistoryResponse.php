@@ -2201,6 +2201,9 @@ if (null !== $model->history[$index11]->order->delivery->address->metro) {
 if (null !== $model->history[$index11]->order->delivery->address->text) {
     $jsonData["history"][$index11]["order"]["delivery"]["address"]["text"] = $model->history[$index11]->order->delivery->address->text;
 }
+if (null !== $model->history[$index11]->order->delivery->address->notes) {
+    $jsonData["history"][$index11]["order"]["delivery"]["address"]["notes"] = $model->history[$index11]->order->delivery->address->notes;
+}
 
 if (0 === \count($jsonData["history"][$index11]["order"]["delivery"]["address"])) {
     $jsonData["history"][$index11]["order"]["delivery"]["address"] = $emptyObject;
@@ -4650,6 +4653,9 @@ if (null !== $model->history[$index11]->ancestor->delivery->address->metro) {
 }
 if (null !== $model->history[$index11]->ancestor->delivery->address->text) {
     $jsonData["history"][$index11]["ancestor"]["delivery"]["address"]["text"] = $model->history[$index11]->ancestor->delivery->address->text;
+}
+if (null !== $model->history[$index11]->ancestor->delivery->address->notes) {
+    $jsonData["history"][$index11]["ancestor"]["delivery"]["address"]["notes"] = $model->history[$index11]->ancestor->delivery->address->notes;
 }
 
 if (0 === \count($jsonData["history"][$index11]["ancestor"]["delivery"]["address"])) {
@@ -7313,6 +7319,9 @@ if (null !== $model->history[$index11]->combinedTo->delivery->address->metro) {
 }
 if (null !== $model->history[$index11]->combinedTo->delivery->address->text) {
     $jsonData["history"][$index11]["combinedTo"]["delivery"]["address"]["text"] = $model->history[$index11]->combinedTo->delivery->address->text;
+}
+if (null !== $model->history[$index11]->combinedTo->delivery->address->notes) {
+    $jsonData["history"][$index11]["combinedTo"]["delivery"]["address"]["notes"] = $model->history[$index11]->combinedTo->delivery->address->notes;
 }
 
 if (0 === \count($jsonData["history"][$index11]["combinedTo"]["delivery"]["address"])) {

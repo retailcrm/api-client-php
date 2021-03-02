@@ -27,6 +27,7 @@ use RetailCrm\Dev\Component\Serializer\Template\CustomDeserialization;
 use RetailCrm\Dev\Component\Serializer\Template\CustomSerialization;
 use RetailCrm\Dev\Component\Utils as DevUtils;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -59,6 +60,9 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
     /** @var array<string, string> */
     private $newChecksums;
 
+    /** @var bool */
+    private $generateAll;
+
     /**
      * Sets description and help for a command.
      */
@@ -66,7 +70,14 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
     {
         $this->setName('models:generate')
             ->setDescription('Converts all JMS models to static (de)serialization code.')
-            ->setHelp('Use this command after making any changes to the models.');
+            ->setHelp('Use this command after making any changes to the models.')
+            ->addOption(
+                'all',
+                'a',
+                InputOption::VALUE_OPTIONAL,
+                'Generate cache for all models instead of changed models only.',
+                false
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -75,8 +86,12 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
         $verbose = static::isVerbose($output);
         $target = Utils::getModelsCacheDirectory();
 
-        $this->oldChecksums = ModelsChecksumGenerator::getStoredChecksums();
+        $this->generateAll  = false !== $input->getOption('all');
         $this->newChecksums = ModelsChecksumGenerator::generateChecksums();
+
+        if (!$this->generateAll) {
+            $this->oldChecksums = ModelsChecksumGenerator::getStoredChecksums();
+        }
 
         if (!is_dir($target)) {
             static::createDir($target);
@@ -131,7 +146,7 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
 
             if (
                 !static::isNamespaceIgnored($model['fqn']) &&
-                !$this->shouldGenerateForModel($model['fqn'])
+                $this->shouldGenerateForModel($model['fqn'])
             ) {
                 yield $model['fqn'];
             }
@@ -147,6 +162,10 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
      */
     private function shouldGenerateForModel(string $className): bool
     {
+        if ($this->generateAll) {
+            return true;
+        }
+
         $serializerFile = SerializerGenerator::buildSerializerFunctionName($className, null, []) . '.php';
         $deserializerFile = DeserializerGenerator::buildDeserializerFunctionName($className) . '.php';
 
@@ -154,12 +173,12 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
             !is_file(implode(DIRECTORY_SEPARATOR, [Utils::getModelsCacheDirectory(), $serializerFile])) ||
             !is_file(implode(DIRECTORY_SEPARATOR, [Utils::getModelsCacheDirectory(), $deserializerFile]))
         ) {
-            return false;
+            return true;
         }
 
         return (
             isset($this->oldChecksums[$className]) &&
-            $this->oldChecksums[$className] === $this->newChecksums[$className]
+            $this->oldChecksums[$className] !== $this->newChecksums[$className]
         );
     }
 

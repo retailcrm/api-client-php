@@ -105,6 +105,10 @@ if (isset($jsonData['address']['text'])) {
     $model->address->text = $jsonData['address']['text'];
 
 }
+if (isset($jsonData['address']['notes'])) {
+    $model->address->notes = $jsonData['address']['notes'];
+
+}
 
 
 }

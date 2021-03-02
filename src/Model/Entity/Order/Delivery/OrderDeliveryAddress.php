@@ -170,4 +170,12 @@ class OrderDeliveryAddress
      * @JMS\SerializedName("text")
      */
     public $text;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("notes")
+     */
+    public $notes;
 }

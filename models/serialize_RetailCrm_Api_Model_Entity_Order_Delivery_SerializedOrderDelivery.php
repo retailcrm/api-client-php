@@ -452,6 +452,9 @@ if (null !== $model->address->metro) {
 if (null !== $model->address->text) {
     $jsonData["address"]["text"] = $model->address->text;
 }
+if (null !== $model->address->notes) {
+    $jsonData["address"]["notes"] = $model->address->notes;
+}
 
 if (0 === \count($jsonData["address"])) {
     $jsonData["address"] = $emptyObject;

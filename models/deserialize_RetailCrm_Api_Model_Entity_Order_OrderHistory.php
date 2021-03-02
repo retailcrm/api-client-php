@@ -2666,6 +2666,10 @@ if (isset($jsonData['order']['delivery']['address']['text'])) {
     $model->order->delivery->address->text = $jsonData['order']['delivery']['address']['text'];
 
 }
+if (isset($jsonData['order']['delivery']['address']['notes'])) {
+    $model->order->delivery->address->notes = $jsonData['order']['delivery']['address']['notes'];
+
+}
 
 
 }
@@ -5639,6 +5643,10 @@ if (isset($jsonData['ancestor']['delivery']['address']['metro'])) {
 }
 if (isset($jsonData['ancestor']['delivery']['address']['text'])) {
     $model->ancestor->delivery->address->text = $jsonData['ancestor']['delivery']['address']['text'];
+
+}
+if (isset($jsonData['ancestor']['delivery']['address']['notes'])) {
+    $model->ancestor->delivery->address->notes = $jsonData['ancestor']['delivery']['address']['notes'];
 
 }
 
@@ -8850,6 +8858,10 @@ if (isset($jsonData['combinedTo']['delivery']['address']['metro'])) {
 }
 if (isset($jsonData['combinedTo']['delivery']['address']['text'])) {
     $model->combinedTo->delivery->address->text = $jsonData['combinedTo']['delivery']['address']['text'];
+
+}
+if (isset($jsonData['combinedTo']['delivery']['address']['notes'])) {
+    $model->combinedTo->delivery->address->notes = $jsonData['combinedTo']['delivery']['address']['notes'];
 
 }
 

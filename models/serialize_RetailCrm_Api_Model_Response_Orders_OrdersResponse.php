@@ -2150,6 +2150,9 @@ if (null !== $model->orders[$index10]->delivery->address->metro) {
 if (null !== $model->orders[$index10]->delivery->address->text) {
     $jsonData["orders"][$index10]["delivery"]["address"]["text"] = $model->orders[$index10]->delivery->address->text;
 }
+if (null !== $model->orders[$index10]->delivery->address->notes) {
+    $jsonData["orders"][$index10]["delivery"]["address"]["notes"] = $model->orders[$index10]->delivery->address->notes;
+}
 
 if (0 === \count($jsonData["orders"][$index10]["delivery"]["address"])) {
     $jsonData["orders"][$index10]["delivery"]["address"] = $emptyObject;

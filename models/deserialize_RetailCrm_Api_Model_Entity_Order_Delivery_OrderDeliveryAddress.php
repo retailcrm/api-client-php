@@ -80,6 +80,10 @@ if (isset($jsonData['text'])) {
     $model->text = $jsonData['text'];
 
 }
+if (isset($jsonData['notes'])) {
+    $model->notes = $jsonData['notes'];
+
+}
 
 
 

@@ -2642,6 +2642,10 @@ if (isset($jsonData['orders'][$index19]['delivery']['address']['text'])) {
     $model->orders[$index19]->delivery->address->text = $jsonData['orders'][$index19]['delivery']['address']['text'];
 
 }
+if (isset($jsonData['orders'][$index19]['delivery']['address']['notes'])) {
+    $model->orders[$index19]->delivery->address->notes = $jsonData['orders'][$index19]['delivery']['address']['notes'];
+
+}
 
 
 }

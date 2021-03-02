@@ -30,8 +30,8 @@ use RetailCrm\Api\Model\Filter\CustomersCorporate\CompanyFilter;
 use RetailCrm\Api\Model\Filter\CustomersCorporate\CustomerAddressFilter;
 use RetailCrm\Api\Model\Filter\CustomersCorporate\CustomerContactFilter;
 use RetailCrm\Api\Model\Filter\CustomersCorporate\CustomerCorporateFilter;
+use RetailCrm\Api\Model\Request\BySiteRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
-use RetailCrm\Api\Model\Request\Customers\CustomersGetRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
@@ -751,9 +751,7 @@ EOF;
 }
 EOF;
 
-        $request       = new CustomersGetRequest();
-        $request->site = 'aliexpress';
-        $request->by   = ByIdentifier::ID;
+        $request       = new BySiteRequest(ByIdentifier::ID, 'aliexpress');
 
         $mock = static::getMockClient();
         $mock->on(

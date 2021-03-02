@@ -10,11 +10,11 @@
 namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Model\Request\BySiteRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersCreateRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersEditRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersFixExternalIdsRequest;
-use RetailCrm\Api\Model\Request\Customers\CustomersGetRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
@@ -630,16 +630,15 @@ class Customers extends AbstractApiResourceGroup
      * use RetailCrm\Api\Enum\ByIdentifier;
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Model\Request\Customers\CustomersGetRequest;
+     * use RetailCrm\Api\Model\Request\BySiteRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
-     * $request       = new CustomersGetRequest();
-     * $request->site = 'bb_demo';
-     * $request->by   = ByIdentifier::ID;
-     *
      * try {
-     *     $response = $client->customers->get(4770, $request);
+     *     $response = $client->customers->get(
+     *         4770,
+     *         new BySiteRequest(ByIdentifier::ID, 'bb_demo')
+     *     );
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -657,8 +656,8 @@ class Customers extends AbstractApiResourceGroup
      * echo 'Customer: ' . print_r($response->customer);
      * ```
      *
-     * @param string|int                                                      $identifier
-     * @param \RetailCrm\Api\Model\Request\Customers\CustomersGetRequest|null $request
+     * @param string|int                                      $identifier
+     * @param \RetailCrm\Api\Model\Request\BySiteRequest|null $request
      *
      * @return \RetailCrm\Api\Model\Response\Customers\CustomersGetResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -667,8 +666,9 @@ class Customers extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function get($identifier, ?CustomersGetRequest $request = null): CustomersGetResponse
+    public function get($identifier, ?BySiteRequest $request = null): CustomersGetResponse
     {
+
         /** @var CustomersGetResponse $response */
         $response = $this->sendRequest(
             RequestMethod::GET,

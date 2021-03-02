@@ -63,6 +63,9 @@ if (null !== $model->metro) {
 if (null !== $model->text) {
     $jsonData["text"] = $model->text;
 }
+if (null !== $model->notes) {
+    $jsonData["notes"] = $model->notes;
+}
 
 if (0 === \count($jsonData)) {
     $jsonData = $emptyObject;
