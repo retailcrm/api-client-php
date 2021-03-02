@@ -2412,6 +2412,17 @@ if (0 === \count($jsonData["history"][$index11]["order"]["items"][$index39]["off
 }
 
 }
+if (null !== $model->history[$index11]->order->items[$index39]->order) {
+    $jsonData["history"][$index11]["order"]["items"][$index39]["order"] = [];
+if (null !== $model->history[$index11]->order->items[$index39]->order->id) {
+    $jsonData["history"][$index11]["order"]["items"][$index39]["order"]["id"] = $model->history[$index11]->order->items[$index39]->order->id;
+}
+
+if (0 === \count($jsonData["history"][$index11]["order"]["items"][$index39]["order"])) {
+    $jsonData["history"][$index11]["order"]["items"][$index39]["order"] = $emptyObject;
+}
+
+}
 if (null !== $model->history[$index11]->order->items[$index39]->productName) {
     $jsonData["history"][$index11]["order"]["items"][$index39]["productName"] = $model->history[$index11]->order->items[$index39]->productName;
 }
@@ -4865,6 +4876,17 @@ if (0 === \count($jsonData["history"][$index11]["ancestor"]["items"][$index42]["
 }
 
 }
+if (null !== $model->history[$index11]->ancestor->items[$index42]->order) {
+    $jsonData["history"][$index11]["ancestor"]["items"][$index42]["order"] = [];
+if (null !== $model->history[$index11]->ancestor->items[$index42]->order->id) {
+    $jsonData["history"][$index11]["ancestor"]["items"][$index42]["order"]["id"] = $model->history[$index11]->ancestor->items[$index42]->order->id;
+}
+
+if (0 === \count($jsonData["history"][$index11]["ancestor"]["items"][$index42]["order"])) {
+    $jsonData["history"][$index11]["ancestor"]["items"][$index42]["order"] = $emptyObject;
+}
+
+}
 if (null !== $model->history[$index11]->ancestor->items[$index42]->productName) {
     $jsonData["history"][$index11]["ancestor"]["items"][$index42]["productName"] = $model->history[$index11]->ancestor->items[$index42]->productName;
 }
@@ -5130,6 +5152,17 @@ foreach (array_keys($model->history[$index11]->item->offer->properties) as $inde
 
 if (0 === \count($jsonData["history"][$index11]["item"]["offer"])) {
     $jsonData["history"][$index11]["item"]["offer"] = $emptyObject;
+}
+
+}
+if (null !== $model->history[$index11]->item->order) {
+    $jsonData["history"][$index11]["item"]["order"] = [];
+if (null !== $model->history[$index11]->item->order->id) {
+    $jsonData["history"][$index11]["item"]["order"]["id"] = $model->history[$index11]->item->order->id;
+}
+
+if (0 === \count($jsonData["history"][$index11]["item"]["order"])) {
+    $jsonData["history"][$index11]["item"]["order"] = $emptyObject;
 }
 
 }
@@ -7528,6 +7561,17 @@ foreach (array_keys($model->history[$index11]->combinedTo->items[$index44]->offe
 
 if (0 === \count($jsonData["history"][$index11]["combinedTo"]["items"][$index44]["offer"])) {
     $jsonData["history"][$index11]["combinedTo"]["items"][$index44]["offer"] = $emptyObject;
+}
+
+}
+if (null !== $model->history[$index11]->combinedTo->items[$index44]->order) {
+    $jsonData["history"][$index11]["combinedTo"]["items"][$index44]["order"] = [];
+if (null !== $model->history[$index11]->combinedTo->items[$index44]->order->id) {
+    $jsonData["history"][$index11]["combinedTo"]["items"][$index44]["order"]["id"] = $model->history[$index11]->combinedTo->items[$index44]->order->id;
+}
+
+if (0 === \count($jsonData["history"][$index11]["combinedTo"]["items"][$index44]["order"])) {
+    $jsonData["history"][$index11]["combinedTo"]["items"][$index44]["order"] = $emptyObject;
 }
 
 }

@@ -29,18 +29,18 @@ class OrdersCombineRequest implements RequestInterface
     public $technique;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\SerializedOrderReference
+     * @var \RetailCrm\Api\Model\Entity\Orders\SerializedOrderReference
      *
-     * @Form\Type("RetailCrm\Api\Model\Entity\Order\SerializedOrderReference")
+     * @Form\Type("RetailCrm\Api\Model\Entity\Orders\SerializedOrderReference")
      * @Form\SerializedName("order")
      * @Form\JsonField()
      */
     public $order;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\SerializedOrderReference
+     * @var \RetailCrm\Api\Model\Entity\Orders\SerializedOrderReference
      *
-     * @Form\Type("RetailCrm\Api\Model\Entity\Order\SerializedOrderReference")
+     * @Form\Type("RetailCrm\Api\Model\Entity\Orders\SerializedOrderReference")
      * @Form\SerializedName("resultOrder")
      * @Form\JsonField()
      */

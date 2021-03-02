@@ -42,7 +42,7 @@ class Delivery extends AbstractApiResourceGroup
      * use RetailCrm\Api\Model\Entity\Delivery\SerializedOrderDelivery;
      * use RetailCrm\Api\Model\Entity\Delivery\SerializedOrderProduct;
      * use RetailCrm\Api\Model\Entity\Delivery\TimeInterval;
-     * use RetailCrm\Api\Model\Entity\Order\Delivery\OrderDeliveryAddress;
+     * use RetailCrm\Api\Model\Entity\Orders\Delivery\OrderDeliveryAddress;
      * use RetailCrm\Api\Model\Request\Delivery\DeliveryCalculateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
@@ -225,7 +225,7 @@ class Delivery extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function shipments(?DeliveryShipmentsRequest $request): DeliveryShipmentsResponse
+    public function shipments(?DeliveryShipmentsRequest $request = null): DeliveryShipmentsResponse
     {
         /** @var DeliveryShipmentsResponse $response */
         $response = $this->sendRequest(

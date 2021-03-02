@@ -23,7 +23,7 @@ use Liip\Serializer\Path\ModelPath;
 use Liip\Serializer\Template\Deserialization;
 use RetailCrm\Dev\Component\Serializer\Template\CustomDeserialization;
 use RetailCrm\Dev\Component\Serializer\Type\PropertyTypeMixed;
-use RetailCrm\Api\Interfaces\Order\CustomerInterface;
+use RetailCrm\Api\Interfaces\Orders\CustomerInterface;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
 use RuntimeException;

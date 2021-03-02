@@ -21,9 +21,9 @@ use RetailCrm\Api\Model\Response\AbstractPaginatedResponse;
 class OrdersResponse extends AbstractPaginatedResponse
 {
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\Order[]
+     * @var \RetailCrm\Api\Model\Entity\Orders\Order[]
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Order\Order>")
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Orders\Order>")
      * @JMS\SerializedName("orders")
      */
     public $orders;

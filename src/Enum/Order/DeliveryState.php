@@ -4,7 +4,7 @@
  * PHP version 7.3
  *
  * @category DeliveryState
- * @package  RetailCrm\Api\Enum\Order
+ * @package  RetailCrm\Api\Enum\Orders
  */
 
 namespace RetailCrm\Api\Enum\Order;
@@ -13,7 +13,7 @@ namespace RetailCrm\Api\Enum\Order;
  * Class DeliveryState
  *
  * @category DeliveryState
- * @package  RetailCrm\Api\Enum\Order
+ * @package  RetailCrm\Api\Enum\Orders
  */
 final class DeliveryState
 {

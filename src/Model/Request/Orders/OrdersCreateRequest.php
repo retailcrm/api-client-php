@@ -29,9 +29,9 @@ class OrdersCreateRequest implements RequestInterface
     public $site;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\Order
+     * @var \RetailCrm\Api\Model\Entity\Orders\Order
      *
-     * @Form\Type("RetailCrm\Api\Model\Entity\Order\Order")
+     * @Form\Type("RetailCrm\Api\Model\Entity\Orders\Order")
      * @Form\SerializedName("order")
      * @Form\JsonField()
      */

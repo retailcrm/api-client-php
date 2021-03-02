@@ -29,9 +29,9 @@ class OrdersPaymentsCreateRequest implements RequestInterface
     public $site;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\SerializedPayment
+     * @var \RetailCrm\Api\Model\Entity\Orders\SerializedPayment
      *
-     * @Form\Type("RetailCrm\Api\Model\Entity\Order\SerializedPayment")
+     * @Form\Type("RetailCrm\Api\Model\Entity\Orders\SerializedPayment")
      * @Form\SerializedName("payment")
      * @Form\JsonField()
      */

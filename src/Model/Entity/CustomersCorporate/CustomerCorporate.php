@@ -11,7 +11,7 @@ namespace RetailCrm\Api\Model\Entity\CustomersCorporate;
 
 use DateTime;
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
-use RetailCrm\Api\Interfaces\Order\CustomerInterface;
+use RetailCrm\Api\Interfaces\Orders\CustomerInterface;
 
 /**
  * Class CustomerCorporate

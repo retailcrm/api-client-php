@@ -83,6 +83,26 @@ class ApiException extends Exception implements ApiExceptionInterface
     }
 
     /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        $base = parent::__toString();
+
+        if (count($this->getErrorResponse()->errors) > 0) {
+            $errors = [];
+
+            foreach ($this->getErrorResponse()->errors as $key => $error) {
+                $errors[] = sprintf('%s: %s', $key, $error);
+            }
+
+            $base .= ' Errors: [' . implode(', ', $errors) . ']';
+        }
+
+        return $base;
+    }
+
+    /**
      * Returns error type by error message.
      *
      * @param string $message

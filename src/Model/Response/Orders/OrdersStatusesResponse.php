@@ -21,9 +21,9 @@ use RetailCrm\Api\Model\Response\SuccessResponse;
 class OrdersStatusesResponse extends SuccessResponse
 {
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\OrderStatusItem[]
+     * @var \RetailCrm\Api\Model\Entity\Orders\OrderStatusItem[]
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Order\OrderStatusItem>")
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Orders\OrderStatusItem>")
      * @JMS\SerializedName("orders")
      */
     public $orders;

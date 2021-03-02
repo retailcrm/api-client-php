@@ -29,9 +29,9 @@ class OrdersLinksCreateRequest implements RequestInterface
     public $site;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\SerializedOrderLink
+     * @var \RetailCrm\Api\Model\Entity\Orders\SerializedOrderLink
      *
-     * @Form\Type("RetailCrm\Api\Model\Entity\Order\SerializedOrderLink")
+     * @Form\Type("RetailCrm\Api\Model\Entity\Orders\SerializedOrderLink")
      * @Form\SerializedName("link")
      * @Form\JsonField()
      */

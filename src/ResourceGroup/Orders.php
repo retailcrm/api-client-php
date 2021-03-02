@@ -50,7 +50,7 @@ class Orders extends AbstractApiResourceGroup
      * ```php
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Model\Filter\Order\OrderFilter;
+     * use RetailCrm\Api\Model\Filter\Orders\OrderFilter;
      * use RetailCrm\Api\Model\Request\Orders\OrdersRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
@@ -87,7 +87,7 @@ class Orders extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function list(?OrdersRequest $request): OrdersResponse
+    public function list(?OrdersRequest $request = null): OrdersResponse
     {
         /** @var OrdersResponse $response */
         $response = $this->sendRequest(
@@ -107,7 +107,7 @@ class Orders extends AbstractApiResourceGroup
      * use RetailCrm\Api\Enum\CombineTechnique;
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Model\Entity\Order\SerializedOrderReference;
+     * use RetailCrm\Api\Model\Entity\Orders\SerializedOrderReference;
      * use RetailCrm\Api\Model\Request\Orders\OrdersCombineRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
@@ -166,21 +166,21 @@ class Orders extends AbstractApiResourceGroup
      * use RetailCrm\Api\Enum\Customers\CustomerType;
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Model\Entity\Order\Delivery\OrderDeliveryAddress;
-     * use RetailCrm\Api\Model\Entity\Order\Delivery\SerializedOrderDelivery;
-     * use RetailCrm\Api\Model\Entity\Order\Items\Offer;
-     * use RetailCrm\Api\Model\Entity\Order\Items\OrderProduct;
-     * use RetailCrm\Api\Model\Entity\Order\Items\PriceType;
-     * use RetailCrm\Api\Model\Entity\Order\Items\Unit;
-     * use RetailCrm\Api\Model\Entity\Order\Order;
-     * use RetailCrm\Api\Model\Entity\Order\Payment;
-     * use RetailCrm\Api\Model\Entity\Order\SerializedRelationCustomer;
+     * use RetailCrm\Api\Model\Entity\Orders\Delivery\OrderDeliveryAddress;
+     * use RetailCrm\Api\Model\Entity\Orders\Delivery\SerializedOrderDelivery;
+     * use RetailCrm\Api\Model\Entity\Orders\Items\Offer;
+     * use RetailCrm\Api\Model\Entity\Orders\Items\OrderProduct;
+     * use RetailCrm\Api\Model\Entity\Orders\Items\PriceType;
+     * use RetailCrm\Api\Model\Entity\Orders\Items\Unit;
+     * use RetailCrm\Api\Model\Entity\Orders\Order;
+     * use RetailCrm\Api\Model\Entity\Orders\Payment;
+     * use RetailCrm\Api\Model\Entity\Orders\SerializedRelationCustomer;
      * use RetailCrm\Api\Model\Request\Orders\OrdersCreateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request         = new OrdersCreateRequest();
-     * $order           = new Order();
+     * $order           = new Orders();
      * $payment         = new Payment();
      * $delivery        = new SerializedOrderDelivery();
      * $deliveryAddress = new OrderDeliveryAddress();
@@ -352,7 +352,7 @@ class Orders extends AbstractApiResourceGroup
      * ```php
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Model\Filter\Order\OrderHistoryFilterV4Type;
+     * use RetailCrm\Api\Model\Filter\Orders\OrderHistoryFilterV4Type;
      * use RetailCrm\Api\Model\Request\Orders\OrdersHistoryRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
@@ -411,7 +411,7 @@ class Orders extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Delivery\SerializedEntityOrder;
-     * use RetailCrm\Api\Model\Entity\Order\SerializedOrderLink;
+     * use RetailCrm\Api\Model\Entity\Orders\SerializedOrderLink;
      * use RetailCrm\Api\Model\Request\Orders\OrdersLinksCreateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
@@ -528,7 +528,7 @@ class Orders extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Delivery\SerializedEntityOrder;
-     * use RetailCrm\Api\Model\Entity\Order\SerializedPayment;
+     * use RetailCrm\Api\Model\Entity\Orders\SerializedPayment;
      * use RetailCrm\Api\Model\Request\Orders\OrdersPaymentsCreateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
@@ -636,7 +636,7 @@ class Orders extends AbstractApiResourceGroup
      * use RetailCrm\Api\Enum\ByIdentifier;
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Model\Entity\Order\SerializedPayment;
+     * use RetailCrm\Api\Model\Entity\Orders\SerializedPayment;
      * use RetailCrm\Api\Model\Request\Orders\OrdersPaymentsEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
@@ -751,21 +751,21 @@ class Orders extends AbstractApiResourceGroup
      * use RetailCrm\Api\Enum\Customers\CustomerType;
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Model\Entity\Order\Delivery\OrderDeliveryAddress;
-     * use RetailCrm\Api\Model\Entity\Order\Delivery\SerializedOrderDelivery;
-     * use RetailCrm\Api\Model\Entity\Order\Items\Offer;
-     * use RetailCrm\Api\Model\Entity\Order\Items\OrderProduct;
-     * use RetailCrm\Api\Model\Entity\Order\Items\PriceType;
-     * use RetailCrm\Api\Model\Entity\Order\Items\Unit;
-     * use RetailCrm\Api\Model\Entity\Order\Order;
-     * use RetailCrm\Api\Model\Entity\Order\Payment;
-     * use RetailCrm\Api\Model\Entity\Order\SerializedRelationCustomer;
+     * use RetailCrm\Api\Model\Entity\Orders\Delivery\OrderDeliveryAddress;
+     * use RetailCrm\Api\Model\Entity\Orders\Delivery\SerializedOrderDelivery;
+     * use RetailCrm\Api\Model\Entity\Orders\Items\Offer;
+     * use RetailCrm\Api\Model\Entity\Orders\Items\OrderProduct;
+     * use RetailCrm\Api\Model\Entity\Orders\Items\PriceType;
+     * use RetailCrm\Api\Model\Entity\Orders\Items\Unit;
+     * use RetailCrm\Api\Model\Entity\Orders\Order;
+     * use RetailCrm\Api\Model\Entity\Orders\Payment;
+     * use RetailCrm\Api\Model\Entity\Orders\SerializedRelationCustomer;
      * use RetailCrm\Api\Model\Request\Orders\OrdersUploadRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request         = new OrdersUploadRequest();
-     * $order           = new Order();
+     * $order           = new Orders();
      * $payment         = new Payment();
      * $delivery        = new SerializedOrderDelivery();
      * $deliveryAddress = new OrderDeliveryAddress();
@@ -901,7 +901,7 @@ class Orders extends AbstractApiResourceGroup
      *     return;
      * }
      *
-     * echo 'Order: ' . print_r($response->order, true);
+     * echo 'Orders: ' . print_r($response->order, true);
      * ```
      *
      * @param int|string                                      $identifier
@@ -934,12 +934,12 @@ class Orders extends AbstractApiResourceGroup
      * use RetailCrm\Api\Enum\ByIdentifier;
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Model\Entity\Order\Order;
+     * use RetailCrm\Api\Model\Entity\Orders\Order;
      * use RetailCrm\Api\Model\Request\Orders\OrdersEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
-     * $order                 = new Order();
+     * $order                 = new Orders();
      * $order->managerComment = 'Manager comment';
      *
      * $request        = new OrdersEditRequest();

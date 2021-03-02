@@ -24,9 +24,9 @@ class OrdersHistoryRequest implements RequestInterface
     use PageLimitTrait;
 
     /**
-     * @var \RetailCrm\Api\Model\Filter\Order\OrderHistoryFilterV4Type
+     * @var \RetailCrm\Api\Model\Filter\Orders\OrderHistoryFilterV4Type
      *
-     * @Form\Type("RetailCrm\Api\Model\Filter\Order\OrderHistoryFilterV4Type")
+     * @Form\Type("RetailCrm\Api\Model\Filter\Orders\OrderHistoryFilterV4Type")
      * @Form\SerializedName("filter")
      */
     public $filter;

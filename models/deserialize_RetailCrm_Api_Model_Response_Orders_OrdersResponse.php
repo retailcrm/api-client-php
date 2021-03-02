@@ -34,7 +34,7 @@ if (isset($jsonData['orders'])) {
     $model->orders = [];
 foreach (array_keys($jsonData['orders']) as $index19) {
     
-$model->orders[$index19] = new RetailCrm\Api\Model\Entity\Order\Order();
+$model->orders[$index19] = new RetailCrm\Api\Model\Entity\Orders\Order();
 if (isset($jsonData['orders'][$index19]['bonusesCreditTotal'])) {
     $model->orders[$index19]->bonusesCreditTotal = (float) $jsonData['orders'][$index19]['bonusesCreditTotal'];
 
@@ -2024,7 +2024,7 @@ if (isset($jsonData['orders'][$index19]['company']['costSumm'])) {
 }
 if (isset($jsonData['orders'][$index19]['contragent'])) {
     
-$model->orders[$index19]->contragent = new RetailCrm\Api\Model\Entity\Order\OrderContragent();
+$model->orders[$index19]->contragent = new RetailCrm\Api\Model\Entity\Orders\OrderContragent();
 if (isset($jsonData['orders'][$index19]['contragent']['contragentType'])) {
     $model->orders[$index19]->contragent->contragentType = $jsonData['orders'][$index19]['contragent']['contragentType'];
 
@@ -2090,7 +2090,7 @@ if (isset($jsonData['orders'][$index19]['contragent']['bankAccount'])) {
 }
 if (isset($jsonData['orders'][$index19]['delivery'])) {
     
-$model->orders[$index19]->delivery = new RetailCrm\Api\Model\Entity\Order\Delivery\SerializedOrderDelivery();
+$model->orders[$index19]->delivery = new RetailCrm\Api\Model\Entity\Orders\Delivery\SerializedOrderDelivery();
 if (isset($jsonData['orders'][$index19]['delivery']['code'])) {
     $model->orders[$index19]->delivery->code = $jsonData['orders'][$index19]['delivery']['code'];
 
@@ -2101,7 +2101,7 @@ if (isset($jsonData['orders'][$index19]['delivery']['integrationCode'])) {
 }
 if (isset($jsonData['orders'][$index19]['delivery']['data'])) {
     
-$model->orders[$index19]->delivery->data = new RetailCrm\Api\Model\Entity\Order\Delivery\DeliveryData();
+$model->orders[$index19]->delivery->data = new RetailCrm\Api\Model\Entity\Orders\Delivery\DeliveryData();
 if (isset($jsonData['orders'][$index19]['delivery']['data']['externalId'])) {
     $model->orders[$index19]->delivery->data->externalId = $jsonData['orders'][$index19]['delivery']['data']['externalId'];
 
@@ -2226,7 +2226,7 @@ if (isset($jsonData['orders'][$index19]['delivery']['data']['packages'])) {
     $model->orders[$index19]->delivery->data->packages = [];
 foreach (array_keys($jsonData['orders'][$index19]['delivery']['data']['packages']) as $index61) {
     
-$model->orders[$index19]->delivery->data->packages[$index61] = new RetailCrm\Api\Model\Entity\Order\Delivery\Package();
+$model->orders[$index19]->delivery->data->packages[$index61] = new RetailCrm\Api\Model\Entity\Orders\Delivery\Package();
 if (isset($jsonData['orders'][$index19]['delivery']['data']['packages'][$index61]['packageId'])) {
     $model->orders[$index19]->delivery->data->packages[$index61]->packageId = $jsonData['orders'][$index19]['delivery']['data']['packages'][$index61]['packageId'];
 
@@ -2251,10 +2251,10 @@ if (isset($jsonData['orders'][$index19]['delivery']['data']['packages'][$index61
     $model->orders[$index19]->delivery->data->packages[$index61]->items = [];
 foreach (array_keys($jsonData['orders'][$index19]['delivery']['data']['packages'][$index61]['items']) as $index80) {
     
-$model->orders[$index19]->delivery->data->packages[$index61]->items[$index80] = new RetailCrm\Api\Model\Entity\Order\Delivery\PackageItem();
+$model->orders[$index19]->delivery->data->packages[$index61]->items[$index80] = new RetailCrm\Api\Model\Entity\Orders\Delivery\PackageItem();
 if (isset($jsonData['orders'][$index19]['delivery']['data']['packages'][$index61]['items'][$index80]['orderProduct'])) {
     
-$model->orders[$index19]->delivery->data->packages[$index61]->items[$index80]->orderProduct = new RetailCrm\Api\Model\Entity\Order\Delivery\PackageItemOrderProduct();
+$model->orders[$index19]->delivery->data->packages[$index61]->items[$index80]->orderProduct = new RetailCrm\Api\Model\Entity\Orders\Delivery\PackageItemOrderProduct();
 if (isset($jsonData['orders'][$index19]['delivery']['data']['packages'][$index61]['items'][$index80]['orderProduct']['id'])) {
     $model->orders[$index19]->delivery->data->packages[$index61]->items[$index80]->orderProduct->id = $jsonData['orders'][$index19]['delivery']['data']['packages'][$index61]['items'][$index80]['orderProduct']['id'];
 
@@ -2372,7 +2372,7 @@ if (isset($jsonData['orders'][$index19]['delivery']['data']['email'])) {
 }
 if (isset($jsonData['orders'][$index19]['delivery']['data']['phone'])) {
     
-$model->orders[$index19]->delivery->data->phone = new RetailCrm\Api\Model\Entity\Order\Delivery\CourierPhone();
+$model->orders[$index19]->delivery->data->phone = new RetailCrm\Api\Model\Entity\Orders\Delivery\CourierPhone();
 if (isset($jsonData['orders'][$index19]['delivery']['data']['phone']['number'])) {
     $model->orders[$index19]->delivery->data->phone->number = $jsonData['orders'][$index19]['delivery']['data']['phone']['number'];
 
@@ -2517,7 +2517,7 @@ if (isset($jsonData['orders'][$index19]['delivery']['data']['service'])) {
 }
 if (isset($jsonData['orders'][$index19]['delivery']['service'])) {
     
-$model->orders[$index19]->delivery->service = new RetailCrm\Api\Model\Entity\Order\Delivery\SerializedDeliveryService();
+$model->orders[$index19]->delivery->service = new RetailCrm\Api\Model\Entity\Orders\Delivery\SerializedDeliveryService();
 if (isset($jsonData['orders'][$index19]['delivery']['service']['name'])) {
     $model->orders[$index19]->delivery->service->name = $jsonData['orders'][$index19]['delivery']['service']['name'];
 
@@ -2565,7 +2565,7 @@ if (isset($jsonData['orders'][$index19]['delivery']['time']['custom'])) {
 }
 if (isset($jsonData['orders'][$index19]['delivery']['address'])) {
     
-$model->orders[$index19]->delivery->address = new RetailCrm\Api\Model\Entity\Order\Delivery\OrderDeliveryAddress();
+$model->orders[$index19]->delivery->address = new RetailCrm\Api\Model\Entity\Orders\Delivery\OrderDeliveryAddress();
 if (isset($jsonData['orders'][$index19]['delivery']['address']['id'])) {
     $model->orders[$index19]->delivery->address->id = $jsonData['orders'][$index19]['delivery']['address']['id'];
 
@@ -2658,7 +2658,7 @@ if (isset($jsonData['orders'][$index19]['delivery']['vatRate'])) {
 }
 if (isset($jsonData['orders'][$index19]['marketplace'])) {
     
-$model->orders[$index19]->marketplace = new RetailCrm\Api\Model\Entity\Order\MarketplaceData();
+$model->orders[$index19]->marketplace = new RetailCrm\Api\Model\Entity\Orders\MarketplaceData();
 if (isset($jsonData['orders'][$index19]['marketplace']['code'])) {
     $model->orders[$index19]->marketplace->code = $jsonData['orders'][$index19]['marketplace']['code'];
 
@@ -2712,7 +2712,7 @@ if (isset($jsonData['orders'][$index19]['items'])) {
     $model->orders[$index19]->items = [];
 foreach (array_keys($jsonData['orders'][$index19]['items']) as $index38) {
     
-$model->orders[$index19]->items[$index38] = new RetailCrm\Api\Model\Entity\Order\Items\OrderProduct();
+$model->orders[$index19]->items[$index38] = new RetailCrm\Api\Model\Entity\Orders\Items\OrderProduct();
 if (isset($jsonData['orders'][$index19]['items'][$index38]['externalId'])) {
     $model->orders[$index19]->items[$index38]->externalId = $jsonData['orders'][$index19]['items'][$index38]['externalId'];
 
@@ -2749,7 +2749,7 @@ if (isset($jsonData['orders'][$index19]['items'][$index38]['externalIds'][$index
 }
 if (isset($jsonData['orders'][$index19]['items'][$index38]['priceType'])) {
     
-$model->orders[$index19]->items[$index38]->priceType = new RetailCrm\Api\Model\Entity\Order\Items\PriceType();
+$model->orders[$index19]->items[$index38]->priceType = new RetailCrm\Api\Model\Entity\Orders\Items\PriceType();
 if (isset($jsonData['orders'][$index19]['items'][$index38]['priceType']['code'])) {
     $model->orders[$index19]->items[$index38]->priceType->code = $jsonData['orders'][$index19]['items'][$index38]['priceType']['code'];
 
@@ -2777,7 +2777,7 @@ if (isset($jsonData['orders'][$index19]['items'][$index38]['prices'])) {
     $model->orders[$index19]->items[$index38]->prices = [];
 foreach (array_keys($jsonData['orders'][$index19]['items'][$index38]['prices']) as $index58) {
     
-$model->orders[$index19]->items[$index38]->prices[$index58] = new RetailCrm\Api\Model\Entity\Order\Items\OrderProductPriceItem();
+$model->orders[$index19]->items[$index38]->prices[$index58] = new RetailCrm\Api\Model\Entity\Orders\Items\OrderProductPriceItem();
 if (isset($jsonData['orders'][$index19]['items'][$index38]['prices'][$index58]['price'])) {
     $model->orders[$index19]->items[$index38]->prices[$index58]->price = (float) $jsonData['orders'][$index19]['items'][$index38]['prices'][$index58]['price'];
 
@@ -2813,7 +2813,7 @@ if (isset($jsonData['orders'][$index19]['items'][$index38]['comment'])) {
 }
 if (isset($jsonData['orders'][$index19]['items'][$index38]['offer'])) {
     
-$model->orders[$index19]->items[$index38]->offer = new RetailCrm\Api\Model\Entity\Order\Items\Offer();
+$model->orders[$index19]->items[$index38]->offer = new RetailCrm\Api\Model\Entity\Orders\Items\Offer();
 if (isset($jsonData['orders'][$index19]['items'][$index38]['offer']['displayName'])) {
     $model->orders[$index19]->items[$index38]->offer->displayName = $jsonData['orders'][$index19]['items'][$index38]['offer']['displayName'];
 
@@ -2844,7 +2844,7 @@ if (isset($jsonData['orders'][$index19]['items'][$index38]['offer']['vatRate']))
 }
 if (isset($jsonData['orders'][$index19]['items'][$index38]['offer']['unit'])) {
     
-$model->orders[$index19]->items[$index38]->offer->unit = new RetailCrm\Api\Model\Entity\Order\Items\Unit();
+$model->orders[$index19]->items[$index38]->offer->unit = new RetailCrm\Api\Model\Entity\Orders\Items\Unit();
 if (isset($jsonData['orders'][$index19]['items'][$index38]['offer']['unit']['code'])) {
     $model->orders[$index19]->items[$index38]->offer->unit->code = $jsonData['orders'][$index19]['items'][$index38]['offer']['unit']['code'];
 
@@ -2875,6 +2875,16 @@ foreach (array_keys($jsonData['orders'][$index19]['items'][$index38]['offer']['p
 
 
 }
+if (isset($jsonData['orders'][$index19]['items'][$index38]['order'])) {
+    
+$model->orders[$index19]->items[$index38]->order = new RetailCrm\Api\Model\Entity\IdModel();
+if (isset($jsonData['orders'][$index19]['items'][$index38]['order']['id'])) {
+    $model->orders[$index19]->items[$index38]->order->id = $jsonData['orders'][$index19]['items'][$index38]['order']['id'];
+
+}
+
+
+}
 if (isset($jsonData['orders'][$index19]['items'][$index38]['productName'])) {
     $model->orders[$index19]->items[$index38]->productName = $jsonData['orders'][$index19]['items'][$index38]['productName'];
 
@@ -2887,7 +2897,7 @@ if (isset($jsonData['orders'][$index19]['items'][$index38]['properties'])) {
     $model->orders[$index19]->items[$index38]->properties = [];
 foreach (array_keys($jsonData['orders'][$index19]['items'][$index38]['properties']) as $index62) {
     
-$model->orders[$index19]->items[$index38]->properties[$index62] = new RetailCrm\Api\Model\Entity\Order\Items\ItemProperty();
+$model->orders[$index19]->items[$index38]->properties[$index62] = new RetailCrm\Api\Model\Entity\Orders\Items\ItemProperty();
 if (isset($jsonData['orders'][$index19]['items'][$index38]['properties'][$index62]['code'])) {
     $model->orders[$index19]->items[$index38]->properties[$index62]->code = $jsonData['orders'][$index19]['items'][$index38]['properties'][$index62]['code'];
 
@@ -2922,7 +2932,7 @@ if (isset($jsonData['orders'][$index19]['payments'])) {
     $model->orders[$index19]->payments = [];
 foreach (array_keys($jsonData['orders'][$index19]['payments']) as $index41) {
     
-$model->orders[$index19]->payments[$index41] = new RetailCrm\Api\Model\Entity\Order\Payment();
+$model->orders[$index19]->payments[$index41] = new RetailCrm\Api\Model\Entity\Orders\Payment();
 if (isset($jsonData['orders'][$index19]['payments'][$index41]['id'])) {
     $model->orders[$index19]->payments[$index41]->id = $jsonData['orders'][$index19]['payments'][$index41]['id'];
 

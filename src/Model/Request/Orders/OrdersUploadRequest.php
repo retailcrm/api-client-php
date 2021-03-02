@@ -29,9 +29,9 @@ class OrdersUploadRequest implements RequestInterface
     public $site;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\Order[]
+     * @var \RetailCrm\Api\Model\Entity\Orders\Order[]
      *
-     * @Form\Type("array<RetailCrm\Api\Model\Entity\Order\Order>")
+     * @Form\Type("array<RetailCrm\Api\Model\Entity\Orders\Order>")
      * @Form\SerializedName("orders")
      * @Form\JsonField()
      */

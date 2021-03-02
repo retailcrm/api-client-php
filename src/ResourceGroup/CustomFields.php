@@ -86,7 +86,7 @@ class CustomFields extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
-    public function list(?CustomFieldsRequest $request): CustomFieldsResponse
+    public function list(?CustomFieldsRequest $request = null): CustomFieldsResponse
     {
         /** @var CustomFieldsResponse $response */
         $response = $this->sendRequest(
@@ -146,7 +146,7 @@ class CustomFields extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
      */
-    public function dictionaries(?CustomFieldsDictionariesRequest $request): CustomFieldsDictionariesResponse
+    public function dictionaries(?CustomFieldsDictionariesRequest $request = null): CustomFieldsDictionariesResponse
     {
         /** @var CustomFieldsDictionariesResponse $response */
         $response = $this->sendRequest(

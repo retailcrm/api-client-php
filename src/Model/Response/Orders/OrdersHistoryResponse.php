@@ -30,9 +30,9 @@ class OrdersHistoryResponse extends AbstractPaginatedResponse
     public $generatedAt;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\OrderHistory[]
+     * @var \RetailCrm\Api\Model\Entity\Orders\OrderHistory[]
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Order\OrderHistory>")
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Orders\OrderHistory>")
      * @JMS\SerializedName("history")
      */
     public $history;

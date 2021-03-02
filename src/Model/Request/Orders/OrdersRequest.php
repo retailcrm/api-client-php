@@ -24,9 +24,9 @@ class OrdersRequest implements RequestInterface
     use PageLimitTrait;
 
     /**
-     * @var \RetailCrm\Api\Model\Filter\Order\OrderFilter
+     * @var \RetailCrm\Api\Model\Filter\Orders\OrderFilter
      *
-     * @Form\Type("RetailCrm\Api\Model\Filter\Order\OrderFilter")
+     * @Form\Type("RetailCrm\Api\Model\Filter\Orders\OrderFilter")
      * @Form\SerializedName("filter")
      */
     public $filter;

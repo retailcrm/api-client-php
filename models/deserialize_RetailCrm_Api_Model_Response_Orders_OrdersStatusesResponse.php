@@ -12,7 +12,7 @@ if (isset($jsonData['orders'])) {
     $model->orders = [];
 foreach (array_keys($jsonData['orders']) as $index19) {
     
-$model->orders[$index19] = new RetailCrm\Api\Model\Entity\Order\OrderStatusItem();
+$model->orders[$index19] = new RetailCrm\Api\Model\Entity\Orders\OrderStatusItem();
 if (isset($jsonData['orders'][$index19]['id'])) {
     $model->orders[$index19]->id = $jsonData['orders'][$index19]['id'];
 

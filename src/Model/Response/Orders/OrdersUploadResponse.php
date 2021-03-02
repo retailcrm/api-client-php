@@ -37,9 +37,9 @@ class OrdersUploadResponse extends SuccessResponse
     public $uploadedOrders;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Order\Order[]
+     * @var \RetailCrm\Api\Model\Entity\Orders\Order[]
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Order\Order>")
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Orders\Order>")
      * @JMS\SerializedName("orders")
      */
     public $orders;

@@ -73,7 +73,7 @@ if (isset($jsonData['delivery']['time']['custom'])) {
 }
 if (isset($jsonData['delivery']['address'])) {
     
-$model->delivery->address = new RetailCrm\Api\Model\Entity\Order\Delivery\OrderDeliveryAddress();
+$model->delivery->address = new RetailCrm\Api\Model\Entity\Orders\Delivery\OrderDeliveryAddress();
 if (isset($jsonData['delivery']['address']['id'])) {
     $model->delivery->address->id = $jsonData['delivery']['address']['id'];
 

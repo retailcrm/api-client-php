@@ -2361,6 +2361,17 @@ if (0 === \count($jsonData["orders"][$index10]["items"][$index29]["offer"])) {
 }
 
 }
+if (null !== $model->orders[$index10]->items[$index29]->order) {
+    $jsonData["orders"][$index10]["items"][$index29]["order"] = [];
+if (null !== $model->orders[$index10]->items[$index29]->order->id) {
+    $jsonData["orders"][$index10]["items"][$index29]["order"]["id"] = $model->orders[$index10]->items[$index29]->order->id;
+}
+
+if (0 === \count($jsonData["orders"][$index10]["items"][$index29]["order"])) {
+    $jsonData["orders"][$index10]["items"][$index29]["order"] = $emptyObject;
+}
+
+}
 if (null !== $model->orders[$index10]->items[$index29]->productName) {
     $jsonData["orders"][$index10]["items"][$index29]["productName"] = $model->orders[$index10]->items[$index29]->productName;
 }

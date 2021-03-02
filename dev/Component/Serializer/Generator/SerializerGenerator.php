@@ -29,7 +29,7 @@ use Liip\Serializer\Configuration\GeneratorConfiguration;
 use Liip\Serializer\Template\Serialization;
 use RetailCrm\Dev\Component\Serializer\Template\CustomSerialization;
 use RetailCrm\Dev\Component\Serializer\Type\PropertyTypeMixed;
-use RetailCrm\Api\Interfaces\Order\CustomerInterface;
+use RetailCrm\Api\Interfaces\Orders\CustomerInterface;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
