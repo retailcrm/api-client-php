@@ -11,6 +11,7 @@ namespace RetailCrm\Tests\ResourceGroup;
 
 use DateInterval;
 use DateTime;
+use Http\Client\Curl\Client;
 use RetailCrm\Api\Enum\ByIdentifier;
 use RetailCrm\Api\Enum\CombineTechnique;
 use RetailCrm\Api\Enum\CountryCodeIso3166;
@@ -35,6 +36,7 @@ use RetailCrm\Api\Model\Filter\Order\OrderHistoryFilterV4Type;
 use RetailCrm\Api\Model\Request\BySiteRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCombineRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCreateRequest;
+use RetailCrm\Api\Model\Request\Orders\OrdersEditRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersFixExternalIdsRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersHistoryRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersLinksCreateRequest;
@@ -8409,6 +8411,342 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->orders->get('8123522898559160', $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 6722,
+  "order": {
+    "slug": 6722,
+    "bonusesCreditTotal": 0,
+    "bonusesChargeTotal": 0,
+    "id": 6722,
+    "number": "8123522898559160",
+    "externalId": "8123522898559160",
+    "orderMethod": "shopping-cart",
+    "privilegeType": "none",
+    "countryIso": "RU",
+    "createdAt": "2020-12-29 17:35:08",
+    "statusUpdatedAt": "2020-12-31 15:09:31",
+    "summ": 1,
+    "totalSumm": 1,
+    "prepaySum": 0,
+    "purchaseSumm": 0,
+    "markDatetime": "2020-12-31 15:09:31",
+    "lastName": "Pavel",
+    "firstName": "Kovalenko",
+    "call": false,
+    "expired": false,
+    "managerComment": "Manager comment",
+    "customer": {
+      "type": "customer",
+      "id": 4976,
+      "externalId": "ru1067815391",
+      "isContact": false,
+      "createdAt": "2020-12-31 12:01:02",
+      "vip": false,
+      "bad": false,
+      "site": "aliexpress",
+      "contragent": {
+        "contragentType": "individual"
+      },
+      "tags": [],
+      "marginSumm": 2,
+      "totalSumm": 2,
+      "averageSumm": 1,
+      "ordersCount": 2,
+      "costSumm": 0,
+      "customFields": {
+        "galkatrue": true
+      },
+      "personalDiscount": 0,
+      "cumulativeDiscount": 0,
+      "address": {
+        "id": 3523,
+        "index": "344065",
+        "countryIso": "RU",
+        "region": "Rostovskaya oblast",
+        "city": "Rostov-Na-Donu",
+        "notes": "ул. 50-летия Ростсельмаша, 2/6"
+      },
+      "segments": [
+        {
+          "id": 4,
+          "code": "rossiya",
+          "name": "Россия",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 211,
+          "active": true
+        },
+        {
+          "id": 8,
+          "code": "rossiya-krome-msk",
+          "name": "Россия (кроме МСК)",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 179,
+          "active": true
+        },
+        {
+          "id": 9,
+          "code": "nedavnie",
+          "name": "Недавние",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 85,
+          "active": true
+        },
+        {
+          "id": 14,
+          "code": "malenkaya-summa-pokupok",
+          "name": "Маленькая сумма покупок",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 1057,
+          "active": true
+        },
+        {
+          "id": 17,
+          "code": "nizkiy-ltv",
+          "name": "Низкий LTV",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 1008,
+          "active": true
+        },
+        {
+          "id": 20,
+          "code": "nizkiy-sredniy-chek",
+          "name": "Низкий средний чек",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 1251,
+          "active": true
+        },
+        {
+          "id": 26,
+          "code": "bez-otmen",
+          "name": "Без отмен",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 1300,
+          "active": true
+        },
+        {
+          "id": 31,
+          "code": "pol-ne-ukazan",
+          "name": "Пол не указан",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 1297,
+          "active": true
+        }
+      ],
+      "firstName": "Kovalenko",
+      "lastName": "Pavel",
+      "phones": []
+    },
+    "contact": {
+      "type": "customer",
+      "id": 4976,
+      "externalId": "ru1067815391",
+      "isContact": false,
+      "createdAt": "2020-12-31 12:01:02",
+      "vip": false,
+      "bad": false,
+      "site": "aliexpress",
+      "contragent": {
+        "contragentType": "individual"
+      },
+      "tags": [],
+      "marginSumm": 2,
+      "totalSumm": 2,
+      "averageSumm": 1,
+      "ordersCount": 2,
+      "costSumm": 0,
+      "customFields": {
+        "galkatrue": true
+      },
+      "personalDiscount": 0,
+      "cumulativeDiscount": 0,
+      "address": {
+        "id": 3523,
+        "index": "344065",
+        "countryIso": "RU",
+        "region": "Rostovskaya oblast",
+        "city": "Rostov-Na-Donu",
+        "notes": "ул. 50-летия Ростсельмаша, 2/6"
+      },
+      "segments": [
+        {
+          "id": 4,
+          "code": "rossiya",
+          "name": "Россия",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 211,
+          "active": true
+        },
+        {
+          "id": 8,
+          "code": "rossiya-krome-msk",
+          "name": "Россия (кроме МСК)",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 179,
+          "active": true
+        },
+        {
+          "id": 9,
+          "code": "nedavnie",
+          "name": "Недавние",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 85,
+          "active": true
+        },
+        {
+          "id": 14,
+          "code": "malenkaya-summa-pokupok",
+          "name": "Маленькая сумма покупок",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 1057,
+          "active": true
+        },
+        {
+          "id": 17,
+          "code": "nizkiy-ltv",
+          "name": "Низкий LTV",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 1008,
+          "active": true
+        },
+        {
+          "id": 20,
+          "code": "nizkiy-sredniy-chek",
+          "name": "Низкий средний чек",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 1251,
+          "active": true
+        },
+        {
+          "id": 26,
+          "code": "bez-otmen",
+          "name": "Без отмен",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 1300,
+          "active": true
+        },
+        {
+          "id": 31,
+          "code": "pol-ne-ukazan",
+          "name": "Пол не указан",
+          "createdAt": "2018-09-04 16:35:59",
+          "isDynamic": true,
+          "customersCount": 1297,
+          "active": true
+        }
+      ],
+      "firstName": "Kovalenko",
+      "lastName": "Pavel",
+      "phones": []
+    },
+    "contragent": {
+      "contragentType": "individual"
+    },
+    "delivery": {
+      "cost": 0,
+      "netCost": 0,
+      "address": {
+        "index": "344065",
+        "countryIso": "RU",
+        "region": "Rostovskaya oblast",
+        "city": "Rostov-Na-Donu",
+        "notes": "ул. 50-летия Ростсельмаша, 2/6"
+      }
+    },
+    "site": "aliexpress",
+    "status": "delivering",
+    "items": [
+      {
+        "markingCodes": [],
+        "id": 10114,
+        "initialPrice": 1,
+        "discountTotal": 0,
+        "prices": [
+          {
+            "price": 1,
+            "quantity": 1
+          }
+        ],
+        "createdAt": "2020-12-29 17:35:08",
+        "quantity": 1,
+        "status": "new",
+        "offer": {
+          "displayName": "Test product/not for sale (do not order!)",
+          "id": 1867352,
+          "externalId": "1005001690749727",
+          "xmlId": "1680c0a6-c5a3-48a6-aa8d-864553a8add9",
+          "name": "Test product/not for sale (do not order!)",
+          "unit": {
+            "code": "pc",
+            "name": "Штука",
+            "sym": "шт."
+          }
+        },
+        "properties": [],
+        "purchasePrice": 0
+      }
+    ],
+    "payments": {
+      "4326": {
+        "id": 4326,
+        "type": "bank-card",
+        "externalId": "payment_8123522898559160",
+        "amount": 1,
+        "paidAt": "2020-12-29 17:35:12"
+      }
+    },
+    "fromApi": true,
+    "shipmentStore": "main12",
+    "shipped": false,
+    "customFields": {
+      "galka": false,
+      "test_number": 0,
+      "otpravit_dozakaz": false
+    }
+  }
+}
+EOF;
+
+        $order                 = new Order();
+        $order->managerComment = 'Manager comment';
+
+        $request        = new OrdersEditRequest();
+        $request->by    = ByIdentifier::EXTERNAL_ID;
+        $request->site  = 'aliexpress';
+        $request->order = $order;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('orders/8123522898559160/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->orders->edit('8123522898559160', $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

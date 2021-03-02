@@ -13,6 +13,7 @@ use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\BySiteRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCombineRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCreateRequest;
+use RetailCrm\Api\Model\Request\Orders\OrdersEditRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersFixExternalIdsRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersHistoryRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersLinksCreateRequest;
@@ -921,6 +922,68 @@ class Orders extends AbstractApiResourceGroup
             'orders/' . $identifier,
             $request,
             OrdersGetResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/orders/{externalId}/edit" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\ByIdentifier;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Entity\Order\Order;
+     * use RetailCrm\Api\Model\Request\Orders\OrdersEditRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $order                 = new Order();
+     * $order->managerComment = 'Manager comment';
+     *
+     * $request        = new OrdersEditRequest();
+     * $request->by    = ByIdentifier::EXTERNAL_ID;
+     * $request->site  = 'aliexpress';
+     * $request->order = $order;
+     *
+     * try {
+     *     $response = $client->orders->edit('8123522898559160', $request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Edited order: ' . print_r($response->order, true);
+     * ```
+     *
+     * @param int|string                                            $identifier
+     * @param \RetailCrm\Api\Model\Request\Orders\OrdersEditRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Orders\OrdersCreateResponse
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Psr\Http\Client\NetworkExceptionInterface
+     * @throws \Psr\Http\Client\RequestExceptionInterface
+     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function edit($identifier, OrdersEditRequest $request): OrdersCreateResponse
+    {
+        /** @var OrdersCreateResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'orders/' . $identifier . '/edit',
+            $request,
+            OrdersCreateResponse::class
         );
         return $response;
     }
