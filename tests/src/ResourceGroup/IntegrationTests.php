@@ -9,9 +9,13 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
+use RetailCrm\Api\Enum\Currency;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Integration\IntegrationModule;
 use RetailCrm\Api\Model\Entity\Integration\Integrations;
+use RetailCrm\Api\Model\Entity\Integration\Payment\Actions;
+use RetailCrm\Api\Model\Entity\Integration\Payment\PaymentConfiguration;
+use RetailCrm\Api\Model\Entity\Integration\Payment\Shop;
 use RetailCrm\Api\Model\Entity\Integration\Transport\TransportConfiguration;
 use RetailCrm\Api\Model\Request\Integration\IntegrationModulesEditRequest;
 use RetailCrm\Dev\TestUtils\Factory\TestClientFactory;
@@ -68,7 +72,7 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
-    public function testEdit()
+    public function testMgTransportEdit(): void
     {
         $json = <<<'EOF'
 {
@@ -105,6 +109,50 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->integration->edit('mg-fbmessenger', $module);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testPaymentEdit(): void
+    {
+        $json = <<<'EOF'
+{
+    "success": true,
+    "info": []
+}
+EOF;
+        $module = new IntegrationModule();
+        $module->integrations = new Integrations();
+        $module->integrations->payment = new PaymentConfiguration();
+        $module->integrations->payment->actions = new Actions();
+
+        $module->code                                    = 'test-payment-integration';
+        $module->clientId                                = 'test-payment-integration';
+        $module->integrationCode                         = 'test-payment-integration';
+        $module->name                                    = 'Test Payment Integration';
+        $module->baseUrl                                 = 'https://example.com';
+        $module->accountUrl                              = 'https://example.com';
+        $module->integrations->payment->shops            = [
+            new Shop('moysklad', 'МойСклад', true),
+            new Shop('aliexpress', 'AliExpress', true),
+        ];
+        $module->integrations->payment->currencies       = [Currency::USD, Currency::EUR, Currency::RUB];
+        $module->integrations->payment->invoiceTypes     = ['link'];
+        $module->integrations->payment->actions->create  = 'payment/create';
+        $module->integrations->payment->actions->approve = 'payment/approve';
+        $module->integrations->payment->actions->cancel  = 'payment/cancel';
+        $module->integrations->payment->actions->refund  = 'payment/refund';
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('integration-modules/test-payment-integration/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(static::encodeForm(new IntegrationModulesEditRequest($module))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->integration->edit('test-payment-integration', $module);
 
         self::assertModelEqualsToResponse($json, $response);
     }

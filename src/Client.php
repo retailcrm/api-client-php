@@ -26,6 +26,7 @@ use RetailCrm\Api\ResourceGroup\Integration;
 use RetailCrm\Api\ResourceGroup\Loyalty;
 use RetailCrm\Api\ResourceGroup\Orders;
 use RetailCrm\Api\ResourceGroup\Packs;
+use RetailCrm\Api\ResourceGroup\Payments;
 
 /**
  * Class Client
@@ -75,6 +76,9 @@ class Client
     /** @var \RetailCrm\Api\ResourceGroup\Packs */
     public $packs;
 
+    /** @var \RetailCrm\Api\ResourceGroup\Payments */
+    public $payments;
+
     /** @var StreamFactoryInterface */
     private $streamFactory;
 
@@ -117,6 +121,7 @@ class Client
         $this->loyalty = new Loyalty($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->orders = new Orders($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->packs = new Packs($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->payments = new Payments($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
     }
 
     /**

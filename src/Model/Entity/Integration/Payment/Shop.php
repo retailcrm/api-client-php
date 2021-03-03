@@ -42,4 +42,26 @@ class Shop
      * @JMS\SerializedName("active")
      */
     public $active;
+
+    /**
+     * Shop constructor.
+     *
+     * @param string $code
+     * @param string $name
+     * @param bool   $active
+     */
+    public function __construct(string $code = '', string $name = '', ?bool $active = null)
+    {
+        if ('' !== $code) {
+            $this->code   = $code;
+        }
+
+        if ('' !== $name) {
+            $this->name   = $name;
+        }
+
+        if (null !== $active) {
+            $this->active = $active;
+        }
+    }
 }
