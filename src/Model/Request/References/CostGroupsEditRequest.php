@@ -10,7 +10,7 @@
 namespace RetailCrm\Api\Model\Request\References;
 
 use RetailCrm\Api\Component\FormData\Mapping as Form;
-use RetailCrm\Api\Interfaces\ResponseInterface;
+use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Model\Entity\References\CostGroup;
 
 /**
@@ -19,7 +19,7 @@ use RetailCrm\Api\Model\Entity\References\CostGroup;
  * @category CostGroupsEditRequest
  * @package  RetailCrm\Api\Model\Request\References
  */
-class CostGroupsEditRequest implements ResponseInterface
+class CostGroupsEditRequest implements RequestInterface
 {
     /**
      * @var \RetailCrm\Api\Model\Entity\References\CostGroup

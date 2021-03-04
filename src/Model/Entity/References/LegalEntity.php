@@ -163,4 +163,16 @@ class LegalEntity
      * @JMS\SerializedName("vatRate")
      */
     public $vatRate;
+
+    /**
+     * LegalEntity constructor.
+     *
+     * @param string $code
+     */
+    public function __construct(string $code = '')
+    {
+        if ('' !== $code) {
+            $this->code = $code;
+        }
+    }
 }

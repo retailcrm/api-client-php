@@ -3,7 +3,7 @@
 /**
  * PHP version 7.3
  *
- * @category DeliveryServicesCreateRequest
+ * @category DeliveryServicesEditRequest
  * @package  RetailCrm\Api\Model\Request\References
  */
 
@@ -14,12 +14,12 @@ use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Model\Entity\References\DeliveryService;
 
 /**
- * Class DeliveryServicesCreateRequest
+ * Class DeliveryServicesEditRequest
  *
- * @category DeliveryServicesCreateRequest
+ * @category DeliveryServicesEditRequest
  * @package  RetailCrm\Api\Model\Request\References
  */
-class DeliveryServicesCreateRequest implements RequestInterface
+class DeliveryServicesEditRequest implements RequestInterface
 {
     /**
      * @var \RetailCrm\Api\Model\Entity\References\DeliveryService
@@ -31,7 +31,7 @@ class DeliveryServicesCreateRequest implements RequestInterface
     public $deliveryService;
 
     /**
-     * DeliveryServicesCreateRequest constructor.
+     * DeliveryServicesEditRequest constructor.
      *
      * @param \RetailCrm\Api\Model\Entity\References\DeliveryService|null $deliveryService
      */

@@ -9,9 +9,51 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
+use RetailCrm\Api\Enum\CountryCodeIso3166;
+use RetailCrm\Api\Enum\Reference\StoreInventoryType;
+use RetailCrm\Api\Enum\Reference\StoreType;
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Model\Callback\Entity\Delivery\SerializedStoreWeekOpeningHours;
+use RetailCrm\Api\Model\Callback\Entity\Delivery\StoreWorkTime;
+use RetailCrm\Api\Model\Entity\Orders\Delivery\CourierPhone;
+use RetailCrm\Api\Model\Entity\References\CostGroup;
+use RetailCrm\Api\Model\Entity\References\CostItem;
+use RetailCrm\Api\Model\Entity\References\Courier;
+use RetailCrm\Api\Model\Entity\References\DeliveryService;
+use RetailCrm\Api\Model\Entity\References\DeliveryType;
+use RetailCrm\Api\Model\Entity\References\LegalEntity;
+use RetailCrm\Api\Model\Entity\References\OrderMethod;
+use RetailCrm\Api\Model\Entity\References\OrderProductStatus;
+use RetailCrm\Api\Model\Entity\References\OrderType;
+use RetailCrm\Api\Model\Entity\References\PaymentStatus;
+use RetailCrm\Api\Model\Entity\References\PaymentType;
+use RetailCrm\Api\Model\Entity\References\PriceType;
+use RetailCrm\Api\Model\Entity\References\SerializedUnit;
+use RetailCrm\Api\Model\Entity\References\Site;
+use RetailCrm\Api\Model\Entity\References\Status;
+use RetailCrm\Api\Model\Entity\References\Store;
+use RetailCrm\Api\Model\Entity\References\StoreAddress;
+use RetailCrm\Api\Model\Entity\References\StorePhone;
+use RetailCrm\Api\Model\Request\References\CostGroupsEditRequest;
+use RetailCrm\Api\Model\Request\References\CostItemsEditRequest;
+use RetailCrm\Api\Model\Request\References\CouriersCreateRequest;
+use RetailCrm\Api\Model\Request\References\DeliveryServicesEditRequest;
+use RetailCrm\Api\Model\Request\References\DeliveryTypesEditRequest;
+use RetailCrm\Api\Model\Request\References\LegalEntityEditRequest;
+use RetailCrm\Api\Model\Request\References\OrderMethodsEditRequest;
+use RetailCrm\Api\Model\Request\References\OrderTypesEditRequest;
+use RetailCrm\Api\Model\Request\References\PaymentStatusesEditRequest;
+use RetailCrm\Api\Model\Request\References\PaymentTypesEditRequest;
+use RetailCrm\Api\Model\Request\References\PriceTypesEditRequest;
+use RetailCrm\Api\Model\Request\References\ProductStatusesEditRequest;
+use RetailCrm\Api\Model\Request\References\SitesEditRequest;
+use RetailCrm\Api\Model\Request\References\StatusesEditRequest;
+use RetailCrm\Api\Model\Request\References\StoresEditRequest;
+use RetailCrm\Api\Model\Request\References\UnitsEditRequest;
 use RetailCrm\Dev\TestUtils\Factory\TestClientFactory;
 use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
+
+use function Clue\StreamFilter\fun;
 
 /**
  * Class ReferencesTest
@@ -82,6 +124,32 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->costGroups();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+    public function testCostGroupsEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity           = new CostGroup();
+        $entity->name     = 'Комиссии';
+        $entity->ordering = 60;
+        $entity->active   = true;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/cost-groups/commission/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new CostGroupsEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->costGroupsEdit('commission', $entity);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -279,6 +347,37 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
+    public function testCostItemsEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity                  = new CostItem();
+        $entity->name            = "Test item";
+        $entity->group           = "product-cost";
+        $entity->ordering        = 990;
+        $entity->active          = true;
+        $entity->appliesToOrders = true;
+        $entity->type            = "var";
+        $entity->appliesToUsers  = false;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/cost-items/test-item/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new CostItemsEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->costItemsEdit('test-item', $entity);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
     public function testCountries(): void
     {
         $json = <<<'EOF'
@@ -341,6 +440,61 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->couriers();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCouriersCreate(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 1
+}
+EOF;
+
+        $entity            = new Courier();
+        $entity->firstName = 'Tester';
+        $entity->lastName  = 'Tester';
+        $entity->phone     = new CourierPhone('88005553125');
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/couriers/create')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new CouriersCreateRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->couriersCreate($entity);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCouriersEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity            = new Courier();
+        $entity->firstName = 'Tester';
+        $entity->lastName  = 'Courier';
+        $entity->phone     = new CourierPhone('88005553126');
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/couriers/4/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new CouriersCreateRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->couriersEdit(4, $entity);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -479,6 +633,32 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->deliveryServices();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testDeliveryServicesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity         = new DeliveryService();
+        $entity->name   = 'dict-deliveryservices-1571123786';
+        $entity->active = false;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/delivery-services/dict-deliveryservices-1571123786/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new DeliveryServicesEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->deliveryServicesEdit('dict-deliveryservices-1571123786', $entity);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -3717,6 +3897,41 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
+    public function testDeliveryTypesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity                 = new DeliveryType();
+        $entity->name           = 'Test Type';
+        $entity->active         = false;
+        $entity->defaultCost    = 0;
+        $entity->defaultNetCost = 0;
+        $entity->paymentTypes   = [
+            'bank-card',
+            'bank-transfer',
+            'credit',
+            'cash',
+            'e-money'
+        ];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/delivery-types/dict-deliverytypes-1571124916/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new DeliveryTypesEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->deliveryTypesEdit('dict-deliverytypes-1571124916', $entity);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
     public function testLegalEntities(): void
     {
         $json = <<<'EOF'
@@ -3764,6 +3979,34 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->legalEntities();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testLegalEntitiesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity                 = new LegalEntity();
+        $entity->contragentType = "legal-entity";
+        $entity->legalName      = "ООО \"Некрополь\"";
+        $entity->countryIso     = CountryCodeIso3166::RUSSIAN_FEDERATION;
+        $entity->vatRate        = "20.00";
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/legal-entities/necropol/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new LegalEntityEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->legalEntitiesEdit('necropol', $entity);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -3933,6 +4176,32 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->orderMethods();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testOrderMethodsEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity         = new OrderMethod();
+        $entity->name   = 'Test Method';
+        $entity->active = true;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/order-methods/2/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new OrderMethodsEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->orderMethodsEdit('2', $entity);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -4124,6 +4393,32 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->orderTypes();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testOrderTypesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity         = new OrderType();
+        $entity->name   = 'Test Type';
+        $entity->active = true;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/order-types/1/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new OrderTypesEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->orderTypesEdit('1', $entity);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -4575,6 +4870,34 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
+    public function testPaymentStatusesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity               = new PaymentStatus();
+        $entity->name         = 'Test Status';
+        $entity->active       = true;
+        $entity->ordering     = 990;
+        $entity->paymentTypes = ['cash'];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/payment-statuses/dict-paymentstatuses-1571123793/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new PaymentStatusesEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->paymentStatusesEdit('dict-paymentstatuses-1571123793', $entity);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
     public function testPaymentTypes(): void
     {
         $json = <<<'EOF'
@@ -4730,6 +5053,42 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
+    public function testPaymentTypesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity                  = new PaymentType();
+        $entity->name            = "Test Integration Payment";
+        $entity->code            = "test-payment-integration";
+        $entity->active          = true;
+        $entity->defaultForCrm   = false;
+        $entity->defaultForApi   = false;
+        $entity->paymentStatuses = [
+            "invoice",
+            "payment-start",
+            "paid",
+            "check-refund",
+            "check-refund-after"
+        ];
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/payment-types/test-payment-integration/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new PaymentTypesEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->paymentTypesEdit('test-payment-integration', $entity);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
     public function testPriceTypes(): void
     {
         $json = <<<'EOF'
@@ -4805,6 +5164,33 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->priceTypes();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testPriceTypesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity           = new PriceType();
+        $entity->name     = "Test Price Type";
+        $entity->active   = true;
+        $entity->ordering = 980;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/price-types/test2/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new PriceTypesEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->priceTypesEdit('test2', $entity);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -5190,6 +5576,33 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
+    public function testProductStatusesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity           = new OrderProductStatus();
+        $entity->name     = "Test Product Status";
+        $entity->active   = true;
+        $entity->ordering = 980;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/product-statuses/nbsp/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new ProductStatusesEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->productStatusesEdit('nbsp', $entity);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
     public function testSites(): void
     {
         $json = <<<'EOF'
@@ -5227,6 +5640,44 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->sites();
+
+        self::assertModelsCallback($json, $response, static function (array $expected, array $actual) {
+            foreach ($actual['sites'] as $key => $site) {
+                if ($site['contragent'] === $expected['sites'][$key]['contragent']['code']) {
+                    $actual['sites'][$key]['contragent'] = $expected['sites'][$key]['contragent'];
+                }
+            }
+
+            self::assertEquals($expected, $actual);
+        });
+    }
+
+    public function testSitesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity                   = new Site();
+        $entity->name             = "Test Shop";
+        $entity->url              = "https://example.com";
+        $entity->defaultForCrm    = false;
+        $entity->ymlUrl           = "https://example.com/test_catalog.xml";
+        $entity->loadFromYml      = true;
+        $entity->countryIso       = CountryCodeIso3166::RUSSIAN_FEDERATION;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/sites/test-site/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new SitesEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->sitesEdit('test-site', $entity);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -5639,6 +6090,34 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->statuses();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testStatusesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity           = new Status();
+        $entity->name     = "Test Status";
+        $entity->active   = true;
+        $entity->ordering = 990;
+        $entity->group    = "assembling";
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/statuses/test/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new StatusesEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->statusesEdit('test', $entity);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -6106,6 +6585,54 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->stores();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testStoresEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity                      = new Store();
+        $entity->address             = new StoreAddress();
+        $entity->address->countryIso = "UA";
+        $entity->address->region     = "Винницкая область";
+        $entity->address->regionId   = 104;
+        $entity->address->city       = "Винница";
+        $entity->address->cityId     = 16054;
+        $entity->address->cityType   = "г.";
+        $entity->address->street     = "Аграрна";
+        $entity->address->streetId   = 1814071;
+        $entity->address->streetType = "ул.";
+        $entity->address->building   = "12";
+        $entity->address->text       = "ул. Аграрна, д. 12";
+        $entity->workTime            = new SerializedStoreWeekOpeningHours(
+            [new StoreWorkTime('9:00', '18:00', '12:00', '13:00')],
+            [new StoreWorkTime('9:00', '18:00', '12:00', '13:00')],
+            [new StoreWorkTime('9:00', '18:00', '12:00', '13:00')],
+            [new StoreWorkTime('9:00', '18:00', '12:00', '13:00')],
+            [new StoreWorkTime('9:00', '18:00', '12:00', '13:00')]
+        );
+        $entity->type                = StoreType::STORE_TYPE_WAREHOUSE;
+        $entity->inventoryType       = StoreInventoryType::INTEGER;
+        $entity->active              = true;
+        $entity->phone               = new StorePhone('88005553123');
+        $entity->name                = 'Test Store';
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/stores/test/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new StoresEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->storesEdit('test', $entity);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -6878,6 +7405,33 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->units();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testUnitsEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity         = new SerializedUnit();
+        $entity->name   = "Бобина";
+        $entity->sym    = "боб";
+        $entity->active = true;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('reference/units/nbb/edit')
+                ->setMethod(RequestMethod::POST)
+                ->setBody(self::encodeForm(new UnitsEditRequest($entity))),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->references->unitsEdit('nbb', $entity);
 
         self::assertModelEqualsToResponse($json, $response);
     }

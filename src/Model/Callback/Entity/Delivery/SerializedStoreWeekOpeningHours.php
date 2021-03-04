@@ -74,4 +74,53 @@ class SerializedStoreWeekOpeningHours
      * @JMS\SerializedName("su")
      */
     public $su;
+
+    /**
+     * SerializedStoreWeekOpeningHours constructor.
+     *
+     * @param \RetailCrm\Api\Model\Callback\Entity\Delivery\StoreWorkTime[] $monday
+     * @param \RetailCrm\Api\Model\Callback\Entity\Delivery\StoreWorkTime[] $tuesday
+     * @param \RetailCrm\Api\Model\Callback\Entity\Delivery\StoreWorkTime[] $wednesday
+     * @param \RetailCrm\Api\Model\Callback\Entity\Delivery\StoreWorkTime[] $thursday
+     * @param \RetailCrm\Api\Model\Callback\Entity\Delivery\StoreWorkTime[] $friday
+     * @param \RetailCrm\Api\Model\Callback\Entity\Delivery\StoreWorkTime[] $saturday
+     * @param \RetailCrm\Api\Model\Callback\Entity\Delivery\StoreWorkTime[] $sunday
+     */
+    public function __construct(
+        ?array $monday = null,
+        ?array $tuesday = null,
+        ?array $wednesday = null,
+        ?array $thursday = null,
+        ?array $friday = null,
+        ?array $saturday = null,
+        ?array $sunday = null
+    ) {
+        if (null !== $monday) {
+            $this->mo = $monday;
+        }
+
+        if (null !== $tuesday) {
+            $this->tu = $tuesday;
+        }
+
+        if (null !== $wednesday) {
+            $this->we = $wednesday;
+        }
+
+        if (null !== $thursday) {
+            $this->th = $thursday;
+        }
+
+        if (null !== $friday) {
+            $this->fr = $friday;
+        }
+
+        if (null !== $saturday) {
+            $this->sa = $saturday;
+        }
+
+        if (null !== $sunday) {
+            $this->su = $sunday;
+        }
+    }
 }

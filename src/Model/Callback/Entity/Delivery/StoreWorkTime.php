@@ -50,4 +50,35 @@ class StoreWorkTime
      * @JMS\SerializedName("lunchEndTime")
      */
     public $lunchEndTime;
+
+    /**
+     * StoreWorkTime constructor.
+     *
+     * @param string $startTime
+     * @param string $endTime
+     * @param string $lunchStartTime
+     * @param string $lunchEndTime
+     */
+    public function __construct(
+        string $startTime = '',
+        string $endTime = '',
+        string $lunchStartTime = '',
+        string $lunchEndTime = ''
+    ) {
+        if ('' !== $startTime) {
+            $this->startTime = $startTime;
+        }
+
+        if ('' !== $endTime) {
+            $this->endTime = $endTime;
+        }
+
+        if ('' !== $lunchStartTime) {
+            $this->lunchStartTime = $lunchStartTime;
+        }
+
+        if ('' !== $lunchEndTime) {
+            $this->lunchEndTime = $lunchEndTime;
+        }
+    }
 }
