@@ -66,42 +66,10 @@ class TypedArrayStrategy extends AbstractEncodeStrategy
         }
 
         if (null !== $annotations && $annotations->jsonField instanceof JsonField && !empty($value)) {
-            return json_encode($this->encodeJsonArray($value, $valueType));
+            return $this->liipSerializer->serialize($value, 'json');
         }
 
         return $this->encodeRegularArray($value, $valueType);
-    }
-
-    /**
-     * Encode JSON typed array.
-     *
-     * @param array<string|int, mixed> $value
-     * @param string               $valueType
-     *
-     * @return array<string|int, mixed>
-     * @throws \Liip\Serializer\Exception\Exception
-     * @throws \Liip\Serializer\Exception\UnsupportedTypeException
-     */
-    private function encodeJsonArray(array $value, string $valueType): array
-    {
-        $result = [];
-
-        foreach (array_keys($value) as $key) {
-            if (is_object($value[$key])) {
-                $data = $this->liipSerializer->toArray($value[$key]);
-            } else {
-                $data = StrategyFactory::encodeStrategyByType(
-                    $valueType,
-                    $value[$key],
-                    $this->annotationReader,
-                    $this->liipSerializer
-                )->encode($value[$key], new PropertyAnnotations());
-            }
-
-            $result[$this->simpleStrategy->encode($key, new PropertyAnnotations())] = $data;
-        }
-
-        return $result;
     }
 
     /**

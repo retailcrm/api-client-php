@@ -11,6 +11,7 @@ namespace RetailCrm\Api\Factory;
 
 use Liip\Serializer\Serializer;
 use Liip\Serializer\SerializerInterface;
+use RetailCrm\Api\Component\Serializer\ArraySupportDecorator;
 use RetailCrm\Api\Component\Utils;
 
 /**
@@ -22,12 +23,12 @@ use RetailCrm\Api\Component\Utils;
 class SerializerFactory
 {
     /**
-     * Builds Liip Serializer
+     * Builds decorated Liip Serializer
      *
      * @return \Liip\Serializer\SerializerInterface
      */
     public static function create(): SerializerInterface
     {
-        return new Serializer(Utils::getModelsCacheDirectory());
+        return new ArraySupportDecorator(new Serializer(Utils::getModelsCacheDirectory()));
     }
 }
