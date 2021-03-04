@@ -25,6 +25,7 @@ use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
  * @package  RetailCrm\Api\Modules
  * @internal
  *
+ * @SuppressWarnings(PHPMD.NumberOfChildren)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 abstract class AbstractApiResourceGroup

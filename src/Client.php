@@ -28,6 +28,8 @@ use RetailCrm\Api\ResourceGroup\Orders;
 use RetailCrm\Api\ResourceGroup\Packs;
 use RetailCrm\Api\ResourceGroup\Payments;
 use RetailCrm\Api\ResourceGroup\References;
+use RetailCrm\Api\ResourceGroup\Segments;
+use RetailCrm\Api\ResourceGroup\Settings;
 
 /**
  * Class Client
@@ -83,6 +85,12 @@ class Client
     /** @var \RetailCrm\Api\ResourceGroup\References */
     public $references;
 
+    /** @var \RetailCrm\Api\ResourceGroup\Segments */
+    public $segments;
+
+    /** @var \RetailCrm\Api\ResourceGroup\Settings */
+    public $settings;
+
     /** @var StreamFactoryInterface */
     private $streamFactory;
 
@@ -127,6 +135,8 @@ class Client
         $this->packs = new Packs($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->payments = new Payments($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->references = new References($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->segments = new Segments($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->settings = new Settings($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
     }
 
     /**
