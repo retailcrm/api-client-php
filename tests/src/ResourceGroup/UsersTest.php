@@ -9,12 +9,10 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
-use Http\Client\Curl\Client;
 use RetailCrm\Api\Enum\NumericBoolean;
 use RetailCrm\Api\Enum\PaginationLimit;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Enum\Users\UserStatus;
-use RetailCrm\Api\Interfaces\ApiExceptionInterface;
 use RetailCrm\Api\Model\Filter\Users\ApiUserFilter;
 use RetailCrm\Api\Model\Request\Users\UserGroupsRequest;
 use RetailCrm\Api\Model\Request\Users\UsersRequest;
@@ -257,7 +255,7 @@ EOF;
             static::responseJson(200, $json)
         );
 
-        $client   = TestClientFactory::createClient(new Client());
+        $client   = TestClientFactory::createClient($mock);
         $response = $client->users->status(28, $request);
 
         self::assertModelEqualsToResponse($json, $response);
