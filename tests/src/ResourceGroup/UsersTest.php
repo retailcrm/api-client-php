@@ -86,7 +86,7 @@ class UsersTest extends AbstractApiResourceGroupTestCase
         "test"
       ],
       "breakdownSites": [
-        "aliexpress",
+        "aliexpress"
       ],
       "breakdownOrderMethods": [
         "2",
