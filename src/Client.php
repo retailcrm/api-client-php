@@ -32,6 +32,7 @@ use RetailCrm\Api\ResourceGroup\References;
 use RetailCrm\Api\ResourceGroup\Segments;
 use RetailCrm\Api\ResourceGroup\Settings;
 use RetailCrm\Api\ResourceGroup\Store;
+use RetailCrm\Api\ResourceGroup\Tasks;
 
 /**
  * Class Client
@@ -96,6 +97,9 @@ class Client
     /** @var \RetailCrm\Api\ResourceGroup\Store */
     public $store;
 
+    /** @var \RetailCrm\Api\ResourceGroup\Tasks */
+    public $tasks;
+
     /** @var StreamFactoryInterface */
     private $streamFactory;
 
@@ -143,6 +147,7 @@ class Client
         $this->segments = new Segments($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->settings = new Settings($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->store = new Store($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->tasks = new Tasks($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
     }
 
     /**
