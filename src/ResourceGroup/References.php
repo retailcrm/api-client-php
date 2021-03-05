@@ -135,6 +135,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\CostGroup;
+     * use RetailCrm\Api\Model\Request\References\CostGroupsEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -144,7 +145,7 @@ class References extends AbstractApiResourceGroup
      * $entity->active   = true;
      *
      * try {
-     *     $response = $client->references->costGroupsEdit('commission', $entity);
+     *     $response = $client->references->costGroupsEdit('commission', new CostGroupsEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -158,8 +159,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                           $code
-     * @param \RetailCrm\Api\Model\Entity\References\CostGroup $entity
+     * @param string                                                        $code
+     * @param \RetailCrm\Api\Model\Request\References\CostGroupsEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -168,13 +169,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function costGroupsEdit(string $code, CostGroup $entity): SuccessResponse
+    public function costGroupsEdit(string $code, CostGroupsEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/cost-groups/' . $code . '/edit',
-            new CostGroupsEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -236,6 +237,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\CostItem;
+     * use RetailCrm\Api\Model\Request\References\CostItemsEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -249,7 +251,7 @@ class References extends AbstractApiResourceGroup
      * $entity->appliesToUsers  = false;
      *
      * try {
-     *     $response = $client->references->costItemsEdit('test-item', $entity);
+     *     $response = $client->references->costItemsEdit('test-item', new CostItemsEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -263,8 +265,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                          $code
-     * @param \RetailCrm\Api\Model\Entity\References\CostItem $entity
+     * @param string                                                       $code
+     * @param \RetailCrm\Api\Model\Request\References\CostItemsEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -273,13 +275,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function costItemsEdit(string $code, CostItem $entity): SuccessResponse
+    public function costItemsEdit(string $code, CostItemsEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/cost-items/' . $code . '/edit',
-            new CostItemsEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -390,6 +392,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Orders\Delivery\CourierPhone;
      * use RetailCrm\Api\Model\Entity\References\Courier;
+     * use RetailCrm\Api\Model\Request\References\CouriersCreateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -399,7 +402,7 @@ class References extends AbstractApiResourceGroup
      * $entity->phone     = new CourierPhone('88005553125');
      *
      * try {
-     *     $response = $client->references->couriersCreate($entity);
+     *     $response = $client->references->couriersCreate(new CouriersCreateRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -417,7 +420,7 @@ class References extends AbstractApiResourceGroup
      * echo 'Created courier with ID: ' . $response->id;
      * ```
      *
-     * @param \RetailCrm\Api\Model\Entity\References\Courier $entity
+     * @param \RetailCrm\Api\Model\Request\References\CouriersCreateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\IdResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -426,13 +429,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function couriersCreate(Courier $entity): IdResponse
+    public function couriersCreate(CouriersCreateRequest $request): IdResponse
     {
         /** @var IdResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/couriers/create',
-            new CouriersCreateRequest($entity),
+            $request,
             IdResponse::class
         );
         return $response;
@@ -447,6 +450,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Orders\Delivery\CourierPhone;
      * use RetailCrm\Api\Model\Entity\References\Courier;
+     * use RetailCrm\Api\Model\Request\References\CouriersCreateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -456,7 +460,7 @@ class References extends AbstractApiResourceGroup
      * $entity->phone     = new CourierPhone('88005553126');
      *
      * try {
-     *     $response = $client->references->couriersEdit(1, $entity);
+     *     $response = $client->references->couriersEdit(1, new CouriersCreateRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -470,8 +474,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param int                                            $id
-     * @param \RetailCrm\Api\Model\Entity\References\Courier $entity
+     * @param int                                                           $id
+     * @param \RetailCrm\Api\Model\Request\References\CouriersCreateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -480,13 +484,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function couriersEdit(int $id, Courier $entity): SuccessResponse
+    public function couriersEdit(int $id, CouriersCreateRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/couriers/' . $id . '/edit',
-            new CouriersCreateRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -548,6 +552,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\DeliveryService;
+     * use RetailCrm\Api\Model\Request\References\DeliveryServicesEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -556,7 +561,10 @@ class References extends AbstractApiResourceGroup
      * $entity->active = false;
      *
      * try {
-     *     $response = $client->references->deliveryServicesEdit('dict-deliveryservices-1571123786', $entity);
+     *     $response = $client->references->deliveryServicesEdit(
+     *         'dict-deliveryservices-1571123786',
+     *         new DeliveryServicesEditRequest($entity)
+     *     );
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -570,8 +578,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                                 $code
-     * @param \RetailCrm\Api\Model\Entity\References\DeliveryService $entity
+     * @param string                                                              $code
+     * @param \RetailCrm\Api\Model\Request\References\DeliveryServicesEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -580,13 +588,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function deliveryServicesEdit(string $code, DeliveryService $entity): SuccessResponse
+    public function deliveryServicesEdit(string $code, DeliveryServicesEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/delivery-services/' . $code . '/edit',
-            new DeliveryServicesEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -648,6 +656,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\DeliveryType;
+     * use RetailCrm\Api\Model\Request\References\DeliveryTypesEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -665,7 +674,7 @@ class References extends AbstractApiResourceGroup
      * ];
      *
      * try {
-     *     $response = $client->references->deliveryTypesEdit('test-type', $entity);
+     *     $response = $client->references->deliveryTypesEdit('test-type', new DeliveryTypesEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -679,8 +688,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                              $code
-     * @param \RetailCrm\Api\Model\Entity\References\DeliveryType $entity
+     * @param string                                                           $code
+     * @param \RetailCrm\Api\Model\Request\References\DeliveryTypesEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -689,13 +698,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function deliveryTypesEdit(string $code, DeliveryType $entity): SuccessResponse
+    public function deliveryTypesEdit(string $code, DeliveryTypesEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/delivery-types/' . $code . '/edit',
-            new DeliveryTypesEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -758,6 +767,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\LegalEntity;
+     * use RetailCrm\Api\Model\Request\References\LegalEntityEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -768,7 +778,7 @@ class References extends AbstractApiResourceGroup
      * $entity->vatRate        = "20.00";
      *
      * try {
-     *     $response = $client->references->legalEntitiesEdit('test-entity', $entity);
+     *     $response = $client->references->legalEntitiesEdit('test-entity', new LegalEntityEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -782,8 +792,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                             $code
-     * @param \RetailCrm\Api\Model\Entity\References\LegalEntity $entity
+     * @param string                                                         $code
+     * @param \RetailCrm\Api\Model\Request\References\LegalEntityEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -792,13 +802,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function legalEntitiesEdit(string $code, LegalEntity $entity): SuccessResponse
+    public function legalEntitiesEdit(string $code, LegalEntityEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/legal-entities/' . $code . '/edit',
-            new LegalEntityEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -908,6 +918,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\OrderMethod;
+     * use RetailCrm\Api\Model\Request\References\OrderMethodsEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -916,7 +927,7 @@ class References extends AbstractApiResourceGroup
      * $entity->active = true;
      *
      * try {
-     *     $response = $client->references->orderMethodsEdit('test-method', $entity);
+     *     $response = $client->references->orderMethodsEdit('test-method', new OrderMethodsEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -930,8 +941,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                             $code
-     * @param \RetailCrm\Api\Model\Entity\References\OrderMethod $entity
+     * @param string                                                          $code
+     * @param \RetailCrm\Api\Model\Request\References\OrderMethodsEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -940,13 +951,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function orderMethodsEdit(string $code, OrderMethod $entity): SuccessResponse
+    public function orderMethodsEdit(string $code, OrderMethodsEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/order-methods/' . $code . '/edit',
-            new OrderMethodsEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -1008,6 +1019,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\OrderType;
+     * use RetailCrm\Api\Model\Request\References\OrderTypesEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -1016,7 +1028,7 @@ class References extends AbstractApiResourceGroup
      * $entity->active = true;
      *
      * try {
-     *     $response = $client->references->orderTypesEdit('test-method', $entity);
+     *     $response = $client->references->orderTypesEdit('test-method', new OrderTypesEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -1030,8 +1042,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                           $code
-     * @param \RetailCrm\Api\Model\Entity\References\OrderType $entity
+     * @param string                                                        $code
+     * @param \RetailCrm\Api\Model\Request\References\OrderTypesEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -1040,13 +1052,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function orderTypesEdit(string $code, OrderType $entity): SuccessResponse
+    public function orderTypesEdit(string $code, OrderTypesEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/order-types/' . $code . '/edit',
-            new OrderTypesEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -1108,6 +1120,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\PaymentStatus;
+     * use RetailCrm\Api\Model\Request\References\PaymentStatusesEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -1118,7 +1131,7 @@ class References extends AbstractApiResourceGroup
      * $entity->paymentTypes = ['cash'];
      *
      * try {
-     *     $response = $client->references->paymentStatusesEdit('test-status', $entity);
+     *     $response = $client->references->paymentStatusesEdit('test-status', new PaymentStatusesEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -1132,8 +1145,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                               $code
-     * @param \RetailCrm\Api\Model\Entity\References\PaymentStatus $entity
+     * @param string                                                             $code
+     * @param \RetailCrm\Api\Model\Request\References\PaymentStatusesEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -1142,13 +1155,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function paymentStatusesEdit(string $code, PaymentStatus $entity): SuccessResponse
+    public function paymentStatusesEdit(string $code, PaymentStatusesEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/payment-statuses/' . $code . '/edit',
-            new PaymentStatusesEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -1210,6 +1223,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\PaymentType;
+     * use RetailCrm\Api\Model\Request\References\PaymentTypesEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -1228,7 +1242,10 @@ class References extends AbstractApiResourceGroup
      * ];
      *
      * try {
-     *     $response = $client->references->paymentTypesEdit('test-payment-integration', $entity);
+     *     $response = $client->references->paymentTypesEdit(
+     *         'test-payment-integration',
+     *         new PaymentTypesEditRequest($entity)
+     *     );
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -1242,8 +1259,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                             $code
-     * @param \RetailCrm\Api\Model\Entity\References\PaymentType $entity
+     * @param string                                                          $code
+     * @param \RetailCrm\Api\Model\Request\References\PaymentTypesEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -1252,13 +1269,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function paymentTypesEdit(string $code, PaymentType $entity): SuccessResponse
+    public function paymentTypesEdit(string $code, PaymentTypesEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/payment-types/' . $code . '/edit',
-            new PaymentTypesEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -1320,6 +1337,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\PriceType;
+     * use RetailCrm\Api\Model\Request\References\PriceTypesEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -1329,7 +1347,7 @@ class References extends AbstractApiResourceGroup
      * $entity->ordering = 980;
      *
      * try {
-     *     $response = $client->references->priceTypesEdit('test-price-type', $entity);
+     *     $response = $client->references->priceTypesEdit('test-price-type', new PriceTypesEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -1343,8 +1361,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                           $code
-     * @param \RetailCrm\Api\Model\Entity\References\PriceType $entity
+     * @param string                                                        $code
+     * @param \RetailCrm\Api\Model\Request\References\PriceTypesEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -1353,13 +1371,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function priceTypesEdit(string $code, PriceType $entity): SuccessResponse
+    public function priceTypesEdit(string $code, PriceTypesEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/price-types/' . $code . '/edit',
-            new PriceTypesEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -1421,6 +1439,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\OrderProductStatus;
+     * use RetailCrm\Api\Model\Request\References\ProductStatusesEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -1430,7 +1449,10 @@ class References extends AbstractApiResourceGroup
      * $entity->ordering = 980;
      *
      * try {
-     *     $response = $client->references->productStatusesEdit('test-product-status', $entity);
+     *     $response = $client->references->productStatusesEdit(
+     *         'test-product-status',
+     *         new ProductStatusesEditRequest($entity)
+     *     );
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -1444,8 +1466,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                                    $code
-     * @param \RetailCrm\Api\Model\Entity\References\OrderProductStatus $entity
+     * @param string                                                             $code
+     * @param \RetailCrm\Api\Model\Request\References\ProductStatusesEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -1454,13 +1476,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function productStatusesEdit(string $code, OrderProductStatus $entity): SuccessResponse
+    public function productStatusesEdit(string $code, ProductStatusesEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/product-statuses/' . $code . '/edit',
-            new ProductStatusesEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -1523,6 +1545,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\Site;
+     * use RetailCrm\Api\Model\Request\References\SitesEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -1535,7 +1558,7 @@ class References extends AbstractApiResourceGroup
      * $entity->countryIso       = CountryCodeIso3166::RUSSIAN_FEDERATION;
      *
      * try {
-     *     $response = $client->references->sitesEdit('test-site', $entity);
+     *     $response = $client->references->sitesEdit('test-site', new SitesEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -1549,8 +1572,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                      $code
-     * @param \RetailCrm\Api\Model\Entity\References\Site $entity
+     * @param string                                                   $code
+     * @param \RetailCrm\Api\Model\Request\References\SitesEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -1559,13 +1582,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function sitesEdit(string $code, Site $entity): SuccessResponse
+    public function sitesEdit(string $code, SitesEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/sites/' . $code . '/edit',
-            new SitesEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -1675,6 +1698,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\Status;
+     * use RetailCrm\Api\Model\Request\References\StatusesEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -1685,7 +1709,7 @@ class References extends AbstractApiResourceGroup
      * $entity->group    = "assembling";
      *
      * try {
-     *     $response = $client->references->statusesEdit('test', $entity);
+     *     $response = $client->references->statusesEdit('test', new StatusesEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -1699,8 +1723,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                        $code
-     * @param \RetailCrm\Api\Model\Entity\References\Status $entity
+     * @param string                                                      $code
+     * @param \RetailCrm\Api\Model\Request\References\StatusesEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -1709,13 +1733,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function statusesEdit(string $code, Status $entity): SuccessResponse
+    public function statusesEdit(string $code, StatusesEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/statuses/' . $code . '/edit',
-            new StatusesEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -1783,6 +1807,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Model\Entity\References\Store;
      * use RetailCrm\Api\Model\Entity\References\StoreAddress;
      * use RetailCrm\Api\Model\Entity\References\StorePhone;
+     * use RetailCrm\Api\Model\Request\References\StoresEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -1813,7 +1838,7 @@ class References extends AbstractApiResourceGroup
      * $entity->name                = 'Test Store';
      *
      * try {
-     *     $response = $client->references->storesEdit('test', $entity);
+     *     $response = $client->references->storesEdit('test', new StoresEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -1827,8 +1852,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                       $code
-     * @param \RetailCrm\Api\Model\Entity\References\Store $entity
+     * @param string                                                    $code
+     * @param \RetailCrm\Api\Model\Request\References\StoresEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -1837,13 +1862,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function storesEdit(string $code, Store $entity): SuccessResponse
+    public function storesEdit(string $code, StoresEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/stores/' . $code . '/edit',
-            new StoresEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;
@@ -1905,6 +1930,7 @@ class References extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\References\SerializedUnit;
+     * use RetailCrm\Api\Model\Request\References\UnitsEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -1914,7 +1940,7 @@ class References extends AbstractApiResourceGroup
      * $entity->active = true;
      *
      * try {
-     *     $response = $client->references->unitsEdit('nbb', $entity);
+     *     $response = $client->references->unitsEdit('nbb', new UnitsEditRequest($entity));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -1928,8 +1954,8 @@ class References extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string                                                $code
-     * @param \RetailCrm\Api\Model\Entity\References\SerializedUnit $entity
+     * @param string                                                   $code
+     * @param \RetailCrm\Api\Model\Request\References\UnitsEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -1938,13 +1964,13 @@ class References extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function unitsEdit(string $code, SerializedUnit $entity): SuccessResponse
+    public function unitsEdit(string $code, UnitsEditRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/units/' . $code . '/edit',
-            new UnitsEditRequest($entity),
+            $request,
             SuccessResponse::class
         );
         return $response;

@@ -34,7 +34,7 @@ use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
  */
 class CustomFieldsTest extends AbstractApiResourceGroupTestCase
 {
-    public function testList()
+    public function testList(): void
     {
         $json = <<<'EOF'
 {
@@ -88,7 +88,7 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
-    public function testDictionaries()
+    public function testDictionaries(): void
     {
         $json = <<<'EOF'
 {
@@ -151,7 +151,7 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
-    public function testDictionariesCreate()
+    public function testDictionariesCreate(): void
     {
         $json = <<<'EOF'
 {
@@ -160,16 +160,16 @@ EOF;
 }
 EOF;
 
-        $request                   = new CustomDictionaryCreateRequest();
-        $dictionary                = new CustomDictionary();
-        $element                   = new SerializedCustomDictionaryElement();
-        $element->name             = 'test_1';
-        $element->code             = 'test_1';
-        $element->ordering         = 10;
-        $dictionary->name          = 'TestDict';
-        $dictionary->code          = 'test_dict';
-        $dictionary->elements      = [$element];
-        $request->customDictionary = $dictionary;
+        $dictionary           = new CustomDictionary();
+        $element              = new SerializedCustomDictionaryElement();
+        $element->name        = 'test_1';
+        $element->code        = 'test_1';
+        $element->ordering    = 10;
+        $dictionary->name     = 'TestDict';
+        $dictionary->code     = 'test_dict';
+        $dictionary->elements = [$element];
+
+        $request = new CustomDictionaryCreateRequest($dictionary);
 
         $mock = static::getMockClient();
         $mock->on(
@@ -180,12 +180,12 @@ EOF;
         );
 
         $client    = TestClientFactory::createClient($mock);
-        $response  = $client->customFields->dictionariesCreate($dictionary);
+        $response  = $client->customFields->dictionariesCreate($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
 
-    public function testDictionariesGet()
+    public function testDictionariesGet(): void
     {
         $json = <<<'EOF'
 {
@@ -222,7 +222,7 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
-    public function testDictionariesEdit()
+    public function testDictionariesEdit(): void
     {
         $json = <<<'EOF'
 {
@@ -231,15 +231,15 @@ EOF;
 }
 EOF;
 
-        $request                   = new CustomDictionaryCreateRequest();
-        $dictionary                = new CustomDictionary();
-        $element                   = new SerializedCustomDictionaryElement();
-        $element->name             = 'test_1';
-        $element->code             = 'test_1';
-        $element->ordering         = 10;
-        $dictionary->name          = 'TestDict';
-        $dictionary->elements      = [$element];
-        $request->customDictionary = $dictionary;
+        $dictionary           = new CustomDictionary();
+        $element              = new SerializedCustomDictionaryElement();
+        $element->name        = 'test_1';
+        $element->code        = 'test_1';
+        $element->ordering    = 10;
+        $dictionary->name     = 'TestDict';
+        $dictionary->elements = [$element];
+
+        $request = new CustomDictionaryCreateRequest($dictionary);
 
         $mock = static::getMockClient();
         $mock->on(
@@ -250,12 +250,12 @@ EOF;
         );
 
         $client    = TestClientFactory::createClient($mock);
-        $response  = $client->customFields->dictionariesEdit('test_dict', $dictionary);
+        $response  = $client->customFields->dictionariesEdit('test_dict', $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $json = <<<'EOF'
 {
@@ -264,7 +264,6 @@ EOF;
 }
 EOF;
 
-        $request               = new CustomFieldsCreateRequest();
         $field                 = new CustomField();
         $field->name           = 'Description';
         $field->code           = 'description';
@@ -275,7 +274,8 @@ EOF;
         $field->inFilter       = true;
         $field->inList         = true;
         $field->inGroupActions = true;
-        $request->customField  = $field;
+
+        $request               = new CustomFieldsCreateRequest($field);
 
         $mock = static::getMockClient();
         $mock->on(
@@ -286,12 +286,12 @@ EOF;
         );
 
         $client    = TestClientFactory::createClient($mock);
-        $response  = $client->customFields->create(CustomFieldEntity::CUSTOMER, $field);
+        $response  = $client->customFields->create(CustomFieldEntity::CUSTOMER, $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
 
-    public function testGet()
+    public function testGet(): void
     {
         $json = <<<'EOF'
 {
@@ -326,7 +326,7 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
-    public function testEdit()
+    public function testEdit(): void
     {
         $json = <<<'EOF'
 {
@@ -335,7 +335,6 @@ EOF;
 }
 EOF;
 
-        $request               = new CustomFieldsCreateRequest();
         $field                 = new CustomField();
         $field->name           = 'Description';
         $field->type           = CustomFieldType::STRING;
@@ -344,7 +343,8 @@ EOF;
         $field->inFilter       = true;
         $field->inList         = true;
         $field->inGroupActions = true;
-        $request->customField  = $field;
+
+        $request = new CustomFieldsCreateRequest($field);
 
         $mock = static::getMockClient();
         $mock->on(
@@ -357,7 +357,7 @@ EOF;
         );
 
         $client    = TestClientFactory::createClient($mock);
-        $response  = $client->customFields->edit(CustomFieldEntity::CUSTOMER, 'description', $field);
+        $response  = $client->customFields->edit(CustomFieldEntity::CUSTOMER, 'description', $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

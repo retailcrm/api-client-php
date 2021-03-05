@@ -9,7 +9,6 @@
 
 namespace RetailCrm\Api\ResourceGroup;
 
-use Psr\Http\Message\StreamInterface;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\Files\FilesEditRequest;
 use RetailCrm\Api\Model\Request\Files\FilesRequest;
@@ -97,12 +96,13 @@ class Files extends AbstractApiResourceGroup
      * ```php
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Request\Files\FilesUploadRequest;
      *
      * $client   = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      * $fileData = $client->getStreamFactory()->createStreamFromFile('report.xlsx');
      *
      * try {
-     *     $response = $client->files->upload($fileData);
+     *     $response = $client->files->upload(new FilesUploadRequest($fileData));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -120,7 +120,7 @@ class Files extends AbstractApiResourceGroup
      * echo 'Uploaded file: ' . print_r($response->file->id, true);
      * ```
      *
-     * @param \Psr\Http\Message\StreamInterface $file
+     * @param \RetailCrm\Api\Model\Request\Files\FilesUploadRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Files\FilesUploadResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -129,13 +129,13 @@ class Files extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function upload(StreamInterface $file): FilesUploadResponse
+    public function upload(FilesUploadRequest $request): FilesUploadResponse
     {
         /** @var FilesUploadResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'files/upload',
-            new FilesUploadRequest($file),
+            $request,
             FilesUploadResponse::class
         );
         return $response;

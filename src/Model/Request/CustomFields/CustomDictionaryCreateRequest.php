@@ -11,6 +11,7 @@ namespace RetailCrm\Api\Model\Request\CustomFields;
 
 use RetailCrm\Api\Component\FormData\Mapping as Form;
 use RetailCrm\Api\Interfaces\RequestInterface;
+use RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary;
 
 /**
  * Class CustomDictionaryCreateRequest
@@ -28,4 +29,16 @@ class CustomDictionaryCreateRequest implements RequestInterface
      * @Form\JsonField()
      */
     public $customDictionary;
+
+    /**
+     * CustomDictionaryCreateRequest constructor.
+     *
+     * @param \RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary|null $customDictionary
+     */
+    public function __construct(?CustomDictionary $customDictionary = null)
+    {
+        if (null !== $customDictionary) {
+            $this->customDictionary = $customDictionary;
+        }
+    }
 }

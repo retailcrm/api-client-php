@@ -44,16 +44,18 @@ EOF;
         $event->phone   = '88005553125';
         $event->userIds = [27];
 
+        $request = new TelephonyCallEventRequest($event);
+
         $mock = static::getMockClient();
         $mock->on(
             static::createRequestMatcher('telephony/call/event')
                 ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm(new TelephonyCallEventRequest($event))),
+                ->setBody(self::encodeForm($request)),
             static::responseJson(200, $json)
         );
 
         $client   = TestClientFactory::createClient($mock);
-        $response = $client->telephony->callEvent($event);
+        $response = $client->telephony->callEvent($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -79,16 +81,18 @@ EOF;
         $call->recordUrl       = 'https://examle.com/test.mp3';
         $call->site            = 'aliexpress';
 
+        $request = new TelephonyCallsUploadRequest([$call]);
+
         $mock = static::getMockClient();
         $mock->on(
             static::createRequestMatcher('telephony/calls/upload')
                 ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm(new TelephonyCallsUploadRequest([$call]))),
+                ->setBody(self::encodeForm($request)),
             static::responseJson(200, $json)
         );
 
         $client   = TestClientFactory::createClient($mock);
-        $response = $client->telephony->callsUpload([$call]);
+        $response = $client->telephony->callsUpload($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

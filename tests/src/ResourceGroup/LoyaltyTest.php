@@ -121,16 +121,18 @@ EOF;
         $account->cardNumber  = '4444 5555 6666 7777';
         $account->phoneNumber = '88005553000';
 
+        $request = new LoyaltyAccountEditRequest($account);
+
         $mock = static::getMockClient();
         $mock->on(
             static::createRequestMatcher('loyalty/account/159/edit')
                 ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm(new LoyaltyAccountEditRequest($account))),
+                ->setBody(static::encodeForm($request)),
             static::responseJson(200, $json)
         );
 
         $client   = TestClientFactory::createClient($mock);
-        $response = $client->loyalty->accountEdit(159, $account);
+        $response = $client->loyalty->accountEdit(159, $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

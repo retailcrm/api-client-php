@@ -37,6 +37,7 @@ class Telephony extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Telephony\CallEvent;
+     * use RetailCrm\Api\Model\Request\Telephony\TelephonyCallEventRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -47,7 +48,7 @@ class Telephony extends AbstractApiResourceGroup
      * $event->userIds = [27];
      *
      * try {
-     *     $response = $client->telephony->callEvent($event);
+     *     $response = $client->telephony->callEvent(new TelephonyCallEventRequest($event));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -65,7 +66,7 @@ class Telephony extends AbstractApiResourceGroup
      * echo 'Response: ' . print_r($response, true);
      * ```
      *
-     * @param \RetailCrm\Api\Model\Entity\Telephony\CallEvent $event
+     * @param \RetailCrm\Api\Model\Request\Telephony\TelephonyCallEventRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Telephony\CallEventResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -74,13 +75,13 @@ class Telephony extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function callEvent(CallEvent $event): CallEventResponse
+    public function callEvent(TelephonyCallEventRequest $request): CallEventResponse
     {
         /** @var CallEventResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'telephony/call/event',
-            new TelephonyCallEventRequest($event),
+            $request,
             CallEventResponse::class
         );
         return $response;
@@ -96,6 +97,7 @@ class Telephony extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Telephony\Call;
+     * use RetailCrm\Api\Model\Request\Telephony\TelephonyCallsUploadRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -112,7 +114,7 @@ class Telephony extends AbstractApiResourceGroup
      * $call->site            = 'aliexpress';
      *
      * try {
-     *     $response = $client->telephony->callsUpload([$call]);
+     *     $response = $client->telephony->callsUpload(new TelephonyCallsUploadRequest([$call]));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -130,7 +132,7 @@ class Telephony extends AbstractApiResourceGroup
      * echo 'Response: ' . print_r($response, true);
      * ```
      *
-     * @param \RetailCrm\Api\Model\Entity\Telephony\Call[] $calls
+     * @param \RetailCrm\Api\Model\Request\Telephony\TelephonyCallsUploadRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Telephony\CallsUploadResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -139,13 +141,13 @@ class Telephony extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function callsUpload(array $calls): CallsUploadResponse
+    public function callsUpload(TelephonyCallsUploadRequest $request): CallsUploadResponse
     {
         /** @var CallsUploadResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'telephony/calls/upload',
-            new TelephonyCallsUploadRequest($calls),
+            $request,
             CallsUploadResponse::class
         );
         return $response;

@@ -152,6 +152,7 @@ class Loyalty extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Loyalty\LoyaltyAccount;
+     * use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -160,7 +161,7 @@ class Loyalty extends AbstractApiResourceGroup
      * $account->phoneNumber = '88005553000';
      *
      * try {
-     *     $response = $client->loyalty->accountEdit(159, $account);
+     *     $response = $client->loyalty->accountEdit(159, new LoyaltyAccountEditRequest($account));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -178,8 +179,8 @@ class Loyalty extends AbstractApiResourceGroup
      * echo 'Response: ' . print_r($response, true);
      * ```
      *
-     * @param int                                                $id
-     * @param \RetailCrm\Api\Model\Entity\Loyalty\LoyaltyAccount $account
+     * @param int                                                            $id
+     * @param \RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountCreateResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -188,13 +189,13 @@ class Loyalty extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function accountEdit(int $id, LoyaltyAccount $account): LoyaltyAccountCreateResponse
+    public function accountEdit(int $id, LoyaltyAccountEditRequest $request): LoyaltyAccountCreateResponse
     {
         /** @var LoyaltyAccountCreateResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'loyalty/account/' . $id . '/edit',
-            new LoyaltyAccountEditRequest($account),
+            $request,
             LoyaltyAccountCreateResponse::class
         );
         return $response;

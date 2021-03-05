@@ -10,7 +10,6 @@
 namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
-use RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary;
 use RetailCrm\Api\Model\Entity\CustomFields\CustomField;
 use RetailCrm\Api\Model\Request\CustomFields\CustomDictionaryCreateRequest;
 use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsCreateRequest;
@@ -167,6 +166,7 @@ class CustomFields extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary;
      * use RetailCrm\Api\Model\Entity\CustomFields\SerializedCustomDictionaryElement;
+     * use RetailCrm\Api\Model\Request\CustomFields\CustomDictionaryCreateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -180,7 +180,7 @@ class CustomFields extends AbstractApiResourceGroup
      * $dictionary->elements      = [$element];
      *
      * try {
-     *     $response = $client->customFields->dictionariesCreate($dictionary);
+     *     $response = $client->customFields->dictionariesCreate(new CustomDictionaryCreateRequest($dictionary));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -198,20 +198,17 @@ class CustomFields extends AbstractApiResourceGroup
      * echo 'Created dictionary ' . $response->code;
      * ```
      *
-     * @param \RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary $customDictionary
+     * @param \RetailCrm\Api\Model\Request\CustomFields\CustomDictionaryCreateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\CustomFields\CustomDictionaryCreateResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function dictionariesCreate(CustomDictionary $customDictionary): CustomDictionaryCreateResponse
+    public function dictionariesCreate(CustomDictionaryCreateRequest $request): CustomDictionaryCreateResponse
     {
-        $request                   = new CustomDictionaryCreateRequest();
-        $request->customDictionary = $customDictionary;
-
         /** @var CustomDictionaryCreateResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
@@ -282,6 +279,7 @@ class CustomFields extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary;
      * use RetailCrm\Api\Model\Entity\CustomFields\SerializedCustomDictionaryElement;
+     * use RetailCrm\Api\Model\Request\CustomFields\CustomDictionaryCreateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -294,7 +292,10 @@ class CustomFields extends AbstractApiResourceGroup
      * $dictionary->elements      = [$element];
      *
      * try {
-     *     $response = $client->customFields->dictionariesEdit('test_dict', $dictionary);
+     *     $response = $client->customFields->dictionariesEdit(
+     *         'test_dict',
+     *         new CustomDictionaryCreateRequest($dictionary)
+     *     );
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -308,25 +309,23 @@ class CustomFields extends AbstractApiResourceGroup
      *
      *     return;
      * }
-     *
      * echo 'Edited dictionary ' . $response->code;
      * ```
      *
-     * @param string                                                    $code
-     * @param \RetailCrm\Api\Model\Entity\CustomFields\CustomDictionary $dictionary
+     * @param string                                                                  $code
+     * @param \RetailCrm\Api\Model\Request\CustomFields\CustomDictionaryCreateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\CustomFields\CustomDictionaryCreateResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function dictionariesEdit(string $code, CustomDictionary $dictionary): CustomDictionaryCreateResponse
-    {
-        $request                   = new CustomDictionaryCreateRequest();
-        $request->customDictionary = $dictionary;
-
+    public function dictionariesEdit(
+        string $code,
+        CustomDictionaryCreateRequest $request
+    ): CustomDictionaryCreateResponse {
         /** @var CustomDictionaryCreateResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
@@ -350,6 +349,7 @@ class CustomFields extends AbstractApiResourceGroup
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\CustomFields\CustomField;
+     * use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsCreateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -365,7 +365,10 @@ class CustomFields extends AbstractApiResourceGroup
      * $field->inGroupActions = true;
      *
      * try {
-     *     $response = $client->customFields->create(CustomFieldEntity::CUSTOMER, $field);
+     *     $response = $client->customFields->create(
+     *         CustomFieldEntity::CUSTOMER,
+     *         new CustomFieldsCreateRequest($field)
+     *     );
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -383,21 +386,18 @@ class CustomFields extends AbstractApiResourceGroup
      * echo 'Created field ' . print_r($response->code, true);
      * ```
      *
-     * @param string                                               $entity
-     * @param \RetailCrm\Api\Model\Entity\CustomFields\CustomField $customField
+     * @param string                                                              $entity
+     * @param \RetailCrm\Api\Model\Request\CustomFields\CustomFieldsCreateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\CustomFields\CustomFieldsCreateResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function create(string $entity, CustomField $customField): CustomFieldsCreateResponse
+    public function create(string $entity, CustomFieldsCreateRequest $request): CustomFieldsCreateResponse
     {
-        $request = new CustomFieldsCreateRequest();
-        $request->customField = $customField;
-
         /** @var CustomFieldsCreateResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
@@ -473,6 +473,7 @@ class CustomFields extends AbstractApiResourceGroup
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Model\Entity\CustomFields\CustomField;
+     * use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsCreateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -486,7 +487,11 @@ class CustomFields extends AbstractApiResourceGroup
      * $field->inGroupActions = true;
      *
      * try {
-     *     $response = $client->customFields->edit(CustomFieldEntity::CUSTOMER, 'description', $field);
+     *     $response = $client->customFields->edit(
+     *         CustomFieldEntity::CUSTOMER,
+     *         'description',
+     *         new CustomFieldsCreateRequest($field)
+     *     );
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -504,22 +509,19 @@ class CustomFields extends AbstractApiResourceGroup
      * echo 'Edited field ' . print_r($response->code, true);
      * ```
      *
-     * @param string                                               $entity
-     * @param string                                               $code
-     * @param \RetailCrm\Api\Model\Entity\CustomFields\CustomField $customField
+     * @param string                                                              $entity
+     * @param string                                                              $code
+     * @param \RetailCrm\Api\Model\Request\CustomFields\CustomFieldsCreateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\CustomFields\CustomFieldsEditResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \Psr\Http\Client\NetworkExceptionInterface
      * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function edit(string $entity, string $code, CustomField $customField): CustomFieldsEditResponse
+    public function edit(string $entity, string $code, CustomFieldsCreateRequest $request): CustomFieldsEditResponse
     {
-        $request              = new CustomFieldsCreateRequest();
-        $request->customField = $customField;
-
         /** @var CustomFieldsEditResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,

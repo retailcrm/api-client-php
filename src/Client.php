@@ -31,10 +31,12 @@ use RetailCrm\Api\ResourceGroup\Payments;
 use RetailCrm\Api\ResourceGroup\References;
 use RetailCrm\Api\ResourceGroup\Segments;
 use RetailCrm\Api\ResourceGroup\Settings;
+use RetailCrm\Api\ResourceGroup\Statistics;
 use RetailCrm\Api\ResourceGroup\Store;
 use RetailCrm\Api\ResourceGroup\Tasks;
 use RetailCrm\Api\ResourceGroup\Telephony;
 use RetailCrm\Api\ResourceGroup\Users;
+use RetailCrm\Api\ResourceGroup\Verification;
 
 /**
  * Class Client
@@ -108,6 +110,12 @@ class Client
     /** @var \RetailCrm\Api\ResourceGroup\Users */
     public $users;
 
+    /** @var \RetailCrm\Api\ResourceGroup\Verification */
+    public $verification;
+
+    /** @var \RetailCrm\Api\ResourceGroup\Statistics */
+    public $statistics;
+
     /** @var StreamFactoryInterface */
     private $streamFactory;
 
@@ -158,6 +166,8 @@ class Client
         $this->tasks = new Tasks($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->telephony = new Telephony($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->users = new Users($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->verification = new Verification($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->statistics = new Statistics($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
     }
 
     /**

@@ -39,16 +39,18 @@ class PaymentsTest extends AbstractApiResourceGroupTestCase
 }
 EOF;
 
-        $request              = new ApiCheckRequest();
-        $request->invoiceUuid = '5b1b2e9d-b7f1-48f4-acb9-4bfce04b30cf';
-        $request->currency    = Currency::RUB;
-        $request->amount      = .5;
+        $checkRequest              = new ApiCheckRequest();
+        $checkRequest->invoiceUuid = '5b1b2e9d-b7f1-48f4-acb9-4bfce04b30cf';
+        $checkRequest->currency    = Currency::RUB;
+        $checkRequest->amount      = .5;
+
+        $request = new PaymentCheckRequest($checkRequest);
 
         $mock = static::getMockClient();
         $mock->on(
             static::createRequestMatcher('payment/check')
                 ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm(new PaymentCheckRequest($request))),
+                ->setBody(static::encodeForm($request)),
             static::responseJson(200, $json)
         );
 
@@ -69,15 +71,17 @@ EOF;
 }
 EOF;
 
-        $request            = new ApiCreateInvoiceRequest();
-        $request->paymentId = 4571;
-        $request->returnUrl = 'https://example.com';
+        $invoiceRequest            = new ApiCreateInvoiceRequest();
+        $invoiceRequest->paymentId = 4571;
+        $invoiceRequest->returnUrl = 'https://example.com';
+
+        $request = new PaymentCreateInvoiceRequest($invoiceRequest);
 
         $mock = static::getMockClient();
         $mock->on(
             static::createRequestMatcher('payment/create-invoice')
                 ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm(new PaymentCreateInvoiceRequest($request))),
+                ->setBody(static::encodeForm($request)),
             static::responseJson(200, $json)
         );
 
@@ -95,16 +99,18 @@ EOF;
 }
 EOF;
 
-        $request              = new ApiUpdateInvoiceRequest();
-        $request->paymentId   = 'd6458333-fff3-4fd0-9b23-4e6344451f8e';
-        $request->invoiceUuid = '5b1b2e9d-b7f1-48f4-acb9-4bfce04b30cf';
-        $request->invoiceUrl  = 'https://example.com/newUrl';
+        $invoiceRequest              = new ApiUpdateInvoiceRequest();
+        $invoiceRequest->paymentId   = 'd6458333-fff3-4fd0-9b23-4e6344451f8e';
+        $invoiceRequest->invoiceUuid = '5b1b2e9d-b7f1-48f4-acb9-4bfce04b30cf';
+        $invoiceRequest->invoiceUrl  = 'https://example.com/newUrl';
+
+        $request = new PaymentUpdateInvoiceRequest($invoiceRequest);
 
         $mock = static::getMockClient();
         $mock->on(
             static::createRequestMatcher('payment/update-invoice')
                 ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm(new PaymentUpdateInvoiceRequest($request))),
+                ->setBody(static::encodeForm($request)),
             static::responseJson(200, $json)
         );
 

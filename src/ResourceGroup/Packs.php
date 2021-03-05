@@ -94,6 +94,7 @@ class Packs extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Packs\OrderProductPack;
+     * use RetailCrm\Api\Model\Request\Packs\PacksCreateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -107,7 +108,7 @@ class Packs extends AbstractApiResourceGroup
      * $pack->purchasePrice      = 100;
      *
      * try {
-     *     $response = $client->packs->create($pack);
+     *     $response = $client->packs->create(new PacksCreateRequest($pack));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -125,7 +126,7 @@ class Packs extends AbstractApiResourceGroup
      * echo 'Created pack with ID: ' . $response->id;
      * ```
      *
-     * @param \RetailCrm\Api\Model\Entity\Packs\OrderProductPack $pack
+     * @param \RetailCrm\Api\Model\Request\Packs\PacksCreateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\IdResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -134,13 +135,13 @@ class Packs extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function create(OrderProductPack $pack): IdResponse
+    public function create(PacksCreateRequest $request): IdResponse
     {
         /** @var IdResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'orders/packs/create',
-            new PacksCreateRequest($pack),
+            $request,
             IdResponse::class
         );
         return $response;
@@ -308,6 +309,7 @@ class Packs extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Packs\OrderProductPack;
+     * use RetailCrm\Api\Model\Request\Packs\PacksCreateRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -315,7 +317,7 @@ class Packs extends AbstractApiResourceGroup
      * $pack->shipmentDate       = (new DateTime())->add(new DateInterval('P1D'));
      *
      * try {
-     *     $response = $client->packs->edit(143, $pack);
+     *     $response = $client->packs->edit(143, new PacksCreateRequest($pack));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -333,8 +335,8 @@ class Packs extends AbstractApiResourceGroup
      * echo 'Edited pack #' . $response->id;
      * ```
      *
-     * @param int                                                $id
-     * @param \RetailCrm\Api\Model\Entity\Packs\OrderProductPack $pack
+     * @param int                                                   $id
+     * @param \RetailCrm\Api\Model\Request\Packs\PacksCreateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\IdResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -343,13 +345,13 @@ class Packs extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function edit(int $id, OrderProductPack $pack): IdResponse
+    public function edit(int $id, PacksCreateRequest $request): IdResponse
     {
         /** @var IdResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'orders/packs/' . $id . '/edit',
-            new PacksCreateRequest($pack),
+            $request,
             IdResponse::class
         );
         return $response;

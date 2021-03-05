@@ -109,16 +109,18 @@ EOF;
         $pack->quantity           = 1;
         $pack->purchasePrice      = 100;
 
+        $request = new PacksCreateRequest($pack);
+
         $mock = static::getMockClient();
         $mock->on(
             static::createRequestMatcher('orders/packs/create')
                 ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm(new PacksCreateRequest($pack))),
+                ->setBody(static::encodeForm($request)),
             static::responseJson(200, $json)
         );
 
         $client   = TestClientFactory::createClient($mock);
-        $response = $client->packs->create($pack);
+        $response = $client->packs->create($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -1328,16 +1330,18 @@ EOF;
         $pack                     = new OrderProductPack();
         $pack->shipmentDate       = (new DateTime())->add(new DateInterval('P1D'));
 
+        $request = new PacksCreateRequest($pack);
+
         $mock = static::getMockClient();
         $mock->on(
             static::createRequestMatcher('orders/packs/143/edit')
                 ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm(new PacksCreateRequest($pack))),
+                ->setBody(static::encodeForm($request)),
             static::responseJson(200, $json)
         );
 
         $client   = TestClientFactory::createClient($mock);
-        $response = $client->packs->edit(143, $pack);
+        $response = $client->packs->edit(143, $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

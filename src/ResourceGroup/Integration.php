@@ -10,7 +10,6 @@
 namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
-use RetailCrm\Api\Model\Entity\Integration\IntegrationModule;
 use RetailCrm\Api\Model\Request\Integration\IntegrationModulesEditRequest;
 use RetailCrm\Api\Model\Response\Integration\IntegrationModulesEditResponse;
 use RetailCrm\Api\Model\Response\Integration\IntegrationModulesGetResponse;
@@ -83,6 +82,7 @@ class Integration extends AbstractApiResourceGroup
      * use RetailCrm\Api\Model\Entity\Integration\IntegrationModule;
      * use RetailCrm\Api\Model\Entity\Integration\Integrations;
      * use RetailCrm\Api\Model\Entity\Integration\Transport\TransportConfiguration;
+     * use RetailCrm\Api\Model\Request\Integration\IntegrationModulesEditRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -101,7 +101,7 @@ class Integration extends AbstractApiResourceGroup
      * $module->integrations->mgTransport->webhookUrl = 'https://mg-tp-fbm-s1.retailcrm.pro/webhook/';
      *
      * try {
-     *     $response = $client->integration->edit('mg-fbmessenger', $module);
+     *     $response = $client->integration->edit('mg-fbmessenger', new IntegrationModulesEditRequest($module));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -119,8 +119,8 @@ class Integration extends AbstractApiResourceGroup
      * echo 'Info: ' . print_r($response->info, true);
      * ```
      *
-     * @param string                                                    $code
-     * @param \RetailCrm\Api\Model\Entity\Integration\IntegrationModule $integrationModule
+     * @param string                                                                 $code
+     * @param \RetailCrm\Api\Model\Request\Integration\IntegrationModulesEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Integration\IntegrationModulesEditResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -129,13 +129,13 @@ class Integration extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function edit(string $code, IntegrationModule $integrationModule): IntegrationModulesEditResponse
+    public function edit(string $code, IntegrationModulesEditRequest $request): IntegrationModulesEditResponse
     {
         /** @var IntegrationModulesEditResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'integration-modules/' . $code . '/edit',
-            new IntegrationModulesEditRequest($integrationModule),
+            $request,
             IntegrationModulesEditResponse::class
         );
         return $response;

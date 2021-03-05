@@ -86,18 +86,19 @@ EOF;
 }
 EOF;
 
-        $mock   = static::getMockClient();
-        $client = TestClientFactory::createClient($mock);
-        $file   = $client->getStreamFactory()->createStream('test data');
+        $mock    = static::getMockClient();
+        $client  = TestClientFactory::createClient($mock);
+        $file    = $client->getStreamFactory()->createStream('test data');
+        $request = new FilesUploadRequest($file);
 
         $mock->on(
             static::createRequestMatcher('files/upload')
                 ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm(new FilesUploadRequest($file))),
+                ->setBody(static::encodeForm($request)),
             static::responseJson(200, $json)
         );
 
-        $response = $client->files->upload($file);
+        $response = $client->files->upload($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

@@ -11,6 +11,7 @@ namespace RetailCrm\Api\Model\Request\CustomFields;
 
 use RetailCrm\Api\Component\FormData\Mapping as Form;
 use RetailCrm\Api\Interfaces\RequestInterface;
+use RetailCrm\Api\Model\Entity\CustomFields\CustomField;
 
 /**
  * Class CustomFieldsCreateRequest
@@ -27,4 +28,16 @@ class CustomFieldsCreateRequest implements RequestInterface
      * @Form\SerializedName("customField")
      */
     public $customField;
+
+    /**
+     * CustomFieldsCreateRequest constructor.
+     *
+     * @param \RetailCrm\Api\Model\Entity\CustomFields\CustomField|null $customField
+     */
+    public function __construct(?CustomField $customField = null)
+    {
+        if (null !== $customField) {
+            $this->customField = $customField;
+        }
+    }
 }

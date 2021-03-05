@@ -39,6 +39,7 @@ class Payments extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Payments\ApiCheckRequest;
+     * use RetailCrm\Api\Model\Request\Payments\PaymentCheckRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -48,7 +49,7 @@ class Payments extends AbstractApiResourceGroup
      * $request->amount      = .5;
      *
      * try {
-     *     $response = $client->payments->check($request);
+     *     $response = $client->payments->check(new PaymentCheckRequest($request));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -66,7 +67,7 @@ class Payments extends AbstractApiResourceGroup
      * echo 'Result: ' . print_r($response->result, true);
      * ```
      *
-     * @param \RetailCrm\Api\Model\Entity\Payments\ApiCheckRequest $request
+     * @param \RetailCrm\Api\Model\Request\Payments\PaymentCheckRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Payments\PaymentCheckResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -75,13 +76,13 @@ class Payments extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function check(ApiCheckRequest $request): PaymentCheckResponse
+    public function check(PaymentCheckRequest $request): PaymentCheckResponse
     {
         /** @var PaymentCheckResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'payment/check',
-            new PaymentCheckRequest($request),
+            $request,
             PaymentCheckResponse::class
         );
         return $response;
@@ -95,6 +96,7 @@ class Payments extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Payments\ApiCreateInvoiceRequest;
+     * use RetailCrm\Api\Model\Request\Payments\PaymentCreateInvoiceRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -103,7 +105,7 @@ class Payments extends AbstractApiResourceGroup
      * $request->returnUrl = 'https://example.com';
      *
      * try {
-     *     $response = $client->payments->createInvoice($request);
+     *     $response = $client->payments->createInvoice(new PaymentCreateInvoiceRequest($request));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -121,7 +123,7 @@ class Payments extends AbstractApiResourceGroup
      * echo 'Result: ' . print_r($response->result, true);
      * ```
      *
-     * @param \RetailCrm\Api\Model\Entity\Payments\ApiCreateInvoiceRequest $request
+     * @param \RetailCrm\Api\Model\Request\Payments\PaymentCreateInvoiceRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Payments\PaymentCreateInvoiceResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -130,13 +132,13 @@ class Payments extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function createInvoice(ApiCreateInvoiceRequest $request): PaymentCreateInvoiceResponse
+    public function createInvoice(PaymentCreateInvoiceRequest $request): PaymentCreateInvoiceResponse
     {
         /** @var PaymentCreateInvoiceResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'payment/create-invoice',
-            new PaymentCreateInvoiceRequest($request),
+            $request,
             PaymentCreateInvoiceResponse::class
         );
         return $response;
@@ -150,6 +152,7 @@ class Payments extends AbstractApiResourceGroup
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Entity\Payments\ApiUpdateInvoiceRequest;
+     * use RetailCrm\Api\Model\Request\Payments\PaymentUpdateInvoiceRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -159,7 +162,7 @@ class Payments extends AbstractApiResourceGroup
      * $request->invoiceUrl  = 'https://example.com/newUrl';
      *
      * try {
-     *     $response = $client->payments->updateInvoice($request);
+     *     $response = $client->payments->updateInvoice(new PaymentUpdateInvoiceRequest($request));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -173,7 +176,7 @@ class Payments extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param \RetailCrm\Api\Model\Entity\Payments\ApiUpdateInvoiceRequest $request
+     * @param \RetailCrm\Api\Model\Request\Payments\PaymentUpdateInvoiceRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \Psr\Http\Client\ClientExceptionInterface
@@ -182,13 +185,13 @@ class Payments extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function updateInvoice(ApiUpdateInvoiceRequest $request): SuccessResponse
+    public function updateInvoice(PaymentUpdateInvoiceRequest $request): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'payment/update-invoice',
-            new PaymentUpdateInvoiceRequest($request),
+            $request,
             SuccessResponse::class
         );
         return $response;

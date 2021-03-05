@@ -99,16 +99,18 @@ EOF;
         $module->accountUrl = 'https://mg-tp-fbm-s1.retailcrm.pro/settings/clientId';
         $module->integrations->mgTransport->webhookUrl = 'https://mg-tp-fbm-s1.retailcrm.pro/webhook/';
 
+        $request = new IntegrationModulesEditRequest($module);
+
         $mock = static::getMockClient();
         $mock->on(
             static::createRequestMatcher('integration-modules/mg-fbmessenger/edit')
                 ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm(new IntegrationModulesEditRequest($module))),
+                ->setBody(static::encodeForm($request)),
             static::responseJson(200, $json)
         );
 
         $client   = TestClientFactory::createClient($mock);
-        $response = $client->integration->edit('mg-fbmessenger', $module);
+        $response = $client->integration->edit('mg-fbmessenger', $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -143,16 +145,18 @@ EOF;
         $module->integrations->payment->actions->cancel  = 'payment/cancel';
         $module->integrations->payment->actions->refund  = 'payment/refund';
 
+        $request = new IntegrationModulesEditRequest($module);
+
         $mock = static::getMockClient();
         $mock->on(
             static::createRequestMatcher('integration-modules/test-payment-integration/edit')
                 ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm(new IntegrationModulesEditRequest($module))),
+                ->setBody(static::encodeForm($request)),
             static::responseJson(200, $json)
         );
 
         $client   = TestClientFactory::createClient($mock);
-        $response = $client->integration->edit('test-payment-integration', $module);
+        $response = $client->integration->edit('test-payment-integration', $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
