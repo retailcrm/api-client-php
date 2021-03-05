@@ -23,6 +23,7 @@ use RetailCrm\Api\ResourceGroup\CustomFields;
 use RetailCrm\Api\ResourceGroup\Delivery;
 use RetailCrm\Api\ResourceGroup\Files;
 use RetailCrm\Api\ResourceGroup\Integration;
+use RetailCrm\Api\ResourceGroup\Inventories;
 use RetailCrm\Api\ResourceGroup\Loyalty;
 use RetailCrm\Api\ResourceGroup\Orders;
 use RetailCrm\Api\ResourceGroup\Packs;
@@ -30,6 +31,7 @@ use RetailCrm\Api\ResourceGroup\Payments;
 use RetailCrm\Api\ResourceGroup\References;
 use RetailCrm\Api\ResourceGroup\Segments;
 use RetailCrm\Api\ResourceGroup\Settings;
+use RetailCrm\Api\ResourceGroup\Store;
 
 /**
  * Class Client
@@ -91,6 +93,9 @@ class Client
     /** @var \RetailCrm\Api\ResourceGroup\Settings */
     public $settings;
 
+    /** @var \RetailCrm\Api\ResourceGroup\Store */
+    public $store;
+
     /** @var StreamFactoryInterface */
     private $streamFactory;
 
@@ -137,6 +142,7 @@ class Client
         $this->references = new References($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->segments = new Segments($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->settings = new Settings($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->store = new Store($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
     }
 
     /**
