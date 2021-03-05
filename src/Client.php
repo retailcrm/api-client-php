@@ -34,6 +34,7 @@ use RetailCrm\Api\ResourceGroup\Settings;
 use RetailCrm\Api\ResourceGroup\Store;
 use RetailCrm\Api\ResourceGroup\Tasks;
 use RetailCrm\Api\ResourceGroup\Telephony;
+use RetailCrm\Api\ResourceGroup\Users;
 
 /**
  * Class Client
@@ -104,6 +105,9 @@ class Client
     /** @var \RetailCrm\Api\ResourceGroup\Telephony */
     public $telephony;
 
+    /** @var \RetailCrm\Api\ResourceGroup\Users */
+    public $users;
+
     /** @var StreamFactoryInterface */
     private $streamFactory;
 
@@ -153,6 +157,7 @@ class Client
         $this->store = new Store($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->tasks = new Tasks($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
         $this->telephony = new Telephony($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->users = new Users($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
     }
 
     /**
