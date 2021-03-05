@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum\Tasks;
  * @category TaskStatus
  * @package  RetailCrm\Api\Enum\Tasks
  */
-class TaskStatus
+final class TaskStatus
 {
     public const COMPLETED = 'completed';
     public const NOT_COMPLETED = 'Not completed'; // TODO: Invalid value, should be something else.

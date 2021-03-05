@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum;
  * @category Currency
  * @package  RetailCrm\Api\Enum
  */
-class Currency
+final class Currency
 {
     public const RUB = 'rub';
     public const UAH = 'uah';

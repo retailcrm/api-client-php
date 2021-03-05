@@ -28,6 +28,8 @@ use RetailCrm\Api\Model\Response\Store\ProductsResponse;
  *
  * @category Store
  * @package  RetailCrm\Api\ResourceGroup
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Store extends AbstractApiResourceGroup
 {

@@ -15,7 +15,7 @@ namespace RetailCrm\Api\Enum;
  * @category CombineTechnique
  * @package  RetailCrm\Api\Enum
  */
-class CombineTechnique
+final class CombineTechnique
 {
     public const MERGE = 'merge';
     public const OURS = 'ours';
