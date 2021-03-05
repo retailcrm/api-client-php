@@ -11,7 +11,6 @@ namespace RetailCrm\Tests\ResourceGroup;
 
 use DateInterval;
 use DateTime;
-use Http\Client\Curl\Client;
 use RetailCrm\Api\Enum\ByIdentifier;
 use RetailCrm\Api\Enum\CombineTechnique;
 use RetailCrm\Api\Enum\CountryCodeIso3166;

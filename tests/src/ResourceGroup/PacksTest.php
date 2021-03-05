@@ -11,10 +11,8 @@ namespace RetailCrm\Tests\ResourceGroup;
 
 use DateInterval;
 use DateTime;
-use Http\Client\Curl\Client;
 use RetailCrm\Api\Component\Transformer\DateTimeTransformer;
 use RetailCrm\Api\Enum\RequestMethod;
-use RetailCrm\Api\Interfaces\ApiExceptionInterface;
 use RetailCrm\Api\Model\Entity\Packs\OrderProductPack;
 use RetailCrm\Api\Model\Filter\Packs\OrderProductPackFilter;
 use RetailCrm\Api\Model\Filter\Packs\OrderProductPackHistoryFilterType;

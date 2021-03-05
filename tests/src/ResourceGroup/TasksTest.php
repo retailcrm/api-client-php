@@ -9,10 +9,8 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
-use Http\Client\Curl\Client;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Enum\Tasks\TaskStatus;
-use RetailCrm\Api\Interfaces\ApiExceptionInterface;
 use RetailCrm\Api\Model\Entity\Tasks\AbstractCustomer;
 use RetailCrm\Api\Model\Entity\Tasks\Task;
 use RetailCrm\Api\Model\Filter\Tasks\TaskFilter;
