@@ -38,7 +38,7 @@ That's because the Client uses code generation to speed up serialization and des
 
 Just type `y` here and press Enter. The DTO cache will be generated after that.
 
-3. **Optional.** Add these params into the `extra` segment of your `composer.json` if you want to execute code generation automatically after library installation or update.
+3. **Optional.** Add these params into the `extra` segment of your `composer.json` if you want to execute code generation automatically after library installation or update. This step is not optional if you have configured CI/CD pipeline for your project.
 ```json
 "compile-mode": "whitelist",
 "compile-whitelist": ["retailcrm/api-client-php"]
