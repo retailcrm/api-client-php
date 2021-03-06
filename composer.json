@@ -92,7 +92,7 @@
     },
     "compile": [
       {
-        "models": "@composer run-script models"
+        "run": "@composer run-script models"
       }
     ]
   },
