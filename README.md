@@ -27,7 +27,43 @@ Follow those steps to install the library:
 ```bash
 composer require symfony/http-client nyholm/psr7 retailcrm/api-client-php:"~6.0"
 ```
-3. Include the autoloader if it's not included, or you didn't use Composer before.
+During the installation, you'll see a message which will look like this:
+```sh
+The following packages have new compilation tasks:
+ - retailcrm/api-client-php has 1 task
+
+Allow these packages to compile? ([y]es, [a]lways, [n]o, [l]ist, [h]elp)
+```
+That's because the Client uses code generation to speed up serialization and deserialization of models in production. This code should be generated during installation or update. Without that code, the library itself will not work at all.
+
+Just type `y` here and press Enter. The DTO cache will be generated after that.
+3. **Optional.** Add these params into the `extra` segment of your `composer.json` if you want to execute code generation automatically after library installation or update.
+```json
+"compile-mode": "whitelist",
+"compile-whitelist": ["retailcrm/api-client-php"]
+```
+
+Your `composer.json` file will look like this:
+```json
+{
+    "name": "author/some-project",
+    "description": "Description of the project.",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.3.0",
+        "symfony/http-client": "^5.2",
+        "nyholm/psr7": "^1.4",
+        "retailcrm/api-client-php": "~6.0"
+    },
+    "extra": {
+        "compile-mode": "whitelist",
+        "compile-whitelist": ["retailcrm/api-client-php"]
+    }
+}
+```
+
+4. Include the autoloader if it's not included, or you didn't use Composer before.
 ```php
 require 'path/to/vendor/autoload.php';
 ```

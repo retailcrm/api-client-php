@@ -69,7 +69,7 @@
       "@lint",
       "@phpunit"
     ],
-    "models": "@php bin/retailcrm-client models:generate"
+    "models": "@php bin/retailcrm-client models:generate --all"
   },
   "support": {
     "email": "support@retailcrm.pro"
