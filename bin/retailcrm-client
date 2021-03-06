@@ -13,26 +13,27 @@ if (!in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
 
 set_time_limit(0);
 
-if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
-    require dirname(__DIR__) . '/vendor/autoload.php';
-} else {
-    $autoloadCounter = 0;
-    $autoloadDir = __DIR__;
+$autoloadCounter = 0;
+$autoloadDir = __DIR__;
 
-    for (;;) {
-        if (file_exists($autoloadDir . '/autoload.php')) {
-            require $autoloadDir . '/autoload.php';
-            break;
-        }
+for (;;) {
+    if (file_exists($autoloadDir . '/autoload.php')) {
+        require $autoloadDir . '/autoload.php';
+        break;
+    }
 
-        $autoloadCounter++;
-        $autoloadDir = dirname($autoloadDir);
+    if (file_exists($autoloadDir . '/vendor/autoload.php')) {
+        require $autoloadDir . '/vendor/autoload.php';
+        break;
+    }
 
-        if (5 < $autoloadCounter) {
-            echo 'Cannot find autoload.php. Please install dependencies first.' . PHP_EOL;
+    $autoloadCounter++;
+    $autoloadDir = dirname($autoloadDir);
 
-            exit(-1);
-        }
+    if (5 < $autoloadCounter) {
+        echo 'Cannot find autoload.php. Please install dependencies first.' . PHP_EOL;
+
+        exit(-1);
     }
 }
 
