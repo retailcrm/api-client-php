@@ -23,11 +23,11 @@ This is the PHP RetailCRM API client. This library allows using of the actual AP
 Follow those steps to install the library:
 
 1. Download and install [Composer](https://getcomposer.org/download/) package manager.
-1. Install the library from the Packagist by executing this command:
+2. Install the library from the Packagist by executing this command:
 ```bash
 composer require symfony/http-client nyholm/psr7 retailcrm/api-client-php:"~6.0"
 ```
-1. Include the autoloader if it's not included, or you didn't use Composer before.
+3. Include the autoloader if it's not included, or you didn't use Composer before.
 ```php
 require 'path/to/vendor/autoload.php';
 ```
