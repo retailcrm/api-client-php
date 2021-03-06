@@ -37,6 +37,7 @@ Allow these packages to compile? ([y]es, [a]lways, [n]o, [l]ist, [h]elp)
 That's because the Client uses code generation to speed up serialization and deserialization of models in production. This code should be generated during installation or update. Without that code, the library itself will not work at all.
 
 Just type `y` here and press Enter. The DTO cache will be generated after that.
+
 3. **Optional.** Add these params into the `extra` segment of your `composer.json` if you want to execute code generation automatically after library installation or update.
 ```json
 "compile-mode": "whitelist",
