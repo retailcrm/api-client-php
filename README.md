@@ -6,7 +6,7 @@
 
 # RetailCRM API PHP client
 
-This is a PHP RetailCRM API client. This library allows using of the actual API version. [API documentation](http://retailcrm.github.io/api-client-php)
+This is the PHP RetailCRM API client. This library allows using of the actual API version. [API documentation](http://retailcrm.github.io/api-client-php)
 
 ## Requirements
 
