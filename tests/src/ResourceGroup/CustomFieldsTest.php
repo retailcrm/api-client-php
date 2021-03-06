@@ -23,8 +23,8 @@ use RetailCrm\Api\Model\Request\CustomFields\CustomDictionaryCreateRequest;
 use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsCreateRequest;
 use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsDictionariesRequest;
 use RetailCrm\Api\Model\Request\CustomFields\CustomFieldsRequest;
-use RetailCrm\Dev\TestUtils\Factory\TestClientFactory;
-use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
+use RetailCrm\TestUtils\Factory\TestClientFactory;
+use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
  * Class CustomFieldsTest

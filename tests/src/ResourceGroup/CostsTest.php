@@ -19,8 +19,8 @@ use RetailCrm\Api\Model\Request\Costs\CostsDeleteRequest;
 use RetailCrm\Api\Model\Request\Costs\CostsEditRequest;
 use RetailCrm\Api\Model\Request\Costs\CostsRequest;
 use RetailCrm\Api\Model\Request\Costs\CostsUploadRequest;
-use RetailCrm\Dev\TestUtils\Factory\TestClientFactory;
-use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
+use RetailCrm\TestUtils\Factory\TestClientFactory;
+use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
  * Class CostsTest

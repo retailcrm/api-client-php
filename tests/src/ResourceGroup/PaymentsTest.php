@@ -17,8 +17,8 @@ use RetailCrm\Api\Model\Entity\Payments\ApiUpdateInvoiceRequest;
 use RetailCrm\Api\Model\Request\Payments\PaymentCheckRequest;
 use RetailCrm\Api\Model\Request\Payments\PaymentCreateInvoiceRequest;
 use RetailCrm\Api\Model\Request\Payments\PaymentUpdateInvoiceRequest;
-use RetailCrm\Dev\TestUtils\Factory\TestClientFactory;
-use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
+use RetailCrm\TestUtils\Factory\TestClientFactory;
+use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
  * Class PaymentsTest

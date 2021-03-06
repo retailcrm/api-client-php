@@ -13,7 +13,7 @@ use RetailCrm\Api\Exception\ApiException;
 use RetailCrm\Api\Interfaces\ApiExceptionInterface;
 use RetailCrm\Api\Model\Response\ErrorResponse;
 use RetailCrm\Api\Model\Response\SuccessResponse;
-use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
+use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
  * Class ApiExceptionTest

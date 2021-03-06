@@ -17,8 +17,8 @@ use RetailCrm\Api\Model\Filter\Users\ApiUserFilter;
 use RetailCrm\Api\Model\Request\Users\UserGroupsRequest;
 use RetailCrm\Api\Model\Request\Users\UsersRequest;
 use RetailCrm\Api\Model\Request\Users\UsersStatusRequest;
-use RetailCrm\Dev\TestUtils\Factory\TestClientFactory;
-use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
+use RetailCrm\TestUtils\Factory\TestClientFactory;
+use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
  * Class UsersTest

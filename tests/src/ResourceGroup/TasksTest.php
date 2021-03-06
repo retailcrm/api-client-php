@@ -16,8 +16,8 @@ use RetailCrm\Api\Model\Entity\Tasks\Task;
 use RetailCrm\Api\Model\Filter\Tasks\TaskFilter;
 use RetailCrm\Api\Model\Request\Tasks\TasksCreateRequest;
 use RetailCrm\Api\Model\Request\Tasks\TasksRequest;
-use RetailCrm\Dev\TestUtils\Factory\TestClientFactory;
-use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
+use RetailCrm\TestUtils\Factory\TestClientFactory;
+use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
  * Class TasksTest

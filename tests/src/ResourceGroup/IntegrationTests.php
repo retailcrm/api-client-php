@@ -18,8 +18,8 @@ use RetailCrm\Api\Model\Entity\Integration\Payment\PaymentConfiguration;
 use RetailCrm\Api\Model\Entity\Integration\Payment\Shop;
 use RetailCrm\Api\Model\Entity\Integration\Transport\TransportConfiguration;
 use RetailCrm\Api\Model\Request\Integration\IntegrationModulesEditRequest;
-use RetailCrm\Dev\TestUtils\Factory\TestClientFactory;
-use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
+use RetailCrm\TestUtils\Factory\TestClientFactory;
+use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
  * Class IntegrationTests

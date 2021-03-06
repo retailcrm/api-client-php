@@ -23,8 +23,8 @@ use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\Customers\CustomerNote;
 use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
 use RetailCrm\Api\ResourceGroup\Api;
-use RetailCrm\Dev\TestUtils\ReflectionUtils;
-use RetailCrm\Dev\TestUtils\TestConfig;
+use RetailCrm\TestUtils\ReflectionUtils;
+use RetailCrm\TestUtils\TestConfig;
 use RuntimeException;
 
 /**

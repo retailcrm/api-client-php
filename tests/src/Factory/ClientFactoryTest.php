@@ -14,8 +14,8 @@ use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\FilesystemCache;
 use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Factory\ClientFactory;
-use RetailCrm\Dev\TestUtils\TestCase\ClientTestCase;
-use RetailCrm\Dev\TestUtils\TestConfig;
+use RetailCrm\TestUtils\TestCase\ClientTestCase;
+use RetailCrm\TestUtils\TestConfig;
 
 /**
  * Class ClientFactoryTest

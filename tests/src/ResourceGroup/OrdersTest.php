@@ -45,8 +45,8 @@ use RetailCrm\Api\Model\Request\Orders\OrdersPaymentsEditRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersStatusesRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersUploadRequest;
-use RetailCrm\Dev\TestUtils\Factory\TestClientFactory;
-use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
+use RetailCrm\TestUtils\Factory\TestClientFactory;
+use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
  * Class OrdersTest

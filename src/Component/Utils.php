@@ -66,4 +66,14 @@ class Utils
 
         return implode(DIRECTORY_SEPARATOR, [realpath($parentDir), 'models']);
     }
+
+    /**
+     * Returns models directory.
+     *
+     * @return string
+     */
+    public static function getModelsDirectory(): string
+    {
+        return (string) realpath(implode(DIRECTORY_SEPARATOR, [dirname(__DIR__), '..', 'src', 'Model']));
+    }
 }

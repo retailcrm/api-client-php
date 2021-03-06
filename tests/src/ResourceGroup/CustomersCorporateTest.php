@@ -49,8 +49,8 @@ use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateEditRequest
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateFixExternalIdsRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateRequest;
 use RetailCrm\Api\Model\Request\CustomersCorporate\CustomersCorporateUploadRequest;
-use RetailCrm\Dev\TestUtils\Factory\TestClientFactory;
-use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
+use RetailCrm\TestUtils\Factory\TestClientFactory;
+use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
  * Class CustomersCorporateTest

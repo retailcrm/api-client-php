@@ -50,8 +50,8 @@ use RetailCrm\Api\Model\Request\References\SitesEditRequest;
 use RetailCrm\Api\Model\Request\References\StatusesEditRequest;
 use RetailCrm\Api\Model\Request\References\StoresEditRequest;
 use RetailCrm\Api\Model\Request\References\UnitsEditRequest;
-use RetailCrm\Dev\TestUtils\Factory\TestClientFactory;
-use RetailCrm\Dev\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
+use RetailCrm\TestUtils\Factory\TestClientFactory;
+use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
  * Class ReferencesTest
