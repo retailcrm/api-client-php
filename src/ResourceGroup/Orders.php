@@ -180,7 +180,7 @@ class Orders extends AbstractApiResourceGroup
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request         = new OrdersCreateRequest();
-     * $order           = new Orders();
+     * $order           = new Order();
      * $payment         = new Payment();
      * $delivery        = new SerializedOrderDelivery();
      * $deliveryAddress = new OrderDeliveryAddress();
@@ -765,7 +765,7 @@ class Orders extends AbstractApiResourceGroup
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request         = new OrdersUploadRequest();
-     * $order           = new Orders();
+     * $order           = new Order();
      * $payment         = new Payment();
      * $delivery        = new SerializedOrderDelivery();
      * $deliveryAddress = new OrderDeliveryAddress();
@@ -939,7 +939,7 @@ class Orders extends AbstractApiResourceGroup
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
-     * $order                 = new Orders();
+     * $order                 = new Order();
      * $order->managerComment = 'Manager comment';
      *
      * $request        = new OrdersEditRequest();
