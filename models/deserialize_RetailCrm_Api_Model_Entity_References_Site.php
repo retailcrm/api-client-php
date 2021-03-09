@@ -130,6 +130,10 @@ if (isset($jsonData['contragent']['vatRate'])) {
 
 
 }
+if (isset($jsonData['contragentCode'])) {
+    $model->contragentCode = $jsonData['contragentCode'];
+
+}
 if (isset($jsonData['countryIso'])) {
     $model->countryIso = $jsonData['countryIso'];
 

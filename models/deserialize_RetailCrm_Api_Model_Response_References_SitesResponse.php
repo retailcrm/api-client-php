@@ -139,6 +139,10 @@ if (isset($jsonData['sites'][$index18]['contragent']['vatRate'])) {
 
 
 }
+if (isset($jsonData['sites'][$index18]['contragentCode'])) {
+    $model->sites[$index18]->contragentCode = $jsonData['sites'][$index18]['contragentCode'];
+
+}
 if (isset($jsonData['sites'][$index18]['countryIso'])) {
     $model->sites[$index18]->countryIso = $jsonData['sites'][$index18]['countryIso'];
 

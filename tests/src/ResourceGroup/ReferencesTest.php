@@ -5691,6 +5691,7 @@ EOF;
         $entity->ymlUrl           = "https://example.com/test_catalog.xml";
         $entity->loadFromYml      = true;
         $entity->countryIso       = CountryCodeIso3166::RUSSIAN_FEDERATION;
+        $entity->contragentCode   = 'test-contragent';
 
         $request = new SitesEditRequest($entity);
 

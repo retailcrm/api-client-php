@@ -31,7 +31,6 @@ use RetailCrm\Api\Interfaces\Orders\CustomerInterface;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
-use RetailCrm\Api\Model\Entity\References\Site;
 use RetailCrm\Dev\Component\Serializer\Template\CustomSerialization;
 use RetailCrm\Dev\Component\Serializer\Type\PropertyTypeMixed;
 use RuntimeException;
@@ -220,17 +219,6 @@ class SerializerGenerator
             );
         }
 
-        if ($classMetadata->getClassName() === Site::class) {
-            return $this->generateForReferencesSite(
-                $classMetadata,
-                $apiVersion,
-                $serializerGroups,
-                $arrayPath,
-                $modelPath,
-                $stack
-            );
-        }
-
         if ($classMetadata->getClassName() === CustomerTag::class) {
             return $this->generateForCustomerTag($arrayPath, $modelPath);
         }
@@ -306,56 +294,6 @@ class SerializerGenerator
     private function generateForCustomerTag(string $arrayPath, string $modelPath): string
     {
         return $this->templating->renderAssign($arrayPath, $modelPath . '->name');
-    }
-
-    /**
-     * @param \Liip\MetadataParser\Metadata\ClassMetadata $classMetadata
-     * @param string|null                                 $apiVersion
-     * @param mixed[]                                     $serializerGroups
-     * @param string                                      $arrayPath
-     * @param string                                      $modelPath
-     * @param mixed[]                                     $stack
-     *
-     * @return string
-     * @throws \Exception
-     */
-    private function generateForReferencesSite(
-        ClassMetadata $classMetadata,
-        ?string $apiVersion,
-        array $serializerGroups,
-        string $arrayPath,
-        string $modelPath,
-        array $stack = []
-    ): string {
-        $stack[$classMetadata->getClassName()] = ($stack[$classMetadata->getClassName()] ?? 0) + 1;
-        $code = '';
-
-        foreach ($classMetadata->getProperties() as $propertyMetadata) {
-            if ('contragent' === $propertyMetadata->getName()) {
-                $propertyPath = $modelPath . '->' . $propertyMetadata->getName();
-
-                $code .= $this->templating->renderConditional(
-                    $propertyPath,
-                    $this->templating->renderAssign(
-                        $arrayPath . "['" . $propertyMetadata->getSerializedName() . "']",
-                        $propertyPath . '->code'
-                    )
-                );
-
-                continue;
-            }
-
-            $code .= $this->generateCodeForField(
-                $propertyMetadata,
-                $apiVersion,
-                $serializerGroups,
-                $arrayPath,
-                $modelPath,
-                $stack
-            );
-        }
-
-        return $this->templating->renderClass($arrayPath, $code);
     }
 
     /**

@@ -1556,6 +1556,7 @@ class References extends AbstractApiResourceGroup
      * $entity->ymlUrl           = "https://example.com/test_catalog.xml";
      * $entity->loadFromYml      = true;
      * $entity->countryIso       = CountryCodeIso3166::RUSSIAN_FEDERATION;
+     * $entity->contragentCode   = 'test-contragent';
      *
      * try {
      *     $response = $client->references->sitesEdit('test-site', new SitesEditRequest($entity));

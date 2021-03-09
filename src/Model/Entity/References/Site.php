@@ -121,10 +121,16 @@ class Site
      *
      * @JMS\Type("RetailCrm\Api\Model\Entity\References\LegalEntity")
      * @JMS\SerializedName("contragent")
-     *
-     * @todo Doesn't work for edit request. Need more info.
      */
     public $contragent;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("contragentCode")
+     */
+    public $contragentCode;
 
     /**
      * @var string
