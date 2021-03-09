@@ -18,5 +18,5 @@ namespace RetailCrm\Api\Enum\Tasks;
 final class TaskStatus
 {
     public const COMPLETED = 'completed';
-    public const NOT_COMPLETED = 'Not completed'; // TODO: Invalid value, should be something else.
+    public const PERFORMING = 'performing';
 }
