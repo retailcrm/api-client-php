@@ -35,7 +35,7 @@ use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
  *
  * Service configuration example for `symfony/dependency-injection`:
  * ```yaml
- * RetailCrm\Api\Factory\ClientFactory:
+ * RetailCrm\Api\Interfaces\ClientFactoryInterface:
  *   class: 'RetailCrm\Api\Factory\ClientFactory'
  *   calls:
  *     - setCacheDir: ['%kernel.cache_dir%']
