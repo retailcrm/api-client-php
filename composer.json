@@ -23,7 +23,8 @@
     "php-http/discovery": "^1.13",
     "doctrine/annotations": "^1.11",
     "doctrine/cache": "^1.10",
-    "liip/serializer": "^2.0"
+    "liip/serializer": "^2.0",
+    "php-http/httplug": "^2.2"
   },
   "require-dev": {
     "php-http/mock-client": "^1.0",
