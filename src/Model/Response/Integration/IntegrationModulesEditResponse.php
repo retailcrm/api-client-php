@@ -21,12 +21,11 @@ use RetailCrm\Api\Model\Response\SuccessResponse;
 class IntegrationModulesEditResponse extends SuccessResponse
 {
     /**
-     * @var \RetailCrm\Api\Model\Entity\Integration\Integrations
+     * @var \RetailCrm\Api\Model\Entity\Integration\IntegrationModuleEditInfo
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\Integration\Integrations")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Integration\IntegrationModuleEditInfo")
      * @JMS\SerializedName("info")
      *
-     * @todo This field is not documented properly. Ask for better documentation & update DTO accordingly.
      */
     public $info;
 }
