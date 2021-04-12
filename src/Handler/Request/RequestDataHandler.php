@@ -11,9 +11,11 @@ namespace RetailCrm\Api\Handler\Request;
 
 use Psr\Http\Message\StreamFactoryInterface;
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Exception\HandlerException;
 use RetailCrm\Api\Handler\AbstractHandler;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Model\RequestData;
+use Throwable;
 
 /**
  * Class RequestDataHandler
@@ -58,7 +60,15 @@ class RequestDataHandler extends AbstractHandler
     public function handle($item)
     {
         if ($item instanceof RequestData && null !== $item->requestModel && null !== $item->request) {
-            $formData = $this->formEncoder->encode($item->requestModel);
+            try {
+                $formData = $this->formEncoder->encode($item->requestModel);
+            } catch (Throwable $throwable) {
+                throw new HandlerException(
+                    sprintf('Cannot encode request: %s', $throwable->getMessage()),
+                    $throwable->getCode(),
+                    $throwable
+                );
+            }
 
             if (in_array(strtoupper($item->request->getMethod()), [RequestMethod::GET, RequestMethod::DELETE], true)) {
                 $item->request = $item->request->withUri(
