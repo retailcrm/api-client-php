@@ -274,7 +274,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
     }
 
     /**
-     * @return \JMS\Serializer\SerializerInterface
+     * @return \Liip\Serializer\SerializerInterface
      */
     protected static function getSerializer(): SerializerInterface
     {

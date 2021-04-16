@@ -84,9 +84,9 @@ class RequestSave
     public $legalEntity;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Customers\Customer
+     * @var \RetailCrm\Api\Model\Callback\Entity\Delivery\Customer
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\Customers\Customer")
+     * @JMS\Type("RetailCrm\Api\Model\Callback\Entity\Delivery\Customer")
      * @JMS\SerializedName("customer")
      */
     public $customer;
