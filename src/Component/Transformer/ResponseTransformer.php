@@ -50,7 +50,7 @@ class ResponseTransformer implements ResponseTransformerInterface
      * @param string                              $type
      *
      * @return RetailCrmResponse
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
      */
     public function createResponse(
         string $method,

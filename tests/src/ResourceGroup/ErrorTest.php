@@ -10,6 +10,8 @@
 namespace RetailCrm\Tests\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Exception\Api\AccountDoesNotExistException;
+use RetailCrm\Api\Exception\Api\ApiErrorException;
 use RetailCrm\Api\Exception\ApiException;
 use RetailCrm\Api\Model\Request\Costs\CostsCreateRequest;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
@@ -32,7 +34,7 @@ class ErrorTest extends AbstractApiResourceGroupTestCase
     "errorMsg": "Method Not Allowed"
 }
 EOF;
-        $this->expectException(ApiException::class);
+        $this->expectException(ApiErrorException::class);
         $this->expectExceptionCode(405);
         $this->expectExceptionMessage('Method Not Allowed');
 
@@ -54,7 +56,7 @@ EOF;
     "errorMsg": "Invalid data"
 }
 EOF;
-        $this->expectException(ApiException::class);
+        $this->expectException(ApiErrorException::class);
         $this->expectExceptionCode(405);
         $this->expectExceptionMessage('Invalid data');
 
@@ -87,7 +89,7 @@ EOF;
 
 </html>
 EOF;
-        $this->expectException(ApiException::class);
+        $this->expectException(AccountDoesNotExistException::class);
         $this->expectExceptionCode(405);
         $this->expectExceptionMessage('Account does not exist');
 

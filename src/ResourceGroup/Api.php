@@ -83,11 +83,15 @@ class Api extends AbstractApiResourceGroup
      * ```
      *
      * @return \RetailCrm\Api\Model\Response\Api\ApiVersionsResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function apiVersions(): ApiVersionsResponse
     {
@@ -131,11 +135,15 @@ class Api extends AbstractApiResourceGroup
      * ```
      *
      * @return \RetailCrm\Api\Model\Response\Api\Credentials
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function credentials(): Credentials
     {

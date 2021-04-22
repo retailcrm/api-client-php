@@ -1,36 +1,48 @@
 <?php
 
 /**
- * PHP version 7.3
+ * PHP 7.3
  *
- * @category ApiExceptionTest
- * @package  RetailCrm\Tests\Exception
+ * @category ApiExceptionFactoryTest
+ * @package  RetailCrm\Tests\Factory
  */
 
-namespace RetailCrm\Tests\Exception;
+namespace RetailCrm\Tests\Factory;
 
-use RetailCrm\Api\Exception\ApiException;
-use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Exception\Api\AccountDoesNotExistException;
+use RetailCrm\Api\Exception\Api\ApiErrorException;
+use RetailCrm\Api\Exception\Api\MissingCredentialsException;
+use RetailCrm\Api\Exception\Api\MissingParameterException;
+use RetailCrm\Api\Exception\Api\ValidationException;
+use RetailCrm\Api\Factory\ApiExceptionFactory;
 use RetailCrm\Api\Model\Response\ErrorResponse;
 use RetailCrm\Api\Model\Response\SuccessResponse;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
- * Class ApiExceptionTest
+ * Class ApiExceptionFactoryTest
  *
- * @category ApiExceptionTest
- * @package  RetailCrm\Tests\Exception
+ * @category ApiExceptionFactoryTest
+ * @package  RetailCrm\Tests\Factory
  */
-class ApiExceptionTest extends AbstractApiResourceGroupTestCase
+class ApiExceptionFactoryTest extends AbstractApiResourceGroupTestCase
 {
+    /** @var \RetailCrm\Api\Factory\ApiExceptionFactory */
+    private $factory;
+
+    protected function setUp(): void
+    {
+        $this->factory = new ApiExceptionFactory();
+    }
+
     public function testWrongOrEmptyResponse(): void
     {
-        $exception = new ApiException(new SuccessResponse(), 200);
+        $exception = $this->factory->createException(new SuccessResponse(), 200);
 
+        self::assertInstanceOf(ApiErrorException::class, $exception);
         self::assertEquals(200, $exception->getCode());
         self::assertEquals(200, $exception->getStatusCode());
         self::assertEquals('RetailCRM API Error', $exception->getMessage());
-        self::assertEquals(ApiExceptionInterface::GENERIC_ERROR, $exception->getErrorType());
         self::assertFalse($exception->getErrorResponse()->success);
         self::assertEmpty($exception->getErrorResponse()->errors);
         self::assertEmpty($exception->getErrorResponse()->errorMsg);
@@ -41,11 +53,11 @@ class ApiExceptionTest extends AbstractApiResourceGroupTestCase
         $response = new ErrorResponse();
         $response->errorMsg = 'Account does not exist.';
 
-        $exception = new ApiException($response, 404);
+        $exception = $this->factory->createException($response, 404);
 
+        self::assertInstanceOf(AccountDoesNotExistException::class, $exception);
         self::assertEquals(404, $exception->getCode());
         self::assertEquals(404, $exception->getStatusCode());
-        self::assertEquals(ApiExceptionInterface::ACCOUNT_DOES_NOT_EXIST, $exception->getErrorType());
         self::assertEquals($response->errorMsg, $exception->getMessage());
         self::assertEquals($response->errorMsg, $exception->getErrorResponse()->errorMsg);
         self::assertFalse($exception->getErrorResponse()->success);
@@ -60,8 +72,9 @@ class ApiExceptionTest extends AbstractApiResourceGroupTestCase
             'second'
         ];
 
-        $exception = new ApiException($response, 400);
+        $exception = $this->factory->createException($response, 400);
 
+        self::assertInstanceOf(ApiErrorException::class, $exception);
         self::assertEquals(400, $exception->getCode());
         self::assertEquals(400, $exception->getStatusCode());
         self::assertEquals('first', $exception->getMessage());
@@ -75,11 +88,11 @@ class ApiExceptionTest extends AbstractApiResourceGroupTestCase
         $response = new ErrorResponse();
         $response->errorMsg = "Parameter 'integrationModule' is missing";
 
-        $exception = new ApiException($response, 400);
+        $exception = $this->factory->createException($response, 400);
 
+        self::assertInstanceOf(MissingParameterException::class, $exception);
         self::assertEquals(400, $exception->getCode());
         self::assertEquals(400, $exception->getStatusCode());
-        self::assertEquals(ApiExceptionInterface::MISSING_PARAMETER, $exception->getErrorType());
         self::assertEquals($response->errorMsg, $exception->getErrorResponse()->errorMsg);
         self::assertFalse($exception->getErrorResponse()->success);
     }
@@ -89,11 +102,11 @@ class ApiExceptionTest extends AbstractApiResourceGroupTestCase
         $response = new ErrorResponse();
         $response->errorMsg = "\"apiKey\" is missing.";
 
-        $exception = new ApiException($response, 400);
+        $exception = $this->factory->createException($response, 400);
 
+        self::assertInstanceOf(MissingCredentialsException::class, $exception);
         self::assertEquals(400, $exception->getCode());
         self::assertEquals(400, $exception->getStatusCode());
-        self::assertEquals(ApiExceptionInterface::MISSING_CREDENTIALS, $exception->getErrorType());
         self::assertEquals($response->errorMsg, $exception->getErrorResponse()->errorMsg);
         self::assertFalse($exception->getErrorResponse()->success);
     }
@@ -104,12 +117,13 @@ class ApiExceptionTest extends AbstractApiResourceGroupTestCase
         $response->errorMsg = "Errors in the entity format";
         $response->errors = ["code" => "Code prefix must match integrationCode"];
 
-        $exception = new ApiException($response, 400);
+        $exception = $this->factory->createException($response, 400);
 
+        self::assertInstanceOf(ValidationException::class, $exception);
         self::assertEquals(400, $exception->getCode());
         self::assertEquals(400, $exception->getStatusCode());
-        self::assertEquals(ApiExceptionInterface::VALIDATION_ERROR, $exception->getErrorType());
         self::assertEquals($response->errorMsg, $exception->getErrorResponse()->errorMsg);
         self::assertFalse($exception->getErrorResponse()->success);
+        self::assertStringContainsString($exception->getMessage(), (string) $exception);
     }
 }

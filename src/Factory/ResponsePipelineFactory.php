@@ -28,19 +28,21 @@ class ResponsePipelineFactory
      * Creates default response pipeline.
      *
      * @param \Liip\Serializer\SerializerInterface       $serializer
+     * @param \RetailCrm\Api\Factory\ApiExceptionFactory $exceptionFactory
      * @param \RetailCrm\Api\Interfaces\HandlerInterface ...$additionalHandlers
      *
      * @return \RetailCrm\Api\Interfaces\HandlerInterface
      */
     public static function createDefaultPipeline(
         SerializerInterface $serializer,
+        ApiExceptionFactory $exceptionFactory,
         HandlerInterface ...$additionalHandlers
     ): HandlerInterface {
-        $handler = new AccountNotFoundHandler($serializer);
+        $handler = new AccountNotFoundHandler($serializer, $exceptionFactory);
         $nextHandler = $handler
-            ->setNext(new ErrorResponseHandler($serializer))
-            ->setNext(new FilesDownloadResponseHandler($serializer))
-            ->setNext(new UnmarshalResponseHandler($serializer));
+            ->setNext(new ErrorResponseHandler($serializer, $exceptionFactory))
+            ->setNext(new FilesDownloadResponseHandler($serializer, $exceptionFactory))
+            ->setNext(new UnmarshalResponseHandler($serializer, $exceptionFactory));
 
         if (count($additionalHandlers) > 0) {
             foreach ($additionalHandlers as $additionalHandler) {

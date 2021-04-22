@@ -76,11 +76,15 @@ class Loyalty extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountCreateResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function accountCreate(LoyaltyAccountCreateRequest $request): LoyaltyAccountCreateResponse
     {
@@ -126,11 +130,15 @@ class Loyalty extends AbstractApiResourceGroup
      * @param int $id
      *
      * @return \RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountActivateResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function accountActivate(int $id): LoyaltyAccountActivateResponse
     {
@@ -183,11 +191,15 @@ class Loyalty extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountCreateResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function accountEdit(int $id, LoyaltyAccountEditRequest $request): LoyaltyAccountCreateResponse
     {
@@ -240,11 +252,15 @@ class Loyalty extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountsResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function accountsList(LoyaltyAccountsRequest $request): LoyaltyAccountsResponse
     {
@@ -315,11 +331,15 @@ class Loyalty extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Loyalty\LoyaltyCalculateResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function calculate(LoyaltyCalculateRequest $request): LoyaltyCalculateResponse
     {

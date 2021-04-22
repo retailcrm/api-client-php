@@ -26,7 +26,7 @@ interface ClientFactoryInterface
      * @param string $apiKey
      *
      * @return \RetailCrm\Api\Client
-     * @throws \RetailCrm\Api\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
     public function createClient(string $apiUrl, string $apiKey): Client;
 }

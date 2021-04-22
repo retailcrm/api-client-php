@@ -7,9 +7,9 @@
  * @package  RetailCrm\Api\Exception
  */
 
-namespace RetailCrm\Api\Exception;
+namespace RetailCrm\Api\Exception\Client;
 
-use Exception;
+use RetailCrm\Api\Exception\ClientException;
 
 /**
  * Class HandlerException
@@ -17,6 +17,6 @@ use Exception;
  * @category HandlerException
  * @package  RetailCrm\Api\Exception
  */
-class HandlerException extends Exception
+class HandlerException extends ClientException
 {
 }

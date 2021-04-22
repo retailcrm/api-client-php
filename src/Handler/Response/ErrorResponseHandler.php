@@ -9,7 +9,6 @@
 
 namespace RetailCrm\Api\Handler\Response;
 
-use RetailCrm\Api\Exception\ApiException;
 use RetailCrm\Api\Model\Response\ErrorResponse;
 use RetailCrm\Api\Model\ResponseData;
 
@@ -27,7 +26,7 @@ class ErrorResponseHandler extends AbstractResponseHandler
     protected function handleResponse(ResponseData $responseData)
     {
         if ($responseData->response->getStatusCode() >= 400) {
-            throw new ApiException(
+            throw $this->apiExceptionFactory->createException(
                 $this->unmarshalBody($responseData->response, ErrorResponse::class),
                 $responseData->response->getStatusCode()
             );

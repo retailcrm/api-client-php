@@ -10,7 +10,7 @@
 namespace RetailCrm\Api\Component\Transformer;
 
 use Psr\Http\Message\RequestInterface as PsrRequestInterface;
-use RetailCrm\Api\Exception\HandlerException;
+use RetailCrm\Api\Exception\Client\HandlerException;
 use RetailCrm\Api\Interfaces\HandlerInterface;
 use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Interfaces\RequestTransformerInterface;
@@ -49,7 +49,7 @@ class RequestTransformer implements RequestTransformerInterface
      * @param \RetailCrm\Api\Interfaces\RequestInterface|null $request
      *
      * @return \Psr\Http\Message\RequestInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
      */
     public function createPsrRequest(
         string $method,

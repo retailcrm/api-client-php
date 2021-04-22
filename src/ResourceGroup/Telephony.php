@@ -69,11 +69,15 @@ class Telephony extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Telephony\TelephonyCallEventRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Telephony\CallEventResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function callEvent(TelephonyCallEventRequest $request): CallEventResponse
     {
@@ -135,11 +139,15 @@ class Telephony extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Telephony\TelephonyCallsUploadRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Telephony\CallsUploadResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function callsUpload(TelephonyCallsUploadRequest $request): CallsUploadResponse
     {
@@ -192,11 +200,15 @@ class Telephony extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Telephony\TelephonyManagerRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Telephony\ManagerResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function manager(TelephonyManagerRequest $request): ManagerResponse
     {

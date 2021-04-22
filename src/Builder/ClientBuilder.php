@@ -20,7 +20,8 @@ use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Client;
 use RetailCrm\Api\Component\Transformer\RequestTransformer;
 use RetailCrm\Api\Component\Transformer\ResponseTransformer;
-use RetailCrm\Api\Exception\BuilderException;
+use RetailCrm\Api\Exception\Client\BuilderException;
+use RetailCrm\Api\Factory\ApiExceptionFactory;
 use RetailCrm\Api\Factory\RequestPipelineFactory;
 use RetailCrm\Api\Factory\ResponsePipelineFactory;
 use RetailCrm\Api\Interfaces\BuilderInterface;
@@ -68,6 +69,9 @@ class ClientBuilder implements BuilderInterface
 
     /** @var \Psr\Http\Message\UriFactoryInterface|null */
     private $uriFactory;
+
+    /** @var \RetailCrm\Api\Factory\ApiExceptionFactory|null */
+    private $apiExceptionFactory;
 
     /**
      * API URL. Looks like this: "https://test.retailcrm.pro/"
@@ -255,7 +259,7 @@ class ClientBuilder implements BuilderInterface
     /**
      * Check if builder is ready to build a Client instance.
      *
-     * @throws \RetailCrm\Api\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
     private function validateBuilder(): void
     {
@@ -275,7 +279,7 @@ class ClientBuilder implements BuilderInterface
      * Builds RequestTransformer with default pipeline and authenticator.
      *
      * @return \RetailCrm\Api\Component\Transformer\RequestTransformer
-     * @throws \RetailCrm\Api\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
     private function buildRequestTransformer(): RequestTransformer
     {
@@ -308,7 +312,7 @@ class ClientBuilder implements BuilderInterface
      * Builds ResponseTransformer.
      *
      * @return \RetailCrm\Api\Component\Transformer\ResponseTransformer
-     * @throws \RetailCrm\Api\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
     private function buildResponseTransformer(): ResponseTransformer
     {
@@ -319,8 +323,13 @@ class ClientBuilder implements BuilderInterface
             );
         }
 
-        return new ResponseTransformer(
-            ResponsePipelineFactory::createDefaultPipeline($this->formEncoder->getSerializer())
-        );
+        if (null === $this->apiExceptionFactory) {
+            $this->apiExceptionFactory = new ApiExceptionFactory();
+        }
+
+        return new ResponseTransformer(ResponsePipelineFactory::createDefaultPipeline(
+            $this->formEncoder->getSerializer(),
+            $this->apiExceptionFactory
+        ));
     }
 }

@@ -83,11 +83,15 @@ class Customers extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Customers\CustomersRequest|null $request
      *
      * @return \RetailCrm\Api\Model\Response\Customers\CustomersResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function list(?CustomersRequest $request = null): CustomersResponse
     {
@@ -143,11 +147,15 @@ class Customers extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function combine(CustomersCombineRequest $request): SuccessResponse
     {
@@ -229,11 +237,15 @@ class Customers extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Customers\CustomersCreateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\IdResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function create(CustomersCreateRequest $request): IdResponse
     {
@@ -286,11 +298,15 @@ class Customers extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Customers\CustomersFixExternalIdsRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function fixExternalIds(CustomersFixExternalIdsRequest $request): SuccessResponse
     {
@@ -345,11 +361,15 @@ class Customers extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest|null $request
      *
      * @return \RetailCrm\Api\Model\Response\Customers\CustomersHistoryResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function history(?CustomersHistoryRequest $request = null): CustomersHistoryResponse
     {
@@ -406,11 +426,15 @@ class Customers extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest|null $request
      *
      * @return \RetailCrm\Api\Model\Response\Customers\CustomerNotesResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function notes(?CustomersNotesRequest $request = null): CustomerNotesResponse
     {
@@ -467,11 +491,15 @@ class Customers extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\IdResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function notesCreate(CustomersNotesCreateRequest $request): IdResponse
     {
@@ -515,11 +543,15 @@ class Customers extends AbstractApiResourceGroup
      * @param int $id
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function notesDelete(int $id): SuccessResponse
     {
@@ -604,11 +636,15 @@ class Customers extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Customers\CustomersUploadRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Customers\CustomersUploadResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function upload(CustomersUploadRequest $request): CustomersUploadResponse
     {
@@ -660,11 +696,15 @@ class Customers extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\BySiteRequest|null $request
      *
      * @return \RetailCrm\Api\Model\Response\Customers\CustomersGetResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function get($identifier, ?BySiteRequest $request = null): CustomersGetResponse
     {
@@ -721,11 +761,15 @@ class Customers extends AbstractApiResourceGroup
      * @param \RetailCrm\Api\Model\Request\Customers\CustomersEditRequest $request
      *
      * @return \RetailCrm\Api\Model\Response\Customers\CustomersEditResponse
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     public function edit($identifier, CustomersEditRequest $request): CustomersEditResponse
     {

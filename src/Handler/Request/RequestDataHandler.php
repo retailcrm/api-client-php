@@ -11,7 +11,7 @@ namespace RetailCrm\Api\Handler\Request;
 
 use Psr\Http\Message\StreamFactoryInterface;
 use RetailCrm\Api\Enum\RequestMethod;
-use RetailCrm\Api\Exception\HandlerException;
+use RetailCrm\Api\Exception\Client\HandlerException;
 use RetailCrm\Api\Handler\AbstractHandler;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Model\RequestData;
@@ -53,7 +53,7 @@ class RequestDataHandler extends AbstractHandler
      * @param mixed $item
      *
      * @return mixed|null
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
      *
      * @SuppressWarnings(PHPMD.ElseExpression)
      */

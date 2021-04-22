@@ -9,10 +9,13 @@
 
 namespace RetailCrm\Api\ResourceGroup;
 
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Client\NetworkExceptionInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Api\Exception\Client\HttpClientException;
 use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface;
@@ -69,18 +72,6 @@ abstract class AbstractApiResourceGroup
     }
 
     /**
-     * Returns route with base URI.
-     *
-     * @param string $route
-     *
-     * @return string
-     */
-    protected function route(string $route): string
-    {
-        return sprintf('%s/%s', $this->baseUrl, $route);
-    }
-
-    /**
      * Sends request to provided route with provided method and body, returns response of provided type.
      * Request will be put into GET parameters or into POST form-data (depends on method).
      *
@@ -96,11 +87,15 @@ abstract class AbstractApiResourceGroup
      * @param string                                          $type
      *
      * @return \RetailCrm\Api\Interfaces\ResponseInterface
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \Psr\Http\Client\NetworkExceptionInterface
-     * @throws \Psr\Http\Client\RequestExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
     protected function sendRequest(
         string $method,
@@ -125,7 +120,15 @@ abstract class AbstractApiResourceGroup
             ));
         }
 
-        $psrResponse = $this->httpClient->sendRequest($psrRequest);
+        try {
+            $psrResponse = $this->httpClient->sendRequest($psrRequest);
+        } catch (ClientExceptionInterface | NetworkExceptionInterface $exception) {
+            throw new HttpClientException(
+                sprintf('HTTP client error: %s', $exception->getMessage()),
+                $exception->getCode(),
+                $exception
+            );
+        }
 
         if ($this->logger instanceof LoggerInterface && !($this->logger instanceof NullLogger)) {
             $this->logger->debug(sprintf(
@@ -136,5 +139,17 @@ abstract class AbstractApiResourceGroup
         }
 
         return $this->responseTransformer->createResponse($method, $psrRequest->getUri(), $psrResponse, $type);
+    }
+
+    /**
+     * Returns route with base URI.
+     *
+     * @param string $route
+     *
+     * @return string
+     */
+    protected function route(string $route): string
+    {
+        return sprintf('%s/%s', $this->baseUrl, $route);
     }
 }

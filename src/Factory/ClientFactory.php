@@ -14,7 +14,7 @@ use RetailCrm\Api\Builder\ClientBuilder;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
 use RetailCrm\Api\Client;
 use RetailCrm\Api\Component\Transformer\ResponseTransformer;
-use RetailCrm\Api\Exception\BuilderException;
+use RetailCrm\Api\Exception\Client\BuilderException;
 use RetailCrm\Api\Handler\Request\HeaderAuthenticatorHandler;
 use RetailCrm\Api\Interfaces\ClientFactoryInterface;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
@@ -58,6 +58,9 @@ class ClientFactory implements ClientFactoryInterface
     /** @var \RetailCrm\Api\Interfaces\ResponseTransformerInterface|null */
     private $responseTransformer;
 
+    /** @var \RetailCrm\Api\Factory\ApiExceptionFactory|null */
+    private $apiExceptionFactory;
+
     /**
      * Sets cache directory which will be used to store metadata cache.
      *
@@ -91,7 +94,7 @@ class ClientFactory implements ClientFactoryInterface
      * @param string $apiKey
      *
      * @return \RetailCrm\Api\Client
-     * @throws \RetailCrm\Api\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
     public function createClient(string $apiUrl, string $apiKey): Client
     {
@@ -114,7 +117,7 @@ class ClientFactory implements ClientFactoryInterface
     /**
      * Builds FormEncoder instance.
      *
-     * @throws \RetailCrm\Api\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
     private function buildFormEncoder(): FormEncoderInterface
     {
@@ -135,7 +138,7 @@ class ClientFactory implements ClientFactoryInterface
      * Builds ResponseTransformer instance.
      *
      * @return \RetailCrm\Api\Interfaces\ResponseTransformerInterface
-     * @throws \RetailCrm\Api\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
     private function buildResponseTransformer(): ResponseTransformerInterface
     {
@@ -143,8 +146,13 @@ class ClientFactory implements ClientFactoryInterface
             throw new BuilderException('FormEncoder must exist to create ResponseTransformer.');
         }
 
-        return new ResponseTransformer(
-            ResponsePipelineFactory::createDefaultPipeline($this->formEncoder->getSerializer())
-        );
+        if (null === $this->apiExceptionFactory) {
+            $this->apiExceptionFactory = new ApiExceptionFactory();
+        }
+
+        return new ResponseTransformer(ResponsePipelineFactory::createDefaultPipeline(
+            $this->formEncoder->getSerializer(),
+            $this->apiExceptionFactory
+        ));
     }
 }

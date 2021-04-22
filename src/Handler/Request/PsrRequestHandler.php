@@ -13,7 +13,7 @@ use InvalidArgumentException;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use RetailCrm\Api\Enum\RequestMethod;
-use RetailCrm\Api\Exception\HandlerException;
+use RetailCrm\Api\Exception\Client\HandlerException;
 use RetailCrm\Api\Handler\AbstractHandler;
 use RetailCrm\Api\Model\RequestData;
 
@@ -60,7 +60,7 @@ class PsrRequestHandler extends AbstractHandler
      * @param mixed $item
      *
      * @return mixed|null
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
      */
     public function handle($item)
     {

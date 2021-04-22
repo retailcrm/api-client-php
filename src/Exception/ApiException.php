@@ -21,21 +21,10 @@ use Throwable;
  * @category ApiException
  * @package  RetailCrm\Api\Exception
  */
-class ApiException extends Exception implements ApiExceptionInterface
+abstract class ApiException extends Exception implements ApiExceptionInterface
 {
-    /** @var string[] */
-    private $errorMessagesMapping = [
-        '"apiKey" is missing.' => self::MISSING_CREDENTIALS,
-        'Account does not exist.' => self::ACCOUNT_DOES_NOT_EXIST,
-        'Errors in the entity format' => self::VALIDATION_ERROR,
-        'Validation error' => self::VALIDATION_ERROR
-    ];
-
     /** @var \RetailCrm\Api\Model\Response\ErrorResponse */
     private $response;
-
-    /** @var string */
-    private $errorType;
 
     /**
      * ApiException constructor.
@@ -46,8 +35,7 @@ class ApiException extends Exception implements ApiExceptionInterface
      */
     public function __construct(ResponseInterface $errorResponse, int $statusCode = 0, Throwable $previous = null)
     {
-        $this->response  = $errorResponse instanceof ErrorResponse ? $errorResponse : new ErrorResponse();
-        $this->errorType = $this->getErrorTypeByMessage($this->response->errorMsg ?? '');
+        $this->response = $errorResponse instanceof ErrorResponse ? $errorResponse : new ErrorResponse();
 
         parent::__construct(static::getErrorMessage($this->response), $statusCode, $previous);
     }
@@ -73,53 +61,29 @@ class ApiException extends Exception implements ApiExceptionInterface
     }
 
     /**
-     * Returns error type.
-     *
-     * @return string
-     */
-    public function getErrorType(): string
-    {
-        return $this->errorType;
-    }
-
-    /**
      * @return string
      */
     public function __toString(): string
     {
-        $base = parent::__toString();
+        $base = sprintf(
+            "API Exception with message '%s' in %s:%d\nResponse status code: %d\n",
+            $this->getMessage(),
+            $this->getFile(),
+            $this->getLine(),
+            $this->getStatusCode()
+        );
 
         if (count($this->getErrorResponse()->errors) > 0) {
             $errors = [];
 
             foreach ($this->getErrorResponse()->errors as $key => $error) {
-                $errors[] = sprintf('%s: %s', $key, $error);
+                $errors[] = sprintf(' - %s: %s', $key, $error);
             }
 
-            $base .= ' Errors: [' . implode(', ', $errors) . ']';
+            $base .= sprintf("Errors:\n%s\n", implode(PHP_EOL, $errors));
         }
 
-        return $base;
-    }
-
-    /**
-     * Returns error type by error message.
-     *
-     * @param string $message
-     *
-     * @return string
-     */
-    private function getErrorTypeByMessage(string $message): string
-    {
-        if (array_key_exists($message, $this->errorMessagesMapping)) {
-            return $this->errorMessagesMapping[$message];
-        }
-
-        if (preg_match('/^Parameter \'[\w\]\[\_\-]+\' is missing$/', $message)) {
-            return self::MISSING_PARAMETER;
-        }
-
-        return self::GENERIC_ERROR;
+        return trim($base . sprintf("Stacktrace: %s", $this->getTraceAsString()));
     }
 
     /**

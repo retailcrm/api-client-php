@@ -12,7 +12,7 @@ namespace RetailCrm\Api\Builder;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache;
 use RetailCrm\Api\Enum\CacheDirectories;
-use RetailCrm\Api\Exception\BuilderException;
+use RetailCrm\Api\Exception\Client\BuilderException;
 use RetailCrm\Api\Interfaces\BuilderInterface;
 
 /**
@@ -63,7 +63,7 @@ class FilesystemCacheBuilder implements BuilderInterface
     }
 
     /**
-     * @throws \RetailCrm\Api\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
     private function validateBuilder(): void
     {
@@ -75,7 +75,7 @@ class FilesystemCacheBuilder implements BuilderInterface
     /**
      * @param string $dir
      *
-     * @throws \RetailCrm\Api\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
     private function createDir(string $dir): void
     {

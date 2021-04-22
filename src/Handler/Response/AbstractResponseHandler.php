@@ -12,7 +12,8 @@ namespace RetailCrm\Api\Handler\Response;
 use Liip\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
 use RetailCrm\Api\Component\Utils;
-use RetailCrm\Api\Exception\HandlerException;
+use RetailCrm\Api\Exception\Client\HandlerException;
+use RetailCrm\Api\Factory\ApiExceptionFactory;
 use RetailCrm\Api\Handler\AbstractHandler;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailcrmResponse;
 use RetailCrm\Api\Model\ResponseData;
@@ -32,13 +33,20 @@ abstract class AbstractResponseHandler extends AbstractHandler
     private $serializer;
 
     /**
+     * @var \RetailCrm\Api\Factory\ApiExceptionFactory
+     */
+    protected $apiExceptionFactory;
+
+    /**
      * ResponseTransformer constructor.
      *
-     * @param \Liip\Serializer\SerializerInterface $serializer
+     * @param \Liip\Serializer\SerializerInterface       $serializer
+     * @param \RetailCrm\Api\Factory\ApiExceptionFactory $exceptionFactory
      */
-    public function __construct(SerializerInterface $serializer)
+    public function __construct(SerializerInterface $serializer, ApiExceptionFactory $exceptionFactory)
     {
-        $this->serializer = $serializer;
+        $this->serializer          = $serializer;
+        $this->apiExceptionFactory = $exceptionFactory;
     }
 
     /**
@@ -60,7 +68,7 @@ abstract class AbstractResponseHandler extends AbstractHandler
      * @param mixed $item
      *
      * @return mixed|null
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
      */
     protected function next($item)
     {
@@ -72,7 +80,7 @@ abstract class AbstractResponseHandler extends AbstractHandler
      * @param string                              $type
      *
      * @return RetailcrmResponse
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
      */
     protected function unmarshalBody(ResponseInterface $response, string $type): RetailcrmResponse
     {
@@ -89,7 +97,7 @@ abstract class AbstractResponseHandler extends AbstractHandler
      * @param \RetailCrm\Api\Model\ResponseData $responseData
      *
      * @return mixed
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
     abstract protected function handleResponse(ResponseData $responseData);

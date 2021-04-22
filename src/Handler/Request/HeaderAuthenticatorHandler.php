@@ -39,7 +39,7 @@ class HeaderAuthenticatorHandler extends AbstractHandler
      * @param mixed $item
      *
      * @return mixed|null
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
      */
     public function handle($item)
     {

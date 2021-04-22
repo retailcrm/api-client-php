@@ -51,7 +51,7 @@ class VerifyModelsCommand extends AbstractModelsProcessorCommand
             return 0;
         }
 
-        $io->error("Outdated models! Run \"bin/console models:generate\" to fix that.");
+        $io->error("Outdated models! Run \"models:generate\" command to fix that.");
         return -1;
     }
 }

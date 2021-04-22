@@ -36,4 +36,7 @@
   <logging>
     <junit outputFile="test-report.xml"/>
   </logging>
+  <php>
+    <ini name="memory_limit" value="4G" />
+  </php>
 </phpunit>

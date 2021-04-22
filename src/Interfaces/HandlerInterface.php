@@ -23,7 +23,8 @@ interface HandlerInterface
      * @param mixed $item
      *
      * @return mixed
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
     public function handle($item);
 

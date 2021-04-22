@@ -7,9 +7,9 @@
  * @package  RetailCrm\Api\Exception
  */
 
-namespace RetailCrm\Api\Exception;
+namespace RetailCrm\Api\Exception\Client;
 
-use Exception;
+use RetailCrm\Api\Exception\ClientException;
 use Throwable;
 
 /**
@@ -18,7 +18,7 @@ use Throwable;
  * @category BuilderException
  * @package  RetailCrm\Api\Exception
  */
-class BuilderException extends Exception
+class BuilderException extends ClientException
 {
     /** @var string[] */
     private $invalidArguments;

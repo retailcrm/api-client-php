@@ -36,7 +36,7 @@ interface ResponseTransformerInterface
      *
      * @return RetailCrmResponse
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Exception\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
      */
     public function createResponse(
         string $method,

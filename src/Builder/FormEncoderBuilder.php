@@ -97,7 +97,7 @@ class FormEncoderBuilder implements BuilderInterface
     /**
      * Builds cache if needed.
      *
-     * @throws \RetailCrm\Api\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
     private function buildCache(): void
     {

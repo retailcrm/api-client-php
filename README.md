@@ -85,96 +85,12 @@ The general rules of the Client design are:
 
 ### Examples
 
-Let's take look at a complete example of the Client usage. Here we fetch the filtered orders data and print it out:
+Let's take a look at examples. That's how you can create a new order:
 
 ```php
 <?php
 
 use Psr\Http\Client\ClientExceptionInterface;
-use Psr\Http\Client\NetworkExceptionInterface;
-use Psr\Http\Client\RequestExceptionInterface;
-use RetailCrm\Api\Exception\HandlerException;
-use RetailCrm\Api\Factory\SimpleClientFactory;
-use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
-use RetailCrm\Api\Model\Filter\Orders\OrderFilter;
-use RetailCrm\Api\Model\Request\Orders\OrdersRequest;
-
-$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
-
-$request              = new OrdersRequest();
-$request->filter      = new OrderFilter();
-$request->filter->ids = [7141];
-
-try {
-    $response = $client->orders->list($request);
-} catch (NetworkExceptionInterface $exception) {
-    echo 'Network error: ' . $exception->getMessage();
-    exit(-1);
-} catch (RequestExceptionInterface $exception) {
-    echo 'Attempt to send malformed request: ' . $exception->getMessage();
-    exit(-1);
-} catch (ClientExceptionInterface $exception) {
-    echo 'Unable to send HTTP request or parse response: ' . $exception->getMessage();
-    exit(-1);
-} catch (HandlerException $exception) {
-    echo 'Error while trying to prepare request: ' . $exception->getMessage();
-    exit(-1);
-} catch (ApiExceptionInterface $exception) {
-    echo sprintf(
-        'Error from RetailCRM API (status code: %d): %s',
-        $exception->getStatusCode(),
-        $exception->getMessage()
-    );
-
-    if (count($exception->getErrorResponse()->errors) > 0) {
-        echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
-    }
-
-    exit(-1);
-}
-
-foreach ($response->orders as $order) {
-    printf("Order ID: %d\n", $order->id);
-    printf("First name: %s\n", $order->firstName);
-    printf("Last name: %s\n", $order->lastName);
-    printf("Patronymic: %s\n", $order->patronymic);
-    printf("Phone #1: %s\n", $order->phone);
-    printf("Phone #2: %s\n", $order->additionalPhone);
-    printf("E-Mail: %s\n", $order->email);
-
-    if ($order->customer instanceof CustomerCorporate) {
-        echo "Customer type: corporate\n";
-    } else {
-        echo "Customer type: individual\n";
-    }
-
-    foreach ($order->items as $item) {
-        echo PHP_EOL;
-
-        printf("Product name: %s\n", $item->productName);
-        printf("Quantity: %d\n", $item->quantity);
-        printf("Initial price: %f\n", $item->initialPrice);
-    }
-
-    echo PHP_EOL;
-
-    printf("Discount: %f\n", $order->discountManualAmount);
-    printf("Total: %f\n", $order->totalSumm);
-
-    echo PHP_EOL;
-}
-```
-
-That's how you can create an order:
-
-```php
-<?php
-
-use Psr\Http\Client\ClientExceptionInterface;
-use Psr\Http\Client\NetworkExceptionInterface;
-use Psr\Http\Client\RequestExceptionInterface;
-use RetailCrm\Api\Exception\HandlerException;
 use RetailCrm\Api\Enum\CountryCodeIso3166;
 use RetailCrm\Api\Enum\Customers\CustomerType;
 use RetailCrm\Api\Factory\SimpleClientFactory;
@@ -260,29 +176,12 @@ $request->site  = 'moysklad';
 
 try {
     $response = $client->orders->create($request);
-} catch (NetworkExceptionInterface $exception) {
-    echo 'Network error: ' . $exception->getMessage();
-    exit(-1);
-} catch (RequestExceptionInterface $exception) {
-    echo 'Attempt to send malformed request: ' . $exception->getMessage();
+} catch (ApiExceptionInterface $exception) {
+    echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
     exit(-1);
 } catch (ClientExceptionInterface $exception) {
-    echo 'Unable to send HTTP request or parse response: ' . $exception->getMessage();
-    exit(-1);
-} catch (HandlerException $exception) {
-    echo 'Error while trying to prepare request: ' . $exception->getMessage();
-    exit(-1);
-} catch (ApiExceptionInterface $exception) {
-    echo sprintf(
-        'Error from RetailCRM API (status code: %d): %s',
-        $exception->getStatusCode(),
-        $exception->getMessage()
-    );
-
-    if (count($exception->getErrorResponse()->errors) > 0) {
-        echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
-    }
-
+    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
+    echo $exception->getTraceAsString();
     exit(-1);
 }
 
@@ -293,7 +192,165 @@ printf(
 );
 ```
 
-These examples contain too many exception handlers, but it is intentional (in other words, for academic purposes). You can safely assume that `ApiExceptionInterface` is an error from the API, and any other exception is a runtime one or network one (you can filter out network exceptions by using PSR-18 documentation).
+That's how you can fetch the orders list:
+
+```php
+<?php
+
+use Psr\Http\Client\ClientExceptionInterface;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+try {
+    $response = $client->orders->list();
+} catch (ApiExceptionInterface $exception) {
+    echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
+    exit(-1);
+} catch (ClientExceptionInterface $exception) {
+    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
+    echo $exception->getTraceAsString();
+    exit(-1);
+}
+
+foreach ($response->orders as $order) {
+    printf("Order ID: %d\n", $order->id);
+    printf("First name: %s\n", $order->firstName);
+    printf("Last name: %s\n", $order->lastName);
+    printf("Patronymic: %s\n", $order->patronymic);
+    printf("Phone #1: %s\n", $order->phone);
+    printf("Phone #2: %s\n", $order->additionalPhone);
+    printf("E-Mail: %s\n", $order->email);
+
+    if ($order->customer instanceof CustomerCorporate) {
+        echo "Customer type: corporate\n";
+    } else {
+        echo "Customer type: individual\n";
+    }
+
+    foreach ($order->items as $item) {
+        echo PHP_EOL;
+
+        printf("Product name: %s\n", $item->productName);
+        printf("Quantity: %d\n", $item->quantity);
+        printf("Initial price: %f\n", $item->initialPrice);
+    }
+
+    echo PHP_EOL;
+
+    printf("Discount: %f\n", $order->discountManualAmount);
+    printf("Total: %f\n", $order->totalSumm);
+
+    echo PHP_EOL;
+}
+```
+
+The error handling in the examples above are good enough for the real production usage. You can safely assume that `ApiExceptionInterface` is an error from the API, and `ClientExceptionInterface` is a client error (e.g. network error or any runtime error, use `HttpClientException` to catch only PSR-18 client errors). However, you can implement more complex error handling if you want.
+Let's take look at a complete example of the Client usage with error handling. Here we fetch the filtered orders data and print it out:
+
+```php
+<?php
+
+use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\NetworkExceptionInterface;
+use Psr\Http\Client\RequestExceptionInterface;
+use RetailCrm\Api\Exception\Api\AccountDoesNotExistException;
+use RetailCrm\Api\Exception\Api\ApiErrorException;
+use RetailCrm\Api\Exception\Api\MissingCredentialsException;
+use RetailCrm\Api\Exception\Api\MissingParameterException;
+use RetailCrm\Api\Exception\Api\ValidationException;
+use RetailCrm\Api\Exception\Client\HandlerException;
+use RetailCrm\Api\Exception\Client\HttpClientException;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
+use RetailCrm\Api\Model\Filter\Orders\OrderFilter;
+use RetailCrm\Api\Model\Request\Orders\OrdersRequest;
+use Throwable;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$request              = new OrdersRequest();
+$request->filter      = new OrderFilter();
+$request->filter->ids = [7141];
+
+try {
+    $response = $client->orders->list($request);
+} catch (HandlerException $exception) {
+    echo 'Error while trying to prepare request: ' . $exception->getMessage();
+    exit(-1);
+} catch (HttpClientException $exception) {
+    if ($exception->getPrevious() instanceof NetworkExceptionInterface) {
+        echo 'Network error: ' . $exception->getMessage();
+        exit(-1);
+    }
+    
+    if ($exception->getPrevious() instanceof RequestExceptionInterface) {
+        echo 'Invalid request: ' . $exception->getMessage();
+        exit(-1);
+    }
+    
+    if ($exception->getPrevious() instanceof ClientExceptionInterface) {
+        echo 'HTTP client exception: ' . $exception->getMessage();
+        exit(-1);
+    }
+} catch (AccountDoesNotExistException | MissingCredentialsException | MissingParameterException $exception) {
+    echo $exception->getMessage();
+    exit(-1);
+} catch (ValidationException $exception) {
+    echo 'Errors in fields:' . PHP_EOL;
+    
+    foreach ($exception->getErrorResponse()->errors as $field => $error) {
+        printf(" - %s: %s\n", $field, $error);
+    }
+    
+    exit(-1);
+} catch (ApiExceptionInterface | ApiErrorException $exception) {
+    echo (string) $exception; // Every ApiException implements __toString() method
+    exit(-1);
+} catch (ClientExceptionInterface $exception) {
+    echo 'Unknown client exception: ' . $exception->getMessage() . PHP_EOL;
+    echo $exception->getTraceAsString();
+    exit(-1);
+} catch (Throwable $throwable) {
+    echo 'Unknown runtime exception: ' . $throwable->getMessage() . PHP_EOL;
+    echo $throwable->getTraceAsString();
+    exit(-1);
+}
+
+foreach ($response->orders as $order) {
+    printf("Order ID: %d\n", $order->id);
+    printf("First name: %s\n", $order->firstName);
+    printf("Last name: %s\n", $order->lastName);
+    printf("Patronymic: %s\n", $order->patronymic);
+    printf("Phone #1: %s\n", $order->phone);
+    printf("Phone #2: %s\n", $order->additionalPhone);
+    printf("E-Mail: %s\n", $order->email);
+
+    if ($order->customer instanceof CustomerCorporate) {
+        echo "Customer type: corporate\n";
+    } else {
+        echo "Customer type: individual\n";
+    }
+
+    foreach ($order->items as $item) {
+        echo PHP_EOL;
+
+        printf("Product name: %s\n", $item->productName);
+        printf("Quantity: %d\n", $item->quantity);
+        printf("Initial price: %f\n", $item->initialPrice);
+    }
+
+    echo PHP_EOL;
+
+    printf("Discount: %f\n", $order->discountManualAmount);
+    printf("Total: %f\n", $order->totalSumm);
+
+    echo PHP_EOL;
+}
+```
 
 ## Notes
 
