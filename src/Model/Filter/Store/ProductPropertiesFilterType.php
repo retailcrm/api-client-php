@@ -42,4 +42,12 @@ class ProductPropertiesFilterType
      * @Form\SerializedName("sites")
      */
     public $sites;
+
+    /**
+     * @var int[]
+     *
+     * @Form\Type("int[]")
+     * @Form\SerializedName("catalogs")
+     */
+    public $catalogs;
 }

@@ -16,9 +16,51 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  *
  * @category DeliveryType
  * @package  RetailCrm\Api\Model\Entity\References
+ *
+ * @SuppressWarnings(PHPMD.LongVariable)
  */
 class DeliveryType
 {
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("isDynamicCostCalculation")
+     */
+    public $isDynamicCostCalculation;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("isAutoCostCalculation")
+     */
+    public $isAutoCostCalculation;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("isAutoNetCostCalculation")
+     */
+    public $isAutoNetCostCalculation;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("isCostDependsOnRegionAndWeightAndSum")
+     */
+    public $isCostDependsOnRegionAndWeightAndSum;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("isCostDependsOnDateTime")
+     */
+    public $isCostDependsOnDateTime;
+
     /**
      * @var string
      *

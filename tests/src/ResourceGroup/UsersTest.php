@@ -167,7 +167,9 @@ EOF;
           "code": "director"
         }
       ],
-      "mgUserId": 305
+      "mgUserId": 305,
+      "senderEmail": "test@example.com",
+      "senderName": "test"
     }
   ]
 }
@@ -219,7 +221,9 @@ EOF;
         "code": "director"
       }
     ],
-    "mgUserId": 305
+    "mgUserId": 305,
+    "senderEmail": "test@example.com",
+    "senderName": "test"
   }
 }
 EOF;

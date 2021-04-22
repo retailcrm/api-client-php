@@ -139,4 +139,36 @@ class Site
      * @JMS\SerializedName("countryIso")
      */
     public $countryIso;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("senderEmail")
+     */
+    public $senderEmail;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("senderName")
+     */
+    public $senderName;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("catalogId")
+     */
+    public $catalogId;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("isCatalogMainSite")
+     */
+    public $isCatalogMainSite;
 }

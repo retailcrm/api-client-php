@@ -678,6 +678,11 @@ EOF;
   "success": true,
   "deliveryTypes": {
     "2": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка курьером",
       "code": "2",
       "active": true,
@@ -699,6 +704,11 @@ EOF;
       "defaultForCrm": false
     },
     "3": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Самовывоз",
       "code": "3",
       "active": true,
@@ -710,7 +720,8 @@ EOF;
         "13",
         "14",
         "15",
-        "16"
+        "16",
+        "test-payment-integration"
       ],
       "deliveryServices": [
 
@@ -718,6 +729,11 @@ EOF;
       "defaultForCrm": false
     },
     "8": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Самовывоз",
       "code": "8",
       "active": false,
@@ -726,7 +742,8 @@ EOF;
       "paymentTypes": [
         "13",
         "14",
-        "16"
+        "16",
+        "test-payment-integration"
       ],
       "deliveryServices": [
 
@@ -734,6 +751,11 @@ EOF;
       "defaultForCrm": false
     },
     "9": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Укрпочтой",
       "code": "9",
       "active": false,
@@ -750,6 +772,11 @@ EOF;
       "defaultForCrm": false
     },
     "10": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Вариант доставки не определен",
       "code": "10",
       "active": false,
@@ -764,6 +791,11 @@ EOF;
       "defaultForCrm": false
     },
     "11": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Курьером по Киеву",
       "code": "11",
       "active": true,
@@ -779,6 +811,11 @@ EOF;
       "defaultForCrm": false
     },
     "12": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Автолюкс",
       "code": "12",
       "active": false,
@@ -793,6 +830,11 @@ EOF;
       "defaultForCrm": false
     },
     "13": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Интайм",
       "code": "13",
       "active": true,
@@ -807,6 +849,11 @@ EOF;
       "defaultForCrm": false
     },
     "15": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Деливери",
       "code": "15",
       "active": true,
@@ -821,6 +868,11 @@ EOF;
       "defaultForCrm": false
     },
     "16": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Почта России",
       "code": "16",
       "active": true,
@@ -840,6 +892,11 @@ EOF;
       "defaultForCrm": false
     },
     "583103": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Самовывоз InSales Тест",
       "code": "583103",
       "active": true,
@@ -862,6 +919,11 @@ EOF;
       "defaultForCrm": false
     },
     "651157": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "EMS Почта России InSales",
       "code": "651157",
       "active": true,
@@ -883,6 +945,11 @@ EOF;
       "defaultForCrm": false
     },
     "651158": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "СПСР Экспресс InSales",
       "code": "651158",
       "active": true,
@@ -904,6 +971,11 @@ EOF;
       "defaultForCrm": false
     },
     "1344511": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Название",
       "code": "1344511",
       "active": true,
@@ -920,6 +992,11 @@ EOF;
       "defaultForCrm": false
     },
     "1832810": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка в точки самовывоза",
       "code": "1832810",
       "active": true,
@@ -942,6 +1019,11 @@ EOF;
       "defaultForCrm": false
     },
     "1939924": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Test",
       "code": "1939924",
       "active": true,
@@ -957,6 +1039,11 @@ EOF;
       "defaultForCrm": false
     },
     "1960337": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Тест фиксированной стоимости",
       "code": "1960337",
       "active": true,
@@ -979,6 +1066,11 @@ EOF;
       "defaultForCrm": false
     },
     "1993015": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Тест1",
       "code": "1993015",
       "active": true,
@@ -1001,6 +1093,11 @@ EOF;
       "defaultForCrm": false
     },
     "1994098": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Тест интеграционной доставки",
       "code": "1994098",
       "active": true,
@@ -1023,6 +1120,11 @@ EOF;
       "defaultForCrm": false
     },
     "2014666": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Курьером",
       "code": "2014666",
       "active": true,
@@ -1045,6 +1147,11 @@ EOF;
       "defaultForCrm": false
     },
     "2058866": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Самовывоз из точки \"Точка продаж\"",
       "code": "2058866",
       "active": true,
@@ -1060,6 +1167,11 @@ EOF;
       "defaultForCrm": false
     },
     "2503367": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "67883",
       "code": "2503367",
       "active": true,
@@ -1082,6 +1194,11 @@ EOF;
       "defaultForCrm": false
     },
     "2508998": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "New: Доставка в точки самовывоза",
       "code": "2508998",
       "active": true,
@@ -1104,6 +1221,11 @@ EOF;
       "defaultForCrm": false
     },
     "iml-test": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "IML-test",
       "code": "iml-test",
       "active": false,
@@ -1122,41 +1244,12 @@ EOF;
       ],
       "defaultForCrm": false
     },
-    "dhl": {
-      "name": "DHL",
-      "code": "dhl",
-      "active": true,
-      "defaultCost": 0,
-      "defaultNetCost": 0,
-      "paymentTypes": [
-        "bank-card",
-        "bank-transfer",
-        "credit",
-        "cash",
-        "e-money"
-      ],
-      "integrationCode": "dhl-5bbde05af3c11",
-      "deliveryServices": [
-
-      ],
-      "defaultForCrm": false
-    },
-    "iml": {
-      "name": "IML",
-      "code": "iml",
-      "active": true,
-      "defaultCost": 0,
-      "defaultNetCost": 0,
-      "paymentTypes": [
-
-      ],
-      "integrationCode": "iml-1",
-      "deliveryServices": [
-
-      ],
-      "defaultForCrm": false
-    },
     "iml-1": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "iml-1",
       "code": "iml-1",
       "active": false,
@@ -1176,6 +1269,11 @@ EOF;
       "defaultForCrm": false
     },
     "boxberry-old": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Boxberry old",
       "code": "boxberry-old",
       "active": false,
@@ -1195,6 +1293,11 @@ EOF;
       "defaultForCrm": false
     },
     "hernya": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "hernya",
       "code": "hernya",
       "active": false,
@@ -1215,6 +1318,11 @@ EOF;
       "defaultForCrm": false
     },
     "russian-post-online-analitika": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Почта России (Аналитика Онлайн)",
       "code": "russian-post-online-analitika",
       "active": false,
@@ -1234,6 +1342,11 @@ EOF;
       "defaultForCrm": false
     },
     "boxberry-old2": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Boxberry old2",
       "code": "boxberry-old2",
       "active": false,
@@ -1253,6 +1366,11 @@ EOF;
       "defaultForCrm": false
     },
     "glavpunkt-test": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Главпункт",
       "code": "glavpunkt-test",
       "active": false,
@@ -1273,28 +1391,12 @@ EOF;
       "defaultForCrm": false,
       "vatRate": "20.00"
     },
-    "courier": {
-      "name": "Доставка курьером",
-      "code": "courier",
-      "active": true,
-      "defaultCost": 300,
-      "defaultNetCost": 0,
-      "paymentTypes": [
-        "cash",
-        "bank-card",
-        "bank-transfer",
-        "e-money",
-        "credit"
-      ],
-      "deliveryServices": [
-        "1",
-        "pvz-out2",
-        "pvz-out3"
-      ],
-      "defaultForCrm": false,
-      "vatRate": "10.50"
-    },
     "boxberry-symf4-local-test1-id6": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "boxberry-symf4-local-test1-id6",
       "code": "boxberry-symf4-local-test1-id6",
       "active": false,
@@ -1315,6 +1417,11 @@ EOF;
       "defaultForCrm": false
     },
     "boxberrys": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "BoxberryS",
       "code": "boxberrys",
       "active": false,
@@ -1335,6 +1442,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1571123788": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1571123788",
       "code": "dict-deliverytypes-1571123788",
       "active": false,
@@ -1349,6 +1461,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1575878849": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1575878849",
       "code": "dict-deliverytypes-1575878849",
       "active": false,
@@ -1363,6 +1480,11 @@ EOF;
       "defaultForCrm": false
     },
     "test2": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "test",
       "code": "test2",
       "active": true,
@@ -1381,6 +1503,11 @@ EOF;
       "vatRate": "none"
     },
     "iml-1-integra": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "iml-1-integra",
       "code": "iml-1-integra",
       "active": false,
@@ -1401,6 +1528,11 @@ EOF;
       "defaultForCrm": false
     },
     "peshkariki": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Пешкарики",
       "code": "peshkariki",
       "active": false,
@@ -1420,6 +1552,11 @@ EOF;
       "defaultForCrm": false
     },
     "guru": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Dostavka.GURU",
       "code": "guru",
       "active": false,
@@ -1439,6 +1576,11 @@ EOF;
       "defaultForCrm": false
     },
     "iml-2-integra": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "iml-2-integra",
       "code": "iml-2-integra",
       "active": false,
@@ -1456,6 +1598,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1571123849": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1571123849",
       "code": "dict-deliverytypes-1571123849",
       "active": false,
@@ -1470,6 +1617,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1571124853": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1571124853",
       "code": "dict-deliverytypes-1571124853",
       "active": false,
@@ -1484,6 +1636,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1575878958": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1575878958",
       "code": "dict-deliverytypes-1575878958",
       "active": false,
@@ -1498,6 +1655,11 @@ EOF;
       "defaultForCrm": false
     },
     "boxberrys-1": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "BoxberryS",
       "code": "boxberrys-1",
       "active": false,
@@ -1516,21 +1678,32 @@ EOF;
       ],
       "defaultForCrm": false
     },
-    "dict-deliverytypes-1571124916": {
-      "name": "Bbbdict-deliverytypes-1571124916",
-      "code": "dict-deliverytypes-1571124916",
-      "active": false,
+    "iml": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "IML",
+      "code": "iml",
+      "active": true,
       "defaultCost": 0,
       "defaultNetCost": 0,
       "paymentTypes": [
 
       ],
+      "integrationCode": "iml-1",
       "deliveryServices": [
 
       ],
       "defaultForCrm": false
     },
     "dict-deliverytypes-1571134090": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1571134090",
       "code": "dict-deliverytypes-1571134090",
       "active": false,
@@ -1545,6 +1718,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1571134207": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1571134207",
       "code": "dict-deliverytypes-1571134207",
       "active": false,
@@ -1559,6 +1737,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1581413625": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1581413625",
       "code": "dict-deliverytypes-1581413625",
       "active": false,
@@ -1573,6 +1756,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1581413628": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1581413628",
       "code": "dict-deliverytypes-1581413628",
       "active": false,
@@ -1587,6 +1775,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-5e60fe6f05190": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-5e60fe6f05190",
       "active": false,
@@ -1602,6 +1795,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1581413632": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1581413632",
       "code": "dict-deliverytypes-1581413632",
       "active": false,
@@ -1616,6 +1814,11 @@ EOF;
       "defaultForCrm": false
     },
     "ems": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "EMS Почта России",
       "code": "ems",
       "active": true,
@@ -1633,6 +1836,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1581413636": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1581413636",
       "code": "dict-deliverytypes-1581413636",
       "active": false,
@@ -1647,6 +1855,11 @@ EOF;
       "defaultForCrm": false
     },
     "boxberry": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Boxberry-249",
       "code": "boxberry",
       "active": true,
@@ -1662,6 +1875,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1581413758": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1581413758",
       "code": "dict-deliverytypes-1581413758",
       "active": false,
@@ -1676,6 +1894,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1581413764": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1581413764",
       "code": "dict-deliverytypes-1581413764",
       "active": false,
@@ -1690,6 +1913,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1581413767": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1581413767",
       "code": "dict-deliverytypes-1581413767",
       "active": false,
@@ -1704,6 +1932,11 @@ EOF;
       "defaultForCrm": false
     },
     "dict-deliverytypes-1581413776": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Bbbdict-deliverytypes-1581413776",
       "code": "dict-deliverytypes-1581413776",
       "active": false,
@@ -1717,26 +1950,12 @@ EOF;
       ],
       "defaultForCrm": false
     },
-    "iml-double-156": {
-      "name": "IML-double-156",
-      "code": "iml-double-156",
-      "active": true,
-      "defaultCost": 0,
-      "defaultNetCost": 0,
-      "paymentTypes": [
-        "bank-card",
-        "bank-transfer",
-        "credit",
-        "cash",
-        "e-money"
-      ],
-      "integrationCode": "iml-156",
-      "deliveryServices": [
-
-      ],
-      "defaultForCrm": false
-    },
     "easyway": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "easyway",
       "code": "easyway",
       "active": true,
@@ -1756,6 +1975,11 @@ EOF;
       "defaultForCrm": false
     },
     "goods-order-packing": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Забор груза Goods",
       "code": "goods-order-packing",
       "active": false,
@@ -1775,6 +1999,11 @@ EOF;
       "defaultForCrm": false
     },
     "test": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Test",
       "code": "test",
       "active": true,
@@ -1790,6 +2019,11 @@ EOF;
       "vatRate": "18.00"
     },
     "ozon-seller-5f2432a06a903": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-5f2432a06a903",
       "active": false,
@@ -1828,6 +2062,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-5f2bc923ebb33": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-5f2bc923ebb33",
       "active": false,
@@ -1844,6 +2083,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-5f689f4509b2f": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-5f689f4509b2f",
       "active": false,
@@ -1890,6 +2134,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-228": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-228",
       "active": false,
@@ -1920,6 +2169,11 @@ EOF;
       "defaultForCrm": false
     },
     "dw-courierist": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "dw_courierist",
       "code": "dw-courierist",
       "active": false,
@@ -1940,6 +2194,11 @@ EOF;
       "vatRate": "none"
     },
     "dw-courierist123": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "dw_courierist123",
       "code": "dw-courierist123",
       "active": false,
@@ -1960,6 +2219,11 @@ EOF;
       "vatRate": "none"
     },
     "courierist1": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Курьерист доставка",
       "code": "courierist1",
       "active": false,
@@ -1976,6 +2240,11 @@ EOF;
       "vatRate": "none"
     },
     "dw-courierist1231212": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Курьерист доставка 111",
       "code": "dw-courierist1231212",
       "active": false,
@@ -1995,6 +2264,11 @@ EOF;
       "defaultForCrm": false
     },
     "cour": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Курьерист",
       "code": "cour",
       "active": false,
@@ -2015,6 +2289,11 @@ EOF;
       "vatRate": "none"
     },
     "apiship": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "ApiShip",
       "code": "apiship",
       "active": true,
@@ -2031,6 +2310,11 @@ EOF;
       "defaultForCrm": false
     },
     "dwboxberry": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "dw boxberry",
       "code": "dwboxberry",
       "active": true,
@@ -2050,6 +2334,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-5f9bfac6a9855": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-5f9bfac6a9855",
       "active": false,
@@ -2096,6 +2385,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-5f8fe602d193b": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-5f8fe602d193b",
       "active": false,
@@ -2142,6 +2436,11 @@ EOF;
       "defaultForCrm": false
     },
     "delivery-callback-check": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "delivery-callback-check",
       "code": "delivery-callback-check",
       "active": true,
@@ -2172,6 +2471,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller",
       "active": false,
@@ -2218,6 +2522,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-5f6affbcb5617": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-5f6affbcb5617",
       "active": false,
@@ -2264,6 +2573,11 @@ EOF;
       "defaultForCrm": false
     },
     "dw-boxberry": {
+      "isDynamicCostCalculation": true,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "dw_boxberry",
       "code": "dw-boxberry",
       "active": true,
@@ -2282,10 +2596,92 @@ EOF;
       ],
       "defaultForCrm": false
     },
+    "self-delivery": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Самовывоз ндс-20",
+      "code": "self-delivery",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+        "bank-card",
+        "bank-transfer",
+        "e-money",
+        "credit",
+        "cash",
+        "alfa-bank-payment",
+        "checkbox-payment",
+        "checkbox-payment-two",
+        "invoice-payment"
+      ],
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
+    "russian-post": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Почта России",
+      "code": "russian-post",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+        "bank-card",
+        "bank-transfer",
+        "e-money",
+        "credit",
+        "alfa-bank-payment",
+        "checkbox-payment",
+        "checkbox-payment-two",
+        "invoice-payment"
+      ],
+      "deliveryServices": [
+        "3"
+      ],
+      "defaultForCrm": false
+    },
+    "dhl": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "DHL",
+      "code": "dhl",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+        "bank-card",
+        "bank-transfer",
+        "credit",
+        "cash",
+        "e-money"
+      ],
+      "integrationCode": "dhl-5bbde05af3c11",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
     "ozon-seller-2": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-2",
-      "active": false,
+      "active": true,
       "defaultCost": 0,
       "defaultNetCost": 0,
       "description": "Доставка OZON",
@@ -2320,7 +2716,25 @@ EOF;
         "776106",
         "818241",
         "897285",
-        "442100"
+        "442100",
+        "test-mc-payment",
+        "test-mc-cashin",
+        "test-mc-prepayment",
+        "12",
+        "13",
+        "18",
+        "14",
+        "19",
+        "15",
+        "16",
+        "17",
+        "20",
+        "test-payment-integration",
+        "invoice-payment",
+        "alfa-bank-payment",
+        "checkbox-payment",
+        "checkbox-payment-two",
+        "wallete-one-payment-vog-old"
       ],
       "integrationCode": "ozon-seller-2",
       "deliveryServices": [
@@ -2328,68 +2742,12 @@ EOF;
       ],
       "defaultForCrm": false
     },
-    "self-delivery": {
-      "name": "Самовывоз ндс-20",
-      "code": "self-delivery",
-      "active": true,
-      "defaultCost": 0,
-      "defaultNetCost": 0,
-      "paymentTypes": [
-        "bank-card",
-        "bank-transfer",
-        "e-money",
-        "credit",
-        "cash",
-        "alfa-bank-payment",
-        "checkbox-payment",
-        "checkbox-payment-two",
-        "invoice-payment"
-      ],
-      "deliveryServices": [
-
-      ],
-      "defaultForCrm": false
-    },
-    "test-ma": {
-      "name": "Тестовая МА",
-      "code": "test-ma",
-      "active": true,
-      "defaultCost": 0,
-      "defaultNetCost": 0,
-      "paymentTypes": [
-        "bank-card",
-        "cash",
-        "bank-transfer"
-      ],
-      "integrationCode": "test-integration_70156",
-      "deliveryServices": [
-
-      ],
-      "defaultForCrm": false,
-      "vatRate": "20.00"
-    },
-    "russian-post": {
-      "name": "Почта России",
-      "code": "russian-post",
-      "active": true,
-      "defaultCost": 0,
-      "defaultNetCost": 0,
-      "paymentTypes": [
-        "bank-card",
-        "bank-transfer",
-        "e-money",
-        "credit",
-        "alfa-bank-payment",
-        "checkbox-payment",
-        "checkbox-payment-two",
-        "invoice-payment"
-      ],
-      "deliveryServices": [
-        "3"
-      ],
-      "defaultForCrm": false
-    },
     "ozon-seller-3": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-3",
       "active": false,
@@ -2436,6 +2794,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-5f9d10257668e": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-5f9d10257668e",
       "active": false,
@@ -2482,6 +2845,11 @@ EOF;
       "defaultForCrm": false
     },
     "servientrega-test": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Servientrega test",
       "code": "servientrega-test",
       "active": false,
@@ -2511,6 +2879,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery",
       "active": false,
@@ -2526,6 +2899,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-1": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-1",
       "active": false,
@@ -2541,6 +2919,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-2": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-2",
       "active": false,
@@ -2556,6 +2939,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-3": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-3",
       "active": false,
@@ -2571,6 +2959,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-4": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-4",
       "active": false,
@@ -2586,6 +2979,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-5": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-5",
       "active": false,
@@ -2601,6 +2999,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-6": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-6",
       "active": false,
@@ -2616,6 +3019,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-7": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-7",
       "active": false,
@@ -2631,6 +3039,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-8": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-8",
       "active": false,
@@ -2646,6 +3059,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-9": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-9",
       "active": false,
@@ -2661,6 +3079,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-10": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-10",
       "active": false,
@@ -2676,6 +3099,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-11": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-11",
       "active": false,
@@ -2691,6 +3119,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-12": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-12",
       "active": false,
@@ -2706,6 +3139,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-14": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-14",
       "active": false,
@@ -2721,6 +3159,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-13": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-13",
       "active": false,
@@ -2736,6 +3179,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-15": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-15",
       "active": false,
@@ -2751,6 +3199,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-16": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-16",
       "active": false,
@@ -2766,6 +3219,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-17": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-17",
       "active": false,
@@ -2781,6 +3239,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-18": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-18",
       "active": false,
@@ -2796,6 +3259,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-19": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-19",
       "active": false,
@@ -2811,6 +3279,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-20": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-20",
       "active": false,
@@ -2826,6 +3299,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-21": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-21",
       "active": false,
@@ -2841,6 +3319,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-22": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-22",
       "active": false,
@@ -2856,6 +3339,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-23": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-23",
       "active": false,
@@ -2871,6 +3359,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-28": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-28",
       "active": false,
@@ -2886,6 +3379,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-24": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-24",
       "active": false,
@@ -2901,6 +3399,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-25": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-25",
       "active": false,
@@ -2916,6 +3419,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-29": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-29",
       "active": false,
@@ -2931,6 +3439,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-32": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-32",
       "active": false,
@@ -2946,6 +3459,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-26": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-26",
       "active": false,
@@ -2961,6 +3479,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-27": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-27",
       "active": false,
@@ -2976,6 +3499,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-30": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-30",
       "active": false,
@@ -2991,6 +3519,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-31": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-31",
       "active": false,
@@ -3006,6 +3539,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-33": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-33",
       "active": false,
@@ -3021,6 +3559,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-34": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-34",
       "active": false,
@@ -3036,6 +3579,11 @@ EOF;
       "defaultForCrm": false
     },
     "serv-test": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "serv test",
       "code": "serv-test",
       "active": false,
@@ -3065,6 +3613,11 @@ EOF;
       "defaultForCrm": false
     },
     "boxberry-ma": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Boxberry Test MA",
       "code": "boxberry-ma",
       "active": false,
@@ -3084,6 +3637,11 @@ EOF;
       "defaultForCrm": false
     },
     "boxberry-fake": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Boxberry Fake",
       "code": "boxberry-fake",
       "active": true,
@@ -3103,6 +3661,11 @@ EOF;
       "defaultForCrm": false
     },
     "boxberry-fake2": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Boxberry Fake",
       "code": "boxberry-fake2",
       "active": true,
@@ -3122,6 +3685,11 @@ EOF;
       "defaultForCrm": false
     },
     "boxberry-ma-2": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Boxberry Test MA",
       "code": "boxberry-ma-2",
       "active": false,
@@ -3144,6 +3712,11 @@ EOF;
       "defaultForCrm": false
     },
     "boxberry-delivery-10": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Boxberry Test MA",
       "code": "boxberry-delivery-10",
       "active": true,
@@ -3163,6 +3736,11 @@ EOF;
       "defaultForCrm": false
     },
     "boxt": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "boxt",
       "code": "boxt",
       "active": false,
@@ -3179,17 +3757,18 @@ EOF;
       "vatRate": "none"
     },
     "boxt2": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "boxt2",
       "code": "boxt2",
       "active": true,
       "defaultCost": 50,
       "defaultNetCost": 0,
       "paymentTypes": [
-        "bank-card",
-        "bank-transfer",
-        "credit",
-        "cash",
-        "e-money"
+
       ],
       "integrationCode": "boxberry-9",
       "deliveryServices": [
@@ -3199,6 +3778,11 @@ EOF;
       "vatRate": "none"
     },
     "boxberry-throwaway-12": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Boxberry Throwaway",
       "code": "boxberry-throwaway-12",
       "active": true,
@@ -3217,7 +3801,55 @@ EOF;
       ],
       "defaultForCrm": false
     },
+    "dict-deliverytypes-1571124916": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Test Type",
+      "code": "dict-deliverytypes-1571124916",
+      "active": false,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+        "cash",
+        "bank-card",
+        "e-money",
+        "bank-transfer",
+        "credit"
+      ],
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
+    "boxberry-9": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "boxberry-9",
+      "code": "boxberry-9",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+
+      ],
+      "integrationCode": "boxberry-9",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
     "test-cour": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Тестовый курьерист",
       "code": "test-cour",
       "active": false,
@@ -3238,17 +3870,18 @@ EOF;
       "vatRate": "20.00"
     },
     "courierist-new-test": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "courierist-Pekar",
       "code": "courierist-new-test",
       "active": true,
       "defaultCost": 0,
       "defaultNetCost": 0,
       "paymentTypes": [
-        "bank-card",
-        "bank-transfer",
-        "credit",
-        "cash",
-        "e-money"
+
       ],
       "integrationCode": "courierist-10",
       "deliveryServices": [
@@ -3257,6 +3890,11 @@ EOF;
       "defaultForCrm": false
     },
     "courier-internal": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Курьером (свои курьеры)",
       "code": "courier-internal",
       "active": true,
@@ -3272,7 +3910,56 @@ EOF;
       ],
       "defaultForCrm": false
     },
+    "test-ma": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Тестовая МА",
+      "code": "test-ma",
+      "active": false,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+        "bank-card",
+        "cash",
+        "bank-transfer"
+      ],
+      "integrationCode": "test-integration_70156",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false,
+      "vatRate": "20.00"
+    },
+    "iml-double-156": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "IML-double-156",
+      "code": "iml-double-156",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+
+      ],
+      "integrationCode": "iml-156",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false,
+      "vatRate": "20.00"
+    },
     "sdek": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "СДЭК",
       "code": "sdek",
       "active": true,
@@ -3295,6 +3982,11 @@ EOF;
       "defaultTariffName": "Посылка дверь-дверь"
     },
     "yandex-beru-delivery-35": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-35",
       "active": false,
@@ -3310,6 +4002,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-36": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-36",
       "active": false,
@@ -3325,6 +4022,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-39": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-39",
       "active": false,
@@ -3340,6 +4042,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-37": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-37",
       "active": false,
@@ -3355,6 +4062,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-38": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-38",
       "active": false,
@@ -3370,6 +4082,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-40": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-40",
       "active": false,
@@ -3385,6 +4102,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-41": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-41",
       "active": false,
@@ -3400,6 +4122,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-42": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-42",
       "active": false,
@@ -3415,6 +4142,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-43": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-43",
       "active": false,
@@ -3430,6 +4162,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-44": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-44",
       "active": false,
@@ -3445,6 +4182,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-45": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-45",
       "active": false,
@@ -3460,6 +4202,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-46": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-46",
       "active": false,
@@ -3475,6 +4222,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-47": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-47",
       "active": false,
@@ -3490,6 +4242,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-48": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-48",
       "active": false,
@@ -3505,6 +4262,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-49": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-49",
       "active": false,
@@ -3520,6 +4282,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-50": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-50",
       "active": false,
@@ -3535,6 +4302,11 @@ EOF;
       "defaultForCrm": false
     },
     "yandex-beru-delivery-51": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-51",
       "active": false,
@@ -3550,6 +4322,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-5ff57fbceb6b2": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-5ff57fbceb6b2",
       "active": false,
@@ -3599,6 +4376,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-6023f9ca1d880": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-6023f9ca1d880",
       "active": false,
@@ -3659,6 +4441,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-5f9bff5857b35": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-5f9bff5857b35",
       "active": false,
@@ -3704,67 +4491,12 @@ EOF;
       ],
       "defaultForCrm": false
     },
-    "ozon-seller-6024d760b14f8": {
-      "name": "Доставка OZON",
-      "code": "ozon-seller-6024d760b14f8",
-      "active": false,
-      "defaultCost": 0,
-      "defaultNetCost": 0,
-      "description": "Доставка OZON",
-      "paymentTypes": [
-        "cash",
-        "bank-card",
-        "e-money",
-        "bank-transfer",
-        "credit",
-        "bonuses-sl",
-        "dict-paymenttypes-1571123795",
-        "dict-paymenttypes-1575878858",
-        "dict-paymenttypes-1571123853",
-        "dict-paymenttypes-1571124860",
-        "dict-paymenttypes-1575878963",
-        "dict-paymenttypes-1571124919",
-        "dict-paymenttypes-1571134100",
-        "dict-paymenttypes-1571134212",
-        "7",
-        "dict-paymenttypes-1581413638",
-        "dict-paymenttypes-1581413641",
-        "dict-paymenttypes-1581413645",
-        "dict-paymenttypes-1581413649",
-        "dict-paymenttypes-1581413768",
-        "dict-paymenttypes-1581413773",
-        "dict-paymenttypes-1581413777",
-        "dict-paymenttypes-1581413785",
-        "442099",
-        "555159",
-        "555161",
-        "776106",
-        "818241",
-        "897285",
-        "423361",
-        "442100",
-        "test-mc-payment",
-        "test-mc-cashin",
-        "test-mc-prepayment",
-        "12",
-        "13",
-        "18",
-        "14",
-        "19",
-        "15",
-        "16",
-        "17",
-        "20",
-        "checkbox-payment",
-        "checkbox-payment-two"
-      ],
-      "integrationCode": "ozon-seller-6024d760b14f8",
-      "deliveryServices": [
-
-      ],
-      "defaultForCrm": false
-    },
     "ozon-seller-5fda1144d3c1e": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-5fda1144d3c1e",
       "active": false,
@@ -3814,6 +4546,11 @@ EOF;
       "defaultForCrm": false
     },
     "ozon-seller-6023fbcea632c": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка OZON",
       "code": "ozon-seller-6023fbcea632c",
       "active": false,
@@ -3873,7 +4610,81 @@ EOF;
       ],
       "defaultForCrm": false
     },
+    "ozon-seller-6024d760b14f8": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Доставка OZON",
+      "code": "ozon-seller-6024d760b14f8",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "description": "Доставка OZON",
+      "paymentTypes": [
+        "cash",
+        "bank-card",
+        "e-money",
+        "bank-transfer",
+        "credit",
+        "bonuses-sl",
+        "dict-paymenttypes-1571123795",
+        "dict-paymenttypes-1575878858",
+        "dict-paymenttypes-1571123853",
+        "dict-paymenttypes-1571124860",
+        "dict-paymenttypes-1575878963",
+        "dict-paymenttypes-1571124919",
+        "dict-paymenttypes-1571134100",
+        "dict-paymenttypes-1571134212",
+        "7",
+        "dict-paymenttypes-1581413638",
+        "dict-paymenttypes-1581413641",
+        "dict-paymenttypes-1581413645",
+        "dict-paymenttypes-1581413649",
+        "dict-paymenttypes-1581413768",
+        "dict-paymenttypes-1581413773",
+        "dict-paymenttypes-1581413777",
+        "dict-paymenttypes-1581413785",
+        "442099",
+        "555159",
+        "555161",
+        "776106",
+        "818241",
+        "897285",
+        "423361",
+        "442100",
+        "test-mc-payment",
+        "test-mc-cashin",
+        "test-mc-prepayment",
+        "12",
+        "13",
+        "18",
+        "14",
+        "19",
+        "15",
+        "16",
+        "17",
+        "20",
+        "checkbox-payment",
+        "checkbox-payment-two",
+        "test-payment-integration",
+        "invoice-payment",
+        "alfa-bank-payment",
+        "wallete-one-payment-vog-old"
+      ],
+      "integrationCode": "ozon-seller-6024d760b14f8",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
     "yandex-beru-delivery-52": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
       "name": "Доставка Беру",
       "code": "yandex-beru-delivery-52",
       "active": true,
@@ -3883,6 +4694,284 @@ EOF;
 
       ],
       "integrationCode": "yandex_beru",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
+    "yandex-beru-delivery-53": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Доставка Беру",
+      "code": "yandex-beru-delivery-53",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+
+      ],
+      "integrationCode": "yandex_beru",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
+    "yandex-beru-delivery-54": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Доставка Беру",
+      "code": "yandex-beru-delivery-54",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+
+      ],
+      "integrationCode": "yandex_beru",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
+    "yandex-beru-delivery-55": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Доставка Беру",
+      "code": "yandex-beru-delivery-55",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+
+      ],
+      "integrationCode": "yandex_beru",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
+    "yandex-beru-delivery-56": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Доставка Беру",
+      "code": "yandex-beru-delivery-56",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+
+      ],
+      "integrationCode": "yandex_beru",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
+    "yandex-beru-delivery-57": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Доставка Беру",
+      "code": "yandex-beru-delivery-57",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+
+      ],
+      "integrationCode": "yandex_beru",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
+    "cdek-dev-2": {
+      "isDynamicCostCalculation": true,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "CDEK dev",
+      "code": "cdek-dev-2",
+      "active": false,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+
+      ],
+      "integrationCode": "cdek_dev_4",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
+    "nova-poshta-standart": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Новая Почта Стандартная",
+      "code": "nova-poshta-standart",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+        "bank-card",
+        "bank-transfer",
+        "credit",
+        "cash",
+        "e-money"
+      ],
+      "integrationCode": "newpost",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false,
+      "vatRate": "20.00"
+    },
+    "cdek-dev": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "CDEK dev",
+      "code": "cdek-dev",
+      "active": false,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+
+      ],
+      "integrationCode": "cdek_dev",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false,
+      "vatRate": "10.00"
+    },
+    "cdek-dev-1": {
+      "isDynamicCostCalculation": true,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "CDEK dev",
+      "code": "cdek-dev-1",
+      "active": false,
+      "defaultCost": 100,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+        "bank-card",
+        "cash",
+        "442100"
+      ],
+      "integrationCode": "cdek_dev_2",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
+    "yandex-beru-delivery-58": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Доставка Беру",
+      "code": "yandex-beru-delivery-58",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+
+      ],
+      "integrationCode": "yandex_beru",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false
+    },
+    "courier": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": false,
+      "isAutoNetCostCalculation": false,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Доставка курьером",
+      "code": "courier",
+      "active": true,
+      "defaultCost": 300,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+        "cash",
+        "bank-card",
+        "bank-transfer",
+        "e-money",
+        "credit",
+        "test-payment-integration"
+      ],
+      "deliveryServices": [
+        "1",
+        "pvz-out2",
+        "pvz-out3"
+      ],
+      "defaultForCrm": false,
+      "vatRate": "10.50"
+    },
+    "cdek-dev-3": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "CDEK dev",
+      "code": "cdek-dev-3",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+        "bank-card",
+        "cash",
+        "442100"
+      ],
+      "integrationCode": "cdek_dev_2",
+      "deliveryServices": [
+
+      ],
+      "defaultForCrm": false,
+      "vatRate": "20.00"
+    },
+    "crrst-24": {
+      "isDynamicCostCalculation": false,
+      "isAutoCostCalculation": true,
+      "isAutoNetCostCalculation": true,
+      "isCostDependsOnRegionAndWeightAndSum": false,
+      "isCostDependsOnDateTime": false,
+      "name": "Курьерист 24",
+      "code": "crrst-24",
+      "active": true,
+      "defaultCost": 0,
+      "defaultNetCost": 0,
+      "paymentTypes": [
+
+      ],
+      "integrationCode": "courierist-24",
       "deliveryServices": [
 
       ],
@@ -3902,7 +4991,18 @@ EOF;
         $client   = TestClientFactory::createClient($mock);
         $response = $client->references->deliveryTypes();
 
-        self::assertModelEqualsToResponse($json, $response);
+        self::assertModelsCallback($json, $response, static function ($expected, $actual) {
+            foreach ($expected['deliveryTypes'] as $key => $deliveryType) {
+                $actual['deliveryTypes'][$key]['isDynamicCostCalculation'] = $deliveryType['isDynamicCostCalculation'];
+                $actual['deliveryTypes'][$key]['isAutoCostCalculation'] = $deliveryType['isAutoCostCalculation'];
+                $actual['deliveryTypes'][$key]['isAutoNetCostCalculation'] = $deliveryType['isAutoNetCostCalculation'];
+                $actual['deliveryTypes'][$key]['isCostDependsOnRegionAndWeightAndSum']
+                    = $deliveryType['isCostDependsOnRegionAndWeightAndSum'];
+                $actual['deliveryTypes'][$key]['isCostDependsOnDateTime'] = $deliveryType['isCostDependsOnDateTime'];
+            }
+
+            self::assertEquals($expected, $actual);
+        });
     }
 
     public function testDeliveryTypesEdit(): void
@@ -5649,7 +6749,11 @@ EOF;
         "code": "test",
         "countryIso": "RU"
       },
-      "countryIso": "RU"
+      "countryIso": "RU",
+      "senderEmail": "test@example.com",
+      "senderName": "test",
+      "catalogId": "catalog",
+      "isCatalogMainSite": true
     }
   }
 }

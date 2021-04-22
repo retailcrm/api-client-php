@@ -139,4 +139,20 @@ class User
      * @JMS\SerializedName("mgUserId")
      */
     public $mgUserId;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("senderEmail")
+     */
+    public $senderEmail;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("senderName")
+     */
+    public $senderName;
 }
