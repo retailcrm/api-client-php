@@ -1,9 +1,9 @@
 <?php
 
 /**
- * PHP version 7.3
+ * PHP 7.3
  *
- * @category LoyaltyAccountsRequest
+ * @category LoyaltiesRequest
  * @package  RetailCrm\Api\Model\Request\Loyalty
  */
 
@@ -14,19 +14,19 @@ use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Model\Request\Traits\PageLimitTrait;
 
 /**
- * Class LoyaltyAccountsRequest
+ * Class LoyaltiesRequest
  *
- * @category LoyaltyAccountsRequest
+ * @category LoyaltiesRequest
  * @package  RetailCrm\Api\Model\Request\Loyalty
  */
-class LoyaltyAccountsRequest implements RequestInterface
+class LoyaltiesRequest implements RequestInterface
 {
     use PageLimitTrait;
 
     /**
-     * @var \RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountApiFilterType
+     * @var \RetailCrm\Api\Model\Filter\Loyalty\LoyaltyApiFilterType
      *
-     * @Form\Type("RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountApiFilterType")
+     * @Form\Type("RetailCrm\Api\Model\Filter\Loyalty\LoyaltyApiFilterType")
      * @Form\SerializedName("filter")
      */
     public $filter;

@@ -11,6 +11,7 @@ namespace RetailCrm\Tests\ResourceGroup;
 
 use RetailCrm\Api\Enum\Loyalty\AccountStatus;
 use RetailCrm\Api\Enum\Loyalty\PrivilegeType;
+use RetailCrm\Api\Enum\NumericBoolean;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedEntityCustomer;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer;
@@ -21,6 +22,8 @@ use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderDelivery;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderProduct;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderProductOffer;
 use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountApiFilterType;
+use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyApiFilterType;
+use RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest;
@@ -141,118 +144,329 @@ EOF;
     {
         $json = <<<'EOF'
 {
-    "success": true,
-    "pagination": {
-        "limit": 20,
-        "totalCount": 11,
-        "currentPage": 1,
-        "totalPageCount": 1
+  "success": true,
+  "pagination": {
+    "limit": 20,
+    "totalCount": 13,
+    "currentPage": 1,
+    "totalPageCount": 1
+  },
+  "loyaltyAccounts": [
+    {
+      "active": true,
+      "id": 162,
+      "customer": {
+        "id": 5141,
+        "externalId": "1",
+        "site": "test_pl_for_stage",
+        "firstName": "Admin",
+        "lastName": "Admin"
+      },
+      "phoneNumber": "89085139060",
+      "amount": 0,
+      "ordersSum": 0,
+      "nextLevelSum": 100000,
+      "level": {
+        "type": "discount",
+        "id": 17,
+        "name": "Базовый уровень",
+        "privilegeSize": 20,
+        "privilegeSizePromo": 10
+      },
+      "createdAt": "2021-04-16 16:32:03",
+      "activatedAt": "2021-04-16 16:32:03"
     },
-    "loyaltyAccounts": [
-        {
-            "active": true,
-            "id": 160,
-            "phoneNumber": "88005553125",
-            "cardNumber": "2222 3333 4444 5555",
-            "amount": 0,
-            "createdAt": "2021-02-24 11:17:11",
-            "activatedAt": "2021-02-24 11:17:11",
-            "customFields": []
-        },
-        {
-            "active": true,
-            "id": 158,
-            "phoneNumber": "89085139555",
-            "amount": 79,
-            "createdAt": "2021-02-01 10:15:11",
-            "activatedAt": "2021-02-01 10:15:11",
-            "lastCheckId": "b93879ba-8791-4189-90f0-71e1904b5546",
-            "customFields": []
-        },
-        {
-            "active": true,
-            "id": 157,
-            "phoneNumber": "89085149060",
-            "amount": 0,
-            "createdAt": "2021-01-14 10:54:28",
-            "activatedAt": "2021-01-14 10:54:28",
-            "customFields": []
-        },
-        {
-            "active": true,
-            "id": 156,
-            "cardNumber": "3456346346",
-            "amount": 931,
-            "createdAt": "2021-01-12 16:52:50",
-            "activatedAt": "2021-01-12 16:52:50",
-            "customFields": []
-        },
-        {
-            "active": true,
-            "id": 155,
-            "phoneNumber": "89085139060",
-            "amount": 28,
-            "createdAt": "2020-12-14 17:42:07",
-            "activatedAt": "2020-12-14 18:43:40",
-            "confirmedPhoneAt": "2020-12-14 18:54:37",
-            "lastCheckId": "4c1b54fb-c079-4757-916c-ab58dd667bff",
-            "customFields": []
-        },
-        {
-            "active": true,
-            "id": 149,
-            "phoneNumber": "+79094055044",
-            "amount": 655.7,
-            "createdAt": "2020-11-27 15:39:29",
-            "activatedAt": "2020-11-27 15:39:29",
-            "customFields": []
-        },
-        {
-            "active": true,
-            "id": 147,
-            "phoneNumber": "+79094055046",
-            "amount": 315.9,
-            "createdAt": "2020-11-27 13:36:08",
-            "activatedAt": "2020-11-27 13:36:08",
-            "customFields": []
-        },
-        {
-            "active": true,
-            "id": 94,
-            "phoneNumber": "+70143453900",
-            "amount": 0,
-            "createdAt": "2020-11-13 09:11:44",
-            "activatedAt": "2020-11-13 09:11:44",
-            "customFields": []
-        },
-        {
-            "active": true,
-            "id": 91,
-            "phoneNumber": "+70113453901",
-            "amount": 0,
-            "createdAt": "2020-11-13 08:27:21",
-            "activatedAt": "2020-11-13 08:27:21",
-            "customFields": []
-        },
-        {
-            "active": true,
-            "id": 90,
-            "phoneNumber": "+70093453901",
-            "amount": 0,
-            "createdAt": "2020-11-13 08:21:13",
-            "activatedAt": "2020-11-13 08:21:13",
-            "customFields": []
-        },
-        {
-            "active": true,
-            "id": 85,
-            "phoneNumber": "+70033453901",
-            "amount": 0,
-            "createdAt": "2020-11-13 07:23:58",
-            "activatedAt": "2020-11-13 07:23:58",
-            "customFields": []
-        }
-    ]
+    {
+      "active": true,
+      "id": 161,
+      "customer": {
+        "id": 5101,
+        "externalId": "1",
+        "site": "new-bitrix",
+        "firstName": "Admin5",
+        "lastName": "Admin"
+      },
+      "phoneNumber": "89085139060",
+      "amount": 49,
+      "ordersSum": 0,
+      "nextLevelSum": 5000,
+      "level": {
+        "type": "discount",
+        "id": 14,
+        "name": "Базовый уровень",
+        "privilegeSize": 10,
+        "privilegeSizePromo": 20
+      },
+      "createdAt": "2021-03-17 18:09:56",
+      "activatedAt": "2021-03-17 18:09:56"
+    },
+    {
+      "active": true,
+      "id": 160,
+      "customer": {
+        "id": 4787,
+        "externalId": "36",
+        "site": "bitrix-test",
+        "firstName": "test871"
+      },
+      "phoneNumber": "88005553125",
+      "cardNumber": "2222 3333 4444 5555",
+      "amount": 0,
+      "ordersSum": 0,
+      "nextLevelSum": 10000,
+      "level": {
+        "type": "discount",
+        "id": 16,
+        "name": "Скидочный",
+        "privilegeSize": 50,
+        "privilegeSizePromo": 50
+      },
+      "createdAt": "2021-02-24 11:17:11",
+      "activatedAt": "2021-02-24 11:17:11"
+    },
+    {
+      "active": true,
+      "id": 158,
+      "customer": {
+        "id": 5011,
+        "externalId": "2",
+        "site": "bitrix-test",
+        "firstName": "admin2",
+        "lastName": "admin2"
+      },
+      "phoneNumber": "89085139555",
+      "amount": 69,
+      "ordersSum": 0,
+      "level": {
+        "type": "discount",
+        "id": 12,
+        "name": "Бонусный",
+        "privilegeSize": 20,
+        "privilegeSizePromo": 10
+      },
+      "createdAt": "2021-02-01 10:15:11",
+      "activatedAt": "2021-02-01 10:15:11",
+      "lastCheckId": "b93879ba-8791-4189-90f0-71e1904b5546"
+    },
+    {
+      "active": true,
+      "id": 157,
+      "customer": {
+        "id": 4232,
+        "externalId": "13",
+        "site": "bitrix-test",
+        "firstName": "Образ",
+        "lastName": "Испепеляющий",
+        "patronymic": "Фарадеевич"
+      },
+      "phoneNumber": "89085149060",
+      "amount": 0,
+      "ordersSum": 0,
+      "nextLevelSum": 10000,
+      "level": {
+        "type": "discount",
+        "id": 16,
+        "name": "Скидочный",
+        "privilegeSize": 50,
+        "privilegeSizePromo": 50
+      },
+      "createdAt": "2021-01-14 10:54:28",
+      "activatedAt": "2021-01-14 10:54:28"
+    },
+    {
+      "active": true,
+      "id": 156,
+      "customer": {
+        "id": 4925,
+        "externalId": "1",
+        "site": "bitrix-test",
+        "firstName": "Admin",
+        "lastName": "Admin"
+      },
+      "cardNumber": "3456346346",
+      "amount": 635,
+      "ordersSum": 0,
+      "nextLevelSum": 10000,
+      "level": {
+        "type": "discount",
+        "id": 16,
+        "name": "Скидочный",
+        "privilegeSize": 50,
+        "privilegeSizePromo": 50
+      },
+      "createdAt": "2021-01-12 16:52:50",
+      "activatedAt": "2021-01-12 16:52:50"
+    },
+    {
+      "active": true,
+      "id": 155,
+      "customer": {
+        "id": 4923,
+        "externalId": "10",
+        "site": "bitrix-test",
+        "firstName": "Артур"
+      },
+      "phoneNumber": "89085139060",
+      "amount": 28,
+      "ordersSum": 0,
+      "nextLevelSum": 10000,
+      "level": {
+        "type": "discount",
+        "id": 16,
+        "name": "Скидочный",
+        "privilegeSize": 50,
+        "privilegeSizePromo": 50
+      },
+      "createdAt": "2020-12-14 17:42:07",
+      "activatedAt": "2020-12-14 18:43:40",
+      "confirmedPhoneAt": "2020-12-14 18:54:37",
+      "lastCheckId": "4c1b54fb-c079-4757-916c-ab58dd667bff"
+    },
+    {
+      "active": true,
+      "id": 149,
+      "customer": {
+        "id": 4770,
+        "externalId": "5",
+        "site": "aliexpress",
+        "firstName": "Test"
+      },
+      "phoneNumber": "+79094055044",
+      "amount": 655.7,
+      "ordersSum": 0,
+      "level": {
+        "type": "bonus_percent",
+        "id": 4,
+        "name": "Базовый уровень",
+        "privilegeSize": 10,
+        "privilegeSizePromo": 10
+      },
+      "createdAt": "2020-11-27 15:39:29",
+      "activatedAt": "2020-11-27 15:39:29"
+    },
+    {
+      "active": true,
+      "id": 147,
+      "customer": {
+        "id": 4880,
+        "externalId": "4",
+        "site": "bb_demo",
+        "firstName": "Артур"
+      },
+      "phoneNumber": "+79094055046",
+      "amount": 315.9,
+      "ordersSum": 5629,
+      "level": {
+        "type": "bonus_percent",
+        "id": 4,
+        "name": "Базовый уровень",
+        "privilegeSize": 10,
+        "privilegeSizePromo": 10
+      },
+      "createdAt": "2020-11-27 13:36:08",
+      "activatedAt": "2020-11-27 13:36:08"
+    },
+    {
+      "active": true,
+      "id": 94,
+      "customer": {
+        "id": 4133,
+        "externalId": "17",
+        "site": "bitrix-test",
+        "firstName": "atest14",
+        "lastName": "Иванов",
+        "patronymic": "иванович"
+      },
+      "phoneNumber": "+70143453900",
+      "amount": 0,
+      "ordersSum": 0,
+      "nextLevelSum": 10000,
+      "level": {
+        "type": "discount",
+        "id": 16,
+        "name": "Скидочный",
+        "privilegeSize": 50,
+        "privilegeSizePromo": 50
+      },
+      "createdAt": "2020-11-13 09:11:44",
+      "activatedAt": "2020-11-13 09:11:44"
+    },
+    {
+      "active": true,
+      "id": 91,
+      "customer": {
+        "id": 4117,
+        "externalId": "14",
+        "site": "bitrix-test",
+        "firstName": "test11",
+        "lastName": "Иванов",
+        "patronymic": "Аркадьевич"
+      },
+      "phoneNumber": "+70113453901",
+      "amount": 100,
+      "ordersSum": 0,
+      "nextLevelSum": 10000,
+      "level": {
+        "type": "discount",
+        "id": 16,
+        "name": "Скидочный",
+        "privilegeSize": 50,
+        "privilegeSizePromo": 50
+      },
+      "createdAt": "2020-11-13 08:27:21",
+      "activatedAt": "2020-11-13 08:27:21"
+    },
+    {
+      "active": true,
+      "id": 90,
+      "customer": {
+        "id": 4113,
+        "externalId": "12",
+        "site": "bitrix-test",
+        "firstName": "test2021",
+        "lastName": "Егоров",
+        "patronymic": "Егорович"
+      },
+      "phoneNumber": "+70093453901",
+      "amount": 0,
+      "ordersSum": 0,
+      "nextLevelSum": 10000,
+      "level": {
+        "type": "discount",
+        "id": 16,
+        "name": "Скидочный",
+        "privilegeSize": 50,
+        "privilegeSizePromo": 50
+      },
+      "createdAt": "2020-11-13 08:21:13",
+      "activatedAt": "2020-11-13 08:21:13"
+    },
+    {
+      "active": true,
+      "id": 85,
+      "customer": {
+        "id": 4115,
+        "externalId": "7",
+        "site": "bitrix-test",
+        "firstName": "testesteron",
+        "lastName": "Иванов",
+        "patronymic": "Иванович"
+      },
+      "phoneNumber": "+70033453901",
+      "amount": 0,
+      "ordersSum": 0,
+      "nextLevelSum": 10000,
+      "level": {
+        "type": "discount",
+        "id": 16,
+        "name": "Скидочный",
+        "privilegeSize": 50,
+        "privilegeSizePromo": 50
+      },
+      "createdAt": "2020-11-13 07:23:58",
+      "activatedAt": "2020-11-13 07:23:58"
+    }
+  ]
 }
 EOF;
 
@@ -269,7 +483,7 @@ EOF;
         );
 
         $client   = TestClientFactory::createClient($mock);
-        $response = $client->loyalty->accountsList($request);
+        $response = $client->loyalty->accounts($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -346,6 +560,71 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->loyalty->calculate($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testLoyalties(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "pagination": {
+    "limit": 20,
+    "totalCount": 4,
+    "currentPage": 1,
+    "totalPageCount": 1
+  },
+  "loyalties": [
+    {
+      "active": true,
+      "blocked": false,
+      "id": 3,
+      "name": "Новая программа",
+      "confirmSmsCharge": false,
+      "confirmSmsRegistration": false,
+      "createdAt": "2020-11-26 06:58:02",
+      "activatedAt": "2020-11-26 06:59:52"
+    },
+    {
+      "active": true,
+      "blocked": false,
+      "id": 4,
+      "name": "Битрикс новый",
+      "confirmSmsCharge": false,
+      "confirmSmsRegistration": false,
+      "createdAt": "2021-03-17 18:08:02",
+      "activatedAt": "2021-03-17 18:09:43"
+    },
+    {
+      "active": true,
+      "blocked": false,
+      "id": 1,
+      "name": "Тестовая программа",
+      "confirmSmsCharge": false,
+      "confirmSmsRegistration": false,
+      "createdAt": "2020-10-16 13:57:53",
+      "activatedAt": "2020-10-16 14:00:56"
+    }
+  ]
+}
+EOF;
+
+        $request = new LoyaltiesRequest();
+        $request->filter = new LoyaltyApiFilterType();
+        $request->filter->active = NumericBoolean::TRUE;
+        $request->filter->blocked = NumericBoolean::FALSE;
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('loyalty/loyalties')
+                ->setMethod(RequestMethod::GET)
+                ->setQueryParams(self::encodeFormArray($request)),
+            static::responseJson(200, $json)
+        );
+
+        $client   = TestClientFactory::createClient($mock);
+        $response = $client->loyalty->loyalties($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

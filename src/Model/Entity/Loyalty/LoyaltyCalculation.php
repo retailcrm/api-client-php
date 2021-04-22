@@ -44,6 +44,14 @@ class LoyaltyCalculation
     public $creditBonuses;
 
     /**
+     * @var \RetailCrm\Api\Model\Entity\Loyalty\LoyaltyEventDiscount
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Loyalty\LoyaltyEventDiscount")
+     * @JMS\SerializedName("loyaltyEventDiscount")
+     */
+    public $loyaltyEventDiscount;
+
+    /**
      * @var float
      *
      * @JMS\Type("float")

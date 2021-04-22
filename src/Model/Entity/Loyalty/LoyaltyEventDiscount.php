@@ -3,7 +3,7 @@
 /**
  * PHP version 7.3
  *
- * @category AbstractLoyaltyEvent
+ * @category LoyaltyEventDiscount
  * @package  RetailCrm\Api\Model\Entity\Loyalty
  */
 
@@ -12,12 +12,12 @@ namespace RetailCrm\Api\Model\Entity\Loyalty;
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 
 /**
- * Class AbstractLoyaltyEvent
+ * Class LoyaltyEventDiscount
  *
- * @category AbstractLoyaltyEvent
+ * @category LoyaltyEventDiscount
  * @package  RetailCrm\Api\Model\Entity\Loyalty
  */
-class AbstractLoyaltyEvent
+class LoyaltyEventDiscount
 {
     /**
      * @var int

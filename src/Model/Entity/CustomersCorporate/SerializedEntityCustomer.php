@@ -50,4 +50,28 @@ class SerializedEntityCustomer
      * @JMS\SerializedName("type")
      */
     public $type;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("firstName")
+     */
+    public $firstName;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("lastName")
+     */
+    public $lastName;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("patronymic")
+     */
+    public $patronymic;
 }

@@ -36,6 +36,22 @@ class OrderProduct
     public $bonusesCreditTotal;
 
     /**
+     * @var int
+     *
+     * @JMS\Type("int")
+     * @JMS\SerializedName("id")
+     */
+    public $id;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\CodeValueModel[]
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\CodeValueModel>")
+     * @JMS\SerializedName("externalIds")
+     */
+    public $externalIds;
+
+    /**
      * @var \RetailCrm\Api\Model\Entity\Loyalty\PriceType
      *
      * @JMS\Type("RetailCrm\Api\Model\Entity\Loyalty\PriceType")
@@ -82,4 +98,12 @@ class OrderProduct
      * @JMS\SerializedName("quantity")
      */
     public $quantity;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Orders\Items\Offer
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Orders\Items\Offer")
+     * @JMS\SerializedName("offer")
+     */
+    public $offer;
 }

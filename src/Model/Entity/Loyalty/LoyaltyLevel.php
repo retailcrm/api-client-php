@@ -20,6 +20,14 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 class LoyaltyLevel
 {
     /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("type")
+     */
+    public $type;
+
+    /**
      * @var int
      *
      * @JMS\Type("int")
@@ -34,4 +42,20 @@ class LoyaltyLevel
      * @JMS\SerializedName("name")
      */
     public $name;
+
+    /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("privilegeSize")
+     */
+    public $privilegeSize;
+
+    /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("privilegeSizePromo")
+     */
+    public $privilegeSizePromo;
 }

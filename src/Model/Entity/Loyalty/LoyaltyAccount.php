@@ -61,6 +61,22 @@ class LoyaltyAccount
     public $amount;
 
     /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("ordersSum")
+     */
+    public $ordersSum;
+
+    /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("nextLevelSum")
+     */
+    public $nextLevelSum;
+
+    /**
      * @var DateTime
      *
      * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
@@ -107,4 +123,12 @@ class LoyaltyAccount
      * @JMS\SerializedName("customer")
      */
     public $customer;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Loyalty\LoyaltyLevel
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Loyalty\LoyaltyLevel")
+     * @JMS\SerializedName("level")
+     */
+    public $level;
 }

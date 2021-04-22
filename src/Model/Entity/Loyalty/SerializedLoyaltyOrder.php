@@ -78,12 +78,12 @@ class SerializedLoyaltyOrder
     public $loyaltyLevel;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Loyalty\AbstractLoyaltyEvent
+     * @var \RetailCrm\Api\Model\Entity\Loyalty\LoyaltyEventDiscount
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\Loyalty\AbstractLoyaltyEvent")
-     * @JMS\SerializedName("loyaltyEvent")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Loyalty\LoyaltyEventDiscount")
+     * @JMS\SerializedName("loyaltyEventDiscount")
      */
-    public $loyaltyEvent;
+    public $loyaltyEventDiscount;
 
     /**
      * @var \RetailCrm\Api\Model\Entity\Loyalty\Customer

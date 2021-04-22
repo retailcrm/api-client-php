@@ -10,11 +10,12 @@
 namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
-use RetailCrm\Api\Model\Entity\Loyalty\LoyaltyAccount;
+use RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest;
+use RetailCrm\Api\Model\Response\Loyalty\LoyaltiesResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountActivateResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountCreateResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountsResponse;
@@ -231,7 +232,7 @@ class Loyalty extends AbstractApiResourceGroup
      * $request->filter->status = AccountStatus::ACTIVATED;
      *
      * try {
-     *     $response = $client->loyalty->accountsList($request);
+     *     $response = $client->loyalty->accounts($request);
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
@@ -262,7 +263,7 @@ class Loyalty extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\Client\HandlerException
      * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
-    public function accountsList(LoyaltyAccountsRequest $request): LoyaltyAccountsResponse
+    public function accounts(LoyaltyAccountsRequest $request): LoyaltyAccountsResponse
     {
         /** @var LoyaltyAccountsResponse $response */
         $response = $this->sendRequest(
@@ -349,6 +350,68 @@ class Loyalty extends AbstractApiResourceGroup
             'loyalty/calculate',
             $request,
             LoyaltyCalculateResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/loyalty/loyalties" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\NumericBoolean;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyApiFilterType;
+     * use RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request = new LoyaltiesRequest();
+     * $request->filter = new LoyaltyApiFilterType();
+     * $request->filter->active = NumericBoolean::TRUE;
+     * $request->filter->blocked = NumericBoolean::FALSE;
+     *
+     * try {
+     *     $response = $client->loyalty->loyalties($request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Loyalties: ' . print_r($response->loyalties, true);
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Loyalty\LoyaltiesResponse
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     */
+    public function loyalties(LoyaltiesRequest $request): LoyaltiesResponse
+    {
+        /** @var LoyaltiesResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'loyalty/loyalties',
+            $request,
+            LoyaltiesResponse::class
         );
         return $response;
     }

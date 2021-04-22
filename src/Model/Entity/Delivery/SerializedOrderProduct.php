@@ -52,4 +52,20 @@ class SerializedOrderProduct
      * @JMS\SerializedName("quantity")
      */
     public $quantity;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderProductOffer
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderProductOffer")
+     * @JMS\SerializedName("offer")
+     */
+    public $offer;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Orders\Items\PriceType
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Orders\Items\PriceType")
+     * @JMS\SerializedName("priceType")
+     */
+    public $priceType;
 }
