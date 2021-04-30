@@ -30,17 +30,17 @@ class DeliveryConfiguration
     public $description;
 
     /**
-     * @var string[]
+     * @var array<string, string>
      *
-     * @JMS\Type("array<string>")
+     * @JMS\Type("array<string, string>")
      * @JMS\SerializedName("actions")
      */
     public $actions;
 
     /**
-     * @var array<string, mixed>
+     * @var string[]
      *
-     * @JMS\Type("array")
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("payerType")
      */
     public $payerType;
