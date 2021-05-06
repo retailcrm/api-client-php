@@ -149,7 +149,8 @@ EOF;
 
         try {
             $client->api->apiVersions();
-        } catch (AccessDeniedException $exception) {}
+        } catch (AccessDeniedException $exception) {
+        }
 
         self::assertInstanceOf(FailureRequestEvent::class, $event);
         self::assertNotNull($event->getResponse());
