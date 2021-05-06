@@ -53,7 +53,7 @@ class RequestDataHandler extends AbstractHandler
      * @param mixed $item
      *
      * @return mixed|null
-     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException|\RetailCrm\Api\Interfaces\ApiExceptionInterface
      *
      * @SuppressWarnings(PHPMD.ElseExpression)
      */

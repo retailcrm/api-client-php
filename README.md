@@ -256,8 +256,10 @@ Let's take look at a complete example of the Client usage with error handling. H
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\NetworkExceptionInterface;
 use Psr\Http\Client\RequestExceptionInterface;
+use RetailCrm\Api\Exception\Api\AccessDeniedException;
 use RetailCrm\Api\Exception\Api\AccountDoesNotExistException;
 use RetailCrm\Api\Exception\Api\ApiErrorException;
+use RetailCrm\Api\Exception\Api\InvalidCredentialsException;
 use RetailCrm\Api\Exception\Api\MissingCredentialsException;
 use RetailCrm\Api\Exception\Api\MissingParameterException;
 use RetailCrm\Api\Exception\Api\ValidationException;
@@ -296,7 +298,13 @@ try {
         echo 'HTTP client exception: ' . $exception->getMessage();
         exit(-1);
     }
-} catch (AccountDoesNotExistException | MissingCredentialsException | MissingParameterException $exception) {
+} catch (
+    InvalidCredentialsException |
+    AccessDeniedException |
+    AccountDoesNotExistException |
+    MissingCredentialsException |
+    MissingParameterException $exception
+    ) {
     echo $exception->getMessage();
     exit(-1);
 } catch (ValidationException $exception) {
@@ -351,6 +359,14 @@ foreach ($response->orders as $order) {
     echo PHP_EOL;
 }
 ```
+
+You can use PSR-14 compatible event dispatcher to receive events from the client.
+It may be useful if you want to process certain events with the same logic without duplicating calls to such code.  
+These events are provided by the library:
+- `RetailCrm\Api\Event\SuccessRequestEvent` will be dispatched if request was successful.
+- `RetailCrm\Api\Event\FailureRequestEvent` will be dispatched if request was not successful. It won't be dispatched if request cannot be formed at all.
+
+See documentation for those events for more details.
 
 ## Notes
 

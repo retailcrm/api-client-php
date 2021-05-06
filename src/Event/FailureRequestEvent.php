@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Event;
 
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use RetailCrm\Api\Exception\ApiException;
 use RetailCrm\Api\Exception\ClientException;
@@ -27,12 +28,14 @@ class FailureRequestEvent extends AbstractRequestEvent
     /**
      * FailureRequestEvent constructor.
      *
+     * @param string                                   $baseUrl
+     * @param \Psr\Http\Message\RequestInterface       $request
      * @param \Psr\Http\Message\ResponseInterface|null $response
      * @param ApiException|ClientException             $exception
      */
-    public function __construct(?ResponseInterface $response, $exception)
+    public function __construct(string $baseUrl, RequestInterface $request, ?ResponseInterface $response, $exception)
     {
-        parent::__construct($response);
+        parent::__construct($baseUrl, $request, $response);
 
         $this->exception = $exception;
     }

@@ -92,30 +92,42 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
 
     /**
      * @param string $path
+     * @param bool   $header
      *
-     * @return \RetailCrm\TestUtils\Exception\RequestMatcher
+     * @return \RetailCrm\TestUtils\RequestMatcher
      */
-    protected static function createRequestMatcher(string $path = ''): RequestMatcher
+    protected static function createRequestMatcher(string $path = '', bool $header = true): RequestMatcher
     {
         $url = parse_url(TestConfig::getApiUrl());
+        $matcher = RequestMatcher::createMatcher($url['host']);
 
-        return RequestMatcher::createMatcher($url['host'])
-            ->setOptionalHeaders(['X-Api-Key' => [TestConfig::getApiKey()]])
-            ->setPath(static::addTrailingSlash($url['path']) . $path);
+        if ($header) {
+            $matcher->setOptionalHeaders(['X-Api-Key' => [TestConfig::getApiKey()]]);
+        } else {
+            $matcher->setOptionalQueryParams(['apiKey' => TestConfig::getApiKey()]);
+        }
+
+        return $matcher->setPath(static::addTrailingSlash($url['path']) . $path);
     }
 
     /**
      * @param string $path
+     * @param bool   $header
      *
-     * @return \RetailCrm\TestUtils\Exception\RequestMatcher
+     * @return \RetailCrm\TestUtils\RequestMatcher
      */
-    protected static function createUnversionedRequestMatcher(string $path = ''): RequestMatcher
+    protected static function createUnversionedRequestMatcher(string $path = '', bool $header = true): RequestMatcher
     {
         $url = parse_url(TestConfig::getApiUrl());
+        $matcher = RequestMatcher::createMatcher($url['host']);
 
-        return RequestMatcher::createMatcher($url['host'])
-            ->setOptionalHeaders(['X-Api-Key' => [TestConfig::getApiKey()]])
-            ->setPath(static::addTrailingSlash(Utils::removeVersionFromUri($url['path'])) . $path);
+        if ($header) {
+            $matcher->setOptionalHeaders(['X-Api-Key' => [TestConfig::getApiKey()]]);
+        } else {
+            $matcher->setOptionalQueryParams(['apiKey' => TestConfig::getApiKey()]);
+        }
+
+        return $matcher->setPath(static::addTrailingSlash(Utils::removeVersionFromUri($url['path'])) . $path);
     }
 
     /**

@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Component\Transformer;
 
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 use Psr\Http\Message\ResponseInterface;
 use RetailCrm\Api\Interfaces\HandlerInterface;
@@ -44,21 +45,22 @@ class ResponseTransformer implements ResponseTransformerInterface
      *
      * You can alter the results by providing your chain of handlers.
      *
-     * @param string                              $method
-     * @param \Psr\Http\Message\UriInterface      $uri
+     * @param string                              $baseUrl
+     * @param \Psr\Http\Message\RequestInterface  $request
      * @param \Psr\Http\Message\ResponseInterface $response
      * @param string                              $type
      *
      * @return RetailCrmResponse
      * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
     public function createResponse(
-        string $method,
-        UriInterface $uri,
+        string $baseUrl,
+        RequestInterface $request,
         ResponseInterface $response,
         string $type
     ): RetailCrmResponse {
-        $responseData = new ResponseData($method, $uri, $response, $type);
+        $responseData = new ResponseData($baseUrl, $request, $response, $type);
         $this->handler->handle($responseData);
 
         return $responseData->responseModel;

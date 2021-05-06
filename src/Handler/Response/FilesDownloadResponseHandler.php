@@ -26,7 +26,7 @@ class FilesDownloadResponseHandler extends AbstractResponseHandler
      */
     protected function handleResponse(ResponseData $responseData)
     {
-        if (!preg_match('/^\/api\/v5\/files\/\d+\/download$/', $responseData->uri->getPath())) {
+        if (!preg_match('/^\/api\/v5\/files\/\d+\/download$/', $responseData->request->getUri()->getPath())) {
             $this->next($responseData);
 
             return;
@@ -36,7 +36,12 @@ class FilesDownloadResponseHandler extends AbstractResponseHandler
             static::fileNameFromDisposition($responseData->response->getHeader('Content-Disposition')),
             $responseData->response->getBody()
         );
-        $this->dispatch(new SuccessRequestEvent($responseData->response, $responseData->responseModel));
+        $this->dispatch(new SuccessRequestEvent(
+            $responseData->baseUrl,
+            $responseData->request,
+            $responseData->response,
+            $responseData->responseModel
+        ));
     }
 
     /**

@@ -32,7 +32,12 @@ class ErrorResponseHandler extends AbstractResponseHandler
                 $responseData->response->getStatusCode()
             );
 
-            $this->dispatch(new FailureRequestEvent($responseData->response, $exception));
+            $this->dispatch(new FailureRequestEvent(
+                $responseData->baseUrl,
+                $responseData->request,
+                $responseData->response,
+                $exception
+            ));
 
             throw $exception;
         }

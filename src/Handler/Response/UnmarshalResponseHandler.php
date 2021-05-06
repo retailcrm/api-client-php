@@ -26,6 +26,11 @@ class UnmarshalResponseHandler extends AbstractResponseHandler
     protected function handleResponse(ResponseData $responseData)
     {
         $responseData->responseModel = $this->unmarshalBody($responseData->response, $responseData->type);
-        $this->dispatch(new SuccessRequestEvent($responseData->response, $responseData->responseModel));
+        $this->dispatch(new SuccessRequestEvent(
+            $responseData->baseUrl,
+            $responseData->request,
+            $responseData->response,
+            $responseData->responseModel
+        ));
     }
 }

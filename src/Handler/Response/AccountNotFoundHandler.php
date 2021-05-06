@@ -32,16 +32,21 @@ class AccountNotFoundHandler extends AbstractResponseHandler
     protected function handleResponse(ResponseData $responseData)
     {
         if (
-            RequestMethod::GET !== $responseData->method &&
             405 === $responseData->response->getStatusCode() &&
-            static::isContentType($responseData->response, 'text/html')
+            static::isContentType($responseData->response, 'text/html') &&
+            RequestMethod::GET !== strtoupper($responseData->request->getMethod())
         ) {
             $errorResponse = new ErrorResponse();
             $errorResponse->errorMsg = 'Account does not exist.';
 
             $exception = new AccountDoesNotExistException($errorResponse, $responseData->response->getStatusCode());
 
-            $this->dispatch(new FailureRequestEvent($responseData->response, $exception));
+            $this->dispatch(new FailureRequestEvent(
+                $responseData->baseUrl,
+                $responseData->request,
+                $responseData->response,
+                $exception
+            ));
 
             throw $exception;
         }

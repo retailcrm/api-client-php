@@ -10,10 +10,12 @@
 namespace RetailCrm\Tests\ResourceGroup;
 
 use League\Event\EventDispatcher;
+use Psr\Http\Message\RequestInterface;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Event\FailureRequestEvent;
 use RetailCrm\Api\Event\SuccessRequestEvent;
 use RetailCrm\Api\Exception\Api\AccessDeniedException;
+use RetailCrm\Api\Handler\Request\GetParameterAuthenticatorHandler;
 use RetailCrm\Api\Model\Response\Api\ApiVersionsResponse;
 use RetailCrm\TestUtils\ArrayLogger;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
@@ -109,6 +111,17 @@ EOF;
         self::assertNotNull($event->getResponse());
         self::assertNotEmpty($event->getResponse()->getBody()->__toString());
         self::assertInstanceOf(ApiVersionsResponse::class, $event->getResponseModel());
+        self::assertInstanceOf(RequestInterface::class, $event->getRequest());
+        self::assertEmpty($event->getRequest()->getBody()->__toString());
+        self::assertStringContainsString(
+            parse_url(TestConfig::getApiUrl(), PHP_URL_HOST),
+            $event->getApiUrl()
+        );
+        self::assertStringContainsString(
+            parse_url(TestConfig::getApiUrl(), PHP_URL_HOST),
+            $event->getApiDomain()
+        );
+        self::assertEquals(TestConfig::getApiKey(), $event->getApiKey());
     }
 
     public function testFailureRequestEvent(): void
@@ -144,5 +157,50 @@ EOF;
         self::assertInstanceOf(AccessDeniedException::class, $event->getException());
         self::assertEquals('Access denied.', $event->getException()->getErrorResponse()->errorMsg);
         self::assertEquals(403, $event->getException()->getStatusCode());
+        self::assertStringContainsString(
+            parse_url(TestConfig::getApiUrl(), PHP_URL_HOST),
+            $event->getApiUrl()
+        );
+        self::assertStringContainsString(
+            parse_url(TestConfig::getApiUrl(), PHP_URL_HOST),
+            $event->getApiDomain()
+        );
+        self::assertEquals(TestConfig::getApiKey(), $event->getApiKey());
+    }
+
+    public function testRequestEventGetAuthenticator(): void
+    {
+        /** @var SuccessRequestEvent|null $event */
+        $event = null;
+        $json = <<<'EOF'
+{
+  "success": true,
+  "versions": [
+    "3.0",
+    "4.0",
+    "5.0"
+  ]
+}
+EOF;
+        $dispatcher = new EventDispatcher();
+        $dispatcher->subscribeTo(SuccessRequestEvent::class, static function (object $item) use (&$event) {
+            $event = $item;
+        });
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createUnversionedRequestMatcher('api-versions', false)->setMethod(RequestMethod::GET),
+            static::responseJson(200, $json)
+        );
+
+        $client = TestClientFactory::createClient(
+            $mock,
+            null,
+            $dispatcher,
+            new GetParameterAuthenticatorHandler(TestConfig::getApiKey())
+        );
+        $client->api->apiVersions();
+
+        self::assertEquals(TestConfig::getApiKey(), $event->getApiKey());
     }
 }

@@ -137,7 +137,7 @@ abstract class AbstractApiResourceGroup
                 $exception
             );
 
-            $this->dispatch(new FailureRequestEvent(null, $clientException));
+            $this->dispatch(new FailureRequestEvent($this->baseUrl, $psrRequest, null, $clientException));
 
             throw $clientException;
         }
@@ -150,7 +150,7 @@ abstract class AbstractApiResourceGroup
             ));
         }
 
-        return $this->responseTransformer->createResponse($method, $psrRequest->getUri(), $psrResponse, $type);
+        return $this->responseTransformer->createResponse($this->baseUrl, $psrRequest, $psrResponse, $type);
     }
 
     /**

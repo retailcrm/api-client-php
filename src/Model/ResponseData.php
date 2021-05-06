@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Model;
 
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
 
@@ -20,11 +21,11 @@ use Psr\Http\Message\UriInterface;
  */
 class ResponseData
 {
-    /** @var \Psr\Http\Message\UriInterface */
-    public $uri;
-
     /** @var string */
-    public $method;
+    public $baseUrl;
+
+    /** @var \Psr\Http\Message\RequestInterface */
+    public $request;
 
     /** @var ResponseInterface */
     public $response;
@@ -38,15 +39,15 @@ class ResponseData
     /**
      * ResponseData constructor.
      *
-     * @param \Psr\Http\Message\UriInterface      $uri
-     * @param string                              $method
+     * @param string                              $baseUrl
+     * @param \Psr\Http\Message\RequestInterface  $request
      * @param \Psr\Http\Message\ResponseInterface $response
      * @param string                              $type
      */
-    public function __construct(string $method, UriInterface $uri, ResponseInterface $response, string $type)
+    public function __construct(string $baseUrl, RequestInterface $request, ResponseInterface $response, string $type)
     {
-        $this->method   = $method;
-        $this->uri      = $uri;
+        $this->baseUrl  = $baseUrl;
+        $this->request  = $request;
         $this->response = $response;
         $this->type     = $type;
     }

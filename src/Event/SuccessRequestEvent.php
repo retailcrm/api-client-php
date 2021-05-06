@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Event;
 
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface;
 
@@ -26,12 +27,18 @@ class SuccessRequestEvent extends AbstractRequestEvent
     /**
      * FailureRequestEvent constructor.
      *
+     * @param string                                      $baseUrl
+     * @param \Psr\Http\Message\RequestInterface          $request
      * @param \Psr\Http\Message\ResponseInterface         $response
      * @param \RetailCrm\Api\Interfaces\ResponseInterface $responseModel
      */
-    public function __construct(PsrResponseInterface $response, ResponseInterface $responseModel)
-    {
-        parent::__construct($response);
+    public function __construct(
+        string $baseUrl,
+        RequestInterface $request,
+        PsrResponseInterface $response,
+        ResponseInterface $responseModel
+    ) {
+        parent::__construct($baseUrl, $request, $response);
 
         $this->responseModel = $responseModel;
     }
