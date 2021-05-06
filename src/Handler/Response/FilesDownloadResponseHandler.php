@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Handler\Response;
 
+use RetailCrm\Api\Event\SuccessRequestEvent;
 use RetailCrm\Api\Model\Response\Files\FilesDownloadResponse;
 use RetailCrm\Api\Model\ResponseData;
 
@@ -35,6 +36,7 @@ class FilesDownloadResponseHandler extends AbstractResponseHandler
             static::fileNameFromDisposition($responseData->response->getHeader('Content-Disposition')),
             $responseData->response->getBody()
         );
+        $this->dispatch(new SuccessRequestEvent($responseData->response, $responseData->responseModel));
     }
 
     /**

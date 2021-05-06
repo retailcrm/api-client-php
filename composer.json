@@ -26,25 +26,29 @@
     "liip/serializer": "^2.0",
     "php-http/httplug": "^2.2",
     "civicrm/composer-compile-plugin": "^0.15.0",
-    "symfony/console": "^4.0|^5.0"
+    "symfony/console": "^4.0|^5.0",
+    "psr/event-dispatcher": "^1.0"
   },
   "require-dev": {
     "php-http/mock-client": "^1.0",
     "squizlabs/php_codesniffer": "^3.5",
-    "phpmd/phpmd": "^2.9",
+    "phpmd/phpmd": "^2.10",
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
     "phpcompatibility/php-compatibility": "^9.3",
     "phpstan/phpstan": "^0.12.74",
     "vlucas/phpdotenv": "^5.3",
     "phpunit/phpunit": "^9.5",
     "php-http/curl-client": "^2.2",
-    "nyholm/psr7": "^1.3"
+    "nyholm/psr7": "^1.3",
+    "league/event": "^3.0"
   },
   "suggest": {
     "ext-curl": "Most HTTP clients need ext-curl to work properly.",
     "php-http/client-implementation": "PSR-18 compatible client should be available to use this library.",
     "psr/http-message-implementation": "PSR-7 compatible HTTP message implementation should be available to use to use this library.",
     "psr/http-factory-implementation": "PSR-17 compatible factories should be available to use this library.",
+    "symfony/event-dispatcher": "PSR-14 compatible event dispatcher.",
+    "league/event": "PSR-14 compatible event dispatcher.",
     "nyholm/psr7": "This is recommended PSR-7 and PSR-17 implementation.",
     "php-http/curl-client": "Simplest PSR-18 client implementation.",
     "symfony/http-client": "One of the most popular HTTP clients. Has PSR-18 compatible adapter.",

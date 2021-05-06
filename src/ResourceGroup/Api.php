@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\ResourceGroup;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Component\Utils;
@@ -35,6 +36,7 @@ class Api extends AbstractApiResourceGroup
      * @param \Psr\Http\Client\ClientInterface                       $httpClient
      * @param \RetailCrm\Api\Interfaces\RequestTransformerInterface  $requestTransformer
      * @param \RetailCrm\Api\Interfaces\ResponseTransformerInterface $responseTransformer
+     * @param \Psr\EventDispatcher\EventDispatcherInterface|null     $eventDispatcher
      * @param \Psr\Log\LoggerInterface|null                          $logger
      */
     public function __construct(
@@ -42,6 +44,7 @@ class Api extends AbstractApiResourceGroup
         ClientInterface $httpClient,
         RequestTransformerInterface $requestTransformer,
         ResponseTransformerInterface $responseTransformer,
+        ?EventDispatcherInterface $eventDispatcher,
         ?LoggerInterface $logger = null
     ) {
         parent::__construct(
@@ -49,6 +52,7 @@ class Api extends AbstractApiResourceGroup
             $httpClient,
             $requestTransformer,
             $responseTransformer,
+            $eventDispatcher,
             $logger
         );
     }

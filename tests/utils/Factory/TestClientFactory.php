@@ -10,6 +10,7 @@
 namespace RetailCrm\TestUtils\Factory;
 
 use Doctrine\Common\Cache\ArrayCache;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Builder\ClientBuilder;
@@ -32,14 +33,18 @@ class TestClientFactory
     /**
      * Create client using environment variables.
      *
-     * @param \Psr\Http\Client\ClientInterface $client
-     * @param \Psr\Log\LoggerInterface|null    $logger
+     * @param \Psr\Http\Client\ClientInterface                   $client
+     * @param \Psr\Log\LoggerInterface|null                      $logger
+     * @param \Psr\EventDispatcher\EventDispatcherInterface|null $eventDispatcher
      *
      * @return \RetailCrm\Api\Client
-     * @throws \RetailCrm\Api\Exception\BuilderException
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
-    public static function createClient(ClientInterface $client, LoggerInterface $logger = null): Client
-    {
+    public static function createClient(
+        ClientInterface $client,
+        ?LoggerInterface $logger = null,
+        ?EventDispatcherInterface $eventDispatcher = null
+    ): Client {
         if (null === static::$cache) {
             static::$cache = new ArrayCache();
         }
@@ -52,6 +57,7 @@ class TestClientFactory
             ->setApiUrl(TestConfig::getApiUrl())
             ->setAuthenticatorHandler(new HeaderAuthenticatorHandler(TestConfig::getApiKey()))
             ->setDebugLogger($logger)
+            ->setEventDispatcher($eventDispatcher)
             ->setFormEncoder($encoder)
             ->setHttpClient($client)
             ->build();

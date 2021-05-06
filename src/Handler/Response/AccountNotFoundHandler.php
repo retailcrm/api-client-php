@@ -9,9 +9,12 @@
 
 namespace RetailCrm\Api\Handler\Response;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Event\FailureRequestEvent;
 use RetailCrm\Api\Exception\Api\AccountDoesNotExistException;
+use RetailCrm\Api\Exception\ApiException;
 use RetailCrm\Api\Model\Response\ErrorResponse;
 use RetailCrm\Api\Model\ResponseData;
 
@@ -36,7 +39,11 @@ class AccountNotFoundHandler extends AbstractResponseHandler
             $errorResponse = new ErrorResponse();
             $errorResponse->errorMsg = 'Account does not exist.';
 
-            throw new AccountDoesNotExistException($errorResponse, $responseData->response->getStatusCode());
+            $exception = new AccountDoesNotExistException($errorResponse, $responseData->response->getStatusCode());
+
+            $this->dispatch(new FailureRequestEvent($responseData->response, $exception));
+
+            throw $exception;
         }
 
         return $this->next($responseData);

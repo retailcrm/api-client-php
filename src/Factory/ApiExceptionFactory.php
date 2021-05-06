@@ -9,8 +9,10 @@
 
 namespace RetailCrm\Api\Factory;
 
+use RetailCrm\Api\Exception\Api\AccessDeniedException;
 use RetailCrm\Api\Exception\Api\AccountDoesNotExistException;
 use RetailCrm\Api\Exception\Api\ApiErrorException;
+use RetailCrm\Api\Exception\Api\InvalidCredentialsException;
 use RetailCrm\Api\Exception\Api\MissingCredentialsException;
 use RetailCrm\Api\Exception\Api\MissingParameterException;
 use RetailCrm\Api\Exception\Api\ValidationException;
@@ -30,6 +32,8 @@ class ApiExceptionFactory
     /** @var string[] */
     private static $errorTypesMapping = [
         '"apiKey" is missing.' => MissingCredentialsException::class,
+        'Wrong "apiKey" value.' => InvalidCredentialsException::class,
+        'Access denied.' => AccessDeniedException::class,
         'Account does not exist.' => AccountDoesNotExistException::class,
         'Errors in the entity format' => ValidationException::class,
         'Validation error' => ValidationException::class,

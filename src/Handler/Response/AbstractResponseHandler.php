@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Handler\Response;
 
 use Liip\Serializer\SerializerInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Exception\Client\HandlerException;
@@ -17,6 +18,7 @@ use RetailCrm\Api\Factory\ApiExceptionFactory;
 use RetailCrm\Api\Handler\AbstractHandler;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailcrmResponse;
 use RetailCrm\Api\Model\ResponseData;
+use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
 use Throwable;
 
 /**
@@ -27,6 +29,8 @@ use Throwable;
  */
 abstract class AbstractResponseHandler extends AbstractHandler
 {
+    use EventDispatcherAwareTrait;
+
     /**
      * @var \Liip\Serializer\SerializerInterface
      */
@@ -40,13 +44,18 @@ abstract class AbstractResponseHandler extends AbstractHandler
     /**
      * ResponseTransformer constructor.
      *
-     * @param \Liip\Serializer\SerializerInterface       $serializer
-     * @param \RetailCrm\Api\Factory\ApiExceptionFactory $exceptionFactory
+     * @param \Liip\Serializer\SerializerInterface               $serializer
+     * @param \RetailCrm\Api\Factory\ApiExceptionFactory         $exceptionFactory
+     * @param \Psr\EventDispatcher\EventDispatcherInterface|null $eventDispatcher
      */
-    public function __construct(SerializerInterface $serializer, ApiExceptionFactory $exceptionFactory)
-    {
+    public function __construct(
+        SerializerInterface $serializer,
+        ApiExceptionFactory $exceptionFactory,
+        ?EventDispatcherInterface $eventDispatcher = null
+    ) {
         $this->serializer          = $serializer;
         $this->apiExceptionFactory = $exceptionFactory;
+        $this->eventDispatcher     = $eventDispatcher;
     }
 
     /**
@@ -68,7 +77,7 @@ abstract class AbstractResponseHandler extends AbstractHandler
      * @param mixed $item
      *
      * @return mixed|null
-     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException|\RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
     protected function next($item)
     {

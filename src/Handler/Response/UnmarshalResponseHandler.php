@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Handler\Response;
 
+use RetailCrm\Api\Event\SuccessRequestEvent;
 use RetailCrm\Api\Model\ResponseData;
 
 /**
@@ -25,5 +26,6 @@ class UnmarshalResponseHandler extends AbstractResponseHandler
     protected function handleResponse(ResponseData $responseData)
     {
         $responseData->responseModel = $this->unmarshalBody($responseData->response, $responseData->type);
+        $this->dispatch(new SuccessRequestEvent($responseData->response, $responseData->responseModel));
     }
 }

@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Factory;
 
 use Doctrine\Common\Cache\Cache;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use RetailCrm\Api\Builder\ClientBuilder;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
 use RetailCrm\Api\Client;
@@ -19,6 +20,7 @@ use RetailCrm\Api\Handler\Request\HeaderAuthenticatorHandler;
 use RetailCrm\Api\Interfaces\ClientFactoryInterface;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
+use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
 
 /**
  * Class ClientFactory.
@@ -33,12 +35,13 @@ use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
  * Client instances. RequestTransformer with handlers pipeline will not be shared between clients because one
  * of the handlers will be authenticator, which is supposed to be unique between Clients.
  *
- * Service configuration example for `symfony/dependency-injection`:
+ * Service configuration example for Symfony (`symfony/dependency-injection`):
  * ```yaml
  * RetailCrm\Api\Interfaces\ClientFactoryInterface:
  *   class: 'RetailCrm\Api\Factory\ClientFactory'
  *   calls:
  *     - setCacheDir: ['%kernel.cache_dir%']
+ *     - setEventDispatcher: ['@event_dispatcher']
  * ```
  *
  * @category ClientFactory
@@ -46,6 +49,8 @@ use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
  */
 class ClientFactory implements ClientFactoryInterface
 {
+    use EventDispatcherAwareTrait;
+
     /** @var string|null */
     private $cacheDir;
 
@@ -152,7 +157,8 @@ class ClientFactory implements ClientFactoryInterface
 
         return new ResponseTransformer(ResponsePipelineFactory::createDefaultPipeline(
             $this->formEncoder->getSerializer(),
-            $this->apiExceptionFactory
+            $this->apiExceptionFactory,
+            $this->eventDispatcher
         ));
     }
 }

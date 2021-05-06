@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Log\LoggerInterface;
@@ -127,7 +128,11 @@ class Client
      * @param \RetailCrm\Api\Interfaces\RequestTransformerInterface  $requestTransformer
      * @param \RetailCrm\Api\Interfaces\ResponseTransformerInterface $responseTransformer
      * @param \Psr\Http\Message\StreamFactoryInterface               $streamFactory
+     * @param \Psr\EventDispatcher\EventDispatcherInterface|null     $eventDispatcher
      * @param \Psr\Log\LoggerInterface|null                          $logger
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @todo Maybe initialize children groups using different method?
      */
     public function __construct(
         string $apiUrl,
@@ -135,39 +140,181 @@ class Client
         RequestTransformerInterface $requestTransformer,
         ResponseTransformerInterface $responseTransformer,
         StreamFactoryInterface $streamFactory,
+        ?EventDispatcherInterface $eventDispatcher = null,
         ?LoggerInterface $logger = null
     ) {
         $url = static::getBaseUrl($apiUrl);
 
         $this->streamFactory = $streamFactory;
 
-        $this->api = new Api($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->costs = new Costs($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->customFields = new CustomFields($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->customers = new Customers($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->api = new Api(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->costs = new Costs(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->customFields = new CustomFields(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->customers = new Customers(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
         $this->customersCorporate = new CustomersCorporate(
             $url,
             $httpClient,
             $requestTransformer,
             $responseTransformer,
+            $eventDispatcher,
             $logger
         );
-        $this->delivery = new Delivery($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->files = new Files($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->integration = new Integration($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->loyalty = new Loyalty($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->orders = new Orders($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->packs = new Packs($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->payments = new Payments($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->references = new References($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->segments = new Segments($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->settings = new Settings($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->store = new Store($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->tasks = new Tasks($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->telephony = new Telephony($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->users = new Users($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->verification = new Verification($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
-        $this->statistics = new Statistics($url, $httpClient, $requestTransformer, $responseTransformer, $logger);
+        $this->delivery = new Delivery(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->files = new Files(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->integration = new Integration(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->loyalty = new Loyalty(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->orders = new Orders(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->packs = new Packs(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->payments = new Payments(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->references = new References(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->segments = new Segments(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->settings = new Settings(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->store = new Store(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->tasks = new Tasks(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->telephony = new Telephony(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->users = new Users(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->verification = new Verification(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->statistics = new Statistics(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
     }
 
     /**

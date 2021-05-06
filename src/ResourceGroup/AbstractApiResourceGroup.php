@@ -9,17 +9,20 @@
 
 namespace RetailCrm\Api\ResourceGroup;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Client\NetworkExceptionInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RetailCrm\Api\Component\Utils;
+use RetailCrm\Api\Event\FailureRequestEvent;
 use RetailCrm\Api\Exception\Client\HttpClientException;
 use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface;
 use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
+use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
 
 /**
  * Class AbstractApiResourceGroup
@@ -33,6 +36,8 @@ use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
  */
 abstract class AbstractApiResourceGroup
 {
+    use EventDispatcherAwareTrait;
+
     /** @var string */
     protected $baseUrl;
 
@@ -45,7 +50,7 @@ abstract class AbstractApiResourceGroup
     /** @var \RetailCrm\Api\Interfaces\ResponseTransformerInterface */
     protected $responseTransformer;
 
-    /** @var ?\Psr\Log\LoggerInterface */
+    /** @var \Psr\Log\LoggerInterface|null */
     protected $logger;
 
     /**
@@ -55,6 +60,7 @@ abstract class AbstractApiResourceGroup
      * @param \Psr\Http\Client\ClientInterface                       $httpClient
      * @param \RetailCrm\Api\Interfaces\RequestTransformerInterface  $requestTransformer
      * @param \RetailCrm\Api\Interfaces\ResponseTransformerInterface $responseTransformer
+     * @param \Psr\EventDispatcher\EventDispatcherInterface|null     $eventDispatcher
      * @param \Psr\Log\LoggerInterface|null                          $logger
      */
     public function __construct(
@@ -62,12 +68,14 @@ abstract class AbstractApiResourceGroup
         ClientInterface $httpClient,
         RequestTransformerInterface $requestTransformer,
         ResponseTransformerInterface $responseTransformer,
+        ?EventDispatcherInterface $eventDispatcher = null,
         ?LoggerInterface $logger = null
     ) {
         $this->baseUrl             = $baseUrl;
         $this->httpClient          = $httpClient;
         $this->requestTransformer  = $requestTransformer;
         $this->responseTransformer = $responseTransformer;
+        $this->eventDispatcher     = $eventDispatcher;
         $this->logger              = $logger;
     }
 
@@ -123,11 +131,15 @@ abstract class AbstractApiResourceGroup
         try {
             $psrResponse = $this->httpClient->sendRequest($psrRequest);
         } catch (ClientExceptionInterface | NetworkExceptionInterface $exception) {
-            throw new HttpClientException(
+            $clientException = new HttpClientException(
                 sprintf('HTTP client error: %s', $exception->getMessage()),
                 $exception->getCode(),
                 $exception
             );
+
+            $this->dispatch(new FailureRequestEvent(null, $clientException));
+
+            throw $clientException;
         }
 
         if ($this->logger instanceof LoggerInterface && !($this->logger instanceof NullLogger)) {

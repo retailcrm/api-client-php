@@ -11,7 +11,7 @@ namespace RetailCrm\Api\Builder;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
-use Nyholm\Psr7\Factory\Psr17Factory;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -29,6 +29,7 @@ use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Interfaces\HandlerInterface;
 use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
+use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
 
 /**
  * Class ClientBuilder
@@ -40,6 +41,8 @@ use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
  */
 class ClientBuilder implements BuilderInterface
 {
+    use EventDispatcherAwareTrait;
+
     /** @var string */
     private $apiUrl;
 
@@ -252,6 +255,7 @@ class ClientBuilder implements BuilderInterface
             $this->requestTransformer,
             $this->responseTransformer,
             $this->streamFactory ?: Psr17FactoryDiscovery::findStreamFactory(),
+            $this->eventDispatcher,
             $this->debugLogger
         );
     }
@@ -329,7 +333,8 @@ class ClientBuilder implements BuilderInterface
 
         return new ResponseTransformer(ResponsePipelineFactory::createDefaultPipeline(
             $this->formEncoder->getSerializer(),
-            $this->apiExceptionFactory
+            $this->apiExceptionFactory,
+            $this->eventDispatcher
         ));
     }
 }
