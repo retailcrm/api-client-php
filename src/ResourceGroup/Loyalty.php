@@ -14,11 +14,13 @@ use RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest;
+use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusCreditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltiesResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountActivateResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountCreateResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountsResponse;
+use RetailCrm\Api\Model\Response\Loyalty\LoyaltyBonusCreditResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyCalculateResponse;
 
 /**
@@ -149,6 +151,68 @@ class Loyalty extends AbstractApiResourceGroup
             'loyalty/account/' . $id . '/activate',
             null,
             LoyaltyAccountActivateResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/loyalty/account/{id}/bonus/credit" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusCreditRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request = new LoyaltyBonusCreditRequest();
+     * $request->amount = 100;
+     * $request->activationDate = new DateTime();
+     * $request->expireDate = (new DateTime())->add(new DateInterval('P14D'));
+     * $request->comment = 'Monthly membership bonuses.';
+     *
+     * try {
+     *     $response = $client->loyalty->accountBonusCredit(159, $request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Credited bonuses for account: ' . print_r($response->loyaltyBonus, true);
+     * ```
+     *
+     * @param int                                                            $id
+     * @param \RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusCreditRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Loyalty\LoyaltyBonusCreditResponse
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     */
+    public function accountBonusCredit(int $id, LoyaltyBonusCreditRequest $request): LoyaltyBonusCreditResponse
+    {
+        /** @var LoyaltyBonusCreditResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'loyalty/account/' . $id . '/bonus/credit',
+            $request,
+            LoyaltyBonusCreditResponse::class
         );
         return $response;
     }

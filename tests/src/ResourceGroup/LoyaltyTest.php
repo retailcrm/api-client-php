@@ -9,6 +9,9 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
+use DateInterval;
+use DateTime;
+use DateTimeInterface;
 use RetailCrm\Api\Enum\Loyalty\AccountStatus;
 use RetailCrm\Api\Enum\Loyalty\PrivilegeType;
 use RetailCrm\Api\Enum\NumericBoolean;
@@ -27,6 +30,7 @@ use RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest;
+use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusCreditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
@@ -107,6 +111,45 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock);
         $response = $client->loyalty->accountActivate(159);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testAccountBonusCredit(): void
+    {
+        $activationDate = new DateTime();
+        $expireDate = static::dateTimeFromFormat(
+            DateTimeInterface::RFC3339,
+            $activationDate->format(DateTimeInterface::RFC3339)
+        )->add(new DateInterval('P14D'));
+        $activationDateString = $activationDate->format('Y-m-d');
+        $expireDateString = $expireDate->format('Y-m-d');
+        $json = <<<EOF
+{
+    "success": true,
+    "loyaltyBonus": {
+        "amount": 100,
+        "activationDate": "${activationDateString}",
+        "expireDate": "${expireDateString}"
+    }
+}
+EOF;
+
+        $request = new LoyaltyBonusCreditRequest();
+        $request->amount = 100;
+        $request->activationDate = $activationDate;
+        $request->expireDate = $expireDate;
+        $request->comment = 'Monthly membership bonuses.';
+
+        $mock = static::getMockClient();
+        $mock->on(
+            static::createRequestMatcher('loyalty/account/159/bonus/credit')
+                ->setMethod(RequestMethod::POST),
+            static::responseJson(200, $json)
+        );
+
+        $client = TestClientFactory::createClient($mock);
+        $response = $client->loyalty->accountBonusCredit(159, $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

@@ -10,6 +10,7 @@
 namespace RetailCrm\TestUtils\TestCase;
 
 use Closure;
+use DateTime;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Mock\Client as MockClient;
 use InvalidArgumentException;
@@ -27,6 +28,7 @@ use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponseInterface;
 use RetailCrm\TestUtils\Exception\MatcherException;
 use RetailCrm\TestUtils\RequestMatcher;
 use RetailCrm\TestUtils\TestConfig;
+use RuntimeException;
 
 /**
  * Class AbstractApiResourceGroupTestCase
@@ -295,6 +297,27 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
         }
 
         return static::$serializer;
+    }
+
+    /**
+     * @param string $format
+     * @param string $dateTime
+     *
+     * @return \DateTime
+     */
+    protected static function dateTimeFromFormat(string $format, string $dateTime): DateTime
+    {
+        $result = DateTime::createFromFormat($format, $dateTime);
+
+        if (!($result instanceof DateTime)) {
+            throw new RuntimeException(sprintf(
+                'Cannot create DateTime with data "%s" with format "%s"',
+                $format,
+                $dateTime
+            ));
+        }
+
+        return $result;
     }
 
     /**

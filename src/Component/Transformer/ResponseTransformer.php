@@ -10,7 +10,6 @@
 namespace RetailCrm\Api\Component\Transformer;
 
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\UriInterface;
 use Psr\Http\Message\ResponseInterface;
 use RetailCrm\Api\Interfaces\HandlerInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponse;
