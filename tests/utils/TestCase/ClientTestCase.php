@@ -12,6 +12,7 @@ namespace RetailCrm\TestUtils\TestCase;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Cache\FilesystemCache;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Client;
 use RetailCrm\Api\Handler\Request\RequestDataHandler;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
@@ -36,6 +37,7 @@ abstract class ClientTestCase extends TestCase
      * @param string $readerClass
      * @param string $cacheClass
      * @param string $directory
+     * @param bool   $loggerPresent
      *
      * @throws \ReflectionException
      */
@@ -43,7 +45,8 @@ abstract class ClientTestCase extends TestCase
         $client,
         string $readerClass = AnnotationReader::class,
         string $cacheClass = '',
-        string $directory = ''
+        string $directory = '',
+        bool $loggerPresent = false
     ): void {
         self::assertInstanceOf(Client::class, $client);
 
@@ -77,6 +80,10 @@ abstract class ClientTestCase extends TestCase
                 self::assertInstanceOf(FilesystemCache::class, $cache);
                 self::assertEquals($directory, ReflectionUtils::getProperty($cache, 'directory'));
             }
+        }
+
+        if ($loggerPresent) {
+            self::assertInstanceOf(LoggerInterface::class, ReflectionUtils::getProperty($api, 'logger'));
         }
     }
 

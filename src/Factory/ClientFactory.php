@@ -11,6 +11,7 @@ namespace RetailCrm\Api\Factory;
 
 use Doctrine\Common\Cache\Cache;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Builder\ClientBuilder;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
 use RetailCrm\Api\Client;
@@ -44,6 +45,16 @@ use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
  *     - setEventDispatcher: ['@event_dispatcher']
  * ```
  *
+ * You also can set a LoggerInterface instance for debug purposes:
+ * ```yaml
+ * RetailCrm\Api\Interfaces\ClientFactoryInterface:
+ *   class: 'RetailCrm\Api\Factory\ClientFactory'
+ *   calls:
+ *     - setCacheDir: ['%kernel.cache_dir%']
+ *     - setEventDispatcher: ['@event_dispatcher']
+ *     - setDebugLogger: ['@logger']
+ * ```
+ *
  * @category ClientFactory
  * @package  RetailCrm\Api\Factory
  */
@@ -56,6 +67,9 @@ class ClientFactory implements ClientFactoryInterface
 
     /** @var \Doctrine\Common\Cache\Cache|null */
     private $cache;
+
+    /** @var \Psr\Log\LoggerInterface */
+    private $debugLogger;
 
     /** @var \RetailCrm\Api\Interfaces\FormEncoderInterface|null */
     private $formEncoder;
@@ -93,6 +107,19 @@ class ClientFactory implements ClientFactoryInterface
     }
 
     /**
+     * Sets debug logger
+     *
+     * @param \Psr\Log\LoggerInterface $debugLogger
+     *
+     * @return ClientFactory
+     */
+    public function setDebugLogger(LoggerInterface $debugLogger): ClientFactory
+    {
+        $this->debugLogger = $debugLogger;
+        return $this;
+    }
+
+    /**
      * Instantiates a new instance of Client.
      *
      * @param string $apiUrl
@@ -116,6 +143,7 @@ class ClientFactory implements ClientFactoryInterface
             ->setAuthenticatorHandler(new HeaderAuthenticatorHandler($apiKey))
             ->setFormEncoder($this->formEncoder)
             ->setResponseTransformer($this->responseTransformer)
+            ->setDebugLogger($this->debugLogger)
             ->build();
     }
 

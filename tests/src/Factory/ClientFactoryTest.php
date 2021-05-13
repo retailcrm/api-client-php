@@ -9,9 +9,11 @@
 
 namespace RetailCrm\Tests\Factory;
 
+use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\CachedReader;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\FilesystemCache;
+use Psr\Log\NullLogger;
 use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Factory\ClientFactory;
 use RetailCrm\TestUtils\TestCase\ClientTestCase;
@@ -58,5 +60,14 @@ class ClientFactoryTest extends ClientTestCase
             FilesystemCache::class,
             $cacheDir
         );
+    }
+
+    public function testCreateWithDebugLogger(): void
+    {
+        $client = (new ClientFactory())
+            ->setDebugLogger(new NullLogger())
+            ->createClient(TestConfig::getApiUrl(), TestConfig::getApiKey());
+
+        static::assertClientIsValid($client, AnnotationReader::class, '', '', true);
     }
 }
