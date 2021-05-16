@@ -10,6 +10,7 @@
 namespace RetailCrm\Tests\ResourceGroup;
 
 use DateTime;
+use Pock\PockBuilder;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Costs\Cost;
 use RetailCrm\Api\Model\Entity\Source;
@@ -69,15 +70,13 @@ EOF;
         $costsRequest->filter->sites = ['moysklad', 'aliexpress'];
         $costsRequest->filter->maxSumm = 20;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('costs')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(static::encodeFormArray($costsRequest)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('costs');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(static::encodeFormArray($costsRequest))
+            ->reply(200)
+            ->withBody($json);
 
-        $client = TestClientFactory::createClient($mock);
+        $client = TestClientFactory::createClient($mock->getClient());
         $costs  = $client->costs->list($costsRequest);
 
         self::assertModelEqualsToResponse($json, $costs);
@@ -109,15 +108,13 @@ EOF;
         $request->cost->dateTo           = new DateTime();
         $request->cost->summ             = 100.10;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('costs/create')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('costs/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->costs->create($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -136,15 +133,13 @@ EOF;
         $request                         = new CostsDeleteRequest();
         $request->ids = [2, 3, 5, 8, 13, 21];
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('costs/delete')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('costs/delete');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->costs->costsDelete($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -177,15 +172,13 @@ EOF;
         $cost->summ             = 100.10;
         $request->costs         = [$cost];
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('costs/upload')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('costs/upload');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->costs->costsUpload($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -215,14 +208,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('costs/739')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('costs/739');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client = TestClientFactory::createClient($mock);
+        $client = TestClientFactory::createClient($mock->getClient());
         $costs  = $client->costs->get(739);
 
         self::assertModelEqualsToResponse($json, $costs);
@@ -236,14 +227,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('costs/739/delete')
-                ->setMethod(RequestMethod::POST),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('costs/739/delete');
+        $mock->matchMethod(RequestMethod::POST)
+            ->reply(200)
+            ->withBody($json);
 
-        $client    = TestClientFactory::createClient($mock);
+        $client    = TestClientFactory::createClient($mock->getClient());
         $response  = $client->costs->delete(739);
 
         self::assertTrue($response->success);
@@ -275,15 +264,13 @@ EOF;
         $request->cost->dateTo           = new DateTime();
         $request->cost->summ             = 100.10;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('costs/1/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('costs/1/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->costs->edit(1, $request);
 
         self::assertModelEqualsToResponse($json, $response);

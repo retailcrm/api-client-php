@@ -43,14 +43,12 @@ class SettingsTest extends AbstractApiResourceGroupTestCase
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('settings')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('settings');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->settings->get();
 
         self::assertModelEqualsToResponse($json, $response);

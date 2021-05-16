@@ -78,15 +78,13 @@ EOF;
         $request->filter->performers = [27];
         $request->filter->status     = TaskStatus::COMPLETED;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('tasks')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(self::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('tasks');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->tasks->list($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -108,15 +106,13 @@ EOF;
         $request->task->customer    = new AbstractCustomer(null, 'ru1067815391', 'aliexpress');
         $request->site              = 'aliexpress';
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('tasks/create')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('tasks/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->tasks->create($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -144,14 +140,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('tasks/1')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('tasks/1');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->tasks->get(1);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -170,15 +164,13 @@ EOF;
         $request->task->text        = 'Test task #1 (edited)';
         $request->site              = 'aliexpress';
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('tasks/1/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('tasks/1/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->tasks->edit(1, $request);
 
         self::assertModelEqualsToResponse($json, $response);

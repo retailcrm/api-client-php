@@ -29,14 +29,12 @@ class StatisticsTest extends AbstractApiResourceGroupTestCase
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('statistic/update')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('statistic/update');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->statistics->update();
 
         self::assertModelEqualsToResponse($json, $response);

@@ -42,15 +42,13 @@ EOF;
 
         $request = new SmsVerificationConfirmRequest($confirm);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('verification/sms/confirm')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('verification/sms/confirm');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->verification->smsConfirm($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -70,14 +68,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('verification/sms/1/status')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('verification/sms/1/status');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->verification->smsStatus('1');
 
         self::assertModelEqualsToResponse($json, $response);

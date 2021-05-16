@@ -70,15 +70,13 @@ EOF;
         $request->site           = 'bitrix-test';
         $request->loyaltyAccount = $account;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('loyalty/account/create')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('loyalty/account/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->accountCreate($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -102,14 +100,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('loyalty/account/159/activate')
-                ->setMethod(RequestMethod::POST),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('loyalty/account/159/activate');
+        $mock->matchMethod(RequestMethod::POST)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->accountActivate(159);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -141,14 +137,12 @@ EOF;
         $request->expireDate = $expireDate;
         $request->comment = 'Monthly membership bonuses.';
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('loyalty/account/159/bonus/credit')
-                ->setMethod(RequestMethod::POST),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('loyalty/account/159/bonus/credit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->reply(200)
+            ->withBody($json);
 
-        $client = TestClientFactory::createClient($mock);
+        $client = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->accountBonusCredit(159, $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -169,15 +163,13 @@ EOF;
 
         $request = new LoyaltyAccountEditRequest($account);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('loyalty/account/159/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('loyalty/account/159/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->accountEdit(159, $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -517,15 +509,13 @@ EOF;
         $request->filter = new LoyaltyAccountApiFilterType();
         $request->filter->status = AccountStatus::ACTIVATED;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('loyalty/accounts')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(self::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('loyalty/accounts');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->accounts($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -593,15 +583,13 @@ EOF;
         $request->bonuses = 5;
         $request->order = $order;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('loyalty/calculate')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('loyalty/calculate');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->calculate($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -658,15 +646,13 @@ EOF;
         $request->filter->active = NumericBoolean::TRUE;
         $request->filter->blocked = NumericBoolean::FALSE;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('loyalty/loyalties')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(self::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('loyalty/loyalties');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->loyalties($request);
 
         self::assertModelEqualsToResponse($json, $response);

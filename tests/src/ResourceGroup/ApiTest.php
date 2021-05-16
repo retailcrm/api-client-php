@@ -35,13 +35,12 @@ class ApiTest extends AbstractApiResourceGroupTestCase
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createUnversionedRequestMatcher('api-versions')->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createUnversionedApiMockBuilder('api-versions');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client = TestClientFactory::createClient($mock);
+        $client = TestClientFactory::createClient($mock->getClient());
         $apiVersions = $client->api->apiVersions();
 
         self::assertTrue($apiVersions->success);
@@ -61,13 +60,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createUnversionedRequestMatcher('credentials')->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createUnversionedApiMockBuilder('credentials');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client      = TestClientFactory::createClient($mock);
+        $client      = TestClientFactory::createClient($mock->getClient());
         $credentials = $client->api->credentials();
 
         self::assertTrue($credentials->success);

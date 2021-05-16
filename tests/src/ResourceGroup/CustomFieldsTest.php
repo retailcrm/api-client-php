@@ -74,15 +74,13 @@ EOF;
         $request->filter->code = 'bonus';
         $request->filter->name = 'бонус';
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('custom-fields')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(static::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('custom-fields');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(static::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->customFields->list($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -137,15 +135,13 @@ EOF;
         $request->filter->code = 'test22';
         $request->filter->name = 'test22';
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('custom-fields/dictionaries')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(static::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('custom-fields/dictionaries');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(static::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client    = TestClientFactory::createClient($mock);
+        $client    = TestClientFactory::createClient($mock->getClient());
         $response  = $client->customFields->dictionaries($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -171,15 +167,13 @@ EOF;
 
         $request = new CustomDictionaryCreateRequest($dictionary);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('custom-fields/dictionaries/create')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('custom-fields/dictionaries/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client    = TestClientFactory::createClient($mock);
+        $client    = TestClientFactory::createClient($mock->getClient());
         $response  = $client->customFields->dictionariesCreate($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -209,14 +203,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('custom-fields/dictionaries/test')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('custom-fields/dictionaries/test');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client    = TestClientFactory::createClient($mock);
+        $client    = TestClientFactory::createClient($mock->getClient());
         $response  = $client->customFields->dictionariesGet('test');
 
         self::assertModelEqualsToResponse($json, $response);
@@ -241,15 +233,13 @@ EOF;
 
         $request = new CustomDictionaryCreateRequest($dictionary);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('custom-fields/dictionaries/test_dict/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('custom-fields/dictionaries/test_dict/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client    = TestClientFactory::createClient($mock);
+        $client    = TestClientFactory::createClient($mock->getClient());
         $response  = $client->customFields->dictionariesEdit('test_dict', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -277,15 +267,12 @@ EOF;
 
         $request               = new CustomFieldsCreateRequest($field);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher(sprintf('custom-fields/%s/create', CustomFieldEntity::CUSTOMER))
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder(sprintf('custom-fields/%s/create', CustomFieldEntity::CUSTOMER));
+        $mock->matchMethod(RequestMethod::POST)
+            ->reply(200)
+            ->withBody($json);
 
-        $client    = TestClientFactory::createClient($mock);
+        $client    = TestClientFactory::createClient($mock->getClient());
         $response  = $client->customFields->create(CustomFieldEntity::CUSTOMER, $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -313,14 +300,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('custom-fields/order/galka')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('custom-fields/order/galka');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->customFields->get(CustomFieldEntity::ORDER, 'galka');
 
         self::assertModelEqualsToResponse($json, $response);
@@ -346,17 +331,14 @@ EOF;
 
         $request = new CustomFieldsCreateRequest($field);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher(
-                sprintf('custom-fields/%s/%s/edit', CustomFieldEntity::CUSTOMER, 'description')
-            )
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
+        $mock = static::createApiMockBuilder(
+            sprintf('custom-fields/%s/%s/edit', CustomFieldEntity::CUSTOMER, 'description')
         );
+        $mock->matchMethod(RequestMethod::POST)
+            ->reply(200)
+            ->withBody($json);
 
-        $client    = TestClientFactory::createClient($mock);
+        $client    = TestClientFactory::createClient($mock->getClient());
         $response  = $client->customFields->edit(CustomFieldEntity::CUSTOMER, 'description', $request);
 
         self::assertModelEqualsToResponse($json, $response);

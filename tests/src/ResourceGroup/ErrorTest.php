@@ -38,13 +38,12 @@ EOF;
         $this->expectExceptionCode(405);
         $this->expectExceptionMessage('Method Not Allowed');
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createUnversionedRequestMatcher('api-versions')->setMethod(RequestMethod::GET),
-            static::responseJson(405, $json)
-        );
+        $mock = static::createUnversionedApiMockBuilder('api-versions');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(405)
+            ->withBody($json);
 
-        $client = TestClientFactory::createClient($mock);
+        $client = TestClientFactory::createClient($mock->getClient());
         $client->api->apiVersions();
     }
 
@@ -60,13 +59,12 @@ EOF;
         $this->expectExceptionCode(405);
         $this->expectExceptionMessage('Invalid data');
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('costs/create')->setMethod(RequestMethod::POST),
-            static::responseJson(405, $json)
-        );
+        $mock = static::createApiMockBuilder('costs/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->reply(405)
+            ->withBody($json);
 
-        $client = TestClientFactory::createClient($mock);
+        $client = TestClientFactory::createClient($mock->getClient());
         $client->costs->create(new CostsCreateRequest());
     }
 
@@ -93,16 +91,13 @@ EOF;
         $this->expectExceptionCode(405);
         $this->expectExceptionMessage('Account does not exist');
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('costs/create')->setMethod(RequestMethod::POST),
-            static::getResponseFactory()
-                ->createResponse(405)
-                ->withHeader('Content-Type', 'text/html; charset=utf-8')
-                ->withBody(static::getStreamFactory()->createStream($html))
-        );
+        $mock = static::createApiMockBuilder('costs/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->reply(405)
+            ->withHeader('Content-Type', 'text/html; charset=utf-8')
+            ->withBody($html);
 
-        $client = TestClientFactory::createClient($mock);
+        $client = TestClientFactory::createClient($mock->getClient());
         $client->costs->create(new CostsCreateRequest());
     }
 }

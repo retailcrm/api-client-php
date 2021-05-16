@@ -59,14 +59,12 @@ class IntegrationTests extends AbstractApiResourceGroupTestCase
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('integration-modules/mg-fbmessenger')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('integration-modules/mg-fbmessenger');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->integration->get('mg-fbmessenger');
 
         self::assertModelEqualsToResponse($json, $response);
@@ -101,15 +99,13 @@ EOF;
 
         $request = new IntegrationModulesEditRequest($module);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('integration-modules/mg-fbmessenger/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('integration-modules/mg-fbmessenger/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->integration->edit('mg-fbmessenger', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -147,15 +143,13 @@ EOF;
 
         $request = new IntegrationModulesEditRequest($module);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('integration-modules/test-payment-integration/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('integration-modules/test-payment-integration/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->integration->edit('test-payment-integration', $request);
 
         self::assertModelEqualsToResponse($json, $response);

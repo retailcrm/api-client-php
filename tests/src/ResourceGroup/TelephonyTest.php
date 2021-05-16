@@ -46,15 +46,13 @@ EOF;
 
         $request = new TelephonyCallEventRequest($event);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('telephony/call/event')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('telephony/call/event');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->telephony->callEvent($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -83,15 +81,13 @@ EOF;
 
         $request = new TelephonyCallsUploadRequest([$call]);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('telephony/calls/upload')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('telephony/calls/upload');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->telephony->callsUpload($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -135,15 +131,13 @@ EOF;
         $request->details      = NumericBoolean::TRUE;
         $request->ignoreStatus = NumericBoolean::TRUE;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('telephony/manager')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(self::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('telephony/manager');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->telephony->manager($request);
 
         self::assertModelEqualsToResponse($json, $response);

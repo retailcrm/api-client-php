@@ -108,15 +108,13 @@ EOF;
         $request->filter->active            = NumericBoolean::TRUE;
         $request->filter->minCustomersCount = 700;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('segments')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(static::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('segments');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(static::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->segments->list($request);
 
         self::assertModelEqualsToResponse($json, $response);

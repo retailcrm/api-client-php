@@ -11,6 +11,7 @@ namespace RetailCrm\Tests\ResourceGroup;
 
 use DateInterval;
 use DateTime;
+use Pock\PockBuilder;
 use RetailCrm\Api\Component\Transformer\DateTimeTransformer;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Packs\OrderProductPack;
@@ -77,15 +78,13 @@ EOF;
         $request->filter      = new OrderProductPackFilter();
         $request->filter->ids = [143];
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('orders/packs')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(static::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('orders/packs');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(static::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->packs->list($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -111,15 +110,13 @@ EOF;
 
         $request = new PacksCreateRequest($pack);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('orders/packs/create')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('orders/packs/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->packs->create($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -1254,15 +1251,13 @@ EOF;
         $request->filter      = new OrderProductPackHistoryFilterType();
         $request->filter->startDate = DateTimeTransformer::create('2020-01-01 00:00:00');
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('orders/packs')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(static::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('orders/packs/history');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(static::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->packs->history($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -1305,14 +1300,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('orders/packs/143')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('orders/packs/143');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->packs->get(143);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -1332,15 +1325,13 @@ EOF;
 
         $request = new PacksCreateRequest($pack);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('orders/packs/143/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('orders/packs/143/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->packs->edit(143, $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -1354,14 +1345,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('orders/packs/143/delete')
-                ->setMethod(RequestMethod::POST),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('orders/packs/143/delete');
+        $mock->matchMethod(RequestMethod::POST)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->packs->delete(143);
 
         self::assertModelEqualsToResponse($json, $response);

@@ -46,15 +46,13 @@ EOF;
 
         $request = new PaymentCheckRequest($checkRequest);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('payment/check')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('payment/check');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->payments->check($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -77,15 +75,13 @@ EOF;
 
         $request = new PaymentCreateInvoiceRequest($invoiceRequest);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('payment/create-invoice')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('payment/create-invoice');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->payments->createInvoice($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -106,15 +102,13 @@ EOF;
 
         $request = new PaymentUpdateInvoiceRequest($invoiceRequest);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('payment/update-invoice')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('payment/update-invoice');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->payments->updateInvoice($request);
 
         self::assertModelEqualsToResponse($json, $response);

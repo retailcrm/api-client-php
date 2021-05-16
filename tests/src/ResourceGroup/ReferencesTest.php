@@ -113,14 +113,12 @@ class ReferencesTest extends AbstractApiResourceGroupTestCase
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/cost-groups')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/cost-groups');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->costGroups();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -140,15 +138,13 @@ EOF;
 
         $request = new CostGroupsEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/cost-groups/commission/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/cost-groups/commission/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->costGroupsEdit('commission', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -334,14 +330,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/cost-items')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/cost-items');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->costItems();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -366,15 +360,13 @@ EOF;
 
         $request = new CostItemsEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/cost-items/test-item/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/cost-items/test-item/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->costItemsEdit('test-item', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -401,14 +393,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/countries')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/countries');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->countries();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -433,14 +423,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/couriers')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/couriers');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->couriers();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -462,15 +450,13 @@ EOF;
 
         $request = new CouriersCreateRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/couriers/create')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/couriers/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->couriersCreate($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -491,15 +477,13 @@ EOF;
 
         $request = new CouriersCreateRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/couriers/4/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/couriers/4/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->couriersEdit(4, $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -630,14 +614,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/delivery-services')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/delivery-services');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->deliveryServices();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -657,15 +639,13 @@ EOF;
 
         $request = new DeliveryServicesEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/delivery-services/dict-deliveryservices-1571123786/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/delivery-services/dict-deliveryservices-1571123786/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->deliveryServicesEdit('dict-deliveryservices-1571123786', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -4981,14 +4961,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/delivery-types')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/delivery-types');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->deliveryTypes();
 
         self::assertModelsCallback($json, $response, static function ($expected, $actual) {
@@ -5028,15 +5006,13 @@ EOF;
 
         $request = new DeliveryTypesEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/delivery-types/dict-deliverytypes-1571124916/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/delivery-types/dict-deliverytypes-1571124916/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->deliveryTypesEdit('dict-deliverytypes-1571124916', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -5080,14 +5056,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/legal-entities')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/legal-entities');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->legalEntities();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -5109,15 +5083,13 @@ EOF;
 
         $request = new LegalEntityEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/legal-entities/necropol/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/legal-entities/necropol/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->legalEntitiesEdit('necropol', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -5160,14 +5132,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/mg-channels')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/mg-channels');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->mgChannels();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -5279,14 +5249,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/order-methods')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/order-methods');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->orderMethods();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -5306,15 +5274,13 @@ EOF;
 
         $request = new OrderMethodsEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/order-methods/2/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/order-methods/2/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->orderMethodsEdit('2', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -5498,14 +5464,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/order-types')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/order-types');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->orderTypes();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -5525,15 +5489,13 @@ EOF;
 
         $request = new OrderTypesEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/order-types/1/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/order-types/1/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->orderTypesEdit('1', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -5973,14 +5935,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/payment-statuses')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/payment-statuses');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->paymentStatuses();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -6002,15 +5962,13 @@ EOF;
 
         $request = new PaymentStatusesEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/payment-statuses/dict-paymentstatuses-1571123793/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/payment-statuses/dict-paymentstatuses-1571123793/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->paymentStatusesEdit('dict-paymentstatuses-1571123793', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -6158,14 +6116,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/payment-types')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/payment-types');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->paymentTypes();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -6195,15 +6151,13 @@ EOF;
 
         $request = new PaymentTypesEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/payment-types/test-payment-integration/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/payment-types/test-payment-integration/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->paymentTypesEdit('test-payment-integration', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -6275,14 +6229,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/price-types')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/price-types');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->priceTypes();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -6303,15 +6255,13 @@ EOF;
 
         $request = new PriceTypesEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/price-types/test2/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/price-types/test2/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->priceTypesEdit('test2', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -6685,14 +6635,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/product-statuses')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/product-statuses');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->productStatuses();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -6713,15 +6661,13 @@ EOF;
 
         $request = new ProductStatusesEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/product-statuses/nbsp/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/product-statuses/nbsp/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->productStatusesEdit('nbsp', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -6759,14 +6705,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/sites')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/sites');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->sites();
 
         self::assertModelsCallback($json, $response, static function (array $expected, array $actual) {
@@ -6799,15 +6743,13 @@ EOF;
 
         $request = new SitesEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/sites/test-site/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/sites/test-site/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->sitesEdit('test-site', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -6916,14 +6858,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/status-groups')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/status-groups');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->statusGroups();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -7212,14 +7152,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/statuses')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/statuses');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->statuses();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -7241,15 +7179,13 @@ EOF;
 
         $request = new StatusesEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/statuses/test/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/statuses/test/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->statusesEdit('test', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -7709,14 +7645,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/stores')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/stores');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->stores();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -7758,15 +7692,13 @@ EOF;
 
         $request = new StoresEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/stores/test/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/stores/test/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->storesEdit('test', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -8531,14 +8463,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/units')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/units');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->units();
 
         self::assertModelEqualsToResponse($json, $response);
@@ -8559,15 +8489,13 @@ EOF;
 
         $request = new UnitsEditRequest($entity);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('reference/units/nbb/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('reference/units/nbb/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->unitsEdit('nbb', $request);
 
         self::assertModelEqualsToResponse($json, $response);

@@ -105,15 +105,13 @@ EOF;
         $request->order             = $order;
         $request->deliveryTypeCodes = ['2', '3', '8', '9', '10', '11'];
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('delivery/calculate')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('delivery/calculate');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->delivery->calculate($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -141,15 +139,13 @@ EOF;
         $request               = new TrackingRequest();
         $request->statusUpdate = [$item];
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('delivery/generic/boxberry-1-5f8064212c612/tracking')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('delivery/generic/boxberry-1-5f8064212c612/tracking');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->delivery->tracking('boxberry-1-5f8064212c612', $request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -199,15 +195,13 @@ EOF;
         $request->filter->dateFrom    = '2020-01-15';
         $request->filter->orderNumber = '6911C';
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('delivery/shipments')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(static::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('delivery/shipments');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(static::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->delivery->shipments($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -239,15 +233,13 @@ EOF;
         $request->deliveryType     = 'boxberry';
         $request->deliveryShipment = $shipment;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('delivery/shipments/create')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('delivery/shipments/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->delivery->shipmentsCreate($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -284,14 +276,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('delivery/shipments/9')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('delivery/shipments/9');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->delivery->shipmentsGet('9');
 
         self::assertModelEqualsToResponse($json, $response);
@@ -323,15 +313,13 @@ EOF;
         $request->deliveryType     = 'boxberry';
         $request->deliveryShipment = $shipment;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('delivery/shipments/1/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('delivery/shipments/1/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->delivery->shipmentsEdit('1', $request);
 
         self::assertModelEqualsToResponse($json, $response);

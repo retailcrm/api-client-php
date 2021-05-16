@@ -119,15 +119,13 @@ EOF;
         $request->page  = 1;
         $request->limit = PaginationLimit::LIMIT_20;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('user-groups')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(self::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('user-groups');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->users->userGroups($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -180,15 +178,13 @@ EOF;
         $request->filter->active  = NumericBoolean::TRUE;
         $request->filter->isAdmin = NumericBoolean::TRUE;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('users')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(self::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('users');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->users->list($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -228,14 +224,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('users/28')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('users/28');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->users->get(28);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -251,15 +245,13 @@ EOF;
 
         $request = new UsersStatusRequest(UserStatus::BUSY);
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('users/28/status')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('users/28/status');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->users->status(28, $request);
 
         self::assertModelEqualsToResponse($json, $response);

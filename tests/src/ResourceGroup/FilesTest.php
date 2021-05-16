@@ -70,15 +70,13 @@ EOF;
         $request->page           = 1;
         $request->limit          = PaginationLimit::LIMIT_20;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('files')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(static::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('files');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(static::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->files->list($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -95,18 +93,16 @@ EOF;
 }
 EOF;
 
-        $mock    = static::getMockClient();
-        $client  = TestClientFactory::createClient($mock);
-        $file    = $client->getStreamFactory()->createStream('test data');
+        $mock    = static::createApiMockBuilder('files/upload');
+        $file    = Psr17FactoryDiscovery::findStreamFactory()->createStream('test data');
         $request = new FilesUploadRequest($file);
 
-        $mock->on(
-            static::createRequestMatcher('files/upload')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
+        $client  = TestClientFactory::createClient($mock->getClient());
         $response = $client->files->upload($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -130,14 +126,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('files/25')
-                ->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('files/25');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->files->get(25);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -151,14 +145,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('files/1/delete')
-                ->setMethod(RequestMethod::POST),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('files/1/delete');
+        $mock->matchMethod(RequestMethod::POST)
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->files->delete(1);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -166,23 +158,19 @@ EOF;
 
     public function testDownload(): void
     {
-        $mock     = static::getMockClient();
-        $client   = TestClientFactory::createClient($mock);
-        $fileData = $client->getStreamFactory()->createStream('test data');
+        $mock     = static::createApiMockBuilder('files/25/download');
+        $fileData = 'test data';
 
-        $mock->on(
-            static::createRequestMatcher('files/25/download')
-                ->setMethod(RequestMethod::GET),
-            Psr17FactoryDiscovery::findResponseFactory()
-                ->createResponse(200)
-                ->withHeader('Content-Disposition', 'attachment; filename="filename.txt"')
-                ->withBody($fileData)
-        );
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withHeader('Content-Disposition', 'attachment; filename="filename.txt"')
+            ->withBody($fileData);
 
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->files->download(25);
 
         self::assertEquals('filename.txt', $response->fileName);
-        self::assertEquals($fileData->getContents(), $response->data->getContents());
+        self::assertEquals($fileData, $response->data->getContents());
     }
 
     public function testEdit(): void
@@ -200,15 +188,13 @@ EOF;
         $request->file           = new File();
         $request->file->filename = 'Test File.xml';
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('files/1/edit')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(static::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('files/1/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->files->edit(1, $request);
 
         self::assertModelEqualsToResponse($json, $response);

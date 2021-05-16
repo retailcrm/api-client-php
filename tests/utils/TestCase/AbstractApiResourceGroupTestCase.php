@@ -12,10 +12,10 @@ namespace RetailCrm\TestUtils\TestCase;
 use Closure;
 use DateTime;
 use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Mock\Client as MockClient;
 use InvalidArgumentException;
 use Liip\Serializer\SerializerInterface;
 use PHPUnit\Framework\TestCase;
+use Pock\PockBuilder;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -25,8 +25,6 @@ use RetailCrm\Api\Factory\SerializerFactory;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Interfaces\RequestInterface as RetailCrmRequestInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailCrmResponseInterface;
-use RetailCrm\TestUtils\Exception\MatcherException;
-use RetailCrm\TestUtils\RequestMatcher;
 use RetailCrm\TestUtils\TestConfig;
 use RuntimeException;
 
@@ -51,14 +49,23 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
     protected static $streamFactory;
 
     /**
-     * @return \Http\Mock\Client
+     * @param string $pathFragment
+     *
+     * @return \Pock\PockBuilder
      */
-    protected static function getMockClient(): MockClient
+    protected static function createApiMockBuilder(string $pathFragment): PockBuilder
     {
-        $client = new MockClient();
-        $client->setDefaultException(new MatcherException());
+        $testDataPath = parse_url(TestConfig::getApiUrl(), PHP_URL_PATH);
 
-        return $client;
+        return (new PockBuilder())
+            ->matchScheme((string) parse_url(TestConfig::getApiUrl(), PHP_URL_SCHEME))
+            ->matchHost((string) parse_url(TestConfig::getApiUrl(), PHP_URL_HOST))
+            ->matchHeader('X-Api-Key', TestConfig::getApiKey())
+            ->matchPath(
+                (empty($testDataPath) || '/' === $testDataPath)
+                    ? '/api/v5/' . $pathFragment
+                    : trim($testDataPath, '/') . '/' . $pathFragment
+            );
     }
 
     /**
@@ -96,40 +103,28 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
      * @param string $path
      * @param bool   $header
      *
-     * @return \RetailCrm\TestUtils\RequestMatcher
+     * @return \Pock\PockBuilder
      */
-    protected static function createRequestMatcher(string $path = '', bool $header = true): RequestMatcher
+    protected static function createUnversionedApiMockBuilder(string $path = '', bool $header = true): PockBuilder
     {
-        $url = parse_url(TestConfig::getApiUrl());
-        $matcher = RequestMatcher::createMatcher($url['host']);
+        $testDataPath = parse_url(TestConfig::getApiUrl(), PHP_URL_PATH);
+
+        $builder = (new PockBuilder())
+            ->matchScheme((string) parse_url(TestConfig::getApiUrl(), PHP_URL_SCHEME))
+            ->matchHost((string) parse_url(TestConfig::getApiUrl(), PHP_URL_HOST))
+            ->matchPath(
+                (empty($testDataPath) || '/' === $testDataPath)
+                    ? '/api/' . $path
+                    : trim(Utils::removeVersionFromUri($testDataPath), '/') . '/' . $path
+            );
 
         if ($header) {
-            $matcher->setOptionalHeaders(['X-Api-Key' => [TestConfig::getApiKey()]]);
+            $builder->matchHeader('X-Api-Key', TestConfig::getApiKey());
         } else {
-            $matcher->setOptionalQueryParams(['apiKey' => TestConfig::getApiKey()]);
+            $builder->matchQuery(['apiKey' => TestConfig::getApiKey()]);
         }
 
-        return $matcher->setPath(static::addTrailingSlash($url['path']) . $path);
-    }
-
-    /**
-     * @param string $path
-     * @param bool   $header
-     *
-     * @return \RetailCrm\TestUtils\RequestMatcher
-     */
-    protected static function createUnversionedRequestMatcher(string $path = '', bool $header = true): RequestMatcher
-    {
-        $url = parse_url(TestConfig::getApiUrl());
-        $matcher = RequestMatcher::createMatcher($url['host']);
-
-        if ($header) {
-            $matcher->setOptionalHeaders(['X-Api-Key' => [TestConfig::getApiKey()]]);
-        } else {
-            $matcher->setOptionalQueryParams(['apiKey' => TestConfig::getApiKey()]);
-        }
-
-        return $matcher->setPath(static::addTrailingSlash(Utils::removeVersionFromUri($url['path'])) . $path);
+        return $builder;
     }
 
     /**

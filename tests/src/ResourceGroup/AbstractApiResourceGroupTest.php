@@ -67,13 +67,12 @@ EOF;
             ],
         ];
         $logger = new ArrayLogger();
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createUnversionedRequestMatcher('api-versions')->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createUnversionedApiMockBuilder('api-versions');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client = TestClientFactory::createClient($mock, $logger);
+        $client = TestClientFactory::createClient($mock->getClient(), $logger);
         $client->api->apiVersions();
 
         self::assertEquals($logs, $logger->getMessages());
@@ -98,13 +97,12 @@ EOF;
             $event = $item;
         });
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createUnversionedRequestMatcher('api-versions')->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createUnversionedApiMockBuilder('api-versions');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
-        $client = TestClientFactory::createClient($mock, null, $dispatcher);
+        $client = TestClientFactory::createClient($mock->getClient(), null, $dispatcher);
         $client->api->apiVersions();
 
         self::assertInstanceOf(SuccessRequestEvent::class, $event);
@@ -139,13 +137,12 @@ EOF;
             $event = $item;
         });
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createUnversionedRequestMatcher('api-versions')->setMethod(RequestMethod::GET),
-            static::responseJson(403, $json)
-        );
+        $mock = static::createUnversionedApiMockBuilder('api-versions');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(403)
+            ->withBody($json);
 
-        $client = TestClientFactory::createClient($mock, null, $dispatcher);
+        $client = TestClientFactory::createClient($mock->getClient(), null, $dispatcher);
 
         try {
             $client->api->apiVersions();
@@ -188,14 +185,13 @@ EOF;
             $event = $item;
         });
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createUnversionedRequestMatcher('api-versions', false)->setMethod(RequestMethod::GET),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createUnversionedApiMockBuilder('api-versions', false);
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
 
         $client = TestClientFactory::createClient(
-            $mock,
+            $mock->getClient(),
             null,
             $dispatcher,
             new GetParameterAuthenticatorHandler(TestConfig::getApiKey())

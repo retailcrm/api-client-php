@@ -199,15 +199,13 @@ EOF;
         $request->filter->productActive = NumericBoolean::TRUE;
         $request->filter->sites         = ['moysklad', 'aliexpress'];
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('store/inventories')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(self::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('store/inventories');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->store->inventories($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -229,15 +227,13 @@ EOF;
         $request->offers = [$offer];
         $request->site   = 'aliexpress';
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('store/inventories/upload')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('store/inventories/upload');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->store->inventoriesUpload($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -257,15 +253,13 @@ EOF;
         $price->xmlId = '1';
         $price->prices = [new PriceUploadPricesInput('base', 100)];
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('store/prices/upload')
-                ->setMethod(RequestMethod::POST)
-                ->setBody(self::encodeForm(new PricesUploadRequest([$price]))),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('store/prices/upload');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm(new PricesUploadRequest([$price])))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->store->pricesUpload(new PricesUploadRequest([$price]));
 
         self::assertModelEqualsToResponse($json, $response);
@@ -343,15 +337,13 @@ EOF;
         $request->filter->sites  = ['moysklad', 'aliexpress'];
         $request->filter->active = NumericBoolean::TRUE;
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('store/product-groups')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(self::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('store/product-groups');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->store->productGroups($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -446,15 +438,13 @@ EOF;
         $request->filter->maxPrice  = '10000';
         $request->filter->name      = 'Test Product';
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('store/products')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(self::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('store/products');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->store->products($request);
 
         self::assertModelEqualsToResponse($json, $response);
@@ -512,15 +502,13 @@ EOF;
         $request->filter        = new ProductPropertiesFilterType();
         $request->filter->sites = ['moysklad', 'aliexpress'];
 
-        $mock = static::getMockClient();
-        $mock->on(
-            static::createRequestMatcher('store/products/properties')
-                ->setMethod(RequestMethod::GET)
-                ->setQueryParams(self::encodeFormArray($request)),
-            static::responseJson(200, $json)
-        );
+        $mock = static::createApiMockBuilder('store/products/properties');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock);
+        $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->store->productsProperties($request);
 
         self::assertModelEqualsToResponse($json, $response);
