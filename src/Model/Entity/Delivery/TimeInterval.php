@@ -58,7 +58,7 @@ class TimeInterval
         }
 
         if (null !== $to) {
-            $this->from = $to;
+            $this->to = $to;
         }
     }
 
