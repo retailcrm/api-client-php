@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Model\Filter\Store;
 
+use DateTime;
 use RetailCrm\Api\Component\FormData\Mapping as Form;
 
 /**
@@ -234,4 +235,20 @@ class ProductFilterType
      * @Form\SerializedName("catalogs")
      */
     public $catalogs;
+
+    /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("sinceId")
+     */
+    public $sinceId;
+
+    /**
+     * @var DateTime
+     *
+     * @Form\Type("DateTime<'Y-m-d H:i:s'>")
+     * @Form\SerializedName("sinceUpdatedAt")
+     */
+    public $sinceUpdatedAt;
 }

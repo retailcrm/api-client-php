@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
+use RetailCrm\Api\Component\Transformer\DateTimeTransformer;
 use RetailCrm\Api\Enum\NumericBoolean;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Store\Inventory;
@@ -437,6 +438,110 @@ EOF;
         $request->filter->priceType = 'base';
         $request->filter->maxPrice  = '10000';
         $request->filter->name      = 'Test Product';
+
+        $mock = static::createApiMockBuilder('store/products');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+        $response = $client->store->products($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testProductsSinceUpdated(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "pagination": {
+    "limit": 20,
+    "totalCount": 1,
+    "currentPage": 1,
+    "totalPageCount": 1
+  },
+  "products": [
+    {
+      "updatedAt": "2019-12-01 00:00:00",
+      "minPrice": 624,
+      "maxPrice": 624,
+      "id": 828272,
+      "article": "38311",
+      "name": "Test Product",
+      "url": "https://example.com",
+      "imageUrl": "https://example.com/image.jpg",
+      "description": "Test Description",
+      "groups": [
+        {
+          "id": 4050,
+          "externalId": "368"
+        },
+        {
+          "id": 4154,
+          "externalId": "391"
+        },
+        {
+          "id": 4279,
+          "externalId": "394"
+        }
+      ],
+      "externalId": "38311",
+      "manufacturer": "Test",
+      "offers": [
+        {
+          "name": "Test #1",
+          "price": 624,
+          "images": [
+            "https://example.com/image.jpg"
+          ],
+          "id": 1941833,
+          "externalId": "38311",
+          "xmlId": "38311",
+          "article": "38311",
+          "prices": [
+            {
+              "priceType": "base",
+              "price": 624,
+              "ordering": 991
+            }
+          ],
+          "purchasePrice": 272.64,
+          "vatRate": "none",
+          "properties": {
+            "ves": "33",
+            "brend": "Test",
+            "image": "https://example.com/image.jpg",
+            "ves_g": "33",
+            "artikul": "38311"
+          },
+          "quantity": 0,
+          "weight": 33,
+          "active": true,
+          "unit": {
+            "code": "pc",
+            "name": "Штука",
+            "sym": "шт."
+          }
+        }
+      ],
+      "active": true,
+      "quantity": 0,
+      "markable": false
+    }
+  ]
+}
+EOF;
+
+        $request                         = new ProductsRequest();
+        $request->filter                 = new ProductFilterType();
+        $request->filter->active         = NumericBoolean::TRUE;
+        $request->filter->priceType      = 'base';
+        $request->filter->maxPrice       = '10000';
+        $request->filter->name           = 'Test Product';
+        $request->filter->sinceId        = 828272;
+        $request->filter->sinceUpdatedAt = DateTimeTransformer::create('2020-01-01 00:00:00');
 
         $mock = static::createApiMockBuilder('store/products');
         $mock->matchMethod(RequestMethod::GET)

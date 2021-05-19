@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Model\Entity\Store;
 
+use DateTime;
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 
 /**
@@ -178,4 +179,12 @@ class Product
      * @JMS\SerializedName("markable")
      */
     public $markable;
+
+    /**
+     * @var DateTime
+     *
+     * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
+     * @JMS\SerializedName("updatedAt")
+     */
+    public $updatedAt;
 }
