@@ -15,11 +15,13 @@ use RetailCrm\Api\Enum\ByIdentifier;
 use RetailCrm\Api\Enum\CombineTechnique;
 use RetailCrm\Api\Enum\CountryCodeIso3166;
 use RetailCrm\Api\Enum\Customers\CustomerType;
+use RetailCrm\Api\Enum\Order\DiscountType;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Delivery\SerializedEntityOrder;
 use RetailCrm\Api\Model\Entity\FixExternalRow;
 use RetailCrm\Api\Model\Entity\Orders\Delivery\OrderDeliveryAddress;
 use RetailCrm\Api\Model\Entity\Orders\Delivery\SerializedOrderDelivery;
+use RetailCrm\Api\Model\Entity\Orders\Items\AbstractDiscount;
 use RetailCrm\Api\Model\Entity\Orders\Items\Offer;
 use RetailCrm\Api\Model\Entity\Orders\Items\OrderProduct;
 use RetailCrm\Api\Model\Entity\Orders\Items\PriceType;
@@ -402,6 +404,12 @@ class OrdersTest extends AbstractApiResourceGroupTestCase
                         {
                             "price": 0,
                             "quantity": 1
+                        }
+                    ],
+                    "discounts": [
+                        {
+                            "type": "round",
+                            "amount": 0.5
                         }
                     ],
                     "vatRate": "none",
@@ -827,6 +835,12 @@ EOF;
             "quantity": 1
           }
         ],
+        "discounts": [
+          {
+            "type": "manual_product",
+            "amount": 1
+          }
+        ],
         "vatRate": "none",
         "createdAt": "2021-02-25 17:05:06",
         "quantity": 1,
@@ -907,6 +921,7 @@ EOF;
         $item->priceType     = new PriceType('base');
         $item->quantity      = 1;
         $item->purchasePrice = 60;
+        $item->discounts     = [new AbstractDiscount(DiscountType::MANUAL_PRODUCT, 1)];
 
         $order->delivery      = $delivery;
         $order->items         = [$item];
@@ -8332,6 +8347,12 @@ EOF;
             "quantity": 1
           }
         ],
+        "discounts": [
+          {
+            "type": "round",
+            "amount": 0.5
+          }
+        ],
         "createdAt": "2020-12-29 17:35:08",
         "quantity": 1,
         "status": "new",
@@ -8660,6 +8681,12 @@ EOF;
           {
             "price": 1,
             "quantity": 1
+          }
+        ],
+        "discounts": [
+          {
+            "type": "manual_product",
+            "amount": 1
           }
         ],
         "createdAt": "2020-12-29 17:35:08",
