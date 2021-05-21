@@ -25,7 +25,7 @@ Follow those steps to install the library:
 1. Download and install [Composer](https://getcomposer.org/download/) package manager.
 2. Install the library from the Packagist by executing this command:
 ```bash
-composer require symfony/http-client nyholm/psr7 retailcrm/api-client-php:"~6.0"
+composer require retailcrm/api-client-php:"~6.0"
 ```
 During the installation, you'll see a message which will look like this:
 ```sh
@@ -67,6 +67,12 @@ Your `composer.json` file will look like this:
 4. Include the autoloader if it's not included, or you didn't use Composer before.
 ```php
 require 'path/to/vendor/autoload.php';
+```
+
+**Note:** API client uses `php-http/curl-client` and `nyholm/psr7` as a PSR-18, PSR-17 and PSR-7 implementation.
+You can replace those implementations during installation by installing this library with the implementation of your choise, like this:
+```sh
+composer require symfony/http-client guzzlehttp/psr7 retailcrm/api-client-php:"~6.0"
 ```
 
 ## Usage
