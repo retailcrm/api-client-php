@@ -108,10 +108,18 @@ class PackageItem
     public $markingCodes;
 
     /**
-     * @var mixed[][]
+     * @var array<string, mixed>
      *
      * @JMS\Type("array")
      * @JMS\SerializedName("properties")
      */
     public $properties;
+
+    /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("weight")
+     */
+    public $weight;
 }
