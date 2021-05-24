@@ -385,7 +385,7 @@ See documentation for those events for more details.
 
 ## Troubleshooting
 
-#### _I get `Http\Discovery\Exception\DiscoveryFailedException` or any other error with message like "`Could not find resource using any discovery strategy`"._
+#### I get `Http\Discovery\Exception\DiscoveryFailedException` or any other error with message like "`Could not find resource using any discovery strategy`".
 
 That's because you don't have any supported PSR-18, PSR-7 or PSR-17 implementation available. This usually happens if you do have any implementation for those 
 standards, but it's not supported by service discovery. You can fix this easily by installing supported implementations. We recommend using `symfony/http-client`
@@ -394,7 +394,7 @@ and `nyholm/psr7`. Install those using this command:
 composer require nyholm/psr7 symfony/http-client
 ```
 
-#### _There are too many available exceptions! How do I catch them all?_
+#### There are too many available exceptions! How do I catch them all?
 
 Every exception in the library implements either `ApiExceptionInterface` or `ClientExceptionInterface`. First will be thrown in case of any
 errors from the API, and the second will be thrown in case of any problems with the client or network itself. Concrete exception types are meant 
