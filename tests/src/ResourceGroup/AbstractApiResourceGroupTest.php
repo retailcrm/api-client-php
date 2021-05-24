@@ -10,12 +10,15 @@
 namespace RetailCrm\Tests\ResourceGroup;
 
 use League\Event\EventDispatcher;
+use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Event\FailureRequestEvent;
 use RetailCrm\Api\Event\SuccessRequestEvent;
 use RetailCrm\Api\Exception\Api\AccessDeniedException;
 use RetailCrm\Api\Handler\Request\GetParameterAuthenticatorHandler;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Interfaces\ClientExceptionInterface;
 use RetailCrm\Api\Model\Response\Api\ApiVersionsResponse;
 use RetailCrm\TestUtils\ArrayLogger;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
@@ -164,6 +167,52 @@ EOF;
             $event->getApiDomain()
         );
         self::assertEquals(TestConfig::getApiKey(), $event->getApiKey());
+    }
+
+    /**
+     * @dataProvider failureRequestEventSuppressThrow
+     */
+    public function testFailureRequestEventSuppressThrow(bool $useClientException): void
+    {
+        /** @var FailureRequestEvent $event */
+        $event = null;
+
+        $dispatcher = new EventDispatcher();
+        $dispatcher->subscribeTo(
+            FailureRequestEvent::class,
+            static function (FailureRequestEvent $item) use (&$event) {
+                $item->suppressThrow();
+                $event = $item;
+            }
+        );
+
+        $mock = static::createUnversionedApiMockBuilder('api-versions');
+
+        if ($useClientException) {
+            $mock->matchMethod(RequestMethod::GET)
+                ->throwClientException();
+        } else {
+            $mock->matchMethod(RequestMethod::GET)
+                ->reply(403)
+                ->withJson([
+                    'success' => false,
+                    'errorMsg' => 'Access denied.'
+                ]);
+        }
+
+        $client = TestClientFactory::createClient($mock->getClient(), null, $dispatcher);
+        $client->api->apiVersions();
+
+        self::assertInstanceOf(FailureRequestEvent::class, $event);
+        self::assertInstanceOf(
+            $useClientException ? ClientExceptionInterface::class : ApiExceptionInterface::class,
+            $event->getException()
+        );
+    }
+
+    public function failureRequestEventSuppressThrow(): array
+    {
+        return [[true], [false]];
     }
 
     public function testRequestEventGetAuthenticator(): void

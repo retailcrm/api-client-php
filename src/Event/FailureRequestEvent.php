@@ -25,6 +25,9 @@ class FailureRequestEvent extends AbstractRequestEvent
     /** @var ApiException|ClientException */
     private $exception;
 
+    /** @var bool */
+    private $suppressThrow = false;
+
     /**
      * FailureRequestEvent constructor.
      *
@@ -38,6 +41,27 @@ class FailureRequestEvent extends AbstractRequestEvent
         parent::__construct($baseUrl, $request, $response);
 
         $this->exception = $exception;
+    }
+
+    /**
+     * Suppresses exception for the client caller.
+     *
+     * @return FailureRequestEvent
+     */
+    public function suppressThrow(): FailureRequestEvent
+    {
+        $this->suppressThrow = true;
+        return $this;
+    }
+
+    /**
+     * Returns true if exception should not be thrown.
+     *
+     * @return bool
+     */
+    public function shouldSuppressThrow(): bool
+    {
+        return $this->suppressThrow;
     }
 
     /**

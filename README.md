@@ -8,6 +8,15 @@
 
 This is the PHP RetailCRM API client. This library allows using of the actual API version. [API documentation](http://retailcrm.github.io/api-client-php)
 
+# Table of contents
+
+* [Requirements](#requirements)
+* [Install](#install)
+* [Usage](#usage)
+    + [Examples](#examples)
+* [Troubleshooting](#troubleshooting)
+* [Notes](#notes)
+
 ## Requirements
 
 * PHP 7.3 and above
@@ -373,6 +382,26 @@ These events are provided by the library:
 - `RetailCrm\Api\Event\FailureRequestEvent` will be dispatched if request was not successful. It won't be dispatched if request cannot be formed at all.
 
 See documentation for those events for more details.
+
+## Troubleshooting
+
+#### _I get `Http\Discovery\Exception\DiscoveryFailedException` or any other error with message like "`Could not find resource using any discovery strategy`"._
+
+That's because you don't have any supported PSR-18, PSR-7 or PSR-17 implementation available. This usually happens if you do have any implementation for those 
+standards, but it's not supported by service discovery. You can fix this easily by installing supported implementations. We recommend using `symfony/http-client`
+and `nyholm/psr7`. Install those using this command:
+```sh
+composer require nyholm/psr7 symfony/http-client
+```
+
+#### _There are too many available exceptions! How do I catch them all?_
+
+Every exception in the library implements either `ApiExceptionInterface` or `ClientExceptionInterface`. First will be thrown in case of any
+errors from the API, and the second will be thrown in case of any problems with the client or network itself. Concrete exception types are meant 
+to be used to determine what exactly gone wrong while sending a request.
+
+Also, you can use PSR-14 compatible event dispatcher to handle some exceptions globally. The Client will send `FailureRequestEvent` in case of any exceptions. 
+You can call `FailureRequestEvent::suppressThrow()` to prevent client from throwing an exception.
 
 ## Notes
 

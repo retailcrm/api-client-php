@@ -27,19 +27,21 @@ class ErrorResponseHandler extends AbstractResponseHandler
     protected function handleResponse(ResponseData $responseData)
     {
         if ($responseData->response->getStatusCode() >= 400) {
-            $exception = $this->apiExceptionFactory->createException(
-                $this->unmarshalBody($responseData->response, ErrorResponse::class),
-                $responseData->response->getStatusCode()
-            );
-
-            $this->dispatch(new FailureRequestEvent(
+            $event = new FailureRequestEvent(
                 $responseData->baseUrl,
                 $responseData->request,
                 $responseData->response,
-                $exception
-            ));
+                $this->apiExceptionFactory->createException(
+                    $this->unmarshalBody($responseData->response, ErrorResponse::class),
+                    $responseData->response->getStatusCode()
+                )
+            );
 
-            throw $exception;
+            $this->dispatch($event);
+
+            if (!$event->shouldSuppressThrow()) {
+                throw $event->getException();
+            }
         }
 
         return $this->next($responseData);

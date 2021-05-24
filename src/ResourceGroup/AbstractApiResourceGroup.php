@@ -22,6 +22,7 @@ use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface;
 use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
+use RetailCrm\Api\Model\Response\SuccessResponse;
 use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
 
 /**
@@ -131,23 +132,38 @@ abstract class AbstractApiResourceGroup
         try {
             $psrResponse = $this->httpClient->sendRequest($psrRequest);
         } catch (ClientExceptionInterface | NetworkExceptionInterface $exception) {
-            $clientException = new HttpClientException(
-                sprintf('HTTP client error: %s', $exception->getMessage()),
-                $exception->getCode(),
-                $exception
+            $event = new FailureRequestEvent(
+                $this->baseUrl,
+                $psrRequest,
+                null,
+                new HttpClientException(
+                    sprintf('HTTP client error: %s', $exception->getMessage()),
+                    $exception->getCode(),
+                    $exception
+                )
             );
 
-            $this->dispatch(new FailureRequestEvent($this->baseUrl, $psrRequest, null, $clientException));
+            $this->dispatch($event);
 
-            throw $clientException;
+            if (!$event->shouldSuppressThrow()) {
+                throw $event->getException();
+            }
         }
 
-        if ($this->logger instanceof LoggerInterface && !($this->logger instanceof NullLogger)) {
+        if (
+            $this->logger instanceof LoggerInterface &&
+            !($this->logger instanceof NullLogger) &&
+            isset($psrResponse)
+        ) {
             $this->logger->debug(sprintf(
                 '[RetailCRM API Response]: Status: "%d", Body: "%s"',
                 $psrResponse->getStatusCode(),
                 Utils::getBodyContents($psrResponse->getBody())
             ));
+        }
+
+        if (!isset($psrResponse)) {
+            return new $type();
         }
 
         return $this->responseTransformer->createResponse($this->baseUrl, $psrRequest, $psrResponse, $type);

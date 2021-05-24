@@ -107,6 +107,7 @@ abstract class AbstractResponseHandler extends AbstractHandler
      *
      * @return mixed
      * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
     abstract protected function handleResponse(ResponseData $responseData);
