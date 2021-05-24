@@ -416,6 +416,27 @@ to be used to determine what exactly gone wrong while sending a request.
 Also, you can use PSR-14 compatible event dispatcher to handle some exceptions globally. The Client will send `FailureRequestEvent` in case of any exceptions. 
 You can call `FailureRequestEvent::suppressThrow()` to prevent client from throwing an exception.
 
+#### I can't test my app in the CI because Composer fails while installing dependencies.
+
+That's because you should explicitly allow code generation for the library. Otherwise, Composer will ask you to run compilation task at runtime 
+which is not possible in the CI since it lacks the support for interactive input.
+
+You can allow code generation tasks without interactive approval. Just add parameters from the JSON below to 
+the `"extra"` key of your project's `composer.json` file.
+```json
+{
+    "compile-mode": "whitelist",
+    "compile-whitelist": ["retailcrm/api-client-php"]
+}
+```
+
+#### How can I choose proper DTO class for my request?
+
+Request DTO's can be found in the `RetailCrm\Api\Model\Request` namespace. They are separated by the API resource groups. 
+For example, requests for interaction with customer entities can be found in the `RetailCrm\Api\Model\Request\Customers` namespace 
+and requests for operations with the orders can be found in the `RetailCrm\Api\Model\Request\Orders` namespace. Every request method 
+defines it's input and output types. Also, you can choose correct type for child entities by looking at type annotations.
+
 ## Notes
 
 This library uses HTTPlug abstractions. Visit [official documentation](http://docs.php-http.org/en/latest/httplug/users.html) to learn more about it.
