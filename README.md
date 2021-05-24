@@ -11,7 +11,7 @@ This is the PHP RetailCRM API client. This library allows using of the actual AP
 # Table of contents
 
 * [Requirements](#requirements)
-* [Install](#install)
+* [Installation](#installation)
 * [Usage](#usage)
     + [Examples](#examples)
 * [Troubleshooting](#troubleshooting)
@@ -27,7 +27,7 @@ This is the PHP RetailCRM API client. This library allows using of the actual AP
 * Any HTTP messages implementation compatible with PSR-7 (covered by the installation instructions).
 * Other dependencies listed in the `composer.json` (covered by the installation instructions)
 
-## Install
+## Installation
 
 Follow those steps to install the library:
 
