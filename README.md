@@ -78,8 +78,10 @@ Your `composer.json` file will look like this:
 require 'path/to/vendor/autoload.php';
 ```
 
+Replace `path/to/vendor/autoload.php` with the correct path to Composer's `autoload.php`.
+
 **Note:** API client uses `php-http/curl-client` and `nyholm/psr7` as a PSR-18, PSR-17 and PSR-7 implementation.
-You can replace those implementations during installation by installing this library with the implementation of your choise, like this:
+You can replace those implementations during installation by installing this library with the implementation of your choice, like this:
 ```sh
 composer require symfony/http-client guzzlehttp/psr7 retailcrm/api-client-php:"~6.0"
 ```
@@ -385,7 +387,16 @@ See documentation for those events for more details.
 
 ## Troubleshooting
 
-#### I get `Http\Discovery\Exception\DiscoveryFailedException` or any other error with message like "`Could not find resource using any discovery strategy`".
+#### I've got "No Message Factories" error.
+
+This means that PSR-17 implementation you have is not supported by the service discovery, therefore, API client cannot find proper factories. 
+In order to use your own PSR-17 implementation you need to use `ClientBuilder`. Also, you can just install supported implementation which is 
+much easier:
+```sh
+composer require nyholm/psr7
+```
+
+#### I've got `Http\Discovery\Exception\DiscoveryFailedException` or any other error with message like "`Could not find resource using any discovery strategy`".
 
 That's because you don't have any supported PSR-18, PSR-7 or PSR-17 implementation available. This usually happens if you do have any implementation for those 
 standards, but it's not supported by service discovery. You can fix this easily by installing supported implementations. We recommend using `symfony/http-client`
@@ -393,6 +404,8 @@ and `nyholm/psr7`. Install those using this command:
 ```sh
 composer require nyholm/psr7 symfony/http-client
 ```
+
+Alternatively, you can use `ClientBuilder` which allows you to pass your own HTTP client and message & URI factories.
 
 #### There are too many available exceptions! How do I catch them all?
 
@@ -405,4 +418,4 @@ You can call `FailureRequestEvent::suppressThrow()` to prevent client from throw
 
 ## Notes
 
-This library uses HTTPlug HTTP client abstraction. Visit [official documentation](http://docs.php-http.org/en/latest/httplug/users.html) to learn more about it.
+This library uses HTTPlug abstractions. Visit [official documentation](http://docs.php-http.org/en/latest/httplug/users.html) to learn more about it.
