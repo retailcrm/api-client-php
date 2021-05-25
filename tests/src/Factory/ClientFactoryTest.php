@@ -10,6 +10,8 @@
 namespace RetailCrm\Tests\Factory;
 
 use Doctrine\Common\Annotations\PsrCachedReader;
+use Http\Discovery\Psr18ClientDiscovery;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use Pock\PockBuilder;
 use Psr\Log\NullLogger;
 use RetailCrm\Api\Enum\CacheDirectories;
@@ -105,6 +107,19 @@ class ClientFactoryTest extends ClientTestCase
             ->createClient(TestConfig::getApiUrl(), TestConfig::getApiKey());
 
         static::assertClientIsValid($client, PsrCachedReader::class, FilesystemAdapter::class, '', true);
+    }
+
+    public function testCreateWithPsrDeps(): void
+    {
+        $factory = new Psr17Factory();
+        $client = (new ClientFactory())
+            ->setHttpClient(Psr18ClientDiscovery::find())
+            ->setRequestFactory($factory)
+            ->setStreamFactory($factory)
+            ->setUriFactory($factory)
+            ->createClient(TestConfig::getApiUrl(), TestConfig::getApiKey());
+
+        static::assertClientIsValid($client, PsrCachedReader::class, FilesystemAdapter::class);
     }
 
     public function testAppendRequestHandlers(): void

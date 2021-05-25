@@ -10,6 +10,10 @@
 namespace RetailCrm\Api\Factory;
 
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\UriFactoryInterface;
 use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Builder\ClientBuilder;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
@@ -72,6 +76,18 @@ class ClientFactory implements ClientFactoryInterface, EventDispatcherAwareInter
     /** @var \Psr\Log\LoggerInterface */
     private $debugLogger;
 
+    /** @var \Psr\Http\Client\ClientInterface */
+    private $httpClient;
+
+    /** @var \Psr\Http\Message\StreamFactoryInterface|null */
+    private $streamFactory;
+
+    /** @var \Psr\Http\Message\RequestFactoryInterface|null */
+    private $requestFactory;
+
+    /** @var \Psr\Http\Message\UriFactoryInterface|null */
+    private $uriFactory;
+
     /** @var \RetailCrm\Api\Interfaces\FormEncoderInterface|null */
     private $formEncoder;
 
@@ -123,6 +139,60 @@ class ClientFactory implements ClientFactoryInterface, EventDispatcherAwareInter
     public function setDebugLogger(LoggerInterface $debugLogger): ClientFactory
     {
         $this->debugLogger = $debugLogger;
+        return $this;
+    }
+
+    /**
+     * Set your own PSR-18 HTTP client.
+     *
+     * Service discovery will be used if no client has been provided.
+     *
+     * @param \Psr\Http\Client\ClientInterface $httpClient
+     *
+     * @return ClientFactory
+     */
+    public function setHttpClient(ClientInterface $httpClient): ClientFactory
+    {
+        $this->httpClient = $httpClient;
+        return $this;
+    }
+
+    /**
+     * Sets PSR-17 compatible stream factory. You can skip this step if you want to use service discovery.
+     *
+     * @param \Psr\Http\Message\StreamFactoryInterface|null $streamFactory
+     *
+     * @return ClientFactory
+     */
+    public function setStreamFactory(?StreamFactoryInterface $streamFactory): ClientFactory
+    {
+        $this->streamFactory = $streamFactory;
+        return $this;
+    }
+
+    /**
+     * Sets PSR-17 compatible request factory. You can skip this step if you want to use service discovery.
+     *
+     * @param \Psr\Http\Message\RequestFactoryInterface|null $requestFactory
+     *
+     * @return ClientFactory
+     */
+    public function setRequestFactory(?RequestFactoryInterface $requestFactory): ClientFactory
+    {
+        $this->requestFactory = $requestFactory;
+        return $this;
+    }
+
+    /**
+     * Sets PSR-17 compatible URI factory. You can skip this step if you want to use service discovery.
+     *
+     * @param \Psr\Http\Message\UriFactoryInterface|null $uriFactory
+     *
+     * @return ClientFactory
+     */
+    public function setUriFactory(?UriFactoryInterface $uriFactory): ClientFactory
+    {
+        $this->uriFactory = $uriFactory;
         return $this;
     }
 
@@ -209,6 +279,10 @@ class ClientFactory implements ClientFactoryInterface, EventDispatcherAwareInter
             ->setFormEncoder($this->formEncoder)
             ->setResponseTransformer($this->responseTransformer)
             ->setDebugLogger($this->debugLogger)
+            ->setHttpClient($this->httpClient)
+            ->setStreamFactory($this->streamFactory)
+            ->setRequestFactory($this->requestFactory)
+            ->setUriFactory($this->uriFactory)
             ->appendRequestHandlers($this->requestHandlers)
             ->appendResponseHandlers($this->responseHandlers)
             ->build();
