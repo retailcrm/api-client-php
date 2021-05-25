@@ -6,4 +6,6 @@ These events are provided by the library:
 - `RetailCrm\Api\Event\SuccessRequestEvent` will be dispatched if request was successful.
 - `RetailCrm\Api\Event\FailureRequestEvent` will be dispatched if request was not successful. It won't be dispatched if request cannot be formed at all.
 
-> TODO: More info.
+Event API documentation can be found here:
+* [`FailureRequestEvent`](https://neur0toxine.github.io/api-client-php/classes/RetailCrm-Api-Event-FailureRequestEvent.html)
+* [`SuccessRequestEvent`](https://neur0toxine.github.io/api-client-php/classes/RetailCrm-Api-Event-SuccessRequestEvent.html)

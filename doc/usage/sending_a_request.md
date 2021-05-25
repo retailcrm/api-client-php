@@ -14,28 +14,7 @@ First, take a look at the API itself:
 Choose a method you want to use. Which one is yours depend on the task you want to perform.
 
 Then take look at the API again. It consists of several blocks, each block is responsible for a specific set of features. 
-The Client itself is also separated to those blocks or resource groups: 
-* `api`
-* `costs`
-* `customFields`
-* `customers`
-* `customersCorporate`
-* `delivery`
-* `files`
-* `integration`
-* `loyalty`
-* `orders`
-* `packs`
-* `payments`
-* `references`
-* `segments`
-* `settings`
-* `store`
-* `tasks`
-* `telephony`
-* `users`
-* `verification`
-* `statistics`
+The Client itself is also separated to those blocks or resource groups (full list of them can be found [here](../structure.md#resource-groups)).
 
 Each resource group corresponds to an equal block in the documentation. For example. `customersCorporate` resource group implements methods 
 in the _Corporate customers_ API block (рус. _Корпоративные клиенты_).
