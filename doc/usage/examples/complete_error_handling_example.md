@@ -1,4 +1,4 @@
-Let's take look at a complete example of the Client usage with error handling. Here we fetch the filtered orders data and print it out:
+Here is a complete example of the Client usage with error handling. It fetches the filtered orders data and prints it out:
 
 ```php
 <?php
