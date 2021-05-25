@@ -67,10 +67,10 @@ class ClientBuilderTest extends TestCase
         $builder = new ClientBuilder();
         $formEncoder = (new FormEncoderBuilder())->setCacheDir('cache')->build();
         $requestTransformer = new RequestTransformer(RequestPipelineFactory::createDefaultPipeline(
-                $formEncoder,
-                $psr17Factory, // PSR-17 UriFactoryInterface
-                $psr17Factory, // PSR-17 RequestFactoryInterface
-                $psr17Factory  // PSR-17 StreamFactoryInterface
+            $formEncoder,
+            $psr17Factory, // PSR-17 UriFactoryInterface
+            $psr17Factory, // PSR-17 RequestFactoryInterface
+            $psr17Factory  // PSR-17 StreamFactoryInterface
         ));
         $responseTransformer = new ResponseTransformer(ResponsePipelineFactory::createDefaultPipeline(
             $formEncoder->getSerializer(),

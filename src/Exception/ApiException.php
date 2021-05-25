@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Exception;
 
+use Countable;
 use Exception;
 use RetailCrm\Api\Interfaces\ApiExceptionInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface;
@@ -72,8 +73,9 @@ abstract class ApiException extends Exception implements ApiExceptionInterface
             $this->getLine(),
             $this->getStatusCode()
         );
+        $errorsList = $this->getErrorResponse()->errors;
 
-        if (count($this->getErrorResponse()->errors) > 0) {
+        if (null !== $errorsList && count($errorsList) > 0) {
             $errors = [];
 
             foreach ($this->getErrorResponse()->errors as $key => $error) {

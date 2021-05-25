@@ -22,7 +22,7 @@ This is the PHP RetailCRM API client. This library allows using of the actual AP
         + [Sending a request](doc/usage/sending_a_request.md#sending-a-request)
         + [Dealing with exceptions](doc/usage/sending_a_request.md#dealing-with-exceptions)
     + [Error handling](doc/usage/error_handling.md)
-    + Examples
+    + [Examples](doc/usage/examples)
         + [How to create an order](doc/usage/examples/create_order.md)
         + [How to receive the list of orders](doc/usage/examples/fetch_orders.md)
         + [How to handle all Client's exceptions](doc/usage/examples/complete_error_handling_example.md)

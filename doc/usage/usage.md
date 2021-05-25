@@ -6,7 +6,7 @@
   * [Sending a request](sending_a_request.md#sending-a-request)
   * [Dealing with exceptions](sending_a_request.md#dealing-with-exceptions)
 * [Error handling](error_handling.md)  
-* Examples
+* [Examples](examples)
   + [How to create an order](examples/create_order.md)
   + [How to receive the list of orders](examples/fetch_orders.md)
   + [How to handle all Client's exceptions](examples/complete_error_handling_example.md)
