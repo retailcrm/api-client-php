@@ -14,6 +14,10 @@ use Pock\PockBuilder;
 use Psr\Log\NullLogger;
 use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Factory\ClientFactory;
+use RetailCrm\Api\Handler\Request\CallbackRequestHandler;
+use RetailCrm\Api\Handler\Response\CallbackResponseHandler;
+use RetailCrm\Api\Model\RequestData;
+use RetailCrm\Api\Model\ResponseData;
 use RetailCrm\TestUtils\ReflectionUtils;
 use RetailCrm\TestUtils\TestCase\ClientTestCase;
 use RetailCrm\TestUtils\TestConfig;
@@ -106,8 +110,38 @@ class ClientFactoryTest extends ClientTestCase
     public function testAppendRequestHandlers(): void
     {
         $client = (new ClientFactory())
+            ->appendRequestHandlers([new CallbackRequestHandler(static function (RequestData $requestData) {
+                return;
+            })])
             ->createClient(TestConfig::getApiUrl(), TestConfig::getApiKey());
 
         static::assertClientIsValid($client, PsrCachedReader::class, FilesystemAdapter::class);
+
+        $api = ReflectionUtils::getProperty($client, 'api');
+        $requestTransformer = ReflectionUtils::getProperty($api, 'requestTransformer');
+
+        /** @var \RetailCrm\Api\Interfaces\HandlerInterface $requestHandler */
+        $requestHandler = ReflectionUtils::getProperty($requestTransformer, 'handler');
+
+        self::assertInstanceOf(CallbackRequestHandler::class, $requestHandler->getLastHandler());
+    }
+
+    public function testAppendResponseHandlers(): void
+    {
+        $client = (new ClientFactory())
+            ->appendResponseHandlers([new CallbackResponseHandler(static function (ResponseData $responseData) {
+                return;
+            })])
+            ->createClient(TestConfig::getApiUrl(), TestConfig::getApiKey());
+
+        static::assertClientIsValid($client, PsrCachedReader::class, FilesystemAdapter::class);
+
+        $api = ReflectionUtils::getProperty($client, 'api');
+        $responseTransformer = ReflectionUtils::getProperty($api, 'responseTransformer');
+
+        /** @var \RetailCrm\Api\Interfaces\HandlerInterface $responseHandler */
+        $responseHandler = ReflectionUtils::getProperty($responseTransformer, 'handler');
+
+        self::assertInstanceOf(CallbackResponseHandler::class, $responseHandler->getLastHandler());
     }
 }

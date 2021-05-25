@@ -386,7 +386,7 @@ class ClientBuilder implements BuilderInterface, EventDispatcherAwareInterface
         if (
             null !== $this->responseTransformer &&
             null !== $this->responseTransformer->getHandler() &&
-            count($this->requestHandlers) > 0
+            count($this->responseHandlers) > 0
         ) {
             foreach ($this->responseHandlers as $handler) {
                 if ($handler instanceof SerializerAwareInterface && null !== $this->formEncoder) {

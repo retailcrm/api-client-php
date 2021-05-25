@@ -60,14 +60,22 @@ abstract class AbstractHandler implements HandlerInterface
      */
     public function append(HandlerInterface $handler): HandlerInterface
     {
+        $this->getLastHandler()->setNext($handler);
+
+        return $handler;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLastHandler(): HandlerInterface
+    {
         $lastHandler = $this;
 
         while (null !== $lastHandler->getNext()) {
             $lastHandler = $lastHandler->getNext();
         }
 
-        $lastHandler->setNext($handler);
-
-        return $handler;
+        return $lastHandler;
     }
 }

@@ -43,6 +43,7 @@ class CallbackRequestHandler extends AbstractHandler implements PsrFactoriesAwar
     {
         call_user_func(
             $this->callback,
+            $item,
             $this->requestFactory,
             $this->streamFactory,
             $this->uriFactory

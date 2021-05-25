@@ -52,4 +52,11 @@ interface HandlerInterface
      * @return HandlerInterface
      */
     public function append(HandlerInterface $handler): HandlerInterface;
+
+    /**
+     * Returns last handler in the chain. Returns current handler if this chain consist of only this handler.
+     *
+     * @return \RetailCrm\Api\Interfaces\HandlerInterface
+     */
+    public function getLastHandler(): HandlerInterface;
 }
