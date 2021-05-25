@@ -51,6 +51,8 @@ abstract class AbstractRequestEvent
     }
 
     /**
+     * Returns a request for which an event was thrown.
+     *
      * @return \Psr\Http\Message\RequestInterface
      */
     public function getRequest(): RequestInterface
@@ -59,6 +61,8 @@ abstract class AbstractRequestEvent
     }
 
     /**
+     * Returns a response for which an event was thrown.
+     *
      * @return \Psr\Http\Message\ResponseInterface|null
      */
     public function getResponse(): ?ResponseInterface

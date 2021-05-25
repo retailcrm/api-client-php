@@ -65,6 +65,8 @@ class FailureRequestEvent extends AbstractRequestEvent
     }
 
     /**
+     * Returns an exception instance which will be thrown after event propagation (if not suppressed).
+     *
      * @return \RetailCrm\Api\Exception\ApiException|\RetailCrm\Api\Exception\ClientException
      */
     public function getException()
