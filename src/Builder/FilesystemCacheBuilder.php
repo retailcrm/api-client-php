@@ -9,8 +9,8 @@
 
 namespace RetailCrm\Api\Builder;
 
-use Doctrine\Common\Cache\Cache;
-use Doctrine\Common\Cache\FilesystemCache;
+use Psr\Cache\CacheItemPoolInterface;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Exception\Client\BuilderException;
 use RetailCrm\Api\Interfaces\BuilderInterface;
@@ -40,36 +40,19 @@ class FilesystemCacheBuilder implements BuilderInterface
     /**
      * Builds and returns filesystem cache.
      *
-     * @return Cache
+     * @return CacheItemPoolInterface
      * @inheritDoc
      */
-    public function build(): Cache
+    public function build(): CacheItemPoolInterface
     {
-        $this->validateBuilder();
+        if (empty($this->cacheDir)) {
+            return new FilesystemAdapter(CacheDirectories::DIR_NAME);
+        }
+
         $cacheDir = static::getCacheDirPath($this->cacheDir);
         $this->createDir($cacheDir);
 
-        return new FilesystemCache($cacheDir);
-    }
-
-    /**
-     * Returns false if caches can't be created.
-     *
-     * @return bool
-     */
-    public function canBuild(): bool
-    {
-        return !empty($this->cacheDir);
-    }
-
-    /**
-     * @throws \RetailCrm\Api\Exception\Client\BuilderException
-     */
-    private function validateBuilder(): void
-    {
-        if (!$this->canBuild()) {
-            throw new BuilderException('cacheDir must be provided');
-        }
+        return new FilesystemAdapter('', 0, $cacheDir);
     }
 
     /**

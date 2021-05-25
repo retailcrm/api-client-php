@@ -9,13 +9,13 @@
 
 namespace RetailCrm\Tests\Factory;
 
-use Doctrine\Common\Annotations\CachedReader;
-use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\Common\Annotations\PsrCachedReader;
 use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Factory\SimpleClientFactory;
 use RetailCrm\TestUtils\TestCase\ClientTestCase;
 use RetailCrm\TestUtils\TestConfig;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 /**
  * Class SimpleClientFactoryTest
@@ -37,10 +37,10 @@ class SimpleClientFactoryTest extends ClientTestCase
         $client = SimpleClientFactory::createWithCache(
             TestConfig::getApiUrl(),
             TestConfig::getApiKey(),
-            new ArrayCache()
+            new ArrayAdapter()
         );
 
-        static::assertClientIsValid($client, CachedReader::class, ArrayCache::class);
+        static::assertClientIsValid($client, PsrCachedReader::class, ArrayAdapter::class);
     }
 
     public function testCreateWithCacheDir(): void
@@ -58,8 +58,8 @@ class SimpleClientFactoryTest extends ClientTestCase
         static::assertDirectoryExists($cacheDir);
         static::assertClientIsValid(
             $client,
-            CachedReader::class,
-            FilesystemCache::class,
+            PsrCachedReader::class,
+            FilesystemAdapter::class,
             $cacheDir
         );
     }

@@ -9,7 +9,7 @@
 
 namespace RetailCrm\Api\Factory;
 
-use Doctrine\Common\Cache\Cache;
+use Psr\Cache\CacheItemPoolInterface;
 use RetailCrm\Api\Builder\ClientBuilder;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
 use RetailCrm\Api\Client;
@@ -45,14 +45,14 @@ class SimpleClientFactory
     /**
      * Instantiates Client with provided URL, key and cache implementation.
      *
-     * @param string                       $apiUrl
-     * @param string                       $apiKey
-     * @param \Doctrine\Common\Cache\Cache $cache
+     * @param string                            $apiUrl
+     * @param string                            $apiKey
+     * @param \Psr\Cache\CacheItemPoolInterface $cache
      *
      * @return \RetailCrm\Api\Client
      * @throws \RetailCrm\Api\Exception\Client\BuilderException
      */
-    public static function createWithCache(string $apiUrl, string $apiKey, Cache $cache): Client
+    public static function createWithCache(string $apiUrl, string $apiKey, CacheItemPoolInterface $cache): Client
     {
         return (new ClientBuilder())
             ->setApiUrl($apiUrl)

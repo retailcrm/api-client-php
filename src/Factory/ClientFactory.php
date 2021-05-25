@@ -9,8 +9,7 @@
 
 namespace RetailCrm\Api\Factory;
 
-use Doctrine\Common\Cache\Cache;
-use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Cache\CacheItemPoolInterface;
 use Psr\Log\LoggerInterface;
 use RetailCrm\Api\Builder\ClientBuilder;
 use RetailCrm\Api\Builder\FormEncoderBuilder;
@@ -65,7 +64,7 @@ class ClientFactory implements ClientFactoryInterface
     /** @var string|null */
     private $cacheDir;
 
-    /** @var \Doctrine\Common\Cache\Cache|null */
+    /** @var CacheItemPoolInterface|null */
     private $cache;
 
     /** @var \Psr\Log\LoggerInterface */
@@ -96,11 +95,11 @@ class ClientFactory implements ClientFactoryInterface
     /**
      * Sets cache implementation which will be used to store metadata cache.
      *
-     * @param \Doctrine\Common\Cache\Cache $cache
+     * @param \Psr\Cache\CacheItemPoolInterface $cache
      *
      * @return ClientFactory
      */
-    public function setCache(Cache $cache): ClientFactory
+    public function setCache(CacheItemPoolInterface $cache): ClientFactory
     {
         $this->cache = $cache;
         return $this;

@@ -9,8 +9,7 @@
 
 namespace RetailCrm\Tests;
 
-use Doctrine\Common\Annotations\CachedReader;
-use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\Common\Annotations\PsrCachedReader;
 use PHPUnit\Framework\TestCase;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -26,6 +25,7 @@ use RetailCrm\Api\ResourceGroup\Api;
 use RetailCrm\TestUtils\ReflectionUtils;
 use RetailCrm\TestUtils\TestConfig;
 use RuntimeException;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 /**
  * Class ClientTest
@@ -71,12 +71,12 @@ class ClientTest extends TestCase
         self::assertNotEmpty($encoded);
 
         $annotationReader = ReflectionUtils::getProperty($formEncoder, 'annotationReader');
-        self::assertInstanceOf(CachedReader::class, $annotationReader);
+        self::assertInstanceOf(PsrCachedReader::class, $annotationReader);
 
         $cache    = ReflectionUtils::getProperty($annotationReader, 'cache');
         $cacheDir = ReflectionUtils::getProperty($cache, 'directory');
 
-        self::assertInstanceOf(FilesystemCache::class, $cache);
+        self::assertInstanceOf(FilesystemAdapter::class, $cache);
         self::assertStringStartsWith($dir, $cacheDir);
         self::assertDirectoryExists($cacheDir);
         self::assertTrue(is_readable($cacheDir) && count(scandir($cacheDir)) > 2);

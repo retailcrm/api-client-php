@@ -17,5 +17,6 @@ namespace RetailCrm\Api\Enum;
  */
 final class CacheDirectories
 {
-    public const MAIN_DIR  = DIRECTORY_SEPARATOR . 'retailcrm_metadata_cache';
+    public const DIR_NAME = 'retailcrm_metadata_cache';
+    public const MAIN_DIR  = DIRECTORY_SEPARATOR . self::DIR_NAME;
 }

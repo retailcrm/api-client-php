@@ -10,6 +10,7 @@
 namespace RetailCrm\TestUtils\TestCase;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\PsrCachedReader;
 use Doctrine\Common\Cache\FilesystemCache;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -21,6 +22,7 @@ use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\ResourceGroup\Api;
 use RetailCrm\TestUtils\ReflectionUtils;
 use RetailCrm\TestUtils\TestConfig;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 /**
  * Trait ClientTestCase
@@ -43,7 +45,7 @@ abstract class ClientTestCase extends TestCase
      */
     protected static function assertClientIsValid(
         $client,
-        string $readerClass = AnnotationReader::class,
+        string $readerClass = PsrCachedReader::class,
         string $cacheClass = '',
         string $directory = '',
         bool $loggerPresent = false
@@ -77,8 +79,8 @@ abstract class ClientTestCase extends TestCase
             self::assertInstanceOf($cacheClass, $cache);
 
             if ('' !== $directory) {
-                self::assertInstanceOf(FilesystemCache::class, $cache);
-                self::assertEquals($directory, ReflectionUtils::getProperty($cache, 'directory'));
+                self::assertInstanceOf(FilesystemAdapter::class, $cache);
+                self::assertStringContainsString($directory, ReflectionUtils::getProperty($cache, 'directory'));
             }
         }
 

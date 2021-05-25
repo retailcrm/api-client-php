@@ -9,15 +9,22 @@
 
 namespace RetailCrm\Tests\Factory;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\CachedReader;
-use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\Common\Annotations\PsrCachedReader;
+use Pock\PockBuilder;
 use Psr\Log\NullLogger;
 use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Factory\ClientFactory;
+use RetailCrm\TestUtils\ReflectionUtils;
 use RetailCrm\TestUtils\TestCase\ClientTestCase;
 use RetailCrm\TestUtils\TestConfig;
+use RetailCrm\TestUtils\ClientFactoryDependentService;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use RetailCrm\Api\Interfaces\ClientFactoryInterface;
+use League\Container\Container;
+use League\Event\EventDispatcher;
+use Psr\Cache\CacheItemPoolInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class ClientFactoryTest
@@ -27,20 +34,45 @@ use RetailCrm\TestUtils\TestConfig;
  */
 class ClientFactoryTest extends ClientTestCase
 {
+    public function testDI(): void
+    {
+        $container = new Container();
+
+        $container->add(CacheItemPoolInterface::class, new FilesystemAdapter('test_app'));
+        $container->add(EventDispatcherInterface::class, EventDispatcher::class);
+        $container->add(ClientFactoryInterface::class, ClientFactory::class)
+            ->addMethodCalls([
+                'setCache' => [CacheItemPoolInterface::class],
+                'setEventDispatcher' => [EventDispatcherInterface::class],
+            ]);
+        $container->add(ClientFactoryDependentService::class)->addArgument(ClientFactoryInterface::class);
+
+        /** @var ClientFactoryDependentService $service */
+        $service = $container->get(ClientFactoryDependentService::class);
+        $service->setHttpClient(
+            (new PockBuilder())
+                ->matchOrigin(TestConfig::getApiUrl())
+                ->throwClientException()
+                ->getClient()
+        );
+
+        self::assertFalse($service->isApiAccessible(TestConfig::getApiUrl(), TestConfig::getApiKey()));
+    }
+
     public function testCreateClient(): void
     {
         $client = (new ClientFactory())->createClient(TestConfig::getApiUrl(), TestConfig::getApiKey());
 
-        static::assertClientIsValid($client);
+        static::assertClientIsValid($client, PsrCachedReader::class, FilesystemAdapter::class);
     }
 
     public function testCreateWithCache(): void
     {
         $client = (new ClientFactory())
-            ->setCache(new ArrayCache())
+            ->setCache(new ArrayAdapter())
             ->createClient(TestConfig::getApiUrl(), TestConfig::getApiKey());
 
-        static::assertClientIsValid($client, CachedReader::class, ArrayCache::class);
+        static::assertClientIsValid($client, PsrCachedReader::class, ArrayAdapter::class);
     }
 
     public function testCreateWithCacheDir(): void
@@ -56,8 +88,8 @@ class ClientFactoryTest extends ClientTestCase
         static::assertDirectoryExists($cacheDir);
         static::assertClientIsValid(
             $client,
-            CachedReader::class,
-            FilesystemCache::class,
+            PsrCachedReader::class,
+            FilesystemAdapter::class,
             $cacheDir
         );
     }
@@ -68,6 +100,6 @@ class ClientFactoryTest extends ClientTestCase
             ->setDebugLogger(new NullLogger())
             ->createClient(TestConfig::getApiUrl(), TestConfig::getApiKey());
 
-        static::assertClientIsValid($client, AnnotationReader::class, '', '', true);
+        static::assertClientIsValid($client, PsrCachedReader::class, FilesystemAdapter::class, '', true);
     }
 }

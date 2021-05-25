@@ -9,7 +9,6 @@
 
 namespace RetailCrm\TestUtils\Factory;
 
-use Doctrine\Common\Cache\ArrayCache;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
@@ -19,6 +18,7 @@ use RetailCrm\Api\Client;
 use RetailCrm\Api\Handler\Request\HeaderAuthenticatorHandler;
 use RetailCrm\Api\Interfaces\HandlerInterface;
 use RetailCrm\TestUtils\TestConfig;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
 /**
  * Class TestClientFactory
@@ -49,7 +49,7 @@ class TestClientFactory
         ?HandlerInterface $authenticator = null
     ): Client {
         if (null === static::$cache) {
-            static::$cache = new ArrayCache();
+            static::$cache = new ArrayAdapter();
         }
 
         $encoder = (new FormEncoderBuilder())

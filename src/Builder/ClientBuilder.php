@@ -11,7 +11,6 @@ namespace RetailCrm\Api\Builder;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
-use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;

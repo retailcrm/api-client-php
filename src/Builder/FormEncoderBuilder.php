@@ -10,8 +10,8 @@
 namespace RetailCrm\Api\Builder;
 
 use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\CachedReader;
-use Doctrine\Common\Cache\Cache;
+use Doctrine\Common\Annotations\PsrCachedReader;
+use Psr\Cache\CacheItemPoolInterface;
 use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Factory\SerializerFactory;
 use RetailCrm\Api\Interfaces\BuilderInterface;
@@ -27,7 +27,7 @@ use RetailCrm\Api\Interfaces\FormEncoderInterface;
  */
 class FormEncoderBuilder implements BuilderInterface
 {
-    /** @var \Doctrine\Common\Cache\Cache|null */
+    /** @var CacheItemPoolInterface|null */
     private $cache;
 
     /** @var \Doctrine\Common\Annotations\Reader */
@@ -64,13 +64,13 @@ class FormEncoderBuilder implements BuilderInterface
      * Sets cache implementation.
      *
      * This cache implementation will be used by FormEncoder component and underlying serializer to store
-     * annotations cache. Any cache from `doctrine/cache` should work just fine.
+     * annotations cache. Any cache from `symfony/cache` should work just fine.
      *
-     * @param \Doctrine\Common\Cache\Cache $cache
+     * @param \Psr\Cache\CacheItemPoolInterface $cache
      *
      * @return FormEncoderBuilder
      */
-    public function setCache(Cache $cache): FormEncoderBuilder
+    public function setCache(CacheItemPoolInterface $cache): FormEncoderBuilder
     {
         $this->cache = $cache;
         return $this;
@@ -101,7 +101,7 @@ class FormEncoderBuilder implements BuilderInterface
      */
     private function buildCache(): void
     {
-        if ($this->fsCacheBuilder->canBuild()) {
+        if (null === $this->cache) {
             $this->cache = $this->fsCacheBuilder->build();
         }
     }
@@ -114,7 +114,7 @@ class FormEncoderBuilder implements BuilderInterface
         $this->annotationReader = new AnnotationReader();
 
         if (null !== $this->cache) {
-            $this->annotationReader = new CachedReader(new AnnotationReader(), $this->cache);
+            $this->annotationReader = new PsrCachedReader(new AnnotationReader(), $this->cache);
         }
     }
 }

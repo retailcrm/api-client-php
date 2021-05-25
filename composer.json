@@ -22,7 +22,6 @@
     "php-http/message-factory": "^1.0",
     "php-http/discovery": "^1.13",
     "doctrine/annotations": "^1.11",
-    "doctrine/cache": "^1.10",
     "liip/serializer": "^2.0",
     "php-http/httplug": "^2.2",
     "civicrm/composer-compile-plugin": "^0.15.0",
@@ -30,7 +29,9 @@
     "psr/event-dispatcher": "^1.0",
     "neur0toxine/psr.http-client-implementation.php-http-curl": "*",
     "neur0toxine/psr.http-factory-implementation.nyholm": "*",
-    "neur0toxine/psr.http-message-implementation.nyholm": "*"
+    "neur0toxine/psr.http-message-implementation.nyholm": "*",
+    "psr/cache": "^1.0 || ^2.0 || ^3.0",
+    "symfony/cache": ">=v3.1.0"
   },
   "require-dev": {
     "php-http/mock-client": "^1.0",
@@ -44,7 +45,8 @@
     "php-http/curl-client": "^2.2",
     "nyholm/psr7": "^1.3",
     "league/event": "^3.0",
-    "neur0toxine/pock": "^0.5"
+    "league/container": "^3.3",
+    "neur0toxine/pock": "^0.7"
   },
   "suggest": {
     "ext-curl": "Most HTTP clients need ext-curl to work properly.",
