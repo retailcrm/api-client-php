@@ -1,10 +1,10 @@
 ## Usage
 
 * [Instantiation](instantiation.md)
-* Sending a request
-  * Choosing correct resource group and method
-  * Sending requests
-  * Dealing with exceptions
+* [Sending a request](sending_a_request.md)
+  * [Choosing correct resource group, DTOs, and method](sending_a_request.md#choosing-correct-resource-group-dtos-and-method)
+  * [Sending a request](sending_a_request.md#sending-a-request)
+  * [Dealing with exceptions](sending_a_request.md#dealing-with-exceptions)
 * [Error handling](error_handling.md)  
 * Examples
   + [How to create an order](examples/create_order.md)
