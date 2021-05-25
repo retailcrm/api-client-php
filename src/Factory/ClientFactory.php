@@ -62,6 +62,8 @@ use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
  *
  * @category ClientFactory
  * @package  RetailCrm\Api\Factory
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class ClientFactory implements ClientFactoryInterface, EventDispatcherAwareInterface
 {
@@ -143,7 +145,7 @@ class ClientFactory implements ClientFactoryInterface, EventDispatcherAwareInter
     }
 
     /**
-     * Set your own PSR-18 HTTP client.
+     * Set your PSR-18 HTTP client.
      *
      * Service discovery will be used if no client has been provided.
      *

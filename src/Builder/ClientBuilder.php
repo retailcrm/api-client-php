@@ -50,13 +50,13 @@ class ClientBuilder implements BuilderInterface, EventDispatcherAwareInterface
     /** @var string */
     private $apiUrl;
 
-    /** @var ?HandlerInterface */
+    /** @var HandlerInterface|null */
     private $authenticator;
 
-    /** @var ?ClientInterface */
+    /** @var ClientInterface|null */
     private $httpClient;
 
-    /** @var ?\Psr\Log\LoggerInterface */
+    /** @var \Psr\Log\LoggerInterface|null */
     private $debugLogger;
 
     /** @var RequestTransformerInterface|null */
@@ -116,15 +116,15 @@ class ClientBuilder implements BuilderInterface, EventDispatcherAwareInterface
     }
 
     /**
-     * Set your own PSR-18 HTTP client.
+     * Set your PSR-18 HTTP client.
      *
      * Service discovery will be used if no client has been provided.
      *
-     * @param \Psr\Http\Client\ClientInterface $httpClient
+     * @param \Psr\Http\Client\ClientInterface|null $httpClient
      *
      * @return ClientBuilder
      */
-    public function setHttpClient(ClientInterface $httpClient): ClientBuilder
+    public function setHttpClient(?ClientInterface $httpClient): ClientBuilder
     {
         $this->httpClient = $httpClient;
         return $this;
