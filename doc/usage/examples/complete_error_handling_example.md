@@ -1,4 +1,8 @@
-Here is a complete example of the Client usage with error handling. It fetches the filtered orders data and prints it out:
+Here is a complete example of the Client usage with error handling. It fetches the filtered orders data and prints it out.
+
+**Note:** do not use this example to process all API client errors in your application. It will clutter your code too much.
+There are other options for exception processing. You can [match more generic exceptions in the hierarchy](../error_handling.md) or use 
+[events](../event_handing.md) to process exceptions.
 
 ```php
 <?php
@@ -34,20 +38,23 @@ try {
     echo 'Error while trying to prepare request: ' . $exception->getMessage();
     exit(-1);
 } catch (HttpClientException $exception) {
+    $prefix = 'Unknown error';
+
     if ($exception->getPrevious() instanceof NetworkExceptionInterface) {
-        echo 'Network error: ' . $exception->getMessage();
-        exit(-1);
+        $prefix = 'Network error';
     }
     
     if ($exception->getPrevious() instanceof RequestExceptionInterface) {
-        echo 'Invalid request: ' . $exception->getMessage();
-        exit(-1);
+        $prefix = 'Invalid request';
     }
     
     if ($exception->getPrevious() instanceof ClientExceptionInterface) {
-        echo 'HTTP client exception: ' . $exception->getMessage();
-        exit(-1);
+        $prefix = 'HTTP client exception';
     }
+    
+    echo $prefix . ': ' . $exception->getMessage();
+
+    exit(-1);
 } catch (
     InvalidCredentialsException |
     AccessDeniedException |
