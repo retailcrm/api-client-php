@@ -18,7 +18,9 @@ use RetailCrm\Api\Component\Transformer\ResponseTransformer;
 use RetailCrm\Api\Exception\Client\BuilderException;
 use RetailCrm\Api\Handler\Request\HeaderAuthenticatorHandler;
 use RetailCrm\Api\Interfaces\ClientFactoryInterface;
+use RetailCrm\Api\Interfaces\EventDispatcherAwareInterface;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
+use RetailCrm\Api\Interfaces\HandlerInterface;
 use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
 use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
 
@@ -57,7 +59,7 @@ use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
  * @category ClientFactory
  * @package  RetailCrm\Api\Factory
  */
-class ClientFactory implements ClientFactoryInterface
+class ClientFactory implements ClientFactoryInterface, EventDispatcherAwareInterface
 {
     use EventDispatcherAwareTrait;
 
@@ -78,6 +80,12 @@ class ClientFactory implements ClientFactoryInterface
 
     /** @var \RetailCrm\Api\Factory\ApiExceptionFactory|null */
     private $apiExceptionFactory;
+
+    /** @var \RetailCrm\Api\Interfaces\HandlerInterface[] */
+    private $requestHandlers = [];
+
+    /** @var \RetailCrm\Api\Interfaces\HandlerInterface[] */
+    private $responseHandlers = [];
 
     /**
      * Sets cache directory which will be used to store metadata cache.
@@ -119,6 +127,64 @@ class ClientFactory implements ClientFactoryInterface
     }
 
     /**
+     * Appends an additional request handler into the request processing chain.
+     *
+     * @param \RetailCrm\Api\Interfaces\HandlerInterface $handler
+     *
+     * @return ClientFactory
+     */
+    public function appendRequestHandler(HandlerInterface $handler): ClientFactory
+    {
+        $this->requestHandlers[] = $handler;
+        return $this;
+    }
+
+    /**
+     * Appends an additional handler into the response processing chain.
+     *
+     * @param \RetailCrm\Api\Interfaces\HandlerInterface $handler
+     *
+     * @return ClientFactory
+     */
+    public function appendResponseHandler(HandlerInterface $handler): ClientFactory
+    {
+        $this->responseHandlers[] = $handler;
+        return $this;
+    }
+
+    /**
+     * Appends an additional request handlers into the request processing chain.
+     *
+     * @param \RetailCrm\Api\Interfaces\HandlerInterface[] $handlers
+     *
+     * @return ClientFactory
+     */
+    public function appendRequestHandlers(array $handlers): ClientFactory
+    {
+        foreach ($handlers as $handler) {
+            $this->appendRequestHandler($handler);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Appends an additional response handlers into the response processing chain.
+     *
+     * @param \RetailCrm\Api\Interfaces\HandlerInterface[] $handlers
+     *
+     * @return ClientFactory
+     */
+    public function appendResponseHandlers(array $handlers): ClientFactory
+    {
+        foreach ($handlers as $handler) {
+            $this->appendResponseHandler($handler);
+        }
+
+        return $this;
+    }
+
+    /**
      * Instantiates a new instance of Client.
      *
      * @param string $apiUrl
@@ -143,6 +209,8 @@ class ClientFactory implements ClientFactoryInterface
             ->setFormEncoder($this->formEncoder)
             ->setResponseTransformer($this->responseTransformer)
             ->setDebugLogger($this->debugLogger)
+            ->appendRequestHandlers($this->requestHandlers)
+            ->appendResponseHandlers($this->responseHandlers)
             ->build();
     }
 

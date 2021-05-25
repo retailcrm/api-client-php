@@ -64,4 +64,12 @@ class ResponseTransformer implements ResponseTransformerInterface
 
         return $responseData->responseModel;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getHandler(): ?HandlerInterface
+    {
+        return $this->handler;
+    }
 }

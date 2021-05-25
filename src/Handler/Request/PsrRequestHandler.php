@@ -15,7 +15,9 @@ use Psr\Http\Message\UriFactoryInterface;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Exception\Client\HandlerException;
 use RetailCrm\Api\Handler\AbstractHandler;
+use RetailCrm\Api\Interfaces\PsrFactoriesAwareInterface;
 use RetailCrm\Api\Model\RequestData;
+use RetailCrm\Api\Traits\PsrFactoriesAwareTrait;
 
 /**
  * Class PsrRequestHandler
@@ -23,24 +25,16 @@ use RetailCrm\Api\Model\RequestData;
  * @category PsrRequestHandler
  * @package  RetailCrm\Api\Handler\Request
  */
-class PsrRequestHandler extends AbstractHandler
+class PsrRequestHandler extends AbstractHandler implements PsrFactoriesAwareInterface
 {
+    use PsrFactoriesAwareTrait;
+
     /** @var string[] */
     private static $methodsWithBody = [
         RequestMethod::POST,
         RequestMethod::PUT,
         RequestMethod::PATCH,
     ];
-
-    /**
-     * @var \Psr\Http\Message\UriFactoryInterface $uriFactory
-     */
-    private $uriFactory;
-
-    /**
-     * @var \Psr\Http\Message\RequestFactoryInterface $requestFactory
-     */
-    private $requestFactory;
 
     /**
      * PsrRequestHandler constructor.

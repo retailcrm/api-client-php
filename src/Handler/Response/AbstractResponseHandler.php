@@ -16,9 +16,14 @@ use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Exception\Client\HandlerException;
 use RetailCrm\Api\Factory\ApiExceptionFactory;
 use RetailCrm\Api\Handler\AbstractHandler;
+use RetailCrm\Api\Interfaces\ApiExceptionFactoryAwareInterface;
+use RetailCrm\Api\Interfaces\EventDispatcherAwareInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface as RetailcrmResponse;
+use RetailCrm\Api\Interfaces\SerializerAwareInterface;
 use RetailCrm\Api\Model\ResponseData;
+use RetailCrm\Api\Traits\ApiExceptionFactoryAwareTrait;
 use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
+use RetailCrm\Api\Traits\SerializerAwareTrait;
 use Throwable;
 
 /**
@@ -27,19 +32,14 @@ use Throwable;
  * @category AbstractResponseHandler
  * @package  RetailCrm\Api\Handler\Response
  */
-abstract class AbstractResponseHandler extends AbstractHandler
+abstract class AbstractResponseHandler extends AbstractHandler implements
+    SerializerAwareInterface,
+    EventDispatcherAwareInterface,
+    ApiExceptionFactoryAwareInterface
 {
+    use SerializerAwareTrait;
     use EventDispatcherAwareTrait;
-
-    /**
-     * @var \Liip\Serializer\SerializerInterface
-     */
-    private $serializer;
-
-    /**
-     * @var \RetailCrm\Api\Factory\ApiExceptionFactory
-     */
-    protected $apiExceptionFactory;
+    use ApiExceptionFactoryAwareTrait;
 
     /**
      * ResponseTransformer constructor.

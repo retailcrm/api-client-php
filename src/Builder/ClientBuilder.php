@@ -23,11 +23,15 @@ use RetailCrm\Api\Exception\Client\BuilderException;
 use RetailCrm\Api\Factory\ApiExceptionFactory;
 use RetailCrm\Api\Factory\RequestPipelineFactory;
 use RetailCrm\Api\Factory\ResponsePipelineFactory;
+use RetailCrm\Api\Interfaces\ApiExceptionFactoryAwareInterface;
 use RetailCrm\Api\Interfaces\BuilderInterface;
+use RetailCrm\Api\Interfaces\EventDispatcherAwareInterface;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Interfaces\HandlerInterface;
+use RetailCrm\Api\Interfaces\PsrFactoriesAwareInterface;
 use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
+use RetailCrm\Api\Interfaces\SerializerAwareInterface;
 use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
 
 /**
@@ -37,8 +41,9 @@ use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
  * @package  RetailCrm\Api\Builder
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
-class ClientBuilder implements BuilderInterface
+class ClientBuilder implements BuilderInterface, EventDispatcherAwareInterface
 {
     use EventDispatcherAwareTrait;
 
@@ -74,6 +79,12 @@ class ClientBuilder implements BuilderInterface
 
     /** @var \RetailCrm\Api\Factory\ApiExceptionFactory|null */
     private $apiExceptionFactory;
+
+    /** @var \RetailCrm\Api\Interfaces\HandlerInterface[] */
+    private $requestHandlers = [];
+
+    /** @var \RetailCrm\Api\Interfaces\HandlerInterface[] */
+    private $responseHandlers = [];
 
     /**
      * API URL. Looks like this: "https://test.retailcrm.pro/"
@@ -224,6 +235,64 @@ class ClientBuilder implements BuilderInterface
     }
 
     /**
+     * Appends an additional request handler into the request processing chain.
+     *
+     * @param \RetailCrm\Api\Interfaces\HandlerInterface $handler
+     *
+     * @return ClientBuilder
+     */
+    public function appendRequestHandler(HandlerInterface $handler): ClientBuilder
+    {
+        $this->requestHandlers[] = $handler;
+        return $this;
+    }
+
+    /**
+     * Appends an additional response handler into the response processing chain.
+     *
+     * @param \RetailCrm\Api\Interfaces\HandlerInterface $handler
+     *
+     * @return ClientBuilder
+     */
+    public function appendResponseHandler(HandlerInterface $handler): ClientBuilder
+    {
+        $this->responseHandlers[] = $handler;
+        return $this;
+    }
+
+    /**
+     * Appends an additional request handlers into the request processing chain.
+     *
+     * @param \RetailCrm\Api\Interfaces\HandlerInterface[] $handlers
+     *
+     * @return ClientBuilder
+     */
+    public function appendRequestHandlers(array $handlers): ClientBuilder
+    {
+        foreach ($handlers as $handler) {
+            $this->appendRequestHandler($handler);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Appends an additional response handlers into the response processing chain.
+     *
+     * @param \RetailCrm\Api\Interfaces\HandlerInterface[] $handlers
+     *
+     * @return ClientBuilder
+     */
+    public function appendResponseHandlers(array $handlers): ClientBuilder
+    {
+        foreach ($handlers as $handler) {
+            $this->appendResponseHandler($handler);
+        }
+
+        return $this;
+    }
+
+    /**
      * Builds client with provided dependencies.
      *
      * @inheritDoc
@@ -248,11 +317,14 @@ class ClientBuilder implements BuilderInterface
             $this->responseTransformer = $this->buildResponseTransformer();
         }
 
+        $this->appendAdditionalRequestHandlers();
+        $this->appendAdditionalResponseHandlers();
+
         return new Client(
             $this->apiUrl,
             $this->httpClient ?: Psr18ClientDiscovery::find(),
-            $this->requestTransformer,
-            $this->responseTransformer,
+            $this->requestTransformer,  // @phpstan-ignore-line
+            $this->responseTransformer, // @phpstan-ignore-line
             $this->streamFactory ?: Psr17FactoryDiscovery::findStreamFactory(),
             $this->eventDispatcher,
             $this->debugLogger
@@ -275,6 +347,62 @@ class ClientBuilder implements BuilderInterface
                 'Authenticator or RequestTransformer must be present',
                 ['authenticator', 'requestTransformer']
             );
+        }
+    }
+
+    /**
+     * Appends additional request handlers into the request and response processor chain (if needed).
+     *
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
+     */
+    private function appendAdditionalRequestHandlers(): void
+    {
+        if (
+            null !== $this->requestTransformer &&
+            null !== $this->requestTransformer->getHandler() &&
+            count($this->requestHandlers) > 0
+        ) {
+            foreach ($this->requestHandlers as $handler) {
+                if ($handler instanceof PsrFactoriesAwareInterface) {
+                    $handler->setRequestFactory($this->requestFactory ?: Psr17FactoryDiscovery::findRequestFactory());
+                    $handler->setStreamFactory($this->streamFactory ?: Psr17FactoryDiscovery::findStreamFactory());
+                    $handler->setUriFactory($this->uriFactory ?: Psr17FactoryDiscovery::findUriFactory());
+                }
+            }
+
+            $this->requestTransformer->getHandler()->append(static::buildHandlersChain($this->requestHandlers));
+        }
+    }
+
+    /**
+     * Appends additional response handlers into the request and response processor chain (if needed).
+     *
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
+    private function appendAdditionalResponseHandlers(): void
+    {
+        if (
+            null !== $this->responseTransformer &&
+            null !== $this->responseTransformer->getHandler() &&
+            count($this->requestHandlers) > 0
+        ) {
+            foreach ($this->responseHandlers as $handler) {
+                if ($handler instanceof SerializerAwareInterface && null !== $this->formEncoder) {
+                    $handler->setSerializer($this->formEncoder->getSerializer());
+                }
+
+                if ($handler instanceof ApiExceptionFactoryAwareInterface && null !== $this->apiExceptionFactory) {
+                    $handler->setApiExceptionFactory($this->apiExceptionFactory);
+                }
+
+                if ($handler instanceof EventDispatcherAwareInterface) {
+                    $handler->setEventDispatcher($this->eventDispatcher);
+                }
+            }
+
+            $this->responseTransformer->getHandler()->append(static::buildHandlersChain($this->responseHandlers));
         }
     }
 
@@ -335,5 +463,30 @@ class ClientBuilder implements BuilderInterface
             $this->apiExceptionFactory,
             $this->eventDispatcher
         ));
+    }
+
+    /**
+     * Connect all handlers in the array into chain, return first handler.
+     *
+     * @param HandlerInterface[] $handlers
+     *
+     * @return \RetailCrm\Api\Interfaces\HandlerInterface
+     * @throws \RetailCrm\Api\Exception\Client\BuilderException
+     */
+    private static function buildHandlersChain(array $handlers): HandlerInterface
+    {
+        if (empty($handlers)) {
+            throw new BuilderException('Supplied handlers chain must contain at least one handler');
+        }
+
+        if (1 === count($handlers)) {
+            return $handlers[0];
+        }
+
+        for ($i = 0, $iMax = count($handlers) - 1; $i < $iMax; $i++) {
+            $handlers[$i]->setNext($handlers[$i + 1]);
+        }
+
+        return $handlers[0];
     }
 }

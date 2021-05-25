@@ -18,6 +18,7 @@ use Psr\Log\NullLogger;
 use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Event\FailureRequestEvent;
 use RetailCrm\Api\Exception\Client\HttpClientException;
+use RetailCrm\Api\Interfaces\EventDispatcherAwareInterface;
 use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface;
@@ -35,7 +36,7 @@ use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
  * @SuppressWarnings(PHPMD.NumberOfChildren)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-abstract class AbstractApiResourceGroup
+abstract class AbstractApiResourceGroup implements EventDispatcherAwareInterface
 {
     use EventDispatcherAwareTrait;
 

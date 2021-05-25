@@ -42,8 +42,8 @@ interface RequestTransformerInterface
     /**
      * Returns HandlerInterface.
      *
-     * This method can return `null`. `ClientBuilder` won't inject authenticator into the handlers chain if this
-     * method returns `null`. No error or exception will be raised.
+     * This method can return `null`. `ClientBuilder` won't inject authenticator or additional handlers
+     * into the handlers chain if this method returns `null`. No error or exception will be raised.
      *
      * @return \RetailCrm\Api\Interfaces\HandlerInterface|null
      */

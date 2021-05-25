@@ -102,4 +102,12 @@ class ClientFactoryTest extends ClientTestCase
 
         static::assertClientIsValid($client, PsrCachedReader::class, FilesystemAdapter::class, '', true);
     }
+
+    public function testAppendRequestHandlers(): void
+    {
+        $client = (new ClientFactory())
+            ->createClient(TestConfig::getApiUrl(), TestConfig::getApiKey());
+
+        static::assertClientIsValid($client, PsrCachedReader::class, FilesystemAdapter::class);
+    }
 }

@@ -17,6 +17,7 @@ use RetailCrm\Api\Handler\Request\PsrRequestHandler;
 use RetailCrm\Api\Handler\Request\RequestDataHandler;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
 use RetailCrm\Api\Interfaces\HandlerInterface;
+use RetailCrm\Api\Interfaces\PsrFactoriesAwareInterface;
 
 /**
  * Class RequestPipelineFactory
@@ -45,17 +46,20 @@ class RequestPipelineFactory
         ?StreamFactoryInterface $streamFactory,
         HandlerInterface ...$additionalHandlers
     ): HandlerInterface {
-        $handler       = new PsrRequestHandler(
-            $uriFactory ?: Psr17FactoryDiscovery::findUriFactory(),
-            $requestFactory ?: Psr17FactoryDiscovery::findRequestFactory()
-        );
-        $nextHandler   = $handler->setNext(new RequestDataHandler(
-            $formEncoder,
-            $streamFactory ?: Psr17FactoryDiscovery::findStreamFactory()
-        ));
+        $uriFactory = $uriFactory ?: Psr17FactoryDiscovery::findUriFactory();
+        $requestFactory = $requestFactory ?: Psr17FactoryDiscovery::findRequestFactory();
+        $streamFactory = $streamFactory ?: Psr17FactoryDiscovery::findStreamFactory();
+        $handler = new PsrRequestHandler($uriFactory, $requestFactory);
+        $nextHandler = $handler->setNext(new RequestDataHandler($formEncoder, $streamFactory));
 
         if (count($additionalHandlers) > 0) {
             foreach ($additionalHandlers as $additionalHandler) {
+                if ($additionalHandler instanceof PsrFactoriesAwareInterface) {
+                    $additionalHandler->setRequestFactory($requestFactory);
+                    $additionalHandler->setStreamFactory($streamFactory);
+                    $additionalHandler->setUriFactory($uriFactory);
+                }
+
                 $nextHandler = $nextHandler->setNext($additionalHandler);
             }
         }

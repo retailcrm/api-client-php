@@ -27,6 +27,7 @@ This is the PHP RetailCRM API client. This library allows using of the actual AP
         + [How to receive the list of orders](doc/usage/examples/fetch_orders.md)
         + [How to handle all Client's exceptions](doc/usage/examples/complete_error_handling_example.md)
     + [Event handling](doc/usage/event_handing.md)
+* [Customization](doc/customization/customization.md)
 * [Troubleshooting](doc/troubleshooting.md)
 * [Notes](#notes)
 

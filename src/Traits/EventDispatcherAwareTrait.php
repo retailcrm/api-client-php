@@ -20,7 +20,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 trait EventDispatcherAwareTrait
 {
     /** @var EventDispatcherInterface|null */
-    private $eventDispatcher;
+    protected $eventDispatcher;
 
     /**
      * Sets PSR-14 compatible event dispatcher. Useful if you want to handle specific errors in one place.
