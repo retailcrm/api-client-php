@@ -1,4 +1,4 @@
-## Using different PSR-18, PSR-17 and PSR-7 implementations
+## Controlling HTTP abstraction layer
 
 You can replace default PSR dependencies in the client while using `ClientFactory` or `ClientBuilder`. It can be useful for tests 
 or if you want to use a specific implementation that is not supported by the service discovery.

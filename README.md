@@ -28,7 +28,7 @@ This is the PHP RetailCRM API client. This library allows using of the actual AP
         + [How to handle all Client's exceptions](doc/usage/examples/complete_error_handling_example.md)
     + [Event handling](doc/usage/event_handing.md)
 * [Customization](doc/customization/customization.md)
-    + [Using different PSR-18, PSR-17 and PSR-7 implementations](doc/customization/different_psr_implementations.md)
+    + [Controlling HTTP abstraction layer](doc/customization/different_psr_implementations.md)
     + [Customizing request and response processing](doc/customization/pipelines/implementing_a_handler.md)
         + [Using a predefined handler](doc/customization/pipelines/using_a_predefined_handler.md)
             + [Built-in handlers](doc/customization/pipelines/using_a_predefined_handler.md#built-in-handlers)
