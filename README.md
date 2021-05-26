@@ -30,9 +30,11 @@ This is the PHP RetailCRM API client. This library allows using of the actual AP
 * [Customization](doc/customization/customization.md)
     + [Using different PSR-18, PSR-17 and PSR-7 implementations](doc/customization/different_psr_implementations.md)
     + [Customizing request and response processing](doc/customization/pipelines/implementing_a_handler.md)
+        + [Using a predefined handler](doc/customization/pipelines/using_a_predefined_handler.md)
+            + [Built-in handlers](doc/customization/pipelines/using_a_predefined_handler.md#built-in-handlers)
+            + [Modifying the default pipeline](doc/customization/pipelines/using_a_predefined_handler.md#modifying-the-default-pipeline)
+            + [Constructing the pipeline from scratch](doc/customization/pipelines/using_a_predefined_handler.md#constructing-the-pipeline-from-scratch)
         + [Implementing a handler](doc/customization/pipelines/implementing_a_handler.md)
-        + [Customizing a request pipeline](doc/customization/pipelines/customizing_request_pipeline.md)
-        + [Customizing a response pipeline](doc/customization/pipelines/customizing_response_pipeline.md)
 * [Troubleshooting](doc/troubleshooting.md)
 * [Notes](#notes)
 

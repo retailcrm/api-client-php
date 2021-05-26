@@ -1,4 +1,2 @@
 ## Implementing a handler
 
-> TODO
-

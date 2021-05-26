@@ -225,7 +225,7 @@ class ClientFactory implements ClientFactoryInterface, EventDispatcherAwareInter
     }
 
     /**
-     * Appends an additional request handlers into the request processing chain.
+     * Appends additional request handlers into the request processing chain.
      *
      * @param \RetailCrm\Api\Interfaces\HandlerInterface[] $handlers
      *
@@ -241,7 +241,7 @@ class ClientFactory implements ClientFactoryInterface, EventDispatcherAwareInter
     }
 
     /**
-     * Appends an additional response handlers into the response processing chain.
+     * Appends additional response handlers into the response processing chain.
      *
      * @param \RetailCrm\Api\Interfaces\HandlerInterface[] $handlers
      *

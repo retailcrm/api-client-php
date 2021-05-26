@@ -13,12 +13,16 @@ use Doctrine\Common\Annotations\PsrCachedReader;
 use Http\Discovery\Psr18ClientDiscovery;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Pock\PockBuilder;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\UriFactoryInterface;
 use Psr\Log\NullLogger;
 use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Factory\ClientFactory;
 use RetailCrm\Api\Handler\Request\CallbackRequestHandler;
 use RetailCrm\Api\Handler\Response\CallbackResponseHandler;
 use RetailCrm\Api\Model\RequestData;
+use RetailCrm\Api\Model\Response\Api\ApiVersionsResponse;
 use RetailCrm\Api\Model\ResponseData;
 use RetailCrm\TestUtils\ReflectionUtils;
 use RetailCrm\TestUtils\TestCase\ClientTestCase;
@@ -124,14 +128,31 @@ class ClientFactoryTest extends ClientTestCase
 
     public function testAppendRequestHandlers(): void
     {
+        $handler = new CallbackRequestHandler(
+            static function (
+                RequestData $requestData,
+                RequestFactoryInterface $requestFactory,
+                StreamFactoryInterface $streamFactory,
+                UriFactoryInterface $uriFactory
+            ) {
+                if (null !== $requestData->request) {
+                    $requestData->request = $requestData->request
+                        ->withHeader('X-Rlimit-Token', 'example_token');
+                }
+            }
+        );
+        $mockJson = [
+            'success' => true,
+            'versions' => ['9.0']
+        ];
+
         $client = (new ClientFactory())
-            ->appendRequestHandlers([new CallbackRequestHandler(static function (RequestData $requestData) {
-                return;
-            })])
+            ->appendRequestHandlers([$handler])
             ->createClient(TestConfig::getApiUrl(), TestConfig::getApiKey());
 
         static::assertClientIsValid($client, PsrCachedReader::class, FilesystemAdapter::class);
 
+        /** @var \RetailCrm\Api\ResourceGroup\Api $api */
         $api = ReflectionUtils::getProperty($client, 'api');
         $requestTransformer = ReflectionUtils::getProperty($api, 'requestTransformer');
 
@@ -139,6 +160,19 @@ class ClientFactoryTest extends ClientTestCase
         $requestHandler = ReflectionUtils::getProperty($requestTransformer, 'handler');
 
         self::assertInstanceOf(CallbackRequestHandler::class, $requestHandler->getLastHandler());
+
+        $mockBuilder = new PockBuilder();
+        $mockBuilder->matchOrigin(TestConfig::getApiUrl())
+            ->matchPath('/api/api-versions')
+            ->matchHeaders([
+                'X-Api-Key' => TestConfig::getApiKey(),
+                'X-Rlimit-Token' => 'example_token'
+            ])->reply(200)
+            ->withJson($mockJson);
+
+        ReflectionUtils::setProperty($api, 'httpClient', $mockBuilder->getClient());
+
+        self::assertEquals($mockJson['versions'], $client->api->apiVersions()->versions);
     }
 
     public function testAppendResponseHandlers(): void

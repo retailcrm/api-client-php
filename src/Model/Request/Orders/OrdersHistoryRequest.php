@@ -11,7 +11,7 @@ namespace RetailCrm\Api\Model\Request\Orders;
 
 use RetailCrm\Api\Component\FormData\Mapping as Form;
 use RetailCrm\Api\Interfaces\RequestInterface;
-use RetailCrm\Api\Model\Request\Traits\PageLimitTrait;
+use RetailCrm\Api\Model\Request\Traits\HistoryPageLimitTrait;
 
 /**
  * Class OrdersHistoryRequest
@@ -21,7 +21,7 @@ use RetailCrm\Api\Model\Request\Traits\PageLimitTrait;
  */
 class OrdersHistoryRequest implements RequestInterface
 {
-    use PageLimitTrait;
+    use HistoryPageLimitTrait;
 
     /**
      * @var \RetailCrm\Api\Model\Filter\Orders\OrderHistoryFilterV4Type

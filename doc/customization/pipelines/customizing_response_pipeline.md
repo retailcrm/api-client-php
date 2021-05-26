@@ -1,3 +1,0 @@
-## Customizing response pipeline
-
-> TODO

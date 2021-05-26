@@ -1,3 +1,0 @@
-## Customizing request pipeline
-
-> TODO
