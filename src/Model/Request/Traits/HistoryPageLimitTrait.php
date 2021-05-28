@@ -26,14 +26,4 @@ trait HistoryPageLimitTrait
      * @Form\SerializedName("limit")
      */
     public $limit;
-
-    /**
-     * @var int
-     *
-     * @deprecated This parameter will be removed in the future.
-     *
-     * @Form\Type("int")
-     * @Form\SerializedName("page")
-     */
-    public $page;
 }
