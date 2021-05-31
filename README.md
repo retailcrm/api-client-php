@@ -124,12 +124,12 @@ More information about the usage including examples can be found in the [documen
 
 ## Examples
 
-That's how you can fetch the orders list:
+Listing orders:
 
 ```php
 <?php
 
-use Psr\Http\Client\ClientExceptionInterface;
+use RetailCrm\Api\Interfaces\ClientExceptionInterface;
 use RetailCrm\Api\Factory\SimpleClientFactory;
 use RetailCrm\Api\Interfaces\ApiExceptionInterface;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
@@ -178,6 +178,122 @@ foreach ($response->orders as $order) {
     echo PHP_EOL;
 }
 ```
+
+Fetching a specific order by it's ID:
+
+```php
+<?php
+
+use RetailCrm\Api\Interfaces\ClientExceptionInterface;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Enum\ByIdentifier;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Model\Request\BySiteRequest;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+try {
+    $response = $client->orders->get(1234, new BySiteRequest(ByIdentifier::ID, 'site'));
+} catch (ApiExceptionInterface $exception) {
+    echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
+    exit(-1);
+} catch (ClientExceptionInterface $exception) {
+    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
+    echo $exception->getTraceAsString();
+    exit(-1);
+}
+
+echo 'Order: ' . print_r($response->order, true);
+```
+
+Creating a new customer:
+
+```php
+<?php
+
+use RetailCrm\Api\Interfaces\ClientExceptionInterface;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Model\Entity\Customers\Customer;
+use RetailCrm\Api\Model\Request\Customers\CustomersCreateRequest;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$request = new CustomersCreateRequest();
+$request->customer = new Customer();
+
+$request->site = 'aliexpress';
+$request->customer->email = 'john.doe@example.com';
+$request->customer->firstName = 'John';
+$request->customer->lastName = 'Doe';
+
+try {
+    $response = $client->customers->create($request);
+} catch (ApiExceptionInterface $exception) {
+    echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
+    exit(-1);
+} catch (ClientExceptionInterface $exception) {
+    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
+    echo $exception->getTraceAsString();
+    exit(-1);
+}
+
+echo 'Customer ID: ' . $response->id;
+```
+
+Creating a task for the user with specific email:
+
+```php
+<?php
+
+use RetailCrm\Api\Interfaces\ClientExceptionInterface;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Model\Entity\Tasks\Task;use RetailCrm\Api\Model\Filter\Users\ApiUserFilter;
+use RetailCrm\Api\Model\Request\Tasks\TasksCreateRequest;use RetailCrm\Api\Model\Request\Users\UsersRequest;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$usersRequest = new UsersRequest();
+$usersRequest->filter = new ApiUserFilter();
+$usersRequest->filter->email = 'john.doe@example.com';
+
+try {
+    $usersResponse = $client->users->list($usersRequest);
+} catch (ApiExceptionInterface $exception) {
+    echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
+    exit(-1);
+} catch (ClientExceptionInterface $exception) {
+    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
+    echo $exception->getTraceAsString();
+    exit(-1);
+}
+
+if (0 === count($usersResponse->users)) {
+    echo 'User is not found.';
+    exit(-1);
+}
+
+$tasksRequest = new TasksCreateRequest();
+$tasksRequest->task = new Task();
+$tasksRequest->task->performerId = $usersResponse->users[0]->id;
+$tasksRequest->task->text = 'Do something!';
+$tasksRequest->site = 'site';
+
+try {
+    $tasksResponse = $client->tasks->create($tasksRequest);
+} catch (ApiExceptionInterface $exception) {
+    echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
+    exit(-1);
+} catch (ClientExceptionInterface $exception) {
+    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
+    echo $exception->getTraceAsString();
+    exit(-1);
+}
+
+echo 'Created task with ID: ' . $tasksResponse->id;
+```
+
 
 The error handling in the examples above is good enough for real production usage.
 You can safely assume that `ApiExceptionInterface` is an error from the API, and `ClientExceptionInterface` is a client error

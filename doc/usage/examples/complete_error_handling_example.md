@@ -7,7 +7,7 @@ There are other options for exception processing. You can [match more generic ex
 ```php
 <?php
 
-use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientExceptionInterface as PsrClientExceptionInterface;
 use Psr\Http\Client\NetworkExceptionInterface;
 use Psr\Http\Client\RequestExceptionInterface;
 use RetailCrm\Api\Exception\Api\AccessDeniedException;
@@ -21,6 +21,7 @@ use RetailCrm\Api\Exception\Client\HandlerException;
 use RetailCrm\Api\Exception\Client\HttpClientException;
 use RetailCrm\Api\Factory\SimpleClientFactory;
 use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Interfaces\ClientExceptionInterface;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
 use RetailCrm\Api\Model\Filter\Orders\OrderFilter;
 use RetailCrm\Api\Model\Request\Orders\OrdersRequest;
@@ -48,7 +49,7 @@ try {
         $prefix = 'Invalid request';
     }
     
-    if ($exception->getPrevious() instanceof ClientExceptionInterface) {
+    if ($exception->getPrevious() instanceof PsrClientExceptionInterface) {
         $prefix = 'HTTP client exception';
     }
     

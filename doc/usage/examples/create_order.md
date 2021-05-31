@@ -3,7 +3,7 @@ That's how you can create a new order:
 ```php
 <?php
 
-use Psr\Http\Client\ClientExceptionInterface;
+use RetailCrm\Api\Interfaces\ClientExceptionInterface;
 use RetailCrm\Api\Enum\CountryCodeIso3166;
 use RetailCrm\Api\Enum\Customers\CustomerType;
 use RetailCrm\Api\Factory\SimpleClientFactory;

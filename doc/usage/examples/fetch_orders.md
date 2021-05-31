@@ -3,7 +3,7 @@ That's how you can fetch the orders list:
 ```php
 <?php
 
-use Psr\Http\Client\ClientExceptionInterface;
+use RetailCrm\Api\Interfaces\ClientExceptionInterface;
 use RetailCrm\Api\Factory\SimpleClientFactory;
 use RetailCrm\Api\Interfaces\ApiExceptionInterface;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
