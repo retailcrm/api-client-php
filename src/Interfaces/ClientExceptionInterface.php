@@ -19,4 +19,10 @@ use Throwable;
  */
 interface ClientExceptionInterface extends Throwable
 {
+    /**
+     * Client exception must implement valid __toString() method.
+     *
+     * @return string
+     */
+    public function __toString();
 }

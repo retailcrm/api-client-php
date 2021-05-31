@@ -10,4 +10,5 @@
   + [How to create an order](examples/create_order.md)
   + [How to receive the list of orders](examples/fetch_orders.md)
   + [How to handle all Client's exceptions](examples/complete_error_handling_example.md)
+  + [Fetching orders history](examples/orders_history.md)
 * [Event handling](event_handing.md)

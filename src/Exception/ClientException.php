@@ -20,4 +20,11 @@ use RetailCrm\Api\Interfaces\ClientExceptionInterface;
  */
 abstract class ClientException extends Exception implements ClientExceptionInterface
 {
+    /**
+     * @inheritDoc
+     */
+    public function __toString(): string
+    {
+        return $this->getMessage();
+    }
 }
