@@ -7,8 +7,8 @@ These events are provided by the library:
 - `RetailCrm\Api\Event\FailureRequestEvent` will be dispatched if the request was not successful. It won't be dispatched if the request cannot be formed at all.
 
 Event API documentation can be found here:
-* [`FailureRequestEvent`](https://neur0toxine.github.io/api-client-php/classes/RetailCrm-Api-Event-FailureRequestEvent.html)
-* [`SuccessRequestEvent`](https://neur0toxine.github.io/api-client-php/classes/RetailCrm-Api-Event-SuccessRequestEvent.html)
+* [`FailureRequestEvent`](https://retailcrm.github.io/api-client-php/classes/RetailCrm-Api-Event-FailureRequestEvent.html)
+* [`SuccessRequestEvent`](https://retailcrm.github.io/api-client-php/classes/RetailCrm-Api-Event-SuccessRequestEvent.html)
 
 Here is an example of event handling with Symfony. We're using an empty Symfony 5.x project with annotations routing. `IndexController` 
 outputs `/api/credentials` response without any changes. We'll handle all exceptions inside this event listener which will allow us 

@@ -6,44 +6,24 @@
 
 # RetailCRM API PHP client
 
-This is the PHP RetailCRM API client. This library allows using of the actual API version. [API documentation](http://retailcrm.github.io/api-client-php)
+This is the PHP RetailCRM API client. This library allows using of the actual API version.  
+You can find more info in the [documentation](doc/index.md).
 
 # Table of contents
 
 * [Requirements](#requirements)
 * [Installation](#installation)
-* [Client structure](doc/structure.md)
-    + [Design principles](doc/structure.md#design-principles)
-    + [Resource groups](doc/structure.md#resource-groups)
-* [Usage](doc/usage/usage.md)
-    + [Instantiation](doc/usage/instantiation.md)
-    + [Sending a request](doc/usage/sending_a_request.md)
-        + [Choosing correct resource group, DTOs, and method](doc/usage/sending_a_request.md#choosing-correct-resource-group-dtos-and-method)
-        + [Sending a request](doc/usage/sending_a_request.md#sending-a-request)
-        + [Dealing with exceptions](doc/usage/sending_a_request.md#dealing-with-exceptions)
-    + [Error handling](doc/usage/error_handling.md)
-    + [Examples](doc/usage/examples)
-        + [How to create an order](doc/usage/examples/create_order.md)
-        + [How to receive the list of orders](doc/usage/examples/fetch_orders.md)
-        + [How to handle all Client's exceptions](doc/usage/examples/complete_error_handling_example.md)
-    + [Event handling](doc/usage/event_handing.md)
-* [Customization](doc/customization/customization.md)
-    + [Controlling HTTP abstraction layer](doc/customization/different_psr_implementations.md)
-    + [Customizing request and response processing](doc/customization/pipelines/implementing_a_handler.md)
-        + [Using a predefined handler](doc/customization/pipelines/using_a_predefined_handler.md)
-            + [Built-in handlers](doc/customization/pipelines/using_a_predefined_handler.md#built-in-handlers)
-            + [Modifying the default pipeline](doc/customization/pipelines/using_a_predefined_handler.md#modifying-the-default-pipeline)
-            + [Constructing the pipeline from scratch](doc/customization/pipelines/using_a_predefined_handler.md#constructing-the-pipeline-from-scratch)
-        + [Implementing a handler](doc/customization/pipelines/implementing_a_handler.md)
-* [Troubleshooting](doc/troubleshooting.md)
+* [Usage](#usage)
+* [Examples](#examples)
 * [Notes](#notes)
+* [Documentation](doc/index.md)
 
 ## Requirements
 
 * PHP 7.3 and above
 * PHP's cURL support
 * PHP's JSON support
-* Any HTTP-client compatible with PSR-18 (covered by the installation instructions).
+* Any HTTP client compatible with PSR-18 (covered by the installation instructions).
 * Any HTTP factories implementation compatible with PSR-17 (covered by the installation instructions).
 * Any HTTP messages implementation compatible with PSR-7 (covered by the installation instructions).
 * Other dependencies listed in the `composer.json` (covered by the installation instructions)
@@ -68,31 +48,21 @@ That's because the Client uses code generation to speed up serialization and des
 
 Just type `y` here and press Enter. The DTO cache will be generated after that.
 
-3. **Optional.** Add these params into the `extra` segment of your `composer.json` if you want to execute code generation automatically after library installation or update. This step is not optional if you have configured CI/CD pipeline for your project.
-```json
-"compile-mode": "whitelist",
-"compile-whitelist": ["retailcrm/api-client-php"]
+If you skipped the compilation task - don't worry, it can be executed manually at any time with this command:
+```sh
+composer compile --all
 ```
 
-Your `composer.json` file will look like this:
-```json
-{
-    "name": "author/some-project",
-    "description": "Description of the project.",
-    "type": "project",
-    "license": "MIT",
-    "require": {
-        "php": ">=7.3.0",
-        "symfony/http-client": "^5.2",
-        "nyholm/psr7": "^1.4",
-        "retailcrm/api-client-php": "~6.0"
-    },
-    "extra": {
-        "compile-mode": "whitelist",
-        "compile-whitelist": ["retailcrm/api-client-php"]
-    }
-}
+3. **Optional.** Disable compilation prompt that you have seen in the previous step. Run this command to do that:
+
+```sh
+./vendor/bin/retailcrm-client compiler:prompt
 ```
+
+Replace `vendor/bin` with your bin directory path if it's different from the default. You can find more information about this step in the [documentation](doc/compilation_prompt.md).
+
+**Note:** You should not skip this step if your application is using CI/CD pipeline because the interactive terminal is not available
+in that environment which will result in failure during the dependencies installation.
 
 4. Include the autoloader if it's not included, or you didn't use Composer before.
 ```php
@@ -106,6 +76,117 @@ You can replace those implementations during installation by installing this lib
 ```sh
 composer require symfony/http-client guzzlehttp/psr7 retailcrm/api-client-php:"~6.0"
 ```
+
+More information about that can be found in the [documentation](doc/customization/different_psr_implementations.md).
+
+## Usage
+
+Firstly, you should initialize the Client. The easiest way to do this is to use the `SimpleClientFactory`:
+
+```php
+$client = \RetailCrm\Api\Factory\SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+```
+
+The client is separated into several resource groups, all of which are accessible through the Client's public properties.
+You can call API methods from those groups like this:
+
+```php
+$client->api->credentials();
+```
+
+For example, you can retrieve the customers list:
+
+```php
+$client = \RetailCrm\Api\Factory\SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+$response = $client->customers->list();
+```
+
+Or the orders list:
+
+```php
+$client = \RetailCrm\Api\Factory\SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+$response = $client->orders->list();
+```
+
+To handle errors you must use two types of exceptions:
+* `RetailCrm\Api\Interfaces\ClientExceptionInterface` for the network or other runtime errors.
+* `RetailCrm\Api\Interfaces\ApiExceptionInterface` for the errors from the API.
+
+An example of error handling can be found in the next section of this document.
+
+Each resource group is responsible for the corresponding API section. For example, `costs` resource group provide methods
+for costs manipulation and `loyalty` resource group allows interacting with loyalty programs, accounts, bonuses, etc.
+
+Use annotations to determine which DTOs you need for sending the requests. If annotations are not provided by your IDE - you'll
+need to look up how to configure it. It'll ease your work with this (and any other) library a lot.
+
+More information about the usage including examples can be found in the [documentation](doc/usage/usage.md).
+
+## Examples
+
+That's how you can fetch the orders list:
+
+```php
+<?php
+
+use Psr\Http\Client\ClientExceptionInterface;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+try {
+    $response = $client->orders->list();
+} catch (ApiExceptionInterface $exception) {
+    echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
+    exit(-1);
+} catch (ClientExceptionInterface $exception) {
+    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
+    echo $exception->getTraceAsString();
+    exit(-1);
+}
+
+foreach ($response->orders as $order) {
+    printf("Order ID: %d\n", $order->id);
+    printf("First name: %s\n", $order->firstName);
+    printf("Last name: %s\n", $order->lastName);
+    printf("Patronymic: %s\n", $order->patronymic);
+    printf("Phone #1: %s\n", $order->phone);
+    printf("Phone #2: %s\n", $order->additionalPhone);
+    printf("E-Mail: %s\n", $order->email);
+
+    if ($order->customer instanceof CustomerCorporate) {
+        echo "Customer type: corporate\n";
+    } else {
+        echo "Customer type: individual\n";
+    }
+
+    foreach ($order->items as $item) {
+        echo PHP_EOL;
+
+        printf("Product name: %s\n", $item->productName);
+        printf("Quantity: %d\n", $item->quantity);
+        printf("Initial price: %f\n", $item->initialPrice);
+    }
+
+    echo PHP_EOL;
+
+    printf("Discount: %f\n", $order->discountManualAmount);
+    printf("Total: %f\n", $order->totalSumm);
+
+    echo PHP_EOL;
+}
+```
+
+The error handling in the examples above is good enough for real production usage.
+You can safely assume that `ApiExceptionInterface` is an error from the API, and `ClientExceptionInterface` is a client error
+(e.g. network error or any runtime error, use `HttpClientException` to catch only PSR-18 client errors).
+However, you can implement more complex error handling if you want.
+
+More examples can be found in the [documentation](doc/usage/examples).
+
+You can use a PSR-14 compatible event dispatcher to receive events from the client. See [documentation](doc/index.md) for details.
 
 ## Notes
 

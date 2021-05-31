@@ -56,7 +56,7 @@ $client = SimpleClientFactory::createWithCacheDir('https://test.retailcrm.pro', 
 ```
 
 You can find more details about `SimpleClientFactory` in the documentation:
-* [`SimpleClientFactory`](https://neur0toxine.github.io/api-client-php/classes/RetailCrm-Api-Factory-SimpleClientFactory.html)
+* [`SimpleClientFactory`](https://retailcrm.github.io/api-client-php/classes/RetailCrm-Api-Factory-SimpleClientFactory.html)
 
 ### Instantiation via `ClientFactory`
 
@@ -201,7 +201,7 @@ That's it. Now you can autowire `ClientFactoryInterface` in your services. It al
 in the tests using `services_test.yml`.
 
 You can find more details about `ClientFactory` in the documentation:
-* [`ClientFactory`](https://neur0toxine.github.io/api-client-php/classes/RetailCrm-Api-Factory-ClientFactory.html)
+* [`ClientFactory`](https://retailcrm.github.io/api-client-php/classes/RetailCrm-Api-Factory-ClientFactory.html)
 
 ### Instantiation via `ClientBuilder`
 
@@ -249,7 +249,7 @@ $client = $builder->setApiUrl('https://test.retailcrm.pro')
 ```
 
 You can find more details about this in the documentation:
-* [`ClientBuilder`](https://neur0toxine.github.io/api-client-php/classes/RetailCrm-Api-Builder-ClientBuilder.html)
-* [`FormEncoderBuilder`](https://neur0toxine.github.io/api-client-php/classes/RetailCrm-Api-Builder-FormEncoderBuilder.html)
-* [`RequestPipelineFactory`](https://neur0toxine.github.io/api-client-php/classes/RetailCrm-Api-Factory-RequestPipelineFactory.html)
-* [`ResponsePipelineFactory`](https://neur0toxine.github.io/api-client-php/classes/RetailCrm-Api-Factory-ResponsePipelineFactory.html)
+* [`ClientBuilder`](https://retailcrm.github.io/api-client-php/classes/RetailCrm-Api-Builder-ClientBuilder.html)
+* [`FormEncoderBuilder`](https://retailcrm.github.io/api-client-php/classes/RetailCrm-Api-Builder-FormEncoderBuilder.html)
+* [`RequestPipelineFactory`](https://retailcrm.github.io/api-client-php/classes/RetailCrm-Api-Factory-RequestPipelineFactory.html)
+* [`ResponsePipelineFactory`](https://retailcrm.github.io/api-client-php/classes/RetailCrm-Api-Factory-ResponsePipelineFactory.html)

@@ -1,3 +1,13 @@
+### I've got error that looks like this: `Cannot deserialize body: Type "RetailCrm\Api\Model\Response\Api\ApiVersionsResponse" is not known.`
+
+Run this command to fix the problem:
+
+```sh
+composer compile --all
+```
+
+The details about that error can be found in the [documentation](compilation_prompt.md).
+
 ### I've got "No Message Factories" error.
 
 This means that PSR-17 implementation you have is not supported by the service discovery, therefore, API client cannot find proper factories.

@@ -4,6 +4,7 @@
 namespace RetailCrm\Api;
 
 use ReflectionClass;
+use RetailCrm\Api\Component\ComposerLocator;
 use RetailCrm\Api\Component\PhpFilesIterator;
 use Symfony\Component\Console\Application;
 
@@ -13,33 +14,19 @@ if (!in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
 
 set_time_limit(0);
 
-$autoloadCounter = 0;
-$autoloadDir = __DIR__;
+require __DIR__ . '/../src/Component/ComposerLocator.php';
 
-for (;;) {
-    if (file_exists($autoloadDir . '/autoload.php')) {
-        require $autoloadDir . '/autoload.php';
-        break;
-    }
+$composerAutoloader = ComposerLocator::findAutoloader();
 
-    if (file_exists($autoloadDir . '/vendor/autoload.php')) {
-        require $autoloadDir . '/vendor/autoload.php';
-        break;
-    }
-
-    $autoloadCounter++;
-    $autoloadDir = dirname($autoloadDir);
-
-    if (5 < $autoloadCounter) {
-        echo 'Cannot find autoload.php. Please install dependencies first.' . PHP_EOL;
-
-        exit(-1);
-    }
+if ('' === $composerAutoloader) {
+    echo 'Cannot find autoload.php. Please install dependencies first.' . PHP_EOL;
+    exit(-1);
 }
+
+require $composerAutoloader;
 
 if (!class_exists('Symfony\Component\Console\Application')) {
     echo 'Cannot find Symfony\Component\Console\Application class. Please install dependencies first.';
-
     exit(-1);
 }
 

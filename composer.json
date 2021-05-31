@@ -1,110 +1,116 @@
 {
-  "name": "retailcrm/api-client-php",
-  "description": "PHP client for RetailCRM API",
-  "type": "library",
-  "keywords": ["API", "RetailCRM", "REST"],
-  "homepage": "http://www.retailcrm.pro/",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "RetailCRM",
-      "email": "support@retailcrm.pro"
-    }
-  ],
-  "require": {
-    "php": ">=7.3.0",
-    "ext-json": "*",
-    "psr/log": "^1.1",
-    "psr/http-client": "^1.0",
-    "psr/http-message": "^1.0",
-    "psr/http-message-implementation": "^1.0",
-    "php-http/client-implementation": "^1.0",
-    "php-http/message-factory": "^1.0",
-    "php-http/discovery": "^1.13",
-    "doctrine/annotations": "^1.11",
-    "liip/serializer": "^2.0",
-    "php-http/httplug": "^2.2",
-    "civicrm/composer-compile-plugin": "^0.15.0",
-    "symfony/console": "^4.0|^5.0",
-    "psr/event-dispatcher": "^1.0",
-    "neur0toxine/psr.http-client-implementation.php-http-curl": "*",
-    "neur0toxine/psr.http-factory-implementation.nyholm": "*",
-    "neur0toxine/psr.http-message-implementation.nyholm": "*",
-    "psr/cache": "^1.0 || ^2.0 || ^3.0",
-    "symfony/cache": ">=v3.1.0"
-  },
-  "require-dev": {
-    "php-http/mock-client": "^1.0",
-    "squizlabs/php_codesniffer": "^3.5",
-    "phpmd/phpmd": "^2.10",
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
-    "phpcompatibility/php-compatibility": "^9.3",
-    "phpstan/phpstan": "^0.12.74",
-    "vlucas/phpdotenv": "^5.3",
-    "phpunit/phpunit": "^9.5",
-    "php-http/curl-client": "^2.2",
-    "nyholm/psr7": "^1.3",
-    "league/event": "^3.0",
-    "league/container": "^3.3",
-    "neur0toxine/pock": "^0.7"
-  },
-  "suggest": {
-    "ext-curl": "Most HTTP clients need ext-curl to work properly.",
-    "php-http/client-implementation": "PSR-18 compatible client should be available to use this library.",
-    "psr/http-message-implementation": "PSR-7 compatible HTTP message implementation should be available to use to use this library.",
-    "psr/http-factory-implementation": "PSR-17 compatible factories should be available to use this library.",
-    "symfony/event-dispatcher": "PSR-14 compatible event dispatcher.",
-    "league/event": "PSR-14 compatible event dispatcher.",
-    "nyholm/psr7": "This is recommended PSR-7 and PSR-17 implementation.",
-    "php-http/curl-client": "Simplest PSR-18 client implementation.",
-    "symfony/http-client": "One of the most popular HTTP clients. Has PSR-18 compatible adapter.",
-    "psr/log-implementation": "You can use log implementation for debug purposes."
-  },
-  "scripts": {
-    "phpunit": "./vendor/bin/phpunit -c phpunit.xml.dist --coverage-text",
-    "phpunit-ci": "@php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude=\"~vendor~\" ./vendor/bin/phpunit --teamcity -c phpunit.xml.dist",
-    "phpmd": "./vendor/bin/phpmd src text ./phpmd.xml",
-    "phpcs": "./vendor/bin/phpcs -p src --runtime-set testVersion 7.3-8.0 && ./vendor/bin/phpcs -p tests --runtime-set testVersion 7.3-8.0 --warning-severity=0",
-    "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon src --memory-limit=-1",
-    "lint:fix": "./vendor/bin/phpcbf src",
-    "lint": [
-      "@phpcs",
-      "@phpmd",
-      "@phpstan"
+    "name": "retailcrm/api-client-php",
+    "description": "PHP client for RetailCRM API",
+    "type": "library",
+    "keywords": [
+        "API",
+        "RetailCRM",
+        "REST"
     ],
-    "verify": [
-      "@lint",
-      "@phpunit"
+    "homepage": "http://www.retailcrm.pro/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "RetailCRM",
+            "email": "support@retailcrm.pro"
+        }
     ],
-    "models": "@php bin/retailcrm-client models:generate --all"
-  },
-  "support": {
-    "email": "support@retailcrm.pro"
-  },
-  "autoload": {
-    "psr-4": { "RetailCrm\\Api\\": "src/" }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "RetailCrm\\TestUtils\\": "tests/utils/",
-      "RetailCrm\\Tests\\": "tests/src/"
-    }
-  },
-  "bin": [
-    "bin/retailcrm-client"
-  ],
-  "extra": {
-    "branch-alias": {
-      "dev-master": "6.x-dev"
+    "require": {
+        "php": ">=7.3.0",
+        "ext-json": "*",
+        "psr/log": "^1.1",
+        "psr/http-client": "^1.0",
+        "psr/http-message": "^1.0",
+        "psr/http-message-implementation": "^1.0",
+        "php-http/client-implementation": "^1.0",
+        "php-http/message-factory": "^1.0",
+        "php-http/discovery": "^1.13",
+        "doctrine/annotations": "^1.11",
+        "liip/serializer": "^2.0",
+        "php-http/httplug": "^2.2",
+        "civicrm/composer-compile-plugin": "^0.15.0",
+        "symfony/console": "^4.0|^5.0",
+        "psr/event-dispatcher": "^1.0",
+        "neur0toxine/psr.http-client-implementation.php-http-curl": "*",
+        "neur0toxine/psr.http-factory-implementation.nyholm": "*",
+        "neur0toxine/psr.http-message-implementation.nyholm": "*",
+        "psr/cache": "^1.0 || ^2.0 || ^3.0",
+        "symfony/cache": ">=v3.1.0"
     },
-    "compile": [
-      {
-        "run": "@composer run-script models"
-      }
-    ]
-  },
-  "config": {
-    "bin-dir": "vendor/bin",
-    "process-timeout": 600
-  }
+    "require-dev": {
+        "php-http/mock-client": "^1.0",
+        "squizlabs/php_codesniffer": "^3.5",
+        "phpmd/phpmd": "^2.10",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "phpstan/phpstan": "^0.12.74",
+        "vlucas/phpdotenv": "^5.3",
+        "phpunit/phpunit": "^9.5",
+        "php-http/curl-client": "^2.2",
+        "nyholm/psr7": "^1.3",
+        "league/event": "^3.0",
+        "league/container": "^3.3",
+        "neur0toxine/pock": "^0.7"
+    },
+    "suggest": {
+        "ext-curl": "Most HTTP clients need ext-curl to work properly.",
+        "php-http/client-implementation": "PSR-18 compatible client should be available to use this library.",
+        "psr/http-message-implementation": "PSR-7 compatible HTTP message implementation should be available to use to use this library.",
+        "psr/http-factory-implementation": "PSR-17 compatible factories should be available to use this library.",
+        "symfony/event-dispatcher": "PSR-14 compatible event dispatcher.",
+        "league/event": "PSR-14 compatible event dispatcher.",
+        "nyholm/psr7": "This is recommended PSR-7 and PSR-17 implementation.",
+        "php-http/curl-client": "Simplest PSR-18 client implementation.",
+        "symfony/http-client": "One of the most popular HTTP clients. Has PSR-18 compatible adapter.",
+        "psr/log-implementation": "You can use log implementation for debug purposes."
+    },
+    "scripts": {
+        "phpunit": "./vendor/bin/phpunit -c phpunit.xml.dist --coverage-text",
+        "phpunit-ci": "@php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude=\"~vendor~\" ./vendor/bin/phpunit --teamcity -c phpunit.xml.dist",
+        "phpmd": "./vendor/bin/phpmd src text ./phpmd.xml",
+        "phpcs": "./vendor/bin/phpcs -p src --runtime-set testVersion 7.3-8.0 && ./vendor/bin/phpcs -p tests --runtime-set testVersion 7.3-8.0 --warning-severity=0",
+        "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon src --memory-limit=-1",
+        "lint:fix": "./vendor/bin/phpcbf src",
+        "lint": [
+            "@phpcs",
+            "@phpmd",
+            "@phpstan"
+        ],
+        "verify": [
+            "@lint",
+            "@phpunit"
+        ],
+        "models": "@php bin/retailcrm-client models:generate --all"
+    },
+    "support": {
+        "email": "support@retailcrm.pro"
+    },
+    "autoload": {
+        "psr-4": {
+            "RetailCrm\\Api\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RetailCrm\\TestUtils\\": "tests/utils/",
+            "RetailCrm\\Tests\\": "tests/src/"
+        }
+    },
+    "bin": [
+        "bin/retailcrm-client"
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "6.x-dev"
+        },
+        "compile": [
+            {
+                "run": "@composer run-script models"
+            }
+        ]
+    },
+    "config": {
+        "bin-dir": "vendor/bin",
+        "process-timeout": 600
+    }
 }
