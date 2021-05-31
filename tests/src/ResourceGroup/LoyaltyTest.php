@@ -12,6 +12,7 @@ namespace RetailCrm\Tests\ResourceGroup;
 use DateInterval;
 use DateTime;
 use DateTimeInterface;
+use RetailCrm\Api\Component\Transformer\DateTimeTransformer;
 use RetailCrm\Api\Enum\Loyalty\AccountStatus;
 use RetailCrm\Api\Enum\Loyalty\PrivilegeType;
 use RetailCrm\Api\Enum\NumericBoolean;
@@ -25,12 +26,14 @@ use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderDelivery;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderProduct;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderProductOffer;
 use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountApiFilterType;
+use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountBonusOperationsApiFilterType;
 use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyApiFilterType;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusCreditRequest;
+use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
@@ -144,6 +147,77 @@ EOF;
 
         $client = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->accountBonusCredit(159, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testAccountBonusOperations(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "pagination": {
+    "limit": 20,
+    "totalCount": 3,
+    "currentPage": 1,
+    "totalPageCount": 1
+  },
+  "bonusOperations": [
+    {
+      "type": "credit_for_order",
+      "createdAt": "2020-11-27 13:47:57",
+      "amount": 215.1,
+      "order": {
+        "id": 6473,
+        "externalId": "10"
+      },
+      "bonus": {
+        "activationDate": "2020-11-27"
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2020-11-27 13:45:39",
+      "amount": -247,
+      "order": {
+        "id": 6473,
+        "externalId": "10"
+      }
+    },
+    {
+      "type": "credit_for_order",
+      "createdAt": "2020-11-27 13:42:37",
+      "amount": 347.8,
+      "order": {
+        "id": 6472,
+        "externalId": "9"
+      },
+      "bonus": {
+        "activationDate": "2020-11-27"
+      }
+    }
+  ]
+}
+EOF;
+
+        $request = new LoyaltyBonusOperationsRequest();
+        $request->filter = new LoyaltyAccountBonusOperationsApiFilterType();
+        $request->filter->createdAtFrom = DateTimeTransformer::create('2020-01-01 00:00:00');
+        $request->filter->createdAtTo = DateTimeTransformer::create('2021-08-01 00:00:00');
+
+        $mock = static::createApiMockBuilder('loyalty/account/147/bonus/operations');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery([
+                'filter' => [
+                    'createdAtFrom' => '2020-01-01 00:00:00',
+                    'createdAtTo' => '2021-08-01 00:00:00'
+                ]
+            ])
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->loyalty->accountBonusOperations(147, $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

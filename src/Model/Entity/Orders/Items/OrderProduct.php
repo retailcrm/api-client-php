@@ -197,4 +197,20 @@ class OrderProduct
      * @JMS\SerializedName("purchasePrice")
      */
     public $purchasePrice;
+
+    /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("bonusesCreditTotal")
+     */
+    public $bonusesCreditTotal;
+
+    /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("bonusesChargeTotal")
+     */
+    public $bonusesChargeTotal;
 }

@@ -15,12 +15,14 @@ use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusCreditRequest;
+use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltiesResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountActivateResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountCreateResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountsResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyBonusCreditResponse;
+use RetailCrm\Api\Model\Response\Loyalty\LoyaltyBonusOperationsResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyCalculateResponse;
 
 /**
@@ -213,6 +215,71 @@ class Loyalty extends AbstractApiResourceGroup
             'loyalty/account/' . $id . '/bonus/credit',
             $request,
             LoyaltyBonusCreditResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/loyalty/account/{id}/bonus/operations" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Component\Transformer\DateTimeTransformer;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountBonusOperationsApiFilterType;
+     * use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusOperationsRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request = new LoyaltyBonusOperationsRequest();
+     * $request->filter = new LoyaltyAccountBonusOperationsApiFilterType();
+     * $request->filter->createdAtFrom = DateTimeTransformer::create('2020-01-01 00:00:00');
+     * $request->filter->createdAtTo = DateTimeTransformer::create('2021-08-01 00:00:00');
+     *
+     * try {
+     *     $response = $client->loyalty->accountBonusOperations(159, $request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Account operations: ' . print_r($response->bonusOperations, true);
+     * ```
+     *
+     * @param int                                                                     $id
+     * @param \RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusOperationsRequest|null $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Loyalty\LoyaltyBonusOperationsResponse
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     */
+    public function accountBonusOperations(
+        int $id,
+        ?LoyaltyBonusOperationsRequest $request = null
+    ): LoyaltyBonusOperationsResponse {
+        /** @var LoyaltyBonusOperationsResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'loyalty/account/' . $id . '/bonus/operations',
+            $request,
+            LoyaltyBonusOperationsResponse::class
         );
         return $response;
     }
