@@ -250,7 +250,8 @@ use RetailCrm\Api\Interfaces\ClientExceptionInterface;
 use RetailCrm\Api\Interfaces\ApiExceptionInterface;
 use RetailCrm\Api\Factory\SimpleClientFactory;
 use RetailCrm\Api\Model\Entity\Tasks\Task;use RetailCrm\Api\Model\Filter\Users\ApiUserFilter;
-use RetailCrm\Api\Model\Request\Tasks\TasksCreateRequest;use RetailCrm\Api\Model\Request\Users\UsersRequest;
+use RetailCrm\Api\Model\Request\Tasks\TasksCreateRequest;
+use RetailCrm\Api\Model\Request\Users\UsersRequest;
 
 $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
 
@@ -300,7 +301,7 @@ You can safely assume that `ApiExceptionInterface` is an error from the API, and
 (e.g. network error or any runtime error, use `HttpClientException` to catch only PSR-18 client errors).
 However, you can implement more complex error handling if you want.
 
-More examples can be found in the [documentation](doc/usage/examples).
+More examples can be found in the [documentation](doc/usage/examples/index.md).
 
 You can use a PSR-14 compatible event dispatcher to receive events from the client. See [documentation](doc/index.md) for details.
 

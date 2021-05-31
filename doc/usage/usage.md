@@ -11,4 +11,5 @@
   + [How to receive the list of orders](examples/fetch_orders.md)
   + [How to handle all Client's exceptions](examples/complete_error_handling_example.md)
   + [Fetching orders history](examples/orders_history.md)
+  + [Complex pagination example](examples/complex_pagination/index.md)
 * [Event handling](event_handing.md)

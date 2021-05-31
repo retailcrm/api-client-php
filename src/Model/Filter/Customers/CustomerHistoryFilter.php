@@ -45,7 +45,7 @@ class CustomerHistoryFilter
     public $customerExternalId;
 
     /**
-     * @var DateTime
+     * @var DateTime|null
      *
      * @Form\Type("DateTime<'Y-m-d H:i:s'>")
      * @Form\SerializedName("startDate")
@@ -53,7 +53,7 @@ class CustomerHistoryFilter
     public $startDate;
 
     /**
-     * @var DateTime
+     * @var DateTime|null
      *
      * @Form\Type("DateTime<'Y-m-d H:i:s'>")
      * @Form\SerializedName("endDate")
