@@ -9,7 +9,6 @@
 use RetailCrm\Api\Client;
 use RetailCrm\Api\Exception\Client\HandlerException;
 use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-use RetailCrm\Api\Interfaces\ClientExceptionInterface;
 use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Model\Response\AbstractPaginatedResponse;
 
@@ -241,7 +240,7 @@ class PaginatedRequestIterator implements Iterator
             }
         } catch (Throwable $exception) {
             if ($exception instanceof ApiExceptionInterface && 503 === $exception->getStatusCode()) {
-                time_nanosleep(0, 50000000);
+                time_nanosleep(1, 0);
                 $this->fetchChunk();
 
                 return;
