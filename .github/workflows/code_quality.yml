@@ -37,6 +37,6 @@ jobs:
       - name: Check out code into the workspace
         uses: actions/checkout@v2
       - name: Run PHPStan
-        uses: docker://oskarstark/phpstan-ga@0.12.88
+        uses: docker://oskarstark/phpstan-ga:0.12.88
         with:
           args: analyse src -c phpstan.neon --memory-limit=1G --no-progress
