@@ -117,8 +117,8 @@ An example of error handling can be found in the next section of this document.
 Each resource group is responsible for the corresponding API section. For example, `costs` resource group provide methods
 for costs manipulation and `loyalty` resource group allows interacting with loyalty programs, accounts, bonuses, etc.
 
-Use annotations to determine which DTOs you need for sending the requests. If annotations are not provided by your IDE - you'll
-need to look up how to configure it. It'll ease your work with this (and any other) library a lot.
+Use annotations to determine which DTOs you need for sending the requests. If annotations are not provided by your IDE - you 
+probably should configure them. It'll ease your work with this (and any other) library a lot.
 
 More information about the usage including examples can be found in the [documentation](doc/usage/usage.md).
 
@@ -241,7 +241,7 @@ try {
 echo 'Customer ID: ' . $response->id;
 ```
 
-Creating a task for the user with specific email:
+Creating a task for the user with a specific email:
 
 ```php
 <?php
