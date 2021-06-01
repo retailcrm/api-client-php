@@ -1,6 +1,6 @@
 Here is a complete example of the Client usage with error handling. It fetches the filtered orders data and prints it out.
 
-**Note:** do not use this example to process all API client errors in your application. It will clutter your code too much.
+**Note:** it's not recommended using this example to process all API client errors in your application. It will clutter your code too much.
 There are other options for exception processing. You can [match more generic exceptions in the hierarchy](../error_handling.md) or use 
 [events](../event_handing.md) to process exceptions.
 

@@ -44,10 +44,7 @@ echo 'Available API versions: ' . implode(', ', $apiVersions->versions);
 All Client exceptions can be found in the `RetailCrm\Api\Exception` namespace. `ApiException` children reside in the `RetailCrm\Api\Exception\Api` namespace,
 and `ClientException` children reside at the `RetailCrm\Api\Exception\Client` namespace.
 
-It is recommended to look at the [complete error handling example](examples/complete_error_handling_example.md).
-Keep in mind, however, that this example is created for academic purposes only, and it's not recommended for the real production code.
-You, probably, wouldn't want to use it in the production anyway because the results may be utterly horrifying. 
-Use this example only as a reference to understand what exceptions the client may throw and how you can process them. 
+It is recommended to look at the [complete error handling example](examples/complete_error_handling_example.md). 
 The most useful case would be the error message generation for the client in your app, which can look like this:
 - `InvalidCredentialsException` - show the `Invalid API key` message.
 - `AccountDoesNotExistException` - show the `Incorrect RetailCRM URL` or `This RetailCRM instance does not exist` message.
