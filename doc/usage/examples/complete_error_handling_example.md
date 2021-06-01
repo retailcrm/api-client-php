@@ -73,12 +73,8 @@ try {
     }
     
     exit(-1);
-} catch (ApiExceptionInterface | ApiErrorException $exception) {
-    echo (string) $exception; // Every ApiException implements __toString() method
-    exit(-1);
-} catch (ClientExceptionInterface $exception) {
-    echo 'Unknown client exception: ' . $exception->getMessage() . PHP_EOL;
-    echo $exception->getTraceAsString();
+} catch (ApiExceptionInterface | ClientExceptionInterface $exception) {
+    echo $exception; // Every ApiException and ClientException implements __toString() method
     exit(-1);
 } catch (Throwable $throwable) {
     echo 'Unknown runtime exception: ' . $throwable->getMessage() . PHP_EOL;

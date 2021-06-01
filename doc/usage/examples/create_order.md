@@ -89,12 +89,8 @@ $request->site  = 'moysklad';
 
 try {
     $response = $client->orders->create($request);
-} catch (ApiExceptionInterface $exception) {
+} catch (ApiExceptionInterface | ClientExceptionInterface $exception) {
     echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
-    exit(-1);
-} catch (ClientExceptionInterface $exception) {
-    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
-    echo $exception->getTraceAsString();
     exit(-1);
 }
 

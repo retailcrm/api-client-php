@@ -216,7 +216,7 @@ class PaginatedRequestIterator implements Iterator
 
         try {
             if ($this->currentPage > 1) {
-                time_nanosleep(0, 12500000);
+                time_nanosleep(0, 100000000);
             }
 
             $response = call_user_func($this->sendResponseFunc, $this->client, $this->request);

@@ -25,6 +25,6 @@ abstract class ClientException extends Exception implements ClientExceptionInter
      */
     public function __toString(): string
     {
-        return $this->getMessage();
+        return sprintf("%s (%d)\n%s", $this->getMessage(), $this->getCode(), $this->getTraceAsString());
     }
 }

@@ -16,6 +16,8 @@ $request->limit = PaginationLimit::LIMIT_100;
 $request->filter->startDate = (new DateTime())->sub(new DateInterval('P1M')); // History for 1 month by default.
 
 do {
+    time_nanosleep(0, 100000000); // 10 requests per second
+
     try {
         $response = $client->orders->history($request);
     } catch (ClientExceptionInterface | ApiExceptionInterface $exception) {

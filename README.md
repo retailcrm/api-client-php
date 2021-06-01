@@ -138,12 +138,8 @@ $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKe
 
 try {
     $response = $client->orders->list();
-} catch (ApiExceptionInterface $exception) {
-    echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
-    exit(-1);
-} catch (ClientExceptionInterface $exception) {
-    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
-    echo $exception->getTraceAsString();
+} catch (ApiExceptionInterface | ClientExceptionInterface $exception) {
+    echo $exception; // Every ApiExceptionInterface and ClientExceptionInterface instance implements __toString() method.
     exit(-1);
 }
 
@@ -194,12 +190,8 @@ $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKe
 
 try {
     $response = $client->orders->get(1234, new BySiteRequest(ByIdentifier::ID, 'site'));
-} catch (ApiExceptionInterface $exception) {
+} catch (ApiExceptionInterface | ClientExceptionInterface $exception) {
     echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
-    exit(-1);
-} catch (ClientExceptionInterface $exception) {
-    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
-    echo $exception->getTraceAsString();
     exit(-1);
 }
 
@@ -229,12 +221,8 @@ $request->customer->lastName = 'Doe';
 
 try {
     $response = $client->customers->create($request);
-} catch (ApiExceptionInterface $exception) {
+} catch (ApiExceptionInterface | ClientExceptionInterface $exception) {
     echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
-    exit(-1);
-} catch (ClientExceptionInterface $exception) {
-    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
-    echo $exception->getTraceAsString();
     exit(-1);
 }
 
@@ -261,12 +249,8 @@ $usersRequest->filter->email = 'john.doe@example.com';
 
 try {
     $usersResponse = $client->users->list($usersRequest);
-} catch (ApiExceptionInterface $exception) {
+} catch (ApiExceptionInterface | ClientExceptionInterface $exception) {
     echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
-    exit(-1);
-} catch (ClientExceptionInterface $exception) {
-    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
-    echo $exception->getTraceAsString();
     exit(-1);
 }
 
@@ -283,12 +267,8 @@ $tasksRequest->site = 'site';
 
 try {
     $tasksResponse = $client->tasks->create($tasksRequest);
-} catch (ApiExceptionInterface $exception) {
+} catch (ApiExceptionInterface | ClientExceptionInterface $exception) {
     echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
-    exit(-1);
-} catch (ClientExceptionInterface $exception) {
-    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
-    echo $exception->getTraceAsString();
     exit(-1);
 }
 
@@ -300,6 +280,9 @@ The error handling in the examples above is good enough for real production usag
 You can safely assume that `ApiExceptionInterface` is an error from the API, and `ClientExceptionInterface` is a client error
 (e.g. network error or any runtime error, use `HttpClientException` to catch only PSR-18 client errors).
 However, you can implement more complex error handling if you want.
+
+Also, both `ApiExceptionInterface` and `ClientExceptionInterface` implements `__toString()`. This means that you can just 
+convert those exceptions to string and put the results into logs without any special treatment for the exception data.
 
 More examples can be found in the [documentation](doc/usage/examples/index.md).
 

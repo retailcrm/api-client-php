@@ -12,12 +12,8 @@ $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKe
 
 try {
     $response = $client->orders->list();
-} catch (ApiExceptionInterface $exception) {
+} catch (ApiExceptionInterface | ClientExceptionInterface $exception) {
     echo $exception; // Every ApiExceptionInterface instance should implement __toString() method.
-    exit(-1);
-} catch (ClientExceptionInterface $exception) {
-    echo 'Client error: ' . $exception->getMessage() . PHP_EOL;
-    echo $exception->getTraceAsString();
     exit(-1);
 }
 
