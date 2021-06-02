@@ -1,0 +1,49 @@
+#!/usr/bin/env php
+<?php
+
+namespace RetailCrm\Api;
+
+use ReflectionClass;
+use RetailCrm\Api\Component\ComposerLocator;
+use RetailCrm\Api\Component\PhpFilesIterator;
+use Symfony\Component\Console\Application;
+
+if (!in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
+    echo 'Warning: The console should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
+}
+
+set_time_limit(0);
+
+require __DIR__ . '/../src/Component/ComposerLocator.php';
+
+$composerAutoloader = ComposerLocator::findAutoloader();
+
+if ('' === $composerAutoloader) {
+    echo 'Cannot find autoload.php. Please install dependencies first.' . PHP_EOL;
+    exit(-1);
+}
+
+require $composerAutoloader;
+
+if (!class_exists('Symfony\Component\Console\Application')) {
+    echo 'Cannot find Symfony\Component\Console\Application class. Please install dependencies first.';
+    exit(-1);
+}
+
+$application = new Application();
+$commands    = new PhpFilesIterator(implode(DIRECTORY_SEPARATOR, [dirname(__DIR__), 'src', 'Command']));
+
+foreach ($commands as $command) {
+    if (!array_key_exists('fqn', $command)) {
+        continue;
+    }
+
+    $commandFqn = $command['fqn'];
+
+    if (class_exists($commandFqn) && !(new ReflectionClass($commandFqn))->isAbstract()) {
+        $application->add(new $commandFqn());
+    }
+}
+
+$application->setName('RetailCRM API Client Management Tool');
+$application->run();

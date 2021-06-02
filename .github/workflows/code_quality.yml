@@ -1,0 +1,42 @@
+name: "Code Quality Check"
+
+on:
+  pull_request:
+    paths:
+      - "**.php"
+      - "phpcs.xml"
+      - ".github/workflows/code_quality.yml"
+
+jobs:
+  phpcs:
+    name: "PHP CodeSniffer"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code into the workspace
+        uses: actions/checkout@v2
+      - name: Run PHPCS
+        uses: chekalsky/phpcs-action@v1
+  phpmd:
+    name: "PHP MessDetector"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code into the workspace
+        uses: actions/checkout@v2
+      - name: Run PHPMD
+        uses: GeneaLabs/action-reviewdog-phpmd@1.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          level: 'warning'
+          reporter: github-pr-check
+          standard: './phpmd.xml'
+          target_directory: 'src'
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Check out code into the workspace
+        uses: actions/checkout@v2
+      - name: Run PHPStan
+        uses: docker://oskarstark/phpstan-ga:0.12.88
+        with:
+          args: analyse src -c phpstan.neon --memory-limit=1G --no-progress
