@@ -201,7 +201,7 @@ trait Costs
      */
     public function costsDeleteById($id)
     {
-        if (!empty($id)) {
+        if (empty($id)) {
             throw new \InvalidArgumentException(
                 'Parameter `id` must contains a data'
             );
