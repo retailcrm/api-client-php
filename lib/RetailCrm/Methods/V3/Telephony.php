@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V3;
@@ -21,9 +18,6 @@ namespace RetailCrm\Methods\V3;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 trait Telephony
 {
@@ -44,6 +38,7 @@ trait Telephony
             throw new \InvalidArgumentException('Parameter `code` must be set');
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/telephony/setting/$code",
             "GET"
@@ -54,24 +49,29 @@ trait Telephony
      * Call event
      *
      * @param string $phone phone number
-     * @param string $type  call type
+     * @param string $type call type
      * @param array  $codes
+     * @param array  $userIds
+     * @param string $callExternalId
      * @param string $hangupStatus
      * @param string $externalPhone
      * @param array  $webAnalyticsData
+     * @param string $site (default: null)
      *
      * @return \RetailCrm\Response\ApiResponse
      * @internal param string $code additional phone code
      * @internal param string $status call status
-     *
      */
     public function telephonyCallEvent(
         $phone,
         $type,
         $codes,
-        $hangupStatus,
+        $userIds = [],
+        $hangupStatus = null,
         $externalPhone = null,
-        $webAnalyticsData = []
+        $callExternalId = null,
+        $webAnalyticsData = [],
+        $site = null
     ) {
         if (!isset($phone)) {
             throw new \InvalidArgumentException('Phone number must be set');
@@ -88,30 +88,34 @@ trait Telephony
         $parameters['phone'] = $phone;
         $parameters['type'] = $type;
         $parameters['codes'] = $codes;
+
+        if (!empty($userIds)) {
+            $parameters['userIds'] = $userIds;
+        }
+
         $parameters['hangupStatus'] = $hangupStatus;
-        $parameters['callExternalId'] = $externalPhone;
+        $parameters['callExternalId'] = $callExternalId;
+        $parameters['externalPhone'] = $externalPhone;
         $parameters['webAnalyticsData'] = $webAnalyticsData;
 
-
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/telephony/call/event',
             "POST",
-            ['event' => json_encode($parameters)]
+            ['event' => json_encode($this->fillSite($site, $parameters))]
         );
     }
 
     /**
      * Upload calls
      *
-     * @param array $calls calls data
+     * @param array $calls        calls data
      *
-     * @throws \InvalidArgumentException
-     * @throws \RetailCrm\Exception\CurlException
-     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @param bool  $autoFillSite fill site code from API client in provided calls
      *
      * @return \RetailCrm\Response\ApiResponse
      */
-    public function telephonyCallsUpload(array $calls)
+    public function telephonyCallsUpload(array $calls, $autoFillSite = false)
     {
         if (!count($calls)) {
             throw new \InvalidArgumentException(
@@ -119,6 +123,13 @@ trait Telephony
             );
         }
 
+        if ($autoFillSite) {
+            foreach ($calls as $key => $call) {
+                $calls[$key] = $this->fillSite(null, $call);
+            }
+        }
+
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/telephony/calls/upload',
             "POST",
@@ -147,6 +158,7 @@ trait Telephony
         $parameters['phone'] = $phone;
         $parameters['details'] = isset($details) ? $details : 0;
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/telephony/manager',
             "GET",

@@ -3,13 +3,10 @@
 /**
  * PHP version 5.4
  *
- * Statistic class
+ * Statistic
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V3;
@@ -21,9 +18,6 @@ namespace RetailCrm\Methods\V3;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 trait Statistic
 {
@@ -38,6 +32,7 @@ trait Statistic
      */
     public function statisticUpdate()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/statistic/update',
             "GET"

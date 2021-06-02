@@ -3,13 +3,10 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Orders
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V4;
@@ -19,13 +16,10 @@ use RetailCrm\Methods\V3\Orders as Previous;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Orders class
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 trait Orders
 {
@@ -59,6 +53,7 @@ trait Orders
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders',
             "GET",
@@ -86,6 +81,7 @@ trait Orders
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/create',
             "POST",
@@ -112,6 +108,8 @@ trait Orders
             );
         }
 
+        /** @noinspection PhpUndefinedMethodInspection */
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/fix-external-ids',
             "POST",
@@ -143,6 +141,7 @@ trait Orders
             $parameters['externalIds'] = $externalIds;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/statuses',
             "GET",
@@ -170,6 +169,7 @@ trait Orders
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/upload',
             "POST",
@@ -194,6 +194,7 @@ trait Orders
     {
         $this->checkIdParameter($by);
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/orders/$id",
             "GET",
@@ -230,6 +231,7 @@ trait Orders
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/orders/%s/edit', $order[$by]),
             "POST",
@@ -242,9 +244,14 @@ trait Orders
 
     /**
      * Get orders history
-     * @param array $filter
-     * @param null $page
-     * @param null $limit
+     *
+     * @param array $filter (default: array())
+     * @param int   $page   (default: null)
+     * @param int   $limit  (default: null)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
      *
      * @return \RetailCrm\Response\ApiResponse
      */
@@ -262,6 +269,7 @@ trait Orders
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/history',
             "GET",

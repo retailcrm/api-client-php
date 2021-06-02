@@ -7,13 +7,11 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Methods\Version4;
 
+use RetailCrm\ApiClient;
 use RetailCrm\Test\TestCase;
 
 /**
@@ -21,9 +19,6 @@ use RetailCrm\Test\TestCase;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientReferenceTest extends TestCase
 {
@@ -34,7 +29,7 @@ class ApiClientReferenceTest extends TestCase
      */
     public function testList($name)
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $method = $name . 'List';
         $response = $client->request->$method();
@@ -56,7 +51,7 @@ class ApiClientReferenceTest extends TestCase
      */
     public function testEditingException($name)
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $method = $name . 'Edit';
         $client->request->$method([]);
@@ -70,7 +65,7 @@ class ApiClientReferenceTest extends TestCase
      */
     public function testEditing($name)
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $code = 'dict-' . strtolower($name) . '-' . time();
         $method = $name . 'Edit';
@@ -94,6 +89,8 @@ class ApiClientReferenceTest extends TestCase
             'active' => false
         ]);
 
+        sleep(1);
+
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
     }
 
@@ -104,7 +101,7 @@ class ApiClientReferenceTest extends TestCase
     public function testSiteEditing()
     {
         $name = 'sites';
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $code = 'dict-' . strtolower($name) . '-' . time();
         $method = $name . 'Edit';

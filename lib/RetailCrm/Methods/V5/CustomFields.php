@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V5;
@@ -21,9 +18,6 @@ namespace RetailCrm\Methods\V5;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 trait CustomFields
 {
@@ -50,6 +44,7 @@ trait CustomFields
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/custom-fields',
             "GET",
@@ -77,12 +72,16 @@ trait CustomFields
             );
         }
 
-        if (empty($entity) || $entity != 'customer' || $entity != 'order') {
+        if (empty($entity) || !in_array($entity, ['customer', 'order', 'customer_corporate', 'company'])) {
             throw new \InvalidArgumentException(
-                'Parameter `entity` must contain a data & value must be `order` or `customer`'
+                sprintf(
+                    'Parameter `entity` must contain a data & value must be %s',
+                    '`order`, `customer`, `customer_corporate` or `company`'
+                )
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/custom-fields/$entity/create",
             "POST",
@@ -106,14 +105,18 @@ trait CustomFields
             );
         }
 
-        if (empty($entity) || $entity != 'customer' || $entity != 'order') {
+        if (empty($entity) || !in_array($entity, ['customer', 'order', 'customer_corporate', 'company'])) {
             throw new \InvalidArgumentException(
-                'Parameter `entity` must contain a data & value must be `order` or `customer`'
+                sprintf(
+                    'Parameter `entity` must contain a data & value must be %s',
+                    '`order`, `customer`, `customer_corporate` or `company`'
+                )
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
-            "/custom-fields/$entity/edit/{$customField['code']}",
+            "/custom-fields/$entity/{$customField['code']}/edit",
             "POST",
             ['customField' => json_encode($customField)]
         );
@@ -135,12 +138,16 @@ trait CustomFields
             );
         }
 
-        if (empty($entity) || $entity != 'customer' || $entity != 'order') {
+        if (empty($entity) || !in_array($entity, ['customer', 'order', 'customer_corporate', 'company'])) {
             throw new \InvalidArgumentException(
-                'Parameter `entity` must contain a data & value must be `order` or `customer`'
+                sprintf(
+                    'Parameter `entity` must contain a data & value must be %s',
+                    '`order`, `customer`, `customer_corporate` or `company`'
+                )
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/custom-fields/$entity/$code",
             "GET"
@@ -170,6 +177,7 @@ trait CustomFields
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/custom-fields/dictionaries',
             "GET",
@@ -195,8 +203,9 @@ trait CustomFields
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
-            "/custom-fields/dictionaries/{$customDictionary['code']}/create",
+            "/custom-fields/dictionaries/create",
             "POST",
             ['customDictionary' => json_encode($customDictionary)]
         );
@@ -220,6 +229,7 @@ trait CustomFields
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/custom-fields/dictionaries/{$customDictionary['code']}/edit",
             "POST",
@@ -242,6 +252,7 @@ trait CustomFields
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/custom-fields/dictionaries/$code",
             "GET"

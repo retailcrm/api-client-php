@@ -3,34 +3,35 @@
 /**
  * PHP version 5.4
  *
- * API client class
+ * Abstract API client
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Client;
 
 use RetailCrm\Http\Client;
+use RetailCrm\Http\RequestOptions;
 
 /**
  * PHP version 5.4
  *
- * API client class
+ * Abstract API client class
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 abstract class AbstractLoader
 {
+    /** @var string|null */
     protected $siteCode;
+
+    /** @var \RetailCrm\Http\Client */
     protected $client;
+
+    /** @var string */
+    protected $crmUrl;
 
     /**
      * Init version based client
@@ -39,23 +40,36 @@ abstract class AbstractLoader
      * @param string $apiKey  api key
      * @param string $version api version
      * @param string $site    site code
+     * @param bool   $debug   debug mode
      */
-    public function __construct($url, $apiKey, $version, $site = null)
+    public function __construct($url, $apiKey, $version, $site = null, $debug = false)
     {
         if ('/' !== $url[strlen($url) - 1]) {
             $url .= '/';
         }
 
+        $this->crmUrl = $url;
+
         if (empty($version) || !in_array($version, ['v3', 'v4', 'v5'])) {
             throw new \InvalidArgumentException(
-                'Version parameter must be not empty and must be equal one of v3|v4|v5'
+                'Version must be not empty and must be equal one of v3|v4|v5'
             );
         }
 
         $url = $url . 'api/' . $version;
 
-        $this->client = new Client($url, ['apiKey' => $apiKey]);
+        $this->client = new Client($url, ['apiKey' => $apiKey], $debug);
         $this->siteCode = $site;
+    }
+
+    /**
+     * Set request options
+     *
+     * @param RequestOptions $options
+     */
+    public function setOptions(RequestOptions $options)
+    {
+        $this->client->setOptions($options);
     }
 
     /**
@@ -128,5 +142,33 @@ abstract class AbstractLoader
         return $this->siteCode;
     }
 
+    /**
+     * Getting the list of available api versions
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function availableVersions()
+    {
+        return $this->client->makeRequest(
+            $this->crmUrl . 'api/api-versions',
+            "GET",
+            [],
+            true
+        );
+    }
 
+    /**
+     * Getting the list of available api methods and stores for current key
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function credentials()
+    {
+        return $this->client->makeRequest(
+            $this->crmUrl . 'api/credentials',
+            "GET",
+            [],
+            true
+        );
+    }
 }

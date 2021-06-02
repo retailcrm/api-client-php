@@ -3,13 +3,10 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Packs
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V3;
@@ -17,13 +14,10 @@ namespace RetailCrm\Methods\V3;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Packs class
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 trait Packs
 {
@@ -54,6 +48,7 @@ trait Packs
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/packs',
             "GET",
@@ -81,6 +76,7 @@ trait Packs
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/packs/create',
             "POST",
@@ -115,6 +111,7 @@ trait Packs
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/orders/packs/history',
             "GET",
@@ -139,6 +136,7 @@ trait Packs
             throw new \InvalidArgumentException('Parameter `id` must be set');
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/orders/packs/$id",
             "GET"
@@ -162,6 +160,7 @@ trait Packs
             throw new \InvalidArgumentException('Parameter `id` must be set');
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/orders/packs/%s/delete', $id),
             "POST"
@@ -188,6 +187,7 @@ trait Packs
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/orders/packs/%s/edit', $pack['id']),
             "POST",

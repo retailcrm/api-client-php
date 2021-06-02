@@ -3,13 +3,10 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Customers
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V4;
@@ -19,13 +16,10 @@ use RetailCrm\Methods\V3\Customers as Previous;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Customers class
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 trait Customers
 {
@@ -53,6 +47,7 @@ trait Customers
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers/history',
             "GET",

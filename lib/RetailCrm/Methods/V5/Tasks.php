@@ -3,13 +3,10 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Tasks
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V5;
@@ -17,13 +14,10 @@ namespace RetailCrm\Methods\V5;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Tasks class
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 trait Tasks
 {
@@ -50,6 +44,7 @@ trait Tasks
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/tasks',
             "GET",
@@ -74,6 +69,7 @@ trait Tasks
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/tasks/create",
             "POST",
@@ -101,6 +97,7 @@ trait Tasks
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/tasks/{$task['id']}/edit",
             "POST",
@@ -126,6 +123,7 @@ trait Tasks
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/tasks/$id",
             "GET"

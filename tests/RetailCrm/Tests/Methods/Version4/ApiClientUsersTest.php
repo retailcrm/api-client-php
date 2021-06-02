@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Methods\Version4;
@@ -21,9 +18,6 @@ use RetailCrm\Test\TestCase;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientUsersTest extends TestCase
 {
@@ -59,8 +53,9 @@ class ApiClientUsersTest extends TestCase
     public function testUsersGet()
     {
         $client = static::getApiClient(null, null, "v4");
+        $user = getenv('RETAILCRM_USER') ?: $_SERVER['RETAILCRM_USER'];
 
-        $response = $client->request->usersGet($_SERVER["CRM_USER_ID"]);
+        $response = $client->request->usersGet($user);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());

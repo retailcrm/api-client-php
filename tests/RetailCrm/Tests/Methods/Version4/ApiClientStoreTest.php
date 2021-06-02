@@ -7,13 +7,11 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Methods\Version4;
 
+use RetailCrm\ApiClient;
 use RetailCrm\Test\TestCase;
 
 /**
@@ -21,9 +19,6 @@ use RetailCrm\Test\TestCase;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientStoreTest extends TestCase
 {
@@ -35,7 +30,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testStoreCreate()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $response = $client->request->storesEdit(['name' => self::SNAME, 'code' => self::SCODE]);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -48,7 +43,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testStoreInventories()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $response = $client->request->storeInventories();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -66,7 +61,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testInventoriesException()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
         $client->request->storeInventoriesUpload([]);
     }
 
@@ -75,7 +70,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testInventoriesUpload()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $response = $client->request->storeInventoriesUpload([
             [
@@ -109,7 +104,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testInventoriesFailed()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $externalIdA = 'upload-a-' . time();
         $externalIdB = 'upload-b-' . time();
@@ -136,7 +131,7 @@ class ApiClientStoreTest extends TestCase
      */
     public function testStoreProducts()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $response = $client->request->storeProducts();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);

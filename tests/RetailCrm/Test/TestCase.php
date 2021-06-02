@@ -7,69 +7,88 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Test;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use RetailCrm\ApiClient;
 use RetailCrm\Http\Client;
+use PHPUnit\Framework\TestCase as BaseCase;
 
 /**
  * Class TestCase
  *
- * @package RetailCrm\Test
+ * @category RetailCrm
+ * @package  RetailCrm
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends BaseCase
 {
     /**
      * Return ApiClient object
      *
-     * @param  string    $url (default: null)
-     * @param  string    $apiKey (default: null)
-     * @param  string    $version (default: null)
-     * @param  string    $site (default: null)
+     * @param string $url     (default: null)
+     * @param string $apiKey  (default: null)
+     * @param string $version (default: null)
+     * @param string $site    (default: null)
      *
      * @return ApiClient
      */
-    public static function getApiClient($url = null, $apiKey = null, $version = null, $site = null)
-    {
-        $configUrl     = getenv('CRM_API_URL') ?: $_SERVER['CRM_API_URL'];
-        $configKey     = getenv('CRM_API_KEY') ?: $_SERVER['CRM_API_KEY'];
-        $configVersion = getenv('CRM_API_VERSION') ?: $_SERVER['CRM_API_VERSION'];
+    public static function getApiClient(
+        $url = null,
+        $apiKey = null,
+        $version = null,
+        $site = null
+    ) {
+        $configUrl     = getenv('RETAILCRM_URL') ?: $_SERVER['RETAILCRM_URL'];
+        $configKey     = getenv('RETAILCRM_KEY') ?: $_SERVER['RETAILCRM_KEY'];
+        $configVersion = getenv('RETAILCRM_VERSION') ?: $_SERVER['RETAILCRM_VERSION'];
+        $configSite    = getenv('RETAILCRM_SITE') ?: $_SERVER['RETAILCRM_SITE'];
 
         return new ApiClient(
             $url ?: $configUrl,
             $apiKey ?: $configKey,
             $version ?: $configVersion,
-            $site ?: null
+            $site ?: $configSite
         );
+    }
+
+    /**
+     * @param \RetailCrm\Http\Client|MockObject $httpClient
+     * @return ApiClient
+     * @throws \ReflectionException
+     */
+    public static function getMockedApiClient($httpClient)
+    {
+        $client = self::getApiClient();
+        $property = new \ReflectionProperty(get_class($client->request), 'client');
+
+        $property->setAccessible(true);
+        $property->setValue($client->request, $httpClient);
+
+        return $client;
     }
 
     /**
      * Return Client object
      *
-     * @param  string $url (default: null)
-     * @param  array  $defaultParameters (default: array())
+     * @param string $url               (default: null)
+     * @param array  $defaultParameters (default: array())
      *
      * @return Client
      */
     public static function getClient($url = null, $defaultParameters = [])
     {
-        $version = getenv('CRM_API_VERSION');
-
-        if (false == $version) {
-            $version = $_SERVER['CRM_API_VERSION'];
-        }
+        $configUrl     = getenv('RETAILCRM_URL') ?: $_SERVER['RETAILCRM_URL'];
+        $configKey     = getenv('RETAILCRM_KEY') ?: $_SERVER['RETAILCRM_KEY'];
+        $configVersion = getenv('RETAILCRM_VERSION') ?: $_SERVER['RETAILCRM_VERSION'];
 
         return new Client(
-            $url ?: $_SERVER['CRM_API_URL'] . '/api/' .  $version,
+            $url ?: $configUrl . '/api/' .  $configVersion,
             [
                 'apiKey' => array_key_exists('apiKey', $defaultParameters)
                     ? $defaultParameters['apiKey']
-                    : $_SERVER['CRM_API_KEY']
+                    : $configKey
             ]
         );
     }

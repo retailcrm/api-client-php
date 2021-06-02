@@ -3,13 +3,10 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * References
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V4;
@@ -19,13 +16,10 @@ use RetailCrm\Methods\V3\References as Previous;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * References class
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 trait References
 {
@@ -41,6 +35,7 @@ trait References
      */
     public function pricesTypes()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/price-types',
             "GET"
@@ -72,6 +67,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/price-types/%s/edit', $data['code']),
             "POST",

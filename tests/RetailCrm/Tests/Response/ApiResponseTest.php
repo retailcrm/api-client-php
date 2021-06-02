@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Response;
@@ -22,9 +19,6 @@ use RetailCrm\Response\ApiResponse;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiResponseTest extends TestCase
 {
@@ -40,7 +34,7 @@ class ApiResponseTest extends TestCase
             'Response object created'
         );
 
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
         static::assertInstanceOf(
             'RetailCrm\Response\ApiResponse',
             $response,
@@ -54,7 +48,20 @@ class ApiResponseTest extends TestCase
      */
     public function testJsonInvalid()
     {
-        new ApiResponse(400, '{ "asdf": }');
+        (new ApiResponse(400, '{ "asdf": }'))->asJsonResponse();
+    }
+
+    /**
+     * @group response
+     */
+    public function testJsonInvalidNoDeserialize()
+    {
+        $response = new ApiResponse(400, '{ "asdf": }');
+        static::assertInstanceOf(
+            'RetailCrm\Response\ApiResponse',
+            $response,
+            'Response object created'
+        );
     }
 
     /**
@@ -69,7 +76,7 @@ class ApiResponseTest extends TestCase
             'Response object returns the right status code'
         );
 
-        $response = new ApiResponse(460, '{ "success": false }');
+        $response = (new ApiResponse(460, '{ "success": false }'))->asJsonResponse();
         static::assertEquals(
             460,
             $response->getStatusCode(),
@@ -88,7 +95,7 @@ class ApiResponseTest extends TestCase
             'Request was successful'
         );
 
-        $response = new ApiResponse(460, '{ "success": false }');
+        $response = (new ApiResponse(460, '{ "success": false }'))->asJsonResponse();
         static::assertFalse(
             $response->isSuccessful(),
             'Request was failed'
@@ -100,7 +107,7 @@ class ApiResponseTest extends TestCase
      */
     public function testMagicCall()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
         static::assertEquals(
             true,
             $response->isSuccessful(),
@@ -115,6 +122,7 @@ class ApiResponseTest extends TestCase
     public function testMagicCallException1()
     {
         $response = new ApiResponse(200);
+        /* @noinspection PhpUndefinedMethodInspection */
         $response->getSome();
     }
 
@@ -124,7 +132,8 @@ class ApiResponseTest extends TestCase
      */
     public function testMagicCallException2()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
+        /* @noinspection PhpUndefinedMethodInspection */
         $response->getSomeSuccess();
     }
 
@@ -133,7 +142,7 @@ class ApiResponseTest extends TestCase
      */
     public function testMagicGet()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
         static::assertEquals(
             true,
             $response->success,
@@ -148,6 +157,7 @@ class ApiResponseTest extends TestCase
     public function testMagicGetException1()
     {
         $response = new ApiResponse(200);
+        /* @noinspection PhpUndefinedFieldInspection */
         $response->some;
     }
 
@@ -157,7 +167,8 @@ class ApiResponseTest extends TestCase
      */
     public function testMagicGetException2()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
+        /* @noinspection PhpUndefinedFieldInspection */
         $response->someSuccess;
     }
 
@@ -166,7 +177,7 @@ class ApiResponseTest extends TestCase
      */
     public function testArrayGet()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
         static::assertEquals(
             true,
             $response['success'],
@@ -190,7 +201,7 @@ class ApiResponseTest extends TestCase
      */
     public function testArrayGetException2()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
         $response['someSuccess'];
     }
 
@@ -199,7 +210,7 @@ class ApiResponseTest extends TestCase
      */
     public function testArrayIsset()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
 
         static::assertTrue(
             isset($response['success']),
@@ -218,7 +229,7 @@ class ApiResponseTest extends TestCase
      */
     public function testArraySetException1()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
         $response['success'] = 'a';
     }
 
@@ -228,7 +239,7 @@ class ApiResponseTest extends TestCase
      */
     public function testArraySetException2()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
         $response['sssssssuccess'] = 'a';
     }
 
@@ -238,7 +249,7 @@ class ApiResponseTest extends TestCase
      */
     public function testArrayUnsetException1()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
         unset($response['success']);
     }
 
@@ -248,7 +259,7 @@ class ApiResponseTest extends TestCase
      */
     public function testArrayUnsetException2()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
         unset($response['sssssssuccess']);
     }
 
@@ -257,7 +268,7 @@ class ApiResponseTest extends TestCase
      */
     public function testMagicIsset()
     {
-        $response = new ApiResponse(201, '{ "success": true }');
+        $response = (new ApiResponse(201, '{ "success": true }'))->asJsonResponse();
 
         static::assertTrue(
             isset($response->success),

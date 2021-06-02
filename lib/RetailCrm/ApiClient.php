@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm;
@@ -25,14 +22,15 @@ use RetailCrm\Client\ApiVersion5;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClient
 {
     public $request;
     public $version;
+
+    const V3 = 'v3';
+    const V4 = 'v4';
+    const V5 = 'v5';
 
     /**
      * Init version based client
@@ -41,21 +39,21 @@ class ApiClient
      * @param string $apiKey  api key
      * @param string $version api version
      * @param string $site    site code
-     *
+     * @param bool   $debug   debug mode
      */
-    public function __construct($url, $apiKey, $version = 'v5', $site = null)
+    public function __construct($url, $apiKey, $version = self::V5, $site = null, $debug = false)
     {
         $this->version = $version;
 
         switch ($version) {
-            case 'v5':
-                $this->request = new ApiVersion5($url, $apiKey, $version, $site);
+            case self::V4:
+                $this->request = new ApiVersion4($url, $apiKey, $version, $site, $debug);
                 break;
-            case 'v4':
-                $this->request = new ApiVersion4($url, $apiKey, $version, $site);
+            case self::V3:
+                $this->request = new ApiVersion3($url, $apiKey, $version, $site, $debug);
                 break;
-            case 'v3':
-                $this->request = new ApiVersion3($url, $apiKey, $version, $site);
+            default:
+                $this->request = new ApiVersion5($url, $apiKey, $version, $site, $debug);
                 break;
         }
     }

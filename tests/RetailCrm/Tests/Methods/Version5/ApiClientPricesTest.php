@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Methods\Version5;
@@ -21,9 +18,6 @@ use RetailCrm\Test\TestCase;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientPricesTest extends TestCase
 {
@@ -33,8 +27,7 @@ class ApiClientPricesTest extends TestCase
      */
     public function testPricesEdit()
     {
-
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->pricesTypesEdit(
             [
@@ -56,8 +49,7 @@ class ApiClientPricesTest extends TestCase
      */
     public function testPricesGet()
     {
-        $client = static::getApiClient(null, null, "v5");
-
+        $client = static::getApiClient();
         $response = $client->request->pricesTypes();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
@@ -72,7 +64,7 @@ class ApiClientPricesTest extends TestCase
      */
     public function testPricesUploadExceptionEmpty()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
         $client->request->storePricesUpload([]);
     }
 
@@ -82,7 +74,8 @@ class ApiClientPricesTest extends TestCase
      */
     public function testPricesUpload()
     {
-        $client = static::getApiClient(null, null, "v5");
+
+        $client = static::getApiClient();
 
         $xmlIdA = 'upload-a-' . time();
         $xmlIdB = 'upload-b-' . time();

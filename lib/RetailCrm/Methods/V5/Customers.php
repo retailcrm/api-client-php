@@ -3,13 +3,10 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Customers
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V5;
@@ -19,13 +16,10 @@ use RetailCrm\Methods\V4\Customers as Previous;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Customers class
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 trait Customers
 {
@@ -48,6 +42,7 @@ trait Customers
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers/combine',
             "POST",
@@ -85,6 +80,7 @@ trait Customers
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers/notes',
             "GET",
@@ -112,15 +108,16 @@ trait Customers
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/customers/notes/create',
             "POST",
-            ['note' => json_encode($note)]
+            $this->fillSite($site, ['note' => json_encode($note)])
         );
     }
 
     /**
-     * Create customer note
+     * Delete customer note
      *
      * @param integer $id
      *
@@ -138,6 +135,7 @@ trait Customers
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/customers/notes/$id/delete",
             "POST"

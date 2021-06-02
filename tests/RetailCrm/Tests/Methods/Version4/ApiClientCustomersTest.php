@@ -7,13 +7,11 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Methods\Version4;
 
+use RetailCrm\ApiClient;
 use RetailCrm\Test\TestCase;
 
 /**
@@ -21,9 +19,6 @@ use RetailCrm\Test\TestCase;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientCustomersTest extends TestCase
 {
@@ -34,7 +29,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersCreate()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $externalId = 'c-create-' . time();
 
@@ -59,7 +54,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCreateExceptionEmpty()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
         $client->request->customersCreate([]);
     }
 
@@ -73,7 +68,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersGet(array $ids)
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $response = $client->request->customersGet(678678678);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -99,7 +94,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersGetException()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
         $client->request->customersGet(678678678, 'asdf');
     }
 
@@ -111,7 +106,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersEdit(array $ids)
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $response = $client->request->customersEdit(
             [
@@ -138,7 +133,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersEditExceptionEmpty()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
         $client->request->customersEdit([], 'asdf');
     }
 
@@ -148,7 +143,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersEditException()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
         $client->request->customersEdit(['id' => 678678678], 'asdf');
     }
 
@@ -157,7 +152,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersList()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $response = $client->request->customersList();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -185,7 +180,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersFixExternalIdsException()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
         $client->request->customersFixExternalIds([]);
     }
 
@@ -194,7 +189,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersFixExternalIds()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $response = $client->request->ordersCreate([
             'firstName' => 'Aaa111',
@@ -246,7 +241,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersUploadExceptionEmpty()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
         $client->request->customersUpload([]);
     }
 
@@ -255,7 +250,7 @@ class ApiClientCustomersTest extends TestCase
      */
     public function testCustomersUpload()
     {
-        $client = static::getApiClient(null, null, 'v4');
+        $client = static::getApiClient(null, null, ApiClient::V4);
 
         $externalIdA = 'upload-a-' . time();
         $externalIdB = 'upload-b-' . time();

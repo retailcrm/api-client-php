@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Methods\Version5;
@@ -21,9 +18,6 @@ use RetailCrm\Test\TestCase;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientTasksTest extends TestCase
 {
@@ -32,8 +26,8 @@ class ApiClientTasksTest extends TestCase
      */
     public function testTasksList()
     {
-        $client = static::getApiClient(null, null, 'v5');
 
+        $client = static::getApiClient();
         $response = $client->request->tasksList();
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -46,18 +40,18 @@ class ApiClientTasksTest extends TestCase
      */
     public function testTasksCreateExceptionEmpty()
     {
-        $client = static::getApiClient(null, null, 'v5');
+        $client = static::getApiClient();
         $client->request->tasksCreate([]);
     }
 
     public function testTasksCRU()
     {
-        $client = static::getApiClient(null, null, 'v5');
-
+        $client = static::getApiClient();
+        $user = getenv('RETAILCRM_USER') ?: $_SERVER['RETAILCRM_USER'];
         $task = [
             'text' => 'test task',
             'commentary' => 'test task commentary',
-            'performerId' => $_SERVER['CRM_USER_ID'],
+            'performerId' => $user,
             'complete' => false
         ];
 

@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Methods\Version5;
@@ -21,9 +18,6 @@ use RetailCrm\Test\TestCase;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientUsersTest extends TestCase
 {
@@ -32,7 +26,7 @@ class ApiClientUsersTest extends TestCase
      */
     public function testUsersGroups()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->usersGroups();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -45,7 +39,7 @@ class ApiClientUsersTest extends TestCase
      */
     public function testUsersList()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->usersList();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -58,9 +52,9 @@ class ApiClientUsersTest extends TestCase
      */
     public function testUsersGet()
     {
-        $client = static::getApiClient(null, null, "v5");
-
-        $response = $client->request->usersGet($_SERVER["CRM_USER_ID"]);
+        $client = static::getApiClient();
+        $user = getenv('RETAILCRM_USER') ?: $_SERVER['RETAILCRM_USER'];
+        $response = $client->request->usersGet($user);
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());
@@ -71,9 +65,9 @@ class ApiClientUsersTest extends TestCase
      */
     public function testUsersStatus()
     {
-        $client = static::getApiClient(null, null, "v5");
-
-        $response = $client->request->usersStatus($_SERVER["CRM_USER_ID"], 'dinner');
+        $client = static::getApiClient();
+        $user = getenv('RETAILCRM_USER') ?: $_SERVER['RETAILCRM_USER'];
+        $response = $client->request->usersStatus($user, 'dinner');
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
         static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
         static::assertTrue($response->isSuccessful());

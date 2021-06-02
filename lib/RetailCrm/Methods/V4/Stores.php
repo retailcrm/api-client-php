@@ -3,13 +3,10 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * Stores
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V4;
@@ -19,13 +16,10 @@ use RetailCrm\Methods\V3\Stores as Previous;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * Stores class
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 trait Stores
 {
@@ -49,37 +43,13 @@ trait Stores
             throw new \InvalidArgumentException('Parameter `code` must be set');
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/store/setting/$code",
             "GET"
         );
     }
 
-    /**
-     * Edit store configuration
-     *
-     * @param array $configuration
-     *
-     * @throws \RetailCrm\Exception\InvalidJsonException
-     * @throws \RetailCrm\Exception\CurlException
-     * @throws \InvalidArgumentException
-     *
-     * @return \RetailCrm\Response\ApiResponse
-     */
-    public function storeSettingsEdit(array $configuration)
-    {
-        if (!count($configuration) || empty($configuration['code'])) {
-            throw new \InvalidArgumentException(
-                'Parameter `configuration` must contains a data & configuration `code` must be set'
-            );
-        }
-
-        return $this->client->makeRequest(
-            sprintf('/store/setting/%s/edit', $configuration['code']),
-            "POST",
-            ['configuration' => json_encode($configuration)]
-        );
-    }
 
     /**
      * Upload store prices
@@ -101,6 +71,7 @@ trait Stores
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/store/prices/upload',
             "POST",
@@ -135,6 +106,7 @@ trait Stores
             $parameters['limit'] = (int) $limit;
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/store/products',
             "GET",

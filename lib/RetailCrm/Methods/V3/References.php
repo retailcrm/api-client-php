@@ -3,13 +3,10 @@
 /**
  * PHP version 5.4
  *
- * TaskTrait
+ * References
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Methods\V3;
@@ -17,13 +14,10 @@ namespace RetailCrm\Methods\V3;
 /**
  * PHP version 5.4
  *
- * TaskTrait class
+ * References class
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 trait References
 {
@@ -38,6 +32,7 @@ trait References
      */
     public function countriesList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/countries',
             "GET"
@@ -55,6 +50,7 @@ trait References
      */
     public function deliveryServicesList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/delivery-services',
             "GET"
@@ -80,6 +76,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/delivery-services/%s/edit', $data['code']),
             "POST",
@@ -98,6 +95,7 @@ trait References
      */
     public function deliveryTypesList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/delivery-types',
             "GET"
@@ -123,6 +121,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/delivery-types/%s/edit', $data['code']),
             "POST",
@@ -141,6 +140,7 @@ trait References
      */
     public function orderMethodsList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/order-methods',
             "GET"
@@ -166,6 +166,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/order-methods/%s/edit', $data['code']),
             "POST",
@@ -184,6 +185,7 @@ trait References
      */
     public function orderTypesList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/order-types',
             "GET"
@@ -209,6 +211,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/order-types/%s/edit', $data['code']),
             "POST",
@@ -227,6 +230,7 @@ trait References
      */
     public function paymentStatusesList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/payment-statuses',
             "GET"
@@ -252,6 +256,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/payment-statuses/%s/edit', $data['code']),
             "POST",
@@ -270,6 +275,7 @@ trait References
      */
     public function paymentTypesList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/payment-types',
             "GET"
@@ -295,6 +301,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/payment-types/%s/edit', $data['code']),
             "POST",
@@ -313,6 +320,7 @@ trait References
      */
     public function productStatusesList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/product-statuses',
             "GET"
@@ -338,6 +346,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/product-statuses/%s/edit', $data['code']),
             "POST",
@@ -356,6 +365,7 @@ trait References
      */
     public function sitesList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/sites',
             "GET"
@@ -381,6 +391,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/sites/%s/edit', $data['code']),
             "POST",
@@ -399,6 +410,7 @@ trait References
      */
     public function statusGroupsList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/status-groups',
             "GET"
@@ -416,6 +428,7 @@ trait References
      */
     public function statusesList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/statuses',
             "GET"
@@ -441,6 +454,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/statuses/%s/edit', $data['code']),
             "POST",
@@ -459,6 +473,7 @@ trait References
      */
     public function storesList()
     {
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             '/reference/stores',
             "GET"
@@ -490,6 +505,7 @@ trait References
             );
         }
 
+        /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             sprintf('/reference/stores/%s/edit', $data['code']),
             "POST",

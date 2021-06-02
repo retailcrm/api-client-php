@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Methods\Version5;
@@ -21,9 +18,6 @@ use RetailCrm\Test\TestCase;
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 class ApiClientPacksTest extends TestCase
 {
@@ -32,7 +26,7 @@ class ApiClientPacksTest extends TestCase
      */
     public function testPacksHistory()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
         $response = $client->request->ordersPacksHistory();
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
@@ -53,7 +47,8 @@ class ApiClientPacksTest extends TestCase
      */
     public function testPacksCreateFailed()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
+
         $pack = [
             'itemId' => 12,
             'store' => 'test',

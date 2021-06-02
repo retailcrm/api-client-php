@@ -7,9 +7,6 @@
  *
  * @category RetailCrm
  * @package  RetailCrm
- * @author   RetailCrm <integration@retailcrm.ru>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://www.retailcrm.ru/docs/Developers/ApiVersion5
  */
 
 namespace RetailCrm\Tests\Methods\Version5;
@@ -19,31 +16,42 @@ use RetailCrm\Test\TestCase;
 /**
  * Class ApiClientMarketplaceTest
  *
- * @package RetailCrm\Tests
+ * @category RetailCrm
+ * @package  RetailCrm
  */
 class ApiClientMarketplaceTest extends TestCase
 {
-    const SNAME = 'Marketplace integration v5';
-    const SCODE = 'integration_v5';
+    const SERVICE_NAME = 'Marketplace integration v5';
+    const SERVICE_CODE = 'integration_v5';
 
     /**
+     * Test configuration
+     *
      * @group marketplace_v5
+     *
+     * @return void
      */
     public function testConfigurationEdit()
     {
-        $client = static::getApiClient(null, null, "v5");
+        $client = static::getApiClient();
 
-        $response = $client->request->marketplaceSettingsEdit(
+        /**
+         * Response
+         *
+         * @var \RetailCrm\Response\ApiResponse $response
+         */
+        $response = $client->request->integrationModulesEdit(
             [
-                'name' => self::SNAME,
-                'code' => self::SCODE,
+                'name' => self::SERVICE_NAME,
+                'code' => self::SERVICE_CODE,
+                'clientId' => uniqid(),
                 'logo' => 'http://download.retailcrm.pro/logos/setup.svg',
                 'active' => 'true'
             ]
         );
 
         static::assertInstanceOf('RetailCrm\Response\ApiResponse', $response);
-        static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
+        static::assertEquals($response->getStatusCode(), 200);
         static::assertTrue($response->isSuccessful());
     }
 }
