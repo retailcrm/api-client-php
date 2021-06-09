@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Model\Callback\Response\Delivery;
 
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
+use RetailCrm\Api\Model\Response\SuccessResponse;
 
 /**
  * Class TariffListResponse
@@ -17,7 +18,7 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  * @category TariffListResponse
  * @package  RetailCrm\Api\Model\Callback\Response\Delivery
  */
-class TariffListResponse
+class TariffListResponse extends SuccessResponse
 {
     /**
      * @var \RetailCrm\Api\Model\Callback\Entity\Delivery\Tariff[]
