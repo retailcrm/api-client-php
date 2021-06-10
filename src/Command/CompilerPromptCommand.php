@@ -57,6 +57,8 @@ class CompilerPromptCommand extends Command
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return int
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
