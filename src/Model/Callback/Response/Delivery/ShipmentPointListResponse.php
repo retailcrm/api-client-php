@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Model\Callback\Response\Delivery;
 
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
+use RetailCrm\Api\Model\Response\SuccessResponse;
 
 /**
  * Class ShipmentPointListResponse
@@ -17,7 +18,7 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  * @category ShipmentPointListResponse
  * @package  RetailCrm\Api\Model\Callback\Response\Delivery
  */
-class ShipmentPointListResponse
+class ShipmentPointListResponse extends SuccessResponse
 {
     /**
      * @var \RetailCrm\Api\Model\Callback\Entity\Delivery\Terminal[]
