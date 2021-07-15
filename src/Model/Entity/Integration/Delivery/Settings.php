@@ -68,9 +68,9 @@ class Settings
     public $shipmentPoints;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Integration\Delivery\Status[]
+     * @var \RetailCrm\Api\Model\Entity\Integration\Delivery\SettingsStatus[]
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Integration\Delivery\Status>")
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Integration\Delivery\SettingsStatus>")
      * @JMS\SerializedName("statuses")
      */
     public $statuses;
