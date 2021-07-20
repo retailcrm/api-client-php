@@ -58,8 +58,10 @@ class ComposerLocator
         $dir = static::getBaseDirectory();
 
         for (;;) {
-            if (file_exists($dir . '/composer.json')) {
-                return $dir . '/composer.json';
+            $fileName = implode(DIRECTORY_SEPARATOR, [$dir, 'composer.json']);
+
+            if (file_exists($fileName) && static::getPackageComposerJson() !== $fileName) {
+                return $fileName;
             }
 
             $counter++;
@@ -79,5 +81,15 @@ class ComposerLocator
     private static function getBaseDirectory(): string
     {
         return (string) realpath(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..']));
+    }
+
+    /**
+     * Returns full path to the composer.json of this package.
+     *
+     * @return string
+     */
+    private static function getPackageComposerJson(): string
+    {
+        return (string) realpath(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', 'composer.json']));
     }
 }

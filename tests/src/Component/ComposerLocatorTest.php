@@ -32,7 +32,6 @@ class ComposerLocatorTest extends TestCase
     {
         $file = ComposerLocator::findComposerJson();
 
-        self::assertStringContainsString('composer.json', $file);
-        self::assertFileExists($file);
+        self::assertEmpty($file);
     }
 }
