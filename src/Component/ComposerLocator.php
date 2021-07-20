@@ -61,7 +61,7 @@ class ComposerLocator
             $fileName = implode(DIRECTORY_SEPARATOR, [$dir, 'composer.json']);
 
             if (file_exists($fileName) && static::getPackageComposerJson() !== $fileName) {
-                return $dir . '/composer.json';
+                return $fileName;
             }
 
             $counter++;
