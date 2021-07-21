@@ -35,6 +35,7 @@ use RetailCrm\Api\Model\Entity\Orders\SerializedRelationCustomer;
 use RetailCrm\Api\Model\Filter\Orders\OrderFilter;
 use RetailCrm\Api\Model\Filter\Orders\OrderHistoryFilterV4Type;
 use RetailCrm\Api\Model\Request\BySiteRequest;
+use RetailCrm\Api\Model\Request\Orders\OrderLoyaltyCancelBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCombineRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCreateRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersEditRequest;
@@ -7489,6 +7490,72 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->orders->loyaltyApply($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCancelBonusOperations(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "order": {
+    "bonusesCreditTotal": 0,
+    "bonusesChargeTotal": 0,
+    "privilegeType": "none",
+    "totalSumm": 1279,
+    "loyaltyAccount": {
+      "id": 164,
+      "amount": 1000
+    },
+    "delivery": {
+      "cost": 500
+    },
+    "site": "bitrix-test",
+    "items": [
+      {
+        "bonusesChargeTotal": 0,
+        "bonusesCreditTotal": 0,
+        "discounts": [],
+        "id": 12153,
+        "externalIds": [
+          {
+            "code": "bitrix",
+            "value": "0_169"
+          }
+        ],
+        "initialPrice": 779,
+        "discountTotal": 0,
+        "prices": [
+          {
+            "price": 779,
+            "quantity": 1
+          }
+        ],
+        "quantity": 1,
+        "offer": {
+          "id": 66445,
+          "externalId": "169"
+        }
+      }
+    ]
+  }
+}
+EOF;
+
+        $request = new OrderLoyaltyCancelBonusOperationsRequest(
+            SerializedEntityOrder::withId(7751),
+            'bitrix-test'
+        );
+        $mock = static::createApiMockBuilder('orders/loyalty/cancel-bonus-operations');
+
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->orders->cancelBonusOperations($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
