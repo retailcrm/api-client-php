@@ -11,6 +11,7 @@ namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\BySiteRequest;
+use RetailCrm\Api\Model\Request\Orders\OrderLoyaltyCancelBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCombineRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCreateRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersEditRequest;
@@ -545,6 +546,66 @@ class Orders extends AbstractApiResourceGroup
             'orders/loyalty/apply',
             $request,
             OrdersLoyaltyApplyResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/orders/loyalty/cancel-bonus-operations" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Entity\Delivery\SerializedEntityOrder;
+     * use RetailCrm\Api\Model\Request\Orders\OrderLoyaltyCancelBonusOperationsRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     * $request = new OrderLoyaltyCancelBonusOperationsRequest(
+     *     SerializedEntityOrder::withId(7751),
+     *     'bitrix-test'
+     * );
+     *
+     * try {
+     *     $response = $client->orders->cancelBonusOperations($request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Current loyalty account balance: ' . $response->order->loyaltyAccount->amount . ' bonuses.';
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\Orders\OrderLoyaltyCancelBonusOperationsRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Orders\OrdersGetResponse
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     */
+    public function cancelBonusOperations(OrderLoyaltyCancelBonusOperationsRequest $request): OrdersGetResponse
+    {
+        /** @var OrdersGetResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'orders/loyalty/cancel-bonus-operations',
+            $request,
+            OrdersGetResponse::class
         );
         return $response;
     }

@@ -177,6 +177,14 @@ class Order
     public $personalDiscountPercent;
 
     /**
+     * @var \RetailCrm\Api\Model\Entity\Orders\OrderLoyaltyAccount
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Orders\OrderLoyaltyAccount")
+     * @JMS\SerializedName("loyaltyAccount")
+     */
+    public $loyaltyAccount;
+
+    /**
      * @var \RetailCrm\Api\Model\Entity\Loyalty\LoyaltyLevel
      *
      * @JMS\Type("RetailCrm\Api\Model\Entity\Loyalty\LoyaltyLevel")
