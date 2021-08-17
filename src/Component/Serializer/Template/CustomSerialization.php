@@ -44,8 +44,8 @@ EOT;
      * @param string $modelPath
      * @param string $customerCode
      * @param string $corporateCode
-     * @param string $serializedRelationAbstractCode
-     * @param string $serializedRelationCode
+     * @param string $relationAbstractCode
+     * @param string $relationCode
      *
      * @return string
      * @throws \Twig\Error\LoaderError
@@ -56,16 +56,16 @@ EOT;
         string $modelPath,
         string $customerCode,
         string $corporateCode,
-        string $serializedRelationAbstractCode,
-        string $serializedRelationCode
+        string $relationAbstractCode,
+        string $relationCode
     ): string {
         return $this->render(self::TMPL_CUSTOMER_INTERFACE, [
             'jsonPath' => $jsonPath,
             'modelPath' => $modelPath,
             'customerCode' => $customerCode,
             'corporateCode' => $corporateCode,
-            'serializedRelationAbstractCode' => $serializedRelationAbstractCode,
-            'serializedRelationCode' => $serializedRelationCode,
+            'serializedRelationAbstractCode' => $relationAbstractCode,
+            'serializedRelationCode' => $relationCode,
         ]);
     }
 }
