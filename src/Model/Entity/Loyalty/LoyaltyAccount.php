@@ -131,4 +131,20 @@ class LoyaltyAccount
      * @JMS\SerializedName("level")
      */
     public $level;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("status")
+     */
+    public $status;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Loyalty\Loyalty
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Loyalty\Loyalty")
+     * @JMS\SerializedName("loyalty")
+     */
+    public $loyalty;
 }

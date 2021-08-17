@@ -11,6 +11,7 @@ namespace RetailCrm\Tests\ResourceGroup;
 
 use DateInterval;
 use DateTime;
+use Psr\Http\Message\RequestInterface;
 use RetailCrm\Api\Enum\ByIdentifier;
 use RetailCrm\Api\Enum\CombineTechnique;
 use RetailCrm\Api\Enum\CountryCodeIso3166;
@@ -958,6 +959,12 @@ EOF;
         $mock = static::createApiMockBuilder('orders/create');
         $mock->matchMethod(RequestMethod::POST)
             ->matchBody(static::encodeForm($request))
+            ->matchCallback(static function (RequestInterface $request) {
+                $data = [];
+                parse_str((string) $request->getBody(), $data);
+
+                return false !== strpos($data['order'] ?? '', '"customer":{"id":4924}');
+            })
             ->reply(200)
             ->withBody($json);
 

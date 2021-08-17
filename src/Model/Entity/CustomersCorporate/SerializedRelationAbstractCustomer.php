@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Model\Entity\CustomersCorporate;
 
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
+use RetailCrm\Api\Interfaces\Orders\CustomerInterface;
 
 /**
  * Class SerializedRelationAbstractCustomer
@@ -17,7 +18,7 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  * @category SerializedRelationAbstractCustomer
  * @package  RetailCrm\Api\Model\Entity\CustomersCorporate
  */
-class SerializedRelationAbstractCustomer
+class SerializedRelationAbstractCustomer implements CustomerInterface
 {
     /**
      * @var int
@@ -68,7 +69,7 @@ class SerializedRelationAbstractCustomer
      */
     public static function withId(int $id): self
     {
-        $customer     = new self();
+        $customer = new self();
         $customer->id = $id;
 
         return $customer;
@@ -84,9 +85,9 @@ class SerializedRelationAbstractCustomer
      */
     public static function withExternalId(string $externalId, string $site): self
     {
-        $customer             = new self();
+        $customer = new self();
         $customer->externalId = $externalId;
-        $customer->site       = $site;
+        $customer->site = $site;
 
         return $customer;
     }

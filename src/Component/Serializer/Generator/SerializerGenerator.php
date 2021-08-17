@@ -33,6 +33,8 @@ use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
 use RetailCrm\Api\Component\Serializer\Template\CustomSerialization;
 use RetailCrm\Api\Component\Serializer\Type\PropertyTypeMixed;
+use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer;
+use RetailCrm\Api\Model\Entity\Orders\SerializedRelationCustomer;
 use RuntimeException;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -267,6 +269,20 @@ class SerializerGenerator
             new PreferredReducer(),
             new TakeBestReducer(),
         ]);
+        $serializedRelationAbstract = $this->metadataBuilder->build(
+            SerializedRelationAbstractCustomer::class,
+            [
+                new PreferredReducer(),
+                new TakeBestReducer(),
+            ]
+        );
+        $serializedRelation = $this->metadataBuilder->build(
+            SerializedRelationCustomer::class,
+            [
+                new PreferredReducer(),
+                new TakeBestReducer(),
+            ]
+        );
         $customerCode = $this->generateCodeForClass(
             $customerMetadata,
             $apiVersion,
@@ -281,8 +297,29 @@ class SerializerGenerator
             $arrayPath,
             $modelPath
         );
+        $serializedRelationAbstractCode = $this->generateCodeForClass(
+            $serializedRelationAbstract,
+            $apiVersion,
+            $serializerGroups,
+            $arrayPath,
+            $modelPath
+        );
+        $serializedRelationCode = $this->generateCodeForClass(
+            $serializedRelation,
+            $apiVersion,
+            $serializerGroups,
+            $arrayPath,
+            $modelPath
+        );
 
-        return $this->customTemplating->renderCustomerInterface($arrayPath, $modelPath, $customerCode, $corporateCode);
+        return $this->customTemplating->renderCustomerInterface(
+            $arrayPath,
+            $modelPath,
+            $customerCode,
+            $corporateCode,
+            $serializedRelationAbstractCode,
+            $serializedRelationCode
+        );
     }
 
     /**
