@@ -20,10 +20,12 @@ use RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltiesResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountActivateResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountCreateResponse;
+use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountsResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyBonusCreditResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyBonusOperationsResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyCalculateResponse;
+use RetailCrm\Api\Model\Response\Loyalty\LoyaltyResponse;
 
 /**
  * Class Loyalty
@@ -407,6 +409,60 @@ class Loyalty extends AbstractApiResourceGroup
     }
 
     /**
+     * Makes GET "/api/v5/loyalty/account/{id}" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * try {
+     *     $response = $client->loyalty->accountGet(1);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Current loyalty account balance: ' . $response->loyaltyAccount->amount . ' bonuses.';
+     * ```
+     *
+     * @param int $id
+     *
+     * @return \RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountResponse
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     */
+    public function accountGet(int $id): LoyaltyAccountResponse
+    {
+        /** @var LoyaltyAccountResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'loyalty/account/' . $id,
+            null,
+            LoyaltyAccountResponse::class
+        );
+        return $response;
+    }
+
+    /**
      * Makes POST "/api/v5/loyalty/calculate" request.
      *
      * Example:
@@ -543,6 +599,60 @@ class Loyalty extends AbstractApiResourceGroup
             'loyalty/loyalties',
             $request,
             LoyaltiesResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/loyalty/loyalties/{id}" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * try {
+     *     $response = $client->loyalty->get(1);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Loyalty program name: ' . $response->loyalty->name;
+     * ```
+     *
+     * @param int $id
+     *
+     * @return \RetailCrm\Api\Model\Response\Loyalty\LoyaltyResponse
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     */
+    public function get(int $id): LoyaltyResponse
+    {
+        /** @var LoyaltyResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'loyalty/loyalties/' . $id,
+            null,
+            LoyaltyResponse::class
         );
         return $response;
     }

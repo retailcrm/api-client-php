@@ -595,6 +595,55 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
+    public function testAccountGet(): void
+    {
+        $json = <<<'EOF'
+{
+    "success": true,
+    "loyaltyAccount": {
+        "active": false,
+        "id": 168,
+        "loyalty": {
+            "id": 1
+        },
+        "customer": {
+            "id": 5260,
+            "externalId": "5",
+            "site": "bitrix-test",
+            "customFields": {
+                "galkatrue": true
+            },
+            "firstName": "admincd"
+        },
+        "phoneNumber": "89226234577",
+        "amount": 0,
+        "ordersSum": 0,
+        "nextLevelSum": 10000,
+        "level": {
+            "type": "discount",
+            "id": 21,
+            "name": "Скидочный",
+            "privilegeSize": 20,
+            "privilegeSizePromo": 30
+        },
+        "createdAt": "2021-06-21 14:35:55",
+        "status": "not_confirmed",
+        "customFields": []
+    }
+}
+EOF;
+
+        $mock = static::createApiMockBuilder('loyalty/account/168');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->loyalty->accountGet(168);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
     public function testCalculate(): void
     {
         $json = <<<'EOF'
@@ -728,6 +777,36 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->loyalties($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testLoyaltiesGet(): void
+    {
+        $json = <<<'EOF'
+{
+    "success": true,
+    "loyalty": {
+        "active": true,
+        "blocked": false,
+        "id": 4,
+        "name": "Битрикс новый",
+        "confirmSmsCharge": false,
+        "confirmSmsRegistration": false,
+        "createdAt": "2021-03-17 18:08:02",
+        "activatedAt": "2021-03-17 18:09:43"
+    },
+    "requiredFields": []
+}
+EOF;
+
+        $mock = static::createApiMockBuilder('loyalty/loyalties/4');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+        $response = $client->loyalty->get(4);
 
         self::assertModelEqualsToResponse($json, $response);
     }

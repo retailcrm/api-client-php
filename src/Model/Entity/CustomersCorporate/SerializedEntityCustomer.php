@@ -74,4 +74,12 @@ class SerializedEntityCustomer
      * @JMS\SerializedName("patronymic")
      */
     public $patronymic;
+
+    /**
+     * @var array<string, mixed>
+     *
+     * @JMS\Type("array")
+     * @JMS\SerializedName("customFields")
+     */
+    public $customFields;
 }
