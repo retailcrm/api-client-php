@@ -14,11 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['7.3', '7.4']
-# TODO These dependencies blocks PHP 8.0 support for us:
-#  - `liip/serializer` and `liip/metadata-parser` - shouldn't be a big deal. It's clearly possible to fix that.
-#  - `phpmd/phpmd` - doesn't work for PHP 8.0 (it won't find any errors). Requires big changes in its dependencies, but work is already being done.
-#        php-version: ['7.3', '7.4', '8.0']
+        php-version: ['7.3', '7.4', '8.0']
     steps:
       - name: Check out code into the workspace
         uses: actions/checkout@v2
