@@ -35,4 +35,6 @@ jobs:
       - name: Run tests
         run: composer run-script phpunit-ci
       - name: Coverage
-        run: bash <(curl -s https://codecov.io/bash)
+        uses: codecov/codecov-action@v2
+        with:
+          verbose: true
