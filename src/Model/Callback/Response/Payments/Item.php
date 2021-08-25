@@ -82,4 +82,12 @@ class Item
      * @JMS\SerializedName("productCode")
      */
     public $productCode;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("markingCode")
+     */
+    public $markingCode;
 }
