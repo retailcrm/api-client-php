@@ -377,7 +377,7 @@ class CustomFields extends AbstractApiResourceGroup
      * $field->code           = 'description';
      * $field->type           = CustomFieldType::STRING;
      * $field->ordering       = 10;
-     * $field->displayArea    = CustomFieldDisplayArea::CUSTOMER;
+     * $field->displayArea    = CustomFieldDisplayArea::MAIN_DATA;
      * $field->viewMode       = CustomFieldViewMode::EDITABLE;
      * $field->inFilter       = true;
      * $field->inList         = true;
