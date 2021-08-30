@@ -26,6 +26,7 @@ class CustomFieldsCreateRequest implements RequestInterface
      *
      * @Form\Type("RetailCrm\Api\Model\Entity\CustomFields\CustomField")
      * @Form\SerializedName("customField")
+     * @Form\JsonField()
      */
     public $customField;
 
