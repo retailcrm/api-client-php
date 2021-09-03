@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Tests\ResourceGroup;
 
+use RetailCrm\Api\Component\Transformer\DateTimeTransformer;
 use RetailCrm\Api\Enum\ByIdentifier;
 use RetailCrm\Api\Enum\Customers\ContragentType;
 use RetailCrm\Api\Enum\Customers\CustomerType;
@@ -262,6 +263,7 @@ EOF;
         $customer->phones                     = [
             new CustomerPhone('(603) 292-6810')
         ];
+        $customer->birthday = DateTimeTransformer::createDate('1980-01-01');
 
         $request           = new CustomersCreateRequest();
         $request->site     = 'aliexpress';

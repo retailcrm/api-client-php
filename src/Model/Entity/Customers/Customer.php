@@ -307,7 +307,7 @@ class Customer implements CustomerInterface
     /**
      * @var DateTime
      *
-     * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      * @JMS\SerializedName("birthday")
      */
     public $birthday;
