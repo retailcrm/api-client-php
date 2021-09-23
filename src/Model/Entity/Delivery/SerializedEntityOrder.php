@@ -57,9 +57,8 @@ class SerializedEntityOrder
      * @param int $id
      * @param string $externalId
      * @param string $number
-     * @param bool $applyRound
      */
-    public function __construct(int $id = 0, string $externalId = '', string $number = '', bool $applyRound = false)
+    public function __construct(int $id = 0, string $externalId = '', string $number = '')
     {
         if (0 !== $id) {
             $this->id = $id;
@@ -72,23 +71,18 @@ class SerializedEntityOrder
         if ('' !== $number) {
             $this->number = $number;
         }
-
-        if (false !== $applyRound) {
-            $this->applyRound = $applyRound;
-        }
     }
 
     /**
      * Returns this entity with specified ID
      *
      * @param int $id
-     * @param bool $applyRound
      *
      * @return self
      */
-    public static function withId(int $id, bool $applyRound = false): self
+    public static function withId(int $id): self
     {
-        return new self($id, '', '', $applyRound);
+        return new self($id, '', '');
     }
 
 
@@ -96,25 +90,37 @@ class SerializedEntityOrder
      * Returns this entity with specified external ID
      *
      * @param string $externalId
-     * @param bool $applyRound
      *
      * @return self
      */
-    public static function withExternalId(string $externalId, bool $applyRound = false): self
+    public static function withExternalId(string $externalId): self
     {
-        return new self(0, $externalId, '', $applyRound);
+        return new self(0, $externalId, '');
     }
 
     /**
      * Returns this entity with specified order number
      *
      * @param string $number
-     * @param bool $applyRound
      *
      * @return self
      */
-    public static function withNumber(string $number, bool $applyRound = false): self
+    public static function withNumber(string $number): self
     {
-        return new self(0, '', $number, $applyRound);
+        return new self(0, '', $number);
+    }
+
+    /**
+     * Set applyRound and return this entity
+     *
+     * @param bool $applyRound
+     *
+     * @return $this
+     */
+    public function setApplyRound(bool $applyRound): self
+    {
+        $this->applyRound = $applyRound;
+
+        return $this;
     }
 }

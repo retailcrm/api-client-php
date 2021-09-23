@@ -7487,7 +7487,7 @@ EOF;
 
         $request          = new OrdersLoyaltyApplyRequest();
         $request->site    = 'bitrix-test';
-        $request->order   = SerializedEntityOrder::withNumber('7', true);
+        $request->order   = SerializedEntityOrder::withNumber('7')->setApplyRound(true);
         $request->bonuses = 10;
 
         $mock = static::createApiMockBuilder('orders/loyalty/apply');
@@ -7558,7 +7558,7 @@ EOF;
 EOF;
 
         $request = new OrderLoyaltyCancelBonusOperationsRequest(
-            SerializedEntityOrder::withId(7751, true),
+            SerializedEntityOrder::withId(7751)->setApplyRound(true),
             'bitrix-test'
         );
         $mock = static::createApiMockBuilder('orders/loyalty/cancel-bonus-operations');
