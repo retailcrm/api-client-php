@@ -529,6 +529,7 @@ EOF;
     "call": false,
     "expired": false,
     "managerId": 28,
+    "applyRound": true,
     "customer": {
       "type": "customer",
       "id": 4924,
@@ -7486,12 +7487,18 @@ EOF;
 
         $request          = new OrdersLoyaltyApplyRequest();
         $request->site    = 'bitrix-test';
-        $request->order   = SerializedEntityOrder::withNumber('7');
+        $request->order   = SerializedEntityOrder::withNumber('7', true);
         $request->bonuses = 10;
 
         $mock = static::createApiMockBuilder('orders/loyalty/apply');
         $mock->matchMethod(RequestMethod::POST)
             ->matchBody(static::encodeForm($request))
+            ->matchCallback(static function (RequestInterface $request) {
+                $data = [];
+                parse_str((string) $request->getBody(), $data);
+
+                return false !== strpos($data['order'] ?? '', '"applyRound"');
+            })
             ->reply(200)
             ->withBody($json);
 
@@ -7551,13 +7558,19 @@ EOF;
 EOF;
 
         $request = new OrderLoyaltyCancelBonusOperationsRequest(
-            SerializedEntityOrder::withId(7751),
+            SerializedEntityOrder::withId(7751, true),
             'bitrix-test'
         );
         $mock = static::createApiMockBuilder('orders/loyalty/cancel-bonus-operations');
 
         $mock->matchMethod(RequestMethod::POST)
             ->matchBody(static::encodeForm($request))
+            ->matchCallback(static function (RequestInterface $request) {
+                $data = [];
+                parse_str((string) $request->getBody(), $data);
+
+                return false !== strpos($data['order'] ?? '', '"applyRound"');
+            })
             ->reply(200)
             ->withBody($json);
 
@@ -7708,6 +7721,7 @@ EOF;
     "call": false,
     "expired": false,
     "managerId": 28,
+    "applyRound": true,
     "customer": {
       "type": "customer",
       "id": 4924,
@@ -8511,6 +8525,7 @@ EOF;
     "call": false,
     "expired": false,
     "managerComment": "Manager comment",
+    "applyRound": true,
     "customer": {
       "type": "customer",
       "id": 4976,

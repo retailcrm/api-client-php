@@ -68,4 +68,12 @@ class SerializedOrder
      * @JMS\SerializedName("delivery")
      */
     public $delivery;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("applyRound")
+     */
+    public $applyRound;
 }

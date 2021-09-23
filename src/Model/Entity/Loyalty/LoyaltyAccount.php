@@ -147,4 +147,12 @@ class LoyaltyAccount
      * @JMS\SerializedName("loyalty")
      */
     public $loyalty;
+
+    /**
+     * @var int
+     *
+     * @JMS\Type("int")
+     * @JMS\SerializedName("loyaltyLevelId")
+     */
+    public $loyaltyLevelId;
 }

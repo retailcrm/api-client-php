@@ -44,13 +44,22 @@ class SerializedEntityOrder
     public $number;
 
     /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("applyRound")
+     */
+    public $applyRound;
+
+    /**
      * SerializedEntityOrder constructor.
      *
-     * @param int    $id
+     * @param int $id
      * @param string $externalId
      * @param string $number
+     * @param bool $applyRound
      */
-    public function __construct(int $id = 0, string $externalId = '', string $number = '')
+    public function __construct(int $id = 0, string $externalId = '', string $number = '', bool $applyRound = false)
     {
         if (0 !== $id) {
             $this->id = $id;
@@ -63,18 +72,23 @@ class SerializedEntityOrder
         if ('' !== $number) {
             $this->number = $number;
         }
+
+        if (false !== $applyRound) {
+            $this->applyRound = $applyRound;
+        }
     }
 
     /**
      * Returns this entity with specified ID
      *
      * @param int $id
+     * @param bool $applyRound
      *
      * @return self
      */
-    public static function withId(int $id): self
+    public static function withId(int $id, bool $applyRound = false): self
     {
-        return new self($id, '', '');
+        return new self($id, '', '', $applyRound);
     }
 
 
@@ -82,23 +96,25 @@ class SerializedEntityOrder
      * Returns this entity with specified external ID
      *
      * @param string $externalId
+     * @param bool $applyRound
      *
      * @return self
      */
-    public static function withExternalId(string $externalId): self
+    public static function withExternalId(string $externalId, bool $applyRound = false): self
     {
-        return new self(0, $externalId, '');
+        return new self(0, $externalId, '', $applyRound);
     }
 
     /**
      * Returns this entity with specified order number
      *
      * @param string $number
+     * @param bool $applyRound
      *
      * @return self
      */
-    public static function withNumber(string $number): self
+    public static function withNumber(string $number, bool $applyRound = false): self
     {
-        return new self(0, '', $number);
+        return new self(0, '', $number, $applyRound);
     }
 }

@@ -503,4 +503,12 @@ class Order
      * @JMS\SerializedName("loyaltyEventId")
      */
     public $loyaltyEventId;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("applyRound")
+     */
+    public $applyRound;
 }
