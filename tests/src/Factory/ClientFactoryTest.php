@@ -11,8 +11,12 @@ namespace RetailCrm\Tests\Factory;
 
 use Doctrine\Common\Annotations\PsrCachedReader;
 use Http\Discovery\Psr18ClientDiscovery;
+use League\Container\Container;
+use League\Event\EventDispatcher;
 use Nyholm\Psr7\Factory\Psr17Factory;
-use Pock\PockBuilder;
+use RetailCrm\TestUtils\PockBuilder;
+use Psr\Cache\CacheItemPoolInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
@@ -21,20 +25,15 @@ use RetailCrm\Api\Enum\CacheDirectories;
 use RetailCrm\Api\Factory\ClientFactory;
 use RetailCrm\Api\Handler\Request\CallbackRequestHandler;
 use RetailCrm\Api\Handler\Response\CallbackResponseHandler;
+use RetailCrm\Api\Interfaces\ClientFactoryInterface;
 use RetailCrm\Api\Model\RequestData;
-use RetailCrm\Api\Model\Response\Api\ApiVersionsResponse;
 use RetailCrm\Api\Model\ResponseData;
+use RetailCrm\TestUtils\ClientFactoryDependentService;
 use RetailCrm\TestUtils\ReflectionUtils;
 use RetailCrm\TestUtils\TestCase\ClientTestCase;
 use RetailCrm\TestUtils\TestConfig;
-use RetailCrm\TestUtils\ClientFactoryDependentService;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use RetailCrm\Api\Interfaces\ClientFactoryInterface;
-use League\Container\Container;
-use League\Event\EventDispatcher;
-use Psr\Cache\CacheItemPoolInterface;
-use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class ClientFactoryTest
