@@ -10,7 +10,6 @@
 namespace RetailCrm\Tests\ResourceGroup;
 
 use League\Event\EventDispatcher;
-use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Event\FailureRequestEvent;

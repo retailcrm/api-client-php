@@ -15,7 +15,7 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use InvalidArgumentException;
 use Liip\Serializer\SerializerInterface;
 use PHPUnit\Framework\TestCase;
-use Pock\PockBuilder;
+use RetailCrm\TestUtils\PockBuilder;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -51,7 +51,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
     /**
      * @param string $pathFragment
      *
-     * @return \Pock\PockBuilder
+     * @return \RetailCrm\TestUtils\PockBuilder
      */
     protected static function createApiMockBuilder(string $pathFragment): PockBuilder
     {
@@ -103,7 +103,7 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
      * @param string $path
      * @param bool   $header
      *
-     * @return \Pock\PockBuilder
+     * @return \RetailCrm\TestUtils\PockBuilder
      */
     protected static function createUnversionedApiMockBuilder(string $path = '', bool $header = true): PockBuilder
     {
