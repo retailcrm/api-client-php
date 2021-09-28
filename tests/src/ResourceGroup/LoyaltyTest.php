@@ -12,6 +12,7 @@ namespace RetailCrm\Tests\ResourceGroup;
 use DateInterval;
 use DateTime;
 use DateTimeInterface;
+use Psr\Http\Message\RequestInterface;
 use RetailCrm\Api\Component\Transformer\DateTimeTransformer;
 use RetailCrm\Api\Enum\Loyalty\AccountStatus;
 use RetailCrm\Api\Enum\Loyalty\PrivilegeType;
@@ -234,12 +235,19 @@ EOF;
         $account              = new LoyaltyAccount();
         $account->cardNumber  = '4444 5555 6666 7777';
         $account->phoneNumber = '88005553000';
+        $account->loyaltyLevelId = 1;
 
         $request = new LoyaltyAccountEditRequest($account);
 
         $mock = static::createApiMockBuilder('loyalty/account/159/edit');
         $mock->matchMethod(RequestMethod::POST)
             ->matchBody(static::encodeForm($request))
+            ->matchCallback(static function (RequestInterface $request) {
+                $data = [];
+                parse_str((string) $request->getBody(), $data);
+
+                return false !== strpos($data['loyaltyAccount'] ?? '', '"loyaltyLevelId"');
+            })
             ->reply(200)
             ->withBody($json);
 
@@ -700,6 +708,7 @@ EOF;
         $order->items         = [$item];
         $order->delivery      = new SerializedOrderDelivery(100);
         $order->privilegeType = PrivilegeType::NONE;
+        $order->applyRound    = true;
 
         $request = new LoyaltyCalculateRequest();
         $request->site = 'bitrix-test';
@@ -709,6 +718,12 @@ EOF;
         $mock = static::createApiMockBuilder('loyalty/calculate');
         $mock->matchMethod(RequestMethod::POST)
             ->matchBody(static::encodeForm($request))
+            ->matchCallback(static function (RequestInterface $request) {
+                $data = [];
+                parse_str((string) $request->getBody(), $data);
+
+                return false !== strpos($data['order'] ?? '', '"applyRound"');
+            })
             ->reply(200)
             ->withBody($json);
 

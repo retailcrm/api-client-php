@@ -44,9 +44,17 @@ class SerializedEntityOrder
     public $number;
 
     /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("applyRound")
+     */
+    public $applyRound;
+
+    /**
      * SerializedEntityOrder constructor.
      *
-     * @param int    $id
+     * @param int $id
      * @param string $externalId
      * @param string $number
      */
@@ -100,5 +108,19 @@ class SerializedEntityOrder
     public static function withNumber(string $number): self
     {
         return new self(0, '', $number);
+    }
+
+    /**
+     * Set applyRound and return this entity
+     *
+     * @param bool $applyRound
+     *
+     * @return $this
+     */
+    public function setApplyRound(bool $applyRound): self
+    {
+        $this->applyRound = $applyRound;
+
+        return $this;
     }
 }
