@@ -20,15 +20,19 @@ use RetailCrm\Api\Enum\NumericBoolean;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedEntityCustomer;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer;
+use RetailCrm\Api\Model\Entity\Loyalty\BonusDetail;
 use RetailCrm\Api\Model\Entity\Loyalty\LoyaltyAccount;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedCreateLoyaltyAccount;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrder;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderDelivery;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderProduct;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderProductOffer;
+use RetailCrm\Api\Model\Entity\Pagination;
 use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountApiFilterType;
+use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountBonusApiFilterType;
 use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountBonusOperationsApiFilterType;
 use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyApiFilterType;
+use RetailCrm\Api\Model\Request\Loyalty\BonusAccountDetailsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest;
@@ -36,6 +40,8 @@ use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusCreditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest;
+use RetailCrm\Api\Model\Response\Loyalty\BonusAccountDetailsResponse;
+use RetailCrm\Api\Model\Response\Loyalty\LoyaltyBonusStatisticResponse;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
@@ -822,6 +828,49 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->get(4);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testGetBonusAccountDetails(): void
+    {
+        $json = <<<'EOF'
+{
+  "statistic": {
+    "totalAmount": 2.1
+  },
+  "bonuses": [
+    {
+      "date": "2021-03-17 18:08:02",
+      "amount": 1.2
+    }
+  ],
+  "pagination": {
+    "limit": 10,
+    "totalCount": 20,
+    "currentPage": 2,
+    "totalPageCount": 30
+  },
+  "success": true
+}
+EOF;
+
+        $mock = static::createApiMockBuilder('loyalty/account/4/bonus/bonus_status/details');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
+
+        $request = new BonusAccountDetailsRequest();
+        $request->status = 'bonus_status';
+        $request->id = 1;
+        $request->limit = 2;
+        $request->page = 1;
+        $request->filter = new LoyaltyAccountBonusApiFilterType();
+        $request->filter->date = new DateTime();
+
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+        $response = $client->loyalty->getBonusAccountDetails(4, 'bonus_status', $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

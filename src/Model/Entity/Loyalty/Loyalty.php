@@ -23,6 +23,14 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 class Loyalty
 {
     /**
+     * @var \RetailCrm\Api\Model\Entity\Loyalty\LoyaltyLevel[]
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Loyalty\LoyaltyLevel>")
+     * @JMS\SerializedName("levels")
+     */
+    public $levels;
+
+    /**
      * @var bool
      *
      * @JMS\Type("bool")

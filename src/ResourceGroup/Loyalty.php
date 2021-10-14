@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Model\Request\Loyalty\BonusAccountDetailsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest;
@@ -17,6 +18,7 @@ use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusCreditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest;
+use RetailCrm\Api\Model\Response\Loyalty\BonusAccountDetailsResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltiesResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountActivateResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountCreateResponse;
@@ -654,6 +656,79 @@ class Loyalty extends AbstractApiResourceGroup
             null,
             LoyaltyResponse::class
         );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/loyalty/account/{$id}/bonus/{$status}/details" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Interfaces\ClientExceptionInterface;
+     * use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountBonusApiFilterType;
+     * use RetailCrm\Api\Model\Request\Loyalty\BonusAccountDetailsRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * try {
+     *     $request = new BonusAccountDetailsRequest();
+     *     $request->status = 'bonus_status';
+     *     $request->id = 1;
+     *     $request->limit = 2;
+     *     $request->page = 1;
+     *     $request->filter = new LoyaltyAccountBonusApiFilterType();
+     *     $request->filter->date = new DateTime();
+     *
+     *     $response = $client->loyalty->getBonusAccountDetails(
+     *          $request->status,
+     *          $request->id,
+     *          $request
+     *     );
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *          'Error from RetailCRM API (status code: %d): %s',
+     *          $exception->getStatusCode(),
+     *          $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * } catch (ClientExceptionInterface $e) {
+     * }
+     *
+     * echo 'Total bonus amount: ' . $response->statistic->totalAmount;
+     * ```
+     *
+     * @param int                                                             $id
+     * @param string                                                          $status
+     * @param \RetailCrm\Api\Model\Request\Loyalty\BonusAccountDetailsRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Loyalty\BonusAccountDetailsResponse
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     */
+    public function getBonusAccountDetails(int $id, string $status, BonusAccountDetailsRequest $request): BonusAccountDetailsResponse
+    {
+        /** @var BonusAccountDetailsResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'loyalty/account/' . $id . '/bonus/' . $status . '/details',
+            $request,
+            BonusAccountDetailsResponse::class
+        );
+
         return $response;
     }
 }

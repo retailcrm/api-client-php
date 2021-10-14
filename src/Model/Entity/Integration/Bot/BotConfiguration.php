@@ -50,4 +50,12 @@ class BotConfiguration
      * @JMS\SerializedName("name")
      */
     public $name;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("endpointUrl")
+     */
+    public $endpointUrl;
 }
