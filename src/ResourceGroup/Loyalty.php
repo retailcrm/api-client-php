@@ -665,24 +665,39 @@ class Loyalty extends AbstractApiResourceGroup
      * Example:
      * ```php
      * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
      * use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountBonusApiFilterType;
      * use RetailCrm\Api\Model\Request\Loyalty\BonusAccountDetailsRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
-     * $request = new BonusAccountDetailsRequest();
-     * $request->status = 'bonus_status';
-     * $request->id = 1;
-     * $request->limit = 2;
-     * $request->page = 1;
-     * $request->filter = new LoyaltyAccountBonusApiFilterType();
-     * $request->filter->date = new DateTime();
+     * try {
+     *     $request = new BonusAccountDetailsRequest();
+     *     $request->status = 'bonus_status';
+     *     $request->id = 1;
+     *     $request->limit = 2;
+     *     $request->page = 1;
+     *     $request->filter = new LoyaltyAccountBonusApiFilterType();
+     *     $request->filter->date = new DateTime();
      *
-     * $response = $client->loyalty->getBonusAccountDetails(
-     *      $request->status,
-     *      $request->id,
-     *      $request
-     * );
+     *     $response = $client->loyalty->getBonusAccountDetails(
+     *          $request->status,
+     *          $request->id,
+     *          $request
+     *     );
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *          'Error from RetailCRM API (status code: %d): %s',
+     *          $exception->getStatusCode(),
+     *          $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
      *
      * echo 'Total bonus amount: ' . $response->statistic->totalAmount;
      * ```
