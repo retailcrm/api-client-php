@@ -44,6 +44,14 @@ class LoyaltyLevel
     public $name;
 
     /**
+     * @var int
+     *
+     * @JMS\Type("int")
+     * @JMS\SerializedName("sum")
+     */
+    public $sum;
+
+    /**
      * @var float
      *
      * @JMS\Type("float")
