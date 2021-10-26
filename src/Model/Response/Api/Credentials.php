@@ -21,12 +21,21 @@ use RetailCrm\Api\Model\Response\SuccessResponse;
 class Credentials extends SuccessResponse
 {
     /**
+     * @deprecated
      * @var string[]
      *
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("credentials")
      */
     public $credentials;
+
+    /**
+     * @var string[]
+     *
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("scopes")
+     */
+    public $scopes;
 
     /**
      * @var string
