@@ -52,6 +52,7 @@ EOF;
         $json = <<<'EOF'
 {
   "success": true,
+  "scopes": ["order_read", "customer_read", "reference_read"],
   "credentials": [
     "/api/integration-modules/{code}",
     "/api/integration-modules/{code}/edit"
@@ -74,5 +75,6 @@ EOF;
             "/api/integration-modules/{code}",
             "/api/integration-modules/{code}/edit"
         ], $credentials->credentials);
+        self::assertEquals(["order_read", "customer_read", "reference_read"], $credentials->scopes);
     }
 }
