@@ -6699,7 +6699,29 @@ EOF;
       "senderEmail": "test@example.com",
       "senderName": "test",
       "catalogId": "catalog",
-      "isCatalogMainSite": true
+      "isCatalogMainSite": true,
+      "isDemo": false
+    },
+    "test-ru": {
+      "catalogId": "81",
+      "isCatalogMainSite": true,
+      "isDemo": true,
+      "name": "Test Shop",
+      "url": "https://example.com/2",
+      "code": "test-ru",
+      "defaultForCrm": false,
+      "ymlUrl": "https://example.com/2/test_catalog.xml",
+      "loadFromYml": false,
+      "catalogUpdatedAt": "2021-02-24 12:30:46",
+      "catalogLoadingAt": "2021-04-07 15:14:53",
+      "contragent": {
+        "contragentType": "enterpreneur",
+        "legalName": "ИП Бороздина Татьяна Александровна",
+        "INN": "773719480154",
+        "code": "Vog_Gallery",
+        "countryIso": "RU"
+      },
+      "countryIso": "RU"
     }
   }
 }

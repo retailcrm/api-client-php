@@ -171,4 +171,12 @@ class Site
      * @JMS\SerializedName("isCatalogMainSite")
      */
     public $isCatalogMainSite;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("isDemo")
+     */
+    public $isDemo;
 }
