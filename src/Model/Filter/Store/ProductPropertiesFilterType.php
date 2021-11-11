@@ -36,6 +36,22 @@ class ProductPropertiesFilterType
     public $code;
 
     /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("visible")
+     */
+    public $visible;
+
+    /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("variative")
+     */
+    public $variative;
+
+    /**
      * @var string[]
      *
      * @Form\Type("string[]")

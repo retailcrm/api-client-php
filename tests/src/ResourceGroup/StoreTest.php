@@ -597,15 +597,19 @@ EOF;
       ],
       "code": "code",
       "name": "Код",
-      "isNumeric": false
+      "isNumeric": false,
+      "visible": true,
+      "variative": true
     }
   ]
 }
 EOF;
 
-        $request                = new ProductPropertiesRequest();
-        $request->filter        = new ProductPropertiesFilterType();
+        $request = new ProductPropertiesRequest();
+        $request->filter = new ProductPropertiesFilterType();
         $request->filter->sites = ['moysklad', 'aliexpress'];
+        $request->filter->visible = NumericBoolean::TRUE;
+        $request->filter->variative = NumericBoolean::TRUE;
 
         $mock = static::createApiMockBuilder('store/products/properties');
         $mock->matchMethod(RequestMethod::GET)

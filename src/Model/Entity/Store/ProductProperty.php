@@ -58,4 +58,20 @@ class ProductProperty
      * @JMS\SerializedName("isNumeric")
      */
     public $isNumeric;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("visible")
+     */
+    public $visible;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("variative")
+     */
+    public $variative;
 }
