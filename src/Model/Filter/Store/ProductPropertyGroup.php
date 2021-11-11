@@ -9,29 +9,15 @@
 
 namespace RetailCrm\Api\Model\Filter\Store;
 
-use RetailCrm\Api\Component\Serializer\Annotation as JMS;
+use RetailCrm\Api\Model\Entity\Store\ProductPropertyGroup as Base;
 
 /**
  * Class ProductPropertyGroup
  *
  * @category ProductPropertyGroup
  * @package  RetailCrm\Api\Model\Filter\Store
+ * @deprecated Please use RetailCrm\Api\Model\Entity\Store\ProductPropertyGroup instead.
  */
-class ProductPropertyGroup
+class ProductPropertyGroup extends Base
 {
-    /**
-     * @var int
-     *
-     * @JMS\Type("int")
-     * @JMS\SerializedName("id")
-     */
-    public $id;
-
-    /**
-     * @var string
-     *
-     * @JMS\Type("string")
-     * @JMS\SerializedName("name")
-     */
-    public $name;
 }
