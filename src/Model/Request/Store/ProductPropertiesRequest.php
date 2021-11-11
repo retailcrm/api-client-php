@@ -11,6 +11,7 @@ namespace RetailCrm\Api\Model\Request\Store;
 
 use RetailCrm\Api\Component\FormData\Mapping as Form;
 use RetailCrm\Api\Interfaces\RequestInterface;
+use RetailCrm\Api\Model\Request\Traits\PageLimitTrait;
 
 /**
  * Class ProductPropertiesRequest
@@ -20,6 +21,8 @@ use RetailCrm\Api\Interfaces\RequestInterface;
  */
 class ProductPropertiesRequest implements RequestInterface
 {
+    use PageLimitTrait;
+
     /**
      * @var \RetailCrm\Api\Model\Filter\Store\ProductPropertiesFilterType
      *
