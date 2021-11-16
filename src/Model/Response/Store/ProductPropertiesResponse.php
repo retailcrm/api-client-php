@@ -21,9 +21,9 @@ use RetailCrm\Api\Model\Response\AbstractPaginatedResponse;
 class ProductPropertiesResponse extends AbstractPaginatedResponse
 {
     /**
-     * @var \RetailCrm\Api\Model\Filter\Store\ProductProperty[]
+     * @var \RetailCrm\Api\Model\Entity\Store\ProductProperty[]
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Filter\Store\ProductProperty>")
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Store\ProductProperty>")
      * @JMS\SerializedName("properties")
      */
     public $properties;
