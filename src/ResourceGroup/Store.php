@@ -13,12 +13,14 @@ use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\Store\InventoriesRequest;
 use RetailCrm\Api\Model\Request\Store\InventoriesUploadRequest;
 use RetailCrm\Api\Model\Request\Store\PricesUploadRequest;
+use RetailCrm\Api\Model\Request\Store\ProductBatchEditRequest;
 use RetailCrm\Api\Model\Request\Store\ProductGroupsRequest;
 use RetailCrm\Api\Model\Request\Store\ProductPropertiesRequest;
 use RetailCrm\Api\Model\Request\Store\ProductsRequest;
 use RetailCrm\Api\Model\Response\Store\InventoriesResponse;
 use RetailCrm\Api\Model\Response\Store\InventoriesUploadResponse;
 use RetailCrm\Api\Model\Response\Store\PricesUploadResponse;
+use RetailCrm\Api\Model\Response\Store\ProductBatchEditResponse;
 use RetailCrm\Api\Model\Response\Store\ProductGroupsResponse;
 use RetailCrm\Api\Model\Response\Store\ProductPropertiesResponse;
 use RetailCrm\Api\Model\Response\Store\ProductsResponse;
@@ -411,6 +413,83 @@ class Store extends AbstractApiResourceGroup
             $request,
             ProductPropertiesResponse::class
         );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/store/store/products/batch/edit" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Model\Entity\Store\ProductEditGroupInput;
+     * use RetailCrm\Api\Model\Entity\Store\ProductEditInput;
+     * use RetailCrm\Api\Model\Request\Store\ProductBatchEditRequest;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $productInput = new ProductEditInput();
+     * $productInput->name = 'testName';
+     * $productInput->description = 'testDescription';
+     * $productInput->active = true;
+     * $productInput->id = 10;
+     * $productInput->url = 'testUrl';
+     * $productInput->article = 'testArticle';
+     * $productInput->catalogId = 10;
+     * $productInput->externalId = 'testExternalId';
+     * $productInput->manufacturer = 'testManufacturer';
+     * $productInput->markable = true;
+     * $productInput->novelty = true;
+     * $productInput->popular = true;
+     * $productInput->recommended = true;
+     * $productInput->site = 'testSite';
+     * $productInput->stock = true;
+     * $productEditGroupInput = new ProductEditGroupInput();
+     * $productEditGroupInput->externalId = 'testExternalId';
+     * $productEditGroupInput->id = 10;
+     * $productInput->groups[] = $productEditGroupInput;
+     *
+     * try {
+     *         $response = $client->store->productBatchEdit(new ProductBatchEditRequest([$productInput]));
+     *     } catch (ApiExceptionInterface $exception) {
+     *         echo sprintf(
+     *              'Error from RetailCRM API (status code: %d): %s',
+     *              $exception->getStatusCode(),
+     *              $exception->getMessage()
+     *         );
+     *               if (count($exception->getErrorResponse()->errors) > 0) {
+     *                 echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *             }
+     *               return;
+     *      }
+     *
+     * echo 'Processed product count: ' . $response->processedProductsCount;
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\Store\ProductBatchEditRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Store\ProductBatchEditResponse
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     */
+    public function productBatchEdit(ProductBatchEditRequest $request): ProductBatchEditResponse
+    {
+        /** @var ProductBatchEditResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'store/products/batch/edit',
+            $request,
+            ProductBatchEditResponse::class
+        );
+
         return $response;
     }
 }
