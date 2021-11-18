@@ -32,7 +32,7 @@ class ProductBatchEditRequest implements RequestInterface
     /**
      * ProductBatchEditRequest constructor.
      *
-     * @param \RetailCrm\Api\Model\Entity\Store\ProductEditInput[]|null $prices
+     * @param \RetailCrm\Api\Model\Entity\Store\ProductEditInput[] $products
      */
     public function __construct(?array $products = null)
     {

@@ -451,18 +451,18 @@ class Store extends AbstractApiResourceGroup
      * $productInput->groups[] = $productEditGroupInput;
      *
      * try {
-     *         $response = $client->store->productBatchEdit(new ProductBatchEditRequest([$productInput]));
-     *     } catch (ApiExceptionInterface $exception) {
-     *         echo sprintf(
-     *              'Error from RetailCRM API (status code: %d): %s',
-     *              $exception->getStatusCode(),
-     *              $exception->getMessage()
-     *         );
-     *               if (count($exception->getErrorResponse()->errors) > 0) {
-     *                 echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
-     *             }
-     *               return;
-     *      }
+     *     $response = $client->store->productBatchEdit(new ProductBatchEditRequest([$productInput]));
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *     return;
+     * }
      *
      * echo 'Processed product count: ' . $response->processedProductsCount;
      * ```

@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Model\Entity\Store;
 
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
+use RetailCrm\Api\Model\Entity\FixExternalRow;
 
 /**
  * Class ProductEditGroupInput
@@ -17,21 +18,6 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  * @category ProductEditGroupInput
  * @package  RetailCrm\Api\Model\Response\Store
  */
-class ProductEditGroupInput
+class ProductEditGroupInput extends FixExternalRow
 {
-    /**
-     * @var string
-     *
-     * @JMS\Type("string")
-     * @JMS\SerializedName("externalId")
-     */
-    public $externalId;
-
-    /**
-     * @var int
-     *
-     * @JMS\Type("int")
-     * @JMS\SerializedName("id")
-     */
-    public $id;
 }
