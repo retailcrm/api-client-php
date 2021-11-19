@@ -34,9 +34,9 @@ class ProductBatchEditRequest implements RequestInterface
      *
      * @param \RetailCrm\Api\Model\Entity\Store\ProductEditInput[] $products
      */
-    public function __construct(?array $products = null)
+    public function __construct(array $products = [])
     {
-        if (null !== $products) {
+        if (count($products) > 0) {
             $this->products = $products;
         }
     }

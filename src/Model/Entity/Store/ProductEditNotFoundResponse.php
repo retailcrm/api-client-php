@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Model\Entity\Store;
 
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
+use RetailCrm\Api\Model\Entity\FixExternalRow;
 
 /**
  * Class ProductEditNotFoundResponse
@@ -17,21 +18,6 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  * @category ProductEditNotFoundResponse
  * @package  RetailCrm\Api\Model\Entity\Store
  */
-class ProductEditNotFoundResponse
+class ProductEditNotFoundResponse extends FixExternalRow
 {
-    /**
-     * @var string
-     *
-     * @JMS\Type("string")
-     * @JMS\SerializedName("id")
-     */
-    public $id;
-
-    /**
-     * @var string
-     *
-     * @JMS\Type("string")
-     * @JMS\SerializedName("externalId")
-     */
-    public $externalId;
 }

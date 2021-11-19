@@ -17,6 +17,7 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  *
  * @category ProductBatchEditResponse
  * @package  RetailCrm\Api\Model\Response\Store
+ * @SuppressWarnings(PHPMD.LongVariable)
  */
 class ProductBatchEditResponse extends SuccessResponse
 {
