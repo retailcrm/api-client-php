@@ -16,6 +16,8 @@ use RetailCrm\Api\Model\Entity\Store\Inventory;
 use RetailCrm\Api\Model\Entity\Store\Offer;
 use RetailCrm\Api\Model\Entity\Store\PriceUploadInput;
 use RetailCrm\Api\Model\Entity\Store\PriceUploadPricesInput;
+use RetailCrm\Api\Model\Entity\Store\ProductEditGroupInput;
+use RetailCrm\Api\Model\Entity\Store\ProductEditInput;
 use RetailCrm\Api\Model\Filter\Store\InventoryFilterType;
 use RetailCrm\Api\Model\Filter\Store\ProductFilterType;
 use RetailCrm\Api\Model\Filter\Store\ProductGroupFilterType;
@@ -23,6 +25,7 @@ use RetailCrm\Api\Model\Filter\Store\ProductPropertiesFilterType;
 use RetailCrm\Api\Model\Request\Store\InventoriesRequest;
 use RetailCrm\Api\Model\Request\Store\InventoriesUploadRequest;
 use RetailCrm\Api\Model\Request\Store\PricesUploadRequest;
+use RetailCrm\Api\Model\Request\Store\ProductBatchEditRequest;
 use RetailCrm\Api\Model\Request\Store\ProductGroupsRequest;
 use RetailCrm\Api\Model\Request\Store\ProductPropertiesRequest;
 use RetailCrm\Api\Model\Request\Store\ProductsRequest;
@@ -619,6 +622,48 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->store->productsProperties($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testProductBatchEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $productInput = new ProductEditInput();
+        $productInput->name = 'testName';
+        $productInput->description = 'testDescription';
+        $productInput->active = true;
+        $productInput->id = 10;
+        $productInput->url = 'testUrl';
+        $productInput->article = 'testArticle';
+        $productInput->catalogId = 10;
+        $productInput->externalId = 'testExternalId';
+        $productInput->manufacturer = 'testManufacturer';
+        $productInput->markable = true;
+        $productInput->novelty = true;
+        $productInput->popular = true;
+        $productInput->recommended = true;
+        $productInput->site = 'testSite';
+        $productInput->stock = true;
+        $productEditGroupInput = new ProductEditGroupInput();
+        $productEditGroupInput->externalId = 'testExternalId';
+        $productEditGroupInput->id = 10;
+        $productInput->groups[] = $productEditGroupInput;
+        $request = new ProductBatchEditRequest([$productInput]);
+
+        $mock = static::createApiMockBuilder('store/products/batch/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->store->productBatchEdit($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
