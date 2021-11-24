@@ -111,7 +111,7 @@ EOF;
         $this->expectException(HandlerException::class);
         $client = TestClientFactory::createClient(static::noSendingMock());
         $client->customMethods->register('failure', new CustomApiMethod(RequestMethod::GET, 'failure'));
-        $client->customMethods->call('failure');
+        $client->customMethods->failure(0);
     }
 
     private static function noSendingMock(): ClientInterface

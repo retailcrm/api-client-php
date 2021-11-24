@@ -26,4 +26,5 @@
             + [Modifying the default pipeline](customization/pipelines/using_a_predefined_handler.md#modifying-the-default-pipeline)
             + [Constructing the pipeline from scratch](customization/pipelines/using_a_predefined_handler.md#constructing-the-pipeline-from-scratch)
         + [Implementing a handler](customization/pipelines/implementing_a_handler.md)
+  + [Implementing custom API methods](customization/implementing_custom_api_methods.md)
 * [Troubleshooting](troubleshooting.md)
