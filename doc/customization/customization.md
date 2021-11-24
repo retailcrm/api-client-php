@@ -7,7 +7,7 @@
         + [Modifying the default pipeline](pipelines/using_a_predefined_handler.md#modifying-the-default-pipeline)
         + [Constructing the pipeline from scratch](pipelines/using_a_predefined_handler.md#constructing-the-pipeline-from-scratch)
     + [Implementing a handler](pipelines/implementing_a_handler.md)
-*[Implementing custom API methods](implementing_custom_api_methods.md)
+* [Implementing custom API methods](implementing_custom_api_methods.md)
 
 Both `ClientFactory` and `ClientBuilder` provide the necessary functionality to replace PSR dependencies with any other compatible implementation.
 By default, those dependencies will be detected via service discovery. But service discovery supports a limited amount of implementation.
