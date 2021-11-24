@@ -17,6 +17,7 @@ use RetailCrm\Api\Model\ResponseData;
  *
  * @category UnmarshalResponseHandler
  * @package  RetailCrm\Api\Handler\Response
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 class UnmarshalResponseHandler extends AbstractResponseHandler
 {
@@ -25,12 +26,18 @@ class UnmarshalResponseHandler extends AbstractResponseHandler
      */
     protected function handleResponse(ResponseData $responseData)
     {
-        $responseData->responseModel = $this->unmarshalBody($responseData->response, $responseData->type);
+        if ($responseData->custom) {
+            $responseData->responseArray = $this->unmarshalBodyArray($responseData->response);
+        } else {
+            $responseData->responseModel = $this->unmarshalBody($responseData->response, $responseData->type);
+        }
+
         $this->dispatch(new SuccessRequestEvent(
             $responseData->baseUrl,
             $responseData->request,
             $responseData->response,
-            $responseData->responseModel
+            $responseData->responseModel,
+            $responseData->responseArray ?? []
         ));
     }
 }

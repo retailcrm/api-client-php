@@ -21,33 +21,49 @@ use RetailCrm\Api\Interfaces\ResponseInterface;
  */
 class SuccessRequestEvent extends AbstractRequestEvent
 {
-    /** @var \RetailCrm\Api\Interfaces\ResponseInterface */
+    /** @var \RetailCrm\Api\Interfaces\ResponseInterface|null */
     private $responseModel;
 
+    /** @var array<int|string, mixed> */
+    private $responseArray;
+
     /**
-     * FailureRequestEvent constructor.
+     * SuccessRequestEvent constructor.
      *
-     * @param string                                      $baseUrl
-     * @param \Psr\Http\Message\RequestInterface          $request
-     * @param \Psr\Http\Message\ResponseInterface         $response
-     * @param \RetailCrm\Api\Interfaces\ResponseInterface $responseModel
+     * @param string                                           $baseUrl
+     * @param \Psr\Http\Message\RequestInterface               $request
+     * @param \Psr\Http\Message\ResponseInterface              $response
+     * @param \RetailCrm\Api\Interfaces\ResponseInterface|null $responseModel
+     * @param array<int|string, mixed>                         $responseArray
      */
     public function __construct(
         string $baseUrl,
         RequestInterface $request,
         PsrResponseInterface $response,
-        ResponseInterface $responseModel
+        ?ResponseInterface $responseModel,
+        array $responseArray = []
     ) {
         parent::__construct($baseUrl, $request, $response);
 
         $this->responseModel = $responseModel;
+        $this->responseArray = $responseArray;
     }
 
     /**
-     * @return \RetailCrm\Api\Interfaces\ResponseInterface
+     * @return \RetailCrm\Api\Interfaces\ResponseInterface|null
      */
-    public function getResponseModel(): ResponseInterface
+    public function getResponseModel(): ?ResponseInterface
     {
         return $this->responseModel;
+    }
+
+    /**
+     * This array will be present only for the custom requests.
+     *
+     * @return array<int|string, mixed>
+     */
+    public function getResponseArray(): array
+    {
+        return $this->responseArray;
     }
 }

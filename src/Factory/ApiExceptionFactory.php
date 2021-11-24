@@ -54,6 +54,8 @@ class ApiExceptionFactory
         Throwable $previous = null
     ): ApiException {
         $response = $errorResponse instanceof ErrorResponse ? $errorResponse : new ErrorResponse();
+        $response->errorMsg = $response->errorMsg ?? '';
+        $response->errors = $response->errors ?? [];
         $errorFqn = self::getErrorClassByMessage($response->errorMsg ?? '');
 
         if (class_exists($errorFqn) && is_subclass_of($errorFqn, ApiException::class)) {
