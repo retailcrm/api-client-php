@@ -74,7 +74,7 @@ while using the `route` method:
 // Base URL is http://test.simla.io/api/v5
 
 $settingsRoute = $sender->route('settings');
-$host = $sender->host;
+$host = $sender->host();
 
 echo $settingsRoute; // prints "https://test.simla.io/api/v5/settings" - the slash is inserted by the route() method.
 echo $host;          // prints "test.simla.io"
