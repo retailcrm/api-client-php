@@ -75,6 +75,7 @@ EOF;
 
         $mock = static::createUnversionedApiMockBuilder('api-versions');
         $mock->matchMethod(RequestMethod::GET)
+            ->matchExactQuery(['param' => 'value'])
             ->reply(200)
             ->withBody($json);
 
@@ -84,7 +85,8 @@ EOF;
             static function (RequestSenderInterface $sender, $data, array $context) {
                 $response = $sender->send(
                     RequestMethod::GET,
-                    sprintf('https://%s/api/api-versions', $sender->host())
+                    sprintf('https://%s/api/api-versions', $sender->host()),
+                    json_decode($data, true, 512, JSON_THROW_ON_ERROR)
                 );
 
                 return new APIVersionsResponse(
@@ -95,7 +97,7 @@ EOF;
         );
 
         /** @var \RetailCrm\TestUtils\APIVersionsResponse $apiVersions */
-        $apiVersions = $client->customMethods->call('apiVersions');
+        $apiVersions = $client->customMethods->call('apiVersions', '{"param": "value"}');
 
         self::assertEquals(["3.0", "4.0", "5.0"], $apiVersions->versions);
     }
