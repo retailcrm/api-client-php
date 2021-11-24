@@ -24,9 +24,6 @@ class SuccessRequestEvent extends AbstractRequestEvent
     /** @var \RetailCrm\Api\Interfaces\ResponseInterface|null */
     private $responseModel;
 
-    /** @var array<int|string, mixed> */
-    private $responseArray;
-
     /**
      * SuccessRequestEvent constructor.
      *
@@ -43,10 +40,9 @@ class SuccessRequestEvent extends AbstractRequestEvent
         ?ResponseInterface $responseModel,
         array $responseArray = []
     ) {
-        parent::__construct($baseUrl, $request, $response);
+        parent::__construct($baseUrl, $request, $response, $responseArray);
 
         $this->responseModel = $responseModel;
-        $this->responseArray = $responseArray;
     }
 
     /**
@@ -55,15 +51,5 @@ class SuccessRequestEvent extends AbstractRequestEvent
     public function getResponseModel(): ?ResponseInterface
     {
         return $this->responseModel;
-    }
-
-    /**
-     * This array will be present only for the custom requests.
-     *
-     * @return array<int|string, mixed>
-     */
-    public function getResponseArray(): array
-    {
-        return $this->responseArray;
     }
 }
