@@ -4,7 +4,8 @@ You can use this feature if you need to group multiple API calls, or return some
 or, for example, to use new API methods without waiting for the implementation. For all of those cases, we provide a special
 resource group in the client that will make it easy to implement a custom API method.
 
-The main limitation of this mechanism is the lack of DTO's. You will be limited to arrays inside custom methods.
+The main limitation of this mechanism is the lack of DTO. You will be limited to arrays inside custom methods. It is 
+_possible_ to use custom DTO's for the custom methods, but it is a little tricky - check the bottom of this page for the example.
 
 Let's imagine that we have a special method with this route: `/api/v5/dialogs`. This method returns a list of the dialogs present in the system. 
 We cannot use it directly because it is not implemented in the client. However, we can implement it by ourselves using custom methods. 
