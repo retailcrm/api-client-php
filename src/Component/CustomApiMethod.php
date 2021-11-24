@@ -63,13 +63,13 @@ class CustomApiMethod
      * @param \RetailCrm\Api\Interfaces\RequestSenderInterface $sender
      * @param array<int|string, mixed>|object                  $data
      *
-     * @return array<int|string, mixed>
+     * @return array<int|string, mixed>|mixed
      * @throws \RetailCrm\Api\Exception\ApiException
      * @throws \RetailCrm\Api\Exception\ClientException
      * @throws \RetailCrm\Api\Exception\Client\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function __invoke(RequestSenderInterface $sender, $data = []): array
+    public function __invoke(RequestSenderInterface $sender, $data = [])
     {
         if (!is_array($data)) {
             throw new HandlerException(__CLASS__ . ' only supports array data');
