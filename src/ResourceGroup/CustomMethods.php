@@ -60,7 +60,7 @@ class CustomMethods extends AbstractApiResourceGroup
      * $client = SimpleClientFactory::createClient('https://test.simla.com', 'apiKey');
      * $client->customMethods->register(
      *     'scopes',
-     *     static function (RequestSenderInterface $sender, array $data, array $context) {
+     *     static function (RequestSenderInterface $sender, $data, array $context) {
      *         return $sender->send(
      *             RequestMethod::GET,
      *             sprintf('https://%s/api/credentials', $sender->host()),
@@ -142,11 +142,11 @@ class CustomMethods extends AbstractApiResourceGroup
      * echo 'Timezone: ' . $settings['settings']['timezone']['value'];
      * ```
      *
-     * @param string                   $name
-     * @param array<int|string, mixed> $data
-     * @param array<int|string, mixed> $context
+     * @param string                          $name
+     * @param array<int|string, mixed>|object $data
+     * @param array<int|string, mixed>        $context
      *
-     * @return array<int|string, mixed>
+     * @return array<int|string, mixed>|object
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
      * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
@@ -157,7 +157,7 @@ class CustomMethods extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\Client\HandlerException
      * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
-    public function call(string $name, array $data = [], array $context = []): array
+    public function call(string $name, $data = [], array $context = [])
     {
         if (null === $this->requestSender || !array_key_exists($name, $this->methods)) {
             throw new HandlerException(sprintf('Cannot find custom method with name "%s"', $name));
@@ -172,7 +172,7 @@ class CustomMethods extends AbstractApiResourceGroup
      * @param string                   $name
      * @param array<int|string, mixed> $arguments
      *
-     * @return array<int|string, mixed>
+     * @return array<int|string, mixed>|object
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
      * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
@@ -185,15 +185,15 @@ class CustomMethods extends AbstractApiResourceGroup
      *@see \RetailCrm\Api\ResourceGroup\CustomMethods::call()
      *
      */
-    public function __call(string $name, array $arguments): array
+    public function __call(string $name, array $arguments)
     {
         $data = [];
         $context = [];
 
         if (count($arguments) > 0) {
-            if (!is_array($arguments[0])) {
+            if (!is_array($arguments[0]) && !is_object($arguments[0])) {
                 throw new HandlerException(sprintf(
-                    '$data must be of type array, %s given',
+                    '$data must be of type array or object, %s given',
                     gettype($arguments[0])
                 ));
             }

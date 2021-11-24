@@ -61,10 +61,14 @@ It works exactly like the previous example, but without the `CustomApiMethod` co
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Interfaces\RequestSenderInterface;
 
-$client->customMethods->register('dialogs', function (RequestSenderInterface $sender, array $data, array $context) {
+$client->customMethods->register('dialogs', function (RequestSenderInterface $sender, $data, array $context) {
     return $sender->send(RequestMethod::GET, $sender->route('dialogs'), $data);
 });
 ```
+
+The data here is not defined as array because it can be anything you like. You can use any serializer to serialize the data 
+and deserialize the response. `CustomApiMethod` only supports array out-of-box, but your handlers can utilize any 
+data types.
 
 The base URL inside the client is always represented as a URL with the version suffix. It should be always kept in mind
 while using the `route` method:

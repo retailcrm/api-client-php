@@ -9,7 +9,7 @@
 
 namespace RetailCrm\Api\Component;
 
-use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Exception\Client\HandlerException;
 use RetailCrm\Api\Interfaces\RequestSenderInterface;
 
 /**
@@ -61,7 +61,7 @@ class CustomApiMethod
      * Sends the request, returns the response.
      *
      * @param \RetailCrm\Api\Interfaces\RequestSenderInterface $sender
-     * @param array<int|string, mixed>                         $data
+     * @param array<int|string, mixed>|object                  $data
      *
      * @return array<int|string, mixed>
      * @throws \RetailCrm\Api\Exception\ApiException
@@ -69,8 +69,12 @@ class CustomApiMethod
      * @throws \RetailCrm\Api\Exception\Client\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function __invoke(RequestSenderInterface $sender, array $data = []): array
+    public function __invoke(RequestSenderInterface $sender, $data = []): array
     {
+        if (!is_array($data)) {
+            throw new HandlerException(__CLASS__ . ' only supports array data');
+        }
+
         return $sender->send($this->method, $this->rawRouteUri ? $this->route : $sender->route($this->route), $data);
     }
 }

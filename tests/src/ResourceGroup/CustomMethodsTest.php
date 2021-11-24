@@ -14,6 +14,7 @@ use RetailCrm\Api\Component\CustomApiMethod;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Exception\Client\HandlerException;
 use RetailCrm\Api\Interfaces\RequestSenderInterface;
+use RetailCrm\TestUtils\APIVersionsResponse;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
 use RetailCrm\TestUtils\PockBuilder;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
@@ -57,6 +58,46 @@ EOF;
         $apiVersions = $client->customMethods->call('apiVersions');
 
         self::assertEquals(["3.0", "4.0", "5.0"], $apiVersions);
+    }
+
+    public function testCallDtos(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "versions": [
+    "3.0",
+    "4.0",
+    "5.0"
+  ]
+}
+EOF;
+
+        $mock = static::createUnversionedApiMockBuilder('api-versions');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $client->customMethods->register(
+            'apiVersions',
+            static function (RequestSenderInterface $sender, $data, array $context) {
+                $response = $sender->send(
+                    RequestMethod::GET,
+                    sprintf('https://%s/api/api-versions', $sender->host())
+                );
+
+                return new APIVersionsResponse(
+                    $response['success'] ?? false,
+                    $response['versions'] ?? []
+                );
+            }
+        );
+
+        /** @var \RetailCrm\TestUtils\APIVersionsResponse $apiVersions */
+        $apiVersions = $client->customMethods->call('apiVersions');
+
+        self::assertEquals(["3.0", "4.0", "5.0"], $apiVersions->versions);
     }
 
     public function testCallContext(): void
