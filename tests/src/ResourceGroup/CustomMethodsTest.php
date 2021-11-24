@@ -10,6 +10,7 @@
 namespace RetailCrm\Tests\ResourceGroup;
 
 use Psr\Http\Client\ClientInterface;
+use RetailCrm\Api\Component\CustomApiMethod;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Exception\Client\HandlerException;
 use RetailCrm\Api\Interfaces\RequestSenderInterface;
@@ -103,6 +104,14 @@ EOF;
         $this->expectException(HandlerException::class);
         $client = TestClientFactory::createClient(static::noSendingMock());
         $client->customMethods->nonexistent();
+    }
+
+    public function testCallMagicInvalidParams(): void
+    {
+        $this->expectException(HandlerException::class);
+        $client = TestClientFactory::createClient(static::noSendingMock());
+        $client->customMethods->register('failure', new CustomApiMethod(RequestMethod::GET, 'failure'));
+        $client->customMethods->call('failure');
     }
 
     private static function noSendingMock(): ClientInterface
