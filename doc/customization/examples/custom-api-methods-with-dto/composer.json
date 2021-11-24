@@ -1,0 +1,16 @@
+{
+    "name": "retailcrm/custom-api-methods-with-dto-example",
+    "description": "This project demonstrates DTO usage with the custom methods.",
+    "type": "project",
+    "require": {
+        "retailcrm/api-client-php": "^6",
+        "symfony/serializer": "^5.3",
+        "symfony/property-access": "^5.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "RetailCrm\\Examples\\CustomMethodsDto\\": "src/"
+        }
+    }
+}

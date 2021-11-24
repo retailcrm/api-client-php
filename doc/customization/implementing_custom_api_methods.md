@@ -95,3 +95,11 @@ $client->customMethods->dialogs(['param' => 'value'], ['contextParam' => 'contex
 
 The last notable difference from the regular methods lies inside events. You won't be able to get request or response models
 from the events, but you can extract the response array using the `getResponseArray()` method.
+
+## Using DTOs with the custom methods
+
+You can use DTOs with the custom methods. To do that you just need to serialize the request models inside the method callback
+before sending the request and deserialize the response before returning it. We already made a great example project that
+demonstrates the DTO usage alongside custom methods.
+
+[**DTOs with the custom methods - sample project**](examples/custom-api-methods-with-dto)
