@@ -26,13 +26,13 @@ use RetailCrm\Api\Interfaces\RequestSenderInterface;
 class CustomApiMethod
 {
     /** @var string */
-    private $method;
+    protected $method;
 
     /** @var string */
-    private $route;
+    protected $route;
 
     /** @var bool */
-    private $rawRouteUri;
+    protected $rawRouteUri;
 
     /**
      * Instantiates new instance of the CustomApiMethod.
