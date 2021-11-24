@@ -187,19 +187,31 @@ class CustomMethods extends AbstractApiResourceGroup
      */
     public function __call(string $name, array $arguments): array
     {
-        if (0 === count($arguments)) {
-            return $this->call($name);
+        $data = [];
+        $context = [];
+
+        if (count($arguments) > 0) {
+            if (!is_array($arguments[0])) {
+                throw new HandlerException(sprintf(
+                    '$data must be of type array, %s given',
+                    gettype($arguments[0])
+                ));
+            }
+
+            $data = $arguments[0];
         }
 
-        $data = reset($arguments);
+        if (count($arguments) > 1) {
+            if (!is_array($arguments[1])) {
+                throw new HandlerException(sprintf(
+                    '$context must be of type array, %s given',
+                    gettype($arguments[1])
+                ));
+            }
 
-        if (!is_array($data)) {
-            throw new HandlerException(sprintf(
-                'First argument must be of type array, %s given',
-                gettype($data)
-            ));
+            $context = $arguments[1];
         }
 
-        return $this->call($name, $arguments[0], array_slice($arguments, 1));
+        return $this->call($name, $data, $context);
     }
 }

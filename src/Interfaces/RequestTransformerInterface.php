@@ -46,9 +46,9 @@ interface RequestTransformerInterface
      *  - Transform request model into PSR-7 request.
      *  - Throw `HandlerException` instance if necessary.
      *
-     * @param string $method
-     * @param string $uri
-     * @param mixed  $requestJsonModel
+     * @param string                   $method
+     * @param string                   $uri
+     * @param array<int|string, mixed> $requestForm
      *
      * @return \Psr\Http\Message\RequestInterface
      * @throws \RetailCrm\Api\Exception\Client\HandlerException
@@ -56,7 +56,7 @@ interface RequestTransformerInterface
     public function createCustomPsrRequest(
         string $method,
         string $uri,
-        $requestJsonModel = null
+        array $requestForm = []
     ): PsrRequestInterface;
 
     /**

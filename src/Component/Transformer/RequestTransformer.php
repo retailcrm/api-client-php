@@ -67,17 +67,17 @@ class RequestTransformer implements RequestTransformerInterface
      *
      * You can alter the results by providing your chain of handlers.
      *
-     * @param string $method
-     * @param string $uri
-     * @param mixed  $requestJsonModel
+     * @param string                   $method
+     * @param string                   $uri
+     * @param array<int|string, mixed> $requestForm
      *
      * @return \Psr\Http\Message\RequestInterface
      * @throws \RetailCrm\Api\Exception\Client\HandlerException
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
-    public function createCustomPsrRequest(string $method, string $uri, $requestJsonModel = null): PsrRequestInterface
+    public function createCustomPsrRequest(string $method, string $uri, array $requestForm = []): PsrRequestInterface
     {
-        $requestData = new RequestData($method, $uri, null, $requestJsonModel);
+        $requestData = new RequestData($method, $uri, null, $requestForm);
         $this->handler->handle($requestData);
 
         return $this->returnRequest($requestData);

@@ -27,9 +27,9 @@ interface RequestSenderInterface
      *
      * @see https://www.php-fig.org/psr/psr-18/#error-handling
      *
-     * @param string $method
-     * @param string $route
-     * @param mixed  $requestJsonModel
+     * @param string                   $method
+     * @param string                   $route
+     * @param array<int|string, mixed> $requestForm
      *
      * @return array<int|string, mixed>
      * @throws \RetailCrm\Api\Exception\ApiException
@@ -40,7 +40,7 @@ interface RequestSenderInterface
     public function send(
         string $method,
         string $route,
-        $requestJsonModel = null
+        array $requestForm = []
     ): array;
 
     /**

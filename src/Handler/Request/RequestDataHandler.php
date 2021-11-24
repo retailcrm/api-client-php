@@ -71,22 +71,12 @@ class RequestDataHandler extends AbstractHandler
                 }
             }
 
-            if (null !== $item->requestJsonModel) {
-                try {
-                    $formData = json_encode($item->requestJsonModel, JSON_THROW_ON_ERROR);
-                } catch (JsonException $exception) {
-                    static::throwEncodeException($exception);
-                }
+            if (!empty($item->requestForm)) {
+                $formData = http_build_query($item->requestForm);
             }
 
             if ('' !== $formData) {
-                if (
-                    in_array(
-                        strtoupper($item->request->getMethod()),
-                        [RequestMethod::GET, RequestMethod::DELETE],
-                        true
-                    )
-                ) {
+                if (static::queryShouldBeUsed($item->request->getMethod())) {
                     $item->request = $item->request->withUri(
                         $item->request->getUri()->withQuery($formData)
                     );
@@ -112,6 +102,22 @@ class RequestDataHandler extends AbstractHandler
             sprintf('Cannot encode request: %s', $throwable->getMessage()),
             $throwable->getCode(),
             $throwable
+        );
+    }
+
+    /**
+     * Returns true if query params should be used instead of JSON.
+     *
+     * @param string $method
+     *
+     * @return bool
+     */
+    private static function queryShouldBeUsed(string $method): bool
+    {
+        return in_array(
+            strtoupper($method),
+            [RequestMethod::GET, RequestMethod::DELETE],
+            true
         );
     }
 }

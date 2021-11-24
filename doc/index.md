@@ -28,3 +28,4 @@
         + [Implementing a handler](customization/pipelines/implementing_a_handler.md)
   + [Implementing custom API methods](customization/implementing_custom_api_methods.md)
 * [Troubleshooting](troubleshooting.md)
+* [PHPDoc](https://retailcrm.github.io/api-client-php/)
