@@ -33,8 +33,14 @@ class ResponseData
     /** @var string */
     public $type;
 
+    /** @var bool */
+    public $custom;
+
     /** @var \RetailCrm\Api\Interfaces\ResponseInterface */
     public $responseModel;
+
+    /** @var array<int|string, mixed> */
+    public $responseArray;
 
     /**
      * ResponseData constructor.
@@ -43,12 +49,21 @@ class ResponseData
      * @param \Psr\Http\Message\RequestInterface  $request
      * @param \Psr\Http\Message\ResponseInterface $response
      * @param string                              $type
+     * @param bool                                $custom
+     *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
-    public function __construct(string $baseUrl, RequestInterface $request, ResponseInterface $response, string $type)
-    {
-        $this->baseUrl  = $baseUrl;
-        $this->request  = $request;
+    public function __construct(
+        string $baseUrl,
+        RequestInterface $request,
+        ResponseInterface $response,
+        string $type,
+        bool $custom = false
+    ) {
+        $this->baseUrl = $baseUrl;
+        $this->request = $request;
         $this->response = $response;
-        $this->type     = $type;
+        $this->type = $type;
+        $this->custom = $custom;
     }
 }

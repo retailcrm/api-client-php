@@ -49,7 +49,7 @@ class RequestTransformer implements RequestTransformerInterface
      * @param \RetailCrm\Api\Interfaces\RequestInterface|null $request
      *
      * @return \Psr\Http\Message\RequestInterface
-     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException|\RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
     public function createPsrRequest(
         string $method,
@@ -59,11 +59,28 @@ class RequestTransformer implements RequestTransformerInterface
         $requestData = new RequestData($method, $uri, $request);
         $this->handler->handle($requestData);
 
-        if (null === $requestData->request) {
-            throw new HandlerException('Handlers should instantiate request in the ResponseData.');
-        }
+        return $this->returnRequest($requestData);
+    }
 
-        return $requestData->request;
+    /**
+     * Transforms provided request data into PSR-7 request model.
+     *
+     * You can alter the results by providing your chain of handlers.
+     *
+     * @param string                   $method
+     * @param string                   $uri
+     * @param array<int|string, mixed> $requestForm
+     *
+     * @return \Psr\Http\Message\RequestInterface
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function createCustomPsrRequest(string $method, string $uri, array $requestForm = []): PsrRequestInterface
+    {
+        $requestData = new RequestData($method, $uri, null, $requestForm);
+        $this->handler->handle($requestData);
+
+        return $this->returnRequest($requestData);
     }
 
     /**
@@ -72,5 +89,20 @@ class RequestTransformer implements RequestTransformerInterface
     public function getHandler(): ?HandlerInterface
     {
         return $this->handler;
+    }
+
+    /**
+     * @param \RetailCrm\Api\Model\RequestData $requestData
+     *
+     * @return \Psr\Http\Message\RequestInterface
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     */
+    private function returnRequest(RequestData $requestData): PsrRequestInterface
+    {
+        if (null === $requestData->request) {
+            throw new HandlerException('Handlers should instantiate request in the ResponseData.');
+        }
+
+        return $requestData->request;
     }
 }

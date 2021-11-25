@@ -11,6 +11,7 @@ namespace RetailCrm\Api\Builder;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\PsrCachedReader;
+use Liip\Serializer\SerializerInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use RetailCrm\Api\Component\FormData\FormEncoder;
 use RetailCrm\Api\Factory\SerializerFactory;
@@ -35,6 +36,9 @@ class FormEncoderBuilder implements BuilderInterface
 
     /** @var \RetailCrm\Api\Builder\FilesystemCacheBuilder */
     private $fsCacheBuilder;
+
+    /** @var \Liip\Serializer\SerializerInterface */
+    private $serializer;
 
     /**
      * FormEncoderBuilder constructor.
@@ -77,6 +81,21 @@ class FormEncoderBuilder implements BuilderInterface
     }
 
     /**
+     * Sets serializer implementation.
+     *
+     * This serializer implementation will be used by FormEncoder component.
+     *
+     * @param \Liip\Serializer\SerializerInterface $serializer
+     *
+     * @return FormEncoderBuilder
+     */
+    public function setSerializer(SerializerInterface $serializer): FormEncoderBuilder
+    {
+        $this->serializer = $serializer;
+        return $this;
+    }
+
+    /**
      * Builds FormEncoder.
      *
      * **Note:** Cache won't be set into provided serializer instance. It only works for instance built by
@@ -88,10 +107,9 @@ class FormEncoderBuilder implements BuilderInterface
     {
         $this->buildCache();
         $this->buildAnnotationReader();
+        $this->buildSerializer();
 
-        $serializer = SerializerFactory::create();
-
-        return new FormEncoder($serializer, $this->annotationReader);
+        return new FormEncoder($this->serializer, $this->annotationReader);
     }
 
     /**
@@ -115,6 +133,16 @@ class FormEncoderBuilder implements BuilderInterface
 
         if (null !== $this->cache) {
             $this->annotationReader = new PsrCachedReader(new AnnotationReader(), $this->cache);
+        }
+    }
+
+    /**
+     * Builds serializer.
+     */
+    private function buildSerializer(): void
+    {
+        if (null === $this->serializer) {
+            $this->serializer = SerializerFactory::create();
         }
     }
 }

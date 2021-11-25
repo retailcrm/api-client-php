@@ -35,10 +35,16 @@ class FailureRequestEvent extends AbstractRequestEvent
      * @param \Psr\Http\Message\RequestInterface       $request
      * @param \Psr\Http\Message\ResponseInterface|null $response
      * @param ApiException|ClientException             $exception
+     * @param array<int|string, mixed>                 $responseArray
      */
-    public function __construct(string $baseUrl, RequestInterface $request, ?ResponseInterface $response, $exception)
-    {
-        parent::__construct($baseUrl, $request, $response);
+    public function __construct(
+        string $baseUrl,
+        RequestInterface $request,
+        ?ResponseInterface $response,
+        $exception,
+        array $responseArray = []
+    ) {
+        parent::__construct($baseUrl, $request, $response, $responseArray);
 
         $this->exception = $exception;
     }

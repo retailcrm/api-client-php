@@ -35,19 +35,28 @@ abstract class AbstractRequestEvent
     /** @var \Psr\Http\Message\ResponseInterface|null */
     private $response;
 
+    /** @var array<int|string, mixed> */
+    private $responseArray;
+
     /**
      * AbstractRequestEvent constructor.
      *
      * @param string                                   $baseUrl
      * @param \Psr\Http\Message\RequestInterface       $request
      * @param \Psr\Http\Message\ResponseInterface|null $response
+     * @param array<int|string, mixed>                 $responseArray
      */
-    public function __construct(string $baseUrl, RequestInterface $request, ?ResponseInterface $response)
-    {
+    public function __construct(
+        string $baseUrl,
+        RequestInterface $request,
+        ?ResponseInterface $response,
+        array $responseArray = []
+    ) {
         $this->requestScheme = (string) parse_url($baseUrl, PHP_URL_SCHEME);
         $this->crmDomain = (string) parse_url($baseUrl, PHP_URL_HOST);
         $this->request = $request;
         $this->response = $response;
+        $this->responseArray = $responseArray;
     }
 
     /**
@@ -68,6 +77,16 @@ abstract class AbstractRequestEvent
     public function getResponse(): ?ResponseInterface
     {
         return $this->response;
+    }
+
+    /**
+     * Returns a response array. It will be present only if custom request was used.
+     *
+     * @return array<int|string, mixed>
+     */
+    public function getResponseArray(): array
+    {
+        return $this->responseArray;
     }
 
     /**

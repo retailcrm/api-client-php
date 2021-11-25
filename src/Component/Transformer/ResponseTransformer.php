@@ -59,10 +59,34 @@ class ResponseTransformer implements ResponseTransformerInterface
         ResponseInterface $response,
         string $type
     ): RetailCrmResponse {
-        $responseData = new ResponseData($baseUrl, $request, $response, $type);
+        $responseData = new ResponseData($baseUrl, $request, $response, $type, false);
         $this->handler->handle($responseData);
 
         return $responseData->responseModel;
+    }
+
+    /**
+     * Transforms PSR-7 response into response array.
+     *
+     * You can alter the results by providing your chain of handlers.
+     *
+     * @param string                              $baseUrl
+     * @param \Psr\Http\Message\RequestInterface  $request
+     * @param \Psr\Http\Message\ResponseInterface $response
+     *
+     * @return array<int|string, mixed>
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function createCustomResponse(
+        string $baseUrl,
+        RequestInterface $request,
+        ResponseInterface $response
+    ): array {
+        $responseData = new ResponseData($baseUrl, $request, $response, '', true);
+        $this->handler->handle($responseData);
+
+        return $responseData->responseArray;
     }
 
     /**

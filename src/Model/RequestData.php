@@ -28,6 +28,9 @@ class RequestData
     /** @var \RetailCrm\Api\Interfaces\RequestInterface|null */
     public $requestModel;
 
+    /** @var array<int|string, mixed> */
+    public $requestForm;
+
     /** @var ?\Psr\Http\Message\RequestInterface */
     public $request;
 
@@ -37,11 +40,13 @@ class RequestData
      * @param string                                          $method
      * @param string                                          $uri
      * @param \RetailCrm\Api\Interfaces\RequestInterface|null $requestModel
+     * @param array<int|string, mixed>                        $requestForm
      */
-    public function __construct(string $method, string $uri, ?RequestModel $requestModel)
+    public function __construct(string $method, string $uri, ?RequestModel $requestModel, array $requestForm = [])
     {
-        $this->method       = $method;
-        $this->uri          = $uri;
+        $this->method = $method;
+        $this->uri = $uri;
         $this->requestModel = $requestModel;
+        $this->requestForm = $requestForm;
     }
 }

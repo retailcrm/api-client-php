@@ -21,6 +21,7 @@ use RetailCrm\Api\ResourceGroup\Costs;
 use RetailCrm\Api\ResourceGroup\Customers;
 use RetailCrm\Api\ResourceGroup\CustomersCorporate;
 use RetailCrm\Api\ResourceGroup\CustomFields;
+use RetailCrm\Api\ResourceGroup\CustomMethods;
 use RetailCrm\Api\ResourceGroup\Delivery;
 use RetailCrm\Api\ResourceGroup\Files;
 use RetailCrm\Api\ResourceGroup\Integration;
@@ -116,6 +117,9 @@ class Client
 
     /** @var \RetailCrm\Api\ResourceGroup\Statistics */
     public $statistics;
+
+    /** @var \RetailCrm\Api\ResourceGroup\CustomMethods */
+    public $customMethods;
 
     /** @var StreamFactoryInterface */
     private $streamFactory;
@@ -308,6 +312,14 @@ class Client
             $logger
         );
         $this->statistics = new Statistics(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->customMethods = new CustomMethods(
             $url,
             $httpClient,
             $requestTransformer,

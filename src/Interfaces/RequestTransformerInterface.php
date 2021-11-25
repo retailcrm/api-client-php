@@ -40,6 +40,26 @@ interface RequestTransformerInterface
     ): PsrRequestInterface;
 
     /**
+     * Transforms provided custom request data into PSR-7 request model.
+     *
+     * This method should perform the following operations:
+     *  - Transform request model into PSR-7 request.
+     *  - Throw `HandlerException` instance if necessary.
+     *
+     * @param string                   $method
+     * @param string                   $uri
+     * @param array<int|string, mixed> $requestForm
+     *
+     * @return \Psr\Http\Message\RequestInterface
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     */
+    public function createCustomPsrRequest(
+        string $method,
+        string $uri,
+        array $requestForm = []
+    ): PsrRequestInterface;
+
+    /**
      * Returns HandlerInterface.
      *
      * This method can return `null`. `ClientBuilder` won't inject authenticator or additional handlers

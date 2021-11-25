@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Handler\Request;
 
+use JsonException;
 use Psr\Http\Message\StreamFactoryInterface;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Exception\Client\HandlerException;
@@ -59,28 +60,64 @@ class RequestDataHandler extends AbstractHandler
      */
     public function handle($item)
     {
-        if ($item instanceof RequestData && null !== $item->requestModel && null !== $item->request) {
-            try {
-                $formData = $this->formEncoder->encode($item->requestModel);
-            } catch (Throwable $throwable) {
-                throw new HandlerException(
-                    sprintf('Cannot encode request: %s', $throwable->getMessage()),
-                    $throwable->getCode(),
-                    $throwable
-                );
+        if ($item instanceof RequestData && null !== $item->request) {
+            $formData = '';
+
+            if (null !== $item->requestModel) {
+                try {
+                    $formData = $this->formEncoder->encode($item->requestModel);
+                } catch (Throwable $throwable) {
+                    static::throwEncodeException($throwable);
+                }
             }
 
-            if (in_array(strtoupper($item->request->getMethod()), [RequestMethod::GET, RequestMethod::DELETE], true)) {
-                $item->request = $item->request->withUri(
-                    $item->request->getUri()->withQuery($formData)
-                );
-            } else {
-                $item->request = $item->request->withBody(
-                    $this->streamFactory->createStream($formData)
-                );
+            if (!empty($item->requestForm)) {
+                $formData = http_build_query($item->requestForm);
+            }
+
+            if ('' !== $formData) {
+                if (static::queryShouldBeUsed($item->request->getMethod())) {
+                    $item->request = $item->request->withUri(
+                        $item->request->getUri()->withQuery($formData)
+                    );
+                } else {
+                    $item->request = $item->request->withBody(
+                        $this->streamFactory->createStream($formData)
+                    );
+                }
             }
         }
 
         return parent::handle($item);
+    }
+
+    /**
+     * @param \Throwable $throwable
+     *
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     */
+    private static function throwEncodeException(Throwable $throwable): void
+    {
+        throw new HandlerException(
+            sprintf('Cannot encode request: %s', $throwable->getMessage()),
+            $throwable->getCode(),
+            $throwable
+        );
+    }
+
+    /**
+     * Returns true if query params should be used instead of JSON.
+     *
+     * @param string $method
+     *
+     * @return bool
+     */
+    private static function queryShouldBeUsed(string $method): bool
+    {
+        return in_array(
+            strtoupper($method),
+            [RequestMethod::GET, RequestMethod::DELETE],
+            true
+        );
     }
 }

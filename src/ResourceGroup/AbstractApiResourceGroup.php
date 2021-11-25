@@ -13,6 +13,8 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Client\NetworkExceptionInterface;
+use Psr\Http\Message\RequestInterface as PsrRequestInterface;
+use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RetailCrm\Api\Component\Utils;
@@ -23,8 +25,8 @@ use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\Interfaces\ResponseInterface;
 use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
-use RetailCrm\Api\Model\Response\SuccessResponse;
 use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
+use RetailCrm\Api\Traits\BaseUrlAwareTrait;
 
 /**
  * Class AbstractApiResourceGroup
@@ -33,15 +35,14 @@ use RetailCrm\Api\Traits\EventDispatcherAwareTrait;
  * @package  RetailCrm\Api\Modules
  * @internal
  *
+ * @SuppressWarnings(PHPMD.ElseExpression)
  * @SuppressWarnings(PHPMD.NumberOfChildren)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 abstract class AbstractApiResourceGroup implements EventDispatcherAwareInterface
 {
     use EventDispatcherAwareTrait;
-
-    /** @var string */
-    protected $baseUrl;
+    use BaseUrlAwareTrait;
 
     /** @var ClientInterface */
     protected $httpClient;
@@ -73,12 +74,12 @@ abstract class AbstractApiResourceGroup implements EventDispatcherAwareInterface
         ?EventDispatcherInterface $eventDispatcher = null,
         ?LoggerInterface $logger = null
     ) {
-        $this->baseUrl             = $baseUrl;
-        $this->httpClient          = $httpClient;
-        $this->requestTransformer  = $requestTransformer;
+        $this->baseUrl = $baseUrl;
+        $this->httpClient = $httpClient;
+        $this->requestTransformer = $requestTransformer;
         $this->responseTransformer = $responseTransformer;
-        $this->eventDispatcher     = $eventDispatcher;
-        $this->logger              = $logger;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->logger = $logger;
     }
 
     /**
@@ -97,15 +98,10 @@ abstract class AbstractApiResourceGroup implements EventDispatcherAwareInterface
      * @param string                                          $type
      *
      * @return \RetailCrm\Api\Interfaces\ResponseInterface
-     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
-     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
-     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
-     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
-     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
-     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
-     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\ClientException
      * @throws \RetailCrm\Api\Exception\Client\HandlerException
-     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
     protected function sendRequest(
         string $method,
@@ -113,13 +109,37 @@ abstract class AbstractApiResourceGroup implements EventDispatcherAwareInterface
         ?RequestInterface $request,
         string $type
     ): ResponseInterface {
-        $method     = strtoupper($method);
+        $method = strtoupper($method);
         $psrRequest = $this->requestTransformer->createPsrRequest(
             $method,
             $this->route($route),
             $request
         );
 
+        $this->logPsr7Request($psrRequest);
+
+        try {
+            $psrResponse = $this->httpClient->sendRequest($psrRequest);
+        } catch (ClientExceptionInterface | NetworkExceptionInterface $exception) {
+            $this->processPsr18Exception($psrRequest, $exception);
+        }
+
+        if (isset($psrResponse)) {
+            $this->logPsr7Response($psrResponse);
+        } else {
+            return new $type();
+        }
+
+        return $this->responseTransformer->createResponse($this->baseUrl, $psrRequest, $psrResponse, $type);
+    }
+
+    /**
+     * Logs PSR-7 request data if possible.
+     *
+     * @param \Psr\Http\Message\RequestInterface $psrRequest
+     */
+    protected function logPsr7Request(PsrRequestInterface $psrRequest): void
+    {
         if ($this->logger instanceof LoggerInterface && !($this->logger instanceof NullLogger)) {
             $this->logger->debug(sprintf(
                 '[RetailCRM API Request]: %s URL: "%s", Headers: "%s", Body: "%s"',
@@ -129,32 +149,18 @@ abstract class AbstractApiResourceGroup implements EventDispatcherAwareInterface
                 Utils::getBodyContents($psrRequest->getBody())
             ));
         }
+    }
 
-        try {
-            $psrResponse = $this->httpClient->sendRequest($psrRequest);
-        } catch (ClientExceptionInterface | NetworkExceptionInterface $exception) {
-            $event = new FailureRequestEvent(
-                $this->baseUrl,
-                $psrRequest,
-                null,
-                new HttpClientException(
-                    sprintf('HTTP client error: %s', $exception->getMessage()),
-                    $exception->getCode(),
-                    $exception
-                )
-            );
-
-            $this->dispatch($event);
-
-            if (!$event->shouldSuppressThrow()) {
-                throw $event->getException();
-            }
-        }
-
+    /**
+     * Logs PSR-7 response data if possible.
+     *
+     * @param \Psr\Http\Message\ResponseInterface $psrResponse
+     */
+    protected function logPsr7Response(PsrResponseInterface $psrResponse): void
+    {
         if (
             $this->logger instanceof LoggerInterface &&
-            !($this->logger instanceof NullLogger) &&
-            isset($psrResponse)
+            !($this->logger instanceof NullLogger)
         ) {
             $this->logger->debug(sprintf(
                 '[RetailCRM API Response]: Status: "%d", Body: "%s"',
@@ -162,23 +168,34 @@ abstract class AbstractApiResourceGroup implements EventDispatcherAwareInterface
                 Utils::getBodyContents($psrResponse->getBody())
             ));
         }
-
-        if (!isset($psrResponse)) {
-            return new $type();
-        }
-
-        return $this->responseTransformer->createResponse($this->baseUrl, $psrRequest, $psrResponse, $type);
     }
 
     /**
-     * Returns route with base URI.
+     * Processes PSR-18 client exception.
      *
-     * @param string $route
+     * @param \Psr\Http\Message\RequestInterface                 $psrRequest
+     * @param ClientExceptionInterface|NetworkExceptionInterface $exception
      *
-     * @return string
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\ClientException
      */
-    protected function route(string $route): string
+    protected function processPsr18Exception(PsrRequestInterface $psrRequest, $exception): void
     {
-        return sprintf('%s/%s', $this->baseUrl, $route);
+        $event = new FailureRequestEvent(
+            $this->baseUrl,
+            $psrRequest,
+            null,
+            new HttpClientException(
+                sprintf('HTTP client error: %s', $exception->getMessage()),
+                $exception->getCode(),
+                $exception
+            )
+        );
+
+        $this->dispatch($event);
+
+        if (!$event->shouldSuppressThrow()) {
+            throw $event->getException();
+        }
     }
 }

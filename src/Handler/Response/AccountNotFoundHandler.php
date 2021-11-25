@@ -37,6 +37,7 @@ class AccountNotFoundHandler extends AbstractResponseHandler
         ) {
             $errorResponse = new ErrorResponse();
             $errorResponse->errorMsg = 'Account does not exist.';
+            $errorResponse->errors = [];
 
             $event = new FailureRequestEvent(
                 $responseData->baseUrl,

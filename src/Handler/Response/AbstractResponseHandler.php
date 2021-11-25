@@ -9,6 +9,7 @@
 
 namespace RetailCrm\Api\Handler\Response;
 
+use JsonException;
 use Liip\Serializer\SerializerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -96,8 +97,27 @@ abstract class AbstractResponseHandler extends AbstractHandler implements
         try {
             return $this->serializer->deserialize(Utils::getBodyContents($response->getBody()), $type, 'json');
         } catch (Throwable $throwable) {
-            throw new HandlerException('Cannot deserialize body: ' . $throwable->getMessage(), 0, $throwable);
+            static::throwUnmarshalError($throwable);
         }
+
+        return new $type();
+    }
+
+    /**
+     * @param \Psr\Http\Message\ResponseInterface $response
+     *
+     * @return array<int|string, mixed>
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     */
+    protected function unmarshalBodyArray(ResponseInterface $response): array
+    {
+        try {
+            return json_decode(Utils::getBodyContents($response->getBody()), true, 512, JSON_THROW_ON_ERROR);
+        } catch (JsonException $exception) {
+            static::throwUnmarshalError($exception);
+        }
+
+        return [];
     }
 
     /**
@@ -111,4 +131,18 @@ abstract class AbstractResponseHandler extends AbstractHandler implements
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
      */
     abstract protected function handleResponse(ResponseData $responseData);
+
+    /**
+     * @param \Throwable $throwable
+     *
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     */
+    private static function throwUnmarshalError(Throwable $throwable): void
+    {
+        throw new HandlerException(
+            'Cannot deserialize body: ' . $throwable->getMessage(),
+            0,
+            $throwable
+        );
+    }
 }
