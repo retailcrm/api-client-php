@@ -46,23 +46,20 @@ Allow these packages to compile? ([y]es, [a]lways, [n]o, [l]ist, [h]elp)
 ```
 That's because the Client uses code generation to speed up serialization and deserialization of models in production. This code should be generated during installation or update. Without that code, the library itself will not work at all.
 
-Just type `y` here and press Enter. The DTO cache will be generated after that.
+Choose `[a]lways` by typing `a` and pressing Enter if you don't want to see this message anymore. If you want to approve the compilation task every time - use `[y]es` option. The DTO cache will be generated after that.
+
+**Note:** You should choose `[a]lways` if your application is using CI/CD pipeline because the interactive terminal is not available
+in that environment which will result in failure during the dependencies installation.
 
 If you skipped the compilation task - don't worry, it can be executed manually at any time with this command:
 ```sh
 composer compile --all
 ```
 
-3. **Optional.** Disable compilation prompt that you have seen in the previous step. Run this command to do that:
+3. **Optional.** Disable compilation prompt that you have seen in the previous step.
 
-```sh
-./vendor/bin/retailcrm-client compiler:prompt
-```
-
-Replace `vendor/bin` with your bin directory path if it's different from the default. You can find more information about this step in the [documentation](doc/compilation_prompt.md).
-
-**Note:** You should not skip this step if your application is using CI/CD pipeline because the interactive terminal is not available
-in that environment which will result in failure during the dependencies installation.
+If you wish to disable the compilation prompt but didn't do that at the previous step - you can disable the prompt manually.
+Read the [documentation](doc/compilation_prompt.md) to learn how to do that.
 
 4. Include the autoloader if it's not included, or you didn't use Composer before.
 ```php

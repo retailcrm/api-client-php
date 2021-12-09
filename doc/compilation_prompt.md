@@ -12,14 +12,22 @@ That's because the API client utilizes code generation to speed up the serializa
 this prompt may be annoying and sometimes can even break the application lifecycle pipeline (in the CI/CD environment). We can't just
 disable it for everyone [because of security concerns](https://github.com/composer/composer/issues/1193). But you can disable it for your project.
 
-There are two ways of disabling this prompt:
-1. Automated way.
-2. Manual way.
+There are three ways of disabling this prompt:
+1. During the installation.
+2. Automated way.
+3. Manual way.
+
+### Disable compilation prompt during the installation
+
+Just choose `[a]lways` option by pressing `a` followed by Enter. This will automatically edit your `composer.json` and will disable 
+the compilation prompt for you. No additional steps are needed.
 
 ### Disable or enable compilation prompt via CLI
 
-For the automated way, you can use `retailcrm-client` CLI utility. It will be in your binary directory. By default, it'll be in the
+Alternatively, you can use `retailcrm-client` CLI utility. It will be in your binary directory. By default, it'll be in the
 `vendor/bin` directory if not defined otherwise in the composer.json `config.bin-dir` entry.
+
+The only benefit of this utility is the fact that it also can enable the prompt again.
 
 #### Disabling compilation prompt
 
