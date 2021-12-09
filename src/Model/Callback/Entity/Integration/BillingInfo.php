@@ -9,13 +9,14 @@
 
 namespace RetailCrm\Api\Model\Callback\Entity\Integration;
 
+use RetailCrm\Api\Model\Entity\Integration\BillingInfo as BaseBillingInfo;
+
 /**
  * Class BillingInfo
  *
  * @category IntegrationModule
  * @package  RetailCrm\Api\Model\Callback\Entity\Integration
  */
-class BillingInfo extends \RetailCrm\Api\Model\Entity\Integration\BillingInfo
+class BillingInfo extends BaseBillingInfo
 {
-
 }
