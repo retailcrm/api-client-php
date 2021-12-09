@@ -22,6 +22,14 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 class DeliveryType
 {
     /**
+     * @var int
+     *
+     * @JMS\Type("int")
+     * @JMS\SerializedName("id")
+     */
+    public $id;
+
+    /**
      * @var bool
      *
      * @JMS\Type("bool")

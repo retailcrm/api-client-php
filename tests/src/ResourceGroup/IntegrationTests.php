@@ -11,6 +11,8 @@ namespace RetailCrm\Tests\ResourceGroup;
 
 use RetailCrm\Api\Enum\Currency;
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Model\Entity\Integration\Delivery\DeliveryConfiguration;
+use RetailCrm\Api\Model\Entity\Integration\Delivery\Plate;
 use RetailCrm\Api\Model\Entity\Integration\IntegrationModule;
 use RetailCrm\Api\Model\Entity\Integration\Integrations;
 use RetailCrm\Api\Model\Entity\Integration\Payment\Actions;
@@ -153,5 +155,103 @@ EOF;
         $response = $client->integration->edit('test-payment-integration', $request);
 
         self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testDeliveryEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "info": {
+    "billingInfo": {
+      "price": 0,
+      "currency": {
+        "name": "Рубль",
+        "shortName": "руб.",
+        "code": "RUB"
+      },
+      "billingType": "fixed"
+    },
+    "deliveryType": {
+      "id": 1,
+      "code": "ozon-integration-10"
+    }
+  }
+}
+EOF;
+
+        $module = new IntegrationModule();
+        $module->clientId = '34fa3509-92f3-4faf-87d5-2efbd88cb4cb';
+        $module->name = 'Ozon seller';
+        $module->code = 'ozon-integration-10';
+        $module->integrationCode = 'ozon-integration';
+        $module->logo = 'https://localhost/images/logo.svg';
+        $module->accountUrl = 'https://localhost/login';
+        $module->baseUrl = 'https://localhost';
+        $module->active = true;
+        $module->actions = [
+            'activity' => '/api/callback/v1/activity'
+        ];
+        $module->availableCountries = ['RU'];
+
+        $deliveryConfiguration = new DeliveryConfiguration();
+        $deliveryConfiguration->actions = [
+            'get' => '/api/callback/v1/get',
+            'print' => '/api/callback/v1/print'
+        ];
+        $deliveryConfiguration->payerType = ['receiver'];
+        $deliveryConfiguration->platePrintLimit = 20;
+        $deliveryConfiguration->rateDeliveryCost = true;
+        $deliveryConfiguration->allowPackages = false;
+        $deliveryConfiguration->codAvailable = false;
+        $deliveryConfiguration->plateList = $this->createPlateList();
+
+        $integrations = new Integrations();
+        $integrations->delivery = $deliveryConfiguration;
+        $module->integrations = $integrations;
+
+        $request = new IntegrationModulesEditRequest($module);
+
+        $mock = static::createApiMockBuilder('integration-modules/ozon-integration-10/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+        $response = $client->integration->edit('ozon-integration-10', $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    /**
+     * @return Plate[]
+     */
+    private function createPlateList(): array
+    {
+        $plateList = [];
+        $plates = [
+            [
+                'type' => 'order',
+                'code' => 'sticker',
+                'label' => 'Наклейка OZON',
+            ],
+            [
+                'type' => 'order',
+                'code' => 'act',
+                'label' => 'Акт OZON',
+            ],
+        ];
+
+        foreach ($plates as $plate) {
+            $plateModel = new Plate();
+            $plateModel->code = $plate['code'];
+            $plateModel->type = $plate['type'];
+            $plateModel->label = $plate['label'];
+
+            $plateList[] = $plateModel;
+        }
+
+        return $plateList;
     }
 }
