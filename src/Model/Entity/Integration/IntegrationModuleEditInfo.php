@@ -54,7 +54,7 @@ class IntegrationModuleEditInfo
     /**
      * @var \RetailCrm\Api\Model\Entity\References\DeliveryType
      *
-     * @JMS\Type("\RetailCrm\Api\Model\Entity\References\DeliveryType")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\References\DeliveryType")
      * @JMS\SerializedName("deliveryType")
      */
     public $deliveryType;
@@ -62,7 +62,7 @@ class IntegrationModuleEditInfo
     /**
      * @var \RetailCrm\Api\Model\Entity\Integration\BillingInfo
      *
-     * @JMS\Type("\RetailCrm\Api\Model\Entity\Integration\BillingInfo")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Integration\BillingInfo")
      * @JMS\SerializedName("billingInfo")
      */
     public $billingInfo;

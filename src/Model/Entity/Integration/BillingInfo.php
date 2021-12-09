@@ -15,7 +15,7 @@ class BillingInfo
     /**
      * @var \RetailCrm\Api\Model\Entity\Integration\Currency
      *
-     * @JMS\Type("\RetailCrm\Api\Model\Entity\Integration\Currency")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Integration\Currency")
      * @JMS\SerializedName("currency")
      */
     public $currency;
