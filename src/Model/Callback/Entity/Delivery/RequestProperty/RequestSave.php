@@ -68,14 +68,6 @@ class RequestSave
     public $store;
 
     /**
-     * @var \RetailCrm\Api\Model\Callback\Entity\Delivery\SerializedStoreWeekOpeningHours
-     *
-     * @JMS\Type("RetailCrm\Api\Model\Callback\Entity\Delivery\SerializedStoreWeekOpeningHours")
-     * @JMS\SerializedName("storeworkTime")
-     */
-    public $storeworkTime;
-
-    /**
      * @var string
      *
      * @JMS\Type("string")
