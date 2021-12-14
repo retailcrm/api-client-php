@@ -164,7 +164,8 @@ EOF;
   "success": true,
   "info": {
     "billingInfo": {
-      "price": 0,
+      "price": 2,
+      "priceWithDiscount": 1,
       "currency": {
         "name": "Рубль",
         "shortName": "руб.",
