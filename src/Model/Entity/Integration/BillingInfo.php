@@ -28,6 +28,14 @@ class BillingInfo
     public $price;
 
     /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("priceWithDiscount")
+     */
+    public $priceWithDiscount;
+
+    /**
      * @var \RetailCrm\Api\Model\Entity\Integration\Currency
      *
      * @JMS\Type("RetailCrm\Api\Model\Entity\Integration\Currency")
