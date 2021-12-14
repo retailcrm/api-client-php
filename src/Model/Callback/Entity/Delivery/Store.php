@@ -34,4 +34,12 @@ class Store
      * @JMS\SerializedName("name")
      */
     public $name;
+
+    /**
+     * @var \RetailCrm\Api\Model\Callback\Entity\Delivery\SerializedStoreWeekOpeningHours
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Callback\Entity\Delivery\SerializedStoreWeekOpeningHours")
+     * @JMS\SerializedName("workTime")
+     */
+    public $workTime;
 }
