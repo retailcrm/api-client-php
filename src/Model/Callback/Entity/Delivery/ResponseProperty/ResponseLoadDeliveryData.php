@@ -39,7 +39,7 @@ class ResponseLoadDeliveryData
     /**
      * @var DateTime
      *
-     * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      * @JMS\SerializedName("shipmentDate")
      */
     public $shipmentDate;
@@ -47,7 +47,7 @@ class ResponseLoadDeliveryData
     /**
      * @var DateTime
      *
-     * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      * @JMS\SerializedName("deliveryDate")
      */
     public $deliveryDate;
