@@ -85,7 +85,8 @@ final class BaseJMSParser
         throw new SyntaxError(sprintf(
             'Syntax error, unexpected "%s" (%s)',
             $this->lexer->token['value'],
-            $this->getConstant($this->lexer->token['type']) // @phpstan-ignore-line
+            // @phpstan-ignore-next-line
+            $this->getConstant($this->lexer->token['type'])
         ));
     }
 
