@@ -32,7 +32,7 @@ class LoyaltyAccountCreateResponse extends SuccessResponse
      * @var \RetailCrm\Api\Model\Entity\Loyalty\LoyaltyAccount
      *
      * @JMS\Type("RetailCrm\Api\Model\Entity\Loyalty\LoyaltyAccount")
-     * @JMS\SerializedName("loyalty_account")
+     * @JMS\SerializedName("loyaltyAccount")
      */
     public $loyaltyAccount;
 
