@@ -59,13 +59,14 @@ class LoyaltyTest extends AbstractApiResourceGroupTestCase
 {
   "success": true,
   "site": "bitrix-test",
-  "loyalty_account": {
+  "loyaltyAccount": {
     "phoneNumber": "88005553125",
     "cardNumber": "2222 3333 4444 5555",
     "customer": {
       "id": 4787
     }
-  }
+  },
+  "warnings": []
 }
 EOF;
 
