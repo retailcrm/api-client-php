@@ -17,7 +17,7 @@ parameters:
 
 		-
 			message: "#^Cannot access offset 'compile\\-mode' on mixed\\.$#"
-			count: 1
+			count: 2
 			path: src/Command/CompilerPromptCommand.php
 
 		-
@@ -92,6 +92,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<object\\>\\|object, class\\-string\\|false given\\.$#"
+			count: 1
+			path: src/Component/FormData/FormEncoder.php
+
+		-
+			message: "#^Parameter \\#2 \\$result of method RetailCrm\\\\Api\\\\Component\\\\FormData\\\\FormEncoder\\:\\:processPostSerialize\\(\\) expects array, array given\\.$#"
 			count: 1
 			path: src/Component/FormData/FormEncoder.php
 
@@ -246,12 +251,27 @@ parameters:
 			path: src/Component/Serializer/ModelsChecksumGenerator.php
 
 		-
+			message: "#^Parameter \\#1 \\$iterator of class RetailCrm\\\\Api\\\\Component\\\\FilesIteratorChecksumGenerator constructor expects Iterator\\<mixed, mixed\\>, RetailCrm\\\\Api\\\\Component\\\\PhpFilesIterator given\\.$#"
+			count: 1
+			path: src/Component/Serializer/ModelsChecksumGenerator.php
+
+		-
 			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ModelsChecksumGenerator\\:\\:getChecksumFileName\\(\\) through static\\:\\:\\.$#"
 			count: 4
 			path: src/Component/Serializer/ModelsChecksumGenerator.php
 
 		-
 			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\BaseJMSParser\\:\\:parse\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/BaseJMSParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\BaseJMSParser\\:\\:getConstant\\(\\) expects int, int\\<min, 0\\>\\|int\\<4, 8\\>\\|int\\<11, max\\>\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/BaseJMSParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\BaseJMSParser\\:\\:getConstant\\(\\) expects int, int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Component/Serializer/Parser/BaseJMSParser.php
 
@@ -346,6 +366,11 @@ parameters:
 			path: src/Exception/ApiException.php
 
 		-
+			message: "#^Parameter \\#3 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Exception/ClientException.php
+
+		-
 			message: "#^Property RetailCrm\\\\Api\\\\Model\\\\Response\\\\ErrorResponse\\:\\:\\$errorMsg \\(string\\) on left side of \\?\\? is not nullable\\.$#"
 			count: 2
 			path: src/Factory/ApiExceptionFactory.php
@@ -359,6 +384,11 @@ parameters:
 			message: "#^Unsafe access to private property RetailCrm\\\\Api\\\\Handler\\\\Request\\\\PsrRequestHandler\\:\\:\\$methodsWithBody through static\\:\\:\\.$#"
 			count: 1
 			path: src/Handler/Request/PsrRequestHandler.php
+
+		-
+			message: "#^Parameter \\#2 \\$code of class RetailCrm\\\\Api\\\\Exception\\\\Client\\\\HandlerException constructor expects int, mixed given\\.$#"
+			count: 1
+			path: src/Handler/Request/RequestDataHandler.php
 
 		-
 			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Handler\\\\Request\\\\RequestDataHandler\\:\\:queryShouldBeUsed\\(\\) through static\\:\\:\\.$#"
@@ -412,6 +442,11 @@ parameters:
 
 		-
 			message: "#^Method RetailCrm\\\\Api\\\\ResourceGroup\\\\AbstractApiResourceGroup\\:\\:sendRequest\\(\\) should return RetailCrm\\\\Api\\\\Interfaces\\\\ResponseInterface but returns object\\.$#"
+			count: 1
+			path: src/ResourceGroup/AbstractApiResourceGroup.php
+
+		-
+			message: "#^Parameter \\#2 \\$code of class RetailCrm\\\\Api\\\\Exception\\\\Client\\\\HttpClientException constructor expects int, mixed given\\.$#"
 			count: 1
 			path: src/ResourceGroup/AbstractApiResourceGroup.php
 
