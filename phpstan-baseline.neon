@@ -266,16 +266,6 @@ parameters:
 			path: src/Component/Serializer/Parser/BaseJMSParser.php
 
 		-
-			message: "#^Parameter \\#1 \\$value of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\BaseJMSParser\\:\\:getConstant\\(\\) expects int, int\\<min, 0\\>\\|int\\<4, 8\\>\\|int\\<11, max\\>\\|string\\|null given\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/BaseJMSParser.php
-
-		-
-			message: "#^Parameter \\#1 \\$value of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\BaseJMSParser\\:\\:getConstant\\(\\) expects int, int\\|string\\|null given\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/BaseJMSParser.php
-
-		-
 			message: "#^Parameter \\#1 \\$object of function get_class expects object, mixed given\\.$#"
 			count: 2
 			path: src/Component/Serializer/Parser/JMSParser.php
