@@ -42,4 +42,20 @@ class Status
      * @JMS\SerializedName("isEditable")
      */
     public $isEditable;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("isError")
+     */
+    public $isError;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("isPreprocessing")
+     */
+    public $isPreprocessing;
 }
