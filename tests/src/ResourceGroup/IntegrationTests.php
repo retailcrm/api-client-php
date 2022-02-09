@@ -13,6 +13,7 @@ use RetailCrm\Api\Enum\Currency;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Integration\Delivery\DeliveryConfiguration;
 use RetailCrm\Api\Model\Entity\Integration\Delivery\Plate;
+use RetailCrm\Api\Model\Entity\Integration\Delivery\Status;
 use RetailCrm\Api\Model\Entity\Integration\IntegrationModule;
 use RetailCrm\Api\Model\Entity\Integration\Integrations;
 use RetailCrm\Api\Model\Entity\Integration\Payment\Actions;
@@ -206,6 +207,7 @@ EOF;
         $deliveryConfiguration->allowPackages = false;
         $deliveryConfiguration->codAvailable = false;
         $deliveryConfiguration->plateList = $this->createPlateList();
+        $deliveryConfiguration->statusList = $this->createStatusList();
 
         $integrations = new Integrations();
         $integrations->delivery = $deliveryConfiguration;
@@ -254,5 +256,41 @@ EOF;
         }
 
         return $plateList;
+    }
+
+    /**
+     * @return Status[]
+     */
+    private function createStatusList(): array
+    {
+        $statusList = [];
+        $statuses = [
+            [
+                'code' => 'status_01',
+                'name' => 'Status 01',
+                'isEditable' => true,
+                'isError' => true,
+                'isPreprocessing' => true,
+            ],
+            [
+                'code' => 'status_02',
+                'name' => 'Status 02',
+                'isEditable' => false,
+                'isError' => false,
+                'isPreprocessing' => false,
+            ],
+        ];
+
+        foreach ($statuses as $item) {
+            $status = new Status();
+            $status->code = $item['code'];
+            $status->name = $item['name'];
+            $status->isEditable = $item['isEditable'];
+            $status->isError = $item['isError'];
+            $status->isPreprocessing = $item['isPreprocessing'];
+            $statusList[] = $status;
+        }
+
+        return $statusList;
     }
 }
