@@ -17,7 +17,6 @@ use RetailCrm\Api\Component\Serializer\Annotation\Exclude;
 use RetailCrm\Api\Component\Serializer\Annotation\ExclusionPolicy;
 use RetailCrm\Api\Component\Serializer\Annotation\Groups;
 use RetailCrm\Api\Component\Serializer\Annotation\PostDeserialize;
-use RetailCrm\Api\Component\Serializer\Annotation\ReadOnly;
 use RetailCrm\Api\Component\Serializer\Annotation\SerializedName;
 use RetailCrm\Api\Component\Serializer\Annotation\Since;
 use RetailCrm\Api\Component\Serializer\Annotation\Type;
@@ -329,9 +328,6 @@ class JMSParser implements ModelParserInterface
                     break;
                 case $annotation instanceof Until:
                     $property->setVersionRange($property->getVersionRange()->withUntil($annotation->version));
-                    break;
-                case $annotation instanceof ReadOnly:
-                    $property->setReadOnly(true);
                     break;
                 case $annotation instanceof SerializedName:
                     // we handle this separately

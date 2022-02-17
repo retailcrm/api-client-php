@@ -1,0 +1,442 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Builder\\\\ClientBuilder\\:\\:buildHandlersChain\\(\\) through static\\:\\:\\.$#"
+			count: 2
+			path: src/Builder/ClientBuilder.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Builder\\\\FilesystemCacheBuilder\\:\\:getCacheDirPath\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Builder/FilesystemCacheBuilder.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Client\\:\\:getBaseUrl\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Client.php
+
+		-
+			message: "#^Cannot access offset 'compile\\-mode' on mixed\\.$#"
+			count: 2
+			path: src/Command/CompilerPromptCommand.php
+
+		-
+			message: "#^Cannot access offset 'compile\\-whitelist' on mixed\\.$#"
+			count: 2
+			path: src/Command/CompilerPromptCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, mixed given\\.$#"
+			count: 1
+			path: src/Command/CompilerPromptCommand.php
+
+		-
+			message: "#^Parameter \\#2 \\$array of function array_key_exists expects array, mixed given\\.$#"
+			count: 3
+			path: src/Command/CompilerPromptCommand.php
+
+		-
+			message: "#^Unsafe access to private constant RetailCrm\\\\Api\\\\Command\\\\CompilerPromptCommand\\:\\:PACKAGE_NAME through static\\:\\:\\.$#"
+			count: 5
+			path: src/Command/CompilerPromptCommand.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Command\\\\CompilerPromptCommand\\:\\:activatePrompt\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Command/CompilerPromptCommand.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Command\\\\CompilerPromptCommand\\:\\:deactivatePrompt\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Command/CompilerPromptCommand.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\ComposerLocator\\:\\:getBaseDirectory\\(\\) through static\\:\\:\\.$#"
+			count: 2
+			path: src/Component/ComposerLocator.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\ComposerLocator\\:\\:getPackageComposerJson\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/ComposerLocator.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\FilesIteratorChecksumGenerator\\:\\:\\$fileNameAccessor \\(callable\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Component/FilesIteratorChecksumGenerator.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\FilesIteratorChecksumGenerator\\:\\:\\$hashFunc \\(callable\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Component/FilesIteratorChecksumGenerator.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\FilesIteratorChecksumGenerator\\:\\:\\$keyTransformer \\(callable\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Component/FilesIteratorChecksumGenerator.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\FormData\\\\FormEncoder\\:\\:processPostSerialize\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: src/Component/FormData/FormEncoder.php
+
+		-
+			message: "#^Parameter \\#1 \\$object of function get_class expects object, mixed given\\.$#"
+			count: 1
+			path: src/Component/FormData/FormEncoder.php
+
+		-
+			message: "#^Parameter \\#1 \\$object of method ReflectionMethod\\:\\:invokeArgs\\(\\) expects object\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Component/FormData/FormEncoder.php
+
+		-
+			message: "#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<object\\>\\|object, class\\-string\\|false given\\.$#"
+			count: 1
+			path: src/Component/FormData/FormEncoder.php
+
+		-
+			message: "#^Parameter \\#2 \\$result of method RetailCrm\\\\Api\\\\Component\\\\FormData\\\\FormEncoder\\:\\:processPostSerialize\\(\\) expects array, array given\\.$#"
+			count: 1
+			path: src/Component/FormData/FormEncoder.php
+
+		-
+			message: "#^Parameter \\#1 \\$object of function get_class expects object, mixed given\\.$#"
+			count: 1
+			path: src/Component/FormData/Strategy/Encode/EntityStrategy.php
+
+		-
+			message: "#^Parameter \\#1 \\$object of method ReflectionProperty\\:\\:getValue\\(\\) expects object\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Component/FormData/Strategy/Encode/EntityStrategy.php
+
+		-
+			message: "#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<object\\>\\|object, class\\-string\\|false given\\.$#"
+			count: 1
+			path: src/Component/FormData/Strategy/Encode/EntityStrategy.php
+
+		-
+			message: "#^Cannot cast mixed to float\\.$#"
+			count: 2
+			path: src/Component/FormData/Strategy/Encode/SimpleTypeStrategy.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Component/FormData/Strategy/Encode/SimpleTypeStrategy.php
+
+		-
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 1
+			path: src/Component/FormData/Strategy/Encode/SimpleTypeStrategy.php
+
+		-
+			message: "#^Unsafe access to private property RetailCrm\\\\Api\\\\Component\\\\FormData\\\\Strategy\\\\Encode\\\\TypedArrayStrategy\\:\\:\\$innerTypesMatcher through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/FormData/Strategy/Encode/TypedArrayStrategy.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\FormData\\\\Strategy\\\\Encode\\\\TypedArrayStrategy\\:\\:getInnerTypes\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/FormData/Strategy/Encode/TypedArrayStrategy.php
+
+		-
+			message: "#^Unsafe access to private constant RetailCrm\\\\Api\\\\Component\\\\FormData\\\\Strategy\\\\StrategyFactory\\:\\:TYPED_MATCHER through static\\:\\:\\.$#"
+			count: 2
+			path: src/Component/FormData/Strategy/StrategyFactory.php
+
+		-
+			message: "#^Unsafe access to private property RetailCrm\\\\Api\\\\Component\\\\FormData\\\\Strategy\\\\StrategyFactory\\:\\:\\$simpleTypes through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/FormData/Strategy/StrategyFactory.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\FormData\\\\Strategy\\\\StrategyFactory\\:\\:getArrayInnerTypes\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/FormData/Strategy/StrategyFactory.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\FormData\\\\Strategy\\\\StrategyFactory\\:\\:getDateTimeFormat\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/FormData/Strategy/StrategyFactory.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\FormData\\\\Strategy\\\\StrategyFactory\\:\\:isDateTime\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/FormData/Strategy/StrategyFactory.php
+
+		-
+			message: "#^Unsafe access to private constant RetailCrm\\\\Api\\\\Component\\\\ModelsGenerator\\:\\:IGNORED_NAMESPACES through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/ModelsGenerator.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\ModelsGenerator\\:\\:createDir\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/ModelsGenerator.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\ModelsGenerator\\:\\:isNamespaceIgnored\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/ModelsGenerator.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\PhpFilesIterator\\:\\:\\$parent type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/PhpFilesIterator.php
+
+		-
+			message: "#^Unsafe access to private constant RetailCrm\\\\Api\\\\Component\\\\PhpFilesIterator\\:\\:NAMESPACE_MATCHER through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/PhpFilesIterator.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ArraySupportDecorator\\:\\:fromArray\\(\\) should return array\\<int\\|string, mixed\\>\\|object but returns mixed\\.$#"
+			count: 1
+			path: src/Component/Serializer/ArraySupportDecorator.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ArraySupportDecorator\\:\\:decodeArray\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/Component/Serializer/ArraySupportDecorator.php
+
+		-
+			message: "#^Parameter \\#1 \\$data of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ArraySupportDecorator\\:\\:encodeArray\\(\\) expects array, mixed given\\.$#"
+			count: 1
+			path: src/Component/Serializer/ArraySupportDecorator.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ArraySupportDecorator\\:\\:getArrayValueType\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/Serializer/ArraySupportDecorator.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ArraySupportDecorator\\:\\:isArrayType\\(\\) through static\\:\\:\\.$#"
+			count: 2
+			path: src/Component/Serializer/ArraySupportDecorator.php
+
+		-
+			message: "#^Unsafe access to private constant RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Generator\\\\DeserializerGenerator\\:\\:FILENAME_PREFIX through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/Serializer/Generator/DeserializerGenerator.php
+
+		-
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/Component/Serializer/Generator/SerializerGenerator.php
+
+		-
+			message: "#^Cannot call method getClassName\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Component/Serializer/Generator/SerializerGenerator.php
+
+		-
+			message: "#^Cannot call method getGroups\\(\\) on mixed\\.$#"
+			count: 3
+			path: src/Component/Serializer/Generator/SerializerGenerator.php
+
+		-
+			message: "#^Cannot call method getVersions\\(\\) on mixed\\.$#"
+			count: 1
+			path: src/Component/Serializer/Generator/SerializerGenerator.php
+
+		-
+			message: "#^Unsafe access to private constant RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Generator\\\\SerializerGenerator\\:\\:FILENAME_PREFIX through static\\:\\:\\.$#"
+			count: 1
+			path: src/Component/Serializer/Generator/SerializerGenerator.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ModelsChecksumGenerator\\:\\:getStoredChecksums\\(\\) should return array\\<string, string\\> but returns mixed\\.$#"
+			count: 1
+			path: src/Component/Serializer/ModelsChecksumGenerator.php
+
+		-
+			message: "#^Parameter \\#1 \\$iterator of class RetailCrm\\\\Api\\\\Component\\\\FilesIteratorChecksumGenerator constructor expects Iterator\\<mixed, mixed\\>, RetailCrm\\\\Api\\\\Component\\\\PhpFilesIterator given\\.$#"
+			count: 1
+			path: src/Component/Serializer/ModelsChecksumGenerator.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ModelsChecksumGenerator\\:\\:getChecksumFileName\\(\\) through static\\:\\:\\.$#"
+			count: 4
+			path: src/Component/Serializer/ModelsChecksumGenerator.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\BaseJMSParser\\:\\:parse\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/BaseJMSParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$object of function get_class expects object, mixed given\\.$#"
+			count: 2
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Parameter \\#2 \\$string2 of function strncmp expects string, class\\-string\\|false given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Parameter \\#3 \\$annotation of static method Liip\\\\MetadataParser\\\\Exception\\\\ParseException\\:\\:unsupportedPropertyAnnotation\\(\\) expects string, class\\-string\\|false given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Cannot access offset 0 on mixed\\.$#"
+			count: 2
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Cannot access offset 1 on mixed\\.$#"
+			count: 2
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Cannot access offset 2 on mixed\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$className of class Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypeClass constructor expects string, mixed given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$className of static method Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypeDateTime\\:\\:fromDateTimeClass\\(\\) expects string, mixed given\\.$#"
+			count: 2
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$format of class Liip\\\\MetadataParser\\\\Metadata\\\\DateTimeOptions constructor expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$typeInfo of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSTypeParser\\:\\:parseType\\(\\) expects array, mixed given\\.$#"
+			count: 2
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$typeName of class Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypePrimitive constructor expects string, mixed given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$typeName of static method Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypeDateTime\\:\\:isTypeDateTime\\(\\) expects string, mixed given\\.$#"
+			count: 2
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$typeName of static method Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypePrimitive\\:\\:isTypePrimitive\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, mixed given\\.$#"
+			count: 3
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Parameter \\#2 \\$zone of class Liip\\\\MetadataParser\\\\Metadata\\\\DateTimeOptions constructor expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Parameter \\#3 \\$deserializeFormat of class Liip\\\\MetadataParser\\\\Metadata\\\\DateTimeOptions constructor expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\Transformer\\\\DateTimeTransformer\\:\\:createFromFormat\\(\\) through static\\:\\:\\.$#"
+			count: 3
+			path: src/Component/Transformer/DateTimeTransformer.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Exception\\\\ApiException\\:\\:getErrorMessage\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Exception/ApiException.php
+
+		-
+			message: "#^Parameter \\#3 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Exception/ClientException.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Model\\\\Response\\\\ErrorResponse\\:\\:\\$errorMsg \\(string\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 2
+			path: src/Factory/ApiExceptionFactory.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Model\\\\Response\\\\ErrorResponse\\:\\:\\$errors \\(array\\<string\\>\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Factory/ApiExceptionFactory.php
+
+		-
+			message: "#^Unsafe access to private property RetailCrm\\\\Api\\\\Handler\\\\Request\\\\PsrRequestHandler\\:\\:\\$methodsWithBody through static\\:\\:\\.$#"
+			count: 1
+			path: src/Handler/Request/PsrRequestHandler.php
+
+		-
+			message: "#^Parameter \\#2 \\$code of class RetailCrm\\\\Api\\\\Exception\\\\Client\\\\HandlerException constructor expects int, mixed given\\.$#"
+			count: 1
+			path: src/Handler/Request/RequestDataHandler.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Handler\\\\Request\\\\RequestDataHandler\\:\\:queryShouldBeUsed\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Handler/Request/RequestDataHandler.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Handler\\\\Request\\\\RequestDataHandler\\:\\:throwEncodeException\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Handler/Request/RequestDataHandler.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Handler\\\\Response\\\\AbstractResponseHandler\\:\\:unmarshalBody\\(\\) should return RetailCrm\\\\Api\\\\Interfaces\\\\ResponseInterface but returns mixed\\.$#"
+			count: 1
+			path: src/Handler/Response/AbstractResponseHandler.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Handler\\\\Response\\\\AbstractResponseHandler\\:\\:unmarshalBody\\(\\) should return RetailCrm\\\\Api\\\\Interfaces\\\\ResponseInterface but returns object\\.$#"
+			count: 1
+			path: src/Handler/Response/AbstractResponseHandler.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Handler\\\\Response\\\\AbstractResponseHandler\\:\\:unmarshalBodyArray\\(\\) should return array\\<int\\|string, mixed\\> but returns mixed\\.$#"
+			count: 1
+			path: src/Handler/Response/AbstractResponseHandler.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Handler\\\\Response\\\\AbstractResponseHandler\\:\\:throwUnmarshalError\\(\\) through static\\:\\:\\.$#"
+			count: 2
+			path: src/Handler/Response/AbstractResponseHandler.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Handler\\\\Response\\\\AccountNotFoundHandler\\:\\:isContentType\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Handler/Response/AccountNotFoundHandler.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Handler\\\\Response\\\\FilesDownloadResponseHandler\\:\\:fileNameFromDisposition\\(\\) through static\\:\\:\\.$#"
+			count: 1
+			path: src/Handler/Response/FilesDownloadResponseHandler.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Model\\\\ResponseData\\:\\:\\$responseArray \\(array\\<int\\|string, mixed\\>\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Handler/Response/UnmarshalResponseHandler.php
+
+		-
+			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Model\\\\Entity\\\\Delivery\\\\TimeInterval\\:\\:createTime\\(\\) through static\\:\\:\\.$#"
+			count: 2
+			path: src/Model/Entity/Delivery/TimeInterval.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\ResourceGroup\\\\AbstractApiResourceGroup\\:\\:sendRequest\\(\\) should return RetailCrm\\\\Api\\\\Interfaces\\\\ResponseInterface but returns object\\.$#"
+			count: 1
+			path: src/ResourceGroup/AbstractApiResourceGroup.php
+
+		-
+			message: "#^Parameter \\#2 \\$code of class RetailCrm\\\\Api\\\\Exception\\\\Client\\\\HttpClientException constructor expects int, mixed given\\.$#"
+			count: 1
+			path: src/ResourceGroup/AbstractApiResourceGroup.php
+
