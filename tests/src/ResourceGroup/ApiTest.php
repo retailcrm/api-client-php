@@ -77,4 +77,25 @@ EOF;
         ], $credentials->credentials);
         self::assertEquals(["order_read", "customer_read", "reference_read"], $credentials->scopes);
     }
+
+    public function testSystemInfo(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "systemVersion": "8.1.51",
+  "publicUrl": "https://test.retailcrm.ru",
+  "technicalUrl": "https://testwtestxtestvtestytestwtesthm6.retailcrm.io"
+}
+EOF;
+        $mock = static::createUnversionedApiMockBuilder('system-info');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $systemInfo = $client->api->systemInfo();
+
+        self::assertModelEqualsToResponse($json, $systemInfo);
+    }
 }
