@@ -1,10 +1,10 @@
 <?php
 
-namespace RetailCrm\Api\Model\Callback\Entity\SimpleConnection\ResponseProperty;
+namespace RetailCrm\Api\Model\Callback\Response\SimpleConnection;
 
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 
-class ResponseConnectionConfig
+class ConnectionConfigResponse
 {
     /**
      * @var bool
