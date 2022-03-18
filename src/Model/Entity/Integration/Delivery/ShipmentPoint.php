@@ -28,9 +28,9 @@ class ShipmentPoint
     public $code;
 
     /**
-     * @var int
+     * @var string
      *
-     * @JMS\Type("int")
+     * @JMS\Type("string")
      * @JMS\SerializedName("shipmentPointId")
      */
     public $shipmentPointId;
