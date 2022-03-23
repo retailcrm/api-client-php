@@ -17,24 +17,8 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  * @category Store
  * @package  RetailCrm\Api\Model\Callback\Entity\Delivery
  */
-class Store
+class Store extends BaseStore
 {
-    /**
-     * @var string
-     *
-     * @JMS\Type("string")
-     * @JMS\SerializedName("code")
-     */
-    public $code;
-
-    /**
-     * @var string
-     *
-     * @JMS\Type("string")
-     * @JMS\SerializedName("name")
-     */
-    public $name;
-
     /**
      * @var \RetailCrm\Api\Model\Callback\Entity\Delivery\SerializedStoreWeekOpeningHours
      *
