@@ -53,6 +53,14 @@ class RequestCalculate
     public $shipmentAddress;
 
     /**
+     * @var \RetailCrm\Api\Model\Callback\Entity\Delivery\BaseStore
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Callback\Entity\Delivery\BaseStore")
+     * @JMS\SerializedName("store")
+     */
+    public $store;
+
+    /**
      * @var \RetailCrm\Api\Model\Callback\Entity\Delivery\DeliveryAddress
      *
      * @JMS\Type("RetailCrm\Api\Model\Callback\Entity\Delivery\DeliveryAddress")
