@@ -19,8 +19,10 @@ use RetailCrm\Api\Model\Entity\Integration\Integrations;
 use RetailCrm\Api\Model\Entity\Integration\Payment\Actions;
 use RetailCrm\Api\Model\Entity\Integration\Payment\PaymentConfiguration;
 use RetailCrm\Api\Model\Entity\Integration\Payment\Shop;
+use RetailCrm\Api\Model\Entity\Integration\Requires;
 use RetailCrm\Api\Model\Entity\Integration\Transport\TransportConfiguration;
 use RetailCrm\Api\Model\Request\Integration\IntegrationModulesEditRequest;
+use RetailCrm\Api\Model\Request\Integration\IntegrationModuleUpdateScopesRequest;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
@@ -292,5 +294,32 @@ EOF;
         }
 
         return $statusList;
+    }
+
+    public function testUpdateScopes(): void
+    {
+        $json = <<<'EOF'
+{
+    "success": true,
+    "apiKey": "SOMEAPIKEY"
+}
+EOF;
+        $requires = new Requires();
+        $requires->scopes = [
+            'integration_read',
+            'integration_write',
+        ];
+        $request = new IntegrationModuleUpdateScopesRequest($requires);
+
+        $mock = static::createApiMockBuilder('integration-modules/test-integration/update-scopes');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->integration->updateScopes('test-integration', $request);
+
+        self::assertModelEqualsToResponse($json, $response);
     }
 }
