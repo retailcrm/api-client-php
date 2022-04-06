@@ -17,6 +17,8 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  *
  * @category LegalEntity
  * @package  RetailCrm\Api\Model\Entity\References
+ *
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
  */
 class LegalEntity
 {
