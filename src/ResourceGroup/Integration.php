@@ -21,6 +21,8 @@ use RetailCrm\Api\Model\Response\Integration\IntegrationModuleUpdateScopesRespon
  *
  * @category Integration
  * @package  RetailCrm\Api\ResourceGroup
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Integration extends AbstractApiResourceGroup
 {

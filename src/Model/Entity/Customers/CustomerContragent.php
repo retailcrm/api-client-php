@@ -17,6 +17,8 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  *
  * @category CustomerContragent
  * @package  RetailCrm\Api\Model\Entity\Customers
+ *
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
  */
 class CustomerContragent
 {

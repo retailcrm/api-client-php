@@ -343,14 +343,6 @@ class CustomerCorporateFilter
     public $lastOrderTo;
 
     /**
-     * @var mixed[][]
-     *
-     * @Form\Type("array")
-     * @Form\SerializedName("CustomersCorporate")
-     */
-    public $CustomersCorporate;
-
-    /**
      * @var int[]
      *
      * @Form\Type("int[]")
