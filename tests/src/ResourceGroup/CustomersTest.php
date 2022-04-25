@@ -2698,4 +2698,33 @@ EOF;
 
         self::assertModelEqualsToResponse($json, $response);
     }
+
+    public function testCustomersEditTags(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 4770
+}
+EOF;
+
+        $request = new CustomersEditRequest();
+        $request->customer = new Customer();
+        $request->by = ByIdentifier::ID;
+        $request->site = 'aliexpress';
+        $request->customer->firstName = 'Test';
+        $request->customer->addTags = ['tag1', 'tag2'];
+        $request->customer->removeTags = ['tag3', 'tag4'];
+
+        $mock = static::createApiMockBuilder('customers/4770/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->customers->edit(4770, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
 }
