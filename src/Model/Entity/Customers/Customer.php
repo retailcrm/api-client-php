@@ -121,6 +121,22 @@ class Customer implements CustomerInterface
     public $tags;
 
     /**
+     * @var string[]
+     *
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("addTags")
+     */
+    public $addTags;
+
+    /**
+     * @var string[]
+     *
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("removeTags")
+     */
+    public $removeTags;
+
+    /**
      * @var float
      *
      * @JMS\Type("float")
