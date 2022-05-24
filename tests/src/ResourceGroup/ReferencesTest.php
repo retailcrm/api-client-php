@@ -6683,6 +6683,7 @@ EOF;
       "name": "test",
       "url": "https://example.com",
       "code": "test",
+      "description": "description",
       "defaultForCrm": false,
       "ymlUrl": "https://example.com",
       "loadFromYml": true,
@@ -6700,6 +6701,7 @@ EOF;
       "senderName": "test",
       "catalogId": "catalog",
       "isCatalogMainSite": true,
+      "ordering": 989,
       "isDemo": false
     },
     "test-ru": {
@@ -6707,6 +6709,7 @@ EOF;
       "isCatalogMainSite": true,
       "isDemo": true,
       "name": "Test Shop",
+      "description": "description",
       "url": "https://example.com/2",
       "code": "test-ru",
       "defaultForCrm": false,
@@ -6714,6 +6717,7 @@ EOF;
       "loadFromYml": false,
       "catalogUpdatedAt": "2021-02-24 12:30:46",
       "catalogLoadingAt": "2021-04-07 15:14:53",
+      "ordering": 990,
       "contragent": {
         "contragentType": "enterpreneur",
         "legalName": "ИП Бороздина Татьяна Александровна",

@@ -117,6 +117,14 @@ class Site
     public $catalogLoadingAt;
 
     /**
+     * @var int
+     *
+     * @JMS\Type("int")
+     * @JMS\SerializedName("ordering")
+     */
+    public $ordering;
+
+    /**
      * @var \RetailCrm\Api\Model\Entity\References\LegalEntity
      *
      * @JMS\Type("RetailCrm\Api\Model\Entity\References\LegalEntity")
