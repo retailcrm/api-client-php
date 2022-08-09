@@ -66,4 +66,20 @@ class Operation
      * @JMS\SerializedName("event")
      */
     public $event;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\IdModel
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\IdModel")
+     * @JMS\SerializedName("loyaltyAccount")
+     */
+    public $loyaltyAccount;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\IdModel
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\IdModel")
+     * @JMS\SerializedName("loyalty")
+     */
+    public $loyalty;
 }

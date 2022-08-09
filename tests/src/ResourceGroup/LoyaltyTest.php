@@ -17,21 +17,22 @@ use RetailCrm\Api\Component\Transformer\DateTimeTransformer;
 use RetailCrm\Api\Enum\Loyalty\AccountStatus;
 use RetailCrm\Api\Enum\Loyalty\PrivilegeType;
 use RetailCrm\Api\Enum\NumericBoolean;
+use RetailCrm\Api\Enum\PaginationLimit;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedEntityCustomer;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer;
-use RetailCrm\Api\Model\Entity\Loyalty\BonusDetail;
 use RetailCrm\Api\Model\Entity\Loyalty\LoyaltyAccount;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedCreateLoyaltyAccount;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrder;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderDelivery;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderProduct;
 use RetailCrm\Api\Model\Entity\Loyalty\SerializedOrderProductOffer;
-use RetailCrm\Api\Model\Entity\Pagination;
 use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountApiFilterType;
 use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountBonusApiFilterType;
 use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountBonusOperationsApiFilterType;
 use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyApiFilterType;
+use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyBonusOperationsApiFilterType;
+use RetailCrm\Api\Model\Request\Loyalty\AllBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\BonusAccountDetailsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest;
@@ -40,8 +41,6 @@ use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusCreditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest;
-use RetailCrm\Api\Model\Response\Loyalty\BonusAccountDetailsResponse;
-use RetailCrm\Api\Model\Response\Loyalty\LoyaltyBonusStatisticResponse;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
@@ -655,6 +654,350 @@ EOF;
 
         $client = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->accountGet(168);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testBonusOperations(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "pagination": {
+    "nextCursor": "WzI0OSwiMjAyMi0wMS0xOCAxNjoxMzoxNiswMzowMCJd"
+  },
+  "bonusOperations": [
+    {
+      "type": "credit_for_order",
+      "createdAt": "2020-11-27 13:42:37",
+      "amount": 347.8,
+      "order": {
+        "id": 6472,
+        "externalId": "9"
+      },
+      "bonus": {
+        "activationDate": "2020-11-27"
+      },
+      "loyaltyAccount": {
+        "id": 147
+      },
+      "loyalty": {
+        "id": 3
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2020-11-27 13:45:39",
+      "amount": -247,
+      "order": {
+        "id": 6473,
+        "externalId": "10"
+      },
+      "loyaltyAccount": {
+        "id": 147
+      },
+      "loyalty": {
+        "id": 3
+      }
+    },
+    {
+      "type": "credit_for_order",
+      "createdAt": "2020-11-27 13:47:57",
+      "amount": 215.1,
+      "order": {
+        "id": 6473,
+        "externalId": "10"
+      },
+      "bonus": {
+        "activationDate": "2020-11-27"
+      },
+      "loyaltyAccount": {
+        "id": 147
+      },
+      "loyalty": {
+        "id": 3
+      }
+    },
+    {
+      "type": "credit_for_order",
+      "createdAt": "2020-11-27 16:33:32",
+      "amount": 655.7,
+      "order": {
+        "id": 6474,
+        "externalId": "11"
+      },
+      "bonus": {
+        "activationDate": "2020-11-27"
+      },
+      "loyaltyAccount": {
+        "id": 149
+      },
+      "loyalty": {
+        "id": 3
+      }
+    },
+    {
+      "type": "credit_manual",
+      "createdAt": "2021-11-02 12:52:53",
+      "amount": 1000,
+      "bonus": {
+        "activationDate": "2021-11-02"
+      },
+      "loyaltyAccount": {
+        "id": 201
+      },
+      "loyalty": {
+        "id": 6
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2021-11-02 12:54:52",
+      "amount": -10,
+      "order": {
+        "id": 8181,
+        "externalId": "7"
+      },
+      "loyaltyAccount": {
+        "id": 201
+      },
+      "loyalty": {
+        "id": 6
+      }
+    },
+    {
+      "type": "credit_manual",
+      "createdAt": "2021-11-03 10:31:57",
+      "amount": 1000,
+      "bonus": {
+        "activationDate": "2021-11-03"
+      },
+      "loyaltyAccount": {
+        "id": 202
+      },
+      "loyalty": {
+        "id": 6
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2021-11-03 18:10:23",
+      "amount": -70,
+      "order": {
+        "id": 8184,
+        "externalId": "8"
+      },
+      "loyaltyAccount": {
+        "id": 202
+      },
+      "loyalty": {
+        "id": 6
+      }
+    },
+    {
+      "type": "credit_manual",
+      "createdAt": "2021-11-09 15:50:09",
+      "amount": 1234,
+      "bonus": {
+        "activationDate": "2021-11-09"
+      },
+      "loyaltyAccount": {
+        "id": 205
+      },
+      "loyalty": {
+        "id": 4
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2021-11-09 15:50:43",
+      "amount": -1234,
+      "order": {
+        "id": 8203,
+        "externalId": "6"
+      },
+      "loyaltyAccount": {
+        "id": 205
+      },
+      "loyalty": {
+        "id": 4
+      }
+    },
+    {
+      "type": "credit_for_order",
+      "createdAt": "2021-11-10 17:50:47",
+      "amount": 1029.2,
+      "order": {
+        "id": 8205,
+        "externalId": "11"
+      },
+      "bonus": {
+        "activationDate": "2021-11-10"
+      },
+      "loyaltyAccount": {
+        "id": 206
+      },
+      "loyalty": {
+        "id": 6
+      }
+    },
+    {
+      "type": "credit_manual",
+      "createdAt": "2021-12-29 12:37:47",
+      "amount": 1000,
+      "bonus": {
+        "activationDate": "2021-12-29"
+      },
+      "loyaltyAccount": {
+        "id": 167
+      },
+      "loyalty": {
+        "id": 1
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2021-12-29 14:55:42",
+      "amount": -300,
+      "order": {
+        "id": 8412,
+        "externalId": "6"
+      },
+      "loyaltyAccount": {
+        "id": 167
+      },
+      "loyalty": {
+        "id": 1
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2021-12-30 10:56:10",
+      "amount": -2,
+      "order": {
+        "id": 8414,
+        "externalId": "7"
+      },
+      "loyaltyAccount": {
+        "id": 167
+      },
+      "loyalty": {
+        "id": 1
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2021-12-30 11:01:19",
+      "amount": -4,
+      "order": {
+        "id": 8415,
+        "externalId": "8"
+      },
+      "loyaltyAccount": {
+        "id": 167
+      },
+      "loyalty": {
+        "id": 1
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2021-12-30 11:06:39",
+      "amount": -4,
+      "order": {
+        "id": 8416,
+        "externalId": "9"
+      },
+      "loyaltyAccount": {
+        "id": 167
+      },
+      "loyalty": {
+        "id": 1
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2021-12-30 11:09:18",
+      "amount": -2,
+      "order": {
+        "id": 8032,
+        "externalId": "10"
+      },
+      "loyaltyAccount": {
+        "id": 167
+      },
+      "loyalty": {
+        "id": 1
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2021-12-30 11:32:35",
+      "amount": -2,
+      "order": {
+        "id": 8033,
+        "externalId": "11"
+      },
+      "loyaltyAccount": {
+        "id": 167
+      },
+      "loyalty": {
+        "id": 1
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2021-12-30 11:37:13",
+      "amount": -2.4,
+      "order": {
+        "id": 8034,
+        "externalId": "12"
+      },
+      "loyaltyAccount": {
+        "id": 167
+      },
+      "loyalty": {
+        "id": 1
+      }
+    },
+    {
+      "type": "charge_for_order",
+      "createdAt": "2022-01-18 15:28:19",
+      "amount": -22.4,
+      "order": {
+        "id": 8035,
+        "externalId": "13"
+      },
+      "loyaltyAccount": {
+        "id": 167
+      },
+      "loyalty": {
+        "id": 1
+      }
+    }
+  ]
+}
+EOF;
+
+        $request = new AllBonusOperationsRequest();
+        $request->limit = PaginationLimit::LIMIT_20;
+        $request->cursor = 'dJCMwozMwsiNxozMxojNxACOx0SMw0iMyAjMiwSO0IzW';
+        $request->filter = new LoyaltyBonusOperationsApiFilterType([1, 2, 3, 4, 5, 6, 7, 8]);
+
+        $mock = static::createApiMockBuilder('loyalty/bonus/operations');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery([
+                'limit' => (string) PaginationLimit::LIMIT_20,
+                'cursor' => 'dJCMwozMwsiNxozMxojNxACOx0SMw0iMyAjMiwSO0IzW',
+                'filter' => [
+                    'loyalties' => ['1', '2', '3', '4', '5', '6', '7', '8']
+                ]
+            ])
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->loyalty->bonusOperations($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Model\Request\Loyalty\AllBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\BonusAccountDetailsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest;
@@ -18,6 +19,7 @@ use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusCreditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest;
+use RetailCrm\Api\Model\Response\Loyalty\AllBonusOperationsResponse;
 use RetailCrm\Api\Model\Response\Loyalty\BonusAccountDetailsResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltiesResponse;
 use RetailCrm\Api\Model\Response\Loyalty\LoyaltyAccountActivateResponse;
@@ -460,6 +462,67 @@ class Loyalty extends AbstractApiResourceGroup
             'loyalty/account/' . $id,
             null,
             LoyaltyAccountResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/loyalty/bonus/operations" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountBonusOperationsApiFilterType;
+     * use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusOperationsRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request = new AllBonusOperationsRequest();
+     * $request->limit = 10;
+     * $request->cursor = '12345';
+     * $request->filter = new LoyaltyBonusOperationsApiFilterType([1, 2, 3]);
+     *
+     * try {
+     *     $response = $client->loyalty->bonusOperations($request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'All bonus operations: ' . print_r($response->bonusOperations, true);
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\Loyalty\AllBonusOperationsRequest|null $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Loyalty\AllBonusOperationsResponse
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     */
+    public function bonusOperations(?AllBonusOperationsRequest $request = null): AllBonusOperationsResponse
+    {
+        /** @var AllBonusOperationsResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'loyalty/bonus/operations',
+            $request,
+            AllBonusOperationsResponse::class
         );
         return $response;
     }
