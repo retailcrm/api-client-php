@@ -471,15 +471,16 @@ class Loyalty extends AbstractApiResourceGroup
      *
      * Example:
      * ```php
+     * use RetailCrm\Api\Enum\PaginationLimit;
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
-     * use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyAccountBonusOperationsApiFilterType;
-     * use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusOperationsRequest;
+     * use RetailCrm\Api\Model\Filter\Loyalty\LoyaltyBonusOperationsApiFilterType;
+     * use RetailCrm\Api\Model\Request\Loyalty\AllBonusOperationsRequest;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $request = new AllBonusOperationsRequest();
-     * $request->limit = 10;
+     * $request->limit = PaginationLimit::LIMIT_20;
      * $request->cursor = '12345';
      * $request->filter = new LoyaltyBonusOperationsApiFilterType([1, 2, 3]);
      *
