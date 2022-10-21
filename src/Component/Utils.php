@@ -28,7 +28,7 @@ class Utils
      */
     public static function removeVersionFromUri(string $uri): string
     {
-        return (string) preg_replace('/\/v\d{1,3}\/?/', '', $uri);
+        return (string) preg_replace('#api/v\d{1,3}/?#', 'api', $uri);
     }
 
     /**
