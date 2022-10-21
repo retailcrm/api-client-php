@@ -17,6 +17,7 @@ use RetailCrm\Api\Interfaces\RequestInterface;
  *
  * @category BySiteRequest
  * @package  RetailCrm\Api\Model\Request
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 class BySiteRequest implements RequestInterface
 {

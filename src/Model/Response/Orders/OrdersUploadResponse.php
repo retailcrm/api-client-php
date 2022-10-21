@@ -43,4 +43,12 @@ class OrdersUploadResponse extends SuccessResponse
      * @JMS\SerializedName("orders")
      */
     public $orders;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\EntityWithExternalId[]
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\EntityWithExternalId>")
+     * @JMS\SerializedName("failedOrders")
+     */
+    public $failedOrders;
 }

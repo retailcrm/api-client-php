@@ -359,4 +359,12 @@ class Customer implements CustomerInterface
      * @JMS\SerializedName("subscribed")
      */
     public $subscribed;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Customers\MGCustomer[]
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Customers\MGCustomer>")
+     * @JMS\SerializedName("mgCustomers")
+     */
+    public $mgCustomers;
 }

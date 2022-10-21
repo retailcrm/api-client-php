@@ -421,6 +421,11 @@ parameters:
 			path: src/Handler/Response/FilesDownloadResponseHandler.php
 
 		-
+		    message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Handler\\\\Response\\\\FilesDownloadResponseHandler\\:\\:isFileRequest\\(\\) through static\\:\\:\\.$#"
+		    count: 1
+		    path: src/Handler/Response/FilesDownloadResponseHandler.php
+
+		-
 			message: "#^Property RetailCrm\\\\Api\\\\Model\\\\ResponseData\\:\\:\\$responseArray \\(array\\<int\\|string, mixed\\>\\) on left side of \\?\\? is not nullable\\.$#"
 			count: 1
 			path: src/Handler/Response/UnmarshalResponseHandler.php

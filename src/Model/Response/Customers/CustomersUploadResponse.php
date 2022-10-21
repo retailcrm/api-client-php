@@ -27,4 +27,12 @@ class CustomersUploadResponse extends SuccessResponse
      * @JMS\SerializedName("uploadedCustomers")
      */
     public $uploadedCustomers;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\EntityWithExternalId[]
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\EntityWithExternalId>")
+     * @JMS\SerializedName("failedCustomers")
+     */
+    public $failedCustomers;
 }

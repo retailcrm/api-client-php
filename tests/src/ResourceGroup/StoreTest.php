@@ -16,8 +16,10 @@ use RetailCrm\Api\Model\Entity\Store\Inventory;
 use RetailCrm\Api\Model\Entity\Store\Offer;
 use RetailCrm\Api\Model\Entity\Store\PriceUploadInput;
 use RetailCrm\Api\Model\Entity\Store\PriceUploadPricesInput;
+use RetailCrm\Api\Model\Entity\Store\ProductCreateInput;
 use RetailCrm\Api\Model\Entity\Store\ProductEditGroupInput;
 use RetailCrm\Api\Model\Entity\Store\ProductEditInput;
+use RetailCrm\Api\Model\Entity\Store\SerializedProductGroup;
 use RetailCrm\Api\Model\Filter\Store\InventoryFilterType;
 use RetailCrm\Api\Model\Filter\Store\ProductFilterType;
 use RetailCrm\Api\Model\Filter\Store\ProductGroupFilterType;
@@ -26,8 +28,11 @@ use RetailCrm\Api\Model\Request\Store\InventoriesRequest;
 use RetailCrm\Api\Model\Request\Store\InventoriesUploadRequest;
 use RetailCrm\Api\Model\Request\Store\PricesUploadRequest;
 use RetailCrm\Api\Model\Request\Store\ProductBatchEditRequest;
+use RetailCrm\Api\Model\Request\Store\ProductGroupsCreateRequest;
+use RetailCrm\Api\Model\Request\Store\ProductGroupsEditRequest;
 use RetailCrm\Api\Model\Request\Store\ProductGroupsRequest;
 use RetailCrm\Api\Model\Request\Store\ProductPropertiesRequest;
+use RetailCrm\Api\Model\Request\Store\ProductsBatchCreateRequest;
 use RetailCrm\Api\Model\Request\Store\ProductsRequest;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
@@ -664,6 +669,109 @@ EOF;
 
         $client = TestClientFactory::createClient($mock->getClient());
         $response = $client->store->productBatchEdit($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testProductBatchCreate(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "processedProductsCount": 1,
+  "addedProducts": [
+    100
+  ]
+}
+EOF;
+
+        $productInput = new ProductCreateInput();
+        $productInput->name = 'testName4';
+        $productInput->description = 'testDescription';
+        $productInput->active = true;
+        $productInput->url = 'url';
+        $productInput->article = 'testArticle';
+        $productInput->catalogId = 110;
+        $productInput->externalId = 'testExternalId4';
+        $productInput->manufacturer = 'testManufacturer';
+        $productInput->markable = true;
+        $productInput->novelty = true;
+        $productInput->popular = true;
+        $productInput->recommended = true;
+        $productInput->stock = true;
+
+        $productEditGroupInput = new ProductEditGroupInput();
+        $productEditGroupInput->id = 9717;
+        $productInput->groups[] = $productEditGroupInput;
+
+        $request = new ProductsBatchCreateRequest([$productInput]);
+
+        $mock = static::createApiMockBuilder('store/products/batch/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->store->productsBatchCreate($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testProductGroupsCreate(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 9740
+}
+EOF;
+
+        $productGroup = new SerializedProductGroup();
+        $productGroup->parentId = 100;
+        $productGroup->name = 'TestGroup';
+        $productGroup->description = 'Test group of products';
+        $productGroup->externalId = 'xxx-001';
+        $productGroup->active = true;
+        $productGroup->site = 'gray_sale_2';
+
+        $request = new ProductGroupsCreateRequest($productGroup);
+        $mock = static::createApiMockBuilder('store/product-groups/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->store->productGroupsCreate($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testProductGroupsEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 9740
+}
+EOF;
+
+        $productGroup = new SerializedProductGroup();
+        $productGroup->name = 'TestGroup edit';
+        $productGroup->description = 'Test group of products edit';
+        $productGroup->externalId = 'xxx-001-edit';
+        $productGroup->active = true;
+
+        $request = new ProductGroupsEditRequest($productGroup, 'id', 'gray_sale_2');
+        $mock = static::createApiMockBuilder('store/product-groups/9740/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->store->productGroupsEdit(9740, $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
