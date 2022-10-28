@@ -28,3 +28,7 @@ models/checksum.json
 .swp
 /nbproject
 .env
+
+.docker
+docker*
+Makefile
