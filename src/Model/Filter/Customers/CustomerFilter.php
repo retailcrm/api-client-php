@@ -494,12 +494,4 @@ class CustomerFilter
      * @Form\SerializedName("attachedTags")
      */
     public $attachedTags;
-
-    /**
-     * @var string
-     *
-     * @Form\Type("string")
-     * @Form\SerializedName("mgCustomerIds")
-     */
-    public $mgCustomerIds;
 }
