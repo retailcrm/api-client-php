@@ -42,4 +42,12 @@ class Settings
      * @JMS\SerializedName("timezone")
      */
     public $timezone;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Settings\WorkTime
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Settings\WorkTime>")
+     * @JMS\SerializedName("work_times")
+     */
+    public $workTimes;
 }

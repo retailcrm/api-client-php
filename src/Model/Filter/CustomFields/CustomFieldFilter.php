@@ -66,4 +66,12 @@ class CustomFieldFilter
      * @Form\SerializedName("entity")
      */
     public $entity;
+
+    /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("inFilter")
+     */
+    public $inFilter;
 }

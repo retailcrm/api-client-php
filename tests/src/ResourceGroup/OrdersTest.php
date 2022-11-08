@@ -36,6 +36,7 @@ use RetailCrm\Api\Model\Entity\Orders\SerializedRelationCustomer;
 use RetailCrm\Api\Model\Filter\Orders\OrderFilter;
 use RetailCrm\Api\Model\Filter\Orders\OrderHistoryFilterV4Type;
 use RetailCrm\Api\Model\Request\BySiteRequest;
+use RetailCrm\Api\Model\Request\Orders\OrderDeliveryCancelRequest;
 use RetailCrm\Api\Model\Request\Orders\OrderLoyaltyCancelBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCombineRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCreateRequest;
@@ -8072,7 +8073,15 @@ EOF;
       "test_number": 0,
       "otpravit_dozakaz": false
     }
-  }]
+  }],
+  "failedOrders": [
+    {
+        "externalId": "100"
+    },
+    {
+        "externalId": "101"
+    }
+  ]
 }
 EOF;
 
@@ -8836,5 +8845,50 @@ EOF;
         $response = $client->orders->edit('8123522898559160', $request);
 
         self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testDeliveryCancel(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $request = new OrderDeliveryCancelRequest();
+        $request->by = 'externalId';
+        $request->force = true;
+
+        $mock = static::createApiMockBuilder('orders/1/delivery/cancel');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->orders->deliveryCancel('1', $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testPlatesPrint(): void
+    {
+        $fileData = 'test data';
+        $request = new BySiteRequest();
+        $request->by = 'id';
+        $request->site = 'gray_site';
+
+        $mock = static::createApiMockBuilder('orders/100/plates/18/print');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(static::encodeFormArray($request))
+            ->reply(200)
+            ->withHeader('Content-Disposition', 'attachment; filename="filename.pdf"')
+            ->withBody($fileData);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->orders->platesPrint(100, 18, $request);
+
+        self::assertEquals('filename.pdf', $response->fileName);
+        self::assertEquals($fileData, $response->data->getContents());
     }
 }

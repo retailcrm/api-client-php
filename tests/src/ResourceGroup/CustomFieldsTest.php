@@ -73,6 +73,7 @@ EOF;
         $request->filter->type = ['string'];
         $request->filter->code = 'bonus';
         $request->filter->name = 'бонус';
+        $request->filter->inFilter = 1;
 
         $mock = static::createApiMockBuilder('custom-fields');
         $mock->matchMethod(RequestMethod::GET)

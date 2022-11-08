@@ -38,7 +38,23 @@ class SettingsTest extends AbstractApiResourceGroupTestCase
     "timezone": {
       "value": "Europe/Moscow",
       "updated_at": "2021-02-08 08:29:40"
-    }
+    },
+    "work_times": [
+      {
+        "day_type": "Sunday",
+        "start_time": "00:00",
+        "end_time": "12:00",
+        "lunch_start_time": "04:30",
+        "lunch_end_time": "05:00"
+      },
+      {
+        "day_type": "Monday",
+        "start_time": "08:00",
+        "end_time": "20:30",
+        "lunch_start_time": "12:30",
+        "lunch_end_time": "13:00"
+      }
+    ]
   }
 }
 EOF;

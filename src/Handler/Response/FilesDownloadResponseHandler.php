@@ -26,7 +26,7 @@ class FilesDownloadResponseHandler extends AbstractResponseHandler
      */
     protected function handleResponse(ResponseData $responseData)
     {
-        if (!preg_match('/^\/api\/v5\/files\/\d+\/download$/', $responseData->request->getUri()->getPath())) {
+        if (!static::isFileRequest($responseData->request->getUri()->getPath())) {
             $this->next($responseData);
 
             return;
@@ -42,6 +42,29 @@ class FilesDownloadResponseHandler extends AbstractResponseHandler
             $responseData->response,
             $responseData->responseModel
         ));
+    }
+
+    /**
+     * Checking the request path to determine a file request
+     *
+     * @param string $path
+     *
+     * @return bool
+     */
+    private static function isFileRequest(string $path): bool
+    {
+        $filePatterns = [
+            '#^/api/v5/files/\d+/download$#',
+            '#^/api/v5/orders/\S+/plates/\d+/print$#',
+        ];
+
+        foreach ($filePatterns as $pattern) {
+            if (preg_match($pattern, $path)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

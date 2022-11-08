@@ -643,7 +643,15 @@ EOF;
   "uploadedCustomers": [{
     "id": 1,
     "externalId": "test_20"
-  }]
+  }],
+  "failedCustomers": [
+    {
+        "externalId": "100"
+    },
+    {
+        "externalId": "101"
+    }
+  ]
 }
 EOF;
 

@@ -11,6 +11,7 @@ namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\BySiteRequest;
+use RetailCrm\Api\Model\Request\Orders\OrderDeliveryCancelRequest;
 use RetailCrm\Api\Model\Request\Orders\OrderLoyaltyCancelBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCombineRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersCreateRequest;
@@ -23,6 +24,7 @@ use RetailCrm\Api\Model\Request\Orders\OrdersPaymentsCreateRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersStatusesRequest;
 use RetailCrm\Api\Model\Request\Orders\OrdersUploadRequest;
+use RetailCrm\Api\Model\Response\Files\FilesDownloadResponse;
 use RetailCrm\Api\Model\Response\IdResponse;
 use RetailCrm\Api\Model\Response\Orders\OrdersCombineResponse;
 use RetailCrm\Api\Model\Response\Orders\OrdersCreateResponse;
@@ -1103,6 +1105,120 @@ class Orders extends AbstractApiResourceGroup
             $request,
             OrdersCreateResponse::class
         );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/orders/{externalId}/delivery/cancel" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\ByIdentifier;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Request\Orders\OrderDeliveryCancelRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request        = new OrderDeliveryCancelRequest();
+     * $request->by    = ByIdentifier::EXTERNAL_ID;
+     * $request->force = true;
+     *
+     * try {
+     *     $response = $client->orders->deliveryCancel('8123522898559160', $request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Order delivery cancel result: ' . print_r($response->success, true);
+     * ```
+     *
+     * @param int|string $identifier
+     * @param OrderDeliveryCancelRequest $request
+     *
+     * @return SuccessResponse
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\ClientException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function deliveryCancel($identifier, OrderDeliveryCancelRequest $request): SuccessResponse
+    {
+        /** @var SuccessResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'orders/' . $identifier . '/delivery/cancel',
+            $request,
+            SuccessResponse::class
+        );
+
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/orders/{externalId}/plates/{plateId}/print" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Request\BySiteRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * try {
+     *     $request = new BySiteRequest();
+     *     $request = new BySiteRequest('id', 'gray_sale_ym');
+     *
+     *     $response = $client->orders->platesPrint(100, 18, $request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * printf('Saving downloaded file to "%s."', $response->fileName);
+     * file_put_contents($response->fileName, $response->data->getContents());
+     * ```
+     *
+     * @param string|int $identifier
+     * @param int $plateId
+     * @param BySiteRequest $request
+     *
+     * @return FilesDownloadResponse
+     * @throws \RetailCrm\Api\Exception\ApiException
+     * @throws \RetailCrm\Api\Exception\ClientException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     */
+    public function platesPrint($identifier, int $plateId, BySiteRequest $request): FilesDownloadResponse
+    {
+        /** @var FilesDownloadResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'orders/' . $identifier . '/plates/' . $plateId . '/print',
+            $request,
+            ''
+        );
+
         return $response;
     }
 }

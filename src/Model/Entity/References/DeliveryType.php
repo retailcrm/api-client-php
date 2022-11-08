@@ -180,4 +180,12 @@ class DeliveryType
      * @JMS\SerializedName("defaultTariffName")
      */
     public $defaultTariffName;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\References\DeliveryTypePaymentType[]
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\References\DeliveryTypePaymentType>")
+     * @JMS\SerializedName("deliveryPaymentTypes")
+     */
+    public $deliveryPaymentTypes;
 }
