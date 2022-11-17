@@ -54,12 +54,12 @@ class CompilerPromptCommandTest extends TestCase
         }
     }
 
-    public function testDeactivate(): void
+    public function testEnable(): void
     {
         $tester = new CommandTester(new CompilerPromptCommand());
         $tester->execute([]);
 
-        self::assertStringContainsString('Done, generator prompt is now disabled', $tester->getDisplay());
+        self::assertStringContainsString('Done, code generation has been enabled', $tester->getDisplay());
 
         $composerJson = static::getComposerJson();
 
@@ -70,17 +70,16 @@ class CompilerPromptCommandTest extends TestCase
         self::assertEquals(['retailcrm/api-client-php'], $composerJson['extra']['compile-whitelist']);
     }
 
-    public function testActivate(): void
+    public function testRevert(): void
     {
         $tester = new CommandTester(new CompilerPromptCommand());
-        $tester->execute(['--activate' => '']);
+        $tester->execute(['--revert' => '']);
 
-        self::assertStringContainsString('Done, generator prompt is now enabled', $tester->getDisplay());
+        self::assertStringContainsString('Done, code generation has been disabled', $tester->getDisplay());
 
         $composerJson = static::getComposerJson();
 
         self::assertArrayHasKey('extra', $composerJson);
-        self::assertArrayNotHasKey('compile-mode', $composerJson['extra']);
         self::assertArrayNotHasKey('compile-whitelist', $composerJson['extra']);
     }
 

@@ -1,8 +1,9 @@
 # Documentation
 
-* [Compilation prompt](compilation_prompt.md)
-    + [Disable or enable compilation prompt via CLI](compilation_prompt.md#disable-or-enable-compilation-prompt-via-cli)
-    + [Disable or enable compilation prompt manually](compilation_prompt.md#disable-or-enable-compilation-prompt-manually)
+* [Dealing with `civicrm/composer-compile-plugin` prompts](compilation_prompt.md)
+    + [Disable compilation prompts during the installation](compilation_prompt.md#disable-compilation-prompts-during-the-installation)
+    + [I've chosen something else, now API client doesn't work!](compilation_prompt.md#ive-chosen-something-else-now-api-client-doesnt-work)
+    + [Disabling compilation prompts manually](compilation_prompt.md#disabling-compilation-prompts-manually)
 * [Client structure](structure.md)
     + [Design principles](structure.md#design-principles)
     + [Resource groups](structure.md#resource-groups)

@@ -67,7 +67,7 @@ class ComposerLocator
             $counter++;
             $dir = dirname($dir);
 
-            if (5 < $counter) {
+            if (2 < $counter) {
                 break;
             }
         }
@@ -80,7 +80,9 @@ class ComposerLocator
      */
     private static function getBaseDirectory(): string
     {
-        return (string) realpath(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..']));
+        $cwd = getcwd();
+
+        return false === $cwd ? (string) realpath(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..'])) : $cwd;
     }
 
     /**
