@@ -37,31 +37,27 @@ Follow those steps to install the library:
 ```bash
 composer require retailcrm/api-client-php:"~6.0"
 ```
-During the installation, you'll see a message which will look like this:
+During the installation you will see this message. Press `'y'` when you do:
+```sh
+civicrm/composer-compile-plugin contains a Composer plugin which is currently not in your allow-plugins config. See https://getcomposer.org/allow-plugins
+Do you trust "civicrm/composer-compile-plugin" to execute code and wish to enable it now? (writes "allow-plugins" to composer.json) [y,n,d,?]
+```
+After that, you may see a message which will look like this:
 ```sh
 The following packages have new compilation tasks:
  - retailcrm/api-client-php has 1 task
 
 Allow these packages to compile? ([y]es, [a]lways, [n]o, [l]ist, [h]elp)
 ```
-That's because the Client uses code generation to speed up serialization and deserialization of models in production. This code should be generated during installation or update. Without that code, the library itself will not work at all.
 
-Choose `[a]lways` by typing `a` and pressing Enter if you don't want to see this message anymore. If you want to approve the compilation task every time - use `[y]es` option. The DTO cache will be generated after that.
+Choose `[a]lways` by typing `a` and pressing Enter.
 
-**Note:** You should choose `[a]lways` if your application is using CI/CD pipeline because the interactive terminal is not available
+**Note:** You should choose `'y'` and `[a]lways` if your application is using CI/CD pipeline because the interactive terminal is not available
 in that environment which will result in failure during the dependencies installation.
 
-If you skipped the compilation task - don't worry, it can be executed manually at any time with this command:
-```sh
-composer compile --all
-```
+If you chose something else during the installation and API client doesn't work properly - please follow [these instructions](doc/compilation_prompt.md#ive-chosen-something-else-now-api-client-doesnt-work) to fix the problem.
 
-3. **Optional.** Disable compilation prompt that you have seen in the previous step.
-
-If you wish to disable the compilation prompt but didn't do that at the previous step - you can disable the prompt manually.
-Read the [documentation](doc/compilation_prompt.md) to learn how to do that.
-
-4. Include the autoloader if it's not included, or you didn't use Composer before.
+3. Include the autoloader if it's not included, or you didn't use Composer before.
 ```php
 require 'path/to/vendor/autoload.php';
 ```

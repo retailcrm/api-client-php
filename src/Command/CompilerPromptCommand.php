@@ -25,6 +25,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CompilerPromptCommand extends Command
 {
     private const PACKAGE_NAME = 'retailcrm/api-client-php';
+    private const COMPILER_PLUGIN = 'civicrm/composer-compile-plugin';
 
     /**
      * Sets description and help for a command.
@@ -32,20 +33,14 @@ class CompilerPromptCommand extends Command
     protected function configure(): void
     {
         $this->setName('compiler:prompt')
-            ->setDescription('Enable or disable composer compiler prompt.')
-            ->setHelp('Use this command to suppress the compiler message and enable automatic compilation.')
-            ->addOption(
-                'deactivate',
-                'd',
+            ->setDescription('Enable or disable code generation during client installation & update.')
+            ->setHelp(
+                'Use this command to enable or disable automatic code generation.'
+            )->addOption(
+                'revert',
+                'r',
                 InputOption::VALUE_OPTIONAL,
-                'Hide compiler prompt and run compiler task automatically. This mode is used by default.',
-                false
-            )
-            ->addOption(
-                'activate',
-                'a',
-                InputOption::VALUE_OPTIONAL,
-                'Show compiler prompt and only run compiler task if user allows it.',
+                'You will need to run ./vendor/bin/retailcrm-client models:generate -a after each update.',
                 false
             );
     }
@@ -78,12 +73,13 @@ class CompilerPromptCommand extends Command
             return -1;
         }
 
-        $activatePrompt = false !== $input->getOption('activate');
+        $revert = false !== $input->getOption('revert');
 
-        if ($activatePrompt) {
-            static::activatePrompt($json);
+        if ($revert) {
+            static::deactivateAutoCompiler($json);
         } else {
-            static::deactivatePrompt($json);
+            static::activateAutoCompiler($json);
+            static::activatePlugin($json);
         }
 
         try {
@@ -101,73 +97,110 @@ class CompilerPromptCommand extends Command
         }
 
         $output->writeln(sprintf(
-            '<fg=black;bg=green> ✓ Done, generator prompt is now %s.</>',
-            $activatePrompt ? 'enabled' : 'disabled'
+            '<fg=black;bg=green> ✓ Done, code generation has been %s.</>',
+            $revert ? 'disabled' : 'enabled'
         ));
 
         return 0;
     }
 
     /**
-     * Activate prompt in the provided composer.json
+     * Activate plugin in the provided composer.json
      *
-     * @param array<string, mixed> $composerJson
+     * @param array<string, array<string, array<string>|string>> $composerJson
      */
-    private static function activatePrompt(array &$composerJson): void
+    private static function activatePlugin(array &$composerJson): void
+    {
+        if (!array_key_exists('config', $composerJson)) {
+            $composerJson['config'] = [
+                'allow-plugins' => [
+                    static::COMPILER_PLUGIN => true
+                ]
+            ];
+
+            return;
+        }
+
+        if (!array_key_exists('allow-plugins', $composerJson['config'])) {
+            $composerJson['config']['allow-plugins'] = [
+                static::COMPILER_PLUGIN => true
+            ];
+
+            return;
+        }
+
+        $composerJson['config']['allow-plugins'][static::COMPILER_PLUGIN] = true;
+    }
+
+    /**
+     * Activate auto compiler in the provided composer.json
+     *
+     * @param array<string, array<string, array<string>|string>> $composerJson
+     */
+    private static function activateAutoCompiler(array &$composerJson): void
     {
         if (!array_key_exists('extra', $composerJson)) {
-            $composerJson['extra'] = [];
+            $composerJson['extra'] = [
+                'compile-mode' => 'whitelist',
+                'compile-whitelist' => [self::PACKAGE_NAME]
+            ];
+
+            return;
         }
 
-        if (
-            array_key_exists('compile-whitelist', $composerJson['extra']) &&
-            is_array($composerJson['extra']['compile-whitelist']) &&
-            in_array(static::PACKAGE_NAME, $composerJson['extra']['compile-whitelist'], true)
-        ) {
-            $composerJson['extra']['compile-whitelist'] = array_filter(
-                $composerJson['extra']['compile-whitelist'],
-                static function ($value) {
-                    return static::PACKAGE_NAME !== $value;
-                }
-            );
+        if (array_key_exists('compile-mode', $composerJson['extra'])) {
+            if (
+                'prompt' === $composerJson['extra']['compile-mode'] ||
+                'none' === $composerJson['extra']['compile-mode']
+            ) {
+                $composerJson['extra']['compile-mode'] = 'whitelist';
+            }
+
+            if ('all' === $composerJson['extra']['compile-mode']) {
+                return;
+            }
         }
 
-        if (
-            empty($composerJson['extra']['compile-whitelist']) &&
-            array_key_exists('compile-mode', $composerJson['extra']) &&
-            'whitelist' === $composerJson['extra']['compile-mode']
-        ) {
-            unset($composerJson['extra']['compile-whitelist'], $composerJson['extra']['compile-mode']);
+        $composerJson['extra']['compile-mode'] = 'whitelist';
+
+        if (!array_key_exists('compile-whitelist', $composerJson['extra'])) {
+            $composerJson['extra']['compile-whitelist'] = [self::PACKAGE_NAME];
+
+            return;
         }
 
-        if (1 === count($composerJson['extra'])) {
-            unset($composerJson['extra']);
+        if (!in_array(self::PACKAGE_NAME, $composerJson['extra']['compile-whitelist'])) {
+            $composerJson['extra']['compile-whitelist'][] = self::PACKAGE_NAME;
         }
     }
 
     /**
      * Deactivate prompt in the provided composer.json
      *
-     * @param array<string, mixed> $composerJson
+     * @param array<string, array<string>> $composerJson
      *
      * @SuppressWarnings(PHPMD.ElseExpression)
      */
-    private static function deactivatePrompt(array &$composerJson): void
+    private static function deactivateAutoCompiler(array &$composerJson): void
     {
         if (!array_key_exists('extra', $composerJson)) {
-            $composerJson['extra'] = [];
+            return;
         }
 
         if (
             array_key_exists('compile-whitelist', $composerJson['extra']) &&
-            is_array($composerJson['extra']['compile-whitelist']) &&
-            !in_array(static::PACKAGE_NAME, $composerJson['extra']['compile-whitelist'], true)
+            null !== $composerJson['extra']['compile-whitelist']
         ) {
-            $composerJson['extra']['compile-whitelist'][] = static::PACKAGE_NAME;
-        } else {
-            $composerJson['extra']['compile-whitelist'] = [static::PACKAGE_NAME];
-        }
+            $composerJson['extra']['compile-whitelist'] = array_filter(
+                $composerJson['extra']['compile-whitelist'],
+                static function (string $item) {
+                    return $item !== self::PACKAGE_NAME;
+                }
+            );
 
-        $composerJson['extra']['compile-mode'] = 'whitelist';
+            if (0 === count($composerJson['extra']['compile-whitelist'])) {
+                unset($composerJson['extra']['compile-whitelist']);
+            }
+        }
     }
 }
