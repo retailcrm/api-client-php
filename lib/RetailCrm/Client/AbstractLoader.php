@@ -171,4 +171,19 @@ abstract class AbstractLoader
             true
         );
     }
+
+    /**
+     * Returns system version, public and technical urls
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function systemInfo()
+    {
+        return $this->client->makeRequest(
+            $this->crmUrl . 'api/system-info',
+            "GET",
+            [],
+            true
+        );
+    }
 }
