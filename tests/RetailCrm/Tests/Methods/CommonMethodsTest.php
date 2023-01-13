@@ -74,4 +74,22 @@ class CommonMethodsTest extends TestCase
         static::assertTrue($response->isSuccessful());
         static::assertGreaterThan(0, count($response['settings']));
     }
+
+    /**
+     * System info
+     *
+     * @group api_methods
+     *
+     * @return void
+     */
+    public function testSystemInfo()
+    {
+        $client = static::getApiClient();
+
+        $response = $client->request->systemInfo();
+
+        static::assertEquals(200, $response->getStatusCode());
+        static::assertTrue($response->isSuccessful());
+        static::assertNotEmpty($response['systemVersion']);
+    }
 }
