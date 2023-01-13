@@ -173,7 +173,7 @@ abstract class AbstractLoader
     }
 
     /**
-     * Returns system version, public and technical urls
+     * Getting the system version, public and technical urls
      *
      * @return \RetailCrm\Response\ApiResponse
      */
