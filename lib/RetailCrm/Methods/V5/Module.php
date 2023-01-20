@@ -73,4 +73,38 @@ trait Module
             ['integrationModule' => json_encode($configuration)]
         );
     }
+
+    /**
+     * Update scopes
+     *
+     * @param string $code
+     * @param array $requires
+     *
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \InvalidArgumentException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function integrationModulesUpdateScopes($code, array $requires)
+    {
+        if (empty($code)) {
+            throw new \InvalidArgumentException(
+                'Parameter `code` must be set'
+            );
+        }
+
+        if (!count($requires) || empty($requires['scopes'])) {
+            throw new \InvalidArgumentException(
+                'Parameter `requires` must contains a data & configuration `scopes` must be set'
+            );
+        }
+
+        /* @noinspection PhpUndefinedMethodInspection */
+        return $this->client->makeRequest(
+            sprintf('/integration-modules/%s/update-scopes', $code),
+            "POST",
+            ['requires' => json_encode($requires)]
+        );
+    }
 }
