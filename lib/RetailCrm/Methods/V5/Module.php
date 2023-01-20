@@ -88,6 +88,12 @@ trait Module
      */
     public function integrationModulesUpdateScopes($code, array $requires)
     {
+        if (empty($code)) {
+            throw new \InvalidArgumentException(
+                'Parameter `code` must be set'
+            );
+        }
+
         if (!count($requires) || empty($requires['scopes'])) {
             throw new \InvalidArgumentException(
                 'Parameter `requires` must contains a data & configuration `scopes` must be set'
