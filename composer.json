@@ -42,7 +42,7 @@
         "phpmd/phpmd": "^2.10",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
         "phpcompatibility/php-compatibility": "^9.3",
-        "phpstan/phpstan": "1.0.1",
+        "phpstan/phpstan": "1.9.14",
         "vlucas/phpdotenv": "^5.3",
         "phpunit/phpunit": "^9.5",
         "php-http/curl-client": "^2.2",
@@ -114,7 +114,8 @@
         "process-timeout": 600,
         "allow-plugins": {
             "civicrm/composer-compile-plugin": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": true
         }
     }
 }
