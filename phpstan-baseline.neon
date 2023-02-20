@@ -445,3 +445,28 @@ parameters:
 			count: 1
 			path: src/ResourceGroup/AbstractApiResourceGroup.php
 
+		-
+			message: "#^Cannot cast mixed to float\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/BaseJMSParser.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/BaseJMSParser.php
+
+		-
+			message: "/^Parameter #2 \\.\\.\\.$values of function sprintf expects bool|float|int|string|null, mixed given\\.$/"
+			count: 2
+			path: src/Component/Serializer/Parser/BaseJMSParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSLexer::parse() should return int|string|null but returns int|string|UnitEnum|null\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSLexer.php
+
+		-
+			message: "#^Class RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSLexer extends generic class Doctrine\\\\Common\\\\Lexer\\\\AbstractLexer but does not specify its types: T, V#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSLexer.php
+

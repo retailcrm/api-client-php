@@ -135,8 +135,8 @@ EOF;
     "success": true,
     "loyaltyBonus": {
         "amount": 100,
-        "activationDate": "${activationDateString}",
-        "expireDate": "${expireDateString}"
+        "activationDate": "{$activationDateString}",
+        "expireDate": "{$expireDateString}"
     }
 }
 EOF;

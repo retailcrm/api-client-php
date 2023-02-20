@@ -36,7 +36,7 @@ class ClientBuilderTest extends TestCase
     public function testNoData(): void
     {
         $this->expectException(BuilderException::class);
-        $this->expectDeprecationMessage('apiUrl must not be empty');
+        $this->expectExceptionMessage('apiUrl must not be empty');
         (new ClientBuilder())->build();
     }
 
@@ -52,7 +52,7 @@ class ClientBuilderTest extends TestCase
     public function testNoRequestTransformer(): void
     {
         $this->expectException(BuilderException::class);
-        $this->expectDeprecationMessage('Authenticator or RequestTransformer must be present');
+        $this->expectExceptionMessage('Authenticator or RequestTransformer must be present');
         (new ClientBuilder())
             ->setApiUrl('https://test.retailcrm.pro')
             ->build();

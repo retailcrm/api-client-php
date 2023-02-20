@@ -26,4 +26,12 @@ trait HistoryPageLimitTrait
      * @Form\SerializedName("limit")
      */
     public $limit;
+
+    /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("page")
+     */
+    public $page;
 }

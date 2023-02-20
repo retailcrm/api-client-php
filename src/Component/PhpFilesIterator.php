@@ -86,6 +86,7 @@ class PhpFilesIterator implements Iterator
      *
      * @return int|string
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->parent->key();
