@@ -96,11 +96,6 @@ parameters:
 			path: src/Component/FormData/FormEncoder.php
 
 		-
-			message: "#^Parameter \\#2 \\$result of method RetailCrm\\\\Api\\\\Component\\\\FormData\\\\FormEncoder\\:\\:processPostSerialize\\(\\) expects array, array given\\.$#"
-			count: 1
-			path: src/Component/FormData/FormEncoder.php
-
-		-
 			message: "#^Parameter \\#1 \\$object of function get_class expects object, mixed given\\.$#"
 			count: 1
 			path: src/Component/FormData/Strategy/Encode/EntityStrategy.php
@@ -117,16 +112,11 @@ parameters:
 
 		-
 			message: "#^Cannot cast mixed to float\\.$#"
-			count: 2
-			path: src/Component/FormData/Strategy/Encode/SimpleTypeStrategy.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
 			path: src/Component/FormData/Strategy/Encode/SimpleTypeStrategy.php
 
 		-
-			message: "#^Cannot cast mixed to string\\.$#"
+			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
 			path: src/Component/FormData/Strategy/Encode/SimpleTypeStrategy.php
 
@@ -181,6 +171,11 @@ parameters:
 			path: src/Component/ModelsGenerator.php
 
 		-
+			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\PhpFilesIterator\\:\\:\\$parent \\(Iterator\\<int\\|string, array\\|string\\>\\) does not accept RegexIterator\\<mixed, mixed, Traversable\\<TKey, TValue\\>\\>\\.$#"
+			count: 1
+			path: src/Component/PhpFilesIterator.php
+
+		-
 			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\PhpFilesIterator\\:\\:\\$parent type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Component/PhpFilesIterator.php
@@ -196,12 +191,12 @@ parameters:
 			path: src/Component/Serializer/ArraySupportDecorator.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ArraySupportDecorator\\:\\:decodeArray\\(\\) expects array, mixed given\\.$#"
-			count: 1
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ArraySupportDecorator\\:\\:getArrayValueType\\(\\) should return string but returns array\\<string\\>\\.$#"
+			count: 2
 			path: src/Component/Serializer/ArraySupportDecorator.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ArraySupportDecorator\\:\\:encodeArray\\(\\) expects array, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$data of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ArraySupportDecorator\\:\\:decodeArray\\(\\) expects array, mixed given\\.$#"
 			count: 1
 			path: src/Component/Serializer/ArraySupportDecorator.php
 
@@ -251,19 +246,39 @@ parameters:
 			path: src/Component/Serializer/ModelsChecksumGenerator.php
 
 		-
-			message: "#^Parameter \\#1 \\$iterator of class RetailCrm\\\\Api\\\\Component\\\\FilesIteratorChecksumGenerator constructor expects Iterator\\<mixed, mixed\\>, RetailCrm\\\\Api\\\\Component\\\\PhpFilesIterator given\\.$#"
-			count: 1
-			path: src/Component/Serializer/ModelsChecksumGenerator.php
-
-		-
 			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ModelsChecksumGenerator\\:\\:getChecksumFileName\\(\\) through static\\:\\:\\.$#"
 			count: 4
 			path: src/Component/Serializer/ModelsChecksumGenerator.php
 
 		-
+			message: "#^Cannot cast mixed to float\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/BaseJMSParser.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/BaseJMSParser.php
+
+		-
 			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\BaseJMSParser\\:\\:parse\\(\\) should return array but returns mixed\\.$#"
 			count: 1
 			path: src/Component/Serializer/Parser/BaseJMSParser.php
+
+		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 2
+			path: src/Component/Serializer/Parser/BaseJMSParser.php
+
+		-
+			message: "#^Class RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSLexer extends generic class Doctrine\\\\Common\\\\Lexer\\\\AbstractLexer but does not specify its types\\: T, V$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSLexer.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSLexer\\:\\:parse\\(\\) should return int\\|string\\|null but returns int\\|string\\|UnitEnum\\|null\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSLexer.php
 
 		-
 			message: "#^Parameter \\#1 \\$object of function get_class expects object, mixed given\\.$#"
@@ -281,37 +296,12 @@ parameters:
 			path: src/Component/Serializer/Parser/JMSParser.php
 
 		-
-			message: "#^Cannot access offset 0 on mixed\\.$#"
-			count: 2
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
-			message: "#^Cannot access offset 1 on mixed\\.$#"
-			count: 2
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
-			message: "#^Cannot access offset 2 on mixed\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
 			message: "#^Parameter \\#1 \\$className of class Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypeClass constructor expects string, mixed given\\.$#"
 			count: 1
 			path: src/Component/Serializer/Parser/JMSTypeParser.php
 
 		-
 			message: "#^Parameter \\#1 \\$className of static method Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypeDateTime\\:\\:fromDateTimeClass\\(\\) expects string, mixed given\\.$#"
-			count: 2
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
-			message: "#^Parameter \\#1 \\$format of class Liip\\\\MetadataParser\\\\Metadata\\\\DateTimeOptions constructor expects string\\|null, mixed given\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
-			message: "#^Parameter \\#1 \\$typeInfo of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSTypeParser\\:\\:parseType\\(\\) expects array, mixed given\\.$#"
 			count: 2
 			path: src/Component/Serializer/Parser/JMSTypeParser.php
 
@@ -332,16 +322,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, mixed given\\.$#"
-			count: 3
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
-			message: "#^Parameter \\#2 \\$zone of class Liip\\\\MetadataParser\\\\Metadata\\\\DateTimeOptions constructor expects string\\|null, mixed given\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
-			message: "#^Parameter \\#3 \\$deserializeFormat of class Liip\\\\MetadataParser\\\\Metadata\\\\DateTimeOptions constructor expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Component/Serializer/Parser/JMSTypeParser.php
 
@@ -351,14 +331,19 @@ parameters:
 			path: src/Component/Transformer/DateTimeTransformer.php
 
 		-
+			message: "#^Method RetailCrm\\\\Api\\\\Event\\\\AbstractRequestEvent\\:\\:getApiKey\\(\\) should return string but returns array\\|string\\.$#"
+			count: 1
+			path: src/Event/AbstractRequestEvent.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Event\\\\AbstractRequestEvent\\:\\:\\$apiKey \\(string\\) does not accept array\\|string\\.$#"
+			count: 1
+			path: src/Event/AbstractRequestEvent.php
+
+		-
 			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Exception\\\\ApiException\\:\\:getErrorMessage\\(\\) through static\\:\\:\\.$#"
 			count: 1
 			path: src/Exception/ApiException.php
-
-		-
-			message: "#^Parameter \\#3 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
-			count: 1
-			path: src/Exception/ClientException.php
 
 		-
 			message: "#^Property RetailCrm\\\\Api\\\\Model\\\\Response\\\\ErrorResponse\\:\\:\\$errorMsg \\(string\\) on left side of \\?\\? is not nullable\\.$#"
@@ -374,11 +359,6 @@ parameters:
 			message: "#^Unsafe access to private property RetailCrm\\\\Api\\\\Handler\\\\Request\\\\PsrRequestHandler\\:\\:\\$methodsWithBody through static\\:\\:\\.$#"
 			count: 1
 			path: src/Handler/Request/PsrRequestHandler.php
-
-		-
-			message: "#^Parameter \\#2 \\$code of class RetailCrm\\\\Api\\\\Exception\\\\Client\\\\HandlerException constructor expects int, mixed given\\.$#"
-			count: 1
-			path: src/Handler/Request/RequestDataHandler.php
 
 		-
 			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Handler\\\\Request\\\\RequestDataHandler\\:\\:queryShouldBeUsed\\(\\) through static\\:\\:\\.$#"
@@ -437,11 +417,6 @@ parameters:
 
 		-
 			message: "#^Method RetailCrm\\\\Api\\\\ResourceGroup\\\\AbstractApiResourceGroup\\:\\:sendRequest\\(\\) should return RetailCrm\\\\Api\\\\Interfaces\\\\ResponseInterface but returns object\\.$#"
-			count: 1
-			path: src/ResourceGroup/AbstractApiResourceGroup.php
-
-		-
-			message: "#^Parameter \\#2 \\$code of class RetailCrm\\\\Api\\\\Exception\\\\Client\\\\HttpClientException constructor expects int, mixed given\\.$#"
 			count: 1
 			path: src/ResourceGroup/AbstractApiResourceGroup.php
 

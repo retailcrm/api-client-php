@@ -185,11 +185,13 @@ abstract class AbstractApiResourceGroupTestCase extends TestCase
         $result = [];
 
         foreach ($arr as $index => $node) {
+            if (null === $node) {
+                continue;
+            }
             $result[$index] = is_array($node) === true ? static::clearArray($node) : trim($node);
 
             if (
                 '' === $result[$index] ||
-                null === $result[$index] ||
                 (is_array($result[$index]) && count($result[$index]) < 1)
             ) {
                 unset($result[$index]);
