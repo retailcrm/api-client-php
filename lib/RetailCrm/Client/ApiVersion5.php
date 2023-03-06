@@ -44,6 +44,7 @@ class ApiVersion5 extends AbstractLoader
     use V5\Delivery;
     use V5\Files;
     use V5\Module;
+    use V5\Notifications;
     use V5\Orders;
     use V5\Packs;
     use V5\References;
