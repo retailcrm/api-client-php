@@ -28,6 +28,12 @@ trait Notifications
             );
         }
 
+        if (!empty($notification['userGroups']) && !empty($notification['userIds'])) {
+            throw new \InvalidArgumentException(
+                'Only one of the two fields must be set: `userIds`, `userGroups`'
+            );
+        }
+
         /** @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
             "/notifications/send",
