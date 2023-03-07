@@ -11,7 +11,7 @@ class ApiClientNotificationsTest extends TestCase
      *
      * @group notifications_v5
      */
-    public function testUsersGroups(callable $getNotification, ?string $exceptionClass): void
+    public function testSendNotification(callable $getNotification, ?string $exceptionClass): void
     {
         $client = static::getApiClient();
         if (!empty($exceptionClass)) {
@@ -28,7 +28,7 @@ class ApiClientNotificationsTest extends TestCase
     {
         return [
             'error_type' => [
-                function (): array {
+                static function (): array {
                     $notification = self::getErrorNotification();
                     $notification['type'] = 'another';
 
@@ -37,7 +37,7 @@ class ApiClientNotificationsTest extends TestCase
                 \InvalidArgumentException::class,
             ],
             'error_message' => [
-                function (): array {
+                static function (): array {
                     $notification = self::getErrorNotification();
                     $notification['message'] = [];
 
@@ -46,7 +46,7 @@ class ApiClientNotificationsTest extends TestCase
                 \InvalidArgumentException::class,
             ],
             'error_users_empty' => [
-                function (): array {
+                static function (): array {
                     $notification = self::getErrorNotification();
                     $notification['userGroups'] = [];
                     $notification['userIds'] = [];
@@ -56,13 +56,13 @@ class ApiClientNotificationsTest extends TestCase
                 \InvalidArgumentException::class,
             ],
             'error_users_filled' => [
-                function (): array {
+                static function (): array {
                     return self::getErrorNotification();;
                 },
                 \InvalidArgumentException::class,
             ],
             'success_group' => [
-                function (): array {
+                static function (): array {
                     $notification = self::getErrorNotification();
                     unset($notification['userIds']);
 
@@ -71,7 +71,7 @@ class ApiClientNotificationsTest extends TestCase
                 null,
             ],
             'success_ids' => [
-                function (): array {
+                static function (): array {
                     $notification = self::getErrorNotification();
                     unset($notification['userGroups']);
 
