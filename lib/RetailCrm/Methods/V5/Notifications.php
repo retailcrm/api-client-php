@@ -8,7 +8,10 @@ trait Notifications
 {
     protected static $allowedTypes = ['api.info', 'api.error'];
 
-    public function sendNotification(array $notification): ApiResponse
+    /**
+     * @return ApiResponse
+     */
+    public function sendNotification(array $notification)
     {
         if (empty($notification['type']) || !in_array($notification['type'], self::$allowedTypes, true)) {
             throw new \InvalidArgumentException(

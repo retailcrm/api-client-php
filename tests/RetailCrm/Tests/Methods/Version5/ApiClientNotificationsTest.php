@@ -10,8 +10,13 @@ class ApiClientNotificationsTest extends TestCase
      * @dataProvider notificationsProvider
      *
      * @group notifications_v5
+     *
+     * @param callable    $getNotification
+     * @param string|null $exceptionClass
+     *
+     * @return void
      */
-    public function testSendNotification(callable $getNotification, ?string $exceptionClass): void
+    public function testSendNotification(callable $getNotification, $exceptionClass)
     {
         $client = static::getApiClient();
         if (!empty($exceptionClass)) {
@@ -19,50 +24,53 @@ class ApiClientNotificationsTest extends TestCase
         }
         $response = $client->request->sendNotification($getNotification());
         if (empty($exceptionClass)) {
-            static::assertContains($response->getStatusCode(), [200, 201]);
+            static::assertTrue(in_array($response->getStatusCode(), [200, 201]));
             static::assertTrue($response->isSuccessful());
         }
     }
 
-    public function notificationsProvider(): array
+    /**
+     * @return array[]
+     */
+    public function notificationsProvider()
     {
         return [
             'error_type' => [
-                static function (): array {
+                static function () {
                     $notification = self::getErrorNotification();
                     $notification['type'] = 'another';
 
                     return $notification;
                 },
-                \InvalidArgumentException::class,
+                'InvalidArgumentException',
             ],
             'error_message' => [
-                static function (): array {
+                static function () {
                     $notification = self::getErrorNotification();
                     $notification['message'] = [];
 
                     return $notification;
                 },
-                \InvalidArgumentException::class,
+                'InvalidArgumentException',
             ],
             'error_users_empty' => [
-                static function (): array {
+                static function () {
                     $notification = self::getErrorNotification();
                     $notification['userGroups'] = [];
                     $notification['userIds'] = [];
 
                     return $notification;
                 },
-                \InvalidArgumentException::class,
+                'InvalidArgumentException',
             ],
             'error_users_filled' => [
-                static function (): array {
+                static function () {
                     return self::getErrorNotification();;
                 },
-                \InvalidArgumentException::class,
+                'InvalidArgumentException',
             ],
             'success_group' => [
-                static function (): array {
+                static function () {
                     $notification = self::getErrorNotification();
                     unset($notification['userIds']);
 
@@ -71,7 +79,7 @@ class ApiClientNotificationsTest extends TestCase
                 null,
             ],
             'success_ids' => [
-                static function (): array {
+                static function () {
                     $notification = self::getErrorNotification();
                     unset($notification['userGroups']);
 
@@ -82,7 +90,10 @@ class ApiClientNotificationsTest extends TestCase
         ];
     }
 
-    protected static function getErrorNotification(): array
+    /**
+     * @return array
+     */
+    protected static function getErrorNotification()
     {
         return [
             'type' => 'api.error',
