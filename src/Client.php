@@ -27,6 +27,7 @@ use RetailCrm\Api\ResourceGroup\Files;
 use RetailCrm\Api\ResourceGroup\Integration;
 use RetailCrm\Api\ResourceGroup\Inventories;
 use RetailCrm\Api\ResourceGroup\Loyalty;
+use RetailCrm\Api\ResourceGroup\Notifications;
 use RetailCrm\Api\ResourceGroup\Orders;
 use RetailCrm\Api\ResourceGroup\Packs;
 use RetailCrm\Api\ResourceGroup\Payments;
@@ -81,6 +82,9 @@ class Client
 
     /** @var \RetailCrm\Api\ResourceGroup\Loyalty */
     public $loyalty;
+
+    /** @var \RetailCrm\Api\ResourceGroup\Notifications */
+    public $notifications;
 
     /** @var \RetailCrm\Api\ResourceGroup\Orders */
     public $orders;
@@ -216,6 +220,14 @@ class Client
             $logger
         );
         $this->loyalty = new Loyalty(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->notifications = new Notifications(
             $url,
             $httpClient,
             $requestTransformer,
