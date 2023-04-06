@@ -136,6 +136,8 @@ class Client
 
         list($statusCode, $responseBody) = $this->checkResponse($curlHandler, $method);
 
+        $this->logResponse($responseBody, $statusCode);
+
         return new ApiResponse($statusCode, $responseBody);
     }
 
@@ -195,8 +197,6 @@ class Client
         $responseBody = curl_exec($curlHandler);
         $statusCode = curl_getinfo($curlHandler, CURLINFO_HTTP_CODE);
         $contentType = curl_getinfo($curlHandler, CURLINFO_CONTENT_TYPE);
-
-        $this->logResponse($responseBody, $statusCode);
 
         if (503 === $statusCode) {
             throw new LimitException("Service temporary unavailable");
