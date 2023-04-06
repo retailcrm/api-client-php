@@ -11,6 +11,7 @@
 
 namespace RetailCrm\Client;
 
+use Psr\Log\LoggerInterface;
 use RetailCrm\Http\Client;
 use RetailCrm\Http\RequestOptions;
 
@@ -140,6 +141,16 @@ abstract class AbstractLoader
     public function getSite()
     {
         return $this->siteCode;
+    }
+
+    /**
+     * Set logger
+     *
+     * @param LoggerInterface|null $logger
+     */
+    public function setLogger($logger)
+    {
+        $this->client->setLogger($logger);
     }
 
     /**

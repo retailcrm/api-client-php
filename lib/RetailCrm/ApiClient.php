@@ -11,6 +11,7 @@
 
 namespace RetailCrm;
 
+use Psr\Log\LoggerInterface;
 use RetailCrm\Client\ApiVersion3;
 use RetailCrm\Client\ApiVersion4;
 use RetailCrm\Client\ApiVersion5;
@@ -66,5 +67,15 @@ class ApiClient
     public function getVersion()
     {
         return $this->version;
+    }
+
+    /**
+     * Set logger
+     *
+     * @param LoggerInterface|null $logger
+     */
+    public function setLogger($logger = null)
+    {
+        $this->request->setLogger($logger);
     }
 }

@@ -11,6 +11,7 @@
 
 namespace RetailCrm\Http;
 
+use Psr\Log\LoggerInterface;
 use RetailCrm\Exception\CurlException;
 use RetailCrm\Exception\InvalidJsonException;
 use RetailCrm\Exception\LimitException;
@@ -33,6 +34,11 @@ class Client
     protected $url;
     protected $defaultParameters;
     protected $options;
+
+    /**
+     * @var LoggerInterface|null $logger
+     */
+    protected $logger;
 
     /**
      * Client constructor.
@@ -116,6 +122,8 @@ class Client
             curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $this->options->getHttpHeaders());
         }
 
+        $this->logRequest($url, $method, $parameters);
+
         if (self::METHOD_POST === $method) {
             curl_setopt($curlHandler, CURLOPT_POST, true);
 
@@ -127,6 +135,8 @@ class Client
         }
 
         list($statusCode, $responseBody) = $this->checkResponse($curlHandler, $method);
+
+        $this->logResponse($responseBody, $statusCode);
 
         return new ApiResponse($statusCode, $responseBody);
     }
@@ -167,6 +177,16 @@ class Client
     }
 
     /**
+     * Set logger
+     *
+     * @param LoggerInterface|null $logger
+     */
+    public function setLogger($logger = null)
+    {
+        $this->logger = $logger;
+    }
+
+    /**
      * @param $curlHandler
      * @param $method
      *
@@ -199,5 +219,40 @@ class Client
         }
 
         return [$statusCode, $responseBody];
+    }
+
+    /**
+     * @param string $url
+     * @param string $method
+     * @param array $params
+     */
+    private function logRequest($url, $method, $params)
+    {
+        if (null === $this->logger) {
+            return;
+        }
+
+        $message = 'Send request: ' . $method . ' ' . $url;
+
+        if (!empty($params)) {
+            $message .= ' with params: ' . json_encode($params);
+        }
+
+        $this->logger->info($message);
+    }
+
+    /**
+     * @param string $responseBody
+     * @param int $statusCode
+     */
+    private function logResponse($responseBody, $statusCode)
+    {
+        if (null === $this->logger) {
+            return;
+        }
+
+        $message = 'Response with code ' . $statusCode . ' received with body: ' . $responseBody;
+
+        $this->logger->info($message);
     }
 }
