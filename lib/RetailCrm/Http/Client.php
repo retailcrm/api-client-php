@@ -11,6 +11,7 @@
 
 namespace RetailCrm\Http;
 
+use Psr\Log\LoggerInterface;
 use RetailCrm\Exception\CurlException;
 use RetailCrm\Exception\InvalidJsonException;
 use RetailCrm\Exception\LimitException;
@@ -33,6 +34,11 @@ class Client
     protected $url;
     protected $defaultParameters;
     protected $options;
+
+    /**
+     * @var LoggerInterface|null $logger
+     */
+    protected $logger;
 
     /**
      * Client constructor.
@@ -116,6 +122,8 @@ class Client
             curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $this->options->getHttpHeaders());
         }
 
+        $this->logRequest($url, $method, $parameters);
+
         if (self::METHOD_POST === $method) {
             curl_setopt($curlHandler, CURLOPT_POST, true);
 
@@ -167,6 +175,16 @@ class Client
     }
 
     /**
+     * Set logger
+     *
+     * @param LoggerInterface|null $logger
+     */
+    public function setLogger($logger = null)
+    {
+        $this->logger = $logger;
+    }
+
+    /**
      * @param $curlHandler
      * @param $method
      *
@@ -177,6 +195,8 @@ class Client
         $responseBody = curl_exec($curlHandler);
         $statusCode = curl_getinfo($curlHandler, CURLINFO_HTTP_CODE);
         $contentType = curl_getinfo($curlHandler, CURLINFO_CONTENT_TYPE);
+
+        $this->logResponse($responseBody, $statusCode);
 
         if (503 === $statusCode) {
             throw new LimitException("Service temporary unavailable");
@@ -199,5 +219,40 @@ class Client
         }
 
         return [$statusCode, $responseBody];
+    }
+
+    /**
+     * @param string $url
+     * @param string $method
+     * @param array $params
+     */
+    private function logRequest($url, $method, $params)
+    {
+        if (null === $this->logger) {
+            return;
+        }
+
+        $message = 'Send request: ' . $method . ' ' . $url;
+
+        if (!empty($params)) {
+            $message .= ' with params: ' . json_encode($params);
+        }
+
+        $this->logger->info($message);
+    }
+
+    /**
+     * @param string $responseBody
+     * @param int $statusCode
+     */
+    private function logResponse($responseBody, $statusCode)
+    {
+        if (null === $this->logger) {
+            return;
+        }
+
+        $message = 'Response with code ' . $statusCode . ' received with body: ' . $responseBody;
+
+        $this->logger->info($message);
     }
 }
