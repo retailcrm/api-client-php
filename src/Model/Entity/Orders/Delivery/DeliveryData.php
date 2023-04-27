@@ -671,4 +671,12 @@ class DeliveryData
      * @JMS\SerializedName("service")
      */
     public $service;
+
+    /**
+     * @var ItemDeclaredValue[]
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Orders\Delivery\ItemDeclaredValue>")
+     * @JMS\SerializedName("itemDeclaredValues")
+     */
+    public $itemDeclaredValues;
 }
