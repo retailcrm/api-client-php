@@ -115,6 +115,82 @@ abstract class AbstractLoader
     }
 
     /**
+     * Check ID type
+     *
+     * @param int $id
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return void
+     */
+    protected function checkId($id)
+    {
+        if (!is_int($id)) {
+            throw new \InvalidArgumentException(
+                'Parameter `id` must be integer'
+            );
+        }
+    }
+
+    /**
+     * Check pagination input parameters
+     *
+     * @param int $limit
+     * @param int $page
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return void
+     */
+    protected function checkPaginationParameters($limit, $page)
+    {
+        $this->checkPaginationLimit($limit);
+
+        if (!is_int($page) || 1 > $page) {
+            throw new \InvalidArgumentException(
+                'Parameter `page` must be an integer and must be greater than 0'
+            );
+        }
+    }
+
+    /**
+     * Check pagination input parameter `limit`
+     *
+     * @param int $limit
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return void
+     */
+    protected function checkPaginationLimit($limit)
+    {
+        $allowedLimits = [20, 50, 100];
+        if (!is_int($limit) || !in_array($limit, $allowedLimits, true)) {
+            throw new \InvalidArgumentException(
+                'Parameter `limit` must be an integer and contain one of the values [20, 50, 100]'
+            );
+        }
+    }
+
+    /**
+     * Check input parameter `site`
+     *
+     * @param string $site
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return void
+     */
+    protected function checkSite($site)
+    {
+        if (!is_string($site) || '' === $site) {
+            throw new \InvalidArgumentException(
+                'Parameter `site` must contains a data'
+            );
+        }
+    }
+
+    /**
      * Fill params by site value
      *
      * @param string $site   site code

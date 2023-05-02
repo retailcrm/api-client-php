@@ -65,7 +65,7 @@ class ApiClientNotificationsTest extends TestCase
             ],
             'error_users_filled' => [
                 static function () {
-                    return self::getErrorNotification();;
+                    return self::getErrorNotification();
                 },
                 'InvalidArgumentException',
             ],
