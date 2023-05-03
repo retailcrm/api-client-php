@@ -84,6 +84,7 @@ class CustomField
     public $entity;
 
     /**
+     * @deprecated Please use $defaultTyped instead.
      * @var string
      *
      * @JMS\Type("string")
@@ -122,4 +123,12 @@ class CustomField
      * @JMS\SerializedName("dictionary")
      */
     public $dictionary;
+
+    /**
+     * @var mixed
+     *
+     * @JMS\Type("mixed")
+     * @JMS\SerializedName("defaultTyped")
+     */
+    public $defaultTyped;
 }

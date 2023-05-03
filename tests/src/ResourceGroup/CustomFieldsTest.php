@@ -58,6 +58,40 @@ class CustomFieldsTest extends AbstractApiResourceGroupTestCase
       "ordering": 50,
       "displayArea": "customer",
       "viewMode": "editable"
+    },
+    {
+      "name": "мультисправочник",
+      "code": "multi-dictionary",
+      "required": false,
+      "inFilter": true,
+      "inList": true,
+      "inGroupActions": false,
+      "type": "multiselect_dictionary",
+      "entity": "order",
+      "ordering": 50,
+      "displayArea": "customer",
+      "viewMode": "editable",
+      "dictionary": "test_dictionary",
+      "defaultTyped": [
+        "test1",
+        "test2"
+      ]
+    },
+    {
+      "name": "справочник",
+      "code": "dictionary",
+      "required": false,
+      "inFilter": true,
+      "inList": true,
+      "inGroupActions": false,
+      "type": "dictionary",
+      "entity": "order",
+      "ordering": 50,
+      "displayArea": "customer",
+      "viewMode": "editable",
+      "dictionary": "test_dictionary",
+      "default": 1,
+      "defaultTyped": "test1"
     }
   ]
 }
@@ -296,7 +330,8 @@ EOF;
     "default": "false",
     "ordering": 50,
     "displayArea": "customer",
-    "viewMode": "editable"
+    "viewMode": "editable",
+    "defaultTyped": false
   }
 }
 EOF;
