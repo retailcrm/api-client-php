@@ -246,7 +246,6 @@ trait Loyalty
         );
     }
 
-
     /**
      * Get Accounts info
      *
@@ -331,7 +330,7 @@ trait Loyalty
         }
         if (null !== $bonuses && !is_int($bonuses) && !is_float($bonuses)) {
             throw new InvalidArgumentException(
-                'Parameter `limit` must be an integer or float'
+                'Parameter `bonuses` must be an integer or float'
             );
         }
 
