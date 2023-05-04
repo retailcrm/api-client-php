@@ -556,7 +556,7 @@ class ApiClientLoyaltyTest extends TestCase
      *
      * @return void
      */
-    public function testCalculateProvider($site, array $order,  $bonuses, $exceptionClass)
+    public function testCalculate($site, array $order,  $bonuses, $exceptionClass)
     {
         $client = static::getApiClient();
         if (!empty($exceptionClass)) {
