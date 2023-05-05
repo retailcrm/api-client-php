@@ -191,7 +191,17 @@ class CustomersTest extends AbstractApiResourceGroupTestCase
             "allowedSendByPhone": false
           }
         }
-      ]
+      ],
+      "customFields": {
+        "bool_field": true,
+        "string_field": "my_string",
+        "float_field": 3.8,
+        "dictionary": "test1",
+        "multiselect_dictionary": [
+          "test2",
+          "test3"
+        ]
+      }
     }
   ]
 }

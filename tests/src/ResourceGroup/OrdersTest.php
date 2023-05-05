@@ -450,7 +450,12 @@ class OrdersTest extends AbstractApiResourceGroupTestCase
                 "galka": false,
                 "test_number": 0,
                 "otpravit_dozakaz": false,
-                "moyskladexternalid": "0f203a5f-7734-11eb-0a80-026b0001f435"
+                "moyskladexternalid": "0f203a5f-7734-11eb-0a80-026b0001f435",
+                "dictionary": "test2",
+                "multiselect": [
+                    "test1",
+                    "test3"
+                ]
             }
         }
     ]
