@@ -12,3 +12,7 @@ phpunit.xml
 .project
 .swp
 /nbproject
+.docker
+docker-compose*.yml
+.php_cs*
+.phpunit*

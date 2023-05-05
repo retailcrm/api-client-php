@@ -56,4 +56,5 @@ class ApiVersion5 extends AbstractLoader
     use V5\Telephony;
     use V5\Users;
     use V5\IntegrationPayments;
+    use V5\Loyalty;
 }
