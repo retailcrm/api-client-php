@@ -691,6 +691,9 @@ EOF;
           "code": "p_type2",
           "cod": false
         }
+      ],
+      "sites": [
+        "site1"
       ]
     },
     "16": {
@@ -725,6 +728,8 @@ EOF;
           "code": "p_type2",
           "cod": false
         }
+      ],
+      "sites": [
       ]
     },
     "ozon-seller": {
@@ -786,6 +791,8 @@ EOF;
           "code": "p_type2",
           "cod": false
         }
+      ],
+      "sites": [
       ]
     },
     "crrst-24": {
@@ -808,6 +815,8 @@ EOF;
       ],
       "defaultForCrm": false,
       "deliveryPaymentTypes": [
+      ],
+      "sites": [
       ]
     }
   }
@@ -830,6 +839,7 @@ EOF;
                 $actual['deliveryTypes'][$key]['isCostDependsOnRegionAndWeightAndSum']
                     = $deliveryType['isCostDependsOnRegionAndWeightAndSum'];
                 $actual['deliveryTypes'][$key]['isCostDependsOnDateTime'] = $deliveryType['isCostDependsOnDateTime'];
+                $actual['deliveryTypes'][$key]['sites'] = $deliveryType['sites'];
             }
 
             self::assertEquals($expected, $actual);
@@ -1862,7 +1872,9 @@ EOF;
         "ozon-seller-6024d760b14f8"
       ],
       "paymentStatuses": [
-
+      ],
+      "sites": [
+        "site1"
       ]
     },
     "12": {
@@ -1902,6 +1914,10 @@ EOF;
       "paymentStatuses": [
         "not-paid",
         "paid"
+      ],
+      "sites": [
+        "site1",
+        "site2"
       ]
     },
     "14": {
@@ -1922,6 +1938,8 @@ EOF;
       "paymentStatuses": [
         "not-paid",
         "paid"
+      ],
+      "sites": [
       ]
     },
     "15": {
@@ -1941,6 +1959,8 @@ EOF;
       "paymentStatuses": [
         "not-paid",
         "paid"
+      ],
+      "sites": [
       ]
     },
     "wallete-one-payment-vog": {
@@ -1963,7 +1983,9 @@ EOF;
         "active": true,
         "name": "Wallet One",
         "logo": "http://argo.inet-cool.ru/img/w1.svg"
-      }
+      },
+      "sites": [
+      ]
     }
   }
 }

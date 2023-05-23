@@ -188,4 +188,12 @@ class DeliveryType
      * @JMS\SerializedName("deliveryPaymentTypes")
      */
     public $deliveryPaymentTypes;
+
+    /**
+     * @var string[]
+     *
+     * @JMS\Type("array")
+     * @JMS\SerializedName("sites")
+     */
+    public $sites;
 }

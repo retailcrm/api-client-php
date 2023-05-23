@@ -90,4 +90,12 @@ class PaymentType
      * @JMS\SerializedName("integrationModule")
      */
     public $integrationModule;
+
+    /**
+     * @var string[]
+     *
+     * @JMS\Type("array")
+     * @JMS\SerializedName("sites")
+     */
+    public $sites;
 }
