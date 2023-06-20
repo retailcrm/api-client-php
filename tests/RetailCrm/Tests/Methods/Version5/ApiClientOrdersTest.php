@@ -417,4 +417,84 @@ class ApiClientOrdersTest extends TestCase
             'Delete payment'
         );
     }
+
+    /**
+     * @dataProvider ordersLoyaltyApplyProvider
+     *
+     * @group orders_v5
+     *
+     * @param array       $order
+     * @param float       $bonuses
+     * @param string      $site
+     * @param string|null $exceptionClass
+     *
+     * @return void
+     */
+    public function testOrdersLoyaltyApply(array $order, float $bonuses, string $site, $exceptionClass)
+    {
+        $client = static::getApiClient();
+        if (!empty($exceptionClass)) {
+            $this->expectException($exceptionClass);
+        }
+        $response = $client->request->ordersLoyaltyApply($order, $bonuses, $site);
+        if (empty($exceptionClass)) {
+            static::assertContains($response->getStatusCode(), [200, 201]);
+            static::assertTrue($response->isSuccessful());
+        }
+    }
+
+    /**
+     * @return array[]
+     */
+    public function ordersLoyaltyApplyProvider(): array
+    {
+        return [
+            'success_id' => [
+                [
+                    'id' => 111111111,
+                ],
+                100,
+                'moysklad',
+                null,
+            ],
+            'success_externalId' => [
+                [
+                    'externalId' => 111111111,
+                ],
+                100,
+                'moysklad',
+                null,
+            ],
+            'success_site_empty' => [
+                [
+                    'externalId' => 111111111,
+                ],
+                100,
+                '',
+                null,
+            ],
+            'error_bonus_zero' => [
+                [
+                    'externalId' => 111111111,
+                ],
+                0,
+                'moysklad',
+                'InvalidArgumentException',
+            ],
+            'error_missing_orderId' => [
+                [
+                    'firstName' => 111111111,
+                ],
+                0,
+                'moysklad',
+                'InvalidArgumentException',
+            ],
+            'error_empty_order' => [
+                [],
+                0,
+                'moysklad',
+                'InvalidArgumentException',
+            ],
+        ];
+    }
 }

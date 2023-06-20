@@ -16,3 +16,5 @@ phpunit.xml
 docker-compose*.yml
 .php_cs*
 .phpunit*
+.env*
+!*.dist

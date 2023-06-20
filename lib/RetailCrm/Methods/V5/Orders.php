@@ -150,4 +150,51 @@ trait Orders
             "POST"
         );
     }
+
+    /**
+     * Application of loyalty program bonuses
+     *
+     * @param array $payment order data
+     * @param float $bonuses bonuses count
+     * @param null  $site    site code
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function ordersLoyaltyApply(array $order, float $bonuses, $site = null)
+    {
+        if (!count($order)) {
+            throw new \InvalidArgumentException(
+                'Parameter `order` must contains a data'
+            );
+        }
+
+        if (empty($order['id']) && empty($order['externalId'])) {
+            throw new \InvalidArgumentException(
+                'Parameter `order` must contain an identifier: `id` or `externalId`'
+            );
+        }
+
+        if (empty($bonuses)) {
+            throw new \InvalidArgumentException(
+                'Specify a different amount of bonuses'
+            );
+        }
+
+        /* @noinspection PhpUndefinedMethodInspection */
+        return $this->client->makeRequest(
+            '/orders/loyalty/apply',
+            "POST",
+            $this->fillSite(
+                $site,
+                [
+                    'order' => json_encode($order),
+                    'bonuses' => $bonuses,
+                ]
+            )
+        );
+    }
 }
