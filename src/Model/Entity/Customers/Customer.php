@@ -120,6 +120,15 @@ class Customer implements CustomerInterface
      */
     public $tags;
 
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("attachedTag")
+     */
+    public $attachedTag;
+
     /**
      * @var string[]
      *

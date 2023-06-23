@@ -34,5 +34,4 @@ class NonWorkingDay
      * @JMS\SerializedName("end_date")
      */
     public $endDate;
-
 }
