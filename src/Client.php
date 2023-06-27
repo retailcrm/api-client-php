@@ -40,6 +40,7 @@ use RetailCrm\Api\ResourceGroup\Tasks;
 use RetailCrm\Api\ResourceGroup\Telephony;
 use RetailCrm\Api\ResourceGroup\Users;
 use RetailCrm\Api\ResourceGroup\Verification;
+use RetailCrm\Api\ResourceGroup\WebAnalytics;
 
 /**
  * Class Client
@@ -124,6 +125,9 @@ class Client
 
     /** @var \RetailCrm\Api\ResourceGroup\CustomMethods */
     public $customMethods;
+
+    /** @var \RetailCrm\Api\ResourceGroup\WebAnalytics */
+    public $webAnalytics;
 
     /** @var StreamFactoryInterface */
     private $streamFactory;
@@ -332,6 +336,14 @@ class Client
             $logger
         );
         $this->customMethods = new CustomMethods(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->webAnalytics = new WebAnalytics(
             $url,
             $httpClient,
             $requestTransformer,
