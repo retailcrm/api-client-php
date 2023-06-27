@@ -11,6 +11,7 @@ namespace RetailCrm\Tests\Model\Callback\Entity\Integration;
 
 use PHPUnit\Framework\TestCase;
 use RetailCrm\Api\Factory\SerializerFactory;
+use RetailCrm\Api\Model\Entity\Settings\NonWorkingDay;
 use RetailCrm\Api\Model\Entity\Settings\Settings as SystemSettings;
 use RetailCrm\Api\Model\Callback\Entity\Integration\Settings;
 use RetailCrm\Api\Model\Entity\Settings\Value;
@@ -44,6 +45,12 @@ class SettingsTest extends TestCase
                             "lunch_end_time" => "05:00",
                         ],
                     ],
+                    'non_working_days' => [
+                        [
+                            'start_date' => '05.29',
+                            'end_date' => '06.29'
+                        ]
+                    ]
                 ],
             ],
             Settings::class
@@ -53,5 +60,6 @@ class SettingsTest extends TestCase
         self::assertInstanceOf(SystemSettings::class, $settings->settings);
         self::assertInstanceOf(Value::class, $settings->settings->defaultCurrency);
         self::assertInstanceOf(WorkTime::class, $settings->settings->workTimes[0]);
+        self::assertInstanceOf(NonWorkingDay::class, $settings->settings->nonWorkingDays[0]);
     }
 }
