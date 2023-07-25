@@ -13,6 +13,7 @@ use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\References\CostGroupsEditRequest;
 use RetailCrm\Api\Model\Request\References\CostItemsEditRequest;
 use RetailCrm\Api\Model\Request\References\CouriersCreateRequest;
+use RetailCrm\Api\Model\Request\References\CurrenciesCreateRequest;
 use RetailCrm\Api\Model\Request\References\DeliveryServicesEditRequest;
 use RetailCrm\Api\Model\Request\References\DeliveryTypesEditRequest;
 use RetailCrm\Api\Model\Request\References\LegalEntityEditRequest;
@@ -31,6 +32,7 @@ use RetailCrm\Api\Model\Response\References\CostGroupsResponse;
 use RetailCrm\Api\Model\Response\References\CostItemsResponse;
 use RetailCrm\Api\Model\Response\References\CountriesResponse;
 use RetailCrm\Api\Model\Response\References\CouriersResponse;
+use RetailCrm\Api\Model\Response\References\CurrenciesResponse;
 use RetailCrm\Api\Model\Response\References\DeliveryServicesResponse;
 use RetailCrm\Api\Model\Response\References\DeliveryTypesResponse;
 use RetailCrm\Api\Model\Response\References\LegalEntitiesResponse;
@@ -504,6 +506,176 @@ class References extends AbstractApiResourceGroup
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/couriers/' . $id . '/edit',
+            $request,
+            SuccessResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/reference/currencies" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * try {
+     *     $response = $client->references->currencies();
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Currencies: ' . print_r($response->currencies, true);
+     * ```
+     *
+     * @return \RetailCrm\Api\Model\Response\References\CurrenciesResponse
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     */
+    public function currencies(): CurrenciesResponse
+    {
+        /** @var CurrenciesResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'reference/currencies',
+            null,
+            CurrenciesResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/reference/currencies/create" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Entity\References\Currency;
+     * use RetailCrm\Api\Model\Request\References\CurrenciesCreateRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $entity                          = new Currency();
+     * $entity->code                    = 'Test Currency';
+     * $entity->isAutoConvert           = true;
+     * $entity->autoConvertExtraPercent = 5;
+     *
+     * try {
+     *     $response = $client->references->currenciesCreate(new CurrenciesCreateRequest($entity));
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Created currency with ID: ' . $response->id;
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\References\CurrenciesCreateRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\IdResponse
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     */
+    public function currenciesCreate(CurrenciesCreateRequest $request): IdResponse
+    {
+        /** @var IdResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'reference/currencies/create',
+            $request,
+            IdResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/reference/currencies/{id}/edit" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Entity\References\Currency;
+     * use RetailCrm\Api\Model\Request\References\CurrenciesCreateRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $entity                          = new Currency();
+     * $entity->code                    = 'Test Currency';
+     * $entity->autoConvertExtraPercent = 10;
+     *
+     * try {
+     *     $response = $client->references->currenciesEdit(1, new CurrenciesCreateRequest($entity));
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     * ```
+     *
+     * @param int                                                             $id
+     * @param \RetailCrm\Api\Model\Request\References\CurrenciesCreateRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\SuccessResponse
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     */
+    public function currenciesEdit(int $id, CurrenciesCreateRequest $request): SuccessResponse
+    {
+        /** @var SuccessResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'reference/currencies/' . $id . '/edit',
             $request,
             SuccessResponse::class
         );

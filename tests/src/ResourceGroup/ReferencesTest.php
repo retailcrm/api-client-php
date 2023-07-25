@@ -19,6 +19,7 @@ use RetailCrm\Api\Model\Entity\Orders\Delivery\CourierPhone;
 use RetailCrm\Api\Model\Entity\References\CostGroup;
 use RetailCrm\Api\Model\Entity\References\CostItem;
 use RetailCrm\Api\Model\Entity\References\Courier;
+use RetailCrm\Api\Model\Entity\References\Currency;
 use RetailCrm\Api\Model\Entity\References\DeliveryService;
 use RetailCrm\Api\Model\Entity\References\DeliveryType;
 use RetailCrm\Api\Model\Entity\References\LegalEntity;
@@ -37,6 +38,7 @@ use RetailCrm\Api\Model\Entity\References\StorePhone;
 use RetailCrm\Api\Model\Request\References\CostGroupsEditRequest;
 use RetailCrm\Api\Model\Request\References\CostItemsEditRequest;
 use RetailCrm\Api\Model\Request\References\CouriersCreateRequest;
+use RetailCrm\Api\Model\Request\References\CurrenciesCreateRequest;
 use RetailCrm\Api\Model\Request\References\DeliveryServicesEditRequest;
 use RetailCrm\Api\Model\Request\References\DeliveryTypesEditRequest;
 use RetailCrm\Api\Model\Request\References\LegalEntityEditRequest;
@@ -489,6 +491,100 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
+    public function testCurrencies(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "currencies": [
+    {
+      "id": 1,
+      "code": "RUB",
+      "isBase": true,
+      "isAutoConvert": false
+    },
+    {
+      "id": 3,
+      "code": "KZT",
+      "isBase": false,
+      "isAutoConvert": true,
+      "autoConvertExtraPercent": 10
+    },
+    {
+      "id": 2,
+      "code": "USD",
+      "isBase": false,
+      "isAutoConvert": true,
+      "autoConvertExtraPercent": 5
+    }
+  ]
+}
+EOF;
+
+        $mock = static::createApiMockBuilder('reference/currencies');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+        $response = $client->references->currencies();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCurrenciesCreate(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 1
+}
+EOF;
+
+        $entity                             = new Currency();
+        $entity->code                       = 'Test Currency';
+        $entity->isAutoConvert              = true;
+        $entity->autoConvertExtraPercent    = 5;
+
+        $request = new CurrenciesCreateRequest($entity);
+
+        $mock = static::createApiMockBuilder('reference/currencies/create');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+        $response = $client->references->currenciesCreate($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCurrenciesEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $entity                             = new Currency();
+        $entity->autoConvertExtraPercent    = 15;
+
+        $request = new CurrenciesCreateRequest($entity);
+
+        $mock = static::createApiMockBuilder('reference/currencies/3/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+        $response = $client->references->currenciesEdit(3, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
     public function testDeliveryServices(): void
     {
         $json = <<<'EOF'
@@ -663,6 +759,7 @@ EOF;
       "isAutoNetCostCalculation": false,
       "isCostDependsOnRegionAndWeightAndSum": false,
       "isCostDependsOnDateTime": false,
+      "currency": "RUB",
       "name": "Доставка курьером",
       "code": "2",
       "active": true,
@@ -702,6 +799,7 @@ EOF;
       "isAutoNetCostCalculation": false,
       "isCostDependsOnRegionAndWeightAndSum": false,
       "isCostDependsOnDateTime": false,
+      "currency": "RUB",
       "name": "Почта России",
       "code": "16",
       "active": true,
@@ -738,6 +836,7 @@ EOF;
       "isAutoNetCostCalculation": false,
       "isCostDependsOnRegionAndWeightAndSum": false,
       "isCostDependsOnDateTime": false,
+      "currency": "RUB",
       "name": "Доставка OZON",
       "code": "ozon-seller",
       "active": false,
@@ -801,6 +900,7 @@ EOF;
       "isAutoNetCostCalculation": true,
       "isCostDependsOnRegionAndWeightAndSum": false,
       "isCostDependsOnDateTime": false,
+      "currency": "RUB",
       "name": "Курьерист 24",
       "code": "crrst-24",
       "active": true,
@@ -2573,6 +2673,7 @@ EOF;
         "countryIso": "RU"
       },
       "countryIso": "RU",
+      "currency": "RUB",
       "senderEmail": "test@example.com",
       "senderName": "test",
       "catalogId": "catalog",
@@ -2602,7 +2703,8 @@ EOF;
         "code": "Vog_Gallery",
         "countryIso": "RU"
       },
-      "countryIso": "RU"
+      "countryIso": "RU",
+      "currency": "RUB"
     }
   }
 }
