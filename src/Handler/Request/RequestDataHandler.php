@@ -15,6 +15,7 @@ use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Exception\Client\HandlerException;
 use RetailCrm\Api\Handler\AbstractHandler;
 use RetailCrm\Api\Interfaces\FormEncoderInterface;
+use RetailCrm\Api\Model\Request\Files\FilesUploadRequest;
 use RetailCrm\Api\Model\RequestData;
 use Throwable;
 
@@ -76,7 +77,9 @@ class RequestDataHandler extends AbstractHandler
             }
 
             if ('' !== $formData) {
-                if (static::queryShouldBeUsed($item->request->getMethod())) {
+                if ($item->requestModel instanceof FilesUploadRequest) {
+                    $item->request = $item->request->withBody($item->requestModel->file);
+                } elseif (static::queryShouldBeUsed($item->request->getMethod())) {
                     $item->request = $item->request->withUri(
                         $item->request->getUri()->withQuery($formData)
                     );

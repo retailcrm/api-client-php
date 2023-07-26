@@ -98,7 +98,7 @@ EOF;
         $request = new FilesUploadRequest($file);
 
         $mock->matchMethod(RequestMethod::POST)
-            ->matchBody(static::encodeForm($request))
+            ->matchBody($file)
             ->reply(200)
             ->withBody($json);
 
