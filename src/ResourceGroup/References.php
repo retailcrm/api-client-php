@@ -577,7 +577,7 @@ class References extends AbstractApiResourceGroup
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $entity                          = new Currency();
-     * $entity->code                    = 'Test Currency';
+     * $entity->code                    = 'USD';
      * $entity->isAutoConvert           = true;
      * $entity->autoConvertExtraPercent = 5;
      *
@@ -638,7 +638,8 @@ class References extends AbstractApiResourceGroup
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $entity                          = new Currency();
-     * $entity->code                    = 'Test Currency';
+     * $entity->code                    = 'USD';
+     * $entity->isAutoConvert           = true;
      * $entity->autoConvertExtraPercent = 10;
      *
      * try {

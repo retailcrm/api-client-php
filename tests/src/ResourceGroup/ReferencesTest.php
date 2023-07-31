@@ -542,7 +542,7 @@ EOF;
 EOF;
 
         $entity                             = new Currency();
-        $entity->code                       = 'Test Currency';
+        $entity->code                       = 'EUR';
         $entity->isAutoConvert              = true;
         $entity->autoConvertExtraPercent    = 5;
 
@@ -569,6 +569,7 @@ EOF;
 EOF;
 
         $entity                             = new Currency();
+        $entity->isAutoConvert              = true;
         $entity->autoConvertExtraPercent    = 15;
 
         $request = new CurrenciesCreateRequest($entity);
