@@ -25,6 +25,7 @@ class CostsUploadRequest implements RequestInterface
      *
      * @Form\Type("array<RetailCrm\Api\Model\Entity\Costs\Cost>")
      * @Form\SerializedName("costs")
+     * @Form\JsonField()
      */
     public $costs;
 }
