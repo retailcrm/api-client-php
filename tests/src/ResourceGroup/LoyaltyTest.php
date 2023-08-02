@@ -618,7 +618,8 @@ EOF;
         "active": false,
         "id": 168,
         "loyalty": {
-            "id": 1
+            "id": 1,
+            "currency": "RUB"
         },
         "customer": {
             "id": 5260,
@@ -1098,6 +1099,7 @@ EOF;
     {
       "active": true,
       "blocked": false,
+      "currency": "RUB",
       "id": 3,
       "name": "Новая программа",
       "confirmSmsCharge": false,
@@ -1108,6 +1110,7 @@ EOF;
     {
       "active": true,
       "blocked": false,
+      "currency": "RUB",
       "id": 4,
       "name": "Битрикс новый",
       "confirmSmsCharge": false,
@@ -1118,6 +1121,7 @@ EOF;
     {
       "active": true,
       "blocked": false,
+      "currency": "RUB",
       "id": 1,
       "name": "Тестовая программа",
       "confirmSmsCharge": false,
@@ -1154,6 +1158,7 @@ EOF;
     "loyalty": {
         "active": true,
         "blocked": false,
+        "currency": "RUB",
         "id": 4,
         "name": "Битрикс новый",
         "confirmSmsCharge": false,

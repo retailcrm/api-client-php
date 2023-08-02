@@ -49,6 +49,14 @@ class Order
     public $summ;
 
     /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("currency")
+     */
+    public $currency;
+
+    /**
      * @var int
      *
      * @JMS\Type("int")

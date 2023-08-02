@@ -160,6 +160,14 @@ class Site
      * @var string
      *
      * @JMS\Type("string")
+     * @JMS\SerializedName("currency")
+     */
+    public $currency;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
      * @JMS\SerializedName("senderEmail")
      */
     public $senderEmail;
