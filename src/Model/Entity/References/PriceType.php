@@ -76,6 +76,14 @@ class PriceType
     public $filterExpression;
 
     /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("currency")
+     */
+    public $currency;
+
+    /**
      * @var \RetailCrm\Api\Model\Entity\References\GeoHierarchyRow[]
      *
      * @JMS\Type("array<RetailCrm\Api\Model\Entity\References\GeoHierarchyRow>")

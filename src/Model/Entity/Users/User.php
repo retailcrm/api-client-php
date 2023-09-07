@@ -80,6 +80,14 @@ class User
      * @var string
      *
      * @JMS\Type("string")
+     * @JMS\SerializedName("position")
+     */
+    public $position;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
      * @JMS\SerializedName("photoUrl")
      */
     public $photoUrl;
