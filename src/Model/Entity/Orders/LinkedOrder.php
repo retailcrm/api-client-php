@@ -11,6 +11,12 @@ namespace RetailCrm\Api\Model\Entity\Orders;
 
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 
+/**
+ * Class LinkedOrder
+ *
+ * @category LinkedOrder
+ * @package  RetailCrm\Api\Model\Entity\Orders
+ */
 class LinkedOrder
 {
     /**

@@ -12,6 +12,12 @@ namespace RetailCrm\Api\Model\Entity\Orders;
 use DateTime;
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 
+/**
+ * Class OrderLink
+ *
+ * @category OrderLink
+ * @package  RetailCrm\Api\Model\Entity\Orders
+ */
 class OrderLink
 {
     /**

@@ -15,7 +15,6 @@ use RetailCrm\Api\Model\Request\WebAnalytics\SourcesUploadRequest;
 use RetailCrm\Api\Model\Response\WebAnalytics\ClientIdUploadResponse;
 use RetailCrm\Api\Model\Response\WebAnalytics\SourcesUploadResponse;
 
-//    TODO комментарий + тест
 /**
  * Class WebAnalytics
  *
