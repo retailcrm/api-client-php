@@ -22,7 +22,7 @@ use RetailCrm\Api\Model\Entity\References\Currency;
 class CurrenciesCreateRequest implements RequestInterface
 {
     /**
-     * @var \RetailCrm\Api\Model\Entity\References\Currency
+     * @var \RetailCrm\Api\Model\Entity\References\Currency|null
      *
      * @Form\Type("RetailCrm\Api\Model\Entity\References\Currency")
      * @Form\SerializedName("currency")

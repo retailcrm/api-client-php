@@ -116,4 +116,12 @@ class SerializedLoyaltyOrder
      * @JMS\SerializedName("items")
      */
     public $items;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("currency")
+     */
+    public $currency;
 }

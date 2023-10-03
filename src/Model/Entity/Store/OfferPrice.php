@@ -42,4 +42,12 @@ class OfferPrice
      * @JMS\SerializedName("ordering")
      */
     public $ordering;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("currency")
+     */
+    public $currency;
 }

@@ -516,6 +516,14 @@ class OrderFilter
      * @var string[]
      *
      * @Form\Type("string[]")
+     * @Form\SerializedName("deliveryServices")
+     */
+    public $deliveryServices;
+
+    /**
+     * @var string[]
+     *
+     * @Form\Type("string[]")
      * @Form\SerializedName("orderMethods")
      */
     public $orderMethods;

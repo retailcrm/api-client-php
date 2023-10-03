@@ -417,6 +417,14 @@ class Order
     public $payments;
 
     /**
+     * @var \RetailCrm\Api\Model\Entity\Orders\OrderLink[]
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Orders\OrderLink>")
+     * @JMS\SerializedName("links")
+     */
+    public $links;
+
+    /**
      * @var bool
      *
      * @JMS\Type("bool")
