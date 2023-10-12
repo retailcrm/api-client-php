@@ -22,7 +22,7 @@ class BonusDetail
     /**
      * @var \DateTime
      *
-     * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      * @JMS\SerializedName("date")
      */
     public $date;
