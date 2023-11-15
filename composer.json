@@ -25,7 +25,7 @@
         "php-http/client-implementation": "^1.0",
         "php-http/message-factory": "^1.0",
         "php-http/discovery": "^1.13",
-        "doctrine/annotations": "^1.13",
+        "doctrine/annotations": "^1.13|^2.0",
         "liip/serializer": "2.2.*",
         "php-http/httplug": "^2.2",
         "civicrm/composer-compile-plugin": "^0.18.0",
