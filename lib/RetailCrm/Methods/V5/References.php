@@ -284,4 +284,22 @@ trait References
             ['unit' => json_encode($unit)]
         );
     }
+
+    /**
+     * Get a list of currencies
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function currenciesList()
+    {
+        /* @noinspection PhpUndefinedMethodInspection */
+        return $this->client->makeRequest(
+            '/reference/currencies',
+            "GET"
+        );
+    }
 }
