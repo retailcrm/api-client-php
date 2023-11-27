@@ -184,7 +184,8 @@ class ApiClientReferenceTest extends TestCase
             ['stores'],
             ['couriers'],
             ['costs'],
-            ['units']
+            ['units'],
+            ['currencies'],
         ];
     }
 
