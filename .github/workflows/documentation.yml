@@ -8,7 +8,7 @@ on:
       - 'v*'
 
 jobs:
-  test:
+  documentation:
     name: "phpDocumentor"
     runs-on: ubuntu-latest
     steps:
@@ -20,11 +20,11 @@ jobs:
       - name: Check out code into the workspace
         if: success() && ${{ github.ref != 'refs/heads/master' }}
         uses: actions/checkout@v2
-      - name: Setup PHP 7.4
+      - name: Setup PHP 8.3
         if: ${{ github.ref != 'refs/heads/master' }}
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "7.4"
+          php-version: "8.3"
       - name: Cache phpDocumentor
         id: cache-phpdocumentor
         uses: actions/cache@v2
@@ -33,7 +33,7 @@ jobs:
           key: phpdocumentor
       - name: Download latest phpDocumentor
         if: steps.cache-phpdocumentor.outputs.cache-hit != 'true'
-        run: curl -O -L https://phpdoc.org/phpDocumentor.phar
+        run: curl -O -L https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.4.3/phpDocumentor.phar
       - name: Generate documentation
         if: ${{ github.ref != 'refs/heads/master' }}
         run: php phpDocumentor.phar
