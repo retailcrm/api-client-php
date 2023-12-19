@@ -3,7 +3,7 @@
 /**
  * PHP version 7.3
  *
- * @category FeatureTest
+ * @category FeaturesTest
  * @package  RetailCrm\Tests\ResourceGroup
  */
 
@@ -15,12 +15,12 @@ use RetailCrm\TestUtils\Factory\TestClientFactory;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
 
 /**
- * Class FeatureTest
+ * Class FeaturesTest
  *
- * @category FeatureTest
+ * @category FeaturesTest
  * @package  RetailCrm\Tests\ResourceGroup
  */
-class FeatureTest extends AbstractApiResourceGroupTestCase
+class FeaturesTest extends AbstractApiResourceGroupTestCase
 {
     public function testCheck(): void
     {
