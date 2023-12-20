@@ -23,6 +23,7 @@ use RetailCrm\Api\ResourceGroup\CustomersCorporate;
 use RetailCrm\Api\ResourceGroup\CustomFields;
 use RetailCrm\Api\ResourceGroup\CustomMethods;
 use RetailCrm\Api\ResourceGroup\Delivery;
+use RetailCrm\Api\ResourceGroup\Features;
 use RetailCrm\Api\ResourceGroup\Files;
 use RetailCrm\Api\ResourceGroup\Integration;
 use RetailCrm\Api\ResourceGroup\Inventories;
@@ -74,6 +75,9 @@ class Client
 
     /** @var \RetailCrm\Api\ResourceGroup\Delivery */
     public $delivery;
+
+    /** @var \RetailCrm\Api\ResourceGroup\Features */
+    public $features;
 
     /** @var \RetailCrm\Api\ResourceGroup\Files */
     public $files;
@@ -200,6 +204,14 @@ class Client
             $logger
         );
         $this->delivery = new Delivery(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->features = new Features(
             $url,
             $httpClient,
             $requestTransformer,
