@@ -38,7 +38,7 @@ class Features extends AbstractApiResourceGroup
      * $request->features = ['communication.chatbot_feature_1', 'communication.chatbot_feature_2']
      *
      * try {
-     *     $response = $client->api->featuresCheck($request);
+     *     $response = $client->features->check($request);
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *        'Error from RetailCRM API (status code: %d): %s',
