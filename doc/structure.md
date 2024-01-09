@@ -24,9 +24,11 @@ The resource groups list into which client is separated:
 * `customers`
 * `customersCorporate`
 * `delivery`
+* `features`
 * `files`
 * `integration`
 * `loyalty`
+* `notifications`
 * `orders`
 * `packs`
 * `payments`
@@ -39,7 +41,8 @@ The resource groups list into which client is separated:
 * `users`
 * `verification`
 * `statistics`
+* `webAnalytics`
 
-Every group implements corresponding API documentation block:
+There is also a special `customMethods` group that is used for custom API methods. Each group except this one implements corresponding API documentation block:
 * [English](https://docs.retailcrm.pro/Developers/API/APIVersions/APIv5)
 * [Русский](https://docs.retailcrm.ru/Developers/API/APIVersions/APIv5)
