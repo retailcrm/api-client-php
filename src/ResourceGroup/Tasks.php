@@ -10,11 +10,13 @@
 namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Model\Request\Tasks\TaskHistoryRequest;
 use RetailCrm\Api\Model\Request\Tasks\TasksCreateRequest;
 use RetailCrm\Api\Model\Request\Tasks\TasksRequest;
 use RetailCrm\Api\Model\Response\IdResponse;
 use RetailCrm\Api\Model\Response\SuccessResponse;
 use RetailCrm\Api\Model\Response\Tasks\TasksGetResponse;
+use RetailCrm\Api\Model\Response\Tasks\TasksHistoryResponse;
 use RetailCrm\Api\Model\Response\Tasks\TasksResponse;
 
 /**
@@ -261,6 +263,68 @@ class Tasks extends AbstractApiResourceGroup
             'tasks/' . $id . '/edit',
             $request,
             SuccessResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/tasks/history" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Filter\Tasks\TaskHistoryFilter;
+     * use RetailCrm\Api\Model\Request\Tasks\TaskHistoryRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request                  = new TaskHistoryRequest();
+     * $request->limit           = 100;
+     * $request->page            = 1;
+     * $request->filter          = new TaskHistoryFilter();
+     * $request->filter->sinceId = 1111;
+     *
+     * try {
+     *     $response = $client->tasks->history($request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Tasks history: ' . print_r($response->history, true);
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\Tasks\TaskHistoryRequest|null $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Tasks\TasksHistoryResponse
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     */
+    public function history(?TaskHistoryRequest $request = null): TasksHistoryResponse
+    {
+        /** @var TasksHistoryResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'tasks/history',
+            $request,
+            TasksHistoryResponse::class
         );
         return $response;
     }
