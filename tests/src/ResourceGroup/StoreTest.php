@@ -375,6 +375,7 @@ EOF;
       "maxPrice": 624,
       "id": 828272,
       "article": "38311",
+      "type": "product",
       "name": "Test Product",
       "url": "https://example.com",
       "imageUrl": "https://example.com/image.jpg",
@@ -699,6 +700,7 @@ EOF;
         $productInput->popular = true;
         $productInput->recommended = true;
         $productInput->stock = true;
+        $productInput->type = 'product';
 
         $productEditGroupInput = new ProductEditGroupInput();
         $productEditGroupInput->id = 9717;

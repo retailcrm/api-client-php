@@ -187,4 +187,12 @@ class Product
      * @JMS\SerializedName("updatedAt")
      */
     public $updatedAt;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("type")
+     */
+    public $type;
 }

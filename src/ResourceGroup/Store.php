@@ -646,6 +646,7 @@ class Store extends AbstractApiResourceGroup
      * $productInput->popular = true;
      * $productInput->recommended = true;
      * $productInput->stock = true;
+     * $productInput->type = 'product';
      * $productEditGroupInput = new ProductEditGroupInput();
      * $productEditGroupInput->externalId = 'testExternalId';
      * $productEditGroupInput->id = 10;
