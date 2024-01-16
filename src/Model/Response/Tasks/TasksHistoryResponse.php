@@ -12,6 +12,7 @@ namespace RetailCrm\Api\Model\Response\Tasks;
 use DateTime;
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 use RetailCrm\Api\Model\Response\AbstractPaginatedResponse;
+
 class TasksHistoryResponse extends AbstractPaginatedResponse
 {
     /**

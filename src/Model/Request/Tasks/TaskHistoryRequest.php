@@ -12,10 +12,10 @@ namespace RetailCrm\Api\Model\Request\Tasks;
 use RetailCrm\Api\Interfaces\RequestInterface;
 use RetailCrm\Api\Model\Filter\Tasks\TaskHistoryFilter;
 use RetailCrm\Api\Model\Request\Traits\HistoryPageLimitTrait;
+use RetailCrm\Api\Component\FormData\Mapping as Form;
 
 class TaskHistoryRequest implements RequestInterface
 {
-
     use HistoryPageLimitTrait;
 
     /**

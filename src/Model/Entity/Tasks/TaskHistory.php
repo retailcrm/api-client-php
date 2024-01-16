@@ -9,6 +9,9 @@
 
 namespace RetailCrm\Api\Model\Entity\Tasks;
 
+use DateTime;
+use RetailCrm\Api\Component\Serializer\Annotation as JMS;
+
 /**
  * Class TaskHistory
  *

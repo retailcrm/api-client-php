@@ -9,6 +9,8 @@
 
 namespace RetailCrm\Api\Model\Entity\Tasks;
 
+use RetailCrm\Api\Component\Serializer\Annotation as JMS;
+
 class TaskComment
 {
     /**

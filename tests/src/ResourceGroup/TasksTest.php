@@ -14,6 +14,8 @@ use RetailCrm\Api\Enum\Tasks\TaskStatus;
 use RetailCrm\Api\Model\Entity\Tasks\AbstractCustomer;
 use RetailCrm\Api\Model\Entity\Tasks\Task;
 use RetailCrm\Api\Model\Filter\Tasks\TaskFilter;
+use RetailCrm\Api\Model\Filter\Tasks\TaskHistoryFilter;
+use RetailCrm\Api\Model\Request\Tasks\TaskHistoryRequest;
 use RetailCrm\Api\Model\Request\Tasks\TasksCreateRequest;
 use RetailCrm\Api\Model\Request\Tasks\TasksRequest;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
@@ -172,6 +174,56 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->tasks->edit(1, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testHistory(): void
+    {
+        $json = <<<'EOF'
+{
+    "success":true,
+    "history":[
+        {
+            "id":1,
+            "createdAt":"2023-03-22 19:00:29",
+            "created":true,
+            "source":"rule",
+            "field":"id",
+            "oldValue":null,
+            "newValue":1,
+            "task":{
+                "id":95978,
+                "text":"",
+                "commentary":"",
+                "createdAt":"2023-03-22 19:00:29",
+                "complete":false,
+                "performer":116,
+                "performerType":"user",
+                "customer":{
+                    "type":"customer",
+                    "id":1
+                }
+            }
+        }
+    ]
+}
+EOF;
+
+        $mock = static::createApiMockBuilder('tasks/1');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+
+        $request                  = new TaskHistoryRequest();
+        $request->limit           = 100;
+        $request->page            = 1;
+        $request->filter          = new TaskHistoryFilter();
+        $request->filter->sinceId = 1;
+
+        $response = $client->tasks->history($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

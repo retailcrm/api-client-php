@@ -10,6 +10,7 @@
 namespace RetailCrm\Api\Model\Filter\Tasks;
 
 use DateTime;
+use RetailCrm\Api\Component\FormData\Mapping as Form;
 
 /**
  * Class TaskHistoryFilter
