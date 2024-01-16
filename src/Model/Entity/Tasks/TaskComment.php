@@ -3,8 +3,8 @@
 /**
  * PHP version 7.3
  *
- * @category TaskHistory
- * @package  RetailCrm\Api\Model\Entity\TaskComment
+ * @category TaskComment
+ * @package  RetailCrm\Api\Model\Entity\T
  */
 
 namespace RetailCrm\Api\Model\Entity\Tasks;

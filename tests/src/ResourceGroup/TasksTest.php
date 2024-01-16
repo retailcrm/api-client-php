@@ -185,24 +185,24 @@ EOF;
     "success":true,
     "history":[
         {
-            "id":1,
-            "createdAt":"2023-03-22 19:00:29",
-            "created":true,
-            "source":"rule",
-            "field":"id",
-            "oldValue":null,
-            "newValue":1,
-            "task":{
-                "id":95978,
-                "text":"",
-                "commentary":"",
-                "createdAt":"2023-03-22 19:00:29",
-                "complete":false,
-                "performer":116,
-                "performerType":"user",
+            "id": 1,
+            "createdAt": "2023-03-22 19:00:29",
+            "created": true,
+            "source": "rule",
+            "field": "id",
+            "oldValue": null,
+            "newValue": 1,
+            "task": {
+                "id": 1,
+                "text": "",
+                "commentary": "",
+                "createdAt": "2023-03-22 19:00:29",
+                "complete": false,
+                "performer": 2,
+                "performerType": "user",
                 "customer":{
-                    "type":"customer",
-                    "id":1
+                    "type": "customer",
+                    "id": 1
                 }
             }
         }
@@ -210,9 +210,9 @@ EOF;
 }
 EOF;
 
-        $mock = static::createApiMockBuilder('tasks/1');
+        $mock = static::createApiMockBuilder('tasks/history');
         $mock->matchMethod(RequestMethod::GET)
-            ->reply(200)
+            ->reply()
             ->withBody($json);
 
         $client   = TestClientFactory::createClient($mock->getClient());
@@ -225,6 +225,6 @@ EOF;
 
         $response = $client->tasks->history($request);
 
-        self::assertModelEqualsToResponse($json, $response);
+        self::assertModelEqualsToResponse($json, $response, true);
     }
 }

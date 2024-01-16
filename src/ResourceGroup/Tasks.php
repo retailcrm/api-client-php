@@ -283,7 +283,7 @@ class Tasks extends AbstractApiResourceGroup
      * $request->limit           = 100;
      * $request->page            = 1;
      * $request->filter          = new TaskHistoryFilter();
-     * $request->filter->sinceId = 1111;
+     * $request->filter->sinceId = 1;
      *
      * try {
      *     $response = $client->tasks->history($request);
@@ -326,6 +326,7 @@ class Tasks extends AbstractApiResourceGroup
             $request,
             TasksHistoryResponse::class
         );
+
         return $response;
     }
 }
