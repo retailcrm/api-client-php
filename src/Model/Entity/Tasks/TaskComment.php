@@ -4,7 +4,7 @@
  * PHP version 7.3
  *
  * @category TaskComment
- * @package  RetailCrm\Api\Model\Entity\T
+ * @package  RetailCrm\Api\Model\Entity\Tasks
  */
 
 namespace RetailCrm\Api\Model\Entity\Tasks;
