@@ -629,6 +629,7 @@ class Store extends AbstractApiResourceGroup
      * use RetailCrm\Api\Model\Request\Store\ProductsBatchCreateRequest;
      * use RetailCrm\Api\Factory\SimpleClientFactory;
      * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Enum\Product\ProductType;
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
@@ -646,6 +647,7 @@ class Store extends AbstractApiResourceGroup
      * $productInput->popular = true;
      * $productInput->recommended = true;
      * $productInput->stock = true;
+     * $productInput->type = ProductType::PRODUCT;
      * $productEditGroupInput = new ProductEditGroupInput();
      * $productEditGroupInput->externalId = 'testExternalId';
      * $productEditGroupInput->id = 10;

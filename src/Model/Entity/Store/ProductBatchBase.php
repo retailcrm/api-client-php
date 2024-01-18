@@ -130,4 +130,12 @@ abstract class ProductBatchBase
      * @JMS\SerializedName("catalogId")
      */
     public $catalogId;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("type")
+     */
+    public $type;
 }
