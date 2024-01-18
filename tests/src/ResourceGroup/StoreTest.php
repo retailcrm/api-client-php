@@ -11,6 +11,7 @@ namespace RetailCrm\Tests\ResourceGroup;
 
 use RetailCrm\Api\Component\Transformer\DateTimeTransformer;
 use RetailCrm\Api\Enum\NumericBoolean;
+use RetailCrm\Api\Enum\Product\ProductType;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Store\Inventory;
 use RetailCrm\Api\Model\Entity\Store\Offer;
@@ -700,7 +701,7 @@ EOF;
         $productInput->popular = true;
         $productInput->recommended = true;
         $productInput->stock = true;
-        $productInput->type = 'product';
+        $productInput->type = ProductType::PRODUCT;
 
         $productEditGroupInput = new ProductEditGroupInput();
         $productEditGroupInput->id = 9717;
