@@ -10,11 +10,17 @@
 namespace RetailCrm\Api\ResourceGroup;
 
 use RetailCrm\Api\Enum\RequestMethod;
+use RetailCrm\Api\Exception\ApiException;
+use RetailCrm\Api\Exception\Client\HandlerException;
+use RetailCrm\Api\Exception\ClientException;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Model\Request\Tasks\TaskGetCommentsRequest;
 use RetailCrm\Api\Model\Request\Tasks\TaskHistoryRequest;
 use RetailCrm\Api\Model\Request\Tasks\TasksCreateRequest;
 use RetailCrm\Api\Model\Request\Tasks\TasksRequest;
 use RetailCrm\Api\Model\Response\IdResponse;
 use RetailCrm\Api\Model\Response\SuccessResponse;
+use RetailCrm\Api\Model\Response\Tasks\TaskGetCommentsResponse;
 use RetailCrm\Api\Model\Response\Tasks\TasksGetResponse;
 use RetailCrm\Api\Model\Response\Tasks\TasksHistoryResponse;
 use RetailCrm\Api\Model\Response\Tasks\TasksResponse;
@@ -325,6 +331,62 @@ class Tasks extends AbstractApiResourceGroup
             'tasks/history',
             $request,
             TasksHistoryResponse::class
+        );
+
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/tasks/{id}/comments" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Request\Tasks\TaskGetCommentsRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request        = new TaskGetCommentsRequest();
+     * $request->limit = 100;
+     * $request->page  = 1;
+     *
+     * try {
+     *     $response = $client->tasks->getComments(1, $request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Task: ' . print_r($response->task, true);
+     * ```
+     *
+     * @param int $id
+     * @param TaskGetCommentsRequest $request
+     *
+     * @return TaskGetCommentsResponse
+     * @throws ApiException
+     * @throws ClientException
+     * @throws HandlerException
+     * @throws ApiExceptionInterface
+     */
+    public function getComments(int $id, TaskGetCommentsRequest $request): TaskGetCommentsResponse
+    {
+        /** @var TaskGetCommentsResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'tasks/' . $id . '/comments',
+            $request,
+            TaskGetCommentsResponse::class
         );
 
         return $response;

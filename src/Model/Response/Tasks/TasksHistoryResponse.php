@@ -13,6 +13,12 @@ use DateTime;
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 use RetailCrm\Api\Model\Response\AbstractPaginatedResponse;
 
+/**
+ * Class TasksHistoryResponse
+ *
+ * @category TasksHistoryResponse
+ * @package  RetailCrm\Api\Model\Response\Tasks
+ */
 class TasksHistoryResponse extends AbstractPaginatedResponse
 {
     /**

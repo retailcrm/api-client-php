@@ -101,9 +101,9 @@ class TaskHistory
     public $task;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Tasks\TaskComment
+     * @var \RetailCrm\Api\Model\Entity\Tasks\AbstractComment
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\Tasks\TaskComment")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Tasks\AbstractComment")
      * @JMS\SerializedName("comment")
      */
     public $comment;
