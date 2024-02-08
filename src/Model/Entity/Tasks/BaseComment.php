@@ -3,7 +3,7 @@
 /**
  * PHP version 7.3
  *
- * @category AbstractComment
+ * @category BaseComment
  * @package  RetailCrm\Api\Model\Entity\Tasks
  */
 
@@ -12,12 +12,12 @@ namespace RetailCrm\Api\Model\Entity\Tasks;
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 
 /**
- * Class AbstractComment
+ * Class BaseComment
  *
- * @category AbstractComment
+ * @category BaseComment
  * @package  RetailCrm\Api\Model\Entity\Tasks
  */
-class AbstractComment
+class BaseComment
 {
     /**
      * @var int

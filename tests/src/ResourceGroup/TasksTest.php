@@ -183,31 +183,31 @@ EOF;
     {
         $json = <<<'EOF'
 {
-    "success":true,
-    "history":[
-        {
-            "id": 1,
-            "createdAt": "2023-03-22 19:00:29",
-            "created": true,
-            "source": "rule",
-            "field": "id",
-            "oldValue": null,
-            "newValue": 1,
-            "task": {
-                "id": 1,
-                "text": "",
-                "commentary": "",
-                "createdAt": "2023-03-22 19:00:29",
-                "complete": false,
-                "performer": 2,
-                "performerType": "user",
-                "customer":{
-                    "type": "customer",
-                    "id": 1
-                }
-            }
+  "success": true,
+  "history": [
+    {
+      "id": 1,
+      "createdAt": "2023-03-22 19:00:29",
+      "created": true,
+      "source": "rule",
+      "field": "id",
+      "oldValue": null,
+      "newValue": 1,
+      "task": {
+        "id": 1,
+        "text": "",
+        "commentary": "",
+        "createdAt": "2023-03-22 19:00:29",
+        "complete": false,
+        "performer": 2,
+        "performerType": "user",
+        "customer": {
+          "type": "customer",
+          "id": 1
         }
-    ]
+      }
+    }
+  ]
 }
 EOF;
 
@@ -233,29 +233,29 @@ EOF;
     {
         $json = <<<'EOF'
 {
-    "success": true,
-    "pagination": {
+  "success": true,
+  "pagination": {
     "limit": 20,
-        "totalCount": 4,
-        "currentPage": 1,
-        "totalPageCount": 1
+    "totalCount": 4,
+    "currentPage": 1,
+    "totalPageCount": 1
+  },
+  "comments": [
+    {
+      "id": 1150,
+      "creator": 1,
+      "text": "Тест 2",
+      "createdAt": "2024-02-05 16:58:23",
+      "updatedAt": "2024-02-05 16:58:23"
     },
-    "comments": [
-        {
-            "id": 1150,
-            "creator": 1,
-            "text": "Тест 2",
-            "createdAt": "2024-02-05 16:58:23",
-            "updatedAt": "2024-02-05 16:58:23"
-        },
-        {
-            "id": 1149,
-            "creator": 1,
-            "text": "Тест 1",
-            "createdAt": "2024-02-05 16:58:19",
-            "updatedAt": "2024-02-05 16:58:19"
-        }
-    ]
+    {
+      "id": 1149,
+      "creator": 1,
+      "text": "Тест 1",
+      "createdAt": "2024-02-05 16:58:19",
+      "updatedAt": "2024-02-05 16:58:19"
+    }
+  ]
 }
 EOF;
 

@@ -18,7 +18,7 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  * @category TaskComment
  * @package  RetailCrm\Api\Model\Entity\Tasks
  */
-class TaskComment extends AbstractComment
+class TaskComment extends BaseComment
 {
     /**
      * @var int
