@@ -15,6 +15,7 @@ use RetailCrm\Api\Model\Entity\Tasks\AbstractCustomer;
 use RetailCrm\Api\Model\Entity\Tasks\Task;
 use RetailCrm\Api\Model\Filter\Tasks\TaskFilter;
 use RetailCrm\Api\Model\Filter\Tasks\TaskHistoryFilter;
+use RetailCrm\Api\Model\Request\Tasks\TaskGetCommentsRequest;
 use RetailCrm\Api\Model\Request\Tasks\TaskHistoryRequest;
 use RetailCrm\Api\Model\Request\Tasks\TasksCreateRequest;
 use RetailCrm\Api\Model\Request\Tasks\TasksRequest;
@@ -182,31 +183,31 @@ EOF;
     {
         $json = <<<'EOF'
 {
-    "success":true,
-    "history":[
-        {
-            "id": 1,
-            "createdAt": "2023-03-22 19:00:29",
-            "created": true,
-            "source": "rule",
-            "field": "id",
-            "oldValue": null,
-            "newValue": 1,
-            "task": {
-                "id": 1,
-                "text": "",
-                "commentary": "",
-                "createdAt": "2023-03-22 19:00:29",
-                "complete": false,
-                "performer": 2,
-                "performerType": "user",
-                "customer":{
-                    "type": "customer",
-                    "id": 1
-                }
-            }
+  "success": true,
+  "history": [
+    {
+      "id": 1,
+      "createdAt": "2023-03-22 19:00:29",
+      "created": true,
+      "source": "rule",
+      "field": "id",
+      "oldValue": null,
+      "newValue": 1,
+      "task": {
+        "id": 1,
+        "text": "",
+        "commentary": "",
+        "createdAt": "2023-03-22 19:00:29",
+        "complete": false,
+        "performer": 2,
+        "performerType": "user",
+        "customer": {
+          "type": "customer",
+          "id": 1
         }
-    ]
+      }
+    }
+  ]
 }
 EOF;
 
@@ -215,7 +216,7 @@ EOF;
             ->reply()
             ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock->getClient());
+        $client = TestClientFactory::createClient($mock->getClient());
 
         $request                  = new TaskHistoryRequest();
         $request->limit           = 100;
@@ -226,5 +227,51 @@ EOF;
         $response = $client->tasks->history($request);
 
         self::assertModelEqualsToResponse($json, $response, true);
+    }
+
+    public function testGetComments(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "pagination": {
+    "limit": 20,
+    "totalCount": 4,
+    "currentPage": 1,
+    "totalPageCount": 1
+  },
+  "comments": [
+    {
+      "id": 1150,
+      "creator": 1,
+      "text": "Тест 2",
+      "createdAt": "2024-02-05 16:58:23",
+      "updatedAt": "2024-02-05 16:58:23"
+    },
+    {
+      "id": 1149,
+      "creator": 1,
+      "text": "Тест 1",
+      "createdAt": "2024-02-05 16:58:19",
+      "updatedAt": "2024-02-05 16:58:19"
+    }
+  ]
+}
+EOF;
+
+        $mock = static::createApiMockBuilder('tasks/1/comments');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply()
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+
+        $request        = new TaskGetCommentsRequest();
+        $request->limit = 100;
+        $request->page  = 1;
+
+        $response = $client->tasks->getComments(1, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
     }
 }

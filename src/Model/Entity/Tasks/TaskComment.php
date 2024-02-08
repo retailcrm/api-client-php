@@ -9,23 +9,38 @@
 
 namespace RetailCrm\Api\Model\Entity\Tasks;
 
+use DateTime;
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 
-class TaskComment
+/**
+ * Class TaskComment
+ *
+ * @category TaskComment
+ * @package  RetailCrm\Api\Model\Entity\Tasks
+ */
+class TaskComment extends BaseComment
 {
     /**
      * @var int
      *
      * @JMS\Type("int")
-     * @JMS\SerializedName("id")
+     * @JMS\SerializedName("creator")
      */
-    public $id;
+    public $creator;
 
     /**
-     * @var string
+     * @var DateTime
      *
-     * @JMS\Type("string")
-     * @JMS\SerializedName("comment")
+     * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
+     * @JMS\SerializedName("createdAt")
      */
-    public $comment;
+    public $createdAt;
+
+    /**
+     * @var DateTime
+     *
+     * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
+     * @JMS\SerializedName("updatedAt")
+     */
+    public $updatedAt;
 }
