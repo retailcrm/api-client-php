@@ -2698,15 +2698,14 @@ EOF;
         $response  = $client->customers->get(4770, $request);
 
         self::assertModelsCallback($json, $response, static function ($expected, $actual) {
-            // TODO: Check if it's really necessary to do tag conversion here. Maybe underlying serializer is broken.
-//            $actualTags                                 = $actual['customer']['tags'];
-//            $actual['customer']['tags']                 = array_filter(
-//                array_map(static function ($tag) use ($actualTags) {
-//                    if (in_array($tag['name'], $actualTags, true)) {
-//                        return $tag;
-//                    }
-//                }, $expected['customer']['tags'])
-//            );
+            $actualTags                                 = $actual['customer']['tags'];
+            $actual['customer']['tags']                 = array_filter(
+                array_map(static function ($tag) use ($actualTags) {
+                    if (in_array($tag['name'], $actualTags, true)) {
+                        return $tag;
+                    }
+                }, $expected['customer']['tags'])
+            );
 
             $expected['customer']['marginSumm']         = (float)$expected['customer']['marginSumm'];
             $expected['customer']['totalSumm']          = (float)$expected['customer']['totalSumm'];

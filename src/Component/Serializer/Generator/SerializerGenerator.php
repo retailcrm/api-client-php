@@ -23,6 +23,7 @@ use RetailCrm\Api\Component\Serializer\Template\CustomSerialization;
 use RetailCrm\Api\Component\Serializer\Type\PropertyTypeMixed;
 use RetailCrm\Api\Interfaces\Orders\CustomerInterface;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
+use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer;
 use RetailCrm\Api\Model\Entity\Orders\SerializedRelationCustomer;
@@ -152,6 +153,10 @@ final class SerializerGenerator
             );
         }
 
+        if ($classMetadata->getClassName() === CustomerTag::class) {
+            return $this->generateForCustomerTag($arrayPath, $modelPath);
+        }
+
         $stack[$classMetadata->getClassName()] = ($stack[$classMetadata->getClassName()] ?? 0) + 1;
 
         $code = '';
@@ -240,6 +245,17 @@ final class SerializerGenerator
             $serializedRelationAbstractCode,
             $serializedRelationCode
         );
+    }
+
+    /**
+     * @param string $arrayPath
+     * @param string $modelPath
+     *
+     * @return string
+     */
+    private function generateForCustomerTag(string $arrayPath, string $modelPath): string
+    {
+        return $this->templating->renderAssign($arrayPath, $modelPath . '->name');
     }
 
     /**
