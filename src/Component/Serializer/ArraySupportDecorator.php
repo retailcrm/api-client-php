@@ -24,8 +24,7 @@ use Pnz\JsonException\Json;
  */
 class ArraySupportDecorator implements SerializerInterface
 {
-    /** @var \Liip\Serializer\SerializerInterface */
-    private $serializer;
+    private SerializerInterface $serializer;
 
     /**
      * ArraySupportDecorator constructor.
@@ -69,7 +68,7 @@ class ArraySupportDecorator implements SerializerInterface
     /**
      * @inheritDoc
      */
-    public function deserialize(string $data, string $type, string $format, ?Context $context = null)
+    public function deserialize(string $data, string $type, string $format, ?Context $context = null): mixed
     {
         if ('json' !== $format) {
             throw new UnsupportedFormatException('Liip serializer only supports JSON for now');
@@ -109,7 +108,7 @@ class ArraySupportDecorator implements SerializerInterface
      *
      * @return array<int|string, mixed>|object
      */
-    public function fromArray(array $data, string $type, ?Context $context = null)
+    public function fromArray(array $data, string $type, ?Context $context = null): mixed
     {
         if (static::isArrayType($type)) {
             return $this->decodeArray($data, $type, $context);
