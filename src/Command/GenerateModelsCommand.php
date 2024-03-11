@@ -13,6 +13,7 @@ use RetailCrm\Api\Component\ModelsGenerator;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Class GenerateModelsCommand
@@ -82,7 +83,15 @@ class GenerateModelsCommand extends AbstractModelsProcessorCommand
             $output->writeln('');
         }
 
-        $generator->generate();
+        try {
+            $generator->generate();
+        } catch (\Throwable $throwable) {
+            $styled = new SymfonyStyle($input, $output);
+            $styled->error($throwable->getMessage());
+            $styled->writeln($throwable->getTraceAsString());
+
+            return -1;
+        }
 
         $output->writeln(sprintf(
             '<fg=black;bg=green> ✓ Done, generated code for %d models.</>',

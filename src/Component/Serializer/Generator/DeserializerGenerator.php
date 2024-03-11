@@ -1,11 +1,6 @@
 <?php
 
-/**
- * PHP version 7.3
- *
- * @category DeserializerGenerator
- * @package  RetailCrm\Api\Component\Serializer\Generator
- */
+declare(strict_types=1);
 
 namespace RetailCrm\Api\Component\Serializer\Generator;
 
@@ -18,6 +13,8 @@ use Liip\MetadataParser\Metadata\PropertyTypeDateTime;
 use Liip\MetadataParser\Metadata\PropertyTypePrimitive;
 use Liip\MetadataParser\Metadata\PropertyTypeUnknown;
 use Liip\MetadataParser\Reducer\TakeBestReducer;
+use Liip\Serializer\Configuration\ClassToGenerate;
+use Liip\Serializer\Configuration\GeneratorConfiguration;
 use Liip\Serializer\Path\ArrayPath;
 use Liip\Serializer\Path\ModelPath;
 use Liip\Serializer\Template\Deserialization;
@@ -26,129 +23,69 @@ use RetailCrm\Api\Component\Serializer\Type\PropertyTypeMixed;
 use RetailCrm\Api\Interfaces\Orders\CustomerInterface;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
-use RuntimeException;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * Class DeserializerGenerator
- *
- * @category DeserializerGenerator
- * @package  RetailCrm\Api\Component\Serializer\Generator
- * @license  https://github.com/liip/serializer/blob/master/LICENSE MIT License
- * @author   Liip <https://github.com/liip>
- * @author   Pavel Kovalenko
- * @see      https://github.com/liip/serializer
- * @internal
- *
- * @SuppressWarnings(PHPMD)
- */
-class DeserializerGenerator
+final class DeserializerGenerator
 {
     private const FILENAME_PREFIX = 'deserialize';
 
-    /**
-     * @var Deserialization
-     */
-    private $templating;
+    private Filesystem $filesystem;
+
+    private GeneratorConfiguration $configuration;
+
+    private Deserialization $templating;
+
+    private CustomDeserialization $customTemplating;
+
+    private string $cacheDirectory;
+
+    private Builder $metadataBuilder;
 
     /**
-     * @var \RetailCrm\Api\Component\Serializer\Template\CustomDeserialization
-     */
-    private $customTemplating;
-
-    /**
-     * @var Filesystem
-     */
-    private $filesystem;
-
-    /**
-     * @var Builder
-     */
-    private $metadataBuilder;
-
-    /**
-     * This is a list of fqn classnames
-     *
-     * I.e.
-     *
-     * [
-     *    Product::class,
-     * ];
-     *
-     * @var string[]
-     */
-    private $classesToGenerate;
-
-    /**
-     * @var string
-     */
-    private $cacheDirectory;
-
-    /**
-     * @param \Liip\Serializer\Template\Deserialization                          $templating
-     * @param \RetailCrm\Api\Component\Serializer\Template\CustomDeserialization $customTemplating
-     * @param string[]                                                           $classesToGenerate
-     * @param string                                                             $cacheDirectory
+     * @param list<class-string> $classesToGenerate This is a list of FQCN classnames
      */
     public function __construct(
         Deserialization $templating,
         CustomDeserialization $customTemplating,
         array $classesToGenerate,
-        string $cacheDirectory
+        string $cacheDirectory,
+        GeneratorConfiguration $configuration = null
     ) {
+        $this->cacheDirectory = $cacheDirectory;
         $this->templating = $templating;
         $this->customTemplating = $customTemplating;
-        $this->classesToGenerate = $classesToGenerate;
-        $this->cacheDirectory = $cacheDirectory;
         $this->filesystem = new Filesystem();
+        $this->configuration = $this->createGeneratorConfiguration($configuration, $classesToGenerate);
     }
 
-    /**
-     * @param string $className
-     *
-     * @return string
-     */
     public static function buildDeserializerFunctionName(string $className): string
     {
-        return static::FILENAME_PREFIX . '_' . str_replace('\\', '_', $className);
+        return self::FILENAME_PREFIX.'_'.str_replace('\\', '_', $className);
     }
 
-    /**
-     * @param \Liip\MetadataParser\Builder $metadataBuilder
-     *
-     * @throws \Exception
-     */
     public function generate(Builder $metadataBuilder): void
     {
         $this->metadataBuilder = $metadataBuilder;
-
         $this->filesystem->mkdir($this->cacheDirectory);
 
-        foreach ($this->classesToGenerate as $className) {
+        /** @var ClassToGenerate $classToGenerate */
+        foreach ($this->configuration as $classToGenerate) {
             // we do not use the oldest version reducer here and hope for the best
             // otherwise we end up with generated property names for accessor methods
-            $classMetadata = $metadataBuilder->build($className, [
+            $classMetadata = $metadataBuilder->build($classToGenerate->getClassName(), [
                 new TakeBestReducer(),
             ]);
             $this->writeFile($classMetadata);
         }
     }
 
-    /**
-     * @param \Liip\MetadataParser\Metadata\ClassMetadata $classMetadata
-     *
-     * @throws \Exception
-     */
     private function writeFile(ClassMetadata $classMetadata): void
     {
-        if (count($classMetadata->getConstructorParameters())) {
-            throw new RuntimeException(sprintf(
-                'We currently do not support deserializing when the root class has a non-empty constructor. Class %s',
-                $classMetadata->getClassName()
-            ));
+        if (\count($classMetadata->getConstructorParameters())) {
+            throw new \Exception(sprintf('We currently do not support deserializing when the root class has a non-empty constructor. Class %s', $classMetadata->getClassName()));
         }
 
-        $functionName = static::buildDeserializerFunctionName($classMetadata->getClassName());
+        $functionName = self::buildDeserializerFunctionName($classMetadata->getClassName());
         $arrayPath = new ArrayPath('jsonData');
 
         $code = $this->templating->renderFunction(
@@ -162,13 +99,7 @@ class DeserializerGenerator
     }
 
     /**
-     * @param \Liip\MetadataParser\Metadata\ClassMetadata $classMetadata
-     * @param \Liip\Serializer\Path\ArrayPath             $arrayPath
-     * @param \Liip\Serializer\Path\ModelPath             $modelPath
-     * @param mixed[]                                     $stack
-     *
-     * @return string
-     * @throws \Exception
+     * @param array<string, positive-int> $stack
      */
     private function generateCodeForClass(
         ClassMetadata $classMetadata,
@@ -179,9 +110,9 @@ class DeserializerGenerator
         $stack[$classMetadata->getClassName()] = ($stack[$classMetadata->getClassName()] ?? 0) + 1;
 
         $constructorArgumentNames = [];
+        $overwrittenNames = [];
         $initCode = '';
         $code = '';
-
         foreach ($classMetadata->getProperties() as $propertyMetadata) {
             $propertyArrayPath = $arrayPath->withFieldName($propertyMetadata->getSerializedName());
 
@@ -189,6 +120,9 @@ class DeserializerGenerator
                 $argument = $classMetadata->getConstructorParameter($propertyMetadata->getName());
                 $default = var_export($argument->isRequired() ? null : $argument->getDefaultValue(), true);
                 $tempVariable = ModelPath::tempVariable([(string) $modelPath, $propertyMetadata->getName()]);
+                if (\array_key_exists($propertyMetadata->getName(), $constructorArgumentNames)) {
+                    $overwrittenNames[$propertyMetadata->getName()] = true;
+                }
                 $constructorArgumentNames[$propertyMetadata->getName()] = (string) $tempVariable;
 
                 $initCode .= $this->templating->renderArgument(
@@ -206,26 +140,21 @@ class DeserializerGenerator
         }
 
         $constructorArguments = [];
-
         foreach ($classMetadata->getConstructorParameters() as $definition) {
-            if (array_key_exists($definition->getName(), $constructorArgumentNames)) {
+            if (\array_key_exists($definition->getName(), $constructorArgumentNames)) {
                 $constructorArguments[] = $constructorArgumentNames[$definition->getName()];
                 continue;
             }
-
             if ($definition->isRequired()) {
-                throw new RuntimeException(sprintf(
-                    'Unknown constructor argument "%s" in "%s(%s)"',
-                    $definition->getName(),
-                    $classMetadata->getClassName(),
-                    implode(', ', array_keys($constructorArgumentNames))
-                ));
+                $msg = sprintf('Unknown constructor argument "%s". Class %s only has properties that tell how to handle %s.', $definition->getName(), $classMetadata->getClassName(), implode(', ', array_keys($constructorArgumentNames)));
+                if ($overwrittenNames) {
+                    $msg .= sprintf(' Multiple definitions for fields %s seen - the last one overwrites previous ones.', implode(', ', array_keys($overwrittenNames)));
+                }
+                throw new \Exception($msg);
             }
-
             $constructorArguments[] = var_export($definition->getDefaultValue(), true);
         }
-
-        if (count($constructorArgumentNames) > 0) {
+        if (\count($constructorArgumentNames) > 0) {
             $code .= $this->templating->renderUnset(array_values($constructorArgumentNames));
         }
 
@@ -233,13 +162,7 @@ class DeserializerGenerator
             return $this->generateCustomerInterface($classMetadata, $arrayPath, $modelPath, $initCode, $stack);
         }
 
-        return $this->templating->renderClass(
-            (string) $modelPath,
-            $classMetadata->getClassName(),
-            $constructorArguments,
-            $code,
-            $initCode
-        );
+        return $this->templating->renderClass((string) $modelPath, $classMetadata->getClassName(), $constructorArguments, $code, $initCode);
     }
 
     /**
@@ -282,13 +205,7 @@ class DeserializerGenerator
     }
 
     /**
-     * @param \Liip\MetadataParser\Metadata\PropertyMetadata $propertyMetadata
-     * @param \Liip\Serializer\Path\ArrayPath                $arrayPath
-     * @param \Liip\Serializer\Path\ModelPath                $modelPath
-     * @param mixed[]                                        $stack
-     *
-     * @return string
-     * @throws \Exception
+     * @param array<string, positive-int> $stack
      */
     private function generateCodeForProperty(
         PropertyMetadata $propertyMetadata,
@@ -300,16 +217,16 @@ class DeserializerGenerator
             return '';
         }
 
+        if (Recursion::hasMaxDepthReached($propertyMetadata, $stack)) {
+            return '';
+        }
+
         if ($propertyMetadata->getAccessor()->hasSetterMethod()) {
             $tempVariable = ModelPath::tempVariable([(string) $modelPath, $propertyMetadata->getName()]);
             $code = $this->generateCodeForField($propertyMetadata, $arrayPath, $tempVariable, $stack);
             $code .= $this->templating->renderConditional(
                 (string) $tempVariable,
-                $this->templating->renderSetter(
-                    (string) $modelPath,
-                    (string) $propertyMetadata->getAccessor()->getSetterMethod(),
-                    (string) $tempVariable
-                )
+                $this->templating->renderSetter((string) $modelPath, $propertyMetadata->getAccessor()->getSetterMethod(), (string) $tempVariable)
             );
             $code .= $this->templating->renderUnset([(string) $tempVariable]);
 
@@ -322,13 +239,7 @@ class DeserializerGenerator
     }
 
     /**
-     * @param \Liip\MetadataParser\Metadata\PropertyMetadata $propertyMetadata
-     * @param \Liip\Serializer\Path\ArrayPath                $arrayPath
-     * @param \Liip\Serializer\Path\ModelPath                $modelPath
-     * @param mixed[]                                        $stack
-     *
-     * @return string
-     * @throws \Exception
+     * @param array<string, positive-int> $stack
      */
     private function generateCodeForField(
         PropertyMetadata $propertyMetadata,
@@ -343,13 +254,7 @@ class DeserializerGenerator
     }
 
     /**
-     * @param \Liip\MetadataParser\Metadata\PropertyMetadata $propertyMetadata
-     * @param \Liip\Serializer\Path\ArrayPath                $arrayPath
-     * @param \Liip\Serializer\Path\ModelPath                $modelPropertyPath
-     * @param mixed[]                                        $stack
-     *
-     * @return string
-     * @throws \Exception
+     * @param array<string, positive-int> $stack
      */
     private function generateInnerCodeForFieldType(
         PropertyMetadata $propertyMetadata,
@@ -359,64 +264,40 @@ class DeserializerGenerator
     ): string {
         $type = $propertyMetadata->getType();
 
-        if ($type instanceof PropertyTypeArray) {
-            if ($type->getSubType() instanceof PropertyTypePrimitive) {
-                // for arrays of scalars, copy the field even when its an empty array
-                return $this->templating->renderAssignJsonDataToField((string) $modelPropertyPath, (string) $arrayPath);
-            }
-
-            // either array or hashmap with second param the type of values
-            // the index works the same whether its numeric or hashmap
-            return $this->generateCodeForArray($type, $arrayPath, $modelPropertyPath, $stack);
-        }
-
         switch ($type) {
+            case $type instanceof PropertyTypeArray:
+                if ($type->isTraversable()) {
+                    return $this->generateCodeForArrayCollection($propertyMetadata, $type, $arrayPath, $modelPropertyPath, $stack);
+                }
+
+                return $this->generateCodeForArray($type, $arrayPath, $modelPropertyPath, $stack);
+
             case $type instanceof PropertyTypeDateTime:
-                if (null !== $type->getZone()) {
-                    throw new RuntimeException('Timezone support is not implemented');
+                $formats = $type->getDeserializeFormats() ?: (\is_string($type->getFormat()) ? [$type->getFormat()] : $type->getFormat());
+                if (null !== $formats) {
+                    return $this->templating->renderAssignDateTimeFromFormat($type->isImmutable(), (string) $modelPropertyPath, (string) $arrayPath, $formats, $type->getZone());
                 }
 
-                $format = $type->getDeserializeFormat() ?: $type->getFormat();
+                return $this->templating->renderAssignDateTimeToField($type->isImmutable(), (string) $modelPropertyPath, (string) $arrayPath);
 
-                if (null !== $format) {
-                    return $this->templating->renderAssignDateTimeFromFormat(
-                        $type->isImmutable(),
-                        (string) $modelPropertyPath,
-                        (string) $arrayPath,
-                        $format
-                    );
-                }
-
-                return $this->templating->renderAssignDateTimeToField(
-                    $type->isImmutable(),
-                    (string) $modelPropertyPath,
-                    (string) $arrayPath
-                );
             case $type instanceof PropertyTypePrimitive && 'float' === $type->getTypeName():
-                return $this->templating->renderAssignJsonDataToFieldWithCasting(
-                    (string) $modelPropertyPath,
-                    (string) $arrayPath,
-                    'float'
-                );
+                return $this->templating->renderAssignJsonDataToFieldWithCasting((string) $modelPropertyPath, (string) $arrayPath, 'float');
+
             case $type instanceof PropertyTypePrimitive:
             case $type instanceof PropertyTypeUnknown:
             case $type instanceof PropertyTypeMixed:
                 return $this->templating->renderAssignJsonDataToField((string) $modelPropertyPath, (string) $arrayPath);
+
             case $type instanceof PropertyTypeClass:
                 return $this->generateCodeForClass($type->getClassMetadata(), $arrayPath, $modelPropertyPath, $stack);
+
             default:
-                throw new RuntimeException('Unexpected type ' . get_class($type) . ' at ' . $modelPropertyPath);
+                throw new \Exception('Unexpected type '. get_class($type) .' at '.$modelPropertyPath);
         }
     }
 
     /**
-     * @param \Liip\MetadataParser\Metadata\PropertyTypeArray $type
-     * @param \Liip\Serializer\Path\ArrayPath                 $arrayPath
-     * @param \Liip\Serializer\Path\ModelPath                 $modelPath
-     * @param mixed[]                                         $stack
-     *
-     * @return string
-     * @throws \Exception
+     * @param array<string, positive-int> $stack
      */
     private function generateCodeForArray(
         PropertyTypeArray $type,
@@ -424,6 +305,11 @@ class DeserializerGenerator
         ModelPath $modelPath,
         array $stack
     ): string {
+        if ($type->getSubType() instanceof PropertyTypePrimitive) {
+            // for arrays of scalars, copy the field even when its an empty array
+            return $this->templating->renderAssignJsonDataToField((string) $modelPath, (string) $arrayPath);
+        }
+
         $index = ModelPath::indexVariable((string) $arrayPath);
         $arrayPropertyPath = $arrayPath->withVariable((string) $index);
         $modelPropertyPath = $modelPath->withArray((string) $index);
@@ -433,22 +319,16 @@ class DeserializerGenerator
             case $subType instanceof PropertyTypeArray:
                 $innerCode = $this->generateCodeForArray($subType, $arrayPropertyPath, $modelPropertyPath, $stack);
                 break;
+
             case $subType instanceof PropertyTypeClass:
-                $innerCode = $this->generateCodeForClass(
-                    $subType->getClassMetadata(),
-                    $arrayPropertyPath,
-                    $modelPropertyPath,
-                    $stack
-                );
+                $innerCode = $this->generateCodeForClass($subType->getClassMetadata(), $arrayPropertyPath, $modelPropertyPath, $stack);
                 break;
+
             case $subType instanceof PropertyTypeUnknown:
-                $innerCode = $this->templating->renderAssignJsonDataToField(
-                    $modelPropertyPath,
-                    $arrayPropertyPath
-                );
-                break;
+                return $this->templating->renderAssignJsonDataToField((string) $modelPath, (string) $arrayPath);
+
             default:
-                throw new RuntimeException('Unexpected array subtype ' . get_class($subType));
+                throw new \Exception('Unexpected array subtype '. get_class($subType));
         }
 
         if ('' === $innerCode) {
@@ -459,5 +339,43 @@ class DeserializerGenerator
         $code .= $this->templating->renderLoop((string) $arrayPath, (string) $index, $innerCode);
 
         return $code;
+    }
+
+    /**
+     * @param array<string, positive-int> $stack
+     */
+    private function generateCodeForArrayCollection(
+        PropertyMetadata $propertyMetadata,
+        PropertyTypeArray $type,
+        ArrayPath $arrayPath,
+        ModelPath $modelPath,
+        array $stack
+    ): string {
+        $tmpVariable = ModelPath::tempVariable([(string) $modelPath, $propertyMetadata->getName()]);
+        $innerCode = $this->generateCodeForArray($type, $arrayPath, $tmpVariable, $stack);
+
+        if ('' === $innerCode) {
+            return '';
+        }
+
+        return $innerCode.$this->templating->renderArrayCollection((string) $modelPath, (string) $tmpVariable);
+    }
+
+    /**
+     * @param list<class-string> $classesToGenerate
+     */
+    private function createGeneratorConfiguration(
+        ?GeneratorConfiguration $configuration,
+        array $classesToGenerate
+    ): GeneratorConfiguration {
+        if (null === $configuration) {
+            $configuration = new GeneratorConfiguration([], []);
+        }
+
+        foreach ($classesToGenerate as $className) {
+            $configuration->addClassToGenerate(new ClassToGenerate($configuration, $className));
+        }
+
+        return $configuration;
     }
 }

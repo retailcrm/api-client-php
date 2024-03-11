@@ -1,59 +1,38 @@
 <?php
 
-/**
- * PHP version 7.3
- *
- * @category JMSTypeParser
- * @package  RetailCrm\Api\Component\Serializer\Parser
- */
+declare(strict_types=1);
 
 namespace RetailCrm\Api\Component\Serializer\Parser;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Liip\MetadataParser\Exception\InvalidTypeException;
 use Liip\MetadataParser\Metadata\DateTimeOptions;
 use Liip\MetadataParser\Metadata\PropertyType;
-use Liip\MetadataParser\Metadata\PropertyTypeArray;
 use Liip\MetadataParser\Metadata\PropertyTypeClass;
 use Liip\MetadataParser\Metadata\PropertyTypeDateTime;
+use Liip\MetadataParser\Metadata\PropertyTypeIterable;
 use Liip\MetadataParser\Metadata\PropertyTypePrimitive;
 use Liip\MetadataParser\Metadata\PropertyTypeUnknown;
+use RetailCrm\Api\Component\Serializer\Parser\JMSCore\Type\Parser;
 use RetailCrm\Api\Component\Serializer\Type\PropertyTypeMixed;
 
-/**
- * Class JMSTypeParser
- *
- * @category JMSTypeParser
- * @package  RetailCrm\Api\Component\Serializer\Parser
- * @license  https://github.com/liip/metadata-parser/blob/master/LICENSE MIT License
- * @author   Liip <https://github.com/liip>
- * @author   Pavel Kovalenko
- * @see      https://github.com/liip/metadata-parser
- * @internal
- *
- * @SuppressWarnings(PHPMD)
- */
-class JMSTypeParser
+final class JMSTypeParser
 {
     private const TYPE_ARRAY = 'array';
+    private const TYPE_ARRAY_COLLECTION = 'ArrayCollection';
+    private const TYPE_DATETIME_INTERFACE = 'DateTimeInterface';
 
     /**
-     * @var \RetailCrm\Api\Component\Serializer\Parser\BaseJMSParser
+     * @var Parser
      */
-    private $jmsTypeParser;
+    private Parser $jmsTypeParser;
 
-    /**
-     * JMSTypeParser constructor.
-     */
     public function __construct()
     {
-        $this->jmsTypeParser = new BaseJMSParser();
+        $this->jmsTypeParser = new Parser();
     }
 
-    /**
-     * @param string $rawType
-     *
-     * @return \Liip\MetadataParser\Metadata\PropertyType
-     */
     public function parse(string $rawType): PropertyType
     {
         if ('' === $rawType) {
@@ -63,12 +42,6 @@ class JMSTypeParser
         return $this->parseType($this->jmsTypeParser->parse($rawType));
     }
 
-    /**
-     * @param array<mixed> $typeInfo
-     * @param bool         $isSubType
-     *
-     * @return \Liip\MetadataParser\Metadata\PropertyType
-     */
     private function parseType(array $typeInfo, bool $isSubType = false): PropertyType
     {
         $typeInfo = array_merge(
@@ -84,13 +57,12 @@ class JMSTypeParser
 
         if (0 === \count($typeInfo['params'])) {
             if (self::TYPE_ARRAY === $typeInfo['name']) {
-                return new PropertyTypeArray(new PropertyTypeUnknown(false), false, $nullable);
+                return new PropertyTypeIterable(new PropertyTypeUnknown(false), false, $nullable);
             }
 
             if (PropertyTypePrimitive::isTypePrimitive($typeInfo['name'])) {
                 return new PropertyTypePrimitive($typeInfo['name'], $nullable);
             }
-
             if (PropertyTypeDateTime::isTypeDateTime($typeInfo['name'])) {
                 return PropertyTypeDateTime::fromDateTimeClass($typeInfo['name'], $nullable);
             }
@@ -102,41 +74,49 @@ class JMSTypeParser
             return new PropertyTypeClass($typeInfo['name'], $nullable);
         }
 
-        if (self::TYPE_ARRAY === $typeInfo['name']) {
+        $collectionClass = $this->getCollectionClass($typeInfo['name']);
+        if (self::TYPE_ARRAY === $typeInfo['name'] || $collectionClass) {
             if (1 === \count($typeInfo['params'])) {
-                return new PropertyTypeArray(
-                    $this->parseType($typeInfo['params'][0], true),
-                    false,
-                    $nullable
-                );
+                return new PropertyTypeIterable($this->parseType($typeInfo['params'][0], true), false, $nullable, $collectionClass);
             }
             if (2 === \count($typeInfo['params'])) {
-                return new PropertyTypeArray(
-                    $this->parseType($typeInfo['params'][1], true),
-                    true,
-                    $nullable
-                );
+                return new PropertyTypeIterable($this->parseType($typeInfo['params'][1], true), true, $nullable, $collectionClass);
             }
 
-            throw new InvalidTypeException(sprintf(
-                'JMS property type array can\'t have more than 2 parameters (%s)',
-                var_export($typeInfo, true)
-            ));
+            throw new InvalidTypeException(sprintf('JMS property type array can\'t have more than 2 parameters (%s)', var_export($typeInfo, true)));
         }
 
-        if (PropertyTypeDateTime::isTypeDateTime($typeInfo['name'])) {
+        if (PropertyTypeDateTime::isTypeDateTime($typeInfo['name']) || (self::TYPE_DATETIME_INTERFACE === $typeInfo['name'])) {
             // the case of datetime without params is already handled above, we know we have params
+            $serializeFormat = $typeInfo['params'][0] ?: null;
+            // {@link \JMS\Serializer\Handler\DateHandler} of jms/serializer defaults to using the serialization format as a deserialization format if none was supplied...
+            $deserializeFormats = ($typeInfo['params'][2] ?? null) ?: $serializeFormat;
+            // ... and always converts single strings to arrays
+            $deserializeFormats = \is_string($deserializeFormats) ? [$deserializeFormats] : $deserializeFormats;
+            // Jms defaults to DateTime when given DateTimeInterface despite the documentation saying DateTimeImmutable, {@see \JMS\Serializer\Handler\DateHandler} in jms/serializer
+            $className = (self::TYPE_DATETIME_INTERFACE === $typeInfo['name']) ? \DateTime::class : $typeInfo['name'];
+
             return PropertyTypeDateTime::fromDateTimeClass(
-                $typeInfo['name'],
+                $className,
                 $nullable,
                 new DateTimeOptions(
-                    $typeInfo['params'][0] ?: null,
+                    $serializeFormat,
                     ($typeInfo['params'][1] ?? null) ?: null,
-                    ($typeInfo['params'][2] ?? null) ?: null
+                    $deserializeFormats,
                 )
             );
         }
 
         throw new InvalidTypeException(sprintf('Unknown JMS property found (%s)', var_export($typeInfo, true)));
+    }
+
+    private function getCollectionClass(string $name): ?string
+    {
+        switch ($name) {
+            case self::TYPE_ARRAY_COLLECTION:
+                return ArrayCollection::class;
+            default:
+                return is_a($name, Collection::class, true) ? $name : null;
+        }
     }
 }

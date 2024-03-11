@@ -1,21 +1,18 @@
 <?php
 
-/**
- * PHP version 7.3
- *
- * @category JMSParser
- * @package  RetailCrm\Api\Component\Serializer\Parser
- */
+declare(strict_types=1);
 
 namespace RetailCrm\Api\Component\Serializer\Parser;
 
 use Doctrine\Common\Annotations\AnnotationException;
 use Doctrine\Common\Annotations\Reader;
+use Liip\MetadataParser\ModelParser\ModelParserInterface;
 use RetailCrm\Api\Component\Serializer\Annotation\Accessor;
 use RetailCrm\Api\Component\Serializer\Annotation\AccessorOrder;
 use RetailCrm\Api\Component\Serializer\Annotation\Exclude;
 use RetailCrm\Api\Component\Serializer\Annotation\ExclusionPolicy;
 use RetailCrm\Api\Component\Serializer\Annotation\Groups;
+use RetailCrm\Api\Component\Serializer\Annotation\MaxDepth;
 use RetailCrm\Api\Component\Serializer\Annotation\PostDeserialize;
 use RetailCrm\Api\Component\Serializer\Annotation\SerializedName;
 use RetailCrm\Api\Component\Serializer\Annotation\Since;
@@ -27,54 +24,29 @@ use Liip\MetadataParser\Exception\ParseException;
 use Liip\MetadataParser\Metadata\PropertyAccessor;
 use Liip\MetadataParser\Metadata\PropertyType;
 use Liip\MetadataParser\Metadata\PropertyTypeUnknown;
-use Liip\MetadataParser\ModelParser\ModelParserInterface;
 use Liip\MetadataParser\ModelParser\RawMetadata\PropertyCollection;
 use Liip\MetadataParser\ModelParser\RawMetadata\PropertyVariationMetadata;
 use Liip\MetadataParser\ModelParser\RawMetadata\RawClassMetadata;
 use Liip\MetadataParser\TypeParser\PhpTypeParser;
-use ReflectionClass;
-use ReflectionException;
-use ReflectionMethod;
-use ReflectionProperty;
-use UnexpectedValueException;
+use RetailCrm\Api\Component\Serializer\Parser\JMSCore\Type\Exception\SyntaxError;
 
 /**
- * Class JMSParser
+ * Parse JMSSerializer annotations.
  *
- * @category JMSParser
- * @package  RetailCrm\Api\Component\Serializer\Parser
- * @license  https://github.com/liip/metadata-parser/blob/master/LICENSE MIT License
- * @author   Liip <https://github.com/liip>
- * @author   Pavel Kovalenko
- * @see      https://github.com/liip/metadata-parser
+ * Run this parser *after* the PHPDoc parser as JMS annotations are more precise.
+ *
  * @internal
- *
- * @SuppressWarnings(PHPMD)
  */
 class JMSParser implements ModelParserInterface
 {
     private const ACCESS_ORDER_CUSTOM = 'custom';
 
-    /**
-     * @var Reader
-     */
-    private $annotationsReader;
+    private Reader $annotationsReader;
 
-    /**
-     * @var PhpTypeParser
-     */
-    private $phpTypeParser;
+    private PhpTypeParser $phpTypeParser;
 
-    /**
-     * @var JMSTypeParser
-     */
-    private $jmsTypeParser;
+    protected JMSTypeParser $jmsTypeParser;
 
-    /**
-     * JMSParser constructor.
-     *
-     * @param \Doctrine\Common\Annotations\Reader $annotationsReader
-     */
     public function __construct(Reader $annotationsReader)
     {
         $this->annotationsReader = $annotationsReader;
@@ -82,124 +54,99 @@ class JMSParser implements ModelParserInterface
         $this->jmsTypeParser = new JMSTypeParser();
     }
 
-    /**
-     * @param \Liip\MetadataParser\ModelParser\RawMetadata\RawClassMetadata $classMetadata
-     */
     public function parse(RawClassMetadata $classMetadata): void
     {
         try {
-            $refClass = new ReflectionClass($classMetadata->getClassName());    // @phpstan-ignore-line
-        } catch (ReflectionException $exception) {
-            throw ParseException::classNotFound($classMetadata->getClassName(), $exception);
+            $reflClass = new \ReflectionClass($classMetadata->getClassName());
+        } catch (\ReflectionException $e) {
+            throw ParseException::classNotFound($classMetadata->getClassName(), $e);
         }
 
-        $this->parseProperties($refClass, $classMetadata);
-        $this->parseMethods($refClass, $classMetadata);
-        $this->parseClass($refClass, $classMetadata);
+        try {
+            $this->parseProperties($reflClass, $classMetadata);
+            $this->parseMethods($reflClass, $classMetadata);
+            $this->parseClass($reflClass, $classMetadata);
+        } catch (SyntaxError $exception) {
+            throw new ParseException($exception->getMessage(), $exception->getCode(), $exception);
+        }
     }
 
-    /**
-     * @param \ReflectionClass                                              $refClass
-     * @param \Liip\MetadataParser\ModelParser\RawMetadata\RawClassMetadata $classMetadata
-     *
-     * @phpstan-ignore-next-line
-     */
-    private function parseProperties(ReflectionClass $refClass, RawClassMetadata $classMetadata): void
+    private function parseProperties(\ReflectionClass $reflClass, RawClassMetadata $classMetadata): void
     {
-        if ($refParentClass = $refClass->getParentClass()) {
-            $this->parseProperties($refParentClass, $classMetadata);
+        if ($reflParentClass = $reflClass->getParentClass()) {
+            $this->parseProperties($reflParentClass, $classMetadata);
         }
 
-        foreach ($refClass->getProperties() as $refProperty) {
+        foreach ($reflClass->getProperties() as $reflProperty) {
             try {
-                $annotations = $this->annotationsReader->getPropertyAnnotations($refProperty);
-            } catch (AnnotationException $exception) {
-                throw ParseException::propertyError((string) $classMetadata, $refProperty->getName(), $exception);
+                $annotations = $this->annotationsReader->getPropertyAnnotations($reflProperty);
+            } catch (AnnotationException $e) {
+                throw ParseException::propertyError((string) $classMetadata, $reflProperty->getName(), $e);
             }
 
-            $property = $this->getProperty($classMetadata, $refProperty, $annotations);
+            $property = $this->getProperty($classMetadata, $reflProperty, $annotations);
             $this->parsePropertyAnnotations($classMetadata, $property, $annotations);
         }
     }
 
-    /**
-     * @param \ReflectionClass                                              $refClass
-     * @param \Liip\MetadataParser\ModelParser\RawMetadata\RawClassMetadata $classMetadata
-     *
-     * @phpstan-ignore-next-line
-     */
-    private function parseMethods(ReflectionClass $refClass, RawClassMetadata $classMetadata): void
+    private function parseMethods(\ReflectionClass $reflClass, RawClassMetadata $classMetadata): void
     {
-        if ($refParentClass = $refClass->getParentClass()) {
-            $this->parseMethods($refParentClass, $classMetadata);
+        if ($reflParentClass = $reflClass->getParentClass()) {
+            $this->parseMethods($reflParentClass, $classMetadata);
         }
 
-        foreach ($refClass->getMethods() as $refMethod) {
-            if (false === $refMethod->getDocComment()) {
-                continue;
-            }
-
+        foreach ($reflClass->getMethods() as $reflMethod) {
             try {
-                $annotations = $this->annotationsReader->getMethodAnnotations($refMethod);
-            } catch (AnnotationException $exception) {
-                throw ParseException::propertyError((string) $classMetadata, $refMethod->getName(), $exception);
+                $annotations = $this->annotationsReader->getMethodAnnotations($reflMethod);
+            } catch (AnnotationException $e) {
+                throw ParseException::propertyError((string) $classMetadata, $reflMethod->getName(), $e);
             }
 
             if ($this->isVirtualProperty($annotations)) {
-                if (!$refMethod->isPublic()) {
-                    throw ParseException::nonPublicMethod((string) $classMetadata, $refMethod->getName());
+                if (!$reflMethod->isPublic()) {
+                    throw ParseException::nonPublicMethod((string) $classMetadata, $reflMethod->getName());
                 }
 
-                $methodName = $this->getMethodName($annotations, $refMethod);
+                $methodName = $this->getMethodName($annotations, $reflMethod);
                 $name = $this->getSerializedName($annotations) ?: $methodName;
 
                 $property = new PropertyVariationMetadata($methodName, true, true);
                 $classMetadata->addPropertyVariation($name, $property);
 
-                $property->setType($this->getReturnType($property, $refMethod, $refClass));
-                $property->setAccessor(new PropertyAccessor($refMethod->getName(), null));
+                $property->setType($this->getReturnType($property, $reflMethod, $reflClass));
+                $property->setAccessor(new PropertyAccessor($reflMethod->getName(), null));
 
                 $this->parsePropertyAnnotations($classMetadata, $property, $annotations);
             }
 
             if ($this->isPostDeserializeMethod($annotations)) {
-                if (!$refMethod->isPublic()) {
-                    throw ParseException::nonPublicMethod((string) $classMetadata, $refMethod->getName());
+                if (!$reflMethod->isPublic()) {
+                    throw ParseException::nonPublicMethod((string) $classMetadata, $reflMethod->getName());
                 }
 
-                $classMetadata->addPostDeserializeMethod($refMethod->getName());
+                $classMetadata->addPostDeserializeMethod($reflMethod->getName());
             }
         }
     }
 
-    /**
-     * @param \ReflectionClass                                              $refClass
-     * @param \Liip\MetadataParser\ModelParser\RawMetadata\RawClassMetadata $classMetadata
-     *
-     * @phpstan-ignore-next-line
-     */
-    private function parseClass(ReflectionClass $refClass, RawClassMetadata $classMetadata): void
+    private function parseClass(\ReflectionClass $reflClass, RawClassMetadata $classMetadata): void
     {
         try {
-            $annotations = $this->gatherClassAnnotations($refClass);
+            $annotations = $this->gatherClassAnnotations($reflClass);
         } catch (AnnotationException $e) {
-            throw ParseException::classError($refClass->getName(), $e);
+            throw ParseException::classError($reflClass->getName(), $e);
         }
 
         foreach ($annotations as $annotation) {
             switch (true) {
                 case $annotation instanceof AccessorOrder:
                     if (self::ACCESS_ORDER_CUSTOM !== $annotation->order) {
-                        throw ParseException::unsupportedClassAnnotation(
-                            (string) $classMetadata,
-                            'AccessorOrder::' . $annotation->order
-                        );
+                        throw ParseException::unsupportedClassAnnotation((string) $classMetadata, 'AccessorOrder::'.$annotation->order);
                     }
 
-                    // usort is not stable for the same result. we want to preserve order of
-                    // the fields that are not explicitly mentioned
+                    // usort is not stable for the same result. we want to preserve order of the fields that are not explicitly mentioned
                     $order = [];
-                    $init = count($annotation->custom);
+                    $init = \count($annotation->custom);
                     foreach ($classMetadata->getPropertyCollections() as $property) {
                         $position = $property->getPosition($annotation->custom);
                         if (null === $position) {
@@ -208,21 +155,17 @@ class JMSParser implements ModelParserInterface
                         $order[$property->getSerializedName()] = $position;
                     }
 
-                    $classMetadata->sortProperties(static function (
-                        PropertyCollection $propA,
-                        PropertyCollection $propB
-                    ) use ($order): int {
+                    $classMetadata->sortProperties(static function (PropertyCollection $propA, PropertyCollection $propB) use ($order): int {
                         return $order[$propA->getSerializedName()] <=> $order[$propB->getSerializedName()];
                     });
                     break;
+
                 case $annotation instanceof ExclusionPolicy:
                     if (ExclusionPolicy::NONE !== $annotation->policy) {
-                        throw ParseException::unsupportedClassAnnotation(
-                            (string) $classMetadata,
-                            'ExclusionPolicy::' . $annotation->policy
-                        );
+                        throw ParseException::unsupportedClassAnnotation((string) $classMetadata, 'ExclusionPolicy::'.$annotation->policy);
                     }
                     break;
+
                 default:
                     if (
                         0 === strncmp(
@@ -232,10 +175,7 @@ class JMSParser implements ModelParserInterface
                         )
                     ) {
                         // if there are annotations we can safely ignore, we need to explicitly ignore them
-                        throw ParseException::unsupportedClassAnnotation(
-                            (string) $classMetadata,
-                            get_class($annotation)
-                        );
+                        throw ParseException::unsupportedClassAnnotation((string) $classMetadata, \get_class($annotation));
                     }
             }
         }
@@ -244,51 +184,36 @@ class JMSParser implements ModelParserInterface
     /**
      * Find the annotations we care about by looking through all ancestors of $reflectionClass.
      *
-     * @param \ReflectionClass $reflectionClass
-     *
      * @return object[] Hashmap of annotation class => annotation object
-     * @throws \Doctrine\Common\Annotations\AnnotationException
      *
-     * @phpstan-ignore-next-line
+     * @throws AnnotationException
      */
-    private function gatherClassAnnotations(ReflectionClass $reflectionClass): array
+    private function gatherClassAnnotations(\ReflectionClass $reflectionClass): array
     {
         $map = [];
-
         if ($parent = $reflectionClass->getParentClass()) {
             $map = $this->gatherClassAnnotations($parent);
         }
-
         $annotations = $this->annotationsReader->getClassAnnotations($reflectionClass);
-
         foreach ($annotations as $annotation) {
-            $map[get_class($annotation)] = $annotation;
+            $map[\get_class($annotation)] = $annotation;
         }
 
         return $map;
     }
 
-    /**
-     * @param \Liip\MetadataParser\ModelParser\RawMetadata\RawClassMetadata          $classMetadata
-     * @param \Liip\MetadataParser\ModelParser\RawMetadata\PropertyVariationMetadata $property
-     * @param array<mixed>                                                           $annotations
-     */
-    private function parsePropertyAnnotations(
-        RawClassMetadata $classMetadata,
-        PropertyVariationMetadata $property,
-        array $annotations
-    ): void {
+    private function parsePropertyAnnotations(RawClassMetadata $classMetadata, PropertyVariationMetadata $property, array $annotations): void
+    {
         foreach ($annotations as $annotation) {
             switch (true) {
                 case $annotation instanceof Type:
+                    if (null === $annotation->name) {
+                        throw ParseException::propertyTypeNameNull((string) $classMetadata, (string) $property);
+                    }
                     try {
                         $type = $this->jmsTypeParser->parse($annotation->name);
-                    } catch (InvalidTypeException $exception) {
-                        throw ParseException::propertyTypeError(
-                            (string) $classMetadata,
-                            (string) $property,
-                            $exception
-                        );
+                    } catch (InvalidTypeException $e) {
+                        throw ParseException::propertyTypeError((string) $classMetadata, (string) $property, $e);
                     }
 
                     if ($property->getType() instanceof PropertyTypeUnknown) {
@@ -296,52 +221,49 @@ class JMSParser implements ModelParserInterface
                     } else {
                         try {
                             $property->setType($property->getType()->merge($type));
-                        } catch (UnexpectedValueException $exception) {
-                            throw ParseException::propertyTypeConflict(
-                                (string) $classMetadata,
-                                (string) $property,
-                                (string) $property->getType(),
-                                (string) $type,
-                                $exception
-                            );
+                        } catch (\UnexpectedValueException $e) {
+                            throw ParseException::propertyTypeConflict((string) $classMetadata, (string) $property, (string) $property->getType(), (string) $type, $e);
                         }
                     }
                     break;
+
                 case $annotation instanceof Exclude:
                     if (null !== $annotation->if) {
-                        throw ParseException::unsupportedPropertyAnnotation(
-                            (string) $classMetadata,
-                            (string) $property,
-                            'Exclude::if'
-                        );
+                        throw ParseException::unsupportedPropertyAnnotation((string) $classMetadata, (string) $property, 'Exclude::if');
                     }
                     $classMetadata->removePropertyVariation((string) $property);
                     break;
+
                 case $annotation instanceof Groups:
                     $property->setGroups($annotation->groups);
                     break;
+
                 case $annotation instanceof Accessor:
                     $property->setAccessor(new PropertyAccessor($annotation->getter, $annotation->setter));
                     break;
+
                 case $annotation instanceof Since:
                     $property->setVersionRange($property->getVersionRange()->withSince($annotation->version));
                     break;
+
                 case $annotation instanceof Until:
                     $property->setVersionRange($property->getVersionRange()->withUntil($annotation->version));
                     break;
-                case $annotation instanceof SerializedName:
-                    // we handle this separately
+
+                case $annotation instanceof MaxDepth:
+                    $property->setMaxDepth($annotation->depth);
+                    break;
+
                 case $annotation instanceof VirtualProperty:
                     // we handle this separately
+                case $annotation instanceof SerializedName:
+                    // we handle this separately
                     break;
+
                 default:
-                    if (0 === strncmp('JMS\Serializer\\', get_class($annotation), mb_strlen('JMS\Serializer\\'))) {
+                    if (0 === strncmp('JMS\Serializer\\', \get_class($annotation), mb_strlen('JMS\Serializer\\'))) {
                         // if there are annotations we can safely ignore, we need to explicitly ignore them
-                        throw ParseException::unsupportedPropertyAnnotation(
-                            (string) $classMetadata,
-                            (string) $property,
-                            get_class($annotation)
-                        );
+                        throw ParseException::unsupportedPropertyAnnotation((string) $classMetadata, (string) $property, \get_class($annotation));
                     }
                     break;
             }
@@ -352,96 +274,38 @@ class JMSParser implements ModelParserInterface
      * Returns the property metadata for the specified property.
      *
      * If the property already exists on the class metadata this is returned.
-     * If the property has a serialized name that overrides the name of an existing property,
-     * it will be renamed and merged.
-     *
-     * @param \Liip\MetadataParser\ModelParser\RawMetadata\RawClassMetadata $classMetadata
-     * @param \ReflectionProperty                                           $refProperty
-     * @param array<mixed>                                                  $annotations
-     *
-     * @return \Liip\MetadataParser\ModelParser\RawMetadata\PropertyVariationMetadata
-     * @throws \ReflectionException
+     * If the property has a serialized name that overrides the name of an existing property, it will be renamed and merged.
      */
-    private function getProperty(
-        RawClassMetadata $classMetadata,
-        ReflectionProperty $refProperty,
-        array $annotations
-    ): PropertyVariationMetadata {
-        $defaultName = PropertyCollection::serializedName($refProperty->getName());
+    private function getProperty(RawClassMetadata $classMetadata, \ReflectionProperty $reflProperty, array $annotations): PropertyVariationMetadata
+    {
+        $defaultName = PropertyCollection::serializedName($reflProperty->getName());
         $name = $this->getSerializedName($annotations) ?: $defaultName;
-
-        if ($classMetadata->hasPropertyVariation($refProperty->getName())) {
-            $property = $classMetadata->getPropertyVariation($refProperty->getName());
-
+        if ($classMetadata->hasPropertyVariation($reflProperty->getName())) {
+            $property = $classMetadata->getPropertyVariation($reflProperty->getName());
             if ($defaultName !== $name && $classMetadata->hasPropertyCollection($defaultName)) {
-                $classMetadata->removePropertyVariation($defaultName);
-                $this->addPropertyVariation($defaultName, $name, $property, $classMetadata);
+                $classMetadata->renameProperty($defaultName, $name);
             }
         } else {
-            $property = PropertyVariationMetadata::fromReflection($refProperty);
-            $this->addPropertyVariation($defaultName, $name, $property, $classMetadata);
+            $property = PropertyVariationMetadata::fromReflection($reflProperty);
+            $classMetadata->addPropertyVariation($name, $property);
         }
 
         return $property;
     }
 
-    /**
-     * This workaround helps to avoid unnecessary camelCase to snake_case conversion while
-     * using default property metadata classes. This allows us to produce code we expect
-     * without rewriting the whole metadata parsing library.
-     *
-     * @param string                                                                 $defaultName
-     * @param string                                                                 $name
-     * @param \Liip\MetadataParser\ModelParser\RawMetadata\PropertyVariationMetadata $property
-     * @param \Liip\MetadataParser\ModelParser\RawMetadata\RawClassMetadata          $classMetadata
-     *
-     * @throws \ReflectionException
-     */
-    private function addPropertyVariation(
-        string $defaultName,
-        string $name,
-        PropertyVariationMetadata $property,
-        RawClassMetadata $classMetadata
-    ): void {
-        if ($classMetadata->hasPropertyCollection($defaultName)) {
-            $prop = $classMetadata->getPropertyCollection($defaultName);
-        } else {
-            $prop = new PropertyCollection($name);
-            $classMetadata->addPropertyCollection($prop);
-        }
-
-        $propName = new ReflectionProperty(get_class($prop), 'serializedName');
-        $propName->setAccessible(true);
-        $propName->setValue($prop, $name);
-
-        $prop->addVariation($property);
-    }
-
-    /**
-     * @param \Liip\MetadataParser\ModelParser\RawMetadata\PropertyVariationMetadata $property
-     * @param \ReflectionMethod                                                      $refMethod
-     * @param \ReflectionClass                                                       $refClass
-     *
-     * @return \Liip\MetadataParser\Metadata\PropertyType
-     *
-     * @phpstan-ignore-next-line
-     */
-    private function getReturnType(
-        PropertyVariationMetadata $property,
-        ReflectionMethod $refMethod,
-        ReflectionClass $refClass
-    ): PropertyType {
+    private function getReturnType(PropertyVariationMetadata $property, \ReflectionMethod $reflMethod, \ReflectionClass $reflClass): PropertyType
+    {
         $type = new PropertyTypeUnknown(true);
-        $refType = $refMethod->getReturnType();
 
-        if (null !== $refType) {
-            $type = $this->phpTypeParser->parseReflectionType($refType);
+        $reflType = $reflMethod->getReturnType();
+        if (null !== $reflType) {
+            $type = $this->phpTypeParser->parseReflectionType($reflType);
         }
 
         try {
-            $docBlockType = $this->getReturnTypeOfMethod($refMethod, $refClass);
-        } catch (InvalidTypeException $exception) {
-            throw ParseException::propertyTypeError($refClass->getName(), (string) $property, $exception);
+            $docBlockType = $this->getReturnTypeOfMethod($reflMethod);
+        } catch (InvalidTypeException $e) {
+            throw ParseException::propertyTypeError($reflClass->getName(), (string) $property, $e);
         }
 
         if (null === $docBlockType) {
@@ -450,47 +314,27 @@ class JMSParser implements ModelParserInterface
 
         try {
             return $type->merge($docBlockType);
-        } catch (UnexpectedValueException $exception) {
-            throw ParseException::propertyTypeConflict(
-                $refClass->getName(),
-                (string) $property,
-                (string) $type,
-                (string) $docBlockType,
-                $exception
-            );
+        } catch (\UnexpectedValueException $e) {
+            throw ParseException::propertyTypeConflict($reflClass->getName(), (string) $property, (string) $type, (string) $docBlockType, $e);
         }
     }
 
-    /**
-     * @param \ReflectionMethod $refMethod
-     * @param \ReflectionClass  $refClass
-     *
-     * @return \Liip\MetadataParser\Metadata\PropertyType|null
-     *
-     * @phpstan-ignore-next-line
-     */
-    private function getReturnTypeOfMethod(ReflectionMethod $refMethod, ReflectionClass $refClass): ?PropertyType
+    private function getReturnTypeOfMethod(\ReflectionMethod $reflMethod): ?PropertyType
     {
-        $docComment = $refMethod->getDocComment();
-
+        $docComment = $reflMethod->getDocComment();
         if (false === $docComment) {
             return null;
         }
 
         foreach (explode("\n", $docComment) as $line) {
             if (1 === preg_match('/@return ([^ ]+)/', $line, $matches)) {
-                return $this->phpTypeParser->parseAnnotationType($matches[1], $refClass);
+                return $this->phpTypeParser->parseAnnotationType($matches[1], $reflMethod->getDeclaringClass());
             }
         }
 
         return null;
     }
 
-    /**
-     * @param array<mixed> $annotations
-     *
-     * @return string|null
-     */
     private function getSerializedName(array $annotations): ?string
     {
         foreach ($annotations as $annotation) {
@@ -502,11 +346,6 @@ class JMSParser implements ModelParserInterface
         return null;
     }
 
-    /**
-     * @param array<mixed> $annotations
-     *
-     * @return bool
-     */
     private function isVirtualProperty(array $annotations): bool
     {
         foreach ($annotations as $annotation) {
@@ -518,11 +357,6 @@ class JMSParser implements ModelParserInterface
         return false;
     }
 
-    /**
-     * @param array<mixed> $annotations
-     *
-     * @return bool
-     */
     private function isPostDeserializeMethod(array $annotations): bool
     {
         foreach ($annotations as $annotation) {
@@ -534,16 +368,9 @@ class JMSParser implements ModelParserInterface
         return false;
     }
 
-    /**
-     * @param array<mixed>      $annotations
-     * @param \ReflectionMethod $refMethod
-     *
-     * @return string
-     */
-    private function getMethodName(array $annotations, ReflectionMethod $refMethod): string
+    private function getMethodName(array $annotations, \ReflectionMethod $reflMethod): string
     {
-        $name = $refMethod->getName();
-
+        $name = $reflMethod->getName();
         foreach ($annotations as $annotation) {
             if ($annotation instanceof VirtualProperty && null !== $annotation->name) {
                 $name = $annotation->name;
