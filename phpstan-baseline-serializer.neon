@@ -61,11 +61,6 @@ parameters:
 			path: src/Component/Serializer/Parser/JMSCore/Type/Lexer.php
 
 		-
-			message: "#^Cannot access property \\$value on Doctrine\\\\Common\\\\Lexer\\\\Token\\<int\\|string\\|UnitEnum, int\\|string\\>\\|null\\.$#"
-			count: 2
-			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
-
-		-
 			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:getConstant\\(\\) should return string but returns string\\|false\\.$#"
 			count: 1
 			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
@@ -92,16 +87,6 @@ parameters:
 
 		-
 			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:visitSimpleType\\(\\) never returns string so it can be removed from the return type\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
-
-		-
-			message: "#^Parameter \\#1 \\$value of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:getConstant\\(\\) expects int, int\\<min, 0\\>\\|int\\<4, 8\\>\\|int\\<11, max\\>\\|string\\|UnitEnum\\|null given\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
-
-		-
-			message: "#^Parameter \\#1 \\$value of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:getConstant\\(\\) expects int, int\\|string\\|UnitEnum\\|null given\\.$#"
 			count: 1
 			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
 
@@ -187,5 +172,75 @@ parameters:
 
 		-
 			message: "#^Parameter \\#4 \\$traversableClass of class Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypeIterable constructor expects class\\-string\\<Traversable\\>\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Cannot access property \\$value on RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token\\|null\\.$#"
 			count: 2
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function strlen expects string, int\\|string given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:getConstant\\(\\) expects int, int\\<min, 0\\>\\|int\\<4, 8\\>\\|int\\<11, max\\>\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:getConstant\\(\\) expects int, int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:\\$token with generic class RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token does not specify its types\\: T, V$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$position\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$type\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$value\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token\\:\\:fromArray\\(\\) has parameter \\$source with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token\\:\\:fromArray\\(\\) return type with generic class RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token does not specify its types\\: T, V$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token\\:\\:fromObject\\(\\) return type with generic class RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token does not specify its types\\: T, V$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token\\<T of int\\|string,V of int\\|string\\>\\:\\:\\$type \\(\\(T of int\\|string\\)\\|null\\) does not accept int\\|string\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Cannot call method getParameters\\(\\) on ReflectionMethod\\|null\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSTypeParser\\:\\:\\$useArrayDateFormat has no type specified\\.$#"
+			count: 1
 			path: src/Component/Serializer/Parser/JMSTypeParser.php
