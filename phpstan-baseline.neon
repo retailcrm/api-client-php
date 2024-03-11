@@ -1,4 +1,6 @@
 parameters:
+	excludePaths:
+		- src/Component/Serializer/ArraySupportDecorator.php
 	ignoreErrors:
 		-
 			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Builder\\\\ClientBuilder\\:\\:buildHandlersChain\\(\\) through static\\:\\:\\.$#"
