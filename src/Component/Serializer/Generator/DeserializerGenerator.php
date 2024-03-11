@@ -253,6 +253,15 @@ final class DeserializerGenerator
         );
     }
 
+    private function isArrayTraversable(PropertyTypeArray $array): bool
+    {
+        if (method_exists($array, 'isCollection')) {
+            return $array->isCollection();
+        }
+
+        return $array->isTraversable();
+    }
+
     /**
      * @param array<string, positive-int> $stack
      */
@@ -266,13 +275,23 @@ final class DeserializerGenerator
 
         switch ($type) {
             case $type instanceof PropertyTypeArray:
-                if ($type->isTraversable()) {
+                if ($this->isArrayTraversable($type)) {
                     return $this->generateCodeForArrayCollection($propertyMetadata, $type, $arrayPath, $modelPropertyPath, $stack);
                 }
 
                 return $this->generateCodeForArray($type, $arrayPath, $modelPropertyPath, $stack);
 
             case $type instanceof PropertyTypeDateTime:
+                if (method_exists($type, 'getDeserializeFormat')) {
+                    $format = $type->getDeserializeFormat();
+
+                    if (null !== $format) {
+                        return $this->templating->renderAssignDateTimeFromFormat($type->isImmutable(), (string) $modelPropertyPath, (string) $arrayPath, $format, $type->getZone());
+                    }
+
+                    return $this->templating->renderAssignDateTimeToField($type->isImmutable(), (string) $modelPropertyPath, (string) $arrayPath);
+                }
+
                 $formats = $type->getDeserializeFormats() ?: (\is_string($type->getFormat()) ? [$type->getFormat()] : $type->getFormat());
                 if (null !== $formats) {
                     return $this->templating->renderAssignDateTimeFromFormat($type->isImmutable(), (string) $modelPropertyPath, (string) $arrayPath, $formats, $type->getZone());
