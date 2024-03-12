@@ -25,7 +25,8 @@ if (PHP_VERSION_ID >= 80000) {
      */
     class ArraySupportDecorator implements SerializerInterface
     {
-        private SerializerInterface $serializer;
+        /** @var \Liip\Serializer\SerializerInterface */
+        private $serializer;
 
         /**
          * ArraySupportDecorator constructor.
@@ -234,7 +235,8 @@ if (PHP_VERSION_ID >= 80000) {
      */
     class ArraySupportDecorator implements SerializerInterface
     {
-        private SerializerInterface $serializer;
+        /** @var \Liip\Serializer\SerializerInterface */
+        private $serializer;
 
         /**
          * ArraySupportDecorator constructor.

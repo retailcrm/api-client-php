@@ -25,12 +25,10 @@ final class JMSTypeParser
     private const TYPE_ARRAY_COLLECTION = 'ArrayCollection';
     private const TYPE_DATETIME_INTERFACE = 'DateTimeInterface';
 
-    /**
-     * @var Parser
-     */
-    private Parser $jmsTypeParser;
+    /** @var \RetailCrm\Api\Component\Serializer\Parser\JMSCore\Type\Parser */
+    private $jmsTypeParser;
 
-    private $useArrayDateFormat = true;
+    private $useArrayDateFormat;
 
     public function __construct()
     {

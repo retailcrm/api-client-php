@@ -33,15 +33,23 @@ final class SerializerGenerator
 {
     private const FILENAME_PREFIX = 'serialize';
 
-    private Filesystem $filesystem;
+    /** @var \Symfony\Component\Filesystem\Filesystem */
+    private $filesystem;
 
-    private Serialization $templating;
-    private GeneratorConfiguration $configuration;
-    private string $cacheDirectory;
+    /** @var \Liip\Serializer\Template\Serialization */
+    private $templating;
 
-    private CustomSerialization $customTemplating;
+    /** @var \Liip\Serializer\Configuration\GeneratorConfiguration */
+    private $configuration;
 
-    private Builder $metadataBuilder;
+    /** @var string */
+    private $cacheDirectory;
+
+    /** @var \RetailCrm\Api\Component\Serializer\Template\CustomSerialization */
+    private $customTemplating;
+
+    /** @var \Liip\MetadataParser\Builder */
+    private $metadataBuilder;
 
     public function __construct(
         Serialization $templating,

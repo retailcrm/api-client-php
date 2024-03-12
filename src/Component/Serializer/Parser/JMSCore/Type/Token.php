@@ -41,9 +41,11 @@ final class Token
     /**
      * The position of the token in the input string
      *
+     * @var int
+     *
      * @readonly
      */
-    public int $position;
+    public $position;
 
     /**
      * @param string|int $value

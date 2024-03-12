@@ -11,19 +11,17 @@ use RetailCrm\Api\Component\Serializer\Parser\JMSCore\Type\Exception\SyntaxError
  */
 final class Parser implements ParserInterface
 {
-    /**
-     * @var Lexer
-     */
-    private Lexer $lexer;
+    /** @var \RetailCrm\Api\Component\Serializer\Parser\JMSCore\Type\Lexer */
+    private $lexer;
 
-    private ?Token $token = null;
+    /** @var \RetailCrm\Api\Component\Serializer\Parser\JMSCore\Type\Token|null */
+    private $token = null;
 
-    private string $input;
+    /** @var string */
+    private $input;
 
-    /**
-     * @var bool
-     */
-    private bool $root = true;
+    /** @var bool */
+    private $root = true;
 
     public function parse(string $type): array
     {

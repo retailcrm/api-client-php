@@ -41,11 +41,14 @@ class JMSParser implements ModelParserInterface
 {
     private const ACCESS_ORDER_CUSTOM = 'custom';
 
-    private Reader $annotationsReader;
+    /** @var \Doctrine\Common\Annotations\Reader  */
+    private $annotationsReader;
 
-    private PhpTypeParser $phpTypeParser;
+    /** @var \Liip\MetadataParser\TypeParser\PhpTypeParser  */
+    private $phpTypeParser;
 
-    protected JMSTypeParser $jmsTypeParser;
+    /** @var \RetailCrm\Api\Component\Serializer\Parser\JMSTypeParser */
+    protected $jmsTypeParser;
 
     public function __construct(Reader $annotationsReader)
     {

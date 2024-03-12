@@ -29,17 +29,23 @@ final class DeserializerGenerator
 {
     private const FILENAME_PREFIX = 'deserialize';
 
-    private Filesystem $filesystem;
+    /** @var \Symfony\Component\Filesystem\Filesystem */
+    private $filesystem;
 
-    private GeneratorConfiguration $configuration;
+    /** @var \Liip\Serializer\Configuration\GeneratorConfiguration */
+    private $configuration;
 
-    private Deserialization $templating;
+    /** @var \Liip\Serializer\Template\Deserialization */
+    private $templating;
 
-    private CustomDeserialization $customTemplating;
+    /** @var \RetailCrm\Api\Component\Serializer\Template\CustomDeserialization */
+    private $customTemplating;
 
-    private string $cacheDirectory;
+    /** @var string */
+    private $cacheDirectory;
 
-    private Builder $metadataBuilder;
+    /** @var \Liip\MetadataParser\Builder */
+    private $metadataBuilder;
 
     /**
      * @param list<class-string> $classesToGenerate This is a list of FQCN classnames

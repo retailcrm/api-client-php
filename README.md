@@ -20,7 +20,7 @@ You can find more info in the [documentation](doc/index.md).
 
 ## Requirements
 
-* PHP 7.4 and above
+* PHP 7.3 and above
 * PHP's cURL support
 * PHP's JSON support
 * Any HTTP client compatible with PSR-18 (covered by the installation instructions).
