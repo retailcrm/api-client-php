@@ -1,24 +1,16 @@
 <?php
 
-/**
- * PHP version 7.3
- *
- * @category BaseJMSParser
- * @package  RetailCrm\Api\Component\Serializer\Parser
- */
-
 declare(strict_types=1);
 
-namespace RetailCrm\Api\Component\Serializer\Parser;
+namespace RetailCrm\Api\Component\Serializer\Parser\JMSCore\Type;
 
 use Doctrine\Common\Lexer\AbstractLexer;
-use RetailCrm\Api\Component\Serializer\Exception\SyntaxError;
-use Throwable;
+use RetailCrm\Api\Component\Serializer\Parser\JMSCore\Type\Exception\SyntaxError;
 
 /**
  * @internal
  */
-final class JMSLexer extends AbstractLexer
+final class Lexer extends AbstractLexer
 {
     public const T_UNKNOWN = 0;
     public const T_INTEGER = 1;
@@ -32,23 +24,15 @@ final class JMSLexer extends AbstractLexer
     public const T_IDENTIFIER = 9;
     public const T_NULL = 10;
 
-    /**
-     * @param string $type
-     *
-     * @return int|string|null
-     */
     public function parse(string $type)
     {
         try {
             return $this->getType($type);
-        } catch (Throwable $e) {
+        } catch (\Throwable $e) {
             throw new SyntaxError($e->getMessage(), 0, $e);
         }
     }
 
-    /**
-     * @return string[]
-     */
     protected function getCatchablePatterns(): array
     {
         return [
@@ -63,18 +47,15 @@ final class JMSLexer extends AbstractLexer
         ];
     }
 
-    /**
-     * @return string[]
-     */
     protected function getNonCatchablePatterns(): array
     {
         return ['\s+'];
     }
 
     /**
-     * {{@inheritDoc}}
+     * {@inheritDoc}
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @return int|string|null
      */
     protected function getType(&$value)
     {

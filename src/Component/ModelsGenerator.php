@@ -11,12 +11,12 @@ namespace RetailCrm\Api\Component;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Liip\MetadataParser\Builder;
+use Liip\MetadataParser\ModelParser\RawMetadata\PropertyCollection;
 use Liip\MetadataParser\Parser;
 use Liip\MetadataParser\RecursionChecker;
 use Liip\Serializer\Configuration\GeneratorConfiguration;
 use Liip\Serializer\Template\Deserialization;
 use Liip\Serializer\Template\Serialization;
-use RetailCrm\Api\Component\Utils;
 use RetailCrm\Api\Component\Serializer\Generator\DeserializerGenerator;
 use RetailCrm\Api\Component\Serializer\Generator\SerializerGenerator;
 use RetailCrm\Api\Component\Serializer\ModelsChecksumGenerator;
@@ -177,6 +177,7 @@ class ModelsGenerator
             $configurationArray['classes'][$class] = [];
         }
 
+        PropertyCollection::useIdenticalNamingStrategy();
         $configuration = GeneratorConfiguration::createFomArray($configurationArray);
         $parsers = [new JMSParser(new AnnotationReader())];
         $builder = new Builder(new Parser($parsers), new RecursionChecker(null, []));

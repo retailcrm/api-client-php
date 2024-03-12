@@ -16,6 +16,8 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
  *
  * @category Currency
  * @package  RetailCrm\Api\Model\Entity\References
+ *
+ * @SuppressWarnings(PHPMD.LongVariable)
  */
 class Currency
 {
