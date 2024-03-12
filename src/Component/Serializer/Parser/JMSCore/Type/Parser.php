@@ -53,6 +53,25 @@ final class Parser implements ParserInterface
             $this->token = Token::fromObject($this->lexer->token);
         }
 
+        /*
+         * There is a difference in the behavior of the tokenizer depending on the version of the lexer. This affects
+         * how the lexer interprets date formats for compound date types. In our case it has a huge impact because
+         * we're using `DateTime<'Y-m-d H:i:s'>` in the API. Newer lexer versions will treat the whole format
+         * (`Y-m-d H:i:s`) as a token of string type. Older lexer versions will treat each symbol of the format as
+         * a single token, and this will inevitably break type parsing during model compilation (it will say something
+         * about unexpected token).
+         *
+         * The condition below is used to work around this, albeit in a very hacky way. The token it tries to detect is
+         * actually a single quote ('). After detecting this token and determining that this time parser has been
+         * called recursively for a compound type, it will try to determine the parameter length and extract it as
+         * a single token. In other words, we're trying to mimic newer lexer behavior while using an older version.
+         *
+         * This implementation is very limited, as it may fail abruptly with more complex compound types, also it
+         * may fail to extract the type correctly if it has different whitespace symbols / multiple whitespace symbols.
+         * It was tested only with the compound date type mentioned above.
+         *
+         * A special fallback parser would be a better solution, but it would take much more time and effort to create.
+         */
         if ("" === $this->token->value && $fetchingParam) {
             $len = 0;
             $this->lexer->moveNext();
