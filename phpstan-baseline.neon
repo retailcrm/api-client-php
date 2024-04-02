@@ -1,4 +1,6 @@
 parameters:
+	excludePaths:
+		- src/Component/Serializer/ArraySupportDecorator.php
 	ignoreErrors:
 		-
 			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Builder\\\\ClientBuilder\\:\\:buildHandlersChain\\(\\) through static\\:\\:\\.$#"
@@ -211,36 +213,6 @@ parameters:
 			path: src/Component/Serializer/ArraySupportDecorator.php
 
 		-
-			message: "#^Unsafe access to private constant RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Generator\\\\DeserializerGenerator\\:\\:FILENAME_PREFIX through static\\:\\:\\.$#"
-			count: 1
-			path: src/Component/Serializer/Generator/DeserializerGenerator.php
-
-		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: src/Component/Serializer/Generator/SerializerGenerator.php
-
-		-
-			message: "#^Cannot call method getClassName\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Component/Serializer/Generator/SerializerGenerator.php
-
-		-
-			message: "#^Cannot call method getGroups\\(\\) on mixed\\.$#"
-			count: 3
-			path: src/Component/Serializer/Generator/SerializerGenerator.php
-
-		-
-			message: "#^Cannot call method getVersions\\(\\) on mixed\\.$#"
-			count: 1
-			path: src/Component/Serializer/Generator/SerializerGenerator.php
-
-		-
-			message: "#^Unsafe access to private constant RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Generator\\\\SerializerGenerator\\:\\:FILENAME_PREFIX through static\\:\\:\\.$#"
-			count: 1
-			path: src/Component/Serializer/Generator/SerializerGenerator.php
-
-		-
 			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\ModelsChecksumGenerator\\:\\:getStoredChecksums\\(\\) should return array\\<string, string\\> but returns mixed\\.$#"
 			count: 1
 			path: src/Component/Serializer/ModelsChecksumGenerator.php
@@ -251,41 +223,6 @@ parameters:
 			path: src/Component/Serializer/ModelsChecksumGenerator.php
 
 		-
-			message: "#^Cannot cast mixed to float\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/BaseJMSParser.php
-
-		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/BaseJMSParser.php
-
-		-
-			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\BaseJMSParser\\:\\:parse\\(\\) should return array but returns mixed\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/BaseJMSParser.php
-
-		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
-			count: 2
-			path: src/Component/Serializer/Parser/BaseJMSParser.php
-
-		-
-			message: "#^Class RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSLexer extends generic class Doctrine\\\\Common\\\\Lexer\\\\AbstractLexer but does not specify its types\\: T, V$#"
-			count: 1
-			path: src/Component/Serializer/Parser/JMSLexer.php
-
-		-
-			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSLexer\\:\\:parse\\(\\) should return int\\|string\\|null but returns int\\|string\\|UnitEnum\\|null\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/JMSLexer.php
-
-		-
-			message: "#^Parameter \\#1 \\$object of function get_class expects object, mixed given\\.$#"
-			count: 2
-			path: src/Component/Serializer/Parser/JMSParser.php
-
-		-
 			message: "#^Parameter \\#2 \\$string2 of function strncmp expects string, class\\-string\\|false given\\.$#"
 			count: 1
 			path: src/Component/Serializer/Parser/JMSParser.php
@@ -294,36 +231,6 @@ parameters:
 			message: "#^Parameter \\#3 \\$annotation of static method Liip\\\\MetadataParser\\\\Exception\\\\ParseException\\:\\:unsupportedPropertyAnnotation\\(\\) expects string, class\\-string\\|false given\\.$#"
 			count: 1
 			path: src/Component/Serializer/Parser/JMSParser.php
-
-		-
-			message: "#^Parameter \\#1 \\$className of class Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypeClass constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
-			message: "#^Parameter \\#1 \\$className of static method Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypeDateTime\\:\\:fromDateTimeClass\\(\\) expects string, mixed given\\.$#"
-			count: 2
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
-			message: "#^Parameter \\#1 \\$typeName of class Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypePrimitive constructor expects string, mixed given\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
-			message: "#^Parameter \\#1 \\$typeName of static method Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypeDateTime\\:\\:isTypeDateTime\\(\\) expects string, mixed given\\.$#"
-			count: 2
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
-			message: "#^Parameter \\#1 \\$typeName of static method Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypePrimitive\\:\\:isTypePrimitive\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
-
-		-
-			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, mixed given\\.$#"
-			count: 1
-			path: src/Component/Serializer/Parser/JMSTypeParser.php
 
 		-
 			message: "#^Unsafe call to private method RetailCrm\\\\Api\\\\Component\\\\Transformer\\\\DateTimeTransformer\\:\\:createFromFormat\\(\\) through static\\:\\:\\.$#"

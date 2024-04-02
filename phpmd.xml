@@ -44,4 +44,6 @@
     </rule>
 
     <exclude-pattern>tests/*</exclude-pattern>
+    <exclude-pattern>src/Component/Serializer/Generator/*</exclude-pattern>
+    <exclude-pattern>src/Component/Serializer/Parser/*</exclude-pattern>
 </ruleset>

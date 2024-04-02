@@ -1,17 +1,9 @@
 <?php
 
-/**
- * PHP version 7.3
- *
- * @category SerializerGenerator
- * @package  RetailCrm\Api\Component\Serializer\Generator
- */
-
 declare(strict_types=1);
 
 namespace RetailCrm\Api\Component\Serializer\Generator;
 
-use DateTime;
 use Liip\MetadataParser\Builder;
 use Liip\MetadataParser\Metadata\ClassMetadata;
 use Liip\MetadataParser\Metadata\PropertyMetadata;
@@ -27,140 +19,99 @@ use Liip\MetadataParser\Reducer\TakeBestReducer;
 use Liip\MetadataParser\Reducer\VersionReducer;
 use Liip\Serializer\Configuration\GeneratorConfiguration;
 use Liip\Serializer\Template\Serialization;
+use RetailCrm\Api\Component\Serializer\Template\CustomSerialization;
+use RetailCrm\Api\Component\Serializer\Type\PropertyTypeMixed;
 use RetailCrm\Api\Interfaces\Orders\CustomerInterface;
 use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\CustomerCorporate;
-use RetailCrm\Api\Component\Serializer\Template\CustomSerialization;
-use RetailCrm\Api\Component\Serializer\Type\PropertyTypeMixed;
 use RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer;
 use RetailCrm\Api\Model\Entity\Orders\SerializedRelationCustomer;
-use RuntimeException;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * Class SerializerGenerator
- *
- * @category SerializerGenerator
- * @package  RetailCrm\Api\Component\Serializer\Generator
- * @license  https://github.com/liip/serializer/blob/master/LICENSE MIT License
- * @author   Liip <https://github.com/liip>
- * @author   Pavel Kovalenko
- * @see      https://github.com/liip/serializer
- * @internal
- *
- * @SuppressWarnings(PHPMD)
- */
-class SerializerGenerator
+final class SerializerGenerator
 {
     private const FILENAME_PREFIX = 'serialize';
 
-    /**
-     * @var Serialization
-     */
-    private $templating;
-
-    /**
-     * @var \RetailCrm\Api\Component\Serializer\Template\CustomSerialization
-     */
-    private $customTemplating;
-
-    /**
-     * @var Builder
-     */
-    private $metadataBuilder;
-
-    /**
-     * @var GeneratorConfiguration<mixed>
-     */
-    private $configuration;
-
-    /**
-     * @var string
-     */
-    private $cacheDirectory;
-
-    /**
-     * @var Filesystem
-     */
+    /** @var \Symfony\Component\Filesystem\Filesystem */
     private $filesystem;
 
-    /**
-     * SerializerGenerator constructor.
-     *
-     * @param \Liip\Serializer\Template\Serialization                          $templating
-     * @param \RetailCrm\Api\Component\Serializer\Template\CustomSerialization $customTemplating
-     * @param \Liip\Serializer\Configuration\GeneratorConfiguration<mixed>     $configuration
-     * @param string                                                           $cacheDirectory
-     */
+    /** @var \Liip\Serializer\Template\Serialization */
+    private $templating;
+
+    /** @var \Liip\Serializer\Configuration\GeneratorConfiguration */
+    private $configuration;
+
+    /** @var string */
+    private $cacheDirectory;
+
+    /** @var \RetailCrm\Api\Component\Serializer\Template\CustomSerialization */
+    private $customTemplating;
+
+    /** @var \Liip\MetadataParser\Builder */
+    private $metadataBuilder;
+
     public function __construct(
         Serialization $templating,
         CustomSerialization $customTemplating,
         GeneratorConfiguration $configuration,
         string $cacheDirectory
     ) {
-        $this->templating       = $templating;
+        $this->cacheDirectory = $cacheDirectory;
+        $this->configuration = $configuration;
+        $this->templating = $templating;
         $this->customTemplating = $customTemplating;
-        $this->configuration    = $configuration;
-        $this->cacheDirectory   = $cacheDirectory;
-
         $this->filesystem = new Filesystem();
     }
 
     /**
-     * @param string       $className
-     * @param string|null  $apiVersion
-     * @param array<mixed> $serializerGroups
-     *
-     * @return string
+     * @param list<string> $serializerGroups
      */
-    public static function buildSerializerFunctionName(
-        string $className,
-        ?string $apiVersion,
-        array $serializerGroups
-    ): string {
-        $functionName = static::FILENAME_PREFIX . '_' . $className;
-
-        if (count($serializerGroups)) {
-            $functionName .= '_' . implode('_', $serializerGroups);
+    public static function buildSerializerFunctionName(string $className, ?string $apiVersion, array $serializerGroups): string
+    {
+        $functionName = self::FILENAME_PREFIX.'_'.$className;
+        if (\count($serializerGroups)) {
+            $functionName .= '_'.implode('_', $serializerGroups);
         }
-
         if (null !== $apiVersion) {
-            $functionName .= '_' . $apiVersion;
+            $functionName .= '_'.$apiVersion;
         }
 
-        return (string) preg_replace('/[^a-zA-Z0-9_]/', '_', $functionName);
+        return preg_replace('/[^a-zA-Z0-9_]/', '_', $functionName);
     }
 
-    /**
-     * @param \Liip\MetadataParser\Builder $metadataBuilder
-     */
     public function generate(Builder $metadataBuilder): void
     {
         $this->metadataBuilder = $metadataBuilder;
-
         $this->filesystem->mkdir($this->cacheDirectory);
 
         foreach ($this->configuration as $classToGenerate) {
             foreach ($classToGenerate as $groupCombination) {
                 $className = $classToGenerate->getClassName();
-
                 foreach ($groupCombination->getVersions() as $version) {
+                    $groups = $groupCombination->getGroups();
                     if ('' === $version) {
-                        $metadata = $metadataBuilder->build($className, [
-                            new PreferredReducer(),
-                            new TakeBestReducer(),
-                        ]);
-
-                        $this->writeFile($className, null, $groupCombination->getGroups(), $metadata);
+                        if ([] === $groups) {
+                            $metadata = $metadataBuilder->build($className, [
+                                new PreferredReducer(),
+                                new TakeBestReducer(),
+                            ]);
+                            $this->writeFile($className, null, [], $metadata);
+                        } else {
+                            $metadata = $metadataBuilder->build($className, [
+                                new GroupReducer($groups),
+                                new PreferredReducer(),
+                                new TakeBestReducer(),
+                            ]);
+                            $this->writeFile($className, null, $groups, $metadata);
+                        }
                     } else {
                         $metadata = $metadataBuilder->build($className, [
                             new VersionReducer($version),
-                            new GroupReducer($groupCombination->getGroups()),
+                            new GroupReducer($groups),
                             new TakeBestReducer(),
                         ]);
-
-                        $this->writeFile($className, $version, $groupCombination->getGroups(), $metadata);
+                        $this->writeFile($className, $version, $groups, $metadata);
                     }
                 }
             }
@@ -168,10 +119,7 @@ class SerializerGenerator
     }
 
     /**
-     * @param string                                      $className
-     * @param string|null                                 $apiVersion
-     * @param array<mixed>                                $serializerGroups
-     * @param \Liip\MetadataParser\Metadata\ClassMetadata $classMetadata
+     * @param list<string> $serializerGroups
      */
     private function writeFile(
         string $className,
@@ -179,8 +127,7 @@ class SerializerGenerator
         array $serializerGroups,
         ClassMetadata $classMetadata
     ): void {
-        sort($serializerGroups);
-        $functionName = static::buildSerializerFunctionName($className, $apiVersion, $serializerGroups);
+        $functionName = self::buildSerializerFunctionName($className, $apiVersion, $serializerGroups);
 
         $code = $this->templating->renderFunction(
             $functionName,
@@ -192,15 +139,8 @@ class SerializerGenerator
     }
 
     /**
-     * @param \Liip\MetadataParser\Metadata\ClassMetadata $classMetadata
-     * @param string|null                                 $apiVersion
-     * @param array<mixed>                                $serializerGroups
-     * @param string                                      $arrayPath
-     * @param string                                      $modelPath
-     * @param array<mixed>                                $stack
-     *
-     * @return string
-     * @throws \Exception
+     * @param list<string>                $serializerGroups
+     * @param array<string, positive-int> $stack
      */
     private function generateCodeForClass(
         ClassMetadata $classMetadata,
@@ -226,17 +166,10 @@ class SerializerGenerator
         }
 
         $stack[$classMetadata->getClassName()] = ($stack[$classMetadata->getClassName()] ?? 0) + 1;
-        $code = '';
 
+        $code = '';
         foreach ($classMetadata->getProperties() as $propertyMetadata) {
-            $code .= $this->generateCodeForField(
-                $propertyMetadata,
-                $apiVersion,
-                $serializerGroups,
-                $arrayPath,
-                $modelPath,
-                $stack
-            );
+            $code .= $this->generateCodeForField($propertyMetadata, $apiVersion, $serializerGroups, $arrayPath, $modelPath, $stack);
         }
 
         return $this->templating->renderClass($arrayPath, $code);
@@ -334,15 +267,8 @@ class SerializerGenerator
     }
 
     /**
-     * @param \Liip\MetadataParser\Metadata\PropertyMetadata $propertyMetadata
-     * @param string|null                                    $apiVersion
-     * @param array<mixed>                                   $serializerGroups
-     * @param string                                         $arrayPath
-     * @param string                                         $modelPath
-     * @param array<mixed>                                   $stack
-     *
-     * @return string
-     * @throws \Exception
+     * @param list<string>                $serializerGroups
+     * @param array<string, positive-int> $stack
      */
     private function generateCodeForField(
         PropertyMetadata $propertyMetadata,
@@ -352,61 +278,34 @@ class SerializerGenerator
         string $modelPath,
         array $stack
     ): string {
-        $modelPropertyPath = $modelPath . '->' . $propertyMetadata->getName();
-        $fieldPath = $arrayPath . '["' . $propertyMetadata->getSerializedName() . '"]';
+        if (Recursion::hasMaxDepthReached($propertyMetadata, $stack)) {
+            return '';
+        }
+
+        $modelPropertyPath = $modelPath.'->'.$propertyMetadata->getName();
+        $fieldPath = $arrayPath.'["'.$propertyMetadata->getSerializedName().'"]';
 
         if ($propertyMetadata->getAccessor()->hasGetterMethod()) {
-            $tempVariable = str_replace(['->', '[', ']', '$'], '', $modelPath) . ucfirst($propertyMetadata->getName());
+            $tempVariable = str_replace(['->', '[', ']', '$'], '', $modelPath).ucfirst($propertyMetadata->getName());
 
             return $this->templating->renderConditional(
-                $this->templating->renderTempVariable(
-                    $tempVariable,
-                    $this->templating->renderGetter(
-                        $modelPath,
-                        (string) $propertyMetadata->getAccessor()->getGetterMethod()
-                    )
-                ),
-                $this->generateCodeForFieldType(
-                    $propertyMetadata->getType(),
-                    $apiVersion,
-                    $serializerGroups,
-                    $fieldPath,
-                    '$' . $tempVariable,
-                    $stack
-                )
+                $this->templating->renderTempVariable($tempVariable, $this->templating->renderGetter($modelPath, $propertyMetadata->getAccessor()->getGetterMethod())),
+                $this->generateCodeForFieldType($propertyMetadata->getType(), $apiVersion, $serializerGroups, $fieldPath, '$'.$tempVariable, $stack)
             );
         }
         if (!$propertyMetadata->isPublic()) {
-            throw new RuntimeException(sprintf(
-                'Property %s is not public and no getter has been defined. Stack %s',
-                $modelPropertyPath,
-                var_export($stack, true)
-            ));
+            throw new \Exception(sprintf('Property %s is not public and no getter has been defined. Stack %s', $modelPropertyPath, var_export($stack, true)));
         }
 
         return $this->templating->renderConditional(
             $modelPropertyPath,
-            $this->generateCodeForFieldType(
-                $propertyMetadata->getType(),
-                $apiVersion,
-                $serializerGroups,
-                $fieldPath,
-                $modelPropertyPath,
-                $stack
-            )
+            $this->generateCodeForFieldType($propertyMetadata->getType(), $apiVersion, $serializerGroups, $fieldPath, $modelPropertyPath, $stack)
         );
     }
 
     /**
-     * @param \Liip\MetadataParser\Metadata\PropertyType $type
-     * @param string|null                                $apiVersion
-     * @param array<mixed>                               $serializerGroups
-     * @param string                                     $fieldPath
-     * @param string                                     $modelPropertyPath
-     * @param array<mixed>                               $stack
-     *
-     * @return string
-     * @throws \Exception
+     * @param list<string>                $serializerGroups
+     * @param array<string, positive-int> $stack
      */
     private function generateCodeForFieldType(
         PropertyType $type,
@@ -416,31 +315,9 @@ class SerializerGenerator
         string $modelPropertyPath,
         array $stack
     ): string {
-        if ($type instanceof PropertyTypeArray) {
-            if ($type->getSubType() instanceof PropertyTypePrimitive) {
-                // for arrays of scalars, copy the field even when its an empty array
-                return $this->templating->renderAssign($fieldPath, $modelPropertyPath);
-            }
-
-            // either array or hashmap with second param the type of values
-            // the index works the same whether its numeric or hashmap
-            return $this->generateCodeForArray(
-                $type,
-                $apiVersion,
-                $serializerGroups,
-                $fieldPath,
-                $modelPropertyPath,
-                $stack
-            );
-        }
-
         switch ($type) {
             case $type instanceof PropertyTypeDateTime:
-                if (null !== $type->getZone()) {
-                    throw new \RuntimeException('Timezone support is not implemented');
-                }
-
-                $dateFormat = $type->getFormat() ?: DateTime::ATOM;
+                $dateFormat = $type->getFormat() ?: \DateTimeInterface::ISO8601;
 
                 return $this->templating->renderAssign(
                     $fieldPath,
@@ -454,30 +331,19 @@ class SerializerGenerator
                 return $this->templating->renderAssign($fieldPath, $modelPropertyPath);
 
             case $type instanceof PropertyTypeClass:
-                return $this->generateCodeForClass(
-                    $type->getClassMetadata(),
-                    $apiVersion,
-                    $serializerGroups,
-                    $fieldPath,
-                    $modelPropertyPath,
-                    $stack
-                );
+                return $this->generateCodeForClass($type->getClassMetadata(), $apiVersion, $serializerGroups, $fieldPath, $modelPropertyPath, $stack);
+
+            case $type instanceof PropertyTypeArray:
+                return $this->generateCodeForArray($type, $apiVersion, $serializerGroups, $fieldPath, $modelPropertyPath, $stack);
 
             default:
-                throw new RuntimeException('Unexpected type ' . \get_class($type) . ' at ' . $modelPropertyPath);
+                throw new \Exception('Unexpected type '. get_class($type) .' at '.$modelPropertyPath);
         }
     }
 
     /**
-     * @param \Liip\MetadataParser\Metadata\PropertyTypeArray $type
-     * @param string|null                                     $apiVersion
-     * @param array<mixed>                                    $serializerGroups
-     * @param string                                          $arrayPath
-     * @param string                                          $modelPath
-     * @param array<mixed>                                    $stack
-     *
-     * @return string
-     * @throws \Exception
+     * @param list<string>                $serializerGroups
+     * @param array<string, positive-int> $stack
      */
     private function generateCodeForArray(
         PropertyTypeArray $type,
@@ -487,35 +353,25 @@ class SerializerGenerator
         string $modelPath,
         array $stack
     ): string {
-        $index = '$index' . \mb_strlen($arrayPath);
+        $index = '$index'.mb_strlen($arrayPath);
         $subType = $type->getSubType();
 
         switch ($subType) {
-            case $subType instanceof PropertyTypeArray:
-                $innerCode = $this->generateCodeForArray(
-                    $subType,
-                    $apiVersion,
-                    $serializerGroups,
-                    $arrayPath . '[' . $index . ']',
-                    $modelPath . '[' . $index . ']',
-                    $stack
-                );
-                break;
-            case $subType instanceof PropertyTypeClass:
-                $innerCode = $this->generateCodeForClass(
-                    $subType->getClassMetadata(),
-                    $apiVersion,
-                    $serializerGroups,
-                    $arrayPath . '[' . $index . ']',
-                    $modelPath . '[' . $index . ']',
-                    $stack
-                );
-                break;
+            case $subType instanceof PropertyTypePrimitive:
+            case $subType instanceof PropertyTypeArray && self::isArrayForPrimitive($subType):
             case $subType instanceof PropertyTypeUnknown:
-                $innerCode = $this->templating->renderAssign($arrayPath, $modelPath);
+                return $this->templating->renderArrayAssign($arrayPath, $modelPath);
+
+            case $subType instanceof PropertyTypeArray:
+                $innerCode = $this->generateCodeForArray($subType, $apiVersion, $serializerGroups, $arrayPath.'['.$index.']', $modelPath.'['.$index.']', $stack);
                 break;
+
+            case $subType instanceof PropertyTypeClass:
+                $innerCode = $this->generateCodeForClass($subType->getClassMetadata(), $apiVersion, $serializerGroups, $arrayPath.'['.$index.']', $modelPath.'['.$index.']', $stack);
+                break;
+
             default:
-                throw new RuntimeException('Unexpected array subtype ' . get_class($subType));
+                throw new \Exception('Unexpected array subtype '. get_class($subType));
         }
 
         if ('' === $innerCode) {
@@ -531,5 +387,17 @@ class SerializerGenerator
         }
 
         return $this->templating->renderLoopArray($arrayPath, $modelPath, $index, $innerCode);
+    }
+
+    private static function isArrayForPrimitive(PropertyTypeArray $type): bool
+    {
+        do {
+            $type = $type->getSubType();
+            if ($type instanceof PropertyTypePrimitive) {
+                return true;
+            }
+        } while ($type instanceof PropertyTypeArray);
+
+        return false;
     }
 }

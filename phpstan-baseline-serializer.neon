@@ -1,0 +1,246 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$config of static method Liip\\\\Serializer\\\\Configuration\\\\GeneratorConfiguration\\:\\:createFomArray\\(\\) expects array\\{default_group_combinations\\?\\: array\\<int, array\\<int, string\\>\\>\\|null, default_versions\\?\\: array\\<int, string\\>\\|null, classes\\?\\: array\\<class\\-string, array\\<string, mixed\\>\\>\\|null, options\\?\\: array\\<string, mixed\\>\\}, array\\{default_group_combinations\\: array\\{\\}, default_versions\\: array\\{\\}, classes\\: non\\-empty\\-array\\<string, array\\{\\}\\>\\} given\\.$#"
+			count: 1
+			path: src/Component/ModelsGenerator.php
+
+		-
+			message: "#^Parameter \\#3 \\$classesToGenerate of class RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Generator\\\\DeserializerGenerator constructor expects array\\<int, class\\-string\\>, array\\<string\\> given\\.$#"
+			count: 1
+			path: src/Component/ModelsGenerator.php
+
+		-
+			message: "#^Parameter \\#2 \\$method of method Liip\\\\Serializer\\\\Template\\\\Deserialization\\:\\:renderSetter\\(\\) expects string, string\\|null given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Generator/DeserializerGenerator.php
+
+		-
+			message: "#^Parameter \\#4 \\$stack of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Generator\\\\DeserializerGenerator\\:\\:generateCodeForClass\\(\\) expects array\\<string, int\\<1, max\\>\\>, array given\\.$#"
+			count: 2
+			path: src/Component/Serializer/Generator/DeserializerGenerator.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Generator\\\\SerializerGenerator\\:\\:buildSerializerFunctionName\\(\\) should return string but returns string\\|null\\.$#"
+			count: 1
+			path: src/Component/Serializer/Generator/SerializerGenerator.php
+
+		-
+			message: "#^Parameter \\#2 \\$method of method Liip\\\\Serializer\\\\Template\\\\Serialization\\:\\:renderGetter\\(\\) expects string, string\\|null given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Generator/SerializerGenerator.php
+
+		-
+			message: "#^Parameter \\#3 \\$serializerGroups of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Generator\\\\SerializerGenerator\\:\\:generateCodeForClass\\(\\) expects array\\<int, string\\>, array given\\.$#"
+			count: 4
+			path: src/Component/Serializer/Generator/SerializerGenerator.php
+
+		-
+			message: "#^Class RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Lexer extends generic class Doctrine\\\\Common\\\\Lexer\\\\AbstractLexer but does not specify its types\\: T, V$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Lexer.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Lexer\\:\\:getType\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Lexer.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Lexer\\:\\:parse\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Lexer.php
+
+		-
+			message: "#^Parameter \\#1 \\$haystack of function stripos expects string, float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Lexer.php
+
+		-
+			message: "#^Parameter \\#1 \\$haystack of function strpos expects string, float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Lexer.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:getConstant\\(\\) should return string but returns string\\|false\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:parse\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:parse\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:visitArrayType\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:visitCompoundType\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:visitSimpleType\\(\\) never returns string so it can be removed from the return type\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\ParserInterface\\:\\:parse\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/ParserInterface.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSParser\\:\\:gatherClassAnnotations\\(\\) has parameter \\$reflectionClass with generic class ReflectionClass but does not specify its types\\: T$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSParser\\:\\:getMethodName\\(\\) has parameter \\$annotations with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSParser\\:\\:getProperty\\(\\) has parameter \\$annotations with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSParser\\:\\:getReturnType\\(\\) has parameter \\$reflClass with generic class ReflectionClass but does not specify its types\\: T$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSParser\\:\\:getSerializedName\\(\\) has parameter \\$annotations with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSParser\\:\\:isPostDeserializeMethod\\(\\) has parameter \\$annotations with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSParser\\:\\:isVirtualProperty\\(\\) has parameter \\$annotations with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSParser\\:\\:parseClass\\(\\) has parameter \\$reflClass with generic class ReflectionClass but does not specify its types\\: T$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSParser\\:\\:parseMethods\\(\\) has parameter \\$reflClass with generic class ReflectionClass but does not specify its types\\: T$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSParser\\:\\:parseProperties\\(\\) has parameter \\$reflClass with generic class ReflectionClass but does not specify its types\\: T$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSParser\\:\\:parsePropertyAnnotations\\(\\) has parameter \\$annotations with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSParser.php
+
+		-
+			message: "#^Class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection not found\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Class Doctrine\\\\Common\\\\Collections\\\\Collection not found\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSTypeParser\\:\\:parseType\\(\\) has parameter \\$typeInfo with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Parameter \\#4 \\$traversableClass of class Liip\\\\MetadataParser\\\\Metadata\\\\PropertyTypeIterable constructor expects class\\-string\\<Traversable\\>\\|null, string\\|null given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Cannot access property \\$value on RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token\\|null\\.$#"
+			count: 2
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function strlen expects string, int\\|string given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:getConstant\\(\\) expects int, int\\<min, 0\\>\\|int\\<4, 8\\>\\|int\\<11, max\\>\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:getConstant\\(\\) expects int, int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Parser\\:\\:\\$token with generic class RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token does not specify its types\\: T, V$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Parser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$position\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$type\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$value\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token\\:\\:fromArray\\(\\) has parameter \\$source with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token\\:\\:fromArray\\(\\) return type with generic class RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token does not specify its types\\: T, V$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Method RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token\\:\\:fromObject\\(\\) return type with generic class RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token does not specify its types\\: T, V$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSCore\\\\Type\\\\Token\\<T of int\\|string,V of int\\|string\\>\\:\\:\\$type \\(\\(T of int\\|string\\)\\|null\\) does not accept int\\|string\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSCore/Type/Token.php
+
+		-
+			message: "#^Cannot call method getParameters\\(\\) on ReflectionMethod\\|null\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php
+
+		-
+			message: "#^Property RetailCrm\\\\Api\\\\Component\\\\Serializer\\\\Parser\\\\JMSTypeParser\\:\\:\\$useArrayDateFormat has no type specified\\.$#"
+			count: 1
+			path: src/Component/Serializer/Parser/JMSTypeParser.php

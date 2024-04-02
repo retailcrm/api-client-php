@@ -18,7 +18,10 @@ if (!is_file($autoloadFile = __DIR__ . '/../vendor/autoload.php')) {
 $loader = require $autoloadFile;
 $loader->add('RetailCrm\\TestUtils', __DIR__ . '/tests/utils');
 $loader->add('RetailCrm\\Tests', __DIR__ . '/src');
-AnnotationRegistry::registerLoader('class_exists');
+
+if (method_exists(AnnotationRegistry::class, 'registerLoader')) {
+    AnnotationRegistry::registerLoader('class_exists');
+}
 
 if (file_exists(__DIR__ . '/../.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
