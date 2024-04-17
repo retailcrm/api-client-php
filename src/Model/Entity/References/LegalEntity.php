@@ -97,7 +97,7 @@ class LegalEntity
     /**
      * @var DateTime
      *
-     * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
+     * @JMS\Type("DateTime<'Y-m-d'>")
      * @JMS\SerializedName("certificateDate")
      */
     public $certificateDate;

@@ -2671,7 +2671,8 @@ EOF;
         "legalName": "ИП Бороздина Татьяна Александровна",
         "INN": "773719480254",
         "code": "test",
-        "countryIso": "RU"
+        "countryIso": "RU",
+        "certificateDate": "2020-01-01"
       },
       "countryIso": "RU",
       "currency": "RUB",
@@ -2702,7 +2703,8 @@ EOF;
         "legalName": "ИП Бороздина Татьяна Александровна",
         "INN": "773719480154",
         "code": "Vog_Gallery",
-        "countryIso": "RU"
+        "countryIso": "RU",
+        "certificateDate": "2020-01-01"
       },
       "countryIso": "RU",
       "currency": "RUB"
