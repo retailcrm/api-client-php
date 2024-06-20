@@ -28,6 +28,14 @@ class Subscription
     public $channel;
 
     /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("subscription")
+     */
+    public $subscription;
+
+    /**
      * @var bool
      *
      * @JMS\Type("bool")
@@ -39,7 +47,7 @@ class Subscription
      * @var int
      *
      * @JMS\Type("int")
-     * @JMS\SerializedName("unsubscribeMessageId")
+     * @JMS\SerializedName("messageId")
      */
-    public $unsubscribeMessageId;
+    public $messageId;
 }

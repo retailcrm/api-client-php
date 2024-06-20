@@ -797,14 +797,15 @@ class Customers extends AbstractApiResourceGroup
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
-     * $subscription                       = new Subscription();
-     * $subscription->channel              = 'waba';
-     * $subscription->active               = false;
-     * $subscription->unsubscribeMessageId = 123;
-     * $request                            = new CustomersSubscriptionsRequest();
-     * $request->by                        = ByIdentifier::ID;
-     * $request->site                      = 'aliexpress';
-     * $request->subscriptions             = [$subscription];
+     * $subscription               = new Subscription();
+     * $subscription->channel      = 'waba';
+     * $subscription->subscription = 'category';
+     * $subscription->active       = false;
+     * $subscription->messageId    = 123;
+     * $request                    = new CustomersSubscriptionsRequest();
+     * $request->by                = ByIdentifier::ID;
+     * $request->site              = 'aliexpress';
+     * $request->subscriptions     = [$subscription];
      *
      * try {
      *     $response = $client->customers->subscriptions(4770, $request);

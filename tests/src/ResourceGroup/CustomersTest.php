@@ -2786,8 +2786,9 @@ EOF;
 
         $subscription = new Subscription();
         $subscription->channel = 'waba';
+        $subscription->subscription = 'category';
         $subscription->active = false;
-        $subscription->unsubscribeMessageId = 123;
+        $subscription->messageId = 123;
 
         $request = new CustomersSubscriptionsRequest();
         $request->by = ByIdentifier::ID;
