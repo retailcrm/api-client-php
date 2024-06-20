@@ -19,6 +19,7 @@ use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersSubscriptionsRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersUploadRequest;
 use RetailCrm\Api\Model\Response\Customers\CustomerNotesResponse;
 use RetailCrm\Api\Model\Response\Customers\CustomersEditResponse;
@@ -779,6 +780,72 @@ class Customers extends AbstractApiResourceGroup
             'customers/' . $identifier . '/edit',
             $request,
             CustomersEditResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/customers/{externalId}/subscriptions" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\ByIdentifier;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Entity\Customers\Subscription;
+     * use RetailCrm\Api\Model\Request\Customers\CustomersSubscriptionsRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $subscription               = new Subscription();
+     * $subscription->channel      = 'waba';
+     * $subscription->subscription = 'category';
+     * $subscription->active       = false;
+     * $subscription->messageId    = 123;
+     * $request                    = new CustomersSubscriptionsRequest();
+     * $request->by                = ByIdentifier::ID;
+     * $request->site              = 'aliexpress';
+     * $request->subscriptions     = [$subscription];
+     *
+     * try {
+     *     $response = $client->customers->subscriptions(4770, $request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     * ```
+     *
+     * @param int|string                                                           $identifier
+     * @param \RetailCrm\Api\Model\Request\Customers\CustomersSubscriptionsRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\SuccessResponse
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     */
+    public function subscriptions($identifier, CustomersSubscriptionsRequest $request): SuccessResponse
+    {
+        /** @var SuccessResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'customers/' . $identifier . '/subscriptions',
+            $request,
+            SuccessResponse::class
         );
         return $response;
     }

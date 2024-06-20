@@ -22,6 +22,7 @@ use RetailCrm\Api\Model\Entity\Customers\CustomerNote;
 use RetailCrm\Api\Model\Entity\Customers\CustomerPhone;
 use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
 use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
+use RetailCrm\Api\Model\Entity\Customers\Subscription;
 use RetailCrm\Api\Model\Entity\FixExternalRow;
 use RetailCrm\Api\Model\Filter\Customers\CustomerFilter;
 use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
@@ -35,6 +36,7 @@ use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersRequest;
+use RetailCrm\Api\Model\Request\Customers\CustomersSubscriptionsRequest;
 use RetailCrm\Api\Model\Request\Customers\CustomersUploadRequest;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
@@ -2770,6 +2772,37 @@ EOF;
 
         $client = TestClientFactory::createClient($mock->getClient());
         $response = $client->customers->edit(4770, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testCustomersSubscriptions(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true
+}
+EOF;
+
+        $subscription = new Subscription();
+        $subscription->channel = 'waba';
+        $subscription->subscription = 'category';
+        $subscription->active = false;
+        $subscription->messageId = 123;
+
+        $request = new CustomersSubscriptionsRequest();
+        $request->by = ByIdentifier::ID;
+        $request->site = 'aliexpress';
+        $request->subscriptions = [$subscription];
+
+        $mock = static::createApiMockBuilder('customers/4770/subscriptions');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->customers->subscriptions(4770, $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
