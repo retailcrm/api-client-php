@@ -58,4 +58,20 @@ class ProductGroupFilterType
      * @Form\SerializedName("catalogs")
      */
     public $catalogs;
+
+    /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("minLevel")
+     */
+    public $minLevel;
+
+    /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("maxLevel")
+     */
+    public $maxLevel;
 }

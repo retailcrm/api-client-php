@@ -66,4 +66,12 @@ class ProductGroup
      * @JMS\SerializedName("active")
      */
     public $active;
+
+    /**
+     * @var int
+     *
+     * @JMS\Type("int")
+     * @JMS\SerializedName("lvl")
+     */
+    public $lvl;
 }
