@@ -171,7 +171,7 @@ class ApiResponse implements \ArrayAccess
      * @throws \BadMethodCallException
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         throw new \BadMethodCallException('This activity not allowed');
     }
@@ -184,7 +184,7 @@ class ApiResponse implements \ArrayAccess
      * @throws \BadMethodCallException
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset): void
     {
         throw new \BadMethodCallException('This call not allowed');
     }
@@ -196,7 +196,7 @@ class ApiResponse implements \ArrayAccess
      *
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->response[$offset]);
     }
@@ -210,7 +210,7 @@ class ApiResponse implements \ArrayAccess
      *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         if (!isset($this->response[$offset])) {
             throw new \InvalidArgumentException("Property \"$offset\" not found");
