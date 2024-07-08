@@ -33,6 +33,7 @@ use RetailCrm\Api\Model\Request\Store\ProductGroupsCreateRequest;
 use RetailCrm\Api\Model\Request\Store\ProductGroupsEditRequest;
 use RetailCrm\Api\Model\Request\Store\ProductGroupsRequest;
 use RetailCrm\Api\Model\Request\Store\ProductPropertiesRequest;
+use RetailCrm\Api\Model\Request\Store\ProductPropertiesSort;
 use RetailCrm\Api\Model\Request\Store\ProductsBatchCreateRequest;
 use RetailCrm\Api\Model\Request\Store\ProductsRequest;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
@@ -616,10 +617,14 @@ EOF;
 EOF;
 
         $request = new ProductPropertiesRequest();
+        $request->sort = new ProductPropertiesSort();
+        $request->sort->offersCount = 'desc';
+
         $request->filter = new ProductPropertiesFilterType();
         $request->filter->sites = ['moysklad', 'aliexpress'];
         $request->filter->visible = NumericBoolean::TRUE;
         $request->filter->variative = NumericBoolean::TRUE;
+        $request->filter->groups = [3676, 3679, 3680, 3724];
 
         $mock = static::createApiMockBuilder('store/products/properties');
         $mock->matchMethod(RequestMethod::GET)

@@ -24,6 +24,14 @@ class ProductPropertiesRequest implements RequestInterface
     use PageLimitTrait;
 
     /**
+     * @var ProductPropertiesSort
+     *
+     * @Form\Type("ProductPropertiesSort")
+     * @Form\SerializedName("sort")
+     */
+    public $sort;
+
+    /**
      * @var \RetailCrm\Api\Model\Filter\Store\ProductPropertiesFilterType
      *
      * @Form\Type("RetailCrm\Api\Model\Filter\Store\ProductPropertiesFilterType")
