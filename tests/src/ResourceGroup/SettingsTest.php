@@ -54,7 +54,28 @@ class SettingsTest extends AbstractApiResourceGroupTestCase
         "lunch_start_time": "12:30",
         "lunch_end_time": "13:00"
       }
-    ]
+    ],
+    "mg": {
+      "order_creation": {
+        "default": {
+          "site": "site",
+          "order_type": "type",
+          "order_method": "method"
+        },
+        "channels": {
+          "1111": {
+            "site": "site_1",
+            "order_type": "type_1",
+            "order_method": "method_1"
+          },
+          "2222": {
+            "site": "site_2",
+            "order_type": "type_2",
+            "order_method": "method_2"
+          }
+        }
+      }
+    }
   }
 }
 EOF;

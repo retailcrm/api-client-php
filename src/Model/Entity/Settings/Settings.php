@@ -58,4 +58,12 @@ class Settings
      * @JMS\SerializedName("non_working_days")
      */
     public $nonWorkingDays;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Settings\MgSettings
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Settings\MgSettings")
+     * @JMS\SerializedName("mg")
+     */
+    public $mgSettings;
 }
