@@ -39,7 +39,7 @@ class ProductFilterType
     /**
      * @var string
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("minPrice")
      */
     public $minPrice;
@@ -47,7 +47,7 @@ class ProductFilterType
     /**
      * @var string
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("maxPrice")
      */
     public $maxPrice;
@@ -55,7 +55,7 @@ class ProductFilterType
     /**
      * @var string
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("minPurchasePrice")
      */
     public $minPurchasePrice;
@@ -63,7 +63,7 @@ class ProductFilterType
     /**
      * @var string
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("maxPurchasePrice")
      */
     public $maxPurchasePrice;
@@ -71,7 +71,7 @@ class ProductFilterType
     /**
      * @var string
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("minQuantity")
      */
     public $minQuantity;
@@ -79,7 +79,7 @@ class ProductFilterType
     /**
      * @var string
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("maxQuantity")
      */
     public $maxQuantity;
@@ -165,9 +165,9 @@ class ProductFilterType
     public $offerIds;
 
     /**
-     * @var string
+     * @var array
      *
-     * @Form\Type("string")
+     * @Form\Type("array")
      * @Form\SerializedName("properties")
      */
     public $properties;
