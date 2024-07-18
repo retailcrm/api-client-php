@@ -165,9 +165,9 @@ class ProductFilterType
     public $offerIds;
 
     /**
-     * @var array
+     * @var string[]
      *
-     * @Form\Type("array")
+     * @Form\Type("string[]")
      * @Form\SerializedName("properties")
      */
     public $properties;
