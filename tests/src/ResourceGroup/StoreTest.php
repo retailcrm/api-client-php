@@ -446,7 +446,7 @@ EOF;
         $request->filter            = new ProductFilterType();
         $request->filter->active    = NumericBoolean::TRUE;
         $request->filter->priceType = 'base';
-        $request->filter->maxPrice  = '10000';
+        $request->filter->maxPrice  = 10000;
         $request->filter->name      = 'Test Product';
 
         $mock = static::createApiMockBuilder('store/products');
@@ -548,7 +548,7 @@ EOF;
         $request->filter                 = new ProductFilterType();
         $request->filter->active         = NumericBoolean::TRUE;
         $request->filter->priceType      = 'base';
-        $request->filter->maxPrice       = '10000';
+        $request->filter->maxPrice       = 10000;
         $request->filter->name           = 'Test Product';
         $request->filter->sinceId        = 828272;
         $request->filter->sinceUpdatedAt = DateTimeTransformer::create('2020-01-01 00:00:00');

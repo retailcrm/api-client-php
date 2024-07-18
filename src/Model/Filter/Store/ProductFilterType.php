@@ -37,7 +37,7 @@ class ProductFilterType
     public $name;
 
     /**
-     * @var string
+     * @var int
      *
      * @Form\Type("int")
      * @Form\SerializedName("minPrice")
@@ -45,7 +45,7 @@ class ProductFilterType
     public $minPrice;
 
     /**
-     * @var string
+     * @var int
      *
      * @Form\Type("int")
      * @Form\SerializedName("maxPrice")
@@ -53,7 +53,7 @@ class ProductFilterType
     public $maxPrice;
 
     /**
-     * @var string
+     * @var int
      *
      * @Form\Type("int")
      * @Form\SerializedName("minPurchasePrice")
@@ -61,7 +61,7 @@ class ProductFilterType
     public $minPurchasePrice;
 
     /**
-     * @var string
+     * @var int
      *
      * @Form\Type("int")
      * @Form\SerializedName("maxPurchasePrice")
@@ -69,7 +69,7 @@ class ProductFilterType
     public $maxPurchasePrice;
 
     /**
-     * @var string
+     * @var int
      *
      * @Form\Type("int")
      * @Form\SerializedName("minQuantity")
@@ -77,7 +77,7 @@ class ProductFilterType
     public $minQuantity;
 
     /**
-     * @var string
+     * @var int
      *
      * @Form\Type("int")
      * @Form\SerializedName("maxQuantity")
@@ -85,33 +85,33 @@ class ProductFilterType
     public $maxQuantity;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("popular")
      */
     public $popular;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("stock")
      */
     public $stock;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("novelty")
      */
     public $novelty;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("recommended")
      */
     public $recommended;
