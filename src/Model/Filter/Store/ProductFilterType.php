@@ -37,81 +37,81 @@ class ProductFilterType
     public $name;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("minPrice")
      */
     public $minPrice;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("maxPrice")
      */
     public $maxPrice;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("minPurchasePrice")
      */
     public $minPurchasePrice;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("maxPurchasePrice")
      */
     public $maxPurchasePrice;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("minQuantity")
      */
     public $minQuantity;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("maxQuantity")
      */
     public $maxQuantity;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("popular")
      */
     public $popular;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("stock")
      */
     public $stock;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("novelty")
      */
     public $novelty;
 
     /**
-     * @var string
+     * @var int
      *
-     * @Form\Type("string")
+     * @Form\Type("int")
      * @Form\SerializedName("recommended")
      */
     public $recommended;
@@ -165,9 +165,9 @@ class ProductFilterType
     public $offerIds;
 
     /**
-     * @var string
+     * @var string[]
      *
-     * @Form\Type("string")
+     * @Form\Type("string[]")
      * @Form\SerializedName("properties")
      */
     public $properties;
