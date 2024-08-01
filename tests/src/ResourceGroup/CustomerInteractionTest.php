@@ -39,12 +39,13 @@ EOF;
 
         $mock = static::createApiMockBuilder('customer-interaction/testSite/cart/clear');
         $mock->matchMethod(RequestMethod::POST)
+            ->matchPath('/api/v5/customer-interaction/testSite/cart/clear')
             ->matchBody(static::encodeForm($request))
             ->reply(200)
             ->withBody($json);
 
         $client   = TestClientFactory::createClient($mock->getClient());
-        $response = $client->customerInteraction->cartClear('testSite', $request);
+        $response = $client->customerInteraction->cartClear($request, 'testSite');
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -76,12 +77,13 @@ EOF;
 
         $mock = static::createApiMockBuilder('customer-interaction/testSite/cart/set');
         $mock->matchMethod(RequestMethod::POST)
+            ->matchPath('/api/v5/customer-interaction/testSite/cart/set')
             ->matchBody(static::encodeForm($request))
             ->reply(200)
             ->withBody($json);
 
         $client   = TestClientFactory::createClient($mock->getClient());
-        $response = $client->customerInteraction->cartSet('testSite', $request);
+        $response = $client->customerInteraction->cartSet($request, 'testSite');
 
         self::assertModelEqualsToResponse($json, $response);
     }
@@ -123,6 +125,7 @@ EOF;
 
         $mock = static::createApiMockBuilder('customer-interaction/testSite/cart/4770');
         $mock->matchMethod(RequestMethod::GET)
+            ->matchPath('/api/v5/customer-interaction/testSite/cart/4770')
             ->matchQuery(static::encodeFormArray($request))
             ->reply(200)
             ->withBody($json);

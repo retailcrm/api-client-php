@@ -68,8 +68,8 @@ class CustomerInteraction extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string|int $site
      * @param \RetailCrm\Api\Model\Request\CustomerInteraction\CustomerInteractionCartClearRequest $request
+     * @param string|int $site
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
@@ -82,7 +82,7 @@ class CustomerInteraction extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\Client\HandlerException
      * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
-    public function cartClear($site, CustomerInteractionCartClearRequest $request): SuccessResponse
+    public function cartClear(CustomerInteractionCartClearRequest $request, $site): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
@@ -144,8 +144,8 @@ class CustomerInteraction extends AbstractApiResourceGroup
      * }
      * ```
      *
-     * @param string|int $site
      * @param \RetailCrm\Api\Model\Request\CustomerInteraction\CustomerInteractionCartSetRequest $request
+     * @param string|int $site
      *
      * @return \RetailCrm\Api\Model\Response\SuccessResponse
      * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
@@ -158,7 +158,7 @@ class CustomerInteraction extends AbstractApiResourceGroup
      * @throws \RetailCrm\Api\Exception\Client\HandlerException
      * @throws \RetailCrm\Api\Exception\Client\HttpClientException
      */
-    public function cartSet($site, CustomerInteractionCartSetRequest $request): SuccessResponse
+    public function cartSet(CustomerInteractionCartSetRequest $request, $site): SuccessResponse
     {
         /** @var SuccessResponse $response */
         $response = $this->sendRequest(
