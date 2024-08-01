@@ -18,6 +18,7 @@ use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
 use RetailCrm\Api\ResourceGroup\Api;
 use RetailCrm\Api\ResourceGroup\Costs;
+use RetailCrm\Api\ResourceGroup\CustomerInteraction;
 use RetailCrm\Api\ResourceGroup\Customers;
 use RetailCrm\Api\ResourceGroup\CustomersCorporate;
 use RetailCrm\Api\ResourceGroup\CustomFields;
@@ -66,6 +67,9 @@ class Client
 
     /** @var \RetailCrm\Api\ResourceGroup\CustomFields */
     public $customFields;
+
+    /** @var \RetailCrm\Api\ResourceGroup\CustomerInteraction */
+    public $customerInteraction;
 
     /** @var \RetailCrm\Api\ResourceGroup\Customers */
     public $customers;
@@ -180,6 +184,14 @@ class Client
             $logger
         );
         $this->customFields = new CustomFields(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->customerInteraction = new CustomerInteraction(
             $url,
             $httpClient,
             $requestTransformer,
