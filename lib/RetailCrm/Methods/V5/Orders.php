@@ -197,4 +197,20 @@ trait Orders
             )
         );
     }
+
+    public function ordersLinksCreate(array $links)
+    {
+        if (!count($links)) {
+            throw new \InvalidArgumentException(
+                'Parameters `links` must contains a data'
+            );
+        }
+
+        /* @noinspection PhpUndefinedMethodInspection */
+        return $this->client->makeRequest(
+            '/orders/links/create',
+            'POST',
+            $links
+        );
+    }
 }
