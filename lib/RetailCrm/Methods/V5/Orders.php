@@ -12,6 +12,7 @@
 namespace RetailCrm\Methods\V5;
 
 use RetailCrm\Methods\V4\Orders as Previous;
+use RetailCrm\Response\ApiResponse;
 
 /**
  * PHP version 5.4
@@ -32,7 +33,7 @@ trait Orders
      * @param array  $resultOrder result order
      * @param string $technique   combining technique
      *
-     * @return \RetailCrm\Response\ApiResponse
+     * @return ApiResponse
      */
     public function ordersCombine($order, $resultOrder, $technique = 'ours')
     {
@@ -72,7 +73,7 @@ trait Orders
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return \RetailCrm\Response\ApiResponse
+     * @return ApiResponse
      */
     public function ordersPaymentCreate(array $payment, $site = null)
     {
@@ -100,7 +101,7 @@ trait Orders
      * @param string $by      by key
      * @param null   $site    site code
      *
-     * @return \RetailCrm\Response\ApiResponse
+     * @return ApiResponse
      */
     public function ordersPaymentEdit(array $payment, $by = 'id', $site = null)
     {
@@ -134,7 +135,7 @@ trait Orders
      *
      * @param string $id payment id
      *
-     * @return \RetailCrm\Response\ApiResponse
+     * @return ApiResponse
      */
     public function ordersPaymentDelete($id)
     {
@@ -162,7 +163,7 @@ trait Orders
      * @throws \RetailCrm\Exception\CurlException
      * @throws \RetailCrm\Exception\InvalidJsonException
      *
-     * @return \RetailCrm\Response\ApiResponse
+     * @return ApiResponse
      */
     public function ordersLoyaltyApply(array $order, float $bonuses, $site = null)
     {
@@ -198,6 +199,13 @@ trait Orders
         );
     }
 
+    /**
+     * Create links between orders
+     *
+     * @param array $links links data
+     *
+     * @return ApiResponse
+     */
     public function ordersLinksCreate(array $links)
     {
         if (!count($links)) {
