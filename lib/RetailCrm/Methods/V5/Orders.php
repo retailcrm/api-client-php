@@ -203,10 +203,11 @@ trait Orders
      * Create links between orders
      *
      * @param array $links links data
+     * @param null $site site code
      *
      * @return ApiResponse
      */
-    public function ordersLinksCreate(array $links)
+    public function ordersLinksCreate(array $links, $site = null)
     {
         if (!count($links)) {
             throw new \InvalidArgumentException(
@@ -218,7 +219,10 @@ trait Orders
         return $this->client->makeRequest(
             '/orders/links/create',
             'POST',
-            $links
+            $this->fillSite(
+                $site,
+                ['links' => json_encode($links)]
+            )
         );
     }
 }
