@@ -221,7 +221,7 @@ trait Orders
             'POST',
             $this->fillSite(
                 $site,
-                ['links' => json_encode($links)]
+                ['link' => json_encode($links)]
             )
         );
     }
