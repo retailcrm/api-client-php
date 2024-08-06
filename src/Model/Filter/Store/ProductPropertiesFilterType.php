@@ -66,4 +66,12 @@ class ProductPropertiesFilterType
      * @Form\SerializedName("catalogs")
      */
     public $catalogs;
+
+    /**
+     * @var int[]
+     *
+     * @Form\Type("int[]")
+     * @Form\SerializedName("groups")
+     */
+    public $groups;
 }
