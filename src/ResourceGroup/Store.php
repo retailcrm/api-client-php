@@ -18,6 +18,7 @@ use RetailCrm\Api\Model\Request\Store\ProductGroupsCreateRequest;
 use RetailCrm\Api\Model\Request\Store\ProductGroupsEditRequest;
 use RetailCrm\Api\Model\Request\Store\ProductGroupsRequest;
 use RetailCrm\Api\Model\Request\Store\ProductPropertiesRequest;
+use RetailCrm\Api\Model\Request\Store\ProductPropertyValuesRequest;
 use RetailCrm\Api\Model\Request\Store\ProductsBatchCreateRequest;
 use RetailCrm\Api\Model\Request\Store\ProductsRequest;
 use RetailCrm\Api\Model\Response\IdResponse;
@@ -27,6 +28,7 @@ use RetailCrm\Api\Model\Response\Store\PricesUploadResponse;
 use RetailCrm\Api\Model\Response\Store\ProductBatchEditResponse;
 use RetailCrm\Api\Model\Response\Store\ProductGroupsResponse;
 use RetailCrm\Api\Model\Response\Store\ProductPropertiesResponse;
+use RetailCrm\Api\Model\Response\Store\ProductPropertyValuesResponse;
 use RetailCrm\Api\Model\Response\Store\ProductsBatchCreateResponse;
 use RetailCrm\Api\Model\Response\Store\ProductsResponse;
 
@@ -688,6 +690,66 @@ class Store extends AbstractApiResourceGroup
             ProductsBatchCreateResponse::class
         );
 
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/store/products/properties/values" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Filter\Store\ProductPropertiesFilterType;
+     * use RetailCrm\Api\Model\Request\Store\ProductPropertiesRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request                = new ProductPropertyValuesRequest();
+     * $request->filter        = new ProductPropertyValuesFilterType();
+     * $request->filter->propertyCode = 'property_code';
+     *
+     * try {
+     *     $response = $client->store->productsPropertyValues($request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Product property values: ' . print_r($response->productPropertyValues, true);
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\Store\ProductPropertyValuesRequest|null $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Store\ProductPropertyValuesResponse
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     */
+    public function productsPropertyValues(?ProductPropertyValuesRequest $request = null): ProductPropertyValuesResponse
+    {
+        /** @var ProductPropertyValuesResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'store/products/properties/values',
+            $request,
+            ProductPropertyValuesResponse::class
+        );
         return $response;
     }
 }

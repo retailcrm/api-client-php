@@ -25,6 +25,7 @@ use RetailCrm\Api\Model\Filter\Store\InventoryFilterType;
 use RetailCrm\Api\Model\Filter\Store\ProductFilterType;
 use RetailCrm\Api\Model\Filter\Store\ProductGroupFilterType;
 use RetailCrm\Api\Model\Filter\Store\ProductPropertiesFilterType;
+use RetailCrm\Api\Model\Filter\Store\ProductPropertyValuesFilterType;
 use RetailCrm\Api\Model\Request\Store\InventoriesRequest;
 use RetailCrm\Api\Model\Request\Store\InventoriesUploadRequest;
 use RetailCrm\Api\Model\Request\Store\PricesUploadRequest;
@@ -34,6 +35,7 @@ use RetailCrm\Api\Model\Request\Store\ProductGroupsEditRequest;
 use RetailCrm\Api\Model\Request\Store\ProductGroupsRequest;
 use RetailCrm\Api\Model\Request\Store\ProductPropertiesRequest;
 use RetailCrm\Api\Model\Request\Store\ProductPropertiesSort;
+use RetailCrm\Api\Model\Request\Store\ProductPropertyValuesRequest;
 use RetailCrm\Api\Model\Request\Store\ProductsBatchCreateRequest;
 use RetailCrm\Api\Model\Request\Store\ProductsRequest;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
@@ -780,6 +782,78 @@ EOF;
 
         $client = TestClientFactory::createClient($mock->getClient());
         $response = $client->store->productGroupsEdit(9740, $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testProductPropertyValues(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "pagination": {
+    "limit": 20,
+    "totalCount": 1,
+    "currentPage": 1,
+    "totalPageCount": 1
+  },
+  "productPropertyValues": [
+    {
+      "property": {
+        "sites": [
+          "e-mapper",
+          "sendpulse",
+          "glavpunkt",
+          "retailcrm-services-peshkariki",
+          "vk-com",
+          "moysklad",
+          "eftestshop-ru"
+        ],
+        "groups": [
+          {
+            "id": 3676,
+            "name": "warehouseRoot"
+          },
+          {
+            "id": 3679,
+            "name": "Входящая в группу"
+          },
+          {
+            "id": 3680,
+            "name": "test"
+          },
+          {
+            "id": 3724,
+            "name": "Услуги"
+          }
+        ],
+        "code": "code",
+        "name": "Код",
+        "isNumeric": false,
+        "visible": true,
+        "variative": true
+      },
+        "value": "testValue",
+        "offersCount": 10
+    }
+  ]
+}
+EOF;
+
+        $request = new ProductPropertyValuesRequest();
+        $request->filter = new ProductPropertyValuesFilterType();
+        $request->filter->propertyName = "testName";
+        $request->filter->propertyCode = "testCode";
+        $request->filter->groups = [1, 2, 3];
+
+        $mock = static::createApiMockBuilder('store/products/properties/values');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+        $response = $client->store->productsPropertyValues($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
