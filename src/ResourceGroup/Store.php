@@ -12,6 +12,7 @@ namespace RetailCrm\Api\ResourceGroup;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\Store\InventoriesRequest;
 use RetailCrm\Api\Model\Request\Store\InventoriesUploadRequest;
+use RetailCrm\Api\Model\Request\Store\OffersRequest;
 use RetailCrm\Api\Model\Request\Store\PricesUploadRequest;
 use RetailCrm\Api\Model\Request\Store\ProductBatchEditRequest;
 use RetailCrm\Api\Model\Request\Store\ProductGroupsCreateRequest;
@@ -24,6 +25,7 @@ use RetailCrm\Api\Model\Request\Store\ProductsRequest;
 use RetailCrm\Api\Model\Response\IdResponse;
 use RetailCrm\Api\Model\Response\Store\InventoriesResponse;
 use RetailCrm\Api\Model\Response\Store\InventoriesUploadResponse;
+use RetailCrm\Api\Model\Response\Store\OffersResponse;
 use RetailCrm\Api\Model\Response\Store\PricesUploadResponse;
 use RetailCrm\Api\Model\Response\Store\ProductBatchEditResponse;
 use RetailCrm\Api\Model\Response\Store\ProductGroupsResponse;
@@ -690,6 +692,68 @@ class Store extends AbstractApiResourceGroup
             ProductsBatchCreateResponse::class
         );
 
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/store/offers" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Enum\NumericBoolean;
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Filter\Store\OfferFilterType;
+     * use RetailCrm\Api\Model\Request\Store\OffersRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $request                    = new OffersRequest();
+     * $request->filter            = new OfferFilterType();
+     * $request->filter->active    = NumericBoolean::TRUE;
+     * $request->filter->name      = 'Test Offer';
+     *
+     * try {
+     *     $response = $client->store->offers($request);
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Offers: ' . print_r($response->offers, true);
+     * ```
+     *
+     * @param \RetailCrm\Api\Model\Request\Store\OffersRequest|null $request
+     *
+     * @return \RetailCrm\Api\Model\Response\Store\OffersResponse
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     */
+    public function offers(?OffersRequest $request = null): OffersResponse
+    {
+        /** @var OffersResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'store/offers',
+            $request,
+            OffersResponse::class
+        );
         return $response;
     }
 
