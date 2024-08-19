@@ -22,12 +22,14 @@ use RetailCrm\Api\Model\Entity\Store\ProductEditGroupInput;
 use RetailCrm\Api\Model\Entity\Store\ProductEditInput;
 use RetailCrm\Api\Model\Entity\Store\SerializedProductGroup;
 use RetailCrm\Api\Model\Filter\Store\InventoryFilterType;
+use RetailCrm\Api\Model\Filter\Store\OfferFilterType;
 use RetailCrm\Api\Model\Filter\Store\ProductFilterType;
 use RetailCrm\Api\Model\Filter\Store\ProductGroupFilterType;
 use RetailCrm\Api\Model\Filter\Store\ProductPropertiesFilterType;
 use RetailCrm\Api\Model\Filter\Store\ProductPropertyValuesFilterType;
 use RetailCrm\Api\Model\Request\Store\InventoriesRequest;
 use RetailCrm\Api\Model\Request\Store\InventoriesUploadRequest;
+use RetailCrm\Api\Model\Request\Store\OffersRequest;
 use RetailCrm\Api\Model\Request\Store\PricesUploadRequest;
 use RetailCrm\Api\Model\Request\Store\ProductBatchEditRequest;
 use RetailCrm\Api\Model\Request\Store\ProductGroupsCreateRequest;
@@ -854,6 +856,103 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->store->productsPropertyValues($request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testOffers(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "pagination": {
+    "limit": 20,
+    "totalCount": 1,
+    "currentPage": 1,
+    "totalPageCount": 1
+  },
+  "offers": [
+    {
+      "name": "Test Offer",
+      "images": [
+        "https://example.com/image.jpg"
+      ],
+      "id": 1941833,
+      "externalId": "38311",
+      "xmlId": "38311",
+      "article": "38311",
+      "prices": [
+        {
+          "priceType": "base",
+          "price": 624,
+          "ordering": 991
+        }
+      ],
+      "purchasePrice": 272.64,
+      "vatRate": "none",
+      "properties": {
+        "ves": "33",
+        "brend": "Test",
+        "image": "https://example.com/image.jpg",
+        "ves_g": "33",
+        "artikul": "38311"
+      },
+      "quantity": 0.0,
+      "weight": 33.0,
+      "active": true,
+      "unit": {
+        "code": "pc",
+        "name": "Штука",
+        "sym": "шт."
+      },
+      "product": {
+        "minPrice": 624,
+        "maxPrice": 624,
+        "id": 828272,
+        "article": "38311",
+        "type": "product",
+        "name": "Test Product",
+        "url": "https://example.com",
+        "imageUrl": "https://example.com/image.jpg",
+        "description": "Test Description",
+        "groups": [
+          {
+            "id": 4050,
+            "externalId": "368"
+          },
+          {
+            "id": 4154,
+            "externalId": "391"
+          },
+          {
+            "id": 4279,
+            "externalId": "394"
+          }
+        ],
+        "externalId": "38311",
+        "manufacturer": "Test",
+        "active": true,
+        "quantity": 0,
+        "markable": false
+      }
+    }
+  ]
+}
+EOF;
+
+        $request                    = new OffersRequest();
+        $request->filter            = new OfferFilterType();
+        $request->filter->active    = NumericBoolean::TRUE;
+        $request->filter->name      = 'Test Offer';
+
+        $mock = static::createApiMockBuilder('store/offers');
+        $mock->matchMethod(RequestMethod::GET)
+            ->matchQuery(self::encodeFormArray($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+        $response = $client->store->offers($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
