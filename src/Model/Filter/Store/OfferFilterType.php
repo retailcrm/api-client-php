@@ -83,4 +83,52 @@ class OfferFilterType
      * @Form\SerializedName("sinceId")
      */
     public $sinceId;
+
+    /**
+     * @var int[]
+     *
+     * @Form\Type("int[]")
+     * @Form\SerializedName("groups")
+     */
+    public $groups;
+
+    /**
+     * @var string
+     *
+     * @Form\Type("string")
+     * @Form\SerializedName("priceType")
+     */
+    public $priceType;
+
+    /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("minPrice")
+     */
+    public $minPrice;
+
+    /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("maxPrice")
+     */
+    public $maxPrice;
+
+    /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("minQuantity")
+     */
+    public $minQuantity;
+
+    /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("maxQuantity")
+     */
+    public $maxQuantity;
 }
