@@ -69,6 +69,14 @@ class OfferFilterType
     public $sites;
 
     /**
+     * @var int[]
+     *
+     * @Form\Type("int[]")
+     * @Form\SerializedName("catalogs")
+     */
+    public $catalogs;
+
+    /**
      * @var int
      *
      * @Form\Type("int")

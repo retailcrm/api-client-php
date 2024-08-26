@@ -40,6 +40,14 @@ class Product
      * @var int
      *
      * @JMS\Type("int")
+     * @JMS\SerializedName("catalogId")
+     */
+    public $catalogId;
+
+    /**
+     * @var int
+     *
+     * @JMS\Type("int")
      * @JMS\SerializedName("id")
      */
     public $id;
