@@ -943,11 +943,24 @@ EOF;
         $request                    = new OffersRequest();
         $request->filter            = new OfferFilterType();
         $request->filter->active    = NumericBoolean::TRUE;
-        $request->filter->name      = 'Test Offer';
+        $request->filter->minPrice      = 1;
+        $request->filter->maxPrice      = 120000;
+        $request->filter->sites      = ['main'];
+        $request->filter->maxQuantity      = 5;
+        $request->filter->catalogs      =  [2];
 
         $mock = static::createApiMockBuilder('store/offers');
         $mock->matchMethod(RequestMethod::GET)
-            ->matchQuery(self::encodeFormArray($request))
+            ->matchQuery([
+                'filter' => [
+                    'sites' => ['main'],
+                    'catalogs' => ['2'],
+                    'active' => '1',
+                    'minPrice' => '1',
+                    'maxPrice' => '120000',
+                    'maxQuantity' => '5',
+                ]
+            ])
             ->reply(200)
             ->withBody($json);
 
