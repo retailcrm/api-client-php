@@ -38,6 +38,7 @@ use RetailCrm\Api\Model\Request\Loyalty\LoyaltiesRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountCreateRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountEditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyAccountsRequest;
+use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusChargeRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusCreditRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyBonusOperationsRequest;
 use RetailCrm\Api\Model\Request\Loyalty\LoyaltyCalculateRequest;
@@ -117,6 +118,29 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->loyalty->accountActivate(159);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testAccountBonusCharge(): void
+    {
+        $json = <<<EOF
+{
+    "success": true
+}
+EOF;
+
+        $request = new LoyaltyBonusChargeRequest();
+        $request->amount = 100;
+        $request->comment = 'Monthly membership bonuses.';
+
+        $mock = static::createApiMockBuilder('loyalty/account/159/bonus/charge');
+        $mock->matchMethod(RequestMethod::POST)
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->loyalty->accountBonusCharge(159, $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
