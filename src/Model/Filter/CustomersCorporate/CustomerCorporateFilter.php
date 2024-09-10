@@ -357,4 +357,12 @@ class CustomerCorporateFilter
      * @Form\SerializedName("companyName")
      */
     public $companyName;
+
+    /**
+     * @var array<string, mixed>
+     *
+     * @Form\Type("array")
+     * @Form\SerializedName("customFields")
+     */
+    public $customFields;
 }
