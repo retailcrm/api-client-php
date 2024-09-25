@@ -11,6 +11,8 @@
 
 namespace RetailCrm\Tests\Methods\Version5;
 
+use RetailCrm\Http\Client;
+use RetailCrm\Response\ApiResponse;
 use RetailCrm\Test\TestCase;
 
 /**
@@ -440,5 +442,46 @@ class ApiClientCustomersTest extends TestCase
 
         static::assertTrue($responseDelete->isSuccessful(), 'Note deleted');
         static::assertEquals(200, $responseDelete->getStatusCode());
+    }
+
+    public function testCustomerSubscriptionsUpdate()
+    {
+        $clientMock = $this->getMockBuilder(\RetailCrm\Http\Client::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['makeRequest'])
+            ->getMock()
+        ;
+
+        $parameters = [
+            'subscriptions' => [
+                [
+                    'channel' => 'email',
+                    'active' => false
+                ]
+            ],
+            'by' => 'externalId',
+            'site' => 'test'
+        ];
+
+        $clientMock->expects(self::once())->method('makeRequest')->with(
+            '/customer/123/subscriptions',
+            'POST',
+            [
+                'subscriptions' => json_encode($parameters['subscriptions']),
+                'by' => $parameters['by'],
+                'site' => $parameters['site']
+            ]
+        )->willReturn((new ApiResponse(200, json_encode(['success' => true])))->asJsonResponse());
+
+        $client = static::getMockedApiClient($clientMock);
+
+        $response = $client->request->customerSubscriptionsUpdate(
+            $parameters['subscriptions'],
+            123,
+            $parameters['by'],
+            $parameters['site']
+        );
+
+        static::assertTrue($response->isSuccessful());
     }
 }
