@@ -128,6 +128,14 @@ class ProductFilterType
      * @var string
      *
      * @Form\Type("string")
+     * @Form\SerializedName("urlLike")
+     */
+    public $urlLike;
+
+    /**
+     * @var string
+     *
+     * @Form\Type("string")
      * @Form\SerializedName("manufacturer")
      */
     public $manufacturer;
