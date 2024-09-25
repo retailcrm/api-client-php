@@ -11,7 +11,6 @@
 
 namespace RetailCrm\Tests\Methods\Version5;
 
-use RetailCrm\Http\Client;
 use RetailCrm\Response\ApiResponse;
 use RetailCrm\Test\TestCase;
 

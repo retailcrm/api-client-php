@@ -174,7 +174,7 @@ trait Customers
 
         /* @noinspection PhpUndefinedMethodInspection */
         return $this->client->makeRequest(
-            sprintf('/customer/%s/subscriptions', $customerId),
+            sprintf('/customers/%s/subscriptions', $customerId),
             'POST',
             $this->fillSite(
                 $site,
