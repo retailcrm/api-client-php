@@ -463,7 +463,7 @@ class ApiClientCustomersTest extends TestCase
         ];
 
         $clientMock->expects(self::once())->method('makeRequest')->with(
-            '/customer/123/subscriptions',
+            '/customers/123/subscriptions',
             'POST',
             [
                 'subscriptions' => json_encode($parameters['subscriptions']),
