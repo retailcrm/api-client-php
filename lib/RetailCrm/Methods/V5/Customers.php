@@ -164,9 +164,9 @@ trait Customers
             );
         }
 
-        if (!is_int($customerId)) {
+        if ($customerId === null || $customerId === '') {
             throw new \InvalidArgumentException(
-                'Parameter `customerId` must be an integer'
+                'Parameter `customerId` is empty'
             );
         }
 
