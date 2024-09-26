@@ -141,4 +141,45 @@ trait Customers
             "POST"
         );
     }
+
+    /**
+     * Update subscriptions a customer
+     *
+     * @param array $subscriptions subscriptions data
+     * @param integer $customerId identifier customer
+     * @param string $by (default: 'externalId')
+     * @param string|null $site (default: null)
+     *
+     * @throws \InvalidArgumentException
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function customerSubscriptionsUpdate(array $subscriptions, $customerId, $by = 'externalId', $site = null)
+    {
+        if (!count($subscriptions)) {
+            throw new \InvalidArgumentException(
+                'Parameter `subscriptions` must contains a data'
+            );
+        }
+
+        if ($customerId === null || $customerId === '') {
+            throw new \InvalidArgumentException(
+                'Parameter `customerId` is empty'
+            );
+        }
+
+        $this->checkIdParameter($by);
+
+        /* @noinspection PhpUndefinedMethodInspection */
+        return $this->client->makeRequest(
+            sprintf('/customers/%s/subscriptions', $customerId),
+            'POST',
+            $this->fillSite(
+                $site,
+                ['subscriptions' => json_encode($subscriptions), 'by' => $by]
+            )
+        );
+    }
 }
