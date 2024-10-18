@@ -95,6 +95,14 @@ class Store
      * @var string
      *
      * @JMS\Type("string")
+     * @JMS\SerializedName("contact")
+     */
+    public $contact;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
      * @JMS\SerializedName("code")
      */
     public $code;
