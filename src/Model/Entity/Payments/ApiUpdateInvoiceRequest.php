@@ -44,6 +44,14 @@ class ApiUpdateInvoiceRequest
     public $amount;
 
     /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("discountAmount")
+     */
+    public $discountAmount;
+
+    /**
      * @var string
      *
      * @JMS\Type("string")
