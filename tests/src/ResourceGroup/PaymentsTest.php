@@ -99,6 +99,7 @@ EOF;
         $invoiceRequest->paymentId   = 'd6458333-fff3-4fd0-9b23-4e6344451f8e';
         $invoiceRequest->invoiceUuid = '5b1b2e9d-b7f1-48f4-acb9-4bfce04b30cf';
         $invoiceRequest->invoiceUrl  = 'https://example.com/newUrl';
+        $invoiceRequest->discountAmount = 20.0;
 
         $request = new PaymentUpdateInvoiceRequest($invoiceRequest);
 
