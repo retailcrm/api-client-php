@@ -180,6 +180,33 @@ class CustomersTest extends AbstractApiResourceGroupTestCase
           "number": "89229112322"
         }
       ],
+      "customerSubscriptions": [
+        {
+          "subscription": {
+            "id": 2,
+            "channel": "email",
+            "name": "Без тематики",
+            "code": "default_marketing",
+            "active": true,
+            "autoSubscribe": true,
+            "ordering": 1
+          },
+          "subscribed": true
+        },
+        {
+          "subscription": {
+            "id": 4,
+            "channel": "waba",
+            "name": "Без тематики",
+            "code": "default_marketing",
+            "active": true,
+            "autoSubscribe": true,
+            "ordering": 1
+          },
+          "subscribed": false,
+          "changedAt": "2024-12-17 11:50:43"
+        }
+      ],
       "mgCustomers": [
         {
           "id": 1,
@@ -2668,6 +2695,33 @@ EOF;
       },
       {
         "number": "+79094055044"
+      }
+    ],
+    "customerSubscriptions": [
+      {
+        "subscription": {
+          "id": 2,
+          "channel": "email",
+          "name": "Без тематики",
+          "code": "default_marketing",
+          "active": true,
+          "autoSubscribe": true,
+          "ordering": 1
+        },
+        "subscribed": true
+      },
+      {
+        "subscription": {
+          "id": 4,
+          "channel": "waba",
+          "name": "Без тематики",
+          "code": "default_marketing",
+          "active": true,
+          "autoSubscribe": true,
+          "ordering": 1
+        },
+        "subscribed": false,
+        "changedAt": "2024-12-17 11:50:43"
       }
     ],
     "mgCustomers": [
