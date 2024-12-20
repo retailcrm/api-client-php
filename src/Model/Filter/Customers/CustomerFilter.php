@@ -494,4 +494,12 @@ class CustomerFilter
      * @Form\SerializedName("attachedTags")
      */
     public $attachedTags;
+
+    /**
+     * @var \RetailCrm\Api\Model\Filter\Customers\CustomerSubscriptionFilter[]
+     *
+     * @Form\Type("array<RetailCrm\Api\Model\Filter\Customers\CustomerSubscriptionFilter>")
+     * @Form\SerializedName("subscriptions")
+     */
+    public $subscriptions;
 }
