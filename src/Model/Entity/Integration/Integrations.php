@@ -74,4 +74,12 @@ class Integrations
      * @JMS\SerializedName("mgBot")
      */
     public $mgBot;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Integration\EmbedJs\EmbedJsConfiguration
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Integration\EmbedJs\EmbedJsConfiguration")
+     * @JMS\SerializedName("embedJs")
+     */
+    public $embedJs;
 }
