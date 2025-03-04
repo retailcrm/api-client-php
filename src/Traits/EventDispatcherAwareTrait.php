@@ -27,7 +27,7 @@ trait EventDispatcherAwareTrait
      *
      * @param \Psr\EventDispatcher\EventDispatcherInterface|null $eventDispatcher
      *
-     * @return object
+     * @return static
      */
     public function setEventDispatcher(?EventDispatcherInterface $eventDispatcher): object
     {
