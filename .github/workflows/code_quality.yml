@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code into the workspace
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Run PHPCS
         uses: chekalsky/phpcs-action@v1
   phpmd:
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code into the workspace
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Run PHPMD
         uses: GeneaLabs/action-reviewdog-phpmd@1.0.0
         with:
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code into the workspace
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Run PHPStan
         uses: docker://oskarstark/phpstan-ga:1.8.0
         with:

@@ -19,7 +19,7 @@ jobs:
           pages_threshold: major_outage
       - name: Check out code into the workspace
         if: success() && ${{ github.ref != 'refs/heads/master' }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup PHP 8.3
         if: ${{ github.ref != 'refs/heads/master' }}
         uses: shivammathur/setup-php@v2
