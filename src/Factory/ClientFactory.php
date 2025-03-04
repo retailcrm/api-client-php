@@ -285,6 +285,7 @@ class ClientFactory implements ClientFactoryInterface, EventDispatcherAwareInter
             ->setStreamFactory($this->streamFactory)
             ->setRequestFactory($this->requestFactory)
             ->setUriFactory($this->uriFactory)
+            ->setEventDispatcher($this->eventDispatcher)
             ->appendRequestHandlers($this->requestHandlers)
             ->appendResponseHandlers($this->responseHandlers)
             ->build();
