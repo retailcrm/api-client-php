@@ -170,4 +170,12 @@ class ProductOffer
      * @JMS\SerializedName("barcode")
      */
     public $barcode;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("site")
+     */
+    public $site;
 }
