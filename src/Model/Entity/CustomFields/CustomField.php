@@ -120,6 +120,14 @@ class CustomField
      * @var string
      *
      * @JMS\Type("string")
+     * @JMS\SerializedName("viewModeMobile")
+     */
+    public $viewModeMobile;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
      * @JMS\SerializedName("dictionary")
      */
     public $dictionary;
