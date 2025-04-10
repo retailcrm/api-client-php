@@ -293,12 +293,13 @@ EOF;
         $field->name           = 'Description';
         $field->code           = 'description';
         $field->type           = CustomFieldType::STRING;
-        $field->ordering       = 10;
-        $field->displayArea    = CustomFieldDisplayArea::CUSTOMER;
+        $field->inList         = true;
         $field->viewMode       = CustomFieldViewMode::EDITABLE;
         $field->inFilter       = true;
-        $field->inList         = true;
+        $field->ordering       = 10;
+        $field->displayArea    = CustomFieldDisplayArea::CUSTOMER;
         $field->inGroupActions = true;
+        $field->viewModeMobile = CustomFieldViewMode::NOT_EDITABLE;
 
         $request               = new CustomFieldsCreateRequest($field);
 
@@ -359,11 +360,12 @@ EOF;
         $field                 = new CustomField();
         $field->name           = 'Description';
         $field->type           = CustomFieldType::STRING;
-        $field->ordering       = 10;
-        $field->viewMode       = CustomFieldViewMode::EDITABLE;
-        $field->inFilter       = true;
         $field->inList         = true;
+        $field->ordering       = 10;
+        $field->inFilter       = true;
+        $field->viewMode       = CustomFieldViewMode::EDITABLE;
         $field->inGroupActions = true;
+        $field->viewModeMobile = CustomFieldViewMode::NOT_EDITABLE;
 
         $request = new CustomFieldsCreateRequest($field);
 
