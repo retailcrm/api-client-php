@@ -203,4 +203,12 @@ class Site
      * @JMS\SerializedName("isDemo")
      */
     public $isDemo;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("usedInSimlaweb")
+     */
+    public $usedInSimlaweb;
 }
