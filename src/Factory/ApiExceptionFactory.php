@@ -15,6 +15,7 @@ use RetailCrm\Api\Exception\Api\ApiErrorException;
 use RetailCrm\Api\Exception\Api\InvalidCredentialsException;
 use RetailCrm\Api\Exception\Api\MissingCredentialsException;
 use RetailCrm\Api\Exception\Api\MissingParameterException;
+use RetailCrm\Api\Exception\Api\NotFoundException;
 use RetailCrm\Api\Exception\Api\ValidationException;
 use RetailCrm\Api\Exception\ApiException;
 use RetailCrm\Api\Interfaces\ResponseInterface;
@@ -37,6 +38,7 @@ class ApiExceptionFactory
         'Account does not exist.' => AccountDoesNotExistException::class,
         'Errors in the entity format' => ValidationException::class,
         'Validation error' => ValidationException::class,
+        'Not found' => NotFoundException::class,
     ];
 
     /**
