@@ -16,6 +16,7 @@ use RetailCrm\Api\Exception\Api\MissingParameterException;
 use RetailCrm\Api\Exception\Api\NotFoundException;
 use RetailCrm\Api\Exception\Api\ValidationException;
 use RetailCrm\Api\Factory\ApiExceptionFactory;
+use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Response\ErrorResponse;
 use RetailCrm\Api\Model\Response\SuccessResponse;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
@@ -133,6 +134,8 @@ class ApiExceptionFactoryTest extends AbstractApiResourceGroupTestCase
         $response = new ErrorResponse();
         $response->errorMsg = "Not found";
         $response->errors = [];
+        $response->combinedTo = new Customer();
+        $response->combinedTo->id = 1;
 
         $exception = $this->factory->createException($response, 400);
 
@@ -142,5 +145,7 @@ class ApiExceptionFactoryTest extends AbstractApiResourceGroupTestCase
         self::assertEquals($response->errorMsg, $exception->getErrorResponse()->errorMsg);
         self::assertFalse($exception->getErrorResponse()->success);
         self::assertStringContainsString($exception->getMessage(), (string) $exception);
+        self::assertInstanceOf(Customer::class, $exception->getCombinedTo());
+        self::assertEquals(1, $exception->getCombinedTo()->id);
     }
 }
