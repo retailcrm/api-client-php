@@ -42,4 +42,12 @@ class ErrorResponse extends SuccessResponse
      * @JMS\SerializedName("errorMsg")
      */
     public $errorMsg;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Customers\Customer
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Customers\Customer")
+     * @JMS\SerializedName("combinedTo")
+     */
+    public $combinedTo;
 }

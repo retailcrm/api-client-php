@@ -13,8 +13,10 @@ use RetailCrm\Api\Exception\Api\AccountDoesNotExistException;
 use RetailCrm\Api\Exception\Api\ApiErrorException;
 use RetailCrm\Api\Exception\Api\MissingCredentialsException;
 use RetailCrm\Api\Exception\Api\MissingParameterException;
+use RetailCrm\Api\Exception\Api\NotFoundException;
 use RetailCrm\Api\Exception\Api\ValidationException;
 use RetailCrm\Api\Factory\ApiExceptionFactory;
+use RetailCrm\Api\Model\Entity\Customers\Customer;
 use RetailCrm\Api\Model\Response\ErrorResponse;
 use RetailCrm\Api\Model\Response\SuccessResponse;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
@@ -125,5 +127,25 @@ class ApiExceptionFactoryTest extends AbstractApiResourceGroupTestCase
         self::assertEquals($response->errorMsg, $exception->getErrorResponse()->errorMsg);
         self::assertFalse($exception->getErrorResponse()->success);
         self::assertStringContainsString($exception->getMessage(), (string) $exception);
+    }
+
+    public function testNotFoundError(): void
+    {
+        $response = new ErrorResponse();
+        $response->errorMsg = "Not found";
+        $response->errors = [];
+        $response->combinedTo = new Customer();
+        $response->combinedTo->id = 1;
+
+        $exception = $this->factory->createException($response, 400);
+
+        self::assertInstanceOf(NotFoundException::class, $exception);
+        self::assertEquals(400, $exception->getCode());
+        self::assertEquals(400, $exception->getStatusCode());
+        self::assertEquals($response->errorMsg, $exception->getErrorResponse()->errorMsg);
+        self::assertFalse($exception->getErrorResponse()->success);
+        self::assertStringContainsString($exception->getMessage(), (string) $exception);
+        self::assertInstanceOf(Customer::class, $exception->getCombinedTo());
+        self::assertEquals(1, $exception->getCombinedTo()->id);
     }
 }
