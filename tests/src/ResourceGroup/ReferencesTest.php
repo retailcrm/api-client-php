@@ -3674,6 +3674,7 @@ EOF;
 
         $entity                      = new Store();
         $entity->address             = new StoreAddress();
+        $entity->contact             = 'Контакт';
         $entity->address->countryIso = "UA";
         $entity->address->region     = "Винницкая область";
         $entity->address->regionId   = 104;
