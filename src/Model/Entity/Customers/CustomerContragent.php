@@ -34,6 +34,14 @@ class CustomerContragent
      * @var string
      *
      * @JMS\Type("string")
+     * @JMS\SerializedName("type")
+     */
+    public $type;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
      * @JMS\SerializedName("legalName")
      */
     public $legalName;
