@@ -13,9 +13,11 @@ use RetailCrm\Api\Enum\Currency;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Payments\ApiCheckRequest;
 use RetailCrm\Api\Model\Entity\Payments\ApiCreateInvoiceRequest;
+use RetailCrm\Api\Model\Entity\Payments\ApiImportInvoiceRequest;
 use RetailCrm\Api\Model\Entity\Payments\ApiUpdateInvoiceRequest;
 use RetailCrm\Api\Model\Request\Payments\PaymentCheckRequest;
 use RetailCrm\Api\Model\Request\Payments\PaymentCreateInvoiceRequest;
+use RetailCrm\Api\Model\Request\Payments\PaymentImportInvoiceRequest;
 use RetailCrm\Api\Model\Request\Payments\PaymentUpdateInvoiceRequest;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
@@ -119,8 +121,7 @@ EOF;
     {
         $json = <<<'EOF'
 {
-    "success": false,
-    "errorMsg": "Not found"
+    "success": false
 }
 EOF;
 
@@ -131,6 +132,43 @@ EOF;
 
         $client = TestClientFactory::createClient($mock->getClient());
         $response = $client->payments->getInvoice('7684160f-5ebe-4787-b031-1fc9e659f123');
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testImportInvoice(): void
+    {
+        $json = <<<'EOF'
+{
+    "success": true,
+    "invoice": {
+        "invoiceUuid": "7684160f-5ebe-4787-b031-1fc9e659f123"
+    }
+}
+EOF;
+
+        $request = new PaymentImportInvoiceRequest();
+        $invoice = new ApiImportInvoiceRequest();
+
+        $invoice->paymentId = 979;
+        $invoice->externalId = '979';
+        $invoice->status = 'succeeded';
+        $invoice->amount = 6697.0;
+        $invoice->currency = 'RUB';
+        $invoice->createdAt = '2025-07-08 00:00:00';
+        $invoice->paidAt = '2025-07-08 00:10:00';
+        $invoice->refundable = true;
+
+        $request->invoice = $invoice;
+
+        $mock = static::createApiMockBuilder('payment/invoice/import');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply()
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->payments->importInvoice($request);
 
         self::assertModelEqualsToResponse($json, $response);
     }

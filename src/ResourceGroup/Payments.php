@@ -272,7 +272,6 @@ class Payments extends AbstractApiResourceGroup
      *
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
-     * $request = new PaymentImportInvoiceRequest();
      * $invoice = new ApiImportInvoiceRequest();
      *
      * $invoice->paymentId = 979;
@@ -284,10 +283,8 @@ class Payments extends AbstractApiResourceGroup
      * $invoice->paidAt = '2025-07-08 00:10:00';
      * $invoice->refundable = true;
      *
-     * $request->invoice = $invoice;
-     *
      * try {
-     *     $response = $client->payments->importInvoice($request);
+     *     $response = $client->payments->importInvoice(new PaymentImportInvoiceRequest($invoice));
      * } catch (ApiExceptionInterface $exception) {
      *     echo sprintf(
      *         'Error from RetailCRM API (status code: %d): %s',
