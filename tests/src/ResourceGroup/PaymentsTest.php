@@ -124,12 +124,12 @@ EOF;
 }
 EOF;
 
-        $mock = static::createApiMockBuilder('payment/invoice');
+        $mock = static::createApiMockBuilder('payment/invoice/7684160f-5ebe-4787-b031-1fc9e659f123');
         $mock->matchMethod(RequestMethod::GET)
             ->reply()
             ->withBody($json);
 
-        $client   = TestClientFactory::createClient($mock->getClient());
+        $client = TestClientFactory::createClient($mock->getClient());
         $response = $client->payments->getInvoice('7684160f-5ebe-4787-b031-1fc9e659f123');
 
         self::assertModelEqualsToResponse($json, $response);
