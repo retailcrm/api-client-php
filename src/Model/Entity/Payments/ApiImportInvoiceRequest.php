@@ -84,9 +84,9 @@ class ApiImportInvoiceRequest
     public $discountAmount;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Payments\ModuleRefund[]
+     * @var \RetailCrm\Api\Model\Entity\Payments\ApiImportInvoicePaymentRefund[]
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Payments\ModuleRefund>")
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Payments\ApiImportInvoicePaymentRefund>")
      * @JMS\SerializedName("refunds")
      */
     public $refunds;

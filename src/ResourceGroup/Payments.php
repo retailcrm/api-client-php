@@ -282,6 +282,7 @@ class Payments extends AbstractApiResourceGroup
      * $invoice->currency = 'RUB';
      * $invoice->createdAt = '2025-07-08 00:00:00';
      * $invoice->paidAt = '2025-07-08 00:10:00';
+     * $invoice->refundable = true;
      *
      * $request->invoice = $invoice;
      *
