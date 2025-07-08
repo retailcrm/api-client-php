@@ -15,6 +15,7 @@ use RetailCrm\Api\Model\Request\Payments\PaymentCreateInvoiceRequest;
 use RetailCrm\Api\Model\Request\Payments\PaymentUpdateInvoiceRequest;
 use RetailCrm\Api\Model\Response\Payments\PaymentCheckResponse;
 use RetailCrm\Api\Model\Response\Payments\PaymentCreateInvoiceResponse;
+use RetailCrm\Api\Model\Response\Payments\PaymentGetInvoiceResponse;
 use RetailCrm\Api\Model\Response\SuccessResponse;
 
 /**
@@ -203,6 +204,57 @@ class Payments extends AbstractApiResourceGroup
             $request,
             SuccessResponse::class
         );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/payment/invoice/{invoiceUuid}" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * try {
+     *     $response = $client->payments->getInvoice('7684160f-5ebe-4787-b031-1fc9e659f123');
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     * }
+     * ```
+     *
+     * @param string $invoiceUuid
+     *
+     * @return \RetailCrm\Api\Model\Response\Payments\PaymentGetInvoiceResponse
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     */
+    public function getInvoice(string $invoiceUuid): PaymentGetInvoiceResponse
+    {
+        /** @var PaymentGetInvoiceResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'payment/invoice/' . $invoiceUuid,
+            null,
+            PaymentGetInvoiceResponse::class
+        );
+
         return $response;
     }
 }
