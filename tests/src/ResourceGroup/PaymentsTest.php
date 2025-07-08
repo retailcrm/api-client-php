@@ -114,4 +114,24 @@ EOF;
 
         self::assertModelEqualsToResponse($json, $response);
     }
+
+    public function testGetInvoice(): void
+    {
+        $json = <<<'EOF'
+{
+    "success": false,
+    "errorMsg": "Not found"
+}
+EOF;
+
+        $mock = static::createApiMockBuilder('payment/invoice');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply()
+            ->withBody($json);
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+        $response = $client->payments->getInvoice('7684160f-5ebe-4787-b031-1fc9e659f123');
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
 }
