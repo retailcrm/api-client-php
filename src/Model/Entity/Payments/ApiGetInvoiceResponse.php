@@ -12,12 +12,12 @@ namespace RetailCrm\Api\Model\Entity\Payments;
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 use RetailCrm\Api\Model\Response\SuccessResponse;
 
-class ApiGetInvoiceResponse extends SuccessResponse
+class ApiGetInvoiceResponse
 {
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @JMS\Type("DateTime<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("string")
      * @JMS\SerializedName("createdAt")
      */
     public $createdAt;
@@ -135,17 +135,17 @@ class ApiGetInvoiceResponse extends SuccessResponse
     public $errorMsg;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @JMS\Type("DateTime<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("string")
      * @JMS\SerializedName("paidAt")
      */
     public $paidAt;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @JMS\Type("DateTime<'Y-m-d\TH:i:sP'>")
+     * @JMS\Type("string")
      * @JMS\SerializedName("expiredAt")
      */
     public $expiredAt;
