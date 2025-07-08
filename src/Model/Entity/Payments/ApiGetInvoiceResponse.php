@@ -175,9 +175,9 @@ class ApiGetInvoiceResponse extends SuccessResponse
     public $cancellable;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Payments\ModuleRefund[]
+     * @var \RetailCrm\Api\Model\Entity\Payments\PaymentRefund[]
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Payments\ModuleRefund>")
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Payments\PaymentRefund>")
      * @JMS\SerializedName("refunds")
      */
     public $refunds;

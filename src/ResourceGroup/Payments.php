@@ -12,6 +12,7 @@ namespace RetailCrm\Api\ResourceGroup;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Request\Payments\PaymentCheckRequest;
 use RetailCrm\Api\Model\Request\Payments\PaymentCreateInvoiceRequest;
+use RetailCrm\Api\Model\Request\Payments\PaymentImportInvoiceRequest;
 use RetailCrm\Api\Model\Request\Payments\PaymentUpdateInvoiceRequest;
 use RetailCrm\Api\Model\Response\Payments\PaymentCheckResponse;
 use RetailCrm\Api\Model\Response\Payments\PaymentCreateInvoiceResponse;
@@ -253,6 +254,19 @@ class Payments extends AbstractApiResourceGroup
             'payment/invoice/' . $invoiceUuid,
             null,
             PaymentGetInvoiceResponse::class
+        );
+
+        return $response;
+    }
+
+    public function importInvoice(PaymentImportInvoiceRequest $request)
+    {
+        /** @var SuccessResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'payment/invoice/import',
+            $request,
+            SuccessResponse::class
         );
 
         return $response;
