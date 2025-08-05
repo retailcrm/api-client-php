@@ -98,4 +98,13 @@ class Offer
      * @JMS\SerializedName("properties")
      */
     public $properties;
+
+
+    /**
+     * @var float
+     *
+     * @JMS\Type("float")
+     * @JMS\SerializedName("quantity")
+     */
+    public $quantity;
 }
