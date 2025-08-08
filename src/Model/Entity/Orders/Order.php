@@ -323,17 +323,17 @@ class Order
     /**
      * @var \RetailCrm\Api\Model\Entity\Customers\Customer
      *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\Customers\Customer")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer")
      * @JMS\SerializedName("contact")
      */
     public $contact;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\CustomersCorporate\Company
-     *
-     * @JMS\Type("RetailCrm\Api\Model\Entity\CustomersCorporate\Company")
-     * @JMS\SerializedName("company")
-     */
+    * @var \RetailCrm\Api\Model\Entity\CustomersCorporate\EntityWithExternalIdInput
+    *
+    * @jms\Type("RetailCrm\Api\Model\Entity\CustomersCorporate\EntityWithExternalIdInput")
+    * @jms\SerializedName("company")
+    */
     public $company;
 
     /**
