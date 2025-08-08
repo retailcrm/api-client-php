@@ -50,4 +50,12 @@ class ErrorResponse extends SuccessResponse
      * @JMS\SerializedName("combinedTo")
      */
     public $combinedTo;
+
+	 /**
+     * @var string[]
+     *
+     * @JMS\Type("array")
+     * @JMS\SerializedName("failedCustomers")
+     */
+    public $failedCustomers;
 }
