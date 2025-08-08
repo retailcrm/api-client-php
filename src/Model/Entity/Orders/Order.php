@@ -321,7 +321,7 @@ class Order
     public $customer;
 
     /**
-     * @var \RetailCrm\Api\Model\Entity\Customers\Customer
+     * @var \RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer
      *
      * @JMS\Type("RetailCrm\Api\Model\Entity\CustomersCorporate\SerializedRelationAbstractCustomer")
      * @JMS\SerializedName("contact")
