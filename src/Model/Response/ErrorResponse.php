@@ -50,4 +50,12 @@ class ErrorResponse extends SuccessResponse
      * @JMS\SerializedName("combinedTo")
      */
     public $combinedTo;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\EntityWithExternalId[]
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\EntityWithExternalId>")
+     * @JMS\SerializedName("failedCustomers")
+     */
+    public $failedCustomers;
 }
