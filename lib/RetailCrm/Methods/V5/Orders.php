@@ -225,4 +225,35 @@ trait Orders
             )
         );
     }
+
+    /**
+     * Cancellation of bonus operations on the Loyalty Program
+     *
+     * @param array $order order data
+     * @param string|null $site (default: null)
+     *
+     * @throws \RetailCrm\Exception\InvalidJsonException
+     * @throws \RetailCrm\Exception\CurlException
+     * @throws \InvalidArgumentException
+     *
+     * @return \RetailCrm\Response\ApiResponse
+     */
+    public function cancelBonusOperations(array $order, $site = null)
+    {
+        if (!isset($order['id']) && !isset($order['externalId']) && !isset($order['number'])) {
+            throw new \InvalidArgumentException(
+                'Parameters `order` must contains a identifying data'
+            );
+        }
+
+        /* @noinspection PhpUndefinedMethodInspection */
+        return $this->client->makeRequest(
+            '/orders/loyalty/cancel-bonus-operations',
+            'POST',
+            $this->fillSite(
+                $site,
+                ['order' => json_encode($order)]
+            )
+        );
+    }
 }

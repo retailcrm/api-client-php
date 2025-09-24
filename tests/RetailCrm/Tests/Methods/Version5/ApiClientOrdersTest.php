@@ -444,6 +444,33 @@ class ApiClientOrdersTest extends TestCase
     }
 
     /**
+     * @dataProvider ordersLoyaltyCancelBonus
+     *
+     * @group orders_v5
+     *
+     * @param array $order
+     * @param string $site
+     * @param string|null $exceptionClass
+     *
+     * @return void
+     */
+    public function testCancelBonusOperations(array $order, string $site, $exceptionClass)
+    {
+        $client = static::getApiClient();
+
+        if (isset($exceptionClass)) {
+            $this->expectException($exceptionClass);
+        }
+
+        $response = $client->request->cancelBonusOperations($order, $site);
+
+        if (!isset($exceptionClass)) {
+            static::assertContains($response->getStatusCode(), [200, 201]);
+            static::assertTrue($response->isSuccessful());
+        }
+    }
+
+    /**
      * @return array[]
      */
     public function ordersLoyaltyApplyProvider(): array
@@ -495,6 +522,41 @@ class ApiClientOrdersTest extends TestCase
                 'moysklad',
                 'InvalidArgumentException',
             ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function ordersLoyaltyCancelBonus(): array
+    {
+        return [
+            'success_id' => [
+                [
+                    'id' => 111111111,
+                ],
+                'site',
+                null,
+            ],
+            'success_externalId' => [
+                [
+                    'externalId' => 111111111,
+                ],
+                'site',
+                null,
+            ],
+            'success_number' => [
+                [
+                    'number' => '111C'
+                ],
+                'site',
+                null,
+            ],
+            'error' => [
+                [],
+                'site',
+                'InvalidArgumentException',
+            ]
         ];
     }
 }
