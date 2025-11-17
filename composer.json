@@ -27,7 +27,7 @@
         "doctrine/annotations": "^1.13|^2.0",
         "liip/serializer": "2.2.* || 2.6.*",
         "php-http/httplug": "^2.2",
-        "civicrm/composer-compile-plugin": "^0.20",
+        "civicrm/composer-compile-plugin": "0.2*",
         "symfony/console": "^4.0|^5.0|^6.0|^7.0",
         "psr/event-dispatcher": "^1.0",
         "neur0toxine/psr.http-client-implementation.php-http-curl": "*",
