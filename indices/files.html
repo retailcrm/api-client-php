@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+            <title>RetailCRM API Client</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../">
+    <link rel="icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/base.css">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/template.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-okaidia.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
+                <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
+        <script src="js/search.js"></script>
+        <script defer src="js/searchIndex.js"></script>
+    </head>
+<body id="top">
+    <header class="phpdocumentor-header phpdocumentor-section">
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">RetailCRM API Client</a></h1>
+    <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
+    <label class="phpdocumentor-header__menu-icon" for="menu-button">
+        <i class="fas fa-bars"></i>
+    </label>
+    <section data-search-form class="phpdocumentor-search">
+    <label>
+        <span class="visually-hidden">Search for</span>
+        <svg class="phpdocumentor-search__icon" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="2"/>
+            <line x1="12.4892" y1="12.2727" x2="19.1559" y2="18.9393" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+    </label>
+</section>
+
+    <nav class="phpdocumentor-topnav">
+    <ul class="phpdocumentor-topnav__menu">
+        </ul>
+</nav>
+</header>
+
+    <main class="phpdocumentor">
+        <div class="phpdocumentor-section">
+            <input class="phpdocumentor-sidebar__menu-button" type="checkbox" id="sidebar-button" name="sidebar-button" />
+<label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
+    Menu
+</label>
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category">
+            <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/retailcrm.html" class="">RetailCrm</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/retailcrm-api.html" class="">Api</a>
+                
+            </li>
+            </ul>
+
+                        </section>
+                <section class="phpdocumentor-sidebar__category">
+            <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/RetailCrm.html" class="">RetailCrm</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/RetailCrm-Api.html" class="">Api</a>
+                
+            </li>
+            </ul>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Application.html" class="">Application</a>
+</h4>
+
+                        </section>
+            
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
+    </section>
+
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
+    </section>
+</aside>
+
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                        <section>
+        
+        <h2 class="phpdocumentor-content__title">Files</h2>
+                                            <h3>A</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-resourcegroup-abstractapiresourcegroup.html"><abbr title="src/ResourceGroup/AbstractApiResourceGroup.php">AbstractApiResourceGroup.php</abbr></a></li>
+                            <li><a href="files/src-model-response-abstractcursorpaginatedresponse.html"><abbr title="src/Model/Response/AbstractCursorPaginatedResponse.php">AbstractCursorPaginatedResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-tasks-abstractcustomer.html"><abbr title="src/Model/Entity/Tasks/AbstractCustomer.php">AbstractCustomer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-items-abstractdiscount.html"><abbr title="src/Model/Entity/Orders/Items/AbstractDiscount.php">AbstractDiscount.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-strategy-encode-abstractencodestrategy.html"><abbr title="src/Component/FormData/Strategy/Encode/AbstractEncodeStrategy.php">AbstractEncodeStrategy.php</abbr></a></li>
+                            <li><a href="files/src-handler-abstracthandler.html"><abbr title="src/Handler/AbstractHandler.php">AbstractHandler.php</abbr></a></li>
+                            <li><a href="files/src-command-abstractmodelsprocessorcommand.html"><abbr title="src/Command/AbstractModelsProcessorCommand.php">AbstractModelsProcessorCommand.php</abbr></a></li>
+                            <li><a href="files/src-model-response-abstractpaginatedresponse.html"><abbr title="src/Model/Response/AbstractPaginatedResponse.php">AbstractPaginatedResponse.php</abbr></a></li>
+                            <li><a href="files/src-event-abstractrequestevent.html"><abbr title="src/Event/AbstractRequestEvent.php">AbstractRequestEvent.php</abbr></a></li>
+                            <li><a href="files/src-handler-response-abstractresponsehandler.html"><abbr title="src/Handler/Response/AbstractResponseHandler.php">AbstractResponseHandler.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-template-abstracttemplate.html"><abbr title="src/Component/Serializer/Template/AbstractTemplate.php">AbstractTemplate.php</abbr></a></li>
+                            <li><a href="files/src-exception-api-accessdeniedexception.html"><abbr title="src/Exception/Api/AccessDeniedException.php">AccessDeniedException.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-accesstype.html"><abbr title="src/Component/Serializer/Annotation/AccessType.php">AccessType.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-mapping-accessor.html"><abbr title="src/Component/FormData/Mapping/Accessor.php">Accessor.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-accessor.html"><abbr title="src/Component/Serializer/Annotation/Accessor.php">Accessor.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-accessororder.html"><abbr title="src/Component/Serializer/Annotation/AccessorOrder.php">AccessorOrder.php</abbr></a></li>
+                            <li><a href="files/src-exception-api-accountdoesnotexistexception.html"><abbr title="src/Exception/Api/AccountDoesNotExistException.php">AccountDoesNotExistException.php</abbr></a></li>
+                            <li><a href="files/src-handler-response-accountnotfoundhandler.html"><abbr title="src/Handler/Response/AccountNotFoundHandler.php">AccountNotFoundHandler.php</abbr></a></li>
+                            <li><a href="files/src-enum-loyalty-accountstatus.html"><abbr title="src/Enum/Loyalty/AccountStatus.php">AccountStatus.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-store-action.html"><abbr title="src/Model/Entity/Integration/Store/Action.php">Action.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-payment-actions.html"><abbr title="src/Model/Entity/Integration/Payment/Actions.php">Actions.php</abbr></a></li>
+                            <li><a href="files/src-model-request-loyalty-allbonusoperationsrequest.html"><abbr title="src/Model/Request/Loyalty/AllBonusOperationsRequest.php">AllBonusOperationsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-allbonusoperationsresponse.html"><abbr title="src/Model/Response/Loyalty/AllBonusOperationsResponse.php">AllBonusOperationsResponse.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-api.html"><abbr title="src/ResourceGroup/Api.php">Api.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-payments-apicheckrequest.html"><abbr title="src/Model/Entity/Payments/ApiCheckRequest.php">ApiCheckRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-payments-apicheckresponseresult.html"><abbr title="src/Model/Entity/Payments/ApiCheckResponseResult.php">ApiCheckResponseResult.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-payments-apicreateinvoicerequest.html"><abbr title="src/Model/Entity/Payments/ApiCreateInvoiceRequest.php">ApiCreateInvoiceRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-payments-apicreateinvoiceresponseresult.html"><abbr title="src/Model/Entity/Payments/ApiCreateInvoiceResponseResult.php">ApiCreateInvoiceResponseResult.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-delivery-apideliveryshipmentfiltertype.html"><abbr title="src/Model/Filter/Delivery/ApiDeliveryShipmentFilterType.php">ApiDeliveryShipmentFilterType.php</abbr></a></li>
+                            <li><a href="files/src-exception-api-apierrorexception.html"><abbr title="src/Exception/Api/ApiErrorException.php">ApiErrorException.php</abbr></a></li>
+                            <li><a href="files/src-exception-apiexception.html"><abbr title="src/Exception/ApiException.php">ApiException.php</abbr></a></li>
+                            <li><a href="files/src-factory-apiexceptionfactory.html"><abbr title="src/Factory/ApiExceptionFactory.php">ApiExceptionFactory.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-apiexceptionfactoryawareinterface.html"><abbr title="src/Interfaces/ApiExceptionFactoryAwareInterface.php">ApiExceptionFactoryAwareInterface.php</abbr></a></li>
+                            <li><a href="files/src-traits-apiexceptionfactoryawaretrait.html"><abbr title="src/Traits/ApiExceptionFactoryAwareTrait.php">ApiExceptionFactoryAwareTrait.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-apiexceptioninterface.html"><abbr title="src/Interfaces/ApiExceptionInterface.php">ApiExceptionInterface.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-payments-apigetinvoiceresponse.html"><abbr title="src/Model/Entity/Payments/ApiGetInvoiceResponse.php">ApiGetInvoiceResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-payments-apiimportinvoicepaymentrefund.html"><abbr title="src/Model/Entity/Payments/ApiImportInvoicePaymentRefund.php">ApiImportInvoicePaymentRefund.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-payments-apiimportinvoicerequest.html"><abbr title="src/Model/Entity/Payments/ApiImportInvoiceRequest.php">ApiImportInvoiceRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-payments-apiimportinvoiceresponse.html"><abbr title="src/Model/Entity/Payments/ApiImportInvoiceResponse.php">ApiImportInvoiceResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-payments-apiupdateinvoicerequest.html"><abbr title="src/Model/Entity/Payments/ApiUpdateInvoiceRequest.php">ApiUpdateInvoiceRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-users-apiuserfilter.html"><abbr title="src/Model/Filter/Users/ApiUserFilter.php">ApiUserFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-response-api-apiversionsresponse.html"><abbr title="src/Model/Response/Api/ApiVersionsResponse.php">ApiVersionsResponse.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-arraysupportdecorator.html"><abbr title="src/Component/Serializer/ArraySupportDecorator.php">ArraySupportDecorator.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-files-attachment.html"><abbr title="src/Model/Entity/Files/Attachment.php">Attachment.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-files-attachmentcustomer.html"><abbr title="src/Model/Entity/Files/AttachmentCustomer.php">AttachmentCustomer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-files-attachmentorder.html"><abbr title="src/Model/Entity/Files/AttachmentOrder.php">AttachmentOrder.php</abbr></a></li>
+                            <li><a href="files/src-enum-customers-attachmentsstatus.html"><abbr title="src/Enum/Customers/AttachmentsStatus.php">AttachmentsStatus.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-authenticatorinterface.html"><abbr title="src/Interfaces/AuthenticatorInterface.php">AuthenticatorInterface.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-delivery-autocompleteresponse.html"><abbr title="src/Model/Callback/Response/Delivery/AutocompleteResponse.php">AutocompleteResponse.php</abbr></a></li>
+                        </ul>
+                                                        <h3>B</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-model-entity-tasks-basecomment.html"><abbr title="src/Model/Entity/Tasks/BaseComment.php">BaseComment.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-basestore.html"><abbr title="src/Model/Callback/Entity/Delivery/BaseStore.php">BaseStore.php</abbr></a></li>
+                            <li><a href="files/src-traits-baseurlawaretrait.html"><abbr title="src/Traits/BaseUrlAwareTrait.php">BaseUrlAwareTrait.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-integration-billinginfo.html"><abbr title="src/Model/Callback/Entity/Integration/BillingInfo.php">BillingInfo.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-billinginfo.html"><abbr title="src/Model/Entity/Integration/BillingInfo.php">BillingInfo.php</abbr></a></li>
+                            <li><a href="files/src-model-request-loyalty-bonusaccountdetailsrequest.html"><abbr title="src/Model/Request/Loyalty/BonusAccountDetailsRequest.php">BonusAccountDetailsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-bonusaccountdetailsresponse.html"><abbr title="src/Model/Response/Loyalty/BonusAccountDetailsResponse.php">BonusAccountDetailsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-bonusdetail.html"><abbr title="src/Model/Entity/Loyalty/BonusDetail.php">BonusDetail.php</abbr></a></li>
+                            <li><a href="files/src-enum-loyalty-bonusoperationeventtype.html"><abbr title="src/Enum/Loyalty/BonusOperationEventType.php">BonusOperationEventType.php</abbr></a></li>
+                            <li><a href="files/src-enum-loyalty-bonusoperationtype.html"><abbr title="src/Enum/Loyalty/BonusOperationType.php">BonusOperationType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-bot-botconfiguration.html"><abbr title="src/Model/Entity/Integration/Bot/BotConfiguration.php">BotConfiguration.php</abbr></a></li>
+                            <li><a href="files/src-exception-client-builderexception.html"><abbr title="src/Exception/Client/BuilderException.php">BuilderException.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-builderinterface.html"><abbr title="src/Interfaces/BuilderInterface.php">BuilderInterface.php</abbr></a></li>
+                            <li><a href="files/src-model-request-byandsitebyrequest.html"><abbr title="src/Model/Request/ByAndSiteByRequest.php">ByAndSiteByRequest.php</abbr></a></li>
+                            <li><a href="files/src-enum-byidentifier.html"><abbr title="src/Enum/ByIdentifier.php">ByIdentifier.php</abbr></a></li>
+                            <li><a href="files/src-enum-bysite.html"><abbr title="src/Enum/BySite.php">BySite.php</abbr></a></li>
+                            <li><a href="files/src-model-request-bysiterequest.html"><abbr title="src/Model/Request/BySiteRequest.php">BySiteRequest.php</abbr></a></li>
+                        </ul>
+                                                        <h3>C</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-enum-cachedirectories.html"><abbr title="src/Enum/CacheDirectories.php">CacheDirectories.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-delivery-calculateresponse.html"><abbr title="src/Model/Callback/Response/Delivery/CalculateResponse.php">CalculateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-telephony-call.html"><abbr title="src/Model/Entity/Telephony/Call.php">Call.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-telephony-callevent.html"><abbr title="src/Model/Entity/Telephony/CallEvent.php">CallEvent.php</abbr></a></li>
+                            <li><a href="files/src-enum-telephony-calleventhangupstatus.html"><abbr title="src/Enum/Telephony/CallEventHangupStatus.php">CallEventHangupStatus.php</abbr></a></li>
+                            <li><a href="files/src-model-response-telephony-calleventresponse.html"><abbr title="src/Model/Response/Telephony/CallEventResponse.php">CallEventResponse.php</abbr></a></li>
+                            <li><a href="files/src-enum-telephony-calleventtype.html"><abbr title="src/Enum/Telephony/CallEventType.php">CallEventType.php</abbr></a></li>
+                            <li><a href="files/src-enum-telephony-callresult.html"><abbr title="src/Enum/Telephony/CallResult.php">CallResult.php</abbr></a></li>
+                            <li><a href="files/src-handler-request-callbackrequesthandler.html"><abbr title="src/Handler/Request/CallbackRequestHandler.php">CallbackRequestHandler.php</abbr></a></li>
+                            <li><a href="files/src-handler-response-callbackresponsehandler.html"><abbr title="src/Handler/Response/CallbackResponseHandler.php">CallbackResponseHandler.php</abbr></a></li>
+                            <li><a href="files/src-model-response-telephony-callsuploadresponse.html"><abbr title="src/Model/Response/Telephony/CallsUploadResponse.php">CallsUploadResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerinteraction-cart.html"><abbr title="src/Model/Entity/CustomerInteraction/Cart.php">Cart.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerinteraction-cartcustomer.html"><abbr title="src/Model/Entity/CustomerInteraction/CartCustomer.php">CartCustomer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerinteraction-cartitem.html"><abbr title="src/Model/Entity/CustomerInteraction/CartItem.php">CartItem.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerinteraction-cartorder.html"><abbr title="src/Model/Entity/CustomerInteraction/CartOrder.php">CartOrder.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-settings-channelsetting.html"><abbr title="src/Model/Entity/Settings/ChannelSetting.php">ChannelSetting.php</abbr></a></li>
+                            <li><a href="files/src-command-clearmodelscommand.html"><abbr title="src/Command/ClearModelsCommand.php">ClearModelsCommand.php</abbr></a></li>
+                            <li><a href="files/src-client.html"><abbr title="src/Client.php">Client.php</abbr></a></li>
+                            <li><a href="files/src-builder-clientbuilder.html"><abbr title="src/Builder/ClientBuilder.php">ClientBuilder.php</abbr></a></li>
+                            <li><a href="files/src-exception-clientexception.html"><abbr title="src/Exception/ClientException.php">ClientException.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-clientexceptioninterface.html"><abbr title="src/Interfaces/ClientExceptionInterface.php">ClientExceptionInterface.php</abbr></a></li>
+                            <li><a href="files/src-factory-clientfactory.html"><abbr title="src/Factory/ClientFactory.php">ClientFactory.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-clientfactoryinterface.html"><abbr title="src/Interfaces/ClientFactoryInterface.php">ClientFactoryInterface.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-webanalytics-clientid.html"><abbr title="src/Model/Entity/WebAnalytics/ClientId.php">ClientId.php</abbr></a></li>
+                            <li><a href="files/src-model-request-webanalytics-clientiduploadrequest.html"><abbr title="src/Model/Request/WebAnalytics/ClientIdUploadRequest.php">ClientIdUploadRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-webanalytics-clientiduploadresponse.html"><abbr title="src/Model/Response/WebAnalytics/ClientIdUploadResponse.php">ClientIdUploadResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-codevaluemodel.html"><abbr title="src/Model/Entity/CodeValueModel.php">CodeValueModel.php</abbr></a></li>
+                            <li><a href="files/src-enum-combinetechnique.html"><abbr title="src/Enum/CombineTechnique.php">CombineTechnique.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerscorporate-company.html"><abbr title="src/Model/Entity/CustomersCorporate/Company.php">Company.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-customerscorporate-companyfilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CompanyFilter.php">CompanyFilter.php</abbr></a></li>
+                            <li><a href="files/src-command-compilerpromptcommand.html"><abbr title="src/Command/CompilerPromptCommand.php">CompilerPromptCommand.php</abbr></a></li>
+                            <li><a href="files/src-component-composerlocator.html"><abbr title="src/Component/ComposerLocator.php">ComposerLocator.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-simpleconnection-connectionconfigresponse.html"><abbr title="src/Model/Callback/Response/SimpleConnection/ConnectionConfigResponse.php">ConnectionConfigResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-simpleconnection-connectionregisterresponse.html"><abbr title="src/Model/Callback/Response/SimpleConnection/ConnectionRegisterResponse.php">ConnectionRegisterResponse.php</abbr></a></li>
+                            <li><a href="files/src-enum-customers-contragenttype.html"><abbr title="src/Enum/Customers/ContragentType.php">ContragentType.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-coordinates.html"><abbr title="src/Model/Callback/Entity/Delivery/Coordinates.php">Coordinates.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-costs-cost.html"><abbr title="src/Model/Entity/Costs/Cost.php">Cost.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-costs-costfilter.html"><abbr title="src/Model/Filter/Costs/CostFilter.php">CostFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-costgroup.html"><abbr title="src/Model/Entity/References/CostGroup.php">CostGroup.php</abbr></a></li>
+                            <li><a href="files/src-enum-reference-costgroupcolor.html"><abbr title="src/Enum/Reference/CostGroupColor.php">CostGroupColor.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-costgroupseditrequest.html"><abbr title="src/Model/Request/References/CostGroupsEditRequest.php">CostGroupsEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-costgroupsresponse.html"><abbr title="src/Model/Response/References/CostGroupsResponse.php">CostGroupsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-costitem.html"><abbr title="src/Model/Entity/References/CostItem.php">CostItem.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-costitemseditrequest.html"><abbr title="src/Model/Request/References/CostItemsEditRequest.php">CostItemsEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-costitemsresponse.html"><abbr title="src/Model/Response/References/CostItemsResponse.php">CostItemsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-costs-costorder.html"><abbr title="src/Model/Entity/Costs/CostOrder.php">CostOrder.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-costs.html"><abbr title="src/ResourceGroup/Costs.php">Costs.php</abbr></a></li>
+                            <li><a href="files/src-model-request-costs-costscreaterequest.html"><abbr title="src/Model/Request/Costs/CostsCreateRequest.php">CostsCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-costs-costsdeleterequest.html"><abbr title="src/Model/Request/Costs/CostsDeleteRequest.php">CostsDeleteRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-costs-costsdeleteresponse.html"><abbr title="src/Model/Response/Costs/CostsDeleteResponse.php">CostsDeleteResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-costs-costseditrequest.html"><abbr title="src/Model/Request/Costs/CostsEditRequest.php">CostsEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-costs-costsgetresponse.html"><abbr title="src/Model/Response/Costs/CostsGetResponse.php">CostsGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-costs-costsrequest.html"><abbr title="src/Model/Request/Costs/CostsRequest.php">CostsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-costs-costsresponse.html"><abbr title="src/Model/Response/Costs/CostsResponse.php">CostsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-costs-costsuploadrequest.html"><abbr title="src/Model/Request/Costs/CostsUploadRequest.php">CostsUploadRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-costs-costsuploadresponse.html"><abbr title="src/Model/Response/Costs/CostsUploadResponse.php">CostsUploadResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-countriesresponse.html"><abbr title="src/Model/Response/References/CountriesResponse.php">CountriesResponse.php</abbr></a></li>
+                            <li><a href="files/src-enum-countrycodeiso3166.html"><abbr title="src/Enum/CountryCodeIso3166.php">CountryCodeIso3166.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-courier.html"><abbr title="src/Model/Entity/References/Courier.php">Courier.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-delivery-courierphone.html"><abbr title="src/Model/Entity/Orders/Delivery/CourierPhone.php">CourierPhone.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-courierscreaterequest.html"><abbr title="src/Model/Request/References/CouriersCreateRequest.php">CouriersCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-couriersresponse.html"><abbr title="src/Model/Response/References/CouriersResponse.php">CouriersResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-payments-create.html"><abbr title="src/Model/Callback/Entity/Payments/Create.php">Create.php</abbr></a></li>
+                            <li><a href="files/src-model-response-api-credentials.html"><abbr title="src/Model/Response/Api/Credentials.php">Credentials.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-currenciescreaterequest.html"><abbr title="src/Model/Request/References/CurrenciesCreateRequest.php">CurrenciesCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-currenciesresponse.html"><abbr title="src/Model/Response/References/CurrenciesResponse.php">CurrenciesResponse.php</abbr></a></li>
+                            <li><a href="files/src-enum-currency.html"><abbr title="src/Enum/Currency.php">Currency.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-currency.html"><abbr title="src/Model/Entity/Integration/Currency.php">Currency.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-currency.html"><abbr title="src/Model/Entity/References/Currency.php">Currency.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-cursorpagination.html"><abbr title="src/Model/Entity/CursorPagination.php">CursorPagination.php</abbr></a></li>
+                            <li><a href="files/src-component-customapimethod.html"><abbr title="src/Component/CustomApiMethod.php">CustomApiMethod.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-template-customdeserialization.html"><abbr title="src/Component/Serializer/Template/CustomDeserialization.php">CustomDeserialization.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customfields-customdictionary.html"><abbr title="src/Model/Entity/CustomFields/CustomDictionary.php">CustomDictionary.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customfields-customdictionarycreaterequest.html"><abbr title="src/Model/Request/CustomFields/CustomDictionaryCreateRequest.php">CustomDictionaryCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customfields-customdictionarycreateresponse.html"><abbr title="src/Model/Response/CustomFields/CustomDictionaryCreateResponse.php">CustomDictionaryCreateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-customfields-customdictionaryfilter.html"><abbr title="src/Model/Filter/CustomFields/CustomDictionaryFilter.php">CustomDictionaryFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customfields-customdictionarygetresponse.html"><abbr title="src/Model/Response/CustomFields/CustomDictionaryGetResponse.php">CustomDictionaryGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customfields-customfield.html"><abbr title="src/Model/Entity/CustomFields/CustomField.php">CustomField.php</abbr></a></li>
+                            <li><a href="files/src-enum-customfields-customfielddisplayarea.html"><abbr title="src/Enum/CustomFields/CustomFieldDisplayArea.php">CustomFieldDisplayArea.php</abbr></a></li>
+                            <li><a href="files/src-enum-customfields-customfieldentity.html"><abbr title="src/Enum/CustomFields/CustomFieldEntity.php">CustomFieldEntity.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-customfields-customfieldfilter.html"><abbr title="src/Model/Filter/CustomFields/CustomFieldFilter.php">CustomFieldFilter.php</abbr></a></li>
+                            <li><a href="files/src-enum-customfields-customfieldtype.html"><abbr title="src/Enum/CustomFields/CustomFieldType.php">CustomFieldType.php</abbr></a></li>
+                            <li><a href="files/src-enum-customfields-customfieldviewmode.html"><abbr title="src/Enum/CustomFields/CustomFieldViewMode.php">CustomFieldViewMode.php</abbr></a></li>
+                            <li><a href="files/src-enum-customfields-customfieldviewmodemobile.html"><abbr title="src/Enum/CustomFields/CustomFieldViewModeMobile.php">CustomFieldViewModeMobile.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-customfields.html"><abbr title="src/ResourceGroup/CustomFields.php">CustomFields.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customfields-customfieldscreaterequest.html"><abbr title="src/Model/Request/CustomFields/CustomFieldsCreateRequest.php">CustomFieldsCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customfields-customfieldscreateresponse.html"><abbr title="src/Model/Response/CustomFields/CustomFieldsCreateResponse.php">CustomFieldsCreateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customfields-customfieldsdictionariesrequest.html"><abbr title="src/Model/Request/CustomFields/CustomFieldsDictionariesRequest.php">CustomFieldsDictionariesRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customfields-customfieldsdictionariesresponse.html"><abbr title="src/Model/Response/CustomFields/CustomFieldsDictionariesResponse.php">CustomFieldsDictionariesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customfields-customfieldseditresponse.html"><abbr title="src/Model/Response/CustomFields/CustomFieldsEditResponse.php">CustomFieldsEditResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customfields-customfieldsgetresponse.html"><abbr title="src/Model/Response/CustomFields/CustomFieldsGetResponse.php">CustomFieldsGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customfields-customfieldsrequest.html"><abbr title="src/Model/Request/CustomFields/CustomFieldsRequest.php">CustomFieldsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customfields-customfieldsresponse.html"><abbr title="src/Model/Response/CustomFields/CustomFieldsResponse.php">CustomFieldsResponse.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-custommethods.html"><abbr title="src/ResourceGroup/CustomMethods.php">CustomMethods.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-template-customserialization.html"><abbr title="src/Component/Serializer/Template/CustomSerialization.php">CustomSerialization.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-customer.html"><abbr title="src/Model/Callback/Entity/Delivery/Customer.php">Customer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-customer.html"><abbr title="src/Model/Entity/Customers/Customer.php">Customer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-customer.html"><abbr title="src/Model/Entity/Loyalty/Customer.php">Customer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-webanalytics-customer.html"><abbr title="src/Model/Entity/WebAnalytics/Customer.php">Customer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-customeraddress.html"><abbr title="src/Model/Entity/Customers/CustomerAddress.php">CustomerAddress.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-customerscorporate-customeraddressfilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerAddressFilter.php">CustomerAddressFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerscorporate-customercontact.html"><abbr title="src/Model/Entity/CustomersCorporate/CustomerContact.php">CustomerContact.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerscorporate-customercontactcompany.html"><abbr title="src/Model/Entity/CustomersCorporate/CustomerContactCompany.php">CustomerContactCompany.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-customerscorporate-customercontactfilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerContactFilter.php">CustomerContactFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-customercontragent.html"><abbr title="src/Model/Entity/Customers/CustomerContragent.php">CustomerContragent.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerscorporate-customercorporate.html"><abbr title="src/Model/Entity/CustomersCorporate/CustomerCorporate.php">CustomerCorporate.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerscorporate-customercorporatehistory.html"><abbr title="src/Model/Entity/CustomersCorporate/CustomerCorporateHistory.php">CustomerCorporateHistory.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-customers-customerfilter.html"><abbr title="src/Model/Filter/Customers/CustomerFilter.php">CustomerFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-customerhistory.html"><abbr title="src/Model/Entity/Customers/CustomerHistory.php">CustomerHistory.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-customers-customerhistoryfilter.html"><abbr title="src/Model/Filter/Customers/CustomerHistoryFilter.php">CustomerHistoryFilter.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-customerinteraction.html"><abbr title="src/ResourceGroup/CustomerInteraction.php">CustomerInteraction.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerinteraction-customerinteractioncartclearrequest.html"><abbr title="src/Model/Request/CustomerInteraction/CustomerInteractionCartClearRequest.php">CustomerInteractionCartClearRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customerinteraction-customerinteractioncartgetresponse.html"><abbr title="src/Model/Response/CustomerInteraction/CustomerInteractionCartGetResponse.php">CustomerInteractionCartGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerinteraction-customerinteractioncartsetrequest.html"><abbr title="src/Model/Request/CustomerInteraction/CustomerInteractionCartSetRequest.php">CustomerInteractionCartSetRequest.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-orders-customerinterface.html"><abbr title="src/Interfaces/Orders/CustomerInterface.php">CustomerInterface.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-customernote.html"><abbr title="src/Model/Entity/Customers/CustomerNote.php">CustomerNote.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-customers-customernotefilter.html"><abbr title="src/Model/Filter/Customers/CustomerNoteFilter.php">CustomerNoteFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customers-customernotesresponse.html"><abbr title="src/Model/Response/Customers/CustomerNotesResponse.php">CustomerNotesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-customerphone.html"><abbr title="src/Model/Entity/Customers/CustomerPhone.php">CustomerPhone.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-customersubscription.html"><abbr title="src/Model/Entity/Customers/CustomerSubscription.php">CustomerSubscription.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-customers-customersubscriptionfilter.html"><abbr title="src/Model/Filter/Customers/CustomerSubscriptionFilter.php">CustomerSubscriptionFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-customertag.html"><abbr title="src/Model/Entity/Customers/CustomerTag.php">CustomerTag.php</abbr></a></li>
+                            <li><a href="files/src-enum-customers-customertype.html"><abbr title="src/Enum/Customers/CustomerType.php">CustomerType.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customers-customerscombinerequest.html"><abbr title="src/Model/Request/Customers/CustomersCombineRequest.php">CustomersCombineRequest.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-customerscorporate.html"><abbr title="src/ResourceGroup/CustomersCorporate.php">CustomersCorporate.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporateaddressescreaterequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateAddressesCreateRequest.php">CustomersCorporateAddressesCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporateaddresseseditrequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateAddressesEditRequest.php">CustomersCorporateAddressesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporateaddressesrequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateAddressesRequest.php">CustomersCorporateAddressesRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customerscorporate-customerscorporateaddressesresponse.html"><abbr title="src/Model/Response/CustomersCorporate/CustomersCorporateAddressesResponse.php">CustomersCorporateAddressesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporatecompaniescreaterequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateCompaniesCreateRequest.php">CustomersCorporateCompaniesCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporatecompanieseditrequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateCompaniesEditRequest.php">CustomersCorporateCompaniesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporatecompaniesrequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateCompaniesRequest.php">CustomersCorporateCompaniesRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customerscorporate-customerscorporatecompaniesresponse.html"><abbr title="src/Model/Response/CustomersCorporate/CustomersCorporateCompaniesResponse.php">CustomersCorporateCompaniesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporatecontactscreaterequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateContactsCreateRequest.php">CustomersCorporateContactsCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporatecontactseditrequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateContactsEditRequest.php">CustomersCorporateContactsEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporatecontactsrequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateContactsRequest.php">CustomersCorporateContactsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customerscorporate-customerscorporatecontactsresponse.html"><abbr title="src/Model/Response/CustomersCorporate/CustomersCorporateContactsResponse.php">CustomersCorporateContactsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporatecreaterequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateCreateRequest.php">CustomersCorporateCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporateeditrequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateEditRequest.php">CustomersCorporateEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporatefixexternalidsrequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateFixExternalIdsRequest.php">CustomersCorporateFixExternalIdsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customerscorporate-customerscorporategetresponse.html"><abbr title="src/Model/Response/CustomersCorporate/CustomersCorporateGetResponse.php">CustomersCorporateGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customerscorporate-customerscorporatehistoryresponse.html"><abbr title="src/Model/Response/CustomersCorporate/CustomersCorporateHistoryResponse.php">CustomersCorporateHistoryResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporaterequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateRequest.php">CustomersCorporateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customerscorporate-customerscorporateresponse.html"><abbr title="src/Model/Response/CustomersCorporate/CustomersCorporateResponse.php">CustomersCorporateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customerscorporate-customerscorporateuploadrequest.html"><abbr title="src/Model/Request/CustomersCorporate/CustomersCorporateUploadRequest.php">CustomersCorporateUploadRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customers-customerscreaterequest.html"><abbr title="src/Model/Request/Customers/CustomersCreateRequest.php">CustomersCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customers-customerseditrequest.html"><abbr title="src/Model/Request/Customers/CustomersEditRequest.php">CustomersEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customers-customerseditresponse.html"><abbr title="src/Model/Response/Customers/CustomersEditResponse.php">CustomersEditResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customers-customersfixexternalidsrequest.html"><abbr title="src/Model/Request/Customers/CustomersFixExternalIdsRequest.php">CustomersFixExternalIdsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customers-customersgetresponse.html"><abbr title="src/Model/Response/Customers/CustomersGetResponse.php">CustomersGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customers-customershistoryrequest.html"><abbr title="src/Model/Request/Customers/CustomersHistoryRequest.php">CustomersHistoryRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customers-customershistoryresponse.html"><abbr title="src/Model/Response/Customers/CustomersHistoryResponse.php">CustomersHistoryResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customers-customersnotescreaterequest.html"><abbr title="src/Model/Request/Customers/CustomersNotesCreateRequest.php">CustomersNotesCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customers-customersnotesrequest.html"><abbr title="src/Model/Request/Customers/CustomersNotesRequest.php">CustomersNotesRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customers-customersrequest.html"><abbr title="src/Model/Request/Customers/CustomersRequest.php">CustomersRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customers-customersresponse.html"><abbr title="src/Model/Response/Customers/CustomersResponse.php">CustomersResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customers-customerssubscriptionsrequest.html"><abbr title="src/Model/Request/Customers/CustomersSubscriptionsRequest.php">CustomersSubscriptionsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-customers-customersuploadrequest.html"><abbr title="src/Model/Request/Customers/CustomersUploadRequest.php">CustomersUploadRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-customers-customersuploadresponse.html"><abbr title="src/Model/Response/Customers/CustomersUploadResponse.php">CustomersUploadResponse.php</abbr></a></li>
+                        </ul>
+                                                        <h3>D</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-component-formdata-strategy-encode-datetimestrategy.html"><abbr title="src/Component/FormData/Strategy/Encode/DateTimeStrategy.php">DateTimeStrategy.php</abbr></a></li>
+                            <li><a href="files/src-component-transformer-datetimetransformer.html"><abbr title="src/Component/Transformer/DateTimeTransformer.php">DateTimeTransformer.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-delivery.html"><abbr title="src/ResourceGroup/Delivery.php">Delivery.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-deliveryaddress.html"><abbr title="src/Model/Callback/Entity/Delivery/DeliveryAddress.php">DeliveryAddress.php</abbr></a></li>
+                            <li><a href="files/src-model-request-delivery-deliverycalculaterequest.html"><abbr title="src/Model/Request/Delivery/DeliveryCalculateRequest.php">DeliveryCalculateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-delivery-deliverycalculateresponse.html"><abbr title="src/Model/Response/Delivery/DeliveryCalculateResponse.php">DeliveryCalculateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-delivery-deliverycalculation.html"><abbr title="src/Model/Entity/Delivery/DeliveryCalculation.php">DeliveryCalculation.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-delivery-deliveryconfiguration.html"><abbr title="src/Model/Entity/Integration/Delivery/DeliveryConfiguration.php">DeliveryConfiguration.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-delivery-deliverydata.html"><abbr title="src/Model/Entity/Orders/Delivery/DeliveryData.php">DeliveryData.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-delivery-deliverydatafield.html"><abbr title="src/Model/Entity/Integration/Delivery/DeliveryDataField.php">DeliveryDataField.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-deliveryservice.html"><abbr title="src/Model/Entity/References/DeliveryService.php">DeliveryService.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-deliveryserviceseditrequest.html"><abbr title="src/Model/Request/References/DeliveryServicesEditRequest.php">DeliveryServicesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-deliveryservicesresponse.html"><abbr title="src/Model/Response/References/DeliveryServicesResponse.php">DeliveryServicesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-delivery-deliveryshipment.html"><abbr title="src/Model/Entity/Delivery/DeliveryShipment.php">DeliveryShipment.php</abbr></a></li>
+                            <li><a href="files/src-model-request-delivery-deliveryshipmentscreaterequest.html"><abbr title="src/Model/Request/Delivery/DeliveryShipmentsCreateRequest.php">DeliveryShipmentsCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-delivery-deliveryshipmentscreateresponse.html"><abbr title="src/Model/Response/Delivery/DeliveryShipmentsCreateResponse.php">DeliveryShipmentsCreateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-response-delivery-deliveryshipmentsgetresponse.html"><abbr title="src/Model/Response/Delivery/DeliveryShipmentsGetResponse.php">DeliveryShipmentsGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-delivery-deliveryshipmentsrequest.html"><abbr title="src/Model/Request/Delivery/DeliveryShipmentsRequest.php">DeliveryShipmentsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-delivery-deliveryshipmentsresponse.html"><abbr title="src/Model/Response/Delivery/DeliveryShipmentsResponse.php">DeliveryShipmentsResponse.php</abbr></a></li>
+                            <li><a href="files/src-enum-order-deliverystate.html"><abbr title="src/Enum/Order/DeliveryState.php">DeliveryState.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-deliverytype.html"><abbr title="src/Model/Entity/References/DeliveryType.php">DeliveryType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-deliverytypepaymenttype.html"><abbr title="src/Model/Entity/References/DeliveryTypePaymentType.php">DeliveryTypePaymentType.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-deliverytypeseditrequest.html"><abbr title="src/Model/Request/References/DeliveryTypesEditRequest.php">DeliveryTypesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-deliverytypesresponse.html"><abbr title="src/Model/Response/References/DeliveryTypesResponse.php">DeliveryTypesResponse.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-generator-deserializergenerator.html"><abbr title="src/Component/Serializer/Generator/DeserializerGenerator.php">DeserializerGenerator.php</abbr></a></li>
+                            <li><a href="files/src-enum-order-discounttype.html"><abbr title="src/Enum/Order/DiscountType.php">DiscountType.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-discriminator.html"><abbr title="src/Component/Serializer/Annotation/Discriminator.php">Discriminator.php</abbr></a></li>
+                        </ul>
+                                                        <h3>E</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-model-entity-integration-embedjs-embedjsconfiguration.html"><abbr title="src/Model/Entity/Integration/EmbedJs/EmbedJsConfiguration.php">EmbedJsConfiguration.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-strategy-encode-encodestrategyinterface.html"><abbr title="src/Component/FormData/Strategy/Encode/EncodeStrategyInterface.php">EncodeStrategyInterface.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-strategy-encode-entitystrategy.html"><abbr title="src/Component/FormData/Strategy/Encode/EntityStrategy.php">EntityStrategy.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-entitywithexternalid.html"><abbr title="src/Model/Entity/EntityWithExternalId.php">EntityWithExternalId.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerscorporate-entitywithexternalidinput.html"><abbr title="src/Model/Entity/CustomersCorporate/EntityWithExternalIdInput.php">EntityWithExternalIdInput.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerscorporate-entitywithexternalidnameoutput.html"><abbr title="src/Model/Entity/CustomersCorporate/EntityWithExternalIdNameOutput.php">EntityWithExternalIdNameOutput.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-errorresponse.html"><abbr title="src/Model/Callback/Response/ErrorResponse.php">ErrorResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-response-errorresponse.html"><abbr title="src/Model/Response/ErrorResponse.php">ErrorResponse.php</abbr></a></li>
+                            <li><a href="files/src-handler-response-errorresponsehandler.html"><abbr title="src/Handler/Response/ErrorResponseHandler.php">ErrorResponseHandler.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-eventdispatcherawareinterface.html"><abbr title="src/Interfaces/EventDispatcherAwareInterface.php">EventDispatcherAwareInterface.php</abbr></a></li>
+                            <li><a href="files/src-traits-eventdispatcherawaretrait.html"><abbr title="src/Traits/EventDispatcherAwareTrait.php">EventDispatcherAwareTrait.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-parser-jmscore-exception-exception.html"><abbr title="src/Component/Serializer/Parser/JMSCore/Exception/Exception.php">Exception.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-parser-jmscore-type-exception-exception.html"><abbr title="src/Component/Serializer/Parser/JMSCore/Type/Exception/Exception.php">Exception.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-exclude.html"><abbr title="src/Component/Serializer/Annotation/Exclude.php">Exclude.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-exclusionpolicy.html"><abbr title="src/Component/Serializer/Annotation/ExclusionPolicy.php">ExclusionPolicy.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-expose.html"><abbr title="src/Component/Serializer/Annotation/Expose.php">Expose.php</abbr></a></li>
+                        </ul>
+                                                        <h3>F</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-event-failurerequestevent.html"><abbr title="src/Event/FailureRequestEvent.php">FailureRequestEvent.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-settings-feature.html"><abbr title="src/Model/Entity/Settings/Feature.php">Feature.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-features.html"><abbr title="src/ResourceGroup/Features.php">Features.php</abbr></a></li>
+                            <li><a href="files/src-model-request-api-featurescheckrequest.html"><abbr title="src/Model/Request/Api/FeaturesCheckRequest.php">FeaturesCheckRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-api-featurescheckresponse.html"><abbr title="src/Model/Response/Api/FeaturesCheckResponse.php">FeaturesCheckResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-files-file.html"><abbr title="src/Model/Entity/Files/File.php">File.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-files-filefilter.html"><abbr title="src/Model/Filter/Files/FileFilter.php">FileFilter.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-files.html"><abbr title="src/ResourceGroup/Files.php">Files.php</abbr></a></li>
+                            <li><a href="files/src-model-response-files-filesdownloadresponse.html"><abbr title="src/Model/Response/Files/FilesDownloadResponse.php">FilesDownloadResponse.php</abbr></a></li>
+                            <li><a href="files/src-handler-response-filesdownloadresponsehandler.html"><abbr title="src/Handler/Response/FilesDownloadResponseHandler.php">FilesDownloadResponseHandler.php</abbr></a></li>
+                            <li><a href="files/src-model-request-files-fileseditrequest.html"><abbr title="src/Model/Request/Files/FilesEditRequest.php">FilesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-files-filesgetresponse.html"><abbr title="src/Model/Response/Files/FilesGetResponse.php">FilesGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-component-filesiteratorchecksumgenerator.html"><abbr title="src/Component/FilesIteratorChecksumGenerator.php">FilesIteratorChecksumGenerator.php</abbr></a></li>
+                            <li><a href="files/src-model-request-files-filesrequest.html"><abbr title="src/Model/Request/Files/FilesRequest.php">FilesRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-files-filesresponse.html"><abbr title="src/Model/Response/Files/FilesResponse.php">FilesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-files-filesuploadrequest.html"><abbr title="src/Model/Request/Files/FilesUploadRequest.php">FilesUploadRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-files-filesuploadresponse.html"><abbr title="src/Model/Response/Files/FilesUploadResponse.php">FilesUploadResponse.php</abbr></a></li>
+                            <li><a href="files/src-builder-filesystemcachebuilder.html"><abbr title="src/Builder/FilesystemCacheBuilder.php">FilesystemCacheBuilder.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-fixexternalrow.html"><abbr title="src/Model/Entity/FixExternalRow.php">FixExternalRow.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-formencoder.html"><abbr title="src/Component/FormData/FormEncoder.php">FormEncoder.php</abbr></a></li>
+                            <li><a href="files/src-builder-formencoderbuilder.html"><abbr title="src/Builder/FormEncoderBuilder.php">FormEncoderBuilder.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-formencoderinterface.html"><abbr title="src/Interfaces/FormEncoderInterface.php">FormEncoderInterface.php</abbr></a></li>
+                        </ul>
+                                                        <h3>G</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-enum-customers-gender.html"><abbr title="src/Enum/Customers/Gender.php">Gender.php</abbr></a></li>
+                            <li><a href="files/src-command-generatemodelscommand.html"><abbr title="src/Command/GenerateModelsCommand.php">GenerateModelsCommand.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-geohierarchyrow.html"><abbr title="src/Model/Entity/References/GeoHierarchyRow.php">GeoHierarchyRow.php</abbr></a></li>
+                            <li><a href="files/src-handler-request-getparameterauthenticatorhandler.html"><abbr title="src/Handler/Request/GetParameterAuthenticatorHandler.php">GetParameterAuthenticatorHandler.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-delivery-getresponse.html"><abbr title="src/Model/Callback/Response/Delivery/GetResponse.php">GetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-users-group.html"><abbr title="src/Model/Entity/Users/Group.php">Group.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-groups.html"><abbr title="src/Component/Serializer/Annotation/Groups.php">Groups.php</abbr></a></li>
+                        </ul>
+                                                        <h3>H</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-exception-client-handlerexception.html"><abbr title="src/Exception/Client/HandlerException.php">HandlerException.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-handlerinterface.html"><abbr title="src/Interfaces/HandlerInterface.php">HandlerInterface.php</abbr></a></li>
+                            <li><a href="files/src-handler-request-headerauthenticatorhandler.html"><abbr title="src/Handler/Request/HeaderAuthenticatorHandler.php">HeaderAuthenticatorHandler.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-historyaddress.html"><abbr title="src/Model/Entity/Customers/HistoryAddress.php">HistoryAddress.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-historyapikey.html"><abbr title="src/Model/Entity/HistoryApiKey.php">HistoryApiKey.php</abbr></a></li>
+                            <li><a href="files/src-model-request-traits-historypagelimittrait.html"><abbr title="src/Model/Request/Traits/HistoryPageLimitTrait.php">HistoryPageLimitTrait.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-historyuser.html"><abbr title="src/Model/Entity/HistoryUser.php">HistoryUser.php</abbr></a></li>
+                            <li><a href="files/src-exception-client-httpclientexception.html"><abbr title="src/Exception/Client/HttpClientException.php">HttpClientException.php</abbr></a></li>
+                        </ul>
+                                                        <h3>I</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-model-entity-idmodel.html"><abbr title="src/Model/Entity/IdModel.php">IdModel.php</abbr></a></li>
+                            <li><a href="files/src-model-response-idresponse.html"><abbr title="src/Model/Response/IdResponse.php">IdResponse.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-inline.html"><abbr title="src/Component/Serializer/Annotation/Inline.php">Inline.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-integration.html"><abbr title="src/ResourceGroup/Integration.php">Integration.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-integration-integrationmodule.html"><abbr title="src/Model/Callback/Entity/Integration/IntegrationModule.php">IntegrationModule.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-integrationmodule.html"><abbr title="src/Model/Entity/Integration/IntegrationModule.php">IntegrationModule.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-integrationmoduleeditinfo.html"><abbr title="src/Model/Entity/Integration/IntegrationModuleEditInfo.php">IntegrationModuleEditInfo.php</abbr></a></li>
+                            <li><a href="files/src-model-request-integration-integrationmoduleupdatescopesrequest.html"><abbr title="src/Model/Request/Integration/IntegrationModuleUpdateScopesRequest.php">IntegrationModuleUpdateScopesRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-integration-integrationmoduleupdatescopesresponse.html"><abbr title="src/Model/Response/Integration/IntegrationModuleUpdateScopesResponse.php">IntegrationModuleUpdateScopesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-integration-integrationmoduleseditrequest.html"><abbr title="src/Model/Request/Integration/IntegrationModulesEditRequest.php">IntegrationModulesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-integration-integrationmoduleseditresponse.html"><abbr title="src/Model/Response/Integration/IntegrationModulesEditResponse.php">IntegrationModulesEditResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-response-integration-integrationmodulesgetresponse.html"><abbr title="src/Model/Response/Integration/IntegrationModulesGetResponse.php">IntegrationModulesGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-integrations.html"><abbr title="src/Model/Entity/Integration/Integrations.php">Integrations.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-exception-invalidargumentexception.html"><abbr title="src/Component/Serializer/Exception/InvalidArgumentException.php">InvalidArgumentException.php</abbr></a></li>
+                            <li><a href="files/src-exception-api-invalidcredentialsexception.html"><abbr title="src/Exception/Api/InvalidCredentialsException.php">InvalidCredentialsException.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-exception-invalidnode.html"><abbr title="src/Component/Serializer/Exception/InvalidNode.php">InvalidNode.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-parser-jmscore-type-exception-invalidnode.html"><abbr title="src/Component/Serializer/Parser/JMSCore/Type/Exception/InvalidNode.php">InvalidNode.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-store-inventoriesdatamodel.html"><abbr title="src/Model/Callback/Entity/Store/InventoriesDataModel.php">InventoriesDataModel.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-inventoriesrequest.html"><abbr title="src/Model/Request/Store/InventoriesRequest.php">InventoriesRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-store-inventoriesresponse.html"><abbr title="src/Model/Response/Store/InventoriesResponse.php">InventoriesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-inventoriesuploadrequest.html"><abbr title="src/Model/Request/Store/InventoriesUploadRequest.php">InventoriesUploadRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-store-inventoriesuploadresponse.html"><abbr title="src/Model/Callback/Response/Store/InventoriesUploadResponse.php">InventoriesUploadResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-response-store-inventoriesuploadresponse.html"><abbr title="src/Model/Response/Store/InventoriesUploadResponse.php">InventoriesUploadResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-inventory.html"><abbr title="src/Model/Entity/Store/Inventory.php">Inventory.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-store-inventoryfiltertype.html"><abbr title="src/Model/Filter/Store/InventoryFilterType.php">InventoryFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-payments-item.html"><abbr title="src/Model/Callback/Response/Payments/Item.php">Item.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-delivery-itemdeclaredvalue.html"><abbr title="src/Model/Entity/Orders/Delivery/ItemDeclaredValue.php">ItemDeclaredValue.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-delivery-itemdeclaredvalueproduct.html"><abbr title="src/Model/Entity/Orders/Delivery/ItemDeclaredValueProduct.php">ItemDeclaredValueProduct.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-items-itemproperty.html"><abbr title="src/Model/Entity/Orders/Items/ItemProperty.php">ItemProperty.php</abbr></a></li>
+                        </ul>
+                                                        <h3>J</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-component-serializer-parser-jmsparser.html"><abbr title="src/Component/Serializer/Parser/JMSParser.php">JMSParser.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-parser-jmstypeparser.html"><abbr title="src/Component/Serializer/Parser/JMSTypeParser.php">JMSTypeParser.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-mapping-jsonfield.html"><abbr title="src/Component/FormData/Mapping/JsonField.php">JsonField.php</abbr></a></li>
+                        </ul>
+                                                                                        <h3>L</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-model-response-references-legalentitiesresponse.html"><abbr title="src/Model/Response/References/LegalEntitiesResponse.php">LegalEntitiesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-legalentity.html"><abbr title="src/Model/Entity/References/LegalEntity.php">LegalEntity.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-legalentityeditrequest.html"><abbr title="src/Model/Request/References/LegalEntityEditRequest.php">LegalEntityEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-parser-jmscore-type-lexer.html"><abbr title="src/Component/Serializer/Parser/JMSCore/Type/Lexer.php">Lexer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-linkedorder.html"><abbr title="src/Model/Entity/Orders/LinkedOrder.php">LinkedOrder.php</abbr></a></li>
+                            <li><a href="files/src-model-request-loyalty-loyaltiesrequest.html"><abbr title="src/Model/Request/Loyalty/LoyaltiesRequest.php">LoyaltiesRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-loyaltiesresponse.html"><abbr title="src/Model/Response/Loyalty/LoyaltiesResponse.php">LoyaltiesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-loyalty.html"><abbr title="src/Model/Entity/Loyalty/Loyalty.php">Loyalty.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-loyalty.html"><abbr title="src/ResourceGroup/Loyalty.php">Loyalty.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-loyaltyaccount.html"><abbr title="src/Model/Entity/Loyalty/LoyaltyAccount.php">LoyaltyAccount.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-loyaltyaccountactivateresponse.html"><abbr title="src/Model/Response/Loyalty/LoyaltyAccountActivateResponse.php">LoyaltyAccountActivateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-loyalty-loyaltyaccountapifiltertype.html"><abbr title="src/Model/Filter/Loyalty/LoyaltyAccountApiFilterType.php">LoyaltyAccountApiFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-loyalty-loyaltyaccountbonusapifiltertype.html"><abbr title="src/Model/Filter/Loyalty/LoyaltyAccountBonusApiFilterType.php">LoyaltyAccountBonusApiFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-loyalty-loyaltyaccountbonusoperationsapifiltertype.html"><abbr title="src/Model/Filter/Loyalty/LoyaltyAccountBonusOperationsApiFilterType.php">LoyaltyAccountBonusOperationsApiFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-request-loyalty-loyaltyaccountcreaterequest.html"><abbr title="src/Model/Request/Loyalty/LoyaltyAccountCreateRequest.php">LoyaltyAccountCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-loyaltyaccountcreateresponse.html"><abbr title="src/Model/Response/Loyalty/LoyaltyAccountCreateResponse.php">LoyaltyAccountCreateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-loyalty-loyaltyaccounteditrequest.html"><abbr title="src/Model/Request/Loyalty/LoyaltyAccountEditRequest.php">LoyaltyAccountEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-loyaltyaccountresponse.html"><abbr title="src/Model/Response/Loyalty/LoyaltyAccountResponse.php">LoyaltyAccountResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-loyalty-loyaltyaccountsrequest.html"><abbr title="src/Model/Request/Loyalty/LoyaltyAccountsRequest.php">LoyaltyAccountsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-loyaltyaccountsresponse.html"><abbr title="src/Model/Response/Loyalty/LoyaltyAccountsResponse.php">LoyaltyAccountsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-loyalty-loyaltyapifiltertype.html"><abbr title="src/Model/Filter/Loyalty/LoyaltyApiFilterType.php">LoyaltyApiFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-loyaltybonus.html"><abbr title="src/Model/Entity/Loyalty/LoyaltyBonus.php">LoyaltyBonus.php</abbr></a></li>
+                            <li><a href="files/src-model-request-loyalty-loyaltybonuschargerequest.html"><abbr title="src/Model/Request/Loyalty/LoyaltyBonusChargeRequest.php">LoyaltyBonusChargeRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-loyalty-loyaltybonuscreditrequest.html"><abbr title="src/Model/Request/Loyalty/LoyaltyBonusCreditRequest.php">LoyaltyBonusCreditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-loyaltybonuscreditresponse.html"><abbr title="src/Model/Response/Loyalty/LoyaltyBonusCreditResponse.php">LoyaltyBonusCreditResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-loyalty-loyaltybonusoperationsapifiltertype.html"><abbr title="src/Model/Filter/Loyalty/LoyaltyBonusOperationsApiFilterType.php">LoyaltyBonusOperationsApiFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-request-loyalty-loyaltybonusoperationsrequest.html"><abbr title="src/Model/Request/Loyalty/LoyaltyBonusOperationsRequest.php">LoyaltyBonusOperationsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-loyaltybonusoperationsresponse.html"><abbr title="src/Model/Response/Loyalty/LoyaltyBonusOperationsResponse.php">LoyaltyBonusOperationsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-loyaltybonusstatisticresponse.html"><abbr title="src/Model/Response/Loyalty/LoyaltyBonusStatisticResponse.php">LoyaltyBonusStatisticResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-loyalty-loyaltycalculaterequest.html"><abbr title="src/Model/Request/Loyalty/LoyaltyCalculateRequest.php">LoyaltyCalculateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-loyaltycalculateresponse.html"><abbr title="src/Model/Response/Loyalty/LoyaltyCalculateResponse.php">LoyaltyCalculateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-loyaltycalculation.html"><abbr title="src/Model/Entity/Loyalty/LoyaltyCalculation.php">LoyaltyCalculation.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-loyaltyeventdiscount.html"><abbr title="src/Model/Entity/Loyalty/LoyaltyEventDiscount.php">LoyaltyEventDiscount.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-loyaltylevel.html"><abbr title="src/Model/Entity/Loyalty/LoyaltyLevel.php">LoyaltyLevel.php</abbr></a></li>
+                            <li><a href="files/src-enum-loyalty-loyaltyleveltype.html"><abbr title="src/Enum/Loyalty/LoyaltyLevelType.php">LoyaltyLevelType.php</abbr></a></li>
+                            <li><a href="files/src-model-response-loyalty-loyaltyresponse.html"><abbr title="src/Model/Response/Loyalty/LoyaltyResponse.php">LoyaltyResponse.php</abbr></a></li>
+                        </ul>
+                                                        <h3>M</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-model-entity-customers-mgchannel.html"><abbr title="src/Model/Entity/Customers/MGChannel.php">MGChannel.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-mgchannel.html"><abbr title="src/Model/Entity/References/MGChannel.php">MGChannel.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-mgcustomer.html"><abbr title="src/Model/Entity/Customers/MGCustomer.php">MGCustomer.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-manager.html"><abbr title="src/Model/Callback/Entity/Delivery/Manager.php">Manager.php</abbr></a></li>
+                            <li><a href="files/src-model-response-telephony-managerresponse.html"><abbr title="src/Model/Response/Telephony/ManagerResponse.php">ManagerResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-marketplacedata.html"><abbr title="src/Model/Entity/Orders/MarketplaceData.php">MarketplaceData.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-maxdepth.html"><abbr title="src/Component/Serializer/Annotation/MaxDepth.php">MaxDepth.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-mgchannelsresponse.html"><abbr title="src/Model/Response/References/MgChannelsResponse.php">MgChannelsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-settings-mgordercreationsettings.html"><abbr title="src/Model/Entity/Settings/MgOrderCreationSettings.php">MgOrderCreationSettings.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-settings-mgsettings.html"><abbr title="src/Model/Entity/Settings/MgSettings.php">MgSettings.php</abbr></a></li>
+                            <li><a href="files/src-exception-api-missingcredentialsexception.html"><abbr title="src/Exception/Api/MissingCredentialsException.php">MissingCredentialsException.php</abbr></a></li>
+                            <li><a href="files/src-exception-api-missingparameterexception.html"><abbr title="src/Exception/Api/MissingParameterException.php">MissingParameterException.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-enum-recommendations-mode.html"><abbr title="src/Model/Callback/Enum/Recommendations/Mode.php">Mode.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-recommendation-mode.html"><abbr title="src/Model/Entity/Integration/Recommendation/Mode.php">Mode.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-modelschecksumgenerator.html"><abbr title="src/Component/Serializer/ModelsChecksumGenerator.php">ModelsChecksumGenerator.php</abbr></a></li>
+                            <li><a href="files/src-component-modelsgenerator.html"><abbr title="src/Component/ModelsGenerator.php">ModelsGenerator.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-payments-moduleapirequest.html"><abbr title="src/Model/Callback/Entity/Payments/ModuleApiRequest.php">ModuleApiRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-payments-modulerefund.html"><abbr title="src/Model/Callback/Entity/Payments/ModuleRefund.php">ModuleRefund.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-payments-modulerefund.html"><abbr title="src/Model/Entity/Payments/ModuleRefund.php">ModuleRefund.php</abbr></a></li>
+                        </ul>
+                                                        <h3>N</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-component-formdata-mapping-notransform.html"><abbr title="src/Component/FormData/Mapping/NoTransform.php">NoTransform.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-settings-nonworkingday.html"><abbr title="src/Model/Entity/Settings/NonWorkingDay.php">NonWorkingDay.php</abbr></a></li>
+                            <li><a href="files/src-exception-api-notfoundexception.html"><abbr title="src/Exception/Api/NotFoundException.php">NotFoundException.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-notifications-notification.html"><abbr title="src/Model/Entity/Notifications/Notification.php">Notification.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-notifications.html"><abbr title="src/ResourceGroup/Notifications.php">Notifications.php</abbr></a></li>
+                            <li><a href="files/src-model-request-notifications-notificationssendrequest.html"><abbr title="src/Model/Request/Notifications/NotificationsSendRequest.php">NotificationsSendRequest.php</abbr></a></li>
+                            <li><a href="files/src-enum-numericboolean.html"><abbr title="src/Enum/NumericBoolean.php">NumericBoolean.php</abbr></a></li>
+                        </ul>
+                                                        <h3>O</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-model-entity-orders-items-offer.html"><abbr title="src/Model/Entity/Orders/Items/Offer.php">Offer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-offer.html"><abbr title="src/Model/Entity/Store/Offer.php">Offer.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-store-offerfiltertype.html"><abbr title="src/Model/Filter/Store/OfferFilterType.php">OfferFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-offerprice.html"><abbr title="src/Model/Entity/Store/OfferPrice.php">OfferPrice.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-offerproduct.html"><abbr title="src/Model/Entity/Store/OfferProduct.php">OfferProduct.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-offersrequest.html"><abbr title="src/Model/Request/Store/OffersRequest.php">OffersRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-store-offersresponse.html"><abbr title="src/Model/Response/Store/OffersResponse.php">OffersResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-operation.html"><abbr title="src/Model/Entity/Loyalty/Operation.php">Operation.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-operationbonus.html"><abbr title="src/Model/Entity/Loyalty/OperationBonus.php">OperationBonus.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-operationevent.html"><abbr title="src/Model/Entity/Loyalty/OperationEvent.php">OperationEvent.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-operationorder.html"><abbr title="src/Model/Entity/Loyalty/OperationOrder.php">OperationOrder.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-order.html"><abbr title="src/Model/Entity/Orders/Order.php">Order.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-tasks-order.html"><abbr title="src/Model/Entity/Tasks/Order.php">Order.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-webanalytics-order.html"><abbr title="src/Model/Entity/WebAnalytics/Order.php">Order.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-ordercontragent.html"><abbr title="src/Model/Entity/Orders/OrderContragent.php">OrderContragent.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-store-orderdatamodel.html"><abbr title="src/Model/Callback/Entity/Store/OrderDataModel.php">OrderDataModel.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-delivery-orderdeliveryaddress.html"><abbr title="src/Model/Entity/Orders/Delivery/OrderDeliveryAddress.php">OrderDeliveryAddress.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-orderdeliverycancelrequest.html"><abbr title="src/Model/Request/Orders/OrderDeliveryCancelRequest.php">OrderDeliveryCancelRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-orders-orderfilter.html"><abbr title="src/Model/Filter/Orders/OrderFilter.php">OrderFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-orderhistory.html"><abbr title="src/Model/Entity/Orders/OrderHistory.php">OrderHistory.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-orders-orderhistoryfilterv4type.html"><abbr title="src/Model/Filter/Orders/OrderHistoryFilterV4Type.php">OrderHistoryFilterV4Type.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-orderlink.html"><abbr title="src/Model/Entity/Orders/OrderLink.php">OrderLink.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-orderloyaltyaccount.html"><abbr title="src/Model/Entity/Orders/OrderLoyaltyAccount.php">OrderLoyaltyAccount.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-orderloyaltycancelbonusoperationsrequest.html"><abbr title="src/Model/Request/Orders/OrderLoyaltyCancelBonusOperationsRequest.php">OrderLoyaltyCancelBonusOperationsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-ordermethod.html"><abbr title="src/Model/Entity/References/OrderMethod.php">OrderMethod.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-ordermethodseditrequest.html"><abbr title="src/Model/Request/References/OrderMethodsEditRequest.php">OrderMethodsEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-ordermethodsresponse.html"><abbr title="src/Model/Response/References/OrderMethodsResponse.php">OrderMethodsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-orderproduct.html"><abbr title="src/Model/Entity/Loyalty/OrderProduct.php">OrderProduct.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-items-orderproduct.html"><abbr title="src/Model/Entity/Orders/Items/OrderProduct.php">OrderProduct.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-packs-orderproductpack.html"><abbr title="src/Model/Entity/Packs/OrderProductPack.php">OrderProductPack.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-packs-orderproductpackfilter.html"><abbr title="src/Model/Filter/Packs/OrderProductPackFilter.php">OrderProductPackFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-packs-orderproductpackhistory.html"><abbr title="src/Model/Entity/Packs/OrderProductPackHistory.php">OrderProductPackHistory.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-packs-orderproductpackhistoryfiltertype.html"><abbr title="src/Model/Filter/Packs/OrderProductPackHistoryFilterType.php">OrderProductPackHistoryFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-orderproductpriceitem.html"><abbr title="src/Model/Entity/Loyalty/OrderProductPriceItem.php">OrderProductPriceItem.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-items-orderproductpriceitem.html"><abbr title="src/Model/Entity/Orders/Items/OrderProductPriceItem.php">OrderProductPriceItem.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-orderproductstatus.html"><abbr title="src/Model/Entity/References/OrderProductStatus.php">OrderProductStatus.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-orderstatusitem.html"><abbr title="src/Model/Entity/Orders/OrderStatusItem.php">OrderStatusItem.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-ordertype.html"><abbr title="src/Model/Entity/References/OrderType.php">OrderType.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-ordertypeseditrequest.html"><abbr title="src/Model/Request/References/OrderTypesEditRequest.php">OrderTypesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-ordertypesresponse.html"><abbr title="src/Model/Response/References/OrderTypesResponse.php">OrderTypesResponse.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-orders.html"><abbr title="src/ResourceGroup/Orders.php">Orders.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-orderscombinerequest.html"><abbr title="src/Model/Request/Orders/OrdersCombineRequest.php">OrdersCombineRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-orders-orderscombineresponse.html"><abbr title="src/Model/Response/Orders/OrdersCombineResponse.php">OrdersCombineResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-orderscreaterequest.html"><abbr title="src/Model/Request/Orders/OrdersCreateRequest.php">OrdersCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-orders-orderscreateresponse.html"><abbr title="src/Model/Response/Orders/OrdersCreateResponse.php">OrdersCreateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-orderseditrequest.html"><abbr title="src/Model/Request/Orders/OrdersEditRequest.php">OrdersEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-ordersfixexternalidsrequest.html"><abbr title="src/Model/Request/Orders/OrdersFixExternalIdsRequest.php">OrdersFixExternalIdsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-orders-ordersgetresponse.html"><abbr title="src/Model/Response/Orders/OrdersGetResponse.php">OrdersGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-ordershistoryrequest.html"><abbr title="src/Model/Request/Orders/OrdersHistoryRequest.php">OrdersHistoryRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-orders-ordershistoryresponse.html"><abbr title="src/Model/Response/Orders/OrdersHistoryResponse.php">OrdersHistoryResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-orderslinkscreaterequest.html"><abbr title="src/Model/Request/Orders/OrdersLinksCreateRequest.php">OrdersLinksCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-ordersloyaltyapplyrequest.html"><abbr title="src/Model/Request/Orders/OrdersLoyaltyApplyRequest.php">OrdersLoyaltyApplyRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-orders-ordersloyaltyapplyresponse.html"><abbr title="src/Model/Response/Orders/OrdersLoyaltyApplyResponse.php">OrdersLoyaltyApplyResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-orderspaymentscreaterequest.html"><abbr title="src/Model/Request/Orders/OrdersPaymentsCreateRequest.php">OrdersPaymentsCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-orderspaymentseditrequest.html"><abbr title="src/Model/Request/Orders/OrdersPaymentsEditRequest.php">OrdersPaymentsEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-ordersrequest.html"><abbr title="src/Model/Request/Orders/OrdersRequest.php">OrdersRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-orders-ordersresponse.html"><abbr title="src/Model/Response/Orders/OrdersResponse.php">OrdersResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-ordersstatusesrequest.html"><abbr title="src/Model/Request/Orders/OrdersStatusesRequest.php">OrdersStatusesRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-orders-ordersstatusesresponse.html"><abbr title="src/Model/Response/Orders/OrdersStatusesResponse.php">OrdersStatusesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-orders-ordersuploadrequest.html"><abbr title="src/Model/Request/Orders/OrdersUploadRequest.php">OrdersUploadRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-orders-ordersuploadresponse.html"><abbr title="src/Model/Response/Orders/OrdersUploadResponse.php">OrdersUploadResponse.php</abbr></a></li>
+                        </ul>
+                                                        <h3>P</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-model-callback-entity-store-packdatamodel.html"><abbr title="src/Model/Callback/Entity/Store/PackDataModel.php">PackDataModel.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-store-packitemmodel.html"><abbr title="src/Model/Callback/Entity/Store/PackItemModel.php">PackItemModel.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-package.html"><abbr title="src/Model/Callback/Entity/Delivery/Package.php">Package.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-delivery-package.html"><abbr title="src/Model/Entity/Orders/Delivery/Package.php">Package.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-packageitem.html"><abbr title="src/Model/Callback/Entity/Delivery/PackageItem.php">PackageItem.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-delivery-packageitem.html"><abbr title="src/Model/Entity/Orders/Delivery/PackageItem.php">PackageItem.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-delivery-packageitemorderproduct.html"><abbr title="src/Model/Entity/Orders/Delivery/PackageItemOrderProduct.php">PackageItemOrderProduct.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-packs.html"><abbr title="src/ResourceGroup/Packs.php">Packs.php</abbr></a></li>
+                            <li><a href="files/src-model-request-packs-packscreaterequest.html"><abbr title="src/Model/Request/Packs/PacksCreateRequest.php">PacksCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-packs-packsgetresponse.html"><abbr title="src/Model/Response/Packs/PacksGetResponse.php">PacksGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-packs-packshistoryrequest.html"><abbr title="src/Model/Request/Packs/PacksHistoryRequest.php">PacksHistoryRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-packs-packshistoryresponse.html"><abbr title="src/Model/Response/Packs/PacksHistoryResponse.php">PacksHistoryResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-packs-packsrequest.html"><abbr title="src/Model/Request/Packs/PacksRequest.php">PacksRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-packs-packsresponse.html"><abbr title="src/Model/Response/Packs/PacksResponse.php">PacksResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-webanalytics-page.html"><abbr title="src/Model/Entity/WebAnalytics/Page.php">Page.php</abbr></a></li>
+                            <li><a href="files/src-model-request-traits-pagelimittrait.html"><abbr title="src/Model/Request/Traits/PageLimitTrait.php">PageLimitTrait.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-pagination.html"><abbr title="src/Model/Entity/Pagination.php">Pagination.php</abbr></a></li>
+                            <li><a href="files/src-enum-paginationlimit.html"><abbr title="src/Enum/PaginationLimit.php">PaginationLimit.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-parser-jmscore-type-parser.html"><abbr title="src/Component/Serializer/Parser/JMSCore/Type/Parser.php">Parser.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-parser-jmscore-type-parserinterface.html"><abbr title="src/Component/Serializer/Parser/JMSCore/Type/ParserInterface.php">ParserInterface.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-payment.html"><abbr title="src/Model/Entity/Orders/Payment.php">Payment.php</abbr></a></li>
+                            <li><a href="files/src-model-request-payments-paymentcheckrequest.html"><abbr title="src/Model/Request/Payments/PaymentCheckRequest.php">PaymentCheckRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-payments-paymentcheckresponse.html"><abbr title="src/Model/Response/Payments/PaymentCheckResponse.php">PaymentCheckResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-payment-paymentconfiguration.html"><abbr title="src/Model/Entity/Integration/Payment/PaymentConfiguration.php">PaymentConfiguration.php</abbr></a></li>
+                            <li><a href="files/src-model-request-payments-paymentcreateinvoicerequest.html"><abbr title="src/Model/Request/Payments/PaymentCreateInvoiceRequest.php">PaymentCreateInvoiceRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-payments-paymentcreateinvoiceresponse.html"><abbr title="src/Model/Response/Payments/PaymentCreateInvoiceResponse.php">PaymentCreateInvoiceResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-payments-paymentcreateresponse.html"><abbr title="src/Model/Callback/Response/Payments/PaymentCreateResponse.php">PaymentCreateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-payments-paymentcreateresult.html"><abbr title="src/Model/Callback/Entity/Payments/PaymentCreateResult.php">PaymentCreateResult.php</abbr></a></li>
+                            <li><a href="files/src-model-response-payments-paymentgetinvoiceresponse.html"><abbr title="src/Model/Response/Payments/PaymentGetInvoiceResponse.php">PaymentGetInvoiceResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-payments-paymentimportinvoicerequest.html"><abbr title="src/Model/Request/Payments/PaymentImportInvoiceRequest.php">PaymentImportInvoiceRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-payments-paymentimportinvoiceresponse.html"><abbr title="src/Model/Response/Payments/PaymentImportInvoiceResponse.php">PaymentImportInvoiceResponse.php</abbr></a></li>
+                            <li><a href="files/src-enum-payments-paymentinvoicetype.html"><abbr title="src/Enum/Payments/PaymentInvoiceType.php">PaymentInvoiceType.php</abbr></a></li>
+                            <li><a href="files/src-enum-payments-paymentobjecttype.html"><abbr title="src/Enum/Payments/PaymentObjectType.php">PaymentObjectType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-payments-paymentrefund.html"><abbr title="src/Model/Entity/Payments/PaymentRefund.php">PaymentRefund.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-payments-paymentrefundresponse.html"><abbr title="src/Model/Callback/Response/Payments/PaymentRefundResponse.php">PaymentRefundResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-paymentstatus.html"><abbr title="src/Model/Entity/References/PaymentStatus.php">PaymentStatus.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-paymentstatuseseditrequest.html"><abbr title="src/Model/Request/References/PaymentStatusesEditRequest.php">PaymentStatusesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-paymentstatusesresponse.html"><abbr title="src/Model/Response/References/PaymentStatusesResponse.php">PaymentStatusesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-paymenttype.html"><abbr title="src/Model/Callback/Entity/Delivery/PaymentType.php">PaymentType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-delivery-paymenttype.html"><abbr title="src/Model/Entity/Integration/Delivery/PaymentType.php">PaymentType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-paymenttype.html"><abbr title="src/Model/Entity/References/PaymentType.php">PaymentType.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-paymenttypeseditrequest.html"><abbr title="src/Model/Request/References/PaymentTypesEditRequest.php">PaymentTypesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-paymenttypesresponse.html"><abbr title="src/Model/Response/References/PaymentTypesResponse.php">PaymentTypesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-payments-paymentupdateinvoicerequest.html"><abbr title="src/Model/Request/Payments/PaymentUpdateInvoiceRequest.php">PaymentUpdateInvoiceRequest.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-payments.html"><abbr title="src/ResourceGroup/Payments.php">Payments.php</abbr></a></li>
+                            <li><a href="files/src-component-phpfilesiterator.html"><abbr title="src/Component/PhpFilesIterator.php">PhpFilesIterator.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-delivery-plate.html"><abbr title="src/Model/Entity/Integration/Delivery/Plate.php">Plate.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-point.html"><abbr title="src/Model/Entity/References/Point.php">Point.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-mapping-postdeserialize.html"><abbr title="src/Component/FormData/Mapping/PostDeserialize.php">PostDeserialize.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-postdeserialize.html"><abbr title="src/Component/Serializer/Annotation/PostDeserialize.php">PostDeserialize.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-mapping-postserialize.html"><abbr title="src/Component/FormData/Mapping/PostSerialize.php">PostSerialize.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-postserialize.html"><abbr title="src/Component/Serializer/Annotation/PostSerialize.php">PostSerialize.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-preserialize.html"><abbr title="src/Component/Serializer/Annotation/PreSerialize.php">PreSerialize.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-pricetype.html"><abbr title="src/Model/Entity/Loyalty/PriceType.php">PriceType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-items-pricetype.html"><abbr title="src/Model/Entity/Orders/Items/PriceType.php">PriceType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-pricetype.html"><abbr title="src/Model/Entity/References/PriceType.php">PriceType.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-pricetypeseditrequest.html"><abbr title="src/Model/Request/References/PriceTypesEditRequest.php">PriceTypesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-pricetypesresponse.html"><abbr title="src/Model/Response/References/PriceTypesResponse.php">PriceTypesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-priceuploadinput.html"><abbr title="src/Model/Entity/Store/PriceUploadInput.php">PriceUploadInput.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-priceuploadnotfoundresponse.html"><abbr title="src/Model/Entity/Store/PriceUploadNotFoundResponse.php">PriceUploadNotFoundResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-priceuploadpricesinput.html"><abbr title="src/Model/Entity/Store/PriceUploadPricesInput.php">PriceUploadPricesInput.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-pricesuploadrequest.html"><abbr title="src/Model/Request/Store/PricesUploadRequest.php">PricesUploadRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-store-pricesuploadresponse.html"><abbr title="src/Model/Response/Store/PricesUploadResponse.php">PricesUploadResponse.php</abbr></a></li>
+                            <li><a href="files/src-enum-loyalty-privilegetype.html"><abbr title="src/Enum/Loyalty/PrivilegeType.php">PrivilegeType.php</abbr></a></li>
+                            <li><a href="files/src-enum-order-privilegetype.html"><abbr title="src/Enum/Order/PrivilegeType.php">PrivilegeType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-product.html"><abbr title="src/Model/Entity/Store/Product.php">Product.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-productbatchbase.html"><abbr title="src/Model/Entity/Store/ProductBatchBase.php">ProductBatchBase.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-productbatcheditrequest.html"><abbr title="src/Model/Request/Store/ProductBatchEditRequest.php">ProductBatchEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-store-productbatcheditresponse.html"><abbr title="src/Model/Response/Store/ProductBatchEditResponse.php">ProductBatchEditResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-productcreateinput.html"><abbr title="src/Model/Entity/Store/ProductCreateInput.php">ProductCreateInput.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-producteditgroupinput.html"><abbr title="src/Model/Entity/Store/ProductEditGroupInput.php">ProductEditGroupInput.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-producteditinput.html"><abbr title="src/Model/Entity/Store/ProductEditInput.php">ProductEditInput.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-producteditnotfoundresponse.html"><abbr title="src/Model/Entity/Store/ProductEditNotFoundResponse.php">ProductEditNotFoundResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-store-productfiltertype.html"><abbr title="src/Model/Filter/Store/ProductFilterType.php">ProductFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-productgroup.html"><abbr title="src/Model/Entity/Store/ProductGroup.php">ProductGroup.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-store-productgroupfiltertype.html"><abbr title="src/Model/Filter/Store/ProductGroupFilterType.php">ProductGroupFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-productgroupscreaterequest.html"><abbr title="src/Model/Request/Store/ProductGroupsCreateRequest.php">ProductGroupsCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-productgroupseditrequest.html"><abbr title="src/Model/Request/Store/ProductGroupsEditRequest.php">ProductGroupsEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-productgroupsrequest.html"><abbr title="src/Model/Request/Store/ProductGroupsRequest.php">ProductGroupsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-store-productgroupsresponse.html"><abbr title="src/Model/Response/Store/ProductGroupsResponse.php">ProductGroupsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-productoffer.html"><abbr title="src/Model/Entity/Store/ProductOffer.php">ProductOffer.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-store-productpropertiesfiltertype.html"><abbr title="src/Model/Filter/Store/ProductPropertiesFilterType.php">ProductPropertiesFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-productpropertiesrequest.html"><abbr title="src/Model/Request/Store/ProductPropertiesRequest.php">ProductPropertiesRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-store-productpropertiesresponse.html"><abbr title="src/Model/Response/Store/ProductPropertiesResponse.php">ProductPropertiesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-productpropertiessort.html"><abbr title="src/Model/Request/Store/ProductPropertiesSort.php">ProductPropertiesSort.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-productproperty.html"><abbr title="src/Model/Entity/Store/ProductProperty.php">ProductProperty.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-store-productproperty.html"><abbr title="src/Model/Filter/Store/ProductProperty.php">ProductProperty.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-productpropertygroup.html"><abbr title="src/Model/Entity/Store/ProductPropertyGroup.php">ProductPropertyGroup.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-store-productpropertygroup.html"><abbr title="src/Model/Filter/Store/ProductPropertyGroup.php">ProductPropertyGroup.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-productpropertyvalue.html"><abbr title="src/Model/Entity/Store/ProductPropertyValue.php">ProductPropertyValue.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-store-productpropertyvaluesfiltertype.html"><abbr title="src/Model/Filter/Store/ProductPropertyValuesFilterType.php">ProductPropertyValuesFilterType.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-productpropertyvaluesrequest.html"><abbr title="src/Model/Request/Store/ProductPropertyValuesRequest.php">ProductPropertyValuesRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-store-productpropertyvaluesresponse.html"><abbr title="src/Model/Response/Store/ProductPropertyValuesResponse.php">ProductPropertyValuesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-productstatuseseditrequest.html"><abbr title="src/Model/Request/References/ProductStatusesEditRequest.php">ProductStatusesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-productstatusesresponse.html"><abbr title="src/Model/Response/References/ProductStatusesResponse.php">ProductStatusesResponse.php</abbr></a></li>
+                            <li><a href="files/src-enum-product-producttype.html"><abbr title="src/Enum/Product/ProductType.php">ProductType.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-productsbatchcreaterequest.html"><abbr title="src/Model/Request/Store/ProductsBatchCreateRequest.php">ProductsBatchCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-store-productsbatchcreateresponse.html"><abbr title="src/Model/Response/Store/ProductsBatchCreateResponse.php">ProductsBatchCreateResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-store-productsrequest.html"><abbr title="src/Model/Request/Store/ProductsRequest.php">ProductsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-store-productsresponse.html"><abbr title="src/Model/Response/Store/ProductsResponse.php">ProductsResponse.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-propertyannotations.html"><abbr title="src/Component/FormData/PropertyAnnotations.php">PropertyAnnotations.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-type-propertytypemixed.html"><abbr title="src/Component/Serializer/Type/PropertyTypeMixed.php">PropertyTypeMixed.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-psrfactoriesawareinterface.html"><abbr title="src/Interfaces/PsrFactoriesAwareInterface.php">PsrFactoriesAwareInterface.php</abbr></a></li>
+                            <li><a href="files/src-traits-psrfactoriesawaretrait.html"><abbr title="src/Traits/PsrFactoriesAwareTrait.php">PsrFactoriesAwareTrait.php</abbr></a></li>
+                            <li><a href="files/src-handler-request-psrrequesthandler.html"><abbr title="src/Handler/Request/PsrRequestHandler.php">PsrRequestHandler.php</abbr></a></li>
+                        </ul>
+                                                                                        <h3>R</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-model-entity-integration-recommendation-recommendationconfiguration.html"><abbr title="src/Model/Entity/Integration/Recommendation/RecommendationConfiguration.php">RecommendationConfiguration.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-recommendation-recommendationresponse.html"><abbr title="src/Model/Callback/Response/Recommendation/RecommendationResponse.php">RecommendationResponse.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-generator-recursion.html"><abbr title="src/Component/Serializer/Generator/Recursion.php">Recursion.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-references.html"><abbr title="src/ResourceGroup/References.php">References.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-requestproperty-requestcalculate.html"><abbr title="src/Model/Callback/Entity/Delivery/RequestProperty/RequestCalculate.php">RequestCalculate.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-simpleconnection-requestproperty-requestconnectionregister.html"><abbr title="src/Model/Callback/Entity/SimpleConnection/RequestProperty/RequestConnectionRegister.php">RequestConnectionRegister.php</abbr></a></li>
+                            <li><a href="files/src-model-requestdata.html"><abbr title="src/Model/RequestData.php">RequestData.php</abbr></a></li>
+                            <li><a href="files/src-handler-request-requestdatahandler.html"><abbr title="src/Handler/Request/RequestDataHandler.php">RequestDataHandler.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-requestproperty-requestdelete.html"><abbr title="src/Model/Callback/Entity/Delivery/RequestProperty/RequestDelete.php">RequestDelete.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-requestinterface.html"><abbr title="src/Interfaces/RequestInterface.php">RequestInterface.php</abbr></a></li>
+                            <li><a href="files/src-enum-requestmethod.html"><abbr title="src/Enum/RequestMethod.php">RequestMethod.php</abbr></a></li>
+                            <li><a href="files/src-factory-requestpipelinefactory.html"><abbr title="src/Factory/RequestPipelineFactory.php">RequestPipelineFactory.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-requestproperty-requestprint.html"><abbr title="src/Model/Callback/Entity/Delivery/RequestProperty/RequestPrint.php">RequestPrint.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-requestproperty-requestsave.html"><abbr title="src/Model/Callback/Entity/Delivery/RequestProperty/RequestSave.php">RequestSave.php</abbr></a></li>
+                            <li><a href="files/src-component-requestsender.html"><abbr title="src/Component/RequestSender.php">RequestSender.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-requestsenderinterface.html"><abbr title="src/Interfaces/RequestSenderInterface.php">RequestSenderInterface.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-requestproperty-requestshipmentdelete.html"><abbr title="src/Model/Callback/Entity/Delivery/RequestProperty/RequestShipmentDelete.php">RequestShipmentDelete.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-requestproperty-requestshipmentsave.html"><abbr title="src/Model/Callback/Entity/Delivery/RequestProperty/RequestShipmentSave.php">RequestShipmentSave.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-delivery-requeststatusupdateitem.html"><abbr title="src/Model/Entity/Delivery/RequestStatusUpdateItem.php">RequestStatusUpdateItem.php</abbr></a></li>
+                            <li><a href="files/src-component-transformer-requesttransformer.html"><abbr title="src/Component/Transformer/RequestTransformer.php">RequestTransformer.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-requesttransformerinterface.html"><abbr title="src/Interfaces/RequestTransformerInterface.php">RequestTransformerInterface.php</abbr></a></li>
+                            <li><a href="files/src-component-simpleconnection-requestverifier.html"><abbr title="src/Component/SimpleConnection/RequestVerifier.php">RequestVerifier.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-requires.html"><abbr title="src/Model/Entity/Integration/Requires.php">Requires.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-store-reserveresponse.html"><abbr title="src/Model/Callback/Response/Store/ReserveResponse.php">ReserveResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-responseproperty-responseautocompleteitem.html"><abbr title="src/Model/Callback/Entity/Delivery/ResponseProperty/ResponseAutocompleteItem.php">ResponseAutocompleteItem.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-responseproperty-responsecalculate.html"><abbr title="src/Model/Callback/Entity/Delivery/ResponseProperty/ResponseCalculate.php">ResponseCalculate.php</abbr></a></li>
+                            <li><a href="files/src-model-responsedata.html"><abbr title="src/Model/ResponseData.php">ResponseData.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-responseinterface.html"><abbr title="src/Interfaces/ResponseInterface.php">ResponseInterface.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-responseproperty-responseloaddeliverydata.html"><abbr title="src/Model/Callback/Entity/Delivery/ResponseProperty/ResponseLoadDeliveryData.php">ResponseLoadDeliveryData.php</abbr></a></li>
+                            <li><a href="files/src-factory-responsepipelinefactory.html"><abbr title="src/Factory/ResponsePipelineFactory.php">ResponsePipelineFactory.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-responseproperty-responsesave.html"><abbr title="src/Model/Callback/Entity/Delivery/ResponseProperty/ResponseSave.php">ResponseSave.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-responseproperty-responseshipmentsave.html"><abbr title="src/Model/Callback/Entity/Delivery/ResponseProperty/ResponseShipmentSave.php">ResponseShipmentSave.php</abbr></a></li>
+                            <li><a href="files/src-component-transformer-responsetransformer.html"><abbr title="src/Component/Transformer/ResponseTransformer.php">ResponseTransformer.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-responsetransformerinterface.html"><abbr title="src/Interfaces/ResponseTransformerInterface.php">ResponseTransformerInterface.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-exception-runtimeexception.html"><abbr title="src/Component/Serializer/Exception/RuntimeException.php">RuntimeException.php</abbr></a></li>
+                        </ul>
+                                                        <h3>S</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-model-callback-entity-delivery-savedeliverydata.html"><abbr title="src/Model/Callback/Entity/Delivery/SaveDeliveryData.php">SaveDeliveryData.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-delivery-saveresponse.html"><abbr title="src/Model/Callback/Response/Delivery/SaveResponse.php">SaveResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-segment.html"><abbr title="src/Model/Entity/Customers/Segment.php">Segment.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-segments-segmentapifilter.html"><abbr title="src/Model/Filter/Segments/SegmentApiFilter.php">SegmentApiFilter.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-segments.html"><abbr title="src/ResourceGroup/Segments.php">Segments.php</abbr></a></li>
+                            <li><a href="files/src-model-request-segments-segmentsrequest.html"><abbr title="src/Model/Request/Segments/SegmentsRequest.php">SegmentsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-segments-segmentsresponse.html"><abbr title="src/Model/Response/Segments/SegmentsResponse.php">SegmentsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-telephony-serializedadditionalcodes.html"><abbr title="src/Model/Entity/Integration/Telephony/SerializedAdditionalCodes.php">SerializedAdditionalCodes.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-telephony-serializedcampaign.html"><abbr title="src/Model/Entity/Telephony/SerializedCampaign.php">SerializedCampaign.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-serializedcreateloyaltyaccount.html"><abbr title="src/Model/Entity/Loyalty/SerializedCreateLoyaltyAccount.php">SerializedCreateLoyaltyAccount.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customfields-serializedcustomdictionaryelement.html"><abbr title="src/Model/Entity/CustomFields/SerializedCustomDictionaryElement.php">SerializedCustomDictionaryElement.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-telephony-serializedcustomer.html"><abbr title="src/Model/Entity/Telephony/SerializedCustomer.php">SerializedCustomer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-serializedcustomerreference.html"><abbr title="src/Model/Entity/Customers/SerializedCustomerReference.php">SerializedCustomerReference.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-delivery-serializeddeliveryservice.html"><abbr title="src/Model/Entity/Orders/Delivery/SerializedDeliveryService.php">SerializedDeliveryService.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerscorporate-serializedentitycustomer.html"><abbr title="src/Model/Entity/CustomersCorporate/SerializedEntityCustomer.php">SerializedEntityCustomer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-delivery-serializedentityorder.html"><abbr title="src/Model/Entity/Delivery/SerializedEntityOrder.php">SerializedEntityOrder.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-telephony-serializedexternalphones.html"><abbr title="src/Model/Entity/Integration/Telephony/SerializedExternalPhones.php">SerializedExternalPhones.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-telephony-serializedlinks.html"><abbr title="src/Model/Entity/Telephony/SerializedLinks.php">SerializedLinks.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-serializedloyalty.html"><abbr title="src/Model/Entity/Loyalty/SerializedLoyalty.php">SerializedLoyalty.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-serializedloyaltyorder.html"><abbr title="src/Model/Entity/Loyalty/SerializedLoyaltyOrder.php">SerializedLoyaltyOrder.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-telephony-serializedmanager.html"><abbr title="src/Model/Entity/Telephony/SerializedManager.php">SerializedManager.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-mapping-serializedname.html"><abbr title="src/Component/FormData/Mapping/SerializedName.php">SerializedName.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-serializedname.html"><abbr title="src/Component/Serializer/Annotation/SerializedName.php">SerializedName.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-delivery-serializedorder.html"><abbr title="src/Model/Entity/Delivery/SerializedOrder.php">SerializedOrder.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-serializedorder.html"><abbr title="src/Model/Entity/Loyalty/SerializedOrder.php">SerializedOrder.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-delivery-serializedorderdelivery.html"><abbr title="src/Model/Entity/Delivery/SerializedOrderDelivery.php">SerializedOrderDelivery.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-serializedorderdelivery.html"><abbr title="src/Model/Entity/Loyalty/SerializedOrderDelivery.php">SerializedOrderDelivery.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-delivery-serializedorderdelivery.html"><abbr title="src/Model/Entity/Orders/Delivery/SerializedOrderDelivery.php">SerializedOrderDelivery.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-serializedorderlink.html"><abbr title="src/Model/Entity/Orders/SerializedOrderLink.php">SerializedOrderLink.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-delivery-serializedorderproduct.html"><abbr title="src/Model/Entity/Delivery/SerializedOrderProduct.php">SerializedOrderProduct.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-serializedorderproduct.html"><abbr title="src/Model/Entity/Loyalty/SerializedOrderProduct.php">SerializedOrderProduct.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-serializedorderproductoffer.html"><abbr title="src/Model/Entity/Loyalty/SerializedOrderProductOffer.php">SerializedOrderProductOffer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-serializedorderreference.html"><abbr title="src/Model/Entity/Orders/SerializedOrderReference.php">SerializedOrderReference.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-serializedpayment.html"><abbr title="src/Model/Entity/Orders/SerializedPayment.php">SerializedPayment.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-serializedproductgroup.html"><abbr title="src/Model/Entity/Store/SerializedProductGroup.php">SerializedProductGroup.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customerscorporate-serializedrelationabstractcustomer.html"><abbr title="src/Model/Entity/CustomersCorporate/SerializedRelationAbstractCustomer.php">SerializedRelationAbstractCustomer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-serializedrelationcustomer.html"><abbr title="src/Model/Entity/Orders/SerializedRelationCustomer.php">SerializedRelationCustomer.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-serializedstoreweekopeninghours.html"><abbr title="src/Model/Callback/Entity/Delivery/SerializedStoreWeekOpeningHours.php">SerializedStoreWeekOpeningHours.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-serializedunit.html"><abbr title="src/Model/Entity/References/SerializedUnit.php">SerializedUnit.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-telephony-serializedwebanalyticsdata.html"><abbr title="src/Model/Entity/Telephony/SerializedWebAnalyticsData.php">SerializedWebAnalyticsData.php</abbr></a></li>
+                            <li><a href="files/src-interfaces-serializerawareinterface.html"><abbr title="src/Interfaces/SerializerAwareInterface.php">SerializerAwareInterface.php</abbr></a></li>
+                            <li><a href="files/src-traits-serializerawaretrait.html"><abbr title="src/Traits/SerializerAwareTrait.php">SerializerAwareTrait.php</abbr></a></li>
+                            <li><a href="files/src-factory-serializerfactory.html"><abbr title="src/Factory/SerializerFactory.php">SerializerFactory.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-generator-serializergenerator.html"><abbr title="src/Component/Serializer/Generator/SerializerGenerator.php">SerializerGenerator.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-integration-settings.html"><abbr title="src/Model/Callback/Entity/Integration/Settings.php">Settings.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-delivery-settings.html"><abbr title="src/Model/Entity/Integration/Delivery/Settings.php">Settings.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-settings-settings.html"><abbr title="src/Model/Entity/Settings/Settings.php">Settings.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-settings.html"><abbr title="src/ResourceGroup/Settings.php">Settings.php</abbr></a></li>
+                            <li><a href="files/src-model-response-settings-settingsresponse.html"><abbr title="src/Model/Response/Settings/SettingsResponse.php">SettingsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-delivery-settingsstatus.html"><abbr title="src/Model/Entity/Integration/Delivery/SettingsStatus.php">SettingsStatus.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-shipmentorder.html"><abbr title="src/Model/Callback/Entity/Delivery/ShipmentOrder.php">ShipmentOrder.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-delivery-shipmentpoint.html"><abbr title="src/Model/Entity/Integration/Delivery/ShipmentPoint.php">ShipmentPoint.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-shipmentpointlist.html"><abbr title="src/Model/Callback/Entity/Delivery/ShipmentPointList.php">ShipmentPointList.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-delivery-shipmentpointlistresponse.html"><abbr title="src/Model/Callback/Response/Delivery/ShipmentPointListResponse.php">ShipmentPointListResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-delivery-shipmentsaveresponse.html"><abbr title="src/Model/Callback/Response/Delivery/ShipmentSaveResponse.php">ShipmentSaveResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-payment-shop.html"><abbr title="src/Model/Entity/Integration/Payment/Shop.php">Shop.php</abbr></a></li>
+                            <li><a href="files/src-factory-simpleclientfactory.html"><abbr title="src/Factory/SimpleClientFactory.php">SimpleClientFactory.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-strategy-encode-simpletypestrategy.html"><abbr title="src/Component/FormData/Strategy/Encode/SimpleTypeStrategy.php">SimpleTypeStrategy.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-since.html"><abbr title="src/Component/Serializer/Annotation/Since.php">Since.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-site.html"><abbr title="src/Model/Entity/References/Site.php">Site.php</abbr></a></li>
+                            <li><a href="files/src-enum-siteaccess.html"><abbr title="src/Enum/SiteAccess.php">SiteAccess.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-siteseditrequest.html"><abbr title="src/Model/Request/References/SitesEditRequest.php">SitesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-sitesresponse.html"><abbr title="src/Model/Response/References/SitesResponse.php">SitesResponse.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-skipwhenempty.html"><abbr title="src/Component/Serializer/Annotation/SkipWhenEmpty.php">SkipWhenEmpty.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-loyalty-smsverification.html"><abbr title="src/Model/Entity/Loyalty/SmsVerification.php">SmsVerification.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-verification-smsverification.html"><abbr title="src/Model/Entity/Verification/SmsVerification.php">SmsVerification.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-verification-smsverificationconfirm.html"><abbr title="src/Model/Entity/Verification/SmsVerificationConfirm.php">SmsVerificationConfirm.php</abbr></a></li>
+                            <li><a href="files/src-model-request-verification-smsverificationconfirmrequest.html"><abbr title="src/Model/Request/Verification/SmsVerificationConfirmRequest.php">SmsVerificationConfirmRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-verification-smsverificationconfirmresponse.html"><abbr title="src/Model/Response/Verification/SmsVerificationConfirmResponse.php">SmsVerificationConfirmResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-response-verification-smsverificationstatusresponse.html"><abbr title="src/Model/Response/Verification/SmsVerificationStatusResponse.php">SmsVerificationStatusResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-source.html"><abbr title="src/Model/Entity/Source.php">Source.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-webanalytics-source.html"><abbr title="src/Model/Entity/WebAnalytics/Source.php">Source.php</abbr></a></li>
+                            <li><a href="files/src-model-request-webanalytics-sourcesuploadrequest.html"><abbr title="src/Model/Request/WebAnalytics/SourcesUploadRequest.php">SourcesUploadRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-webanalytics-sourcesuploadresponse.html"><abbr title="src/Model/Response/WebAnalytics/SourcesUploadResponse.php">SourcesUploadResponse.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-statistics.html"><abbr title="src/ResourceGroup/Statistics.php">Statistics.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-delivery-status.html"><abbr title="src/Model/Entity/Integration/Delivery/Status.php">Status.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-status.html"><abbr title="src/Model/Entity/References/Status.php">Status.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-statusgroup.html"><abbr title="src/Model/Entity/References/StatusGroup.php">StatusGroup.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-statusgroupsresponse.html"><abbr title="src/Model/Response/References/StatusGroupsResponse.php">StatusGroupsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-delivery-statusinfo.html"><abbr title="src/Model/Entity/Delivery/StatusInfo.php">StatusInfo.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-statuseseditrequest.html"><abbr title="src/Model/Request/References/StatusesEditRequest.php">StatusesEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-statusesresponse.html"><abbr title="src/Model/Response/References/StatusesResponse.php">StatusesResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-store.html"><abbr title="src/Model/Callback/Entity/Delivery/Store.php">Store.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-store.html"><abbr title="src/Model/Entity/References/Store.php">Store.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-store.html"><abbr title="src/ResourceGroup/Store.php">Store.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-storeaddress.html"><abbr title="src/Model/Entity/References/StoreAddress.php">StoreAddress.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-store-storeconfiguration.html"><abbr title="src/Model/Entity/Integration/Store/StoreConfiguration.php">StoreConfiguration.php</abbr></a></li>
+                            <li><a href="files/src-enum-reference-storeinventorytype.html"><abbr title="src/Enum/Reference/StoreInventoryType.php">StoreInventoryType.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-store-storeoffer.html"><abbr title="src/Model/Entity/Store/StoreOffer.php">StoreOffer.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-references-storephone.html"><abbr title="src/Model/Entity/References/StorePhone.php">StorePhone.php</abbr></a></li>
+                            <li><a href="files/src-enum-reference-storetype.html"><abbr title="src/Enum/Reference/StoreType.php">StoreType.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-storeworktime.html"><abbr title="src/Model/Callback/Entity/Delivery/StoreWorkTime.php">StoreWorkTime.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-storeseditrequest.html"><abbr title="src/Model/Request/References/StoresEditRequest.php">StoresEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-storesresponse.html"><abbr title="src/Model/Response/References/StoresResponse.php">StoresResponse.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-strategy-strategyfactory.html"><abbr title="src/Component/FormData/Strategy/StrategyFactory.php">StrategyFactory.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-strategy-encode-streaminterfacestrategy.html"><abbr title="src/Component/FormData/Strategy/Encode/StreamInterfaceStrategy.php">StreamInterfaceStrategy.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-subscription.html"><abbr title="src/Model/Entity/Customers/Subscription.php">Subscription.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-customers-subscriptioncategory.html"><abbr title="src/Model/Entity/Customers/SubscriptionCategory.php">SubscriptionCategory.php</abbr></a></li>
+                            <li><a href="files/src-event-successrequestevent.html"><abbr title="src/Event/SuccessRequestEvent.php">SuccessRequestEvent.php</abbr></a></li>
+                            <li><a href="files/src-model-response-successresponse.html"><abbr title="src/Model/Response/SuccessResponse.php">SuccessResponse.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-exception-syntaxerror.html"><abbr title="src/Component/Serializer/Exception/SyntaxError.php">SyntaxError.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-parser-jmscore-type-exception-syntaxerror.html"><abbr title="src/Component/Serializer/Parser/JMSCore/Type/Exception/SyntaxError.php">SyntaxError.php</abbr></a></li>
+                            <li><a href="files/src-model-response-api-systeminforesponse.html"><abbr title="src/Model/Response/Api/SystemInfoResponse.php">SystemInfoResponse.php</abbr></a></li>
+                        </ul>
+                                                        <h3>T</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-model-callback-entity-delivery-tariff.html"><abbr title="src/Model/Callback/Entity/Delivery/Tariff.php">Tariff.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-response-delivery-tarifflistresponse.html"><abbr title="src/Model/Callback/Response/Delivery/TariffListResponse.php">TariffListResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-tasks-task.html"><abbr title="src/Model/Entity/Tasks/Task.php">Task.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-tasks-taskcomment.html"><abbr title="src/Model/Entity/Tasks/TaskComment.php">TaskComment.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-tasks-taskfilter.html"><abbr title="src/Model/Filter/Tasks/TaskFilter.php">TaskFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-request-tasks-taskgetcommentsrequest.html"><abbr title="src/Model/Request/Tasks/TaskGetCommentsRequest.php">TaskGetCommentsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-tasks-taskgetcommentsresponse.html"><abbr title="src/Model/Response/Tasks/TaskGetCommentsResponse.php">TaskGetCommentsResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-tasks-taskhistory.html"><abbr title="src/Model/Entity/Tasks/TaskHistory.php">TaskHistory.php</abbr></a></li>
+                            <li><a href="files/src-model-filter-tasks-taskhistoryfilter.html"><abbr title="src/Model/Filter/Tasks/TaskHistoryFilter.php">TaskHistoryFilter.php</abbr></a></li>
+                            <li><a href="files/src-model-request-tasks-taskhistoryrequest.html"><abbr title="src/Model/Request/Tasks/TaskHistoryRequest.php">TaskHistoryRequest.php</abbr></a></li>
+                            <li><a href="files/src-enum-tasks-taskstatus.html"><abbr title="src/Enum/Tasks/TaskStatus.php">TaskStatus.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-tasks.html"><abbr title="src/ResourceGroup/Tasks.php">Tasks.php</abbr></a></li>
+                            <li><a href="files/src-enum-customers-taskscountsstatus.html"><abbr title="src/Enum/Customers/TasksCountsStatus.php">TasksCountsStatus.php</abbr></a></li>
+                            <li><a href="files/src-model-request-tasks-taskscreaterequest.html"><abbr title="src/Model/Request/Tasks/TasksCreateRequest.php">TasksCreateRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-tasks-tasksgetresponse.html"><abbr title="src/Model/Response/Tasks/TasksGetResponse.php">TasksGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-response-tasks-taskshistoryresponse.html"><abbr title="src/Model/Response/Tasks/TasksHistoryResponse.php">TasksHistoryResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-tasks-tasksrequest.html"><abbr title="src/Model/Request/Tasks/TasksRequest.php">TasksRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-tasks-tasksresponse.html"><abbr title="src/Model/Response/Tasks/TasksResponse.php">TasksResponse.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-telephony.html"><abbr title="src/ResourceGroup/Telephony.php">Telephony.php</abbr></a></li>
+                            <li><a href="files/src-model-request-telephony-telephonycalleventrequest.html"><abbr title="src/Model/Request/Telephony/TelephonyCallEventRequest.php">TelephonyCallEventRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-request-telephony-telephonycallsuploadrequest.html"><abbr title="src/Model/Request/Telephony/TelephonyCallsUploadRequest.php">TelephonyCallsUploadRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-telephony-telephonyconfiguration.html"><abbr title="src/Model/Entity/Integration/Telephony/TelephonyConfiguration.php">TelephonyConfiguration.php</abbr></a></li>
+                            <li><a href="files/src-model-request-telephony-telephonymanagerrequest.html"><abbr title="src/Model/Request/Telephony/TelephonyManagerRequest.php">TelephonyManagerRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-callback-entity-delivery-terminal.html"><abbr title="src/Model/Callback/Entity/Delivery/Terminal.php">Terminal.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-delivery-timeinterval.html"><abbr title="src/Model/Entity/Delivery/TimeInterval.php">TimeInterval.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-parser-jmscore-type-token.html"><abbr title="src/Component/Serializer/Parser/JMSCore/Type/Token.php">Token.php</abbr></a></li>
+                            <li><a href="files/src-component-simpleconnection-tokencreator.html"><abbr title="src/Component/SimpleConnection/TokenCreator.php">TokenCreator.php</abbr></a></li>
+                            <li><a href="files/src-model-request-delivery-trackingrequest.html"><abbr title="src/Model/Request/Delivery/TrackingRequest.php">TrackingRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-integration-transport-transportconfiguration.html"><abbr title="src/Model/Entity/Integration/Transport/TransportConfiguration.php">TransportConfiguration.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-mapping-type.html"><abbr title="src/Component/FormData/Mapping/Type.php">Type.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-type.html"><abbr title="src/Component/Serializer/Annotation/Type.php">Type.php</abbr></a></li>
+                            <li><a href="files/src-component-formdata-strategy-encode-typedarraystrategy.html"><abbr title="src/Component/FormData/Strategy/Encode/TypedArrayStrategy.php">TypedArrayStrategy.php</abbr></a></li>
+                        </ul>
+                                                        <h3>U</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-model-callback-entity-delivery-unit.html"><abbr title="src/Model/Callback/Entity/Delivery/Unit.php">Unit.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-orders-items-unit.html"><abbr title="src/Model/Entity/Orders/Items/Unit.php">Unit.php</abbr></a></li>
+                            <li><a href="files/src-model-request-references-unitseditrequest.html"><abbr title="src/Model/Request/References/UnitsEditRequest.php">UnitsEditRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-references-unitsresponse.html"><abbr title="src/Model/Response/References/UnitsResponse.php">UnitsResponse.php</abbr></a></li>
+                            <li><a href="files/src-handler-response-unmarshalresponsehandler.html"><abbr title="src/Handler/Response/UnmarshalResponseHandler.php">UnmarshalResponseHandler.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-until.html"><abbr title="src/Component/Serializer/Annotation/Until.php">Until.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-users-user.html"><abbr title="src/Model/Entity/Users/User.php">User.php</abbr></a></li>
+                            <li><a href="files/src-model-request-users-usergroupsrequest.html"><abbr title="src/Model/Request/Users/UserGroupsRequest.php">UserGroupsRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-users-usergroupsresponse.html"><abbr title="src/Model/Response/Users/UserGroupsResponse.php">UserGroupsResponse.php</abbr></a></li>
+                            <li><a href="files/src-enum-users-userstatus.html"><abbr title="src/Enum/Users/UserStatus.php">UserStatus.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-users.html"><abbr title="src/ResourceGroup/Users.php">Users.php</abbr></a></li>
+                            <li><a href="files/src-model-response-users-usersgetresponse.html"><abbr title="src/Model/Response/Users/UsersGetResponse.php">UsersGetResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-users-usersrequest.html"><abbr title="src/Model/Request/Users/UsersRequest.php">UsersRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-users-usersresponse.html"><abbr title="src/Model/Response/Users/UsersResponse.php">UsersResponse.php</abbr></a></li>
+                            <li><a href="files/src-model-request-users-usersstatusrequest.html"><abbr title="src/Model/Request/Users/UsersStatusRequest.php">UsersStatusRequest.php</abbr></a></li>
+                            <li><a href="files/src-component-utils.html"><abbr title="src/Component/Utils.php">Utils.php</abbr></a></li>
+                        </ul>
+                                                        <h3>V</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-exception-api-validationexception.html"><abbr title="src/Exception/Api/ValidationException.php">ValidationException.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-settings-value.html"><abbr title="src/Model/Entity/Settings/Value.php">Value.php</abbr></a></li>
+                            <li><a href="files/src-resourcegroup-verification.html"><abbr title="src/ResourceGroup/Verification.php">Verification.php</abbr></a></li>
+                            <li><a href="files/src-command-verifymodelscommand.html"><abbr title="src/Command/VerifyModelsCommand.php">VerifyModelsCommand.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-version.html"><abbr title="src/Component/Serializer/Annotation/Version.php">Version.php</abbr></a></li>
+                            <li><a href="files/src-component-serializer-annotation-virtualproperty.html"><abbr title="src/Component/Serializer/Annotation/VirtualProperty.php">VirtualProperty.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-webanalytics-visit.html"><abbr title="src/Model/Entity/WebAnalytics/Visit.php">Visit.php</abbr></a></li>
+                            <li><a href="files/src-model-request-webanalytics-visitsuploadrequest.html"><abbr title="src/Model/Request/WebAnalytics/VisitsUploadRequest.php">VisitsUploadRequest.php</abbr></a></li>
+                            <li><a href="files/src-model-response-webanalytics-visitsuploadresponse.html"><abbr title="src/Model/Response/WebAnalytics/VisitsUploadResponse.php">VisitsUploadResponse.php</abbr></a></li>
+                        </ul>
+                                                        <h3>W</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-resourcegroup-webanalytics.html"><abbr title="src/ResourceGroup/WebAnalytics.php">WebAnalytics.php</abbr></a></li>
+                            <li><a href="files/src-model-entity-settings-worktime.html"><abbr title="src/Model/Entity/Settings/WorkTime.php">WorkTime.php</abbr></a></li>
+                        </ul>
+                                                                                        <h3>Y</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-enum-yesno.html"><abbr title="src/Enum/YesNo.php">YesNo.php</abbr></a></li>
+                        </ul>
+                                                        </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+    <section class="phpdocumentor-search-results__dialog">
+        <header class="phpdocumentor-search-results__header">
+            <h2 class="phpdocumentor-search-results__title">Search results</h2>
+            <button class="phpdocumentor-search-results__close"><i class="fas fa-times"></i></button>
+        </header>
+        <section class="phpdocumentor-search-results__body">
+            <ul class="phpdocumentor-search-results__entries"></ul>
+        </section>
+    </section>
+</section>
+        </div>
+        <a href="indices/files.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+
+    </main>
+
+    <script>
+        cssVars({});
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+</body>
+</html>
