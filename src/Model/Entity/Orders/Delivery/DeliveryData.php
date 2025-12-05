@@ -83,7 +83,7 @@ class DeliveryData
     /**
      * @var DateTime
      *
-     * @JMS\Type("DateTime<'Y-m-d'>")
+     * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
      * @JMS\SerializedName("statusDate")
      */
     public $statusDate;
