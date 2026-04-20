@@ -42,4 +42,12 @@ class EmbedJsConfiguration
      * @JMS\SerializedName("targets")
      */
     public $targets;
+
+    /**
+     * @var string|null
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("runner")
+     */
+    public $runner;
 }
