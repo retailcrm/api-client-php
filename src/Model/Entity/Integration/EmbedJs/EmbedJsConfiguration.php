@@ -50,4 +50,12 @@ class EmbedJsConfiguration
      * @JMS\SerializedName("runner")
      */
     public $runner;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Integration\EmbedJs\EmbedJsPage[]
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Integration\EmbedJs\EmbedJsPage>")
+     * @JMS\SerializedName("pages")
+     */
+    public $pages;
 }

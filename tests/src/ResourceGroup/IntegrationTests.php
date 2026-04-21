@@ -14,6 +14,9 @@ use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Integration\Delivery\DeliveryConfiguration;
 use RetailCrm\Api\Model\Entity\Integration\Delivery\Plate;
 use RetailCrm\Api\Model\Entity\Integration\Delivery\Status;
+use RetailCrm\Api\Model\Entity\Integration\EmbedJs\EmbedJsConfiguration;
+use RetailCrm\Api\Model\Entity\Integration\EmbedJs\EmbedJsPage;
+use RetailCrm\Api\Model\Entity\Integration\EmbedJs\EmbedJsTranslation;
 use RetailCrm\Api\Model\Entity\Integration\IntegrationModule;
 use RetailCrm\Api\Model\Entity\Integration\Integrations;
 use RetailCrm\Api\Model\Entity\Integration\Payment\Actions;
@@ -156,6 +159,96 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->integration->edit('test-payment-integration', $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testEmbedJsEdit(): void
+    {
+        $json = <<<'EOF'
+{
+    "success": true,
+    "info": []
+}
+EOF;
+        $menuItemTitle = new EmbedJsTranslation();
+        $menuItemTitle->en = 'Orders';
+        $menuItemTitle->es = 'Pedidos';
+        $menuItemTitle->ru = 'Заказы';
+
+        $pageHelpLink = new EmbedJsTranslation();
+        $pageHelpLink->en = 'https://example.com/help/en';
+        $pageHelpLink->es = 'https://example.com/help/es';
+        $pageHelpLink->ru = 'https://example.com/help/ru';
+
+        $page = new EmbedJsPage();
+        $page->code = 'orders-page';
+        $page->menu = 'orders';
+        $page->parentMenuItemCode = 'orders';
+        $page->menuItemOrdering = 100;
+        $page->menuItemTitle = $menuItemTitle;
+        $page->pageHelpLink = $pageHelpLink;
+
+        $module = new IntegrationModule();
+        $module->integrations = new Integrations();
+        $module->integrations->embedJs = new EmbedJsConfiguration();
+
+        $module->code = 'test-embedjs-integration';
+        $module->clientId = 'test-embedjs-integration';
+        $module->integrationCode = 'test-embedjs-integration';
+        $module->active = true;
+        $module->freeze = false;
+        $module->name = 'Test EmbedJs Integration';
+        $module->logo = 'https://example.com/logo.svg';
+        $module->native = true;
+        $module->baseUrl = 'https://example.com';
+        $module->actions = ['activity' => '/activity'];
+        $module->availableCountries = ['RU', 'US'];
+        $module->accountUrl = 'https://example.com/account';
+        $module->integrations->embedJs->entrypoint = 'https://example.com/embed.js';
+        $module->integrations->embedJs->stylesheet = 'https://example.com/embed.css';
+        $module->integrations->embedJs->targets = ['order_card', 'customer_card'];
+        $module->integrations->embedJs->runner = 'worker';
+        $module->integrations->embedJs->pages = [$page];
+
+        $request = new IntegrationModulesEditRequest($module);
+
+        $body = static::encodeFormArray($request);
+        $integrationModule = json_decode($body['integrationModule'], true, 512, JSON_THROW_ON_ERROR);
+
+        self::assertSame([
+            'entrypoint' => 'https://example.com/embed.js',
+            'stylesheet' => 'https://example.com/embed.css',
+            'targets' => ['order_card', 'customer_card'],
+            'runner' => 'worker',
+            'pages' => [
+                [
+                    'code' => 'orders-page',
+                    'menu' => 'orders',
+                    'parentMenuItemCode' => 'orders',
+                    'menuItemOrdering' => 100,
+                    'menuItemTitle' => [
+                        'en' => 'Orders',
+                        'es' => 'Pedidos',
+                        'ru' => 'Заказы',
+                    ],
+                    'pageHelpLink' => [
+                        'en' => 'https://example.com/help/en',
+                        'es' => 'https://example.com/help/es',
+                        'ru' => 'https://example.com/help/ru',
+                    ],
+                ],
+            ],
+        ], $integrationModule['integrations']['embedJs']);
+
+        $mock = static::createApiMockBuilder('integration-modules/test-embedjs-integration/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(static::encodeForm($request))
+            ->reply(200)
+            ->withBody($json);
+
+        $client   = TestClientFactory::createClient($mock->getClient());
+        $response = $client->integration->edit('test-embedjs-integration', $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
