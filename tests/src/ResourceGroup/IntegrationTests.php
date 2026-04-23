@@ -188,6 +188,7 @@ EOF;
         $page->menuItemOrdering = 100;
         $page->menuItemTitle = $menuItemTitle;
         $page->pageHelpLink = $pageHelpLink;
+        $page->isSettingsMainPage = true;
 
         $module = new IntegrationModule();
         $module->integrations = new Integrations();
@@ -237,6 +238,7 @@ EOF;
                         'es' => 'https://example.com/help/es',
                         'ru' => 'https://example.com/help/ru',
                     ],
+                    'isSettingsMainPage' => true,
                 ],
             ],
         ], $integrationModule['integrations']['embedJs']);

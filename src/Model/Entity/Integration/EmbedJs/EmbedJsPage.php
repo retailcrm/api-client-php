@@ -66,4 +66,12 @@ class EmbedJsPage
      * @JMS\SerializedName("pageHelpLink")
      */
     public $pageHelpLink;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("isSettingsMainPage")
+     */
+    public $isSettingsMainPage;
 }
