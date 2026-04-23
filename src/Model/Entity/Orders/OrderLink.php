@@ -31,7 +31,7 @@ class OrderLink
     /**
      * @var \RetailCrm\Api\Model\Entity\Orders\LinkedOrder
      *
-     * @JMS\Type("array<RetailCrm\Api\Model\Entity\Delivery\SerializedEntityOrder>")
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Orders\LinkedOrder")
      * @JMS\SerializedName("order")
      */
     public $order;
