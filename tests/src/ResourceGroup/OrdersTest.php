@@ -8487,6 +8487,17 @@ EOF;
         "paidAt": "2020-12-29 17:35:12"
       }
     },
+    "links": [
+      {
+        "comment": "Related order",
+        "order": {
+          "id": 8170,
+          "number": "8123522898559161",
+          "externalId": "8123522898559161"
+        },
+        "createdAt": "2026-01-11 18:24:52"
+      }
+    ],
     "fromApi": true,
     "shipmentStore": "main12",
     "shipped": false,
