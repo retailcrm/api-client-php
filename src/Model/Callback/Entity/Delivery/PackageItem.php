@@ -108,6 +108,14 @@ class PackageItem
     public $markingCodes;
 
     /**
+     * @var \RetailCrm\Api\Model\Entity\MarkingObject[]
+     *
+     * @JMS\Type("array<RetailCrm\Api\Model\Entity\MarkingObject>")
+     * @JMS\SerializedName("markingObjects")
+     */
+    public $markingObjects;
+
+    /**
      * @var array<string, mixed>
      *
      * @JMS\Type("array")

@@ -20,6 +20,7 @@ use RetailCrm\Api\Enum\Order\DiscountType;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Entity\Delivery\SerializedEntityOrder;
 use RetailCrm\Api\Model\Entity\FixExternalRow;
+use RetailCrm\Api\Model\Entity\MarkingObject;
 use RetailCrm\Api\Model\Entity\Orders\Delivery\OrderDeliveryAddress;
 use RetailCrm\Api\Model\Entity\Orders\Delivery\SerializedOrderDelivery;
 use RetailCrm\Api\Model\Entity\Orders\Items\AbstractDiscount;
@@ -832,7 +833,12 @@ EOF;
     "statusComment": "Assembling order",
     "items": [
       {
-        "markingCodes": [],
+        "markingObjects": [
+          {
+            "code": "1234567890123456",
+            "provider": "giis_dmdk"
+          }
+        ],
         "id": 11308,
         "priceType": {
           "code": "base"
@@ -904,6 +910,7 @@ EOF;
         $deliveryAddress = new OrderDeliveryAddress();
         $offer           = new Offer();
         $item            = new OrderProduct();
+        $markingObject   = new MarkingObject();
 
         $payment->type   = 'bank-card';
         $payment->status = 'paid';
@@ -932,6 +939,10 @@ EOF;
         $item->quantity      = 1;
         $item->purchasePrice = 60;
         $item->discounts     = [new AbstractDiscount(DiscountType::MANUAL_PRODUCT, 1)];
+
+        $markingObject->code     = '1234567890123456';
+        $markingObject->provider = 'giis_dmdk';
+        $item->markingObjects    = [$markingObject];
 
         $order->delivery      = $delivery;
         $order->items         = [$item];
@@ -963,6 +974,20 @@ EOF;
 
         $request->order = $order;
         $request->site  = 'moysklad';
+
+        $encodedRequest = static::encodeFormArray($request);
+        $encodedOrder   = json_decode($encodedRequest['order'], true, 512, JSON_THROW_ON_ERROR);
+
+        self::assertSame(
+            [
+                [
+                    'code' => '1234567890123456',
+                    'provider' => 'giis_dmdk',
+                ],
+            ],
+            $encodedOrder['items'][0]['markingObjects']
+        );
+        self::assertArrayNotHasKey('markingCodes', $encodedOrder['items'][0]);
 
         $mock = static::createApiMockBuilder('orders/create');
         $mock->matchMethod(RequestMethod::POST)
