@@ -833,6 +833,7 @@ EOF;
     "statusComment": "Assembling order",
     "items": [
       {
+        "markingCodes": [],
         "markingObjects": [
           {
             "code": "1234567890123456",
