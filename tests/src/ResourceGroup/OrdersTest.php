@@ -967,6 +967,7 @@ EOF;
         $order->shipmentStore = 'main12';
         $order->shipmentDate  = (new DateTime())->add(new DateInterval('P7D'));
         $order->shipped       = false;
+        $order->loyaltyEventDiscountId = 7;
         $order->customFields  = [
             "galka" => false,
             "test_number" => 0,
@@ -988,6 +989,7 @@ EOF;
             ],
             $encodedOrder['items'][0]['markingObjects']
         );
+        self::assertSame(7, $encodedOrder['loyaltyEventDiscountId']);
         self::assertArrayNotHasKey('markingCodes', $encodedOrder['items'][0]);
 
         $mock = static::createApiMockBuilder('orders/create');

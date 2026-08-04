@@ -201,6 +201,14 @@ class Order
     public $loyaltyLevel;
 
     /**
+     * @var int
+     *
+     * @JMS\Type("int")
+     * @JMS\SerializedName("loyaltyEventDiscountId")
+     */
+    public $loyaltyEventDiscountId;
+
+    /**
      * @var \RetailCrm\Api\Model\Entity\Loyalty\LoyaltyEventDiscount
      *
      * @JMS\Type("RetailCrm\Api\Model\Entity\Loyalty\LoyaltyEventDiscount")
