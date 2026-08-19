@@ -26,6 +26,7 @@ use RetailCrm\Api\Model\Request\References\ProductStatusesEditRequest;
 use RetailCrm\Api\Model\Request\References\SitesEditRequest;
 use RetailCrm\Api\Model\Request\References\StatusesEditRequest;
 use RetailCrm\Api\Model\Request\References\StoresEditRequest;
+use RetailCrm\Api\Model\Request\References\SubscriptionsEditRequest;
 use RetailCrm\Api\Model\Request\References\UnitsEditRequest;
 use RetailCrm\Api\Model\Response\IdResponse;
 use RetailCrm\Api\Model\Response\References\CostGroupsResponse;
@@ -2162,6 +2163,74 @@ class References extends AbstractApiResourceGroup
             'reference/stores/' . $code . '/edit',
             $request,
             SuccessResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes POST "/api/v5/reference/subscriptions/{channel}/{code}/edit" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     * use RetailCrm\Api\Model\Entity\Customers\SubscriptionCategory;
+     * use RetailCrm\Api\Model\Request\References\SubscriptionsEditRequest;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * $entity                = new SubscriptionCategory();
+     * $entity->name          = 'Новости';
+     * $entity->active        = true;
+     * $entity->autoSubscribe = false;
+     * $entity->ordering      = 10;
+     *
+     * try {
+     *     $response = $client->references->subscriptionsEdit(
+     *         'email',
+     *         'news',
+     *         new SubscriptionsEditRequest($entity)
+     *     );
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Created subscription category with ID: ' . $response->id;
+     * ```
+     *
+     * @param string                                                           $channel
+     * @param string                                                           $code
+     * @param \RetailCrm\Api\Model\Request\References\SubscriptionsEditRequest $request
+     *
+     * @return \RetailCrm\Api\Model\Response\IdResponse
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     */
+    public function subscriptionsEdit(string $channel, string $code, SubscriptionsEditRequest $request): IdResponse
+    {
+        /** @var IdResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::POST,
+            'reference/subscriptions/' . $channel . '/' . $code . '/edit',
+            $request,
+            IdResponse::class
         );
         return $response;
     }

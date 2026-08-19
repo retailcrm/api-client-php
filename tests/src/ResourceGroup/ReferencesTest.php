@@ -15,6 +15,7 @@ use RetailCrm\Api\Enum\Reference\StoreType;
 use RetailCrm\Api\Enum\RequestMethod;
 use RetailCrm\Api\Model\Callback\Entity\Delivery\SerializedStoreWeekOpeningHours;
 use RetailCrm\Api\Model\Callback\Entity\Delivery\StoreWorkTime;
+use RetailCrm\Api\Model\Entity\Customers\SubscriptionCategory;
 use RetailCrm\Api\Model\Entity\Orders\Delivery\CourierPhone;
 use RetailCrm\Api\Model\Entity\References\CostGroup;
 use RetailCrm\Api\Model\Entity\References\CostItem;
@@ -51,6 +52,7 @@ use RetailCrm\Api\Model\Request\References\ProductStatusesEditRequest;
 use RetailCrm\Api\Model\Request\References\SitesEditRequest;
 use RetailCrm\Api\Model\Request\References\StatusesEditRequest;
 use RetailCrm\Api\Model\Request\References\StoresEditRequest;
+use RetailCrm\Api\Model\Request\References\SubscriptionsEditRequest;
 use RetailCrm\Api\Model\Request\References\UnitsEditRequest;
 use RetailCrm\TestUtils\Factory\TestClientFactory;
 use RetailCrm\TestUtils\TestCase\AbstractApiResourceGroupTestCase;
@@ -3708,6 +3710,35 @@ EOF;
 
         $client   = TestClientFactory::createClient($mock->getClient());
         $response = $client->references->storesEdit('test', $request);
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function testSubscriptionsEdit(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "id": 18
+}
+EOF;
+
+        $entity = new SubscriptionCategory();
+        $entity->name = 'Новости';
+        $entity->active = true;
+        $entity->autoSubscribe = false;
+        $entity->ordering = 10;
+
+        $request = new SubscriptionsEditRequest($entity);
+
+        $mock = static::createApiMockBuilder('reference/subscriptions/email/news/edit');
+        $mock->matchMethod(RequestMethod::POST)
+            ->matchBody(self::encodeForm($request))
+            ->reply(201)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->references->subscriptionsEdit('email', 'news', $request);
 
         self::assertModelEqualsToResponse($json, $response);
     }
