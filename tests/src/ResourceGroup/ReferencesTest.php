@@ -3730,10 +3730,17 @@ EOF;
         $entity->ordering = 10;
 
         $request = new SubscriptionsEditRequest($entity);
+        $expectedEntity = new SubscriptionCategory();
+        $expectedEntity->channel = 'email';
+        $expectedEntity->name = 'Новости';
+        $expectedEntity->active = true;
+        $expectedEntity->autoSubscribe = false;
+        $expectedEntity->ordering = 10;
+        $expectedRequest = new SubscriptionsEditRequest($expectedEntity);
 
         $mock = static::createApiMockBuilder('reference/subscriptions/email/news/edit');
         $mock->matchMethod(RequestMethod::POST)
-            ->matchBody(self::encodeForm($request))
+            ->matchBody(self::encodeForm($expectedRequest))
             ->reply(201)
             ->withBody($json);
 

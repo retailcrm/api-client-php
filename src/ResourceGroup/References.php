@@ -2180,6 +2180,7 @@ class References extends AbstractApiResourceGroup
      * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
      *
      * $entity                = new SubscriptionCategory();
+     * $entity->channel       = 'email';
      * $entity->name          = 'Новости';
      * $entity->active        = true;
      * $entity->autoSubscribe = false;
@@ -2225,6 +2226,10 @@ class References extends AbstractApiResourceGroup
      */
     public function subscriptionsEdit(string $channel, string $code, SubscriptionsEditRequest $request): IdResponse
     {
+        if (null !== $request->subscription) {
+            $request->subscription->channel = $channel;
+        }
+
         /** @var IdResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
