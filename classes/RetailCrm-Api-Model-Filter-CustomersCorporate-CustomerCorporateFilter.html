@@ -1,0 +1,3158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+            <title>RetailCRM API Client</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../">
+    <link rel="icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/base.css">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/template.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-okaidia.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
+                <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
+        <script src="js/search.js"></script>
+        <script defer src="js/searchIndex.js"></script>
+    </head>
+<body id="top">
+    <header class="phpdocumentor-header phpdocumentor-section">
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">RetailCRM API Client</a></h1>
+    <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
+    <label class="phpdocumentor-header__menu-icon" for="menu-button">
+        <i class="fas fa-bars"></i>
+    </label>
+    <section data-search-form class="phpdocumentor-search">
+    <label>
+        <span class="visually-hidden">Search for</span>
+        <svg class="phpdocumentor-search__icon" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="2"/>
+            <line x1="12.4892" y1="12.2727" x2="19.1559" y2="18.9393" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+    </label>
+</section>
+
+    <nav class="phpdocumentor-topnav">
+    <ul class="phpdocumentor-topnav__menu">
+        </ul>
+</nav>
+</header>
+
+    <main class="phpdocumentor">
+        <div class="phpdocumentor-section">
+            <input class="phpdocumentor-sidebar__menu-button" type="checkbox" id="sidebar-button" name="sidebar-button" />
+<label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
+    Menu
+</label>
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category">
+            <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/retailcrm.html" class="">RetailCrm</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/retailcrm-api.html" class="">Api</a>
+                
+            </li>
+            </ul>
+
+                        </section>
+                <section class="phpdocumentor-sidebar__category">
+            <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/RetailCrm.html" class="">RetailCrm</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/RetailCrm-Api.html" class="">Api</a>
+                
+            </li>
+            </ul>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Application.html" class="">Application</a>
+</h4>
+
+                        </section>
+            
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
+    </section>
+
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
+    </section>
+</aside>
+
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/retailcrm.html">RetailCrm</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/retailcrm-api.html">Api</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/retailcrm-api-model.html">Model</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/retailcrm-api-model-filter.html">Filter</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/retailcrm-api-model-filter-customerscorporate.html">CustomersCorporate</a></li>
+    </ul>
+
+    <article class="phpdocumentor-element -class">
+        <h2 class="phpdocumentor-content__title">
+    CustomerCorporateFilter
+
+    
+            <div class="phpdocumentor-element__package">
+            in package
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/RetailCrm.html">RetailCrm</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/RetailCrm-Api.html">Api</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/RetailCrm-Api-Model.html">Model</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/RetailCrm-Api-Model-Filter.html">Filter</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/RetailCrm-Api-Model-Filter-CustomersCorporate.html">CustomersCorporate</a></li>
+                            </ul>
+        </div>
+    
+    
+    </h2>
+
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">23</span>
+
+    </aside>
+
+            <p class="phpdocumentor-summary">Class CustomerCorporateFilter</p>
+
+
+
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">category</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>CustomerCorporateFilter</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">SuppressWarnings</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(PHPMD.TooManyFields)</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">SuppressWarnings</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(PHPMD.LongVariable)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+
+
+<h3 id="toc">
+    Table of Contents
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h3>
+
+
+
+
+
+
+
+
+
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_addressName">$addressName</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_attachments">$attachments</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_bad">$bad</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_city">$city</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_classSegment">$classSegment</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_companyName">$companyName</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contactIds">$contactIds</a>
+    <span>
+                        &nbsp;: array&lt;string|int, int&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contactName">$contactName</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentBankAccount">$contragentBankAccount</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentBik">$contragentBik</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentCorrAccount">$contragentCorrAccount</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentInn">$contragentInn</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentKpp">$contragentKpp</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentName">$contragentName</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentTypes">$contragentTypes</a>
+    <span>
+                        &nbsp;: array&lt;string|int, string&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_customFields">$customFields</a>
+    <span>
+                        &nbsp;: array&lt;string, mixed&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_dateFrom">$dateFrom</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_dateTo">$dateTo</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_discountCardNumber">$discountCardNumber</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_email">$email</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_externalIds">$externalIds</a>
+    <span>
+                        &nbsp;: array&lt;string|int, string&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_firstOrderFrom">$firstOrderFrom</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_firstOrderTo">$firstOrderTo</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_ids">$ids</a>
+    <span>
+                        &nbsp;: array&lt;string|int, int&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_lastOrderFrom">$lastOrderFrom</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_lastOrderTo">$lastOrderTo</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_managerGroups">$managerGroups</a>
+    <span>
+                        &nbsp;: array&lt;string|int, string&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_managers">$managers</a>
+    <span>
+                        &nbsp;: array&lt;string|int, int&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxAverageSumm">$maxAverageSumm</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxCostSumm">$maxCostSumm</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxOrdersCount">$maxOrdersCount</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxTotalSumm">$maxTotalSumm</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minAverageSumm">$minAverageSumm</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minCostSumm">$minCostSumm</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minOrdersCount">$minOrdersCount</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minTotalSumm">$minTotalSumm</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_name">$name</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_nickName">$nickName</a>
+    <span>
+                        &nbsp;: array&lt;string|int, string&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_notes">$notes</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_region">$region</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_sites">$sites</a>
+    <span>
+                        &nbsp;: array&lt;string|int, string&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_tasksCounts">$tasksCounts</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_vip">$vip</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+    </dl>
+
+
+
+
+
+        
+
+        
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_addressName">
+        $addressName
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_addressName" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">47</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$addressName</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_addressName#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;addressName&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_attachments">
+        $attachments
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_attachments" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">223</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$attachments</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_attachments#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;attachments&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_bad">
+        $bad
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_bad" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">255</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$bad</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_bad#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;bad&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_city">
+        $city
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_city" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">127</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$city</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_city#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;city&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_classSegment">
+        $classSegment
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_classSegment" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">207</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$classSegment</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_classSegment#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;classSegment&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_companyName">
+        $companyName
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_companyName" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">359</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$companyName</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_companyName#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;companyName&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_contactIds">
+        $contactIds
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contactIds" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">351</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, int&gt;</span>
+    <span class="phpdocumentor-signature__name">$contactIds</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contactIds#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;int[]&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;contactIds&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_contactName">
+        $contactName
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contactName" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">39</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$contactName</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contactName#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;contactName&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_contragentBankAccount">
+        $contragentBankAccount
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentBankAccount" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">95</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$contragentBankAccount</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentBankAccount#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;contragentBankAccount&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_contragentBik">
+        $contragentBik
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentBik" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">79</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$contragentBik</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentBik#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;contragentBik&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_contragentCorrAccount">
+        $contragentCorrAccount
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentCorrAccount" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">87</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$contragentCorrAccount</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentCorrAccount#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;contragentCorrAccount&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_contragentInn">
+        $contragentInn
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentInn" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">63</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$contragentInn</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentInn#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;contragentInn&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_contragentKpp">
+        $contragentKpp
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentKpp" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">71</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$contragentKpp</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentKpp#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;contragentKpp&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_contragentName">
+        $contragentName
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentName" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">55</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$contragentName</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentName#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;contragentName&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_contragentTypes">
+        $contragentTypes
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentTypes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">103</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
+    <span class="phpdocumentor-signature__name">$contragentTypes</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentTypes#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string[]&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;contragentTypes&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_customFields">
+        $customFields
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_customFields" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">367</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$customFields</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_customFields#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;array&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;customFields&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_dateFrom">
+        $dateFrom
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_dateFrom" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">303</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$dateFrom</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_dateFrom#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;dateFrom&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_dateTo">
+        $dateTo
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_dateTo" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">311</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$dateTo</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_dateTo#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;dateTo&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_discountCardNumber">
+        $discountCardNumber
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_discountCardNumber" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">215</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$discountCardNumber</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_discountCardNumber#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;discountCardNumber&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_email">
+        $email
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_email" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">143</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$email</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_email#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;email&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_externalIds">
+        $externalIds
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_externalIds" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">111</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
+    <span class="phpdocumentor-signature__name">$externalIds</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_externalIds#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string[]&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;externalIds&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_firstOrderFrom">
+        $firstOrderFrom
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_firstOrderFrom" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">319</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$firstOrderFrom</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_firstOrderFrom#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;firstOrderFrom&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_firstOrderTo">
+        $firstOrderTo
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_firstOrderTo" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">327</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$firstOrderTo</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_firstOrderTo#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;firstOrderTo&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_ids">
+        $ids
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_ids" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">271</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, int&gt;</span>
+    <span class="phpdocumentor-signature__name">$ids</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_ids#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;int[]&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;ids&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_lastOrderFrom">
+        $lastOrderFrom
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_lastOrderFrom" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">335</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$lastOrderFrom</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_lastOrderFrom#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;lastOrderFrom&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_lastOrderTo">
+        $lastOrderTo
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_lastOrderTo" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">343</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$lastOrderTo</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_lastOrderTo#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;lastOrderTo&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_managerGroups">
+        $managerGroups
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_managerGroups" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">295</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
+    <span class="phpdocumentor-signature__name">$managerGroups</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_managerGroups#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string[]&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;managerGroups&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_managers">
+        $managers
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_managers" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">287</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, int&gt;</span>
+    <span class="phpdocumentor-signature__name">$managers</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_managers#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;int[]&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;managers&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_maxAverageSumm">
+        $maxAverageSumm
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxAverageSumm" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">183</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$maxAverageSumm</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxAverageSumm#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;maxAverageSumm&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_maxCostSumm">
+        $maxCostSumm
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxCostSumm" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">239</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$maxCostSumm</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxCostSumm#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;maxCostSumm&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_maxOrdersCount">
+        $maxOrdersCount
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxOrdersCount" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">167</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$maxOrdersCount</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxOrdersCount#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;maxOrdersCount&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_maxTotalSumm">
+        $maxTotalSumm
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxTotalSumm" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">199</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$maxTotalSumm</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxTotalSumm#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;maxTotalSumm&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_minAverageSumm">
+        $minAverageSumm
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minAverageSumm" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">175</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$minAverageSumm</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minAverageSumm#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;minAverageSumm&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_minCostSumm">
+        $minCostSumm
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minCostSumm" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">231</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$minCostSumm</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minCostSumm#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;minCostSumm&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_minOrdersCount">
+        $minOrdersCount
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minOrdersCount" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">159</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$minOrdersCount</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minOrdersCount#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;minOrdersCount&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_minTotalSumm">
+        $minTotalSumm
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minTotalSumm" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">191</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$minTotalSumm</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minTotalSumm#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;minTotalSumm&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_name">
+        $name
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_name" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">119</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$name</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_name#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;name&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_nickName">
+        $nickName
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_nickName" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">31</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
+    <span class="phpdocumentor-signature__name">$nickName</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_nickName#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string[]&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;nickName&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_notes">
+        $notes
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_notes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">151</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$notes</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_notes#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;notes&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_region">
+        $region
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_region" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">135</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$region</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_region#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;region&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_sites">
+        $sites
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_sites" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">279</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
+    <span class="phpdocumentor-signature__name">$sites</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_sites#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string[]&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;sites&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_tasksCounts">
+        $tasksCounts
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_tasksCounts" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">263</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$tasksCounts</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_tasksCounts#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;tasksCounts&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_vip">
+        $vip
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_vip" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php"><a href="files/src-model-filter-customerscorporate-customercorporatefilter.html"><abbr title="src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php">CustomerCorporateFilter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">247</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$vip</span>
+    </code>
+
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_vip#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\Type</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;string&quot;)</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">Form\SerializedName</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(&quot;vip&quot;)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+</article>
+            </section>
+
+        
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Model/Filter/CustomersCorporate/CustomerCorporateFilter.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
+
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
+
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('GET', src, true);
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+                            Prism.highlightElement(code);
+                            return;
+                        }
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
+                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
+                    }
+                    modal.classList.add("phpdocumentor-modal__open");
+
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
+                    });
+                });
+            });
+        })();
+    </script>
+
+    </article>
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                                            <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#toc-properties">Properties</a></li>
+                                                        </ul>
+            </li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_addressName">$addressName<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_attachments">$attachments<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_bad">$bad<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_city">$city<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_classSegment">$classSegment<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_companyName">$companyName<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contactIds">$contactIds<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contactName">$contactName<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentBankAccount">$contragentBankAccount<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentBik">$contragentBik<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentCorrAccount">$contragentCorrAccount<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentInn">$contragentInn<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentKpp">$contragentKpp<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentName">$contragentName<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_contragentTypes">$contragentTypes<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_customFields">$customFields<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_dateFrom">$dateFrom<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_dateTo">$dateTo<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_discountCardNumber">$discountCardNumber<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_email">$email<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_externalIds">$externalIds<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_firstOrderFrom">$firstOrderFrom<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_firstOrderTo">$firstOrderTo<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_ids">$ids<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_lastOrderFrom">$lastOrderFrom<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_lastOrderTo">$lastOrderTo<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_managerGroups">$managerGroups<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_managers">$managers<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxAverageSumm">$maxAverageSumm<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxCostSumm">$maxCostSumm<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxOrdersCount">$maxOrdersCount<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_maxTotalSumm">$maxTotalSumm<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minAverageSumm">$minAverageSumm<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minCostSumm">$minCostSumm<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minOrdersCount">$minOrdersCount<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_minTotalSumm">$minTotalSumm<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_name">$name<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_nickName">$nickName<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_notes">$notes<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_region">$region<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_sites">$sites<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_tasksCounts">$tasksCounts<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                                    <li><a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#property_vip">$vip<a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html"></li>
+                                            </ul>
+                </li>
+            
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+    <section class="phpdocumentor-search-results__dialog">
+        <header class="phpdocumentor-search-results__header">
+            <h2 class="phpdocumentor-search-results__title">Search results</h2>
+            <button class="phpdocumentor-search-results__close"><i class="fas fa-times"></i></button>
+        </header>
+        <section class="phpdocumentor-search-results__body">
+            <ul class="phpdocumentor-search-results__entries"></ul>
+        </section>
+    </section>
+</section>
+        </div>
+        <a href="classes/RetailCrm-Api-Model-Filter-CustomersCorporate-CustomerCorporateFilter.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+
+    </main>
+
+    <script>
+        cssVars({});
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+</body>
+</html>
