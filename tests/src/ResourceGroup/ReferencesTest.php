@@ -3714,6 +3714,45 @@ EOF;
         self::assertModelEqualsToResponse($json, $response);
     }
 
+    public function testSubscriptions(): void
+    {
+        $json = <<<'EOF'
+{
+  "success": true,
+  "subscriptions": [
+    {
+      "id": 2,
+      "channel": "email",
+      "name": "Без тематики",
+      "code": "default_marketing",
+      "active": true,
+      "autoSubscribe": true,
+      "ordering": 1
+    },
+    {
+      "id": 4,
+      "channel": "waba",
+      "name": "Новости",
+      "code": "news",
+      "active": true,
+      "autoSubscribe": false,
+      "ordering": 10
+    }
+  ]
+}
+EOF;
+
+        $mock = static::createApiMockBuilder('reference/subscriptions');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->references->subscriptions();
+
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
     public function testSubscriptionsEdit(): void
     {
         $json = <<<'EOF'

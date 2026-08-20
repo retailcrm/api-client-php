@@ -48,6 +48,7 @@ use RetailCrm\Api\Model\Response\References\SitesResponse;
 use RetailCrm\Api\Model\Response\References\StatusesResponse;
 use RetailCrm\Api\Model\Response\References\StatusGroupsResponse;
 use RetailCrm\Api\Model\Response\References\StoresResponse;
+use RetailCrm\Api\Model\Response\References\SubscriptionsResponse;
 use RetailCrm\Api\Model\Response\References\UnitsResponse;
 use RetailCrm\Api\Model\Response\SuccessResponse;
 
@@ -2163,6 +2164,58 @@ class References extends AbstractApiResourceGroup
             'reference/stores/' . $code . '/edit',
             $request,
             SuccessResponse::class
+        );
+        return $response;
+    }
+
+    /**
+     * Makes GET "/api/v5/reference/subscriptions" request.
+     *
+     * Example:
+     * ```php
+     * use RetailCrm\Api\Factory\SimpleClientFactory;
+     * use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+     *
+     * $client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+     *
+     * try {
+     *     $response = $client->references->subscriptions();
+     * } catch (ApiExceptionInterface $exception) {
+     *     echo sprintf(
+     *         'Error from RetailCRM API (status code: %d): %s',
+     *         $exception->getStatusCode(),
+     *         $exception->getMessage()
+     *     );
+     *
+     *     if (count($exception->getErrorResponse()->errors) > 0) {
+     *         echo PHP_EOL . 'Errors: ' . implode(', ', $exception->getErrorResponse()->errors);
+     *     }
+     *
+     *     return;
+     * }
+     *
+     * echo 'Subscriptions: ' . print_r($response->subscriptions, true);
+     * ```
+     *
+     * @return \RetailCrm\Api\Model\Response\References\SubscriptionsResponse
+     * @throws \RetailCrm\Api\Interfaces\ApiExceptionInterface
+     * @throws \RetailCrm\Api\Interfaces\ClientExceptionInterface
+     * @throws \RetailCrm\Api\Exception\Api\AccountDoesNotExistException
+     * @throws \RetailCrm\Api\Exception\Api\ApiErrorException
+     * @throws \RetailCrm\Api\Exception\Api\MissingCredentialsException
+     * @throws \RetailCrm\Api\Exception\Api\MissingParameterException
+     * @throws \RetailCrm\Api\Exception\Api\ValidationException
+     * @throws \RetailCrm\Api\Exception\Client\HandlerException
+     * @throws \RetailCrm\Api\Exception\Client\HttpClientException
+     */
+    public function subscriptions(): SubscriptionsResponse
+    {
+        /** @var SubscriptionsResponse $response */
+        $response = $this->sendRequest(
+            RequestMethod::GET,
+            'reference/subscriptions',
+            null,
+            SubscriptionsResponse::class
         );
         return $response;
     }
