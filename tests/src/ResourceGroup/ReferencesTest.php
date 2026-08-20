@@ -3787,6 +3787,7 @@ EOF;
         $response = $client->references->subscriptionsEdit('email', 'news', $request);
 
         self::assertModelEqualsToResponse($json, $response);
+        self::assertNull($request->subscription->channel);
     }
 
     public function testUnits(): void

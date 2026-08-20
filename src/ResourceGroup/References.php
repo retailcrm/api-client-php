@@ -2279,15 +2279,19 @@ class References extends AbstractApiResourceGroup
      */
     public function subscriptionsEdit(string $channel, string $code, SubscriptionsEditRequest $request): IdResponse
     {
+        $sendRequest = $request;
+
         if (null !== $request->subscription) {
-            $request->subscription->channel = $channel;
+            $subscription = clone $request->subscription;
+            $subscription->channel = $channel;
+            $sendRequest = new SubscriptionsEditRequest($subscription);
         }
 
         /** @var IdResponse $response */
         $response = $this->sendRequest(
             RequestMethod::POST,
             'reference/subscriptions/' . $channel . '/' . $code . '/edit',
-            $request,
+            $sendRequest,
             IdResponse::class
         );
         return $response;
