@@ -111,6 +111,14 @@ class Loyalty
     public $confirmSmsRegistration;
 
     /**
+     * @var bool
+     *
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("promoChargeAllowed")
+     */
+    public $promoChargeAllowed;
+
+    /**
      * @var int
      *
      * @JMS\Type("int")
