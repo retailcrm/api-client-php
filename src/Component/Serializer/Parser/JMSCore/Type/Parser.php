@@ -77,10 +77,18 @@ final class Parser implements ParserInterface
             $this->lexer->moveNext();
 
             while (true) {
-                if (is_array($this->lexer->token)) {
-                    $this->token = Token::fromArray($this->lexer->token);
+                // Doctrine Lexer 1.x uses arrays; newer versions use token objects.
+                /** @var array<string, int|string>|object|null $token */
+                $token = $this->lexer->token;
+
+                if (null === $token) {
+                    throw new SyntaxError('Syntax error, unexpected end of stream');
+                }
+
+                if (is_array($token)) {
+                    $this->token = Token::fromArray($token);
                 } else {
-                    $this->token = Token::fromObject($this->lexer->token);
+                    $this->token = Token::fromObject($token);
                 }
 
                 if ("" === $this->token->value) {
