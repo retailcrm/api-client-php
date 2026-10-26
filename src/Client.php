@@ -18,6 +18,7 @@ use RetailCrm\Api\Interfaces\RequestTransformerInterface;
 use RetailCrm\Api\Interfaces\ResponseTransformerInterface;
 use RetailCrm\Api\ResourceGroup\Api;
 use RetailCrm\Api\ResourceGroup\Costs;
+use RetailCrm\Api\ResourceGroup\KnowledgeBase;
 use RetailCrm\Api\ResourceGroup\CustomerInteraction;
 use RetailCrm\Api\ResourceGroup\Customers;
 use RetailCrm\Api\ResourceGroup\CustomersCorporate;
@@ -64,6 +65,9 @@ class Client
 
     /** @var \RetailCrm\Api\ResourceGroup\Costs */
     public $costs;
+
+    /** @var \RetailCrm\Api\ResourceGroup\KnowledgeBase */
+    public $knowledgeBase;
 
     /** @var \RetailCrm\Api\ResourceGroup\CustomFields */
     public $customFields;
@@ -176,6 +180,14 @@ class Client
             $logger
         );
         $this->costs = new Costs(
+            $url,
+            $httpClient,
+            $requestTransformer,
+            $responseTransformer,
+            $eventDispatcher,
+            $logger
+        );
+        $this->knowledgeBase = new KnowledgeBase(
             $url,
             $httpClient,
             $requestTransformer,
