@@ -14,6 +14,8 @@ use RetailCrm\Api\Component\Serializer\Annotation as JMS;
 /**
  * Class Attachment
  *
+ * @SuppressWarnings(PHPMD.LongVariable)
+ *
  * @category Attachment
  * @package  RetailCrm\Api\Model\Entity\Files
  */
@@ -34,4 +36,12 @@ class Attachment
      * @JMS\SerializedName("order")
      */
     public $order;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Files\AttachmentKnowledgeBaseDocument
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Files\AttachmentKnowledgeBaseDocument")
+     * @JMS\SerializedName("knowledgeBaseDocument")
+     */
+    public $knowledgeBaseDocument;
 }

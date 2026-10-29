@@ -27,6 +27,7 @@ The resource groups list into which client is separated:
 * `features`
 * `files`
 * `integration`
+* [`knowledgeBase`](usage/knowledge-base.md)
 * `loyalty`
 * `notifications`
 * `orders`
