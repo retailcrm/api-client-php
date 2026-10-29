@@ -1,0 +1,2428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+            <title>RetailCRM API Client</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../">
+    <link rel="icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/base.css">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/template.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-okaidia.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
+                <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
+        <script src="js/search.js"></script>
+        <script defer src="js/searchIndex.js"></script>
+    </head>
+<body id="top">
+    <header class="phpdocumentor-header phpdocumentor-section">
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">RetailCRM API Client</a></h1>
+    <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
+    <label class="phpdocumentor-header__menu-icon" for="menu-button">
+        <i class="fas fa-bars"></i>
+    </label>
+    <section data-search-form class="phpdocumentor-search">
+    <label>
+        <span class="visually-hidden">Search for</span>
+        <svg class="phpdocumentor-search__icon" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="2"/>
+            <line x1="12.4892" y1="12.2727" x2="19.1559" y2="18.9393" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+    </label>
+</section>
+
+    <nav class="phpdocumentor-topnav">
+    <ul class="phpdocumentor-topnav__menu">
+        </ul>
+</nav>
+</header>
+
+    <main class="phpdocumentor">
+        <div class="phpdocumentor-section">
+            <input class="phpdocumentor-sidebar__menu-button" type="checkbox" id="sidebar-button" name="sidebar-button" />
+<label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
+    Menu
+</label>
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category">
+            <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/retailcrm.html" class="">RetailCrm</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/retailcrm-api.html" class="">Api</a>
+                
+            </li>
+            </ul>
+
+                        </section>
+                <section class="phpdocumentor-sidebar__category">
+            <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/RetailCrm.html" class="">RetailCrm</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/RetailCrm-Api.html" class="">Api</a>
+                
+            </li>
+            </ul>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Application.html" class="">Application</a>
+</h4>
+
+                        </section>
+            
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
+    </section>
+
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
+    </section>
+</aside>
+
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/retailcrm.html">RetailCrm</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/retailcrm-api.html">Api</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/retailcrm-api-resourcegroup.html">ResourceGroup</a></li>
+    </ul>
+
+    <article class="phpdocumentor-element -class">
+        <h2 class="phpdocumentor-content__title">
+    Customers
+
+        <span class="phpdocumentor-element__extends">
+        extends <abbr title="\RetailCrm\Api\ResourceGroup\AbstractApiResourceGroup">AbstractApiResourceGroup</abbr>
+    </span>
+    
+            <div class="phpdocumentor-element__package">
+            in package
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/RetailCrm.html">RetailCrm</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/RetailCrm-Api.html">Api</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/RetailCrm-Api-ResourceGroup.html">ResourceGroup</a></li>
+                            </ul>
+        </div>
+    
+    
+    </h2>
+
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">41</span>
+
+    </aside>
+
+            <p class="phpdocumentor-summary">Class Customers</p>
+
+
+
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">category</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>Customers</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">SuppressWarnings</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(PHPMD.CouplingBetweenObjects)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+
+
+<h3 id="toc">
+    Table of Contents
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h3>
+
+
+
+
+
+
+
+
+
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_combine">combine()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a>    </span>
+</dt>
+<dd>Makes POST &quot;/api/v5/customers/combine&quot; request.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_create">create()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-IdResponse.html"><abbr title="\RetailCrm\Api\Model\Response\IdResponse">IdResponse</abbr></a>    </span>
+</dt>
+<dd>Makes POST &quot;/api/v5/customers/create&quot; request.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_edit">edit()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersEditResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersEditResponse">CustomersEditResponse</abbr></a>    </span>
+</dt>
+<dd>Makes POST &quot;/api/v5/customers/{externalId}/edit&quot; request.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_fixExternalIds">fixExternalIds()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a>    </span>
+</dt>
+<dd>Makes POST &quot;/api/v5/customers/fix-external-ids&quot; request.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_get">get()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersGetResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersGetResponse">CustomersGetResponse</abbr></a>    </span>
+</dt>
+<dd>Makes GET &quot;/api/v5/customers/{externalId}&quot; request.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_history">history()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersHistoryResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersHistoryResponse">CustomersHistoryResponse</abbr></a>    </span>
+</dt>
+<dd>Makes GET &quot;/api/v5/customers/history&quot; request.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_list">list()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersResponse">CustomersResponse</abbr></a>    </span>
+</dt>
+<dd>Makes GET &quot;/api/v5/customers&quot; request.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notes">notes()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-Customers-CustomerNotesResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomerNotesResponse">CustomerNotesResponse</abbr></a>    </span>
+</dt>
+<dd>Makes GET &quot;/api/v5/customers/notes&quot; request.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notesCreate">notesCreate()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-IdResponse.html"><abbr title="\RetailCrm\Api\Model\Response\IdResponse">IdResponse</abbr></a>    </span>
+</dt>
+<dd>Makes POST &quot;/api/v5/customers/notes/create&quot; request.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notesDelete">notesDelete()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a>    </span>
+</dt>
+<dd>Makes POST &quot;/api/v5/customers/notes/{id}/delete&quot; request.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_subscriptions">subscriptions()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a>    </span>
+</dt>
+<dd>Makes POST &quot;/api/v5/customers/{externalId}/subscriptions&quot; request.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_upload">upload()</a>
+    <span>
+                                &nbsp;: <a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersUploadResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersUploadResponse">CustomersUploadResponse</abbr></a>    </span>
+</dt>
+<dd>Makes POST &quot;/api/v5/customers/upload&quot; request.</dd>
+
+    </dl>
+
+
+
+
+        
+
+        
+
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_combine">
+        combine()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_combine" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">161</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes POST &quot;/api/v5/customers/combine&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">combine</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersCombineRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest">CustomersCombineRequest</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Model\Entity\Customers\SerializedCustomerReference;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$request                = new CustomersCombineRequest();
+$request-&gt;customers     = [
+    new SerializedCustomerReference(2),
+    new SerializedCustomerReference(3),
+    new SerializedCustomerReference(4),
+];
+$request-&gt;resultCustomer = new SerializedCustomerReference(1);
+
+try {
+    $response = $client-&gt;customers-&gt;combine($request);
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+
+echo 'Result: ' . var_export($response-&gt;success, true);
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersCombineRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersCombineRequest">CustomersCombineRequest</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_combine#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_create">
+        create()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_create" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">251</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes POST &quot;/api/v5/customers/create&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersCreateRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersCreateRequest">CustomersCreateRequest</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-IdResponse.html"><abbr title="\RetailCrm\Api\Model\Response\IdResponse">IdResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Enum\Customers\ContragentType;
+use RetailCrm\Api\Enum\Customers\CustomerType;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Model\Entity\Customers\Customer;
+use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
+use RetailCrm\Api\Model\Entity\Customers\CustomerContragent;
+use RetailCrm\Api\Model\Entity\Customers\CustomerPhone;
+use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
+use RetailCrm\Api\Model\Request\Customers\CustomersCreateRequest;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$customer                             = new Customer();
+$customer-&gt;type                       = CustomerType::CUSTOMER;
+$customer-&gt;externalId                 = 'test_10';
+$customer-&gt;managerId                  = 24;
+$customer-&gt;contragent                 = new CustomerContragent();
+$customer-&gt;contragent-&gt;contragentType = ContragentType::INDIVIDUAL;
+$customer-&gt;tags                       = [
+    new CustomerTag('first'),
+    new CustomerTag('second'),
+    new CustomerTag('third'),
+];
+$customer-&gt;customFields               = [
+    'galkatrue' =&gt; true
+];
+$customer-&gt;address                    = new CustomerAddress();
+$customer-&gt;address-&gt;text              = '(719) 395-5645 13990 W County 270 Rd Nathrop, Colorado(CO), 81236';
+$customer-&gt;firstName                  = 'Test';
+$customer-&gt;lastName                   = 'User';
+$customer-&gt;patronymic                 = 'Tester';
+$customer-&gt;email                      = 'tester@example.com';
+$customer-&gt;phones                     = [
+    new CustomerPhone('(603) 292-6810')
+];
+
+$request           = new CustomersCreateRequest();
+$request-&gt;site     = 'aliexpress';
+$request-&gt;customer = $customer;
+
+try {
+    $response = $client-&gt;customers-&gt;create($request);
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+
+echo 'Created customer with ID: ' . $response-&gt;id;
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersCreateRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersCreateRequest">CustomersCreateRequest</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_create#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-IdResponse.html"><abbr title="\RetailCrm\Api\Model\Response\IdResponse">IdResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_edit">
+        edit()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_edit" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">775</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes POST &quot;/api/v5/customers/{externalId}/edit&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">edit</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$identifier</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersEditRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersEditRequest">CustomersEditRequest</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersEditResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersEditResponse">CustomersEditResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Enum\ByIdentifier;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Model\Entity\Customers\Customer;
+use RetailCrm\Api\Model\Request\Customers\CustomersEditRequest;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$request                      = new CustomersEditRequest();
+$request-&gt;customer            = new Customer();
+$request-&gt;by                  = ByIdentifier::ID;
+$request-&gt;site                = 'aliexpress';
+$request-&gt;customer-&gt;firstName = 'Test';
+
+try {
+    $response = $client-&gt;customers-&gt;edit(4770, $request);
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+
+echo 'Edited customer: ' . $response-&gt;id;
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$identifier</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersEditRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersEditRequest">CustomersEditRequest</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_edit#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersEditResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersEditResponse">CustomersEditResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_fixExternalIds">
+        fixExternalIds()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_fixExternalIds" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">312</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes POST &quot;/api/v5/customers/fix-external-ids&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">fixExternalIds</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersFixExternalIdsRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersFixExternalIdsRequest">CustomersFixExternalIdsRequest</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
+use RetailCrm\Api\Model\Request\Customers\CustomersFixExternalIdsRequest;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$request            = new CustomersFixExternalIdsRequest();
+$request-&gt;customers = [
+    new FixExternalRow(1, 'external_id_1'),
+    new FixExternalRow(2, 'external_id_2'),
+    new FixExternalRow(3, 'external_id_3'),
+];
+
+try {
+    $response = $client-&gt;customers-&gt;fixExternalIds($request);
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersFixExternalIdsRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersFixExternalIdsRequest">CustomersFixExternalIdsRequest</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_fixExternalIds#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_get">
+        get()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_get" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">710</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes GET &quot;/api/v5/customers/{externalId}&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$identifier</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-BySiteRequest.html"><abbr title="\RetailCrm\Api\Model\Request\BySiteRequest">BySiteRequest</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersGetResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersGetResponse">CustomersGetResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Enum\ByIdentifier;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Model\Request\BySiteRequest;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+try {
+    $response = $client-&gt;customers-&gt;get(
+        4770,
+        new BySiteRequest(ByIdentifier::ID, 'bb_demo')
+    );
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+
+echo 'Customer: ' . print_r($response-&gt;customer);
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$identifier</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-BySiteRequest.html"><abbr title="\RetailCrm\Api\Model\Request\BySiteRequest">BySiteRequest</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_get#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersGetResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersGetResponse">CustomersGetResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_history">
+        history()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_history" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">375</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes GET &quot;/api/v5/customers/history&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">history</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersHistoryRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest">CustomersHistoryRequest</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersHistoryResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersHistoryResponse">CustomersHistoryResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Model\Filter\Customers\CustomerHistoryFilter;
+use RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest;
+use RetailCrm\Api\Enum\PaginationLimit;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$request                  = new CustomersHistoryRequest();
+$request-&gt;limit           = PaginationLimit::LIMIT_20;
+$request-&gt;page            = 1;
+$request-&gt;filter          = new CustomerHistoryFilter();
+$request-&gt;filter-&gt;sinceId = 2691;
+
+try {
+    $response = $client-&gt;customers-&gt;history($request);
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+
+echo 'History: ' . print_r($response-&gt;history, true);
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersHistoryRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersHistoryRequest">CustomersHistoryRequest</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_history#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersHistoryResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersHistoryResponse">CustomersHistoryResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_list">
+        list()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_list" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">97</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes GET &quot;/api/v5/customers&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">list</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersRequest">CustomersRequest</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersResponse">CustomersResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Model\Filter\Customers\CustomerFilter;
+use RetailCrm\Api\Model\Request\Customers\CustomersRequest;
+use RetailCrm\Api\Enum\NumericBoolean;
+use RetailCrm\Api\Enum\PaginationLimit;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$request                    = new CustomersRequest();
+$request-&gt;limit             = PaginationLimit::LIMIT_20;
+$request-&gt;page              = 1;
+$request-&gt;filter            = new CustomerFilter();
+$request-&gt;filter-&gt;sites     = ['moysklad', 'aliexpress'];
+$request-&gt;filter-&gt;name      = '89229112322';
+$request-&gt;filter-&gt;isContact = NumericBoolean::TRUE;
+
+try {
+    $response = $client-&gt;customers-&gt;list($request);
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+
+echo 'Received customers: ' . print_r($response-&gt;customers, true);
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersRequest">CustomersRequest</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_list#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersResponse">CustomersResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_notes">
+        notes()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notes" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">440</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes GET &quot;/api/v5/customers/notes&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">notes</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersNotesRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest">CustomersNotesRequest</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomerNotesResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomerNotesResponse">CustomerNotesResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Model\Filter\Customers\CustomerNoteFilter;
+use RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest;
+use RetailCrm\Api\Enum\PaginationLimit;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$request                              = new CustomersNotesRequest();
+$request-&gt;limit                       = PaginationLimit::LIMIT_20;
+$request-&gt;page                        = 1;
+$request-&gt;filter                      = new CustomerNoteFilter();
+$request-&gt;filter-&gt;customerExternalIds = ['10'];
+$request-&gt;filter-&gt;createdAtFrom       = '2019-08-06 12:00:00';
+$request-&gt;filter-&gt;text                = 'note';
+
+try {
+    $response = $client-&gt;customers-&gt;notes($request);
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+
+echo 'Notes: ' . print_r($response-&gt;notes, true);
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersNotesRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersNotesRequest">CustomersNotesRequest</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notes#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomerNotesResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomerNotesResponse">CustomerNotesResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_notesCreate">
+        notesCreate()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notesCreate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">505</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes POST &quot;/api/v5/customers/notes/create&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">notesCreate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersNotesCreateRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest">CustomersNotesCreateRequest</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-IdResponse.html"><abbr title="\RetailCrm\Api\Model\Response\IdResponse">IdResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Model\Entity\Customers\Customer;
+use RetailCrm\Api\Model\Entity\Customers\CustomerNote;
+use RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$request                             = new CustomersNotesCreateRequest();
+$request-&gt;site                       = 'moysklad';
+$request-&gt;note                       = new CustomerNote();
+$request-&gt;note-&gt;customer             = new Customer();
+$request-&gt;note-&gt;customer-&gt;externalId = '10';
+$request-&gt;note-&gt;managerId            = 21;
+$request-&gt;note-&gt;text                 = 'Text';
+
+try {
+    $response = $client-&gt;customers-&gt;notesCreate($request);
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+
+echo 'Created note with id: ' . $response-&gt;id;
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersNotesCreateRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersNotesCreateRequest">CustomersNotesCreateRequest</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notesCreate#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-IdResponse.html"><abbr title="\RetailCrm\Api\Model\Response\IdResponse">IdResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_notesDelete">
+        notesDelete()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notesDelete" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">557</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes POST &quot;/api/v5/customers/notes/{id}/delete&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">notesDelete</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+try {
+    $response = $client-&gt;customers-&gt;notesDelete(1);
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notesDelete#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_subscriptions">
+        subscriptions()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_subscriptions" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">841</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes POST &quot;/api/v5/customers/{externalId}/subscriptions&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">subscriptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$identifier</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersSubscriptionsRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersSubscriptionsRequest">CustomersSubscriptionsRequest</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Enum\ByIdentifier;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Model\Entity\Customers\Subscription;
+use RetailCrm\Api\Model\Request\Customers\CustomersSubscriptionsRequest;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$subscription               = new Subscription();
+$subscription-&gt;channel      = 'waba';
+$subscription-&gt;subscription = 'category';
+$subscription-&gt;active       = false;
+$subscription-&gt;messageId    = 123;
+$request                    = new CustomersSubscriptionsRequest();
+$request-&gt;by                = ByIdentifier::ID;
+$request-&gt;site              = 'aliexpress';
+$request-&gt;subscriptions     = [$subscription];
+
+try {
+    $response = $client-&gt;customers-&gt;subscriptions(4770, $request);
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$identifier</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersSubscriptionsRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersSubscriptionsRequest">CustomersSubscriptionsRequest</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_subscriptions#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-SuccessResponse.html"><abbr title="\RetailCrm\Api\Model\Response\SuccessResponse">SuccessResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_upload">
+        upload()
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_upload" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ResourceGroup/Customers.php"><a href="files/src-resourcegroup-customers.html"><abbr title="src/ResourceGroup/Customers.php">Customers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">650</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes POST &quot;/api/v5/customers/upload&quot; request.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">upload</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersUploadRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersUploadRequest">CustomersUploadRequest</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersUploadResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersUploadResponse">CustomersUploadResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Example:</p>
+<pre class="prettyprint"><code class="language-php">use RetailCrm\Api\Enum\Customers\ContragentType;
+use RetailCrm\Api\Enum\Customers\CustomerType;
+use RetailCrm\Api\Factory\SimpleClientFactory;
+use RetailCrm\Api\Interfaces\ApiExceptionInterface;
+use RetailCrm\Api\Model\Entity\Customers\Customer;
+use RetailCrm\Api\Model\Entity\Customers\CustomerAddress;
+use RetailCrm\Api\Model\Entity\Customers\CustomerContragent;
+use RetailCrm\Api\Model\Entity\Customers\CustomerPhone;
+use RetailCrm\Api\Model\Entity\Customers\CustomerTag;
+use RetailCrm\Api\Model\Entity\Customers\FixExternalRow;
+use RetailCrm\Api\Model\Request\Customers\CustomersUploadRequest;
+
+$client = SimpleClientFactory::createClient('https://test.retailcrm.pro', 'apiKey');
+
+$customer                             = new Customer();
+$customer-&gt;type                       = CustomerType::CUSTOMER;
+$customer-&gt;externalId                 = 'test_10';
+$customer-&gt;managerId                  = 24;
+$customer-&gt;contragent                 = new CustomerContragent();
+$customer-&gt;contragent-&gt;contragentType = ContragentType::INDIVIDUAL;
+$customer-&gt;tags                       = [
+    new CustomerTag('first'),
+    new CustomerTag('second'),
+    new CustomerTag('third'),
+];
+$customer-&gt;customFields               = [
+    'galkatrue' =&gt; true
+];
+$customer-&gt;address                    = new CustomerAddress();
+$customer-&gt;address-&gt;text              = '(719) 395-5645 13990 W County 270 Rd Nathrop, Colorado(CO), 81236';
+$customer-&gt;firstName                  = 'Test';
+$customer-&gt;lastName                   = 'User';
+$customer-&gt;patronymic                 = 'Tester';
+$customer-&gt;email                      = 'tester@example.com';
+$customer-&gt;phones                     = [
+    new CustomerPhone('(603) 292-6810')
+];
+
+$request            = new CustomersUploadRequest();
+$request-&gt;site      = 'aliexpress';
+$request-&gt;customers = [$customer];
+
+try {
+    $response = $client-&gt;customers-&gt;upload($request);
+} catch (ApiExceptionInterface $exception) {
+    echo sprintf(
+        'Error from RetailCRM API (status code: %d): %s',
+        $exception-&gt;getStatusCode(),
+        $exception-&gt;getMessage()
+    );
+
+    if (count($exception-&gt;getErrorResponse()-&gt;errors) &gt; 0) {
+        echo PHP_EOL . 'Errors: ' . implode(', ', $exception-&gt;getErrorResponse()-&gt;errors);
+    }
+
+    return;
+}
+
+echo 'Uploaded customers: ' . implode(', ', array_map(static function (FixExternalRow $row) {
+        return $row-&gt;id;
+}, $response-&gt;uploadedCustomers));
+</code></pre>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/RetailCrm-Api-Model-Request-Customers-CustomersUploadRequest.html"><abbr title="\RetailCrm\Api\Model\Request\Customers\CustomersUploadRequest">CustomersUploadRequest</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_upload#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ApiExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ApiExceptionInterface">ApiExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Interfaces-ClientExceptionInterface.html"><abbr title="\RetailCrm\Api\Interfaces\ClientExceptionInterface">ClientExceptionInterface</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-AccountDoesNotExistException.html"><abbr title="\RetailCrm\Api\Exception\Api\AccountDoesNotExistException">AccountDoesNotExistException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ApiErrorException.html"><abbr title="\RetailCrm\Api\Exception\Api\ApiErrorException">ApiErrorException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingCredentialsException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingCredentialsException">MissingCredentialsException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-MissingParameterException.html"><abbr title="\RetailCrm\Api\Exception\Api\MissingParameterException">MissingParameterException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Api-ValidationException.html"><abbr title="\RetailCrm\Api\Exception\Api\ValidationException">ValidationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HandlerException.html"><abbr title="\RetailCrm\Api\Exception\Client\HandlerException">HandlerException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/RetailCrm-Api-Exception-Client-HttpClientException.html"><abbr title="\RetailCrm\Api\Exception\Client\HttpClientException">HttpClientException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/RetailCrm-Api-Model-Response-Customers-CustomersUploadResponse.html"><abbr title="\RetailCrm\Api\Model\Response\Customers\CustomersUploadResponse">CustomersUploadResponse</abbr></a></span>
+            </section>
+
+</article>
+            </section>
+
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/ResourceGroup/Customers.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
+
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
+
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('GET', src, true);
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+                            Prism.highlightElement(code);
+                            return;
+                        }
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
+                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
+                    }
+                    modal.classList.add("phpdocumentor-modal__open");
+
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
+                    });
+                });
+            });
+        })();
+    </script>
+
+    </article>
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                                                                <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#toc-methods">Methods</a></li>
+                                    </ul>
+            </li>
+            
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_combine">combine()</a></li>
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_create">create()</a></li>
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_edit">edit()</a></li>
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_fixExternalIds">fixExternalIds()</a></li>
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_get">get()</a></li>
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_history">history()</a></li>
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_list">list()</a></li>
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notes">notes()</a></li>
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notesCreate">notesCreate()</a></li>
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_notesDelete">notesDelete()</a></li>
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_subscriptions">subscriptions()</a></li>
+                                            <li><a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#method_upload">upload()</a></li>
+                                    </ul>
+            </li>
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+    <section class="phpdocumentor-search-results__dialog">
+        <header class="phpdocumentor-search-results__header">
+            <h2 class="phpdocumentor-search-results__title">Search results</h2>
+            <button class="phpdocumentor-search-results__close"><i class="fas fa-times"></i></button>
+        </header>
+        <section class="phpdocumentor-search-results__body">
+            <ul class="phpdocumentor-search-results__entries"></ul>
+        </section>
+    </section>
+</section>
+        </div>
+        <a href="classes/RetailCrm-Api-ResourceGroup-Customers.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+
+    </main>
+
+    <script>
+        cssVars({});
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+</body>
+</html>
