@@ -46,7 +46,7 @@ class KnowledgeBaseTest extends AbstractApiResourceGroupTestCase
     {
         $request = new KnowledgeBaseDocumentsRequest();
         $request->limit = 20;
-        $request->page = 1;
+        $request->cursor = 'opaque+/=';
         $request->filter = new KnowledgeBaseDocumentFilter();
         $request->filter->ids = [7, 8];
         $request->filter->externalIds = ['doc-7'];
@@ -55,13 +55,13 @@ class KnowledgeBaseTest extends AbstractApiResourceGroupTestCase
         $request->filter->hasFile = false;
         $request->filter->availableForCopilot = false;
         $request->filter->search = 'Shipping';
-        $json = '{"success":true,"pagination":{"limit":20,"currentPage":1,"totalCount":1,"totalPageCount":1},'
+        $json = '{"success":true,"pagination":{"nextCursor":"next+/="},'
             . '"documents":[{"id":7,"sectionId":1,"title":"Shipping","content":"# Shipping",'
             . '"externalId":"doc-7","availableForCopilot":false,"contentHash":"abc",'
             . '"createdAt":"2026-10-26 10:00:00","updatedAt":"2026-10-26 11:00:00"}]}';
         $mock = self::createApiMockBuilder('knowledge-base/documents');
         $mock->matchMethod('GET')->matchQuery([
-            'limit' => '20', 'page' => '1',
+            'limit' => '20', 'cursor' => 'opaque+/=',
             'filter' => ['ids' => ['7', '8'], 'externalIds' => ['doc-7'], 'sectionId' => '1',
                 'directOnly' => '1', 'availableForCopilot' => '0', 'hasFile' => '0', 'search' => 'Shipping'],
         ])->reply(200)->withBody($json);
@@ -69,10 +69,33 @@ class KnowledgeBaseTest extends AbstractApiResourceGroupTestCase
         self::assertModelEqualsToResponse($json, $client->knowledgeBase->documents($request));
     }
 
+    public function testDocumentsCursorPagination(): void
+    {
+        $request = new KnowledgeBaseDocumentsRequest();
+        $request->limit = 20;
+        $ids = [];
+        foreach (['next+/=', ''] as $index => $nextCursor) {
+            $query = ['limit' => '20'];
+            if ($request->cursor !== null) {
+                $query['cursor'] = $request->cursor;
+            }
+            $json = json_encode(['success' => true, 'documents' => [['id' => 7 + $index]],
+                'pagination' => ['nextCursor' => $nextCursor]], JSON_THROW_ON_ERROR);
+            $mock = self::createApiMockBuilder('knowledge-base/documents');
+            $mock->matchMethod('GET')->matchQuery($query)->reply(200)->withBody($json);
+            $client = TestClientFactory::createClient($mock->getClient());
+            $response = $client->knowledgeBase->documents($request);
+            $ids[] = $response->documents[0]->id;
+            $request->cursor = $response->pagination->nextCursor;
+            self::assertSame($nextCursor, $request->cursor);
+        }
+        self::assertSame([7, 8], $ids);
+        self::assertSame('', $request->cursor);
+    }
+
     public function testGetDocumentById(): void
     {
-        $request = new KnowledgeBaseDocumentByRequest();
-        $request->by = 'id';
+        $request = new KnowledgeBaseDocumentByRequest('id');
         $json = '{"success":true,"document":{"id":7,"title":"Shipping","availableForCopilot":false,'
             . '"file":{"id":9,"name":"manual.txt","type":"text/plain","size":12,"url":"https://example.com/file"}}}';
         $mock = self::createApiMockBuilder('knowledge-base/documents/7');

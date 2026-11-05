@@ -45,12 +45,15 @@ $edit->document = ['externalId' => null];
 $client->knowledgeBase->documentsEdit($id, $edit);
 ```
 
-Sections are returned without pagination. Documents use `page`, `limit` and a
+Sections are returned without pagination. Documents use `cursor`, `limit` and a
 `KnowledgeBaseDocumentFilter`: `ids`, `externalIds`, `sectionId`, `directOnly`,
 `availableForCopilot`, `hasFile`, `search`. A section filter includes subsections unless `directOnly` is true.
 With `directOnly = true` and no section, only root documents are selected.
 
-`documentsHistory()` accepts `KnowledgeBaseDocumentsHistoryRequest` and
+Pass `$response->pagination->nextCursor` as `$request->cursor` for the next batch;
+an empty cursor ends the list.
+
+`documentsHistory()` uses `page` and accepts `KnowledgeBaseDocumentsHistoryRequest` and
 `KnowledgeBaseDocumentHistoryFilter` (`sinceId`, `documentId`, `startDate`, `endDate`).
 Store the last history ID to retrieve subsequent changes. Content changes carry hashes, not document text;
 fetch the document again to read the current content. Sections have no history endpoint.

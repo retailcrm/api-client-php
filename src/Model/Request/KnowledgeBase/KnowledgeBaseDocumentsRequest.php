@@ -11,7 +11,6 @@ namespace RetailCrm\Api\Model\Request\KnowledgeBase;
 
 use RetailCrm\Api\Component\FormData\Mapping as Form;
 use RetailCrm\Api\Interfaces\RequestInterface;
-use RetailCrm\Api\Model\Request\Traits\PageLimitTrait;
 
 /**
  * Class KnowledgeBaseDocumentsRequest
@@ -21,7 +20,21 @@ use RetailCrm\Api\Model\Request\Traits\PageLimitTrait;
  */
 class KnowledgeBaseDocumentsRequest implements RequestInterface
 {
-    use PageLimitTrait;
+    /**
+     * @var int
+     *
+     * @Form\Type("int")
+     * @Form\SerializedName("limit")
+     */
+    public $limit;
+
+    /**
+     * @var string
+     *
+     * @Form\Type("string")
+     * @Form\SerializedName("cursor")
+     */
+    public $cursor;
 
     /**
      * @var \RetailCrm\Api\Model\Filter\KnowledgeBase\KnowledgeBaseDocumentFilter

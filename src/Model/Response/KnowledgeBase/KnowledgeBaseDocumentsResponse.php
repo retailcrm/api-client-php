@@ -10,7 +10,7 @@
 namespace RetailCrm\Api\Model\Response\KnowledgeBase;
 
 use RetailCrm\Api\Component\Serializer\Annotation as JMS;
-use RetailCrm\Api\Model\Response\AbstractPaginatedResponse;
+use RetailCrm\Api\Model\Response\AbstractCursorPaginatedResponse;
 
 /**
  * Class KnowledgeBaseDocumentsResponse
@@ -18,7 +18,7 @@ use RetailCrm\Api\Model\Response\AbstractPaginatedResponse;
  * @category KnowledgeBaseDocumentsResponse
  * @package  RetailCrm\Api\Model\Response\KnowledgeBase
  */
-class KnowledgeBaseDocumentsResponse extends AbstractPaginatedResponse
+class KnowledgeBaseDocumentsResponse extends AbstractCursorPaginatedResponse
 {
     /**
      * @var \RetailCrm\Api\Model\Entity\KnowledgeBase\KnowledgeBaseDocument[]
