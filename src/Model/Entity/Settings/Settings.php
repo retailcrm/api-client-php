@@ -66,4 +66,12 @@ class Settings
      * @JMS\SerializedName("mg")
      */
     public $mgSettings;
+
+    /**
+     * @var \RetailCrm\Api\Model\Entity\Settings\OrderSettings
+     *
+     * @JMS\Type("RetailCrm\Api\Model\Entity\Settings\OrderSettings")
+     * @JMS\SerializedName("order")
+     */
+    public $order;
 }
