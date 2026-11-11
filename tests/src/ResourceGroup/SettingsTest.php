@@ -89,5 +89,46 @@ EOF;
         $response = $client->settings->get();
 
         self::assertModelEqualsToResponse($json, $response);
+        self::assertNull($response->settings->order);
+    }
+
+    /**
+     * @dataProvider orderValues
+     */
+    public function testOrder(bool $enabled): void
+    {
+        $json = json_encode([
+            'success' => true,
+            'settings' => [
+                'order' => [
+                    'allow_duplicate_order_product' => [
+                        'value' => $enabled,
+                        'updated_at' => '2026-05-27 13:31:02',
+                    ],
+                ],
+            ],
+        ], JSON_THROW_ON_ERROR);
+
+        $mock = static::createApiMockBuilder('settings');
+        $mock->matchMethod(RequestMethod::GET)
+            ->reply(200)
+            ->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->settings->get();
+        $setting = $response->settings->order->allowDuplicateOrderProduct;
+
+        self::assertSame($enabled, $setting->value);
+        self::assertInstanceOf(\DateTime::class, $setting->updatedAt);
+        self::assertSame('2026-05-27 13:31:02', $setting->updatedAt->format('Y-m-d H:i:s'));
+        self::assertModelEqualsToResponse($json, $response);
+    }
+
+    public function orderValues(): array
+    {
+        return [
+            'enabled' => [true],
+            'disabled' => [false],
+        ];
     }
 }
